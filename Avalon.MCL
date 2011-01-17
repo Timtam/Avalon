@@ -1,0 +1,2098 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE muclient>
+<!-- Saved on Samstag, Januar 08, 2011, 2:19  -->
+<!-- MuClient version 4.39 -->
+<!-- Written by Nick Gammon -->
+<!-- Home Page: http://www.mushclient.com/ -->
+<muclient>
+<world
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+
+   auto_say_override_prefix="-"
+   auto_say_string="say "
+   chat_name="Name-not-set"
+   command_stack_character=";"
+   id="fa4252c15872969110c25518"
+   input_font_name="FixedSys"
+   mapping_failure="^Da gehts nicht weiter\.$"
+   name="Avalon"
+   new_activity_sound="(No sound)"
+   output_font_name="FixedSys"
+   script_editor="notepad"
+   script_language="Lua"
+   site="avalon.mud.de"
+   spam_message="look"
+   speed_walk_prefix="#"
+   terminal_identification="mushclient"
+
+   arrows_change_history="y"
+   auto_resize_minimum_lines="1"
+   auto_resize_maximum_lines="20"
+   chat_foreground_colour="red"
+   chat_background_colour="black"
+   chat_port="4050"
+   confirm_before_replacing_typing="y"
+   confirm_on_paste="y"
+   confirm_on_send="y"
+   display_my_input="y"
+   echo_colour="10"
+   echo_hyperlink_in_output_window="y"
+   edit_script_with_notepad="y"
+   enable_aliases="y"
+   enable_beeps="y"
+   enable_command_stack="y"
+   enable_scripts="y"
+   enable_speed_walk="y"
+   enable_triggers="y"
+   enable_trigger_sounds="y"
+   history_lines="1000"
+   hyperlink_adds_to_command_history="y"
+   hyperlink_colour="#0080FF"
+   indent_paras="y"
+   input_background_colour="white"
+   input_font_height="9"
+   input_font_weight="400"
+   input_text_colour="black"
+   keypad_enable="y"
+   line_information="y"
+   log_output="y"
+   map_failure_regexp="y"
+   max_output_lines="5000"
+   mud_can_change_link_colour="y"
+   mud_can_change_options="y"
+   note_text_colour="#040000"
+   output_font_height="9"
+   output_font_weight="400"
+   paste_delay_per_lines="1"
+   pixel_offset="1"
+   port="23"
+   proxy_port="1080"
+   send_file_delay_per_lines="1"
+   send_mxp_afk_response="y"
+   show_connect_disconnect="y"
+   show_italic="y"
+   show_underline="y"
+   spam_line_count="20"
+   speed_walk_delay="400"
+   tab_completion_lines="200"
+   underline_hyperlinks="y"
+   use_custom_link_colour="y"
+   use_default_input_font="y"
+   use_default_output_font="y"
+   use_mxp="2"
+   warn_if_scripting_inactive="y"
+   wrap="y"
+   wrap_column="80"
+   write_world_name_to_log="y"
+   > <!-- end of general world attributes -->
+
+</world>
+
+<!-- triggers -->
+
+<triggers
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+  <trigger
+   enabled="y"
+   group="Player"
+   ignore_case="y"
+   keep_evaluating="y"
+   match="^Du legst .*$|^.* legt .* hin.$"
+   regexp="y"
+   sequence="1"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Put.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* Luftvortex hat * getoetet."
+   sequence="2"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Kill.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Luftvortex loest sich auf als Du ihm seinen Kern geraubt hast.*"
+   sequence="2"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Disintegrate.wav"
+  >
+  <send>lege streitaxt in deinen rucksack</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".* gibt Dir .* (Lapis|Obsidian).*"
+   regexp="y"
+   sequence="99"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\GetMoney.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hoerst auf, 'Brems Vogellied' zu spielen."
+   omit_from_output="y"
+   sequence="99"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* Luftvortex naehert sich von *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Appear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* Luftvortex scheint sehr stark zu sein."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Strong.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* Luftvortex wirbelt ein wenig von *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Swirl1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* Luftvortex wuselt flink um *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Swirl2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* fluechtet sichtlich verstoert nach *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Flee.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Player"
+   match="* gibt Dir *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Get.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* hat gut geschmeckt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\EatUp.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* heilige Aura loest sich auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\KB_Out.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".*Du hast Braunkohle gefunden."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalSucceeded.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".*Fast sofort flackert im Ofen ein heisses|Feuerchen auf."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".*Stinkstiefel.*"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf einem Pfad von * nach *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Aus der Schmelze ist ein Rumpeln zu hoeren. Irgendetwas tut sich da drin."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltRumble.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Bedrohlich knirscht der Sand, als sich der Sandwurm auf Dich zuwaelzt."
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   match="Dairu entfernt sich kriegerisch nach *."
+   name="FolgeTrigger"
+   sequence="100"
+  >
+  <send>%1</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Daraufhin stellst Du den Topf auf das Kochgestell *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Cook.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Daraufhin stellst Du die Pfanne mit *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Roast.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das sieht nicht besonders ergiebig aus."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalFail.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Robe schmiegt sich eng an Deinen Koerper*"
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Gown.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dem Engel machen die magischen Angriffe *"
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Boden vibriert heftig und ein ohrenbetaeubendes Rumpeln und Krachen|ertoent von irgendwo in der Mine. Das muss ein heftiger Einsturz gewesen|sein, hoffentlich ist niemand dabei zu Schaden gekommen."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInDistant.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Engel sieht Dich an und laechelt hoehnisch.|Der Engel hebt eine Augenbraue.|Der Engel schlaegt ein wenig mit seinen Fluegeln.|Der Engel mustert Dich mit strengem Blick.|Der Engel gaehnt gelangweilt.|Der Engel pfeift eine himmlische Melodie."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Lichtwesen folgen Dir."
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dir rutscht Geroell entgegen."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigRocks.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du befreist Dich aus dem Schlamm."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigMud.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst mit dem Wuehlen nach Braunkohle."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach .*"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst zu graben."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bildest mit dem * Luftvortex eine neue Gruppe."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Group.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Deiner.*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressRelease.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ergreifst die Holzstange ganz am Ende, um einen moeglichst langen Hebel|zu haben, und ziehst sie kraftvoll nach unten."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Auroras Lag auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Lag.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Brems Vogellied auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Birds_Start.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Fabians Gnade auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Heal.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Grinwells Stimme im Geist auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Hypnosis.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Josuas Rattenfaengerlied auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Catcher.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Kakos Missklang auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Dissonance.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Nynaeves Sonnenschein auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Sun.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, Renfields Wirrsal auf Deiner Citole zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Confusion.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du fuehrst *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Wield.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du gibst *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Give.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du graebst und graebst..."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigContinue.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du greifst * mit * an."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Attack.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast * getoetet."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Kill.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hoerst auf, * zu spielen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Stop.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hoerst ein lautes Klacken und daraufhin ein Quietschen. Jetzt faellt|wohl gleich ein Klumpen Metall aus dem Rohr."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltClick.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du konzentrierst Dich auf das vorzeitige Ende des Zaubers."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\Stop.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du merkst, wie vom Ofen allmaehlich eine grosse Hitze ausgeht."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltHeatUp.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du oeffnest *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Open.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du packst Dein Kochgestell aus und stellst es vor Dich hin."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Unpack.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schlaegst Dein Werkzeug in das Gestein."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigTool.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schliesst *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Close.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du senkst *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Unwield.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spielst ein Lied auf Deiner Citole."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Sing.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du stimmst eine dunkle, getragene Totenklage *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Burial.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du waehlst ein geeignetes Messer aus Deinen Kochutensilien aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Disembowel1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ziehst * an."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Wear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ziehst * aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Unwear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Engel."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Angel.wav"
+  >
+  <send>b fluegel von engel</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Huhn."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Chicken.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Klumpen Metall faellt scheppernd in das Auffangbecken."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Pfad, er verlaeuft von * nach *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Putzteufelchen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\CleanDaemon.wav"
+  >
+  </trigger>
+  <trigger
+   match="Ein Stalljunge naehert sich *"
+   sequence="100"
+  >
+  <send>toete stalljunge</send>
+  </trigger>
+  <trigger
+   match="Ein Wachmann naehert sich *"
+   sequence="100"
+  >
+  <send>toete wachmann</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Weg, er verlaeuft von * nach *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\CookFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein seltsames Haus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Zwoni.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine grosse Anzahl Voegel stuerzt auf * herab.*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Birds_Attack.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Fast ohne Widerstand senkt sich der Stempel tief in die Presse hinein.*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressEmpty.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Fertig. Dein Feuerkristall erlischt und Du packst alles wieder ein. *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\RoastFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Funken spruehen bei Deinen Schlaegen auf den harten Fels."
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gar nicht so einfach."
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Hm. Viel ist da nicht zu sehen."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerFail.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Hoffentlich findet sich etwas.|Das geht ja wirklich gut."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerSucceed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Hoffentlich wird das was...|Das wird wirklich was..."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Hoi, das sieht doch schon wie Braunkohle aus.|Nach was richtig Ordentlichem sieht das nicht aus."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalSucceed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Huch, jetzt bist Du tatsaechlich auf einen anderen Stollen gestossen und|faellst prompt hinunter."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigFall.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Irgendwie hast Du hier ein mulmiges Gefuehl, das Dir sagt.|RAUS HIER.*|Die Waende dieses Stollens knirschen verdaechtig. Es hoert sich so an, als|ob jetzt der richtige Zeitpunkt waere, um die Beine in die Hand zu nehmen.|Nichts wie weg.|Ploetzlich hoerst Du Steineknirschen und ein lautes Rumpeln. Irgendwie sagt|Dir das, dass Du hier schnell weg solltest."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInAlert.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Jemand klopft von draussen laut gegen das Tor!"
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Langsam senkt sich der Stempel in die Presse hinein. Du hoerst das|Kreischen sich verformenden Metalls."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus .*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Leider bist Du viel zu unkonzentriert und verschneidest Dich dermassen oft*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\DisembowelFail.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren. Ob das Metall schon| schmilzt."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltBubble.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   ignore_case="y"
+   match="Loretta.*"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mist, mit Graben laesst sich hier wohl nichts mehr finden.|Mist. Hier laesst sich wohl nichts mehr schuerfen."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\Empty.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mist. Noch immer nichts gefunden."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerFailed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mit dem Messer in der Hand machst Du Dich an die Arbeit."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Disembowel2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Nur unter Aufbietung aller Kraefte gelingt es Dir, den Hebel bis fast ganz|nach unten zu ziehen."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressContinue.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Oh Mist, jetzt bist Du auf Granit gestossen und kannst nicht weitergraben!"
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigGranite.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="So, das duerfte weit genug sein. Gleich mal schaun, ob sich die Arbeit auch|gelohnt hat."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Super! Mit praezisen Schnitten weidest Du * aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\DisembowelSuccess.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Tatsaechlich, Du hast etwas .* gefunden.|Na bitte, da ist schon etwas."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerSucceeded.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Tue abgebrochen."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\DoCancel.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Tue beendet."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Done.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Der Sandwurm richtet sich bedrohlich auf.$|^Der Sandwurm scheint sich nicht aus der Ruhe bringen zu lassen.$|^Der Sandwurm waelzt sich bedrohlich in Deine Naehe.$|^Du hoerst ein lautes Schnauben aus Richtung des Sandwurmes.$|^Hat da eben der Magen des Sandwurmes .*$|^Nachtisch\?$|^Nur sehr behaebig bewegt sich der Sandwurm.$"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Die Fluegel des Wesens haben an Glanz verloren. Sie haengen schlaff von$|^seinem Ruecken herab.$"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\FallenAngel.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\Prepare.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du erhebst .*$|^.* erhebt .*$"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\CounterAttack.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du faengst an, .* zu essen.$|^Mhmmm, schmeckt das gut ...$|^. o Keine Frage, ein Genuss! o . $|^Du geniesst diese Speise in vollen Zuegen.$"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Eat.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du peilst mit Deinem Sextanten die beiden Monde an, und kannst schon nach$|^kurzer Zeit ihre Position ausmachen. Du gruebelst noch ein wenig, und$|^kommst schliesslich zu folgendem Ergebnis:$"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Stolz traegt der Engel seine Fluegel auf dem Ruecken. Sie sind von reinstem$|^Weiss und Du kannst auf ihnen keinerlei Makel erkennen.$"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du nimmst einen grossen Schluck *"
+   sequence="101"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\EatUp.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du nimmst *"
+   sequence="102"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Take.wav"
+  >
+  </trigger>
+</triggers>
+
+<!-- aliases -->
+
+<aliases
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+  <alias
+   match="/abt_min"
+   enabled="y"
+   send_to="11"
+   ignore_case="y"
+   sequence="100"
+  >
+  <send>s (kletter s) (kletter s) (kletter s) s (sw) (kletter sw) (kletter sw) (kletter s) s (sw) (nw) w (nw) w (sw) w (sw) w w (nw) w (nw) w w w (sw) w w w (sw) w w w (nw) w w (nw) w w w (sw) (sw) s s s (se) s (se) s s s s s s s (sw) (se) (se) e (se) (se) s (se) (se) (sw) s s s s s s (sw) s (sw) s s s (sw) w w w w (sw) s w w w s s s</send>
+  </alias>
+  <alias
+   match="/abt_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (kletter s) (kletter s) (kletter s) s (sw) (kletter sw) (kletter sw) (kletter s) s (sw) (nw) w (nw) w (sw) w (sw) w w (nw) w (nw) w w w (sw) w w w (sw) w w w (nw) w w (nw) w w w (nw) (ne) n (ne) n</send>
+  </alias>
+  <alias
+   match="/ale_los"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 2w n (ne) 2n (nw) 3n (ne) n (nw) 2w 3(nw) 2w 2(nw) (ne) (nw) 3n 12w</send>
+  </alias>
+  <alias
+   match="/alo_ash"
+   enabled="y"
+   send_to="11"
+   omit_from_output="y"
+   sequence="100"
+  >
+  <send>6w (sw) 14w (sw) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) s </send>
+  </alias>
+  <alias
+   match="/alo_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 6w (sw) 14w (sw) s 6(sw) 12w (nw) 7w (sw) w 5(sw) w (sw) 9w (nw) (sw) 4w (sw) s 3w 3s</send>
+  </alias>
+  <alias
+   match="/alo_san"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 6w (sw) 14w (sw) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) 4(sw) w (sw) 10w (nw) 3w 2(nw) n</send>
+  </alias>
+  <alias
+   match="/alo_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 6w (sw) 14w (sw) (nw) w 6(nw) 4n (nw) 3n (ne) 4n 2(nw) w (nw) 2w 2(nw) w (sw) (nw) w (nw) w (sw) w (sw) 2w (nw) w (nw) 3w (sw) 3w (sw) 3w (nw) 2w (nw) 3w (nw) (ne) n (ne) n</send>
+  </alias>
+  <alias
+   match="/amp_aug"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2(sw) 5w (sw) 3w 2(sw) 3w s 3w (sw) 2w (nw) 2w (nw) 5w </send>
+  </alias>
+  <alias
+   match="/amp_haf"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (ne) 14e </send>
+  </alias>
+  <alias
+   match="/amp_ker"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (se) 2s (se) s (sw) s 2w (nw) w (sw) w (sw) </send>
+  </alias>
+  <alias
+   match="/ash_alo"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> n (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (ne) 14e (ne) 6e</send>
+  </alias>
+  <alias
+   match="/ash_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> n 4(sw) w (sw) 10w (nw) 3w 2(nw) n w (nw) 2w 3(nw) w (nw) 2w 6(nw) n (nw) n (nw) 4w (nw) 3w 2(nw) 2w (nw) 7w n 4w 3s</send>
+  </alias>
+  <alias
+   match="/ash_san"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n 4(sw) w (sw) 10w (nw) 3w 2(nw) n </send>
+  </alias>
+  <alias
+   match="/ash_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> n (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (nw) w 6(nw) 4n (nw) 3n (ne) 4n 2(nw) w (nw) 2w 2(nw) w (sw) (nw) w (nw) w (sw) w (sw) 2w (nw) w (nw) 3w (sw) 3w (sw) 3w (nw) 2w (nw) 3w (nw) (ne) n (ne) n</send>
+  </alias>
+  <alias
+   match="/aug_amp"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 5e (se) 2e (se) 2e (ne) 3e n 3e 2(ne) 3e (ne) 5e 2(ne)</send>
+  </alias>
+  <alias
+   match="/bank_wal"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 2s 14w 5s 11e s</send>
+  </alias>
+  <alias
+   match="/camp_dk"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s
+sw
+s
+s
+s
+s
+s
+s
+s
+s
+s
+se
+s
+se
+s
+s
+sw
+w
+sw
+w
+w
+w
+sw
+sw
+s
+se
+s
+se
+s
+s
+s
+s
+s
+se
+se
+s
+se
+s
+sw
+s
+s
+s
+sw
+w
+w
+s
+s
+s
+sw
+w
+w
+w
+w
+nw
+w
+nw
+w
+w
+w
+nw
+nw
+n
+n
+w
+nw
+ne
+ne
+n
+n
+n
+n
+n
+nw
+nw
+nee
+neee
+s</send>
+  </alias>
+  <alias
+   match="/camp_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 6(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e</send>
+  </alias>
+  <alias
+   match="/cor_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> s (sw) w (sw) w 8(sw) w (sw) 2w (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) s 3w 3s</send>
+  </alias>
+  <alias
+   match="/cor_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) w (sw) w 8(sw) w (sw) 2w 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n</send>
+  </alias>
+  <alias
+   match="/dk_camp"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n
+wwws
+wws
+es
+es
+s
+s
+s
+s
+s
+ws
+ws
+es
+e
+s
+s
+es
+es
+e
+e
+e
+es
+e
+es
+e
+e
+e
+e
+en
+n
+n
+n
+e
+e
+en
+n
+n
+n
+en
+n
+wn
+n
+wn
+wn
+n
+n
+n
+n
+n
+wn
+n
+wn
+n
+en
+en
+e
+e
+e
+en
+e
+en
+n
+n
+wn
+n
+wn
+n
+n
+n
+n
+n
+n
+n
+n
+n
+en
+n</send>
+  </alias>
+  <alias
+   match="/gwen_tin"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> s 11w (nw) w (nw) 5w (nw) 4w (nw) 2w (nw) 4w (nw)</send>
+  </alias>
+  <alias
+   match="/haend_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> e n 3e 9n 3w 3n (ne) n (ne) e (ne) 2(nw) (ne) 3e (ne) n 9(ne) n 2(ne) n 4(ne) n (ne) n (ne) 3n 2(ne) 2n 3(nw) 2n 2(nw) n (nw) n (nw) n (nw) n 4(nw) 3n (nw) 4w 7(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e</send>
+  </alias>
+  <alias
+   match="/haf_amp"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 14w (sw) 2w (sw) 2w (nw) 2(ne) 3e (ne) 5e 2(ne)</send>
+  </alias>
+  <alias
+   match="/haf_jer"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 4w (nw) 3n</send>
+  </alias>
+  <alias
+   match="/haus_kram"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (ne) 10s 28e</send>
+  </alias>
+  <alias
+   match="/haus_post"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> n 13w 5n 3w s</send>
+  </alias>
+  <alias
+   match="/haus_schmied"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(nw) 10w 10s </send>
+  </alias>
+  <alias
+   match="/haus_wal"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n (o) (o) (o) (o) (o) (o) (o) (o) (o) n n n n n w w w w w w w w w w w n</send>
+  </alias>
+  <alias
+   match="/her_hol"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (se) 2e (ne) 2e (ne) e 2(ne) e (se) e (ne) 2e (ne) 2e 2(ne) 2n 2w</send>
+  </alias>
+  <alias
+   match="/hol_her"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2e 2s 2(sw) 2w (sw) 2w (sw) w (nw) w 2(sw) w (sw) 2w (sw) 2w (nw) </send>
+  </alias>
+  <alias
+   match="/hol_lim"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2e 2s 2(sw) 2w (sw) 2w (sw) w (nw) w 2(sw) w (sw) 2w (sw) 2w (sw) (se) 4e 2(se) e (ne) </send>
+  </alias>
+  <alias
+   match="/jas_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 2(ne) e 2(ne) e 3(ne) n 6(ne) 3n 3(ne) 2n 7(nw) 3n 2(ne) n 3(nw) w (nw) 2w 4(nw) 5w 13(nw) 4n (nw) (ne) 3n 2(ne) 3e 4(ne) 3n 2(ne) 6e (ne) 3e 9(ne) 3n 2(ne) (nw) w (nw) 2w (nw) 3w (nw) 3w (nw) 5w (nw) 2w (nw) 3w (nw) 5w (nw) w (nw) w (sw) 5w (nw) 6w (sw) 4w (sw) s 7(se) 3e (se) 4e 2(ne) e</send>
+  </alias>
+  <alias
+   match="/jer_haf"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>3s (se) 4e </send>
+  </alias>
+  <alias
+   match="/jer_los"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 12w</send>
+  </alias>
+  <alias
+   match="/kap_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>3s 4e (se) 6e (ne) e (se) 2e (ne) 7e 2(se) 3e (se) e (se) e 2(se) 3s 3(sw) w (sw) 5w (nw) 6w (sw) 4w (sw) s 7(se) 3e (se) 4e 2(ne) e </send>
+  </alias>
+  <alias
+   match="/ker_amp"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (ne) e (ne) e (se) 2e n (ne) n (nw) 2n (nw) 2w (sw) 2w (nw) 2(ne) 3e (ne) 5e 2(ne)</send>
+  </alias>
+  <alias
+   match="/ker_mos"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(ne) e (ne) 4s </send>
+  </alias>
+  <alias
+   match="/ker_run"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(ne) e 8s 5w </send>
+  </alias>
+  <alias
+   match="/kram_haus"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>28w 10n (sw) </send>
+  </alias>
+  <alias
+   match="/lim_hol"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (sw) w 2(nw) 4w (nw) (ne) 2e (ne) 2e (ne) e 2(ne) e (se) e (ne) 2e (ne) 2e 2(ne) 2n 2w</send>
+  </alias>
+  <alias
+   match="/los_ale"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>12e 3s (se) (sw) 2(se) 2e 3(se) 2e (se) s (sw) 3s (se) 2s (sw) s 2e </send>
+  </alias>
+  <alias
+   match="/los_jer"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>12e </send>
+  </alias>
+  <alias
+   match="/los_ver"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>12e 3s (se) (sw) 2(se) 2e 3(se) 2e (se) s (sw) 3s (se) 2s (sw) 2s 8(sw) 3w (sw) </send>
+  </alias>
+  <alias
+   match="/mad_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>2n 3e (se) 3e (se) 2e (se) e 2(se) 2e (se) e (se) s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) 2w s w 3s </send>
+  </alias>
+  <alias
+   match="/magi_wal"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> e 7s 27e n</send>
+  </alias>
+  <alias
+   match="/min_abt"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n n n e e e n (no) e e e e (no) n n n (no) n (no) n n n n n n (no) (nw) (nw) n (nw) (nw) w (nw) (nw) (no) n n n n n n n (nw) n (nw) n n n (no) (no) e e e (so) e e (so) e e e (no) e e e (no) e e e (so) e (so) e e (no) e (no) e (so) e (so) (no) n (kletter n) (kletter no) (kletter no) (no) n (kletter n) (kletter n) (kletter n) n</send>
+  </alias>
+  <alias
+   match="/min_alo"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>3n 3e n (ne) 4e (ne) (se) 9e (ne) e 5(ne) e (ne) 7e (se) 12e 6(ne) n (ne) 14e (ne) 6e </send>
+  </alias>
+  <alias
+   match="/min_ash"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>3n 4e s 7e (se) 2e 2(se) 3e (se) 4e (se) s (se) s 6(se) 2e (se) e 3(se) 2e (se) e s 2(se) 3e (se) 10e (ne) e 4(ne) s </send>
+  </alias>
+  <alias
+   match="/min_cor"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>3n 3e n (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2e (ne) e 8(ne) e (ne) e (ne) n </send>
+  </alias>
+  <alias
+   match="/min_mad"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n (nw) w (nw) 2w 2(nw) w (nw) 2w (nw) 3w (nw) 3w 2s</send>
+  </alias>
+  <alias
+   match="/min_san"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 3n 4e s 7e (se) 2e 2(se) 3e (se) 4e (se) s (se) s 6(se) 2e (se) e 3(se) 2e (se) e</send>
+  </alias>
+  <alias
+   match="/min_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n</send>
+  </alias>
+  <alias
+   match="/mos_ker"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 4n (sw) w (sw)</send>
+  </alias>
+  <alias
+   match="/por_ril"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(ne) n (ne) 2n 2(nw) n (nw) 2n 2(ne) 3n 2w 3n (ne) </send>
+  </alias>
+  <alias
+   match="/por_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 14e 4(se) 3e (se) 4e 2(ne) e</send>
+  </alias>
+  <alias
+   match="/post_haus"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n 3e 5s 13e s </send>
+  </alias>
+  <alias
+   match="/ril_por"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (sw) 3s 2e 3s 2(sw) 2s (se) s 2(se) 2s (sw) s (sw)</send>
+  </alias>
+  <alias
+   match="/run_ker"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 5e 8n w (sw)</send>
+  </alias>
+  <alias
+   match="/san_alo"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s 2(se) 3e (se) 10e (ne) e 4(ne) (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (ne) 14e (ne) 6e </send>
+  </alias>
+  <alias
+   match="/san_ash"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> s 2(se) 3e (se) 10e (ne) e 4(ne) s</send>
+  </alias>
+  <alias
+   match="/san_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>w (nw) 2w 3(nw) w (nw) 2w 6(nw) n (nw) n (nw) 4w (nw) 3w 2(nw) 2w (nw) 7w n 4w 3s </send>
+  </alias>
+  <alias
+   match="/schmied_haus"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> 10n 10e (se)</send>
+  </alias>
+  <alias
+   match="/skal_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(ne) n (ne) e (ne) 2(nw) (ne) 3e (ne) n 9(ne) n 2(ne) n 4(ne) n (ne) n (ne) 3n 2(ne) 2n 3(nw) 2n 2(nw) n (nw) n (nw) n (nw) n 4(nw) 3n (nw) 4w 7(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e </send>
+  </alias>
+  <alias
+   match="/tin_gwen"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(se) 4e (se) 2e (se) 4e (se) 5e (se) e (se) 11e n </send>
+  </alias>
+  <alias
+   match="/us_abt"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) s (sw) (se) e e e (so) e e (so) e e e (no) e e e (no) e e e (so) e (so) e e (no) e (no) e (so) e (so) (no) n (kletter n) (kletter no) (kletter no) (no) n (kletter n) (kletter n) (kletter n) n</send>
+  </alias>
+  <alias
+   match="/us_alo"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) s (sw) (se) 3e (se) 2e (se) 3e (ne) 3e (ne) 3e (se) e (se) 2e (ne) e (ne) e (se) e (se) (ne) e 2(se) 2e (se) e 2(se) 4s (sw) 3s (se) 4s 6(se) e (se) (ne) 14e (ne) 6e </send>
+  </alias>
+  <alias
+   match="/us_ash"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) s (sw) (se) 3e (se) 2e (se) 3e (ne) 3e (ne) 3e (se) e (se) 2e (ne) e (ne) e (se) e (se) (ne) e 2(se) 2e (se) e 2(se) 4s (sw) 3s (se) 4s 6(se) e (se) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) s </send>
+  </alias>
+  <alias
+   match="/us_cor"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) 2e (ne) e 8(ne) e (ne) e (ne) n</send>
+  </alias>
+  <alias
+   match="/us_min"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) 2w s w 3s </send>
+  </alias>
+  <alias
+   match="/us_uw-eingang"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>(ne) 5e (se) 2e (ne) 4e (se) e (se) 6s (sw) 4s w 2(nw) w 3(nw) (ne) (nw) 2n (nw) w (sw) w </send>
+  </alias>
+  <alias
+   match="/uw-eingang_camp"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 6(se) </send>
+  </alias>
+  <alias
+   match="/uw-eingang_haendler"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 7(se) 4e (se) 3s 4(se) s (se) s (se) s (se) s 2(se) 2s 3(se) 2s 2(sw) 3s (sw) s (sw) s 4(sw) s 2(sw) s 9(sw) s (sw) 3w (sw) 2(se) (sw) w (sw) s (sw) 3s 3e 9s 3w s w </send>
+  </alias>
+  <alias
+   match="/uw-eingang_jas"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>w 2(sw) 4w (nw) 3w 7(nw) n (ne) 4e (ne) 6e (se) 5e (ne) e (se) e (se) 5e (se) 3e (se) 2e (se) 5e (se) 3e (se) 3e (se) 2e (se) e (se) 2(sw) 3s 9(sw) 3w (sw) 6w 2(sw) 3s 4(sw) 3w 2(sw) 3s (sw) (se) 4s 13(se) 5e 4(se) 2e (se) e 3(se) s 2(sw) 3s 7(se) 2s 3(sw) 3s 6(sw) s 3(sw) w 2(sw) w 2(sw) </send>
+  </alias>
+  <alias
+   match="/uw-eingang_kap"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> w 2(sw) 4w (nw) 3w 7(nw) n (ne) 4e (ne) 6e (se) 5e (ne) e 3(ne) 3n 2(nw) w (nw) w (nw) 3w 2(nw) 7w (sw) 2w (nw) w (sw) 6w (nw) 4w 3n</send>
+  </alias>
+  <alias
+   match="/uw-eingang_por"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>w 2(sw) 4w (nw) 3w 4(nw) 14w </send>
+  </alias>
+  <alias
+   match="/uw-eingang_skal"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 7(se) 4e (se) 3s 4(se) s (se) s (se) s (se) s 2(se) 2s 3(se) 2s 2(sw) 3s (sw) s (sw) s 4(sw) s 2(sw) s 9(sw) s (sw) 3w (sw) 2(se) (sw) w (sw) s (sw)</send>
+  </alias>
+  <alias
+   match="/uw-eingang_us"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>e (ne) e (se) 2s (se) (sw) 3(se) e 2(se) e 4n (ne) 6n (nw) w (nw) 4w (sw) 2w (nw) 5w (sw) </send>
+  </alias>
+  <alias
+   match="/ver_los"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> (ne) 3e 8(ne) 2n (ne) 2n (nw) 3n (ne) n (nw) 2w 3(nw) 2w 2(nw) (ne) (nw) 3n 12w</send>
+  </alias>
+  <alias
+   match="/wal_bank"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>n 11w 5n 14e 2n </send>
+  </alias>
+  <alias
+   match="/wal_haus"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s (o) (o) (o) (o) (o) (o) (o) (o) (o) (o) (o) s s s s s w w w w w w w w w s</send>
+  </alias>
+  <alias
+   match="/wal_magi"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>s 27w 7n w </send>
+  </alias>
+  <alias
+   match="sit"
+   enabled="y"
+   sequence="100"
+  >
+  <send>le stuhl von deinem sack
+setze auf stuhl</send>
+  </alias>
+  <alias
+   match="sup"
+   enabled="y"
+   sequence="100"
+  >
+  <send>stehe auf
+le stuhl in deinen sack</send>
+  </alias>
+</aliases>
+
+<!-- timers -->
+
+<timers
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+  <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
+  <send>tue wirf 1 lapis in teich,untersuche teich</send>
+
+  </timer>
+</timers>
+
+<!-- macros -->
+
+<macros
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+
+  <macro name="up" type="send_now" >
+  <send>up</send>
+
+  </macro>
+
+  <macro name="down" type="send_now" >
+  <send>down</send>
+
+  </macro>
+
+  <macro name="north" type="send_now" >
+  <send>north</send>
+
+  </macro>
+
+  <macro name="south" type="send_now" >
+  <send>south</send>
+
+  </macro>
+
+  <macro name="east" type="send_now" >
+  <send>east</send>
+
+  </macro>
+
+  <macro name="west" type="send_now" >
+  <send>west</send>
+
+  </macro>
+
+  <macro name="examine" type="replace" >
+  <send>examine </send>
+
+  </macro>
+
+  <macro name="look" type="replace" >
+  <send>look </send>
+
+  </macro>
+
+  <macro name="page" type="replace" >
+  <send>page </send>
+
+  </macro>
+
+  <macro name="say" type="replace" >
+  <send>say </send>
+
+  </macro>
+
+  <macro name="whisper" type="replace" >
+  <send>whisper </send>
+
+  </macro>
+
+  <macro name="doing" type="send_now" >
+  <send>DOING</send>
+
+  </macro>
+
+  <macro name="who" type="send_now" >
+  <send>WHO</send>
+
+  </macro>
+
+  <macro name="drop" type="replace" >
+  <send>drop </send>
+
+  </macro>
+
+  <macro name="take" type="replace" >
+  <send>take </send>
+
+  </macro>
+
+  <macro name="logout" type="send_now" >
+  <send>LOGOUT</send>
+
+  </macro>
+
+  <macro name="quit" type="send_now" >
+  <send>QUIT</send>
+
+  </macro>
+</macros>
+
+<!-- variables -->
+
+<variables
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+  <variable name="mxp_ap">115</variable>
+  <variable name="mxp_max_ap">121</variable>
+  <variable name="mxp_max_mp">9999</variable>
+  <variable name="mxp_max_sp">243</variable>
+  <variable name="mxp_max_tp">244</variable>
+  <variable name="mxp_mp">6827</variable>
+  <variable name="mxp_sp">224</variable>
+  <variable name="mxp_tp">208</variable>
+</variables>
+
+<!-- colours -->
+
+<colours
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+
+<ansi>
+
+ <normal>
+   <colour seq="1" rgb="black" />
+   <colour seq="2" rgb="maroon" />
+   <colour seq="3" rgb="green" />
+   <colour seq="4" rgb="olive" />
+   <colour seq="5" rgb="navy" />
+   <colour seq="6" rgb="purple" />
+   <colour seq="7" rgb="teal" />
+   <colour seq="8" rgb="silver" />
+
+ </normal>
+
+ <bold>
+   <colour seq="1" rgb="gray" />
+   <colour seq="2" rgb="red" />
+   <colour seq="3" rgb="lime" />
+   <colour seq="4" rgb="yellow" />
+   <colour seq="5" rgb="blue" />
+   <colour seq="6" rgb="magenta" />
+   <colour seq="7" rgb="cyan" />
+   <colour seq="8" rgb="white" />
+
+ </bold>
+
+</ansi>
+
+<custom>
+  <colour seq="1" name="Custom1" text="#FF8080" back="black" />
+  <colour seq="2" name="Custom2" text="#FFFF80" back="black" />
+  <colour seq="3" name="Custom3" text="#80FF80" back="black" />
+  <colour seq="4" name="Custom4" text="#80FFFF" back="black" />
+  <colour seq="5" name="Custom5" text="#0080FF" back="black" />
+  <colour seq="6" name="Custom6" text="#FF80C0" back="black" />
+  <colour seq="7" name="Custom7" text="red" back="black" />
+  <colour seq="8" name="Custom8" text="#0080C0" back="black" />
+  <colour seq="9" name="Custom9" text="magenta" back="black" />
+  <colour seq="10" name="Custom10" text="#804040" back="black" />
+  <colour seq="11" name="Custom11" text="#FF8040" back="black" />
+  <colour seq="12" name="Custom12" text="teal" back="black" />
+  <colour seq="13" name="Custom13" text="#004080" back="black" />
+  <colour seq="14" name="Custom14" text="#FF0080" back="black" />
+  <colour seq="15" name="Custom15" text="green" back="black" />
+  <colour seq="16" name="Custom16" text="blue" back="black" />
+
+</custom>
+</colours>
+
+<!-- keypad -->
+
+<keypad
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+
+  <key name="0" >
+  <send>look</send>
+  </key>
+
+  <key name="1" >
+  <send>sw</send>
+  </key>
+
+  <key name="2" >
+  <send>south</send>
+  </key>
+
+  <key name="3" >
+  <send>se</send>
+  </key>
+
+  <key name="4" >
+  <send>west</send>
+  </key>
+
+  <key name="5" >
+  <send>WHO</send>
+  </key>
+
+  <key name="6" >
+  <send>east</send>
+  </key>
+
+  <key name="7" >
+  <send>nw</send>
+  </key>
+
+  <key name="8" >
+  <send>north</send>
+  </key>
+
+  <key name="9" >
+  <send>ne</send>
+  </key>
+
+  <key name="." >
+  <send>hide</send>
+  </key>
+
+  <key name="/" >
+  <send>blink</send>
+  </key>
+
+  <key name="*" >
+  <send>score</send>
+  </key>
+
+  <key name="-" >
+  <send>up</send>
+  </key>
+
+  <key name="+" >
+  <send>down</send>
+  </key>
+
+  <key name="Ctrl+0" >
+  </key>
+
+  <key name="Ctrl+1" >
+  </key>
+
+  <key name="Ctrl+2" >
+  </key>
+
+  <key name="Ctrl+3" >
+  </key>
+
+  <key name="Ctrl+4" >
+  </key>
+
+  <key name="Ctrl+5" >
+  </key>
+
+  <key name="Ctrl+6" >
+  </key>
+
+  <key name="Ctrl+7" >
+  </key>
+
+  <key name="Ctrl+8" >
+  </key>
+
+  <key name="Ctrl+9" >
+  </key>
+
+  <key name="Ctrl+." >
+  </key>
+
+  <key name="Ctrl+/" >
+  </key>
+
+  <key name="Ctrl+*" >
+  </key>
+
+  <key name="Ctrl+-" >
+  </key>
+
+  <key name="Ctrl++" >
+  </key>
+</keypad>
+
+<!-- printing -->
+
+<printing
+   muclient_version="4.39"
+   world_file_version="15"
+   date_saved="2011-01-08 14:19:45"
+  >
+
+<ansi>
+
+ <normal>
+
+ </normal>
+
+ <bold>
+   <style seq="1" bold="y" />
+   <style seq="2" bold="y" />
+   <style seq="3" bold="y" />
+   <style seq="4" bold="y" />
+   <style seq="5" bold="y" />
+   <style seq="6" bold="y" />
+   <style seq="7" bold="y" />
+   <style seq="8" bold="y" />
+
+ </bold>
+
+</ansi>
+</printing>
+
+<!-- plugins -->
+<include name="tts_jfw.xml" plugin="y" />
+<include name="tts_NVDA.xml" plugin="y" />
+</muclient>
