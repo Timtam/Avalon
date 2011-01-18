@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Samstag, Januar 08, 2011, 2:19  -->
+<!-- Saved on Dienstag, Januar 18, 2011, 5:12  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
   <trigger
    enabled="y"
@@ -214,14 +214,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".*Stinkstiefel.*"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Auf einem Pfad von * nach *."
    omit_from_output="y"
    send_to="2"
@@ -236,20 +228,6 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltRumble.wav"
   >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Bedrohlich knirscht der Sand, als sich der Sandwurm auf Dich zuwaelzt."
-   omit_from_output="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   match="Dairu entfernt sich kriegerisch nach *."
-   name="FolgeTrigger"
-   sequence="100"
-  >
-  <send>%1</send>
   </trigger>
   <trigger
    enabled="y"
@@ -275,33 +253,10 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Deine Robe schmiegt sich eng an Deinen Koerper*"
-   omit_from_output="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Gown.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Dem Engel machen die magischen Angriffe *"
-   omit_from_output="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Der Boden vibriert heftig und ein ohrenbetaeubendes Rumpeln und Krachen|ertoent von irgendwo in der Mine. Das muss ein heftiger Einsturz gewesen|sein, hoffentlich ist niemand dabei zu Schaden gekommen."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInDistant.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Der Engel sieht Dich an und laechelt hoehnisch.|Der Engel hebt eine Augenbraue.|Der Engel schlaegt ein wenig mit seinen Fluegeln.|Der Engel mustert Dich mit strengem Blick.|Der Engel gaehnt gelangweilt.|Der Engel pfeift eine himmlische Melodie."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
   >
   </trigger>
   <trigger
@@ -611,18 +566,6 @@
   >
   </trigger>
   <trigger
-   match="Ein Stalljunge naehert sich *"
-   sequence="100"
-  >
-  <send>toete stalljunge</send>
-  </trigger>
-  <trigger
-   match="Ein Wachmann naehert sich *"
-   sequence="100"
-  >
-  <send>toete wachmann</send>
-  </trigger>
-  <trigger
    enabled="y"
    match="Ein Weg, er verlaeuft von * nach *."
    omit_from_output="y"
@@ -733,13 +676,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Jemand klopft von draussen laut gegen das Tor!"
-   omit_from_output="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Langsam senkt sich der Stempel in die Presse hinein. Du hoerst das|Kreischen sich verformenden Metalls."
    omit_from_output="y"
    regexp="y"
@@ -768,15 +704,6 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltBubble.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   ignore_case="y"
-   match="Loretta.*"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
   >
   </trigger>
   <trigger
@@ -862,14 +789,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Der Sandwurm richtet sich bedrohlich auf.$|^Der Sandwurm scheint sich nicht aus der Ruhe bringen zu lassen.$|^Der Sandwurm waelzt sich bedrohlich in Deine Naehe.$|^Du hoerst ein lautes Schnauben aus Richtung des Sandwurmes.$|^Hat da eben der Magen des Sandwurmes .*$|^Nachtisch\?$|^Nur sehr behaebig bewegt sich der Sandwurm.$"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="^Die Fluegel des Wesens haben an Glanz verloren. Sie haengen schlaff von$|^seinem Ruecken herab.$"
    omit_from_output="y"
    regexp="y"
@@ -903,14 +822,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du peilst mit Deinem Sextanten die beiden Monde an, und kannst schon nach$|^kurzer Zeit ihre Position ausmachen. Du gruebelst noch ein wenig, und$|^kommst schliesslich zu folgendem Ergebnis:$"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="^Stolz traegt der Engel seine Fluegel auf dem Ruecken. Sie sind von reinstem$|^Weiss und Du kannst auf ihnen keinerlei Makel erkennen.$"
    omit_from_output="y"
    regexp="y"
@@ -938,7 +849,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
   <alias
    match="/abt_min"
@@ -1773,7 +1684,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -1786,7 +1697,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
 
   <macro name="up" type="send_now" >
@@ -1880,7 +1791,7 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
   <variable name="mxp_ap">115</variable>
   <variable name="mxp_max_ap">121</variable>
@@ -1897,7 +1808,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
 
 <ansi>
@@ -1954,7 +1865,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
 
   <key name="0" >
@@ -2068,7 +1979,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-08 14:19:45"
+   date_saved="2011-01-18 17:12:16"
   >
 
 <ansi>
