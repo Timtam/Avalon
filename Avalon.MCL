@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Dienstag, Januar 18, 2011, 9:26  -->
+<!-- Saved on Mittwoch, Januar 19, 2011, 1:31  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
   <trigger
    enabled="y"
@@ -566,7 +566,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du loeschst.*|.*loescht.*|.*erlischt."
+   match="Du loeschst.*|.* loescht .*|.*erlischt\."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\torch_out.wav"
@@ -856,7 +856,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein riesiger Sumpfalligator.|Ein Krokodil."
+   match="Ein riesiger Sumpfalligator\.|Ein Krokodil\."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Crocodile.wav"
@@ -899,7 +899,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine.*Maus."
+   match="Eine.*Maus\."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\mouse.wav"
@@ -907,7 +907,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine.*Ratte."
+   match="Eine.*Ratte\."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Rat.wav"
@@ -915,7 +915,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine.*Taube."
+   match="Eine.*Taube\."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Pigeon.wav"
@@ -1247,7 +1247,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
   <alias
    match="/abt_min"
@@ -2082,7 +2082,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2095,7 +2095,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
 
   <macro name="up" type="send_now" >
@@ -2189,16 +2189,16 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
-  <variable name="mxp_ap">115</variable>
+  <variable name="mxp_ap">121</variable>
   <variable name="mxp_max_ap">121</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
   <variable name="mxp_max_tp">244</variable>
-  <variable name="mxp_mp">6827</variable>
-  <variable name="mxp_sp">224</variable>
-  <variable name="mxp_tp">208</variable>
+  <variable name="mxp_mp">3524</variable>
+  <variable name="mxp_sp">243</variable>
+  <variable name="mxp_tp">223</variable>
 </variables>
 
 <!-- colours -->
@@ -2206,7 +2206,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
 
 <ansi>
@@ -2263,7 +2263,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
 
   <key name="0" >
@@ -2377,7 +2377,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-18 21:26:13"
+   date_saved="2011-01-19 13:31:24"
   >
 
 <ansi>
