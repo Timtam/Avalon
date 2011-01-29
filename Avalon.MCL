@@ -228,6 +228,28 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* recht beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* schwer beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\HuntAbort.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match=".*Du hast Braunkohle gefunden."
    omit_from_output="y"
    regexp="y"
@@ -493,6 +515,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du folgst * nach *."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Hunt.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du fuehrst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Wield.wav"
@@ -641,6 +670,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Vampire.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du stimmst eine dunkle, getragene Totenklage *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Burial.wav"
@@ -686,6 +722,13 @@
    match="Ein Banthar."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Banthar1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Blitz schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Lightning.wav"
   >
   </trigger>
   <trigger
@@ -893,6 +936,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Eine Stichflamme schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Fire.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Eine grosse Anzahl Voegel stuerzt auf * herab.*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Birds_Attack.wav"
@@ -1093,6 +1143,13 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\PressContinue.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="OK, Du verfolgst nun *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\HuntStart.wav"
   >
   </trigger>
   <trigger
@@ -2277,6 +2334,134 @@ setze auf stuhl</send>
   >
   <send>stehe auf
 le stuhl in deinen sack</send>
+  </alias>
+  <alias
+   match="foien"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Alotria</send>
+  </alias>
+  <alias
+   match="foieno"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Orkland</send>
+  </alias>
+  <alias
+   match="foienw"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Sanduz</send>
+  </alias>
+  <alias
+   match="foieo"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Abtei</send>
+  </alias>
+  <alias
+   match="foies"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Corona</send>
+  </alias>
+  <alias
+   match="foieso"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Usagor</send>
+  </alias>
+  <alias
+   match="foiesw"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Minias</send>
+  </alias>
+  <alias
+   match="foiew"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Ashar</send>
+  </alias>
+  <alias
+   match="janin"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Unbekannt</send>
+  </alias>
+  <alias
+   match="janino"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Amphibos</send>
+  </alias>
+  <alias
+   match="janinw"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Holbytla</send>
+  </alias>
+  <alias
+   match="janio"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Tintagel</send>
+  </alias>
+  <alias
+   match="janis"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Skilletan</send>
+  </alias>
+  <alias
+   match="janiso"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Lorinant</send>
+  </alias>
+  <alias
+   match="janisw"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Tolsgal</send>
+  </alias>
+  <alias
+   match="janiw"
+   enabled="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>Jerisa</send>
   </alias>
 </aliases>
 
