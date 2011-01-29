@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Samstag, Januar 29, 2011, 3:19  -->
+<!-- Saved on Samstag, Januar 29, 2011, 6:20  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
   <trigger
    enabled="y"
@@ -366,6 +366,14 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInDistant.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Bubbler.*|Ein Bubbler.*"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
   >
   </trigger>
   <trigger
@@ -1295,7 +1303,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
   <alias
    match="/abt_min"
@@ -2148,7 +2156,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2161,7 +2169,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
 
   <macro name="up" type="send_now" >
@@ -2255,7 +2263,7 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
   <variable name="mxp_ap">122</variable>
   <variable name="mxp_max_ap">122</variable>
@@ -2272,7 +2280,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
 
 <ansi>
@@ -2329,7 +2337,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
 
   <key name="0" >
@@ -2443,7 +2451,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 15:19:13"
+   date_saved="2011-01-29 18:20:00"
   >
 
 <ansi>
