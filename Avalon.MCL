@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Mittwoch, Januar 26, 2011, 6:21  -->
+<!-- Saved on Samstag, Januar 29, 2011, 1:19  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
   <trigger
    enabled="y"
@@ -207,6 +207,28 @@
    match="* heilige Aura loest sich auf."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\KB_Out.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* recht beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* schwer beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\HuntAbort.wav"
   >
   </trigger>
   <trigger
@@ -521,6 +543,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du folgst * nach *."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Hunt.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du fuehrst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Wield.wav"
@@ -667,6 +696,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Vampire.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du stimmst eine dunkle, getragene Totenklage *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Burial.wav"
@@ -699,6 +735,13 @@
    match="Du ziehst * aus."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Unwear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein Blitz schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Lightning.wav"
   >
   </trigger>
   <trigger
@@ -787,6 +830,13 @@
    match="Ein tiefer Kratzer in * muss *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine Stichflamme schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Fire.wav"
   >
   </trigger>
   <trigger
@@ -1001,6 +1051,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="OK, Du verfolgst nun *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\HuntStart.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Oh Mist, jetzt bist Du auf Granit gestossen und kannst nicht weitergraben!"
    omit_from_output="y"
    sequence="100"
@@ -1172,7 +1229,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
   <alias
    match="/abt_min"
@@ -2025,7 +2082,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2038,7 +2095,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
 
   <macro name="up" type="send_now" >
@@ -2132,16 +2189,16 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
-  <variable name="mxp_ap">80</variable>
+  <variable name="mxp_ap">122</variable>
   <variable name="mxp_max_ap">122</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
   <variable name="mxp_max_tp">245</variable>
-  <variable name="mxp_mp">7026</variable>
+  <variable name="mxp_mp">7031</variable>
   <variable name="mxp_sp">243</variable>
-  <variable name="mxp_tp">185</variable>
+  <variable name="mxp_tp">222</variable>
 </variables>
 
 <!-- colours -->
@@ -2149,7 +2206,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
 
 <ansi>
@@ -2206,7 +2263,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
 
   <key name="0" >
@@ -2320,7 +2377,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-26 18:21:36"
+   date_saved="2011-01-29 01:19:45"
   >
 
 <ansi>
