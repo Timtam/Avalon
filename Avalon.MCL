@@ -275,12 +275,30 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Auf den Tintagelschen Aeckern.|Ein kleines Huegelland."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/Ground/"..math.random(1,10)..".wav")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Auf einem Pfad von * nach *."
    omit_from_output="y"
    send_to="2"
    sequence="100"
   >
   <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf einer Eisscholle,.*|In einer Eiswueste.*"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/ice/"..math.random(1,1)..".wav")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -320,6 +338,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Das Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/stony/"..math.random(1,10)..".wav")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Das sieht nicht besonders ergiebig aus."
    omit_from_output="y"
    sequence="100"
@@ -339,6 +366,13 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInDistant.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Illusion einer Granitfaust schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Granite.wav"
   >
   </trigger>
   <trigger
@@ -893,6 +927,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein kleiner See."
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/swim/"..math.random(1,10)..".wav")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\CookFinish.wav"
@@ -939,6 +981,13 @@
    match="Eine Stichflamme schiesst aus *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Fire.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine Wasserfontaene schiesst aus *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Flood.wav"
   >
   </trigger>
   <trigger
@@ -1063,6 +1112,23 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigFall.wav"
   >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="In einem Stollen.|In einer grossen Hoehle."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/cave/"..math.random(1,4)..".wav")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="In einer trostlosen Steppe."
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."/Sounds/Footsteps/Steppy/"..math.random(1,10)..".wav")</send>
   </trigger>
   <trigger
    enabled="y"
