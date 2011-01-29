@@ -558,7 +558,7 @@
    enabled="y"
    match="Du fuehrst *"
    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Wield.wav"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\sword_draw.wav"
   >
   </trigger>
   <trigger
@@ -1370,13 +1370,6 @@
    match="* erscheint aus dem Mondtor."
     sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\apear.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="* hebt einen kleinen Stein vom Boden auf*"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\Lava.wav"
    >
    </trigger>
   <trigger
