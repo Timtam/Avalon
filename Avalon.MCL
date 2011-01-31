@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Samstag, Januar 29, 2011, 6:20  -->
+<!-- Saved on Montag, Januar 31, 2011, 9:34  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
   <trigger
    enabled="y"
@@ -263,6 +263,13 @@
    omit_from_output="y"
    regexp="y"
    sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf * lodert eine kleine Flamme kurz auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Flame.wav"
   >
   </trigger>
   <trigger
@@ -439,9 +446,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach .*"
+   match="Du beginnst mit der Mineraliensuche."
    omit_from_output="y"
-   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerBegin.wav"
   >
@@ -456,7 +462,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du betrittst ein schwarzes Mondtor."
+   match="Du betrittst ein * Mondtor."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\enter portal.wav"
   >
@@ -504,7 +510,6 @@
   <trigger
    enabled="y"
    match="Du faengst an, .* auf .*"
-   omit_from_output="y"
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\FileStart.wav"
@@ -577,7 +582,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du feilst vorsichtig die Raender der .* auf .*"
+   match="Du feilst vorsichtig die Raender der .* auf .*|Kraftvoll schleifst Du die .* von .*"
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\File.WAV"
@@ -730,6 +735,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du setzt * ab."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\offhead.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du setzt * auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\head.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du spielst ein Lied auf Deiner Citole."
    omit_from_output="y"
    sequence="100"
@@ -856,6 +875,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein kleiner Wasserschwall schwappt von Deinem *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Wave.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\CookFinish.wav"
@@ -901,6 +927,13 @@
    match="Eine grosse Anzahl Voegel stuerzt auf * herab.*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Birds_Attack.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Einige Funken springen von Deinem *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Spark.wav"
   >
   </trigger>
   <trigger
@@ -1204,7 +1237,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Von der *rune *"
+   match="Von der .*rune .*|Schliesslich ist von der .*rune nichts mehr uebrig."
+   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\RuneGone.wav"
   >
@@ -1303,7 +1337,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
   <alias
    match="/abt_min"
@@ -2134,6 +2168,16 @@ n</send>
   <send>s 27w 7n w </send>
   </alias>
   <alias
+   match="gift"
+   enabled="y"
+   sequence="100"
+  >
+  <send>gegenangriff aus
+stop
+t giftkaefer
+t giftkaefer</send>
+  </alias>
+  <alias
    match="sit"
    enabled="y"
    sequence="100"
@@ -2156,7 +2200,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2169,7 +2213,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
 
   <macro name="up" type="send_now" >
@@ -2263,16 +2307,16 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
-  <variable name="mxp_ap">122</variable>
+  <variable name="mxp_ap">91</variable>
   <variable name="mxp_max_ap">122</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
   <variable name="mxp_max_tp">245</variable>
-  <variable name="mxp_mp">7024</variable>
-  <variable name="mxp_sp">243</variable>
-  <variable name="mxp_tp">245</variable>
+  <variable name="mxp_mp">3182</variable>
+  <variable name="mxp_sp">199</variable>
+  <variable name="mxp_tp">217</variable>
 </variables>
 
 <!-- colours -->
@@ -2280,7 +2324,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
 
 <ansi>
@@ -2337,7 +2381,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
 
   <key name="0" >
@@ -2451,7 +2495,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-29 18:20:00"
+   date_saved="2011-01-31 21:34:46"
   >
 
 <ansi>
