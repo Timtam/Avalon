@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Mittwoch, Januar 19, 2011, 1:31  -->
+<!-- Saved on Montag, Januar 31, 2011, 10:35  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
   <trigger
    enabled="y"
@@ -175,6 +175,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* erscheint aus dem Mondtor."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\apear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* fluechtet sichtlich verstoert nach *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Flee.wav"
@@ -195,20 +202,25 @@
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\EatUp.wav"
   >
   </trigger>
-   <trigger
-    enabled="y"
-   match=".* ist fertig.|.* sind fertig."
-   omit_from_output="y"
-   regexp="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\complete.wav"
-   >
-   </trigger>
+  <trigger
+   enabled="y"
+   match="* recht beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
+  >
+  </trigger>
   <trigger
    enabled="y"
    match="* sagt: *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* schwer beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
   >
   </trigger>
   <trigger
@@ -228,20 +240,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* recht beschaedigt."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="* schwer beschaedigt."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
    regexp="y"
    sequence="100"
@@ -250,8 +248,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match=".* ist fertig.|.* sind fertig."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\complete.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match=".*Du hast Braunkohle gefunden."
-   omit_from_output="y"
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalSucceeded.wav"
@@ -271,6 +276,13 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\KB_Out.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf * lodert eine kleine Flamme kurz auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Flame.wav"
   >
   </trigger>
   <trigger
@@ -370,6 +382,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Die Erde unter Dir beginnt zu beben."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\quake.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Die Illusion einer Granitfaust schiesst aus *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Granite.wav"
@@ -380,6 +400,13 @@
    match="Die Lichtwesen folgen Dir."
    omit_from_output="y"
    sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Schlangenrune *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Snake.wav"
   >
   </trigger>
   <trigger
@@ -408,9 +435,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach .*"
+   match="Du beginnst mit der Mineraliensuche."
    omit_from_output="y"
-   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerBegin.wav"
   >
@@ -421,6 +447,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du betrittst ein * Mondtor."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\enter portal.wav"
   >
   </trigger>
   <trigger
@@ -485,10 +518,32 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du faengst an, * auszubessern."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairStart.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, * zu schmieden."
-   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\start.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, .* auf .*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\FileStart.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, .* in .*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveStart.wav"
   >
   </trigger>
   <trigger
@@ -549,6 +604,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du feilst vorsichtig die Raender der .* auf .*|Kraftvoll schleifst Du die .* von .*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\File.WAV"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du folgst * nach *."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Hunt.wav"
@@ -592,9 +655,26 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du haertest den Rohling wieder und wieder, damit er spaeter den magischen|Energien beim Gravieren standhalten kann."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Harden.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du hast * getoetet."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\Kill.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast erfolgreich .* in .*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveFinish.wav"
   >
   </trigger>
   <trigger
@@ -611,6 +691,15 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltClick.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Hammer2.wav"
   >
   </trigger>
   <trigger
@@ -660,6 +749,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du sagst: *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du schlaegst Dein Werkzeug in das Gestein."
    omit_from_output="y"
    sequence="100"
@@ -682,6 +778,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du setzt * ab."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\offhead.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du setzt * auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\head.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du spielst ein Lied auf Deiner Citole."
    omit_from_output="y"
    sequence="100"
@@ -697,16 +807,16 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du steckst *"
+   match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Sword_Sheath.wav"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Vampire.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
+   match="Du steckst *"
    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Vampire.wav"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Weapons\Sword_Sheath.wav"
   >
   </trigger>
   <trigger
@@ -728,6 +838,14 @@
    match="Du waehlst ein geeignetes Messer aus Deinen Kochutensilien aus."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Disembowel1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du zeichnest vorsichtig die Rune auf * vor."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Chart.wav"
   >
   </trigger>
   <trigger
@@ -804,7 +922,6 @@
   <trigger
    enabled="y"
    match="Ein Klumpen Metall faellt scheppernd in das Auffangbecken."
-   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltFinish.wav"
   >
@@ -935,6 +1052,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein kleiner Wasserschwall schwappt von Deinem *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Wave.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\CookFinish.wav"
@@ -950,9 +1074,23 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein schwarzes Mondtor steigt aus dem Boden empor."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\create.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein seltsames Haus."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Zwoni.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein tiefer Kratzer in * muss *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair2.wav"
   >
   </trigger>
   <trigger
@@ -971,13 +1109,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine Ziege."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Goat 2.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Eine Stichflamme schiesst aus *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Fire.wav"
@@ -988,6 +1119,13 @@
    match="Eine Wasserfontaene schiesst aus *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Flood.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine Ziege."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Goat 2.wav"
   >
   </trigger>
   <trigger
@@ -1019,6 +1157,21 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Pigeon.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Einige Funken springen von Deinem *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Spark.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Endlich bist Du mit dem Vorzeichnen fertig."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\ChartEnd.wav"
   >
   </trigger>
   <trigger
@@ -1175,15 +1328,23 @@
    match="Mist, mit .* laesst sich hier wohl nichts mehr .*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
    regexp="y"
    sequence="100"
-    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\Empty.wav"
-   >
-   </trigger>
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\Empty.wav"
+  >
+  </trigger>
   <trigger
    enabled="y"
    match="Mist. Noch immer nichts gefunden."
-   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerFailed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung|der Rune auf .* nach."
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Hammer1.wav"
   >
   </trigger>
   <trigger
@@ -1200,6 +1361,15 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\hammer1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveCorrect.wav"
   >
   </trigger>
   <trigger
@@ -1221,9 +1391,23 @@
   <trigger
    enabled="y"
    match="Oh Mist, jetzt bist Du auf Granit gestossen und kannst nicht weitergraben!"
-   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigGranite.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Schliesslich bist Du der Meinung, die Rune nicht weiter nachziehen zu"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\FileEnd.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Schon * eine Macke weniger."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair1.wav"
   >
   </trigger>
   <trigger
@@ -1237,7 +1421,6 @@
   <trigger
    enabled="y"
    match="So, das duerfte weit genug sein. Gleich mal schaun, ob sich die Arbeit auch|gelohnt hat."
-   omit_from_output="y"
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigFinish.wav"
@@ -1253,7 +1436,6 @@
   <trigger
    enabled="y"
    match="Tatsaechlich, Du hast etwas .* gefunden.|Na bitte, da ist schon etwas.|.* Du hast Mithrilerz gefunden."
-   omit_from_output="y"
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerSucceeded.wav"
@@ -1277,9 +1459,32 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Von der .*rune .*|Schliesslich ist von der .*rune nichts mehr uebrig."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\RuneGone.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Vorsichtig polierst Du * noch etwas..."
+   omit_from_output="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Polish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Was? Wie? Wo? Haeh?!? Das habe ich nicht verstanden."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\noway.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Weiter kannst Du * nicht ausbessern."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairEnd.wav"
   >
   </trigger>
   <trigger
@@ -1365,182 +1570,6 @@
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Take.wav"
   >
   </trigger>
-   <trigger
-    enabled="y"
-   match="* erscheint aus dem Mondtor."
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\apear.wav"
-   >
-   </trigger>
-  <trigger
-   enabled="y"
-   match="Die Erde unter Dir beginnt zu beben."
-   omit_from_output="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\quake.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Die Schlangenrune *"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Snake.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Du betrittst ein schwarzes Mondtor."
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\enter portal.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Du faengst an, * auszubessern."
-    omit_from_output="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairStart.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Du faengst an, .* auf .*"
-   omit_from_output="y"
-   regexp="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\FileStart.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Du faengst an, .* in .*"
-    omit_from_output="y"
-   regexp="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveStart.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Du feilst vorsichtig die Raender der .* auf .*"
-   regexp="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\File.WAV"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Du haertest den Rohling wieder und wieder, damit er spaeter den magischen|Energien beim Gravieren standhalten kann."
-   omit_from_output="y"
-   regexp="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Harden.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Du hast erfolgreich .* in .*"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveFinish.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Hammer2.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Du zeichnest vorsichtig die Rune auf * vor."
-   omit_from_output="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Chart.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Ein schwarzes Mondtor steigt aus dem Boden empor."
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\create.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Ein tiefer Kratzer in * muss *"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair2.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Endlich bist Du mit dem Vorzeichnen fertig."
-   omit_from_output="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\ChartEnd.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung|der Rune auf .* nach."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Hammer1.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\EngraveCorrect.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Schliesslich bist Du der Meinung, die Rune nicht weiter nachziehen zu"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\FileEnd.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Schon * eine Macke weniger."
-   omit_from_output="y"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair1.wav"
-  >
-  </trigger>
-   <trigger
-    enabled="y"
-   match="Von der *rune *"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\RuneGone.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Vorsichtig polierst Du * noch etwas..."
-    omit_from_output="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Polish.wav"
-   >
-   </trigger>
-   <trigger
-    enabled="y"
-   match="Weiter kannst Du * nicht ausbessern."
-   omit_from_output="y"
-    sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairEnd.wav"
-   >
-   </trigger>
 </triggers>
 
 <!-- aliases -->
@@ -1548,7 +1577,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
   <alias
    match="/abt_min"
@@ -2032,7 +2061,7 @@ n</send>
   >
   <send> (sw) w 2(nw) 4w (nw) (ne) 2e (ne) 2e (ne) e 2(ne) e (se) e (ne) 2e (ne) 2e 2(ne) 2n 2w</send>
   </alias>
-   <alias
+  <alias
    match="/lor_mit"
    enabled="y"
    send_to="11"
@@ -2137,7 +2166,7 @@ n</send>
   >
   <send> 3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n</send>
   </alias>
-   <alias
+  <alias
    match="/mit_lor"
    enabled="y"
    send_to="11"
@@ -2379,22 +2408,6 @@ n</send>
   <send>s 27w 7n w </send>
   </alias>
   <alias
-   match="sit"
-   enabled="y"
-   sequence="100"
-  >
-  <send>le stuhl von deinem sack
-setze auf stuhl</send>
-  </alias>
-  <alias
-   match="sup"
-   enabled="y"
-   sequence="100"
-  >
-  <send>stehe auf
-le stuhl in deinen sack</send>
-  </alias>
-  <alias
    match="foien"
    enabled="y"
    send_to="2"
@@ -2522,6 +2535,22 @@ le stuhl in deinen sack</send>
   >
   <send>Jerisa</send>
   </alias>
+  <alias
+   match="sit"
+   enabled="y"
+   sequence="100"
+  >
+  <send>le stuhl von deinem sack
+setze auf stuhl</send>
+  </alias>
+  <alias
+   match="sup"
+   enabled="y"
+   sequence="100"
+  >
+  <send>stehe auf
+le stuhl in deinen sack</send>
+  </alias>
 </aliases>
 
 <!-- timers -->
@@ -2529,7 +2558,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2542,7 +2571,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
 
   <macro name="up" type="send_now" >
@@ -2636,7 +2665,7 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
   <variable name="mxp_ap">121</variable>
   <variable name="mxp_max_ap">121</variable>
@@ -2653,7 +2682,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
 
 <ansi>
@@ -2710,7 +2739,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
 
   <key name="0" >
@@ -2824,7 +2853,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-19 13:31:24"
+   date_saved="2011-01-31 22:35:58"
   >
 
 <ansi>
