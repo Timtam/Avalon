@@ -147,13 +147,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* Luftvortex scheint sehr stark zu sein."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Strong.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="* Luftvortex wirbelt ein wenig von *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Swirl1.wav"
@@ -240,6 +233,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="*Sie ist kaum noch zu erkennen*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Bad.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
    regexp="y"
    sequence="100"
@@ -268,6 +268,14 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".*Sie ist noch ganz gut zu erkennen.*|.*Sie ist noch ausreichend zu erkennen.*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\QuiteGood.wav"
   >
   </trigger>
   <trigger
@@ -374,6 +382,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Der .* Luftvortex scheint sehr stark zu sein.|Der .* Luftvortex scheint wieder etwas schneller zu wirbeln."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Strong.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Der Boden vibriert heftig und ein ohrenbetaeubendes Rumpeln und Krachen|ertoent von irgendwo in der Mine. Das muss ein heftiger Einsturz gewesen|sein, hoffentlich ist niemand dabei zu Schaden gekommen."
    regexp="y"
    sequence="100"
@@ -427,7 +443,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit dem Wuehlen nach Braunkohle."
+   match="Du beginnst mit dem Wuehlen nach *kohle."
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalBegin.wav"
@@ -435,10 +451,19 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche."
+   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach Silbererz."
    omit_from_output="y"
+   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst mit der Suche nach Mithrilerz.|Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz zu"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed1.wav"
   >
   </trigger>
   <trigger
@@ -1226,6 +1251,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Hm. Viel ist da nicht zu sehen."
    omit_from_output="y"
    sequence="100"
@@ -1251,7 +1283,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Hoi, das sieht doch schon wie Braunkohle aus.|Nach was richtig Ordentlichem sieht das nicht aus."
+   match="Hoi, das sieht doch schon wie .*kohle aus.|Nach was richtig Ordentlichem sieht das nicht aus."
    omit_from_output="y"
    regexp="y"
    sequence="100"
@@ -1325,7 +1357,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Mist, mit .* laesst sich hier wohl nichts mehr .*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
+   match="Mist, mit .* laesst sich hier wohl nichts mehr.*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\Empty.wav"
@@ -1660,6 +1692,15 @@
    sequence="100"
   >
   <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (se) 2s (se) s (sw) s 2w (nw) w (sw) w (sw) </send>
+  </alias>
+  <alias
+   match="/arg_ruw"
+   enabled="y"
+   send_to="11"
+   omit_from_output="y"
+   sequence="100"
+  >
+  <send>(ne) n (ne) e (se) e 2(se) e (se) e (ne) 3e (ne) e (se) e (ne) 2e (ne) e 5(se) 2s 2(no) 2(se) (no) (se) 2s</send>
   </alias>
   <alias
    match="/ash_alo"
@@ -2224,6 +2265,15 @@ n</send>
   <send> 5e 8n w (sw)</send>
   </alias>
   <alias
+   match="/ruw_arg"
+   enabled="y"
+   send_to="11"
+   omit_from_output="y"
+   sequence="100"
+  >
+  <send>2n (nw) (no) 2(nw) 2(no) 2n 5(nw) w (sw) 2w (sw) w (nw) w (sw) 3w (sw) w (nw) w 2(nw) w (nw) w (sw) s (sw)</send>
+  </alias>
+  <alias
    match="/san_alo"
    enabled="y"
    send_to="11"
@@ -2755,7 +2805,7 @@ le stuhl in deinen sack</send>
   </key>
 
   <key name="3" >
-  <send>se</send>
+  <send>so</send>
   </key>
 
   <key name="4" >
