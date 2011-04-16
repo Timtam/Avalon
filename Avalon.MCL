@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Montag, Januar 31, 2011, 9:34  -->
+<!-- Saved on Sonntag, Februar 27, 2011, 6:16  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
   <trigger
    enabled="y"
@@ -143,13 +143,6 @@
    match="* Luftvortex naehert sich von *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Appear.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="* Luftvortex scheint sehr stark zu sein."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Strong.wav"
   >
   </trigger>
   <trigger
@@ -225,6 +218,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="*Sie ist kaum noch zu erkennen*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Bad.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
    regexp="y"
    sequence="100"
@@ -248,6 +248,7 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalSucceeded.wav"
   >
+  <send>lege kohle in sack</send>
   </trigger>
   <trigger
    enabled="y"
@@ -255,6 +256,14 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\MeltBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match=".*Sie ist noch ganz gut zu erkennen.*|.*Sie ist noch ausreichend zu erkennen.*"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\QuiteGood.wav"
   >
   </trigger>
   <trigger
@@ -369,6 +378,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Der .* Luftvortex scheint sehr stark zu sein.|Der .* Luftvortex scheint wieder etwas schneller zu wirbeln."
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Strong.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Der Boden vibriert heftig und ein ohrenbetaeubendes Rumpeln und Krachen|ertoent von irgendwo in der Mine. Das muss ein heftiger Einsturz gewesen|sein, hoffentlich ist niemand dabei zu Schaden gekommen."
    regexp="y"
    sequence="100"
@@ -438,7 +455,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit dem Wuehlen nach Braunkohle."
+   match="Du beginnst mit dem Wuehlen nach *kohle."
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\CoalBegin.wav"
@@ -446,10 +463,19 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche."
+   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach Silbererz."
    omit_from_output="y"
+   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst mit der Suche nach Mithrilerz.|Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz zu"
+   regexp="y"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed1.wav"
   >
   </trigger>
   <trigger
@@ -975,6 +1001,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Hm. Viel ist da nicht zu sehen."
    omit_from_output="y"
    sequence="100"
@@ -1000,7 +1033,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Hoi, das sieht doch schon wie Braunkohle aus.|Nach was richtig Ordentlichem sieht das nicht aus."
+   match="Hoi, das sieht doch schon wie .*kohle aus.|Nach was richtig Ordentlichem sieht das nicht aus."
    omit_from_output="y"
    regexp="y"
    sequence="100"
@@ -1099,7 +1132,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Mist, mit .* laesst sich hier wohl nichts mehr .*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
+   match="Mist, mit .* laesst sich hier wohl nichts mehr.*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\Empty.wav"
@@ -1218,6 +1251,7 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HammerSucceeded.wav"
   >
+  <send>lege erz in sack</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1337,7 +1371,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
   <alias
    match="/abt_min"
@@ -1420,6 +1454,15 @@
    sequence="100"
   >
   <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (se) 2s (se) s (sw) s 2w (nw) w (sw) w (sw) </send>
+  </alias>
+  <alias
+   match="/arg_ruw"
+   enabled="y"
+   send_to="11"
+   omit_from_output="y"
+   sequence="100"
+  >
+  <send>(ne) n (ne) e (se) e 2(se) e (se) e (ne) 3e (ne) e (se) e (ne) 2e (ne) e 5(se) 2s 2(no) 2(se) (no) (se) 2s</send>
   </alias>
   <alias
    match="/ash_alo"
@@ -1984,6 +2027,15 @@ n</send>
   <send> 5e 8n w (sw)</send>
   </alias>
   <alias
+   match="/ruw_arg"
+   enabled="y"
+   send_to="11"
+   omit_from_output="y"
+   sequence="100"
+  >
+  <send>2n (nw) (no) 2(nw) 2(no) 2n 5(nw) w (sw) 2w (sw) w (nw) w (sw) 3w (sw) w (nw) w 2(nw) w (nw) w (sw) s (sw)</send>
+  </alias>
+  <alias
    match="/san_alo"
    enabled="y"
    send_to="11"
@@ -2193,6 +2245,16 @@ setze auf stuhl</send>
   <send>stehe auf
 le stuhl in deinen sack</send>
   </alias>
+  <alias
+   match="wechsack"
+   enabled="y"
+   sequence="100"
+  >
+  <send>lege deinen sack
+lege deinen sack
+nimm 2. sack
+nimm sack</send>
+  </alias>
 </aliases>
 
 <!-- timers -->
@@ -2200,7 +2262,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2213,7 +2275,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
 
   <macro name="up" type="send_now" >
@@ -2307,16 +2369,16 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
-  <variable name="mxp_ap">91</variable>
+  <variable name="mxp_ap">122</variable>
   <variable name="mxp_max_ap">122</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
-  <variable name="mxp_max_tp">245</variable>
-  <variable name="mxp_mp">3182</variable>
-  <variable name="mxp_sp">199</variable>
-  <variable name="mxp_tp">217</variable>
+  <variable name="mxp_max_tp">246</variable>
+  <variable name="mxp_mp">9929</variable>
+  <variable name="mxp_sp">102</variable>
+  <variable name="mxp_tp">160</variable>
 </variables>
 
 <!-- colours -->
@@ -2324,7 +2386,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
 
 <ansi>
@@ -2381,7 +2443,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
 
   <key name="0" >
@@ -2397,7 +2459,7 @@ le stuhl in deinen sack</send>
   </key>
 
   <key name="3" >
-  <send>se</send>
+  <send>so</send>
   </key>
 
   <key name="4" >
@@ -2495,7 +2557,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-01-31 21:34:46"
+   date_saved="2011-02-27 18:16:21"
   >
 
 <ansi>
