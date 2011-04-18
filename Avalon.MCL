@@ -133,6 +133,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du gibt Dir die beste Muehe, * zu faellen.*"
+   sequence="99"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopContinue.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du hoerst auf, 'Brems Vogellied' zu spielen."
    omit_from_output="y"
    sequence="99"
@@ -175,9 +182,30 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* erzittert unter den heftigen Schlaegen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* faellt bestimmt bald um."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* fluechtet sichtlich verstoert nach *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Flee.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* geht in dem Lagerfeuer in * auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\burst.wav"
   >
   </trigger>
   <trigger
@@ -211,6 +239,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* kippt bestimmt bald um."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* knistert in dem Lagerfeuer."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Crackle.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* schwer beschaedigt."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
@@ -229,6 +271,20 @@
    match="*laber*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\laber.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* schwingt immer mehr hin- und her."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* wackelt immer mehr."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
   >
   </trigger>
   <trigger
@@ -358,6 +414,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Das Knistern des Feuers wirkt irgendwie beruhigend auf Dich."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Crackle.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das Lagerfeuer ist nun voellig niedergebrannt und erlischt.*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\GoOut.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Das Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
    regexp="y"
    send_to="12"
@@ -398,10 +468,24 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Die Aeste des Lagerfeuers knacken und einige Funken steigen auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Sparks.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Die Erde unter Dir beginnt zu beben."
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Portal\quake.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Flammen des Lagerfeuers flackern und tanzen hypnotisierend *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Crackle.wav"
   >
   </trigger>
   <trigger
@@ -443,6 +527,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du beginnst damit, ein Lagerfeuer zu erstellen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Begin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Scrape1.wav"
@@ -479,6 +570,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beobachtest ein wenig den Funkenflug des Lagerfeuers."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Sparks.wav"
   >
   </trigger>
   <trigger
@@ -636,6 +734,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du faengst an, mit * zu faellen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopBegin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du feilst vorsichtig die Raender der .* auf .*|Kraftvoll schleifst Du die .* von .*"
    regexp="y"
    sequence="100"
@@ -711,6 +816,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du hast es geschafft, * faellt um*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopComplete.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du hoerst auf, * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Stop.wav"
@@ -753,6 +865,13 @@
    match="Du konzentrierst Dich auf das vorzeitige Ende des Zaubers."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\Stop.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kramst einen kleinen Feuerstein hervor *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Start.wav"
   >
   </trigger>
   <trigger
@@ -852,6 +971,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du spaltest Dein Brennholz in kleinere Scheite."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Split.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du spielst ein Lied auf Deiner Citole."
    omit_from_output="y"
    sequence="100"
@@ -881,6 +1007,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du stellst die Holzstuecke zu einer kleinen Pyramide auf *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Build.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du stimmst eine dunkle, getragene Totenklage *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Burial.wav"
@@ -906,6 +1039,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Chart.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du zerteilst * mit * in *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\WoodSplit.wav"
   >
   </trigger>
   <trigger
@@ -1104,6 +1244,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein kleiner Funke springt auf die Holzspaene ueber und *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Succeed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein kleiner Funke springt auf die Holzspaene ueber, aber *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\FailSpark.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein kleiner See."
    send_to="12"
    sequence="100"
@@ -1254,6 +1408,13 @@
    match="Funken spruehen bei Deinen Schlaegen auf den harten Fels."
    omit_from_output="y"
    sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Funken stieben aus dem Lagerfeuer."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\Sparks.wav"
   >
   </trigger>
   <trigger
@@ -1500,6 +1661,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Sie erzittert immer oefter."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="So langsam nimmt Dein Rohling Form an."
    omit_from_output="y"
    sequence="100"
@@ -1649,6 +1817,13 @@
    match="tiefen, feurigen Rot-Orange auf."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\lavahit1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\FailStart.wav"
   >
   </trigger>
   <trigger
