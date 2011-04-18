@@ -443,6 +443,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Scrape1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du beginnst mit dem Wuehlen nach *kohle."
    omit_from_output="y"
    sequence="100"
@@ -720,6 +727,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du kniest nieder und suchst den Boden nach Spuren ab."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Track\Begin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kommst dabei heftig ins Schwitzen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Breath.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
    omit_from_output="y"
    regexp="y"
@@ -781,6 +802,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du schabst fleissig weiter."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Scrape2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du schlaegst Dein Werkzeug in das Gestein."
    omit_from_output="y"
    sequence="100"
@@ -792,6 +820,13 @@
    match="Du schliesst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Close.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schneidest Dir ein Stueck zur Bearbeitung aus Deiner Tierhaut."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Cut.wav"
   >
   </trigger>
   <trigger
@@ -1251,6 +1286,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Tear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed2.wav"
@@ -1397,6 +1439,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Na bitte, das sieht doch schon fast wie ein fertiges Lederstueck aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
    omit_from_output="y"
    regexp="y"
@@ -1444,6 +1493,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Schweissueberstroemt begutachtest Du Dein fertiges Lederstueck *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish3.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="So langsam nimmt Dein Rohling Form an."
    omit_from_output="y"
    sequence="100"
@@ -1487,6 +1543,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Done.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Viel fehlt Dir nicht mehr zum fertigen Lederstueck."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish1.wav"
   >
   </trigger>
   <trigger
