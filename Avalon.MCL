@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Sonntag, Februar 27, 2011, 6:16  -->
+<!-- Saved on Montag, April 18, 2011, 1:01  -->
 <!-- MuClient version 4.39 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -95,7 +95,7 @@
 <triggers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
   <trigger
    enabled="y"
@@ -455,6 +455,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Scrape1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du beginnst mit dem Wuehlen nach *kohle."
    omit_from_output="y"
    sequence="100"
@@ -693,6 +700,20 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du kniest nieder und suchst den Boden nach Spuren ab."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Track\Begin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kommst dabei heftig ins Schwitzen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Breath.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
    omit_from_output="y"
    regexp="y"
@@ -739,6 +760,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du schabst fleissig weiter."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Scrape2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du schlaegst Dein Werkzeug in das Gestein."
    omit_from_output="y"
    sequence="100"
@@ -750,6 +778,13 @@
    match="Du schliesst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Close.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schneidest Dir ein Stueck zur Bearbeitung aus Deiner Tierhaut."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Cut.wav"
   >
   </trigger>
   <trigger
@@ -1001,6 +1036,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Tear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed2.wav"
@@ -1173,6 +1215,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Na bitte, das sieht doch schon fast wie ein fertiges Lederstueck aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
    omit_from_output="y"
    regexp="y"
@@ -1217,6 +1266,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Repair1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Schweissueberstroemt begutachtest Du Dein fertiges Lederstueck *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish3.wav"
   >
   </trigger>
   <trigger
@@ -1267,6 +1323,13 @@
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Done.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Viel fehlt Dir nicht mehr zum fertigen Lederstueck."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Finish1.wav"
   >
   </trigger>
   <trigger
@@ -1371,7 +1434,7 @@
 <aliases
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
   <alias
    match="/abt_min"
@@ -2262,7 +2325,7 @@ nimm sack</send>
 <timers
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2275,7 +2338,7 @@ nimm sack</send>
 <macros
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
 
   <macro name="up" type="send_now" >
@@ -2369,16 +2432,16 @@ nimm sack</send>
 <variables
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
   <variable name="mxp_ap">122</variable>
   <variable name="mxp_max_ap">122</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
   <variable name="mxp_max_tp">246</variable>
-  <variable name="mxp_mp">9929</variable>
-  <variable name="mxp_sp">102</variable>
-  <variable name="mxp_tp">160</variable>
+  <variable name="mxp_mp">7579</variable>
+  <variable name="mxp_sp">243</variable>
+  <variable name="mxp_tp">235</variable>
 </variables>
 
 <!-- colours -->
@@ -2386,7 +2449,7 @@ nimm sack</send>
 <colours
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
 
 <ansi>
@@ -2443,7 +2506,7 @@ nimm sack</send>
 <keypad
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
 
   <key name="0" >
@@ -2557,7 +2620,7 @@ nimm sack</send>
 <printing
    muclient_version="4.39"
    world_file_version="15"
-   date_saved="2011-02-27 18:16:21"
+   date_saved="2011-04-18 01:01:53"
   >
 
 <ansi>
