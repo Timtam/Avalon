@@ -147,6 +147,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du legst * in das kochende Wasser *"
+   sequence="99"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Boiling2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* Luftvortex naehert sich von *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Appear.wav"
@@ -451,6 +458,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Das riecht aber lecker."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Smell.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Das sieht nicht besonders ergiebig aus."
    omit_from_output="y"
    sequence="100"
@@ -478,6 +492,20 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInDistant.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Feuerkristall leuchtet nun hellrot und strahlt dabei eine unheimliche*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\FireCrystal.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Nebel loest sich allmaehlich auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\FogOut.wav"
   >
   </trigger>
   <trigger
@@ -525,10 +553,24 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Die rote Nebelwolke beginnt sich ploetzlich aufzuloesen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\FogOut.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Dir rutscht Geroell entgegen."
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigRocks.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du befeuchtest Dein *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Moisten.wav"
   >
   </trigger>
   <trigger
@@ -874,6 +916,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du knotest Dir ein *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Knot.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du kommst dabei heftig ins Schwitzen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Breath.wav"
@@ -920,6 +969,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du meinst ein leises Plaetschern zu vernehmen."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Plash.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du merkst, dass die Wasserstelle versiegt. *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\GoOut.wav"
@@ -956,9 +1012,23 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du probierst ein bisschen von *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Try.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du pruefst fachmaennisch die Tiefe und beschliesst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Dig2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ruehrst * um."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Stir.wav"
   >
   </trigger>
   <trigger
@@ -1070,9 +1140,44 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du summst eine kleine Melodie, die Dir gerade so eingefallen ist."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Melody.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du waehlst ein geeignetes Messer aus Deinen Kochutensilien aus."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Disembowel1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wendest *."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Turn.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wickelst Dein Buendel aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Open.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wickelst Dein Buendel sorgfaeltig wieder ein."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Close.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wringst Dein feuchtes * kraeftig aus."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\WringOut.wav"
   >
   </trigger>
   <trigger
@@ -1315,6 +1420,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein kurzer Blick in die Pfanne verraet Dir, *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Pan.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein letzter pruefender Blick und Du erkennst, dass sich bereits Wasser *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Succeed.wav"
@@ -1420,6 +1532,27 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Pigeon.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine kaum ertraegliche Hitze stroemt aus dem Nebel."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Heat.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine kleine freche Fliege will an Dein Essen, *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fly.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine rote Nebelwolke bildet sich ueber dem Boden und umschliesst den*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fog.wav"
   >
   </trigger>
   <trigger
@@ -1559,6 +1692,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="In dem Kochtopf befindet sich jetzt erstaunlicherweise kochendes Wasser *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Boiling1.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="In einem Stollen.|In einer grossen Hoehle."
    regexp="y"
    send_to="12"
@@ -1580,6 +1720,13 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigCaveInAlert.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Kleine Luftblaeschen steigen aus dem Topf auf."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\bubble.wav"
   >
   </trigger>
   <trigger
@@ -1736,6 +1883,13 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\DigFinish.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Sogleich bildet sich ein dunkelblauer Nebel ueber dem Topf, *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fog.wav"
   >
   </trigger>
   <trigger
