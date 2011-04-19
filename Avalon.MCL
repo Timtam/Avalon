@@ -182,6 +182,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* erzittert unter den heftigen Hieben."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* erzittert unter den heftigen Schlaegen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
@@ -389,6 +396,13 @@
    match="Avalon! Eine Welt, in der alles moeglich und nichts unmoeglich ist."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\start.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Behutsam verteilst Du die Erde am Rand und klopfst sie fest*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Prepare.wav"
   >
   </trigger>
   <trigger
@@ -734,6 +748,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du faengst an, eine Wasserstelle zu graben."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Begin.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, mit * zu faellen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopBegin.wav"
@@ -766,6 +787,13 @@
    match="Du gibst *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Items\Give.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du graebst eine tiefe Mulde mit Deinem Hirschfaenger in den Boden."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Dig1.wav"
   >
   </trigger>
   <trigger
@@ -892,6 +920,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du merkst, dass die Wasserstelle versiegt. *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\GoOut.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du merkst, wie vom Ofen allmaehlich eine grosse Hitze ausgeht."
    omit_from_output="y"
    sequence="100"
@@ -917,6 +952,13 @@
    match="Du sagst: *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du pruefst fachmaennisch die Tiefe und beschliesst *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Dig2.wav"
   >
   </trigger>
   <trigger
@@ -1273,6 +1315,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ein letzter pruefender Blick und Du erkennst, dass sich bereits Wasser *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Succeed.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\CookFinish.wav"
@@ -1450,6 +1499,13 @@
    match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Tear.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gerade als Du fertig bist den Rand zu befestigen rutscht alles zurueck *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Colapse.wav"
   >
   </trigger>
   <trigger
