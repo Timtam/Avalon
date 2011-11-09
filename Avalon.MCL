@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Montag, Januar 31, 2011, 10:35  -->
-<!-- MuClient version 4.39 -->
+<!-- Saved on Montag, November 07, 2011, 9:03  -->
+<!-- MuClient version 4.73 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
 <muclient>
 <world
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
    chat_name="Name-not-set"
    command_stack_character=";"
    id="fa4252c15872969110c25518"
-   input_font_name="FixedSys"
+   input_font_name="Fixedsys"
    mapping_failure="^Da gehts nicht weiter\.$"
    name="Avalon"
    new_activity_sound="(No sound)"
@@ -36,6 +36,8 @@
    confirm_before_replacing_typing="y"
    confirm_on_paste="y"
    confirm_on_send="y"
+   default_trigger_sequence="100"
+   default_alias_sequence="100"
    display_my_input="y"
    echo_colour="10"
    echo_hyperlink_in_output_window="y"
@@ -45,6 +47,7 @@
    enable_command_stack="y"
    enable_scripts="y"
    enable_speed_walk="y"
+   enable_timers="y"
    enable_triggers="y"
    enable_trigger_sounds="y"
    history_lines="1000"
@@ -56,7 +59,6 @@
    input_font_weight="400"
    input_text_colour="black"
    keypad_enable="y"
-   line_information="y"
    log_output="y"
    map_failure_regexp="y"
    max_output_lines="5000"
@@ -77,6 +79,12 @@
    spam_line_count="20"
    speed_walk_delay="400"
    tab_completion_lines="200"
+   timestamp_input_text_colour="maroon"
+   timestamp_notes_text_colour="blue"
+   timestamp_output_text_colour="white"
+   timestamp_input_back_colour="black"
+   timestamp_notes_back_colour="black"
+   timestamp_output_back_colour="black"
    underline_hyperlinks="y"
    use_custom_link_colour="y"
    use_default_input_font="y"
@@ -93,9 +101,9 @@
 <!-- triggers -->
 
 <triggers
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
   <trigger
    enabled="y"
@@ -239,20 +247,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* recht beschaedigt."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="* sagt: *"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="* kippt bestimmt bald um."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\ChopHit.wav"
@@ -267,24 +261,23 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* recht beschaedigt."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\Damaged.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* sagt: *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="* schwer beschaedigt."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\HeavyDamaged.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="*Gruppe*"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\group.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   ignore_case="y"
-   match="*laber*"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\laber.wav"
   >
   </trigger>
   <trigger
@@ -303,9 +296,24 @@
   </trigger>
   <trigger
    enabled="y"
+   match="*Gruppe*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\group.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="*Sie ist kaum noch zu erkennen*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Rune\Bad.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   ignore_case="y"
+   match="*laber*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\laber.wav"
   >
   </trigger>
   <trigger
@@ -1005,13 +1013,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du sagst: *"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du probierst ein bisschen von *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Try.wav"
@@ -1029,6 +1030,13 @@
    match="Du ruehrst * um."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Stir.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du sagst: *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\say.wav"
   >
   </trigger>
   <trigger
@@ -1512,6 +1520,27 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Eine kaum ertraegliche Hitze stroemt aus dem Nebel."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Heat.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine kleine freche Fliege will an Dein Essen, *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fly.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine rote Nebelwolke bildet sich ueber dem Boden und umschliesst den*"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fog.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Eine.*Maus\."
    regexp="y"
    sequence="100"
@@ -1532,27 +1561,6 @@
    regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Pigeon.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine kaum ertraegliche Hitze stroemt aus dem Nebel."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Heat.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine kleine freche Fliege will an Dein Essen, *"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fly.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine rote Nebelwolke bildet sich ueber dem Boden und umschliesst den*"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Fog.wav"
   >
   </trigger>
   <trigger
@@ -1608,27 +1616,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Hand wieder."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\firebeam4.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Handflaechen beginnen zu leuchten und zu funkeln."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\heal2.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Himmel und verschwindet dort."
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\lavahit2.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Tan\Tear.wav"
@@ -1643,9 +1630,30 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Hand wieder."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\firebeam4.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Handflaechen beginnen zu leuchten und zu funkeln."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\heal2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Mining\HackSucceed2.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Himmel und verschwindet dort."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\lavahit2.wav"
   >
   </trigger>
   <trigger
@@ -2003,6 +2011,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\FailStart.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="einige Meter nach hinten."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Spells\lavahit3.wav"
@@ -2031,13 +2046,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
-   sequence="100"
-   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Firestarting\FailStart.wav"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du nimmst einen grossen Schluck *"
    sequence="101"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Player\EatUp.wav"
@@ -2055,9 +2063,9 @@
 <!-- aliases -->
 
 <aliases
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
   <alias
    match="/abt_min"
@@ -3054,22 +3062,18 @@ le stuhl in deinen sack</send>
 <!-- timers -->
 
 <timers
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
-  <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
-  <send>tue wirf 1 lapis in teich,untersuche teich</send>
-
-  </timer>
 </timers>
 
 <!-- macros -->
 
 <macros
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
 
   <macro name="up" type="send_now" >
@@ -3161,9 +3165,9 @@ le stuhl in deinen sack</send>
 <!-- variables -->
 
 <variables
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
   <variable name="mxp_ap">121</variable>
   <variable name="mxp_max_ap">121</variable>
@@ -3178,9 +3182,9 @@ le stuhl in deinen sack</send>
 <!-- colours -->
 
 <colours
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
 
 <ansi>
@@ -3235,9 +3239,9 @@ le stuhl in deinen sack</send>
 <!-- keypad -->
 
 <keypad
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
 
   <key name="0" >
@@ -3349,9 +3353,9 @@ le stuhl in deinen sack</send>
 <!-- printing -->
 
 <printing
-   muclient_version="4.39"
+   muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-01-31 22:35:58"
+   date_saved="2011-11-07 21:03:11"
   >
 
 <ansi>
@@ -3375,7 +3379,4 @@ le stuhl in deinen sack</send>
 </ansi>
 </printing>
 
-<!-- plugins -->
-<include name="tts_jfw.xml" plugin="y" />
-<include name="tts_NVDA.xml" plugin="y" />
 </muclient>
