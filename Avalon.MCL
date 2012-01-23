@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Dienstag, April 19, 2011, 6:17  -->
-<!-- MuClient version 4.39 -->
+<!-- Saved on Montag, November 07, 2011, 9:24  -->
+<!-- MuClient version 4.72 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
 <muclient>
 <world
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
    chat_name="Name-not-set"
    command_stack_character=";"
    id="fa4252c15872969110c25518"
-   input_font_name="FixedSys"
+   input_font_name="Fixedsys"
    mapping_failure="^Da gehts nicht weiter\.$"
    name="Avalon"
    new_activity_sound="(No sound)"
    output_font_name="FixedSys"
-   script_editor="notepad"
+   script_editor="C:\Windows\notepad.exe"
+   script_filename="C:\Programme\MUSHclient\worlds\Avalon\test.lua"
    script_language="Lua"
    site="avalon.mud.de"
    spam_message="look"
@@ -36,10 +37,11 @@
    confirm_before_replacing_typing="y"
    confirm_on_paste="y"
    confirm_on_send="y"
+   default_trigger_sequence="100"
+   default_alias_sequence="100"
    display_my_input="y"
    echo_colour="10"
    echo_hyperlink_in_output_window="y"
-   edit_script_with_notepad="y"
    enable_aliases="y"
    enable_beeps="y"
    enable_command_stack="y"
@@ -56,7 +58,6 @@
    input_font_weight="400"
    input_text_colour="black"
    keypad_enable="y"
-   line_information="y"
    log_output="y"
    map_failure_regexp="y"
    max_output_lines="5000"
@@ -77,6 +78,12 @@
    spam_line_count="20"
    speed_walk_delay="400"
    tab_completion_lines="200"
+   timestamp_input_text_colour="maroon"
+   timestamp_notes_text_colour="blue"
+   timestamp_output_text_colour="white"
+   timestamp_input_back_colour="black"
+   timestamp_notes_back_colour="black"
+   timestamp_output_back_colour="black"
    underline_hyperlinks="y"
    use_custom_link_colour="y"
    use_default_input_font="y"
@@ -93,9 +100,9 @@
 <!-- triggers -->
 
 <triggers
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
   <trigger
    enabled="y"
@@ -154,6 +161,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="( * TP; * ZP; * AP; * MP*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>status(%1,%2,%3,%4)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="* Luftvortex naehert sich von *"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Appear.wav"
@@ -162,6 +177,7 @@
   <trigger
    enabled="y"
    match="* Luftvortex wirbelt ein wenig von *"
+   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Swirl1.wav"
   >
@@ -169,6 +185,7 @@
   <trigger
    enabled="y"
    match="* Luftvortex wuselt flink um *"
+   omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Monsters\Vortex\Swirl2.wav"
   >
@@ -398,6 +415,13 @@
    match="Behutsam verteilst Du die Erde am Rand und klopfst sie fest*"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\WateringPlace\Prepare.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Calidus, der Wandervogel."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Calidus.wav"
   >
   </trigger>
   <trigger
@@ -663,6 +687,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du denkst . o O ( abc )"
+   send_to="12"
+   sequence="100"
+  >
+  <send>abc()</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Deiner.*"
    regexp="y"
    sequence="100"
@@ -695,7 +727,6 @@
   >
   </trigger>
   <trigger
-   enabled="y"
    match="Du faengst an, .* auf .*"
    regexp="y"
    sequence="100"
@@ -934,6 +965,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du machst Dein * noch einmal richtig nass."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Moisten.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du meinst ein leises Plaetschern zu vernehmen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Plash.wav"
@@ -1091,7 +1129,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du wendest *."
+   match="Du wendest (das|den|die) .*"
+   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Turn.wav"
   >
@@ -1679,6 +1718,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="TP:  */*  AP:  */*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>ksp2(%1,%2,%3,%4)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Tatsaechlich, Du hast etwas .* gefunden.|Na bitte, da ist schon etwas.|.* Du hast Mithrilerz gefunden."
    omit_from_output="y"
    regexp="y"
@@ -1733,6 +1780,14 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairEnd.wav"
   >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="ZP:  */*  MP: */*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>ksp1(%1,%2,%3,%4)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1817,9 +1872,9 @@
 <!-- aliases -->
 
 <aliases
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
   <alias
    match="/abt_min"
@@ -2532,6 +2587,14 @@ n</send>
   <send>(se) 4e (se) 2e (se) 4e (se) 5e (se) e (se) 11e n </send>
   </alias>
   <alias
+   match="/tin_wl"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>17n w </send>
+  </alias>
+  <alias
    match="/us_abt"
    enabled="y"
    send_to="11"
@@ -2668,6 +2731,14 @@ n</send>
   <send>s 27w 7n w </send>
   </alias>
   <alias
+   match="/wl_tin"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> e 17s</send>
+  </alias>
+  <alias
    match="gift"
    enabled="y"
    sequence="100"
@@ -2708,9 +2779,9 @@ nimm sack</send>
 <!-- timers -->
 
 <timers
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
   <timer enabled="y" minute="1" second="0.00" offset_second="0.00" >
   <send>tue wirf 1 lapis in teich,untersuche teich</send>
@@ -2721,9 +2792,9 @@ nimm sack</send>
 <!-- macros -->
 
 <macros
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
 
   <macro name="up" type="send_now" >
@@ -2815,26 +2886,26 @@ nimm sack</send>
 <!-- variables -->
 
 <variables
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
-  <variable name="mxp_ap">49</variable>
+  <variable name="mxp_ap">109</variable>
   <variable name="mxp_max_ap">122</variable>
   <variable name="mxp_max_mp">9999</variable>
   <variable name="mxp_max_sp">243</variable>
   <variable name="mxp_max_tp">246</variable>
-  <variable name="mxp_mp">9959</variable>
-  <variable name="mxp_sp">243</variable>
+  <variable name="mxp_mp">6546</variable>
+  <variable name="mxp_sp">54</variable>
   <variable name="mxp_tp">246</variable>
 </variables>
 
 <!-- colours -->
 
 <colours
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
 
 <ansi>
@@ -2889,9 +2960,9 @@ nimm sack</send>
 <!-- keypad -->
 
 <keypad
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
 
   <key name="0" >
@@ -3003,9 +3074,9 @@ nimm sack</send>
 <!-- printing -->
 
 <printing
-   muclient_version="4.39"
+   muclient_version="4.72"
    world_file_version="15"
-   date_saved="2011-04-19 18:17:56"
+   date_saved="2011-11-07 21:24:00"
   >
 
 <ansi>
@@ -3030,6 +3101,7 @@ nimm sack</send>
 </printing>
 
 <!-- plugins -->
-<include name="tts_jfw.xml" plugin="y" />
-<include name="tts_NVDA.xml" plugin="y" />
+<include name="C:\Programme\MUSHclient\worlds\plugins\tts_NVDA.xml" plugin="y" />
+<include name="C:\Programme\MUSHclient\worlds\plugins\CaptureMudOutput.xml" plugin="y" />
+<include name="C:\Programme\MUSHclient\worlds\plugins\LuaAudio.xml" plugin="y" />
 </muclient>
