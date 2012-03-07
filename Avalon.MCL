@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Montag, November 07, 2011, 9:03  -->
+<!-- Saved on Dienstag, November 29, 2011, 3:35  -->
 <!-- MuClient version 4.73 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -59,7 +59,7 @@
    input_font_weight="400"
    input_text_colour="black"
    keypad_enable="y"
-   log_output="y"
+   log_input="y"
    map_failure_regexp="y"
    max_output_lines="5000"
    mud_can_change_link_colour="y"
@@ -103,7 +103,7 @@
 <triggers
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
   <trigger
    enabled="y"
@@ -2065,8 +2065,16 @@
 <aliases
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
+  <alias
+   match="- *"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>%1</send>
+  </alias>
   <alias
    match="/abt_min"
    enabled="y"
@@ -3064,7 +3072,7 @@ le stuhl in deinen sack</send>
 <timers
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
 </timers>
 
@@ -3073,7 +3081,7 @@ le stuhl in deinen sack</send>
 <macros
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
 
   <macro name="up" type="send_now" >
@@ -3167,16 +3175,16 @@ le stuhl in deinen sack</send>
 <variables
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
-  <variable name="mxp_ap">121</variable>
-  <variable name="mxp_max_ap">121</variable>
+  <variable name="mxp_ap">87</variable>
+  <variable name="mxp_max_ap">125</variable>
   <variable name="mxp_max_mp">9999</variable>
-  <variable name="mxp_max_sp">243</variable>
-  <variable name="mxp_max_tp">244</variable>
-  <variable name="mxp_mp">3524</variable>
-  <variable name="mxp_sp">243</variable>
-  <variable name="mxp_tp">223</variable>
+  <variable name="mxp_max_sp">298</variable>
+  <variable name="mxp_max_tp">191</variable>
+  <variable name="mxp_mp">5710</variable>
+  <variable name="mxp_sp">296</variable>
+  <variable name="mxp_tp">191</variable>
 </variables>
 
 <!-- colours -->
@@ -3184,7 +3192,7 @@ le stuhl in deinen sack</send>
 <colours
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
 
 <ansi>
@@ -3241,7 +3249,7 @@ le stuhl in deinen sack</send>
 <keypad
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
 
   <key name="0" >
@@ -3355,7 +3363,7 @@ le stuhl in deinen sack</send>
 <printing
    muclient_version="4.73"
    world_file_version="15"
-   date_saved="2011-11-07 21:03:11"
+   date_saved="2011-11-29 15:35:01"
   >
 
 <ansi>
@@ -3379,4 +3387,8 @@ le stuhl in deinen sack</send>
 </ansi>
 </printing>
 
+<!-- plugins -->
+<include name="C:\Programme\MUSHclient\worlds\avalon\plugins\saykb.xml" plugin="y" />
+<include name="tts_jfw.xml" plugin="y" />
+<include name="C:\Programme\MUSHclient\worlds\avalon\plugins\hyras\skilling.xml" plugin="y" />
 </muclient>
