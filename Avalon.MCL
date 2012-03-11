@@ -20,7 +20,8 @@
    name="Avalon"
    new_activity_sound="(No sound)"
    output_font_name="FixedSys"
-   script_editor="notepad"
+   script_editor="C:\Windows\notepad.exe"
+   script_filename="C:\Programme\MUSHclient\worlds\Avalon\script.lua"
    script_language="Lua"
    site="avalon.mud.de"
    spam_message="look"
@@ -41,7 +42,6 @@
    display_my_input="y"
    echo_colour="10"
    echo_hyperlink_in_output_window="y"
-   edit_script_with_notepad="y"
    enable_aliases="y"
    enable_beeps="y"
    enable_command_stack="y"
@@ -159,6 +159,14 @@
    sequence="99"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Boiling2.wav"
   >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="( * TP; * ZP; * AP; * MP*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>status(%1,%2,%3,%4)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -425,6 +433,13 @@
    match="Da gehts nicht weiter."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Wall.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Calidus, der Wandervogel."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Misc\Calidus.wav"
   >
   </trigger>
   <trigger
@@ -725,7 +740,6 @@
   >
   </trigger>
   <trigger
-   enabled="y"
    match="Du faengst an, .* auf .*"
    regexp="y"
    sequence="100"
@@ -977,6 +991,13 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du machst Dein * noch einmal richtig nass."
+   sequence="100"
+   sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Hiker\Moisten.wav"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du meinst ein leises Plaetschern zu vernehmen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Plash.wav"
@@ -1162,7 +1183,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du wendest *."
+   match="Du wendest (das|den|die) .*"
+   regexp="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Cook\Turn.wav"
   >
@@ -1909,6 +1931,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="TP:  */*  AP:  */*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>ksp2(%1,%2,%3,%4)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Tatsaechlich, Du hast etwas .* gefunden.|Na bitte, da ist schon etwas.|.* Du hast Mithrilerz gefunden."
    regexp="y"
    sequence="100"
@@ -1967,6 +1997,14 @@
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Smith\RepairEnd.wav"
   >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="ZP:  */*  MP: */*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>ksp1(%1,%2,%3,%4)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2786,6 +2824,14 @@ n</send>
   <send>(se) 4e (se) 2e (se) 4e (se) 5e (se) e (se) 11e n </send>
   </alias>
   <alias
+   match="/tin_wl"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send>17n w </send>
+  </alias>
+  <alias
    match="/us_abt"
    enabled="y"
    send_to="11"
@@ -2920,6 +2966,14 @@ n</send>
    sequence="100"
   >
   <send>s 27w 7n w </send>
+  </alias>
+  <alias
+   match="/wl_tin"
+   enabled="y"
+   send_to="11"
+   sequence="100"
+  >
+  <send> e 17s</send>
   </alias>
   <alias
    match="foien"
@@ -3391,4 +3445,5 @@ le stuhl in deinen sack</send>
 <include name="C:\Programme\MUSHclient\worlds\avalon\plugins\saykb.xml" plugin="y" />
 <include name="tts_jfw.xml" plugin="y" />
 <include name="C:\Programme\MUSHclient\worlds\avalon\plugins\hyras\skilling.xml" plugin="y" />
+<include name="C:\Programme\MUSHclient\worlds\plugins\LuaAudio.xml" plugin="y" />
 </muclient>
