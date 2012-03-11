@@ -28,6 +28,9 @@ play_tp()
 end
 
 function play_tp()
+if g_tp == nil or g_max_tp == nil then
+return
+end
 percent=tonumber(g_tp) / (tonumber(g_max_tp) / 100)
 ppi.play(GetInfo(67).."/Sounds/tp.wav",0,2*math.floor(percent)-100)
 end

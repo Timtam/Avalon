@@ -21,7 +21,7 @@
    new_activity_sound="(No sound)"
    output_font_name="FixedSys"
    script_editor="C:\Windows\notepad.exe"
-   script_filename="C:\Programme\MUSHclient\worlds\Avalon\test.lua"
+   script_filename="C:\Programme\MUSHclient\worlds\Avalon\script.lua"
    script_language="Lua"
    site="avalon.mud.de"
    spam_message="look"
