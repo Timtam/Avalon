@@ -744,56 +744,56 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Auroras Lag auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Auroras Lag&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Lag.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Brems Vogellied auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Brems Vogellied&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Birds_Start.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Fabians Gnade auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Fabians Gnade&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Heal.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Grinwells Stimme im Geist auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Grinwells Stimme im Geist&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Hypnosis.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Josuas Rattenfaengerlied auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Josuas Rattenfaengerlied&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Catcher.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Kakos Missklang auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Kakos Missklang&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Dissonance.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Nynaeves Sonnenschein auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Sun.wav"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, Renfields Wirrsal auf Deiner Citole zu spielen."
+   match="Du faengst an, &quot;Renfields Wirrsal&quot; auf * zu spielen."
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Confusion.wav"
   >
@@ -1086,7 +1086,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spielst ein Lied auf Deiner Citole."
+   match="Du spielst ein Lied auf *."
    omit_from_output="y"
    sequence="100"
    sound="C:\Programme\MUSHclient\worlds\Avalon\Sounds\Bard\Sing.wav"
