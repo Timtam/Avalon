@@ -1,0 +1,21 @@
+elseif act[1]=="export" then
+	if eql==nil then
+		Note("The sets table is empty...")
+		return
+	end
+	require "serialize"
+	exf = utils.filepicker ("Choose where to save the eq database", "sets", "mzs", {mzs="MUSH-Z sets files"}, true)
+	if not exf then Note("cancelled.") return end
+	local exfw=assert(io.open(exf, "w"))
+	exfc=serialize.save_simple(eql)
+	assert (exfw:write (exfc))
+	exfw:close()
+	Note("set saved.")
+elseif act[1]=="import" then
+	require "serialize"
+	exf = utils.filepicker ("Choose where your eq database is saved", "sets", "mzs", {mzs="MUSH-Z sets files"}, false)
+	if not exf then Note("cancelled.") return end
+	eql = {}  -- in case first time, make empty table
+	dofile(exf)
+	Note("sets recovered.")
+	SaveState()
