@@ -29,11 +29,27 @@
 <triggers>
   <trigger
    enabled="y"
+   match="In einem unkonzentrierten Moment kommst Du ins Trudeln *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>speedwalk_breaklegs()</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kannst Deine Beine wieder bewegen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>speedwalk_break()</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Bard/Sun.wav")</send>
+  <send>psnd("Bard/Sun.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -42,7 +58,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Mining/MeltBegin.wav")</send>
+  <send>psnd("Mining/MeltBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -50,7 +66,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerFailed.wav")</send>
+<send>psnd("Mining/HammerFailed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -59,7 +75,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/QuiteGood.wav")</send>
+<send>psnd("Rune/QuiteGood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -69,7 +85,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Harden.wav")</send>
+<send>psnd("Rune/Harden.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -79,7 +95,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Hammer1.wav")</send>
+<send>psnd("Rune/Hammer1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -87,7 +103,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Kill.wav")</send>
+<send>psnd("Player/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -95,7 +111,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Disembowel2.wav")</send>
+<send>psnd("Cook/Disembowel2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -104,7 +120,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveFinish.wav")</send>
+<send>psnd("Rune/EngraveFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -114,7 +130,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer1.wav")</send>
+<send>psnd("Smith/hammer1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -122,15 +138,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopComplete.wav")</send>
+<send>psnd("Misc/ChopComplete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Na bitte, das sieht doch schon fast wie ein fertiges Lederstueck aus."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Finish2.wav")</send>
+<send>psnd("Tan/Finish2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -138,7 +155,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Stop.wav")</send>
+<send>psnd("Bard/Stop.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -147,15 +164,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Done.wav")</send>
+<send>psnd("Misc/Done.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Viel fehlt Dir nicht mehr zum fertigen Lederstueck."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Finish1.wav")</send>
+<send>psnd("Tan/Finish1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -164,7 +182,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/RuneGone.wav")</send>
+<send>psnd("Rune/RuneGone.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -172,7 +190,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Roc.wav")</send>
+<send>psnd("Monsters/Roc.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -181,7 +199,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Polish.wav")</send>
+<send>psnd("Rune/Polish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -189,7 +207,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Goat 1.wav")</send>
+<send>psnd("Monsters/Goat 1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -197,7 +215,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/noway.wav")</send>
+<send>psnd("Misc/noway.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -205,7 +223,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Dog.wav")</send>
+<send>psnd("Monsters/Dog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -213,7 +231,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Confusion.wav")</send>
+<send>psnd("Bard/Confusion.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -221,7 +239,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Bull.wav")</send>
+<send>psnd("Monsters/Bull.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -229,7 +247,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/RepairStart.wav")</send>
+<send>psnd("Smith/RepairStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -237,7 +255,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/grab.wav")</send>
+<send>psnd("Monsters/grab.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -246,7 +264,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/KB_Out.wav")</send>
+<send>psnd("Spells/KB_Out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -254,7 +272,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/start.wav")</send>
+<send>psnd("Smith/start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -262,7 +280,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Flame.wav")</send>
+<send>psnd("Rune/Flame.ogg")</send>
   </trigger>
   <trigger
    match="Du faengst an, .* auf .*"
@@ -270,7 +288,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/FileStart.wav")</send>
+<send>psnd("Rune/FileStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -279,7 +297,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/Ground/"..math.random(1,10)..".wav")</send>
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -288,7 +306,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveStart.wav")</send>
+<send>psnd("Rune/EngraveStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -307,7 +325,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveCorrect.wav")</send>
+<send>psnd("Rune/EngraveCorrect.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -316,7 +334,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/ice/"..math.random(1,1)..".wav")</send>
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -326,7 +344,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltClick.wav")</send>
+<send>psnd("Mining/MeltClick.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -336,7 +354,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressContinue.wav")</send>
+<send>psnd("Mining/PressContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -344,7 +362,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Track/Begin.wav")</send>
+<send>psnd("Track/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -352,7 +370,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/HuntStart.wav")</send>
+<send>psnd("Player/HuntStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -360,7 +378,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Knot.wav")</send>
+<send>psnd("Hiker/Knot.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -368,15 +386,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigGranite.wav")</send>
+<send>psnd("Mining/DigGranite.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du kommst dabei heftig ins Schwitzen."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Breath.wav")</send>
+<send>psnd("Tan/Breath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -384,7 +403,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/FileEnd.wav")</send>
+<send>psnd("Rune/FileEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -394,7 +413,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Hammer2.wav")</send>
+<send>psnd("Rune/Hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -402,7 +421,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/RepairEnd.wav")</send>
+<send>psnd("Smith/RepairEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -420,7 +439,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/FallenAngel.wav")</send>
+<send>psnd("Monsters/FallenAngel.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -438,7 +457,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/Prepare.wav")</send>
+<send>psnd("Spells/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -446,7 +465,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Smell.wav")</send>
+<send>psnd("Cook/Smell.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -454,7 +473,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Pig 2.wav")</send>
+<send>psnd("Monsters/Pig 2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -463,7 +482,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/CounterAttack.wav")</send>
+<send>psnd("Weapons/CounterAttack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -472,7 +491,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalFail.wav")</send>
+<send>psnd("Mining/CoalFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -480,7 +499,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Wolf.wav")</send>
+<send>psnd("Monsters/Wolf.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -488,7 +507,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Begin.wav")</send>
+<send>psnd("WateringPlace/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -496,7 +515,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3out.wav")</send>
+<send>psnd("Spells/light3out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -504,7 +523,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3b.wav")</send>
+<send>psnd("Spells/light3b.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -512,7 +531,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopBegin.wav")</send>
+<send>psnd("Misc/ChopBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -521,7 +540,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Strong.wav")</send>
+<send>psnd("Monsters/Vortex/Strong.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -529,7 +548,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Succeed.wav")</send>
+<send>psnd("Firestarting/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -538,7 +557,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltRumble.wav")</send>
+<send>psnd("Mining/MeltRumble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -547,7 +566,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/File.WAV")</send>
+<send>psnd("Rune/File.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -556,7 +575,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigCaveInDistant.wav")</send>
+<send>psnd("Mining/DigCaveInDistant.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -564,7 +583,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Misc/start.wav")</send>
+  <send>psnd("Misc/start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -572,7 +591,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Hunt.wav")</send>
+<send>psnd("Player/Hunt.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -580,7 +599,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Prepare.wav")</send>
+<send>psnd("WateringPlace/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -588,7 +607,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/sword_draw.wav")</send>
+<send>psnd("Weapons/sword_draw.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -596,7 +615,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Calidus.wav")</send>
+<send>psnd("Misc/Calidus.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -605,7 +624,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/Repair1.wav")</send>
+<send>psnd("Smith/Repair1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -613,7 +632,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Wall.wav")</send>
+<send>psnd("Misc/Wall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -621,7 +640,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/Stop.wav")</send>
+<send>psnd("Spells/Stop.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -629,7 +648,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Tan/Finish3.wav")</send>
+<send>psnd("Tan/Finish3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -637,7 +656,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Start.wav")</send>
+<send>psnd("Firestarting/Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -645,7 +664,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -654,7 +673,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer2.wav")</send>
+<send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -663,7 +682,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer2.wav")</send>
+<send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -672,7 +691,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.wav")</send>
+<send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -681,7 +700,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigFinish.wav")</send>
+<send>psnd("Mining/DigFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -689,7 +708,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Moisten.wav")</send>
+<send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -698,7 +717,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Eat.wav")</send>
+<send>psnd("Player/Eat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -714,7 +733,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/FailStart.wav")</send>
+<send>psnd("Firestarting/FailStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -722,7 +741,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/FailSpark.wav")</send>
+<send>psnd("Firestarting/FailSpark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -730,7 +749,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit3.wav")</send>
+<send>psnd("Spells/lavahit3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -738,7 +757,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FireCrystal.wav")</send>
+<send>psnd("Cook/FireCrystal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -746,7 +765,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/swim/"..math.random(1,10)..".wav")</send>
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -754,7 +773,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit4.wav")</send>
+<send>psnd("Spells/lavahit4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -762,7 +781,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FogOut.wav")</send>
+<send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -770,7 +789,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Wave.wav")</send>
+<send>psnd("Rune/Wave.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -778,7 +797,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.wav")</send>
+<send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -786,7 +805,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Pan.wav")</send>
+<send>psnd("Cook/Pan.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -795,7 +814,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/quake.wav")</send>
+<send>psnd("Portal/quake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -803,7 +822,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Succeed.wav")</send>
+<send>psnd("WateringPlace/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -811,7 +830,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Cook.wav")</send>
+<send>psnd("Cook/Cook.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -819,7 +838,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.wav")</send>
+<send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -827,7 +846,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Roast.wav")</send>
+<send>psnd("Cook/Roast.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -836,7 +855,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Rat.wav")</send>
+<send>psnd("Monsters/Rat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -844,7 +863,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.wav")</send>
+<send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -853,7 +872,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Pigeon.wav")</send>
+<send>psnd("Monsters/Pigeon.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -861,7 +880,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/GoOut.wav")</send>
+<send>psnd("Firestarting/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -869,7 +888,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fog.wav")</send>
+<send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -877,7 +896,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Spark.wav")</send>
+<send>psnd("Rune/Spark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -886,7 +905,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/stony/"..math.random(1,10)..".wav")</send>
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/stony/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -894,7 +913,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Plash.wav")</send>
+<send>psnd("Cook/Plash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -902,7 +921,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/DisembowelSuccess.wav")</send>
+<send>psnd("Cook/DisembowelSuccess.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -911,7 +930,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/ChartEnd.wav")</send>
+<send>psnd("Rune/ChartEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -919,7 +938,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/GoOut.wav")</send>
+<send>psnd("WateringPlace/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -936,7 +955,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressEmpty.wav")</send>
+<send>psnd("Mining/PressEmpty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -945,7 +964,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltHeatUp.wav")</send>
+<send>psnd("Mining/MeltHeatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -954,7 +973,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerSucceeded.wav")</send>
+<send>psnd("Mining/HammerSucceeded.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -962,7 +981,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Open.wav")</send>
+<send>psnd("Misc/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -971,7 +990,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/DoCancel.wav")</send>
+<send>psnd("Misc/DoCancel.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -979,7 +998,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Unpack.wav")</send>
+<send>psnd("Cook/Unpack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -987,7 +1006,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/heal.wav")</send>
+<send>psnd("Spells/heal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -995,7 +1014,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit1.wav")</send>
+<send>psnd("Spells/lavahit1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1003,7 +1022,7 @@
    sequence="101"
    send_to="12"
   >
-<send>psnd("Player/EatUp.wav")</send>
+<send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1011,7 +1030,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/CookFinish.wav")</send>
+<send>psnd("Cook/CookFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1019,7 +1038,7 @@
    sequence="102"
    send_to="12"
   >
-<send>psnd("Items/Take.wav")</send>
+<send>psnd("Items/Take.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1027,7 +1046,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Granite.wav")</send>
+<send>psnd("Rune/Granite.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1036,7 +1055,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Crocodile.wav")</send>
+<send>psnd("Monsters/Crocodile.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1051,7 +1070,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/create.wav")</send>
+<send>psnd("Portal/create.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1066,7 +1085,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Snake.wav")</send>
+<send>psnd("Rune/Snake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1074,7 +1093,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Zwoni.wav")</send>
+<send>psnd("Misc/Zwoni.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1082,7 +1101,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Cook/Boiling2.wav")</send>
+<send>psnd("Cook/Boiling2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1090,15 +1109,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FogOut.wav")</send>
+<send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein tiefer Kratzer in * muss *"
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Smith/Repair2.wav")</send>
+<send>psnd("Smith/Repair2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1115,7 +1135,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigRocks.wav")</send>
+<send>psnd("Mining/DigRocks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1123,7 +1143,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Appear.wav")</send>
+<send>psnd("Monsters/Vortex/Appear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1131,7 +1151,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/RoastFinish.wav")</send>
+<send>psnd("Cook/RoastFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1139,7 +1159,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Swirl1.wav")</send>
+<send>psnd("Monsters/Vortex/Swirl1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1154,7 +1174,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.wav")</send>
+<send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1162,7 +1182,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Try.wav")</send>
+<send>psnd("Cook/Try.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1177,15 +1197,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Dig2.wav")</send>
+<send>psnd("WateringPlace/Dig2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Tear.wav")</send>
+<send>psnd("Tan/Tear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1193,7 +1214,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Stir.wav")</send>
+<send>psnd("Cook/Stir.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1201,15 +1222,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/say.wav")</send>
+<send>psnd("Player/say.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schabst fleissig weiter."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Scrape2.wav")</send>
+<send>psnd("Tan/Scrape2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1217,7 +1239,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Firecat.wav")</send>
+<send>psnd("Monsters/Firecat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1225,7 +1247,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Moisten.wav")</send>
+<send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1233,7 +1255,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Seaguls.wav")</send>
+<send>psnd("Monsters/Seaguls.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1242,7 +1264,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigMud.wav")</send>
+<send>psnd("Mining/DigMud.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1250,7 +1272,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Fire.wav")</send>
+<send>psnd("Rune/Fire.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1258,7 +1280,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Swirl2.wav")</send>
+<send>psnd("Monsters/Vortex/Swirl2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1266,7 +1288,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Begin.wav")</send>
+<send>psnd("Firestarting/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1274,7 +1296,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Flood.wav")</send>
+<send>psnd("Rune/Flood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1282,15 +1304,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Dragon.wav")</send>
+<send>psnd("Monsters/Dragon.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Scrape1.wav")</send>
+<send>psnd("Tan/Scrape1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1298,7 +1321,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Goat 2.wav")</send>
+<send>psnd("Monsters/Goat 2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1306,7 +1329,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/apear.wav")</send>
+<send>psnd("Portal/apear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1315,7 +1338,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalBegin.wav")</send>
+<send>psnd("Mining/CoalBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1323,7 +1346,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1331,7 +1354,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Colapse.wav")</send>
+<send>psnd("WateringPlace/Colapse.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1339,7 +1362,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1347,7 +1370,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam4.wav")</send>
+<send>psnd("Spells/firebeam4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1355,7 +1378,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/heal2.wav")</send>
+<send>psnd("Spells/heal2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1364,7 +1387,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigTool.wav")</send>
+<send>psnd("Mining/DigTool.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1372,7 +1395,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HackSucceed2.wav")</send>
+<send>psnd("Mining/HackSucceed2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1380,7 +1403,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Close.wav")</send>
+<send>psnd("Misc/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1388,15 +1411,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit2.wav")</send>
+<send>psnd("Spells/lavahit2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schneidest Dir ein Stueck zur Bearbeitung aus Deiner Tierhaut."
    sequence="100"
+   omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Cut.wav")</send>
+<send>psnd("Tan/Cut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1404,7 +1428,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/Sword_Sheath.wav")</send>
+<send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1412,7 +1436,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/offhead.wav")</send>
+<send>psnd("Player/offhead.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1421,7 +1445,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Chart.wav")</send>
+<send>psnd("Rune/Chart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1429,7 +1453,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/WoodSplit.wav")</send>
+<send>psnd("Misc/WoodSplit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1437,7 +1461,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Birds_Attack.wav")</send>
+<send>psnd("Bard/Birds_Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1445,7 +1469,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Wear.wav")</send>
+<send>psnd("Player/Wear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1455,7 +1479,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerBegin.wav")</send>
+<send>psnd("Mining/HammerBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1463,7 +1487,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Heat.wav")</send>
+<send>psnd("Cook/Heat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1471,7 +1495,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Unwear.wav")</send>
+<send>psnd("Player/Unwear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1480,7 +1504,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HackSucceed1.wav")</send>
+<send>psnd("Mining/HackSucceed1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1488,7 +1512,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fly.wav")</send>
+<send>psnd("Cook/Fly.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1496,7 +1520,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Eagle.wav")</send>
+<send>psnd("Monsters/Eagle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1504,7 +1528,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1513,7 +1537,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigBegin.wav")</send>
+<send>psnd("Mining/DigBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1521,7 +1545,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fog.wav")</send>
+<send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1529,7 +1553,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Flee.wav")</send>
+<send>psnd("Monsters/Flee.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1537,7 +1561,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.wav")</send>
+<send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1546,7 +1570,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/mouse.wav")</send>
+<send>psnd("Monsters/mouse.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1554,7 +1578,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/burst.wav")</send>
+<send>psnd("Firestarting/burst.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1562,7 +1586,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/enter portal.wav")</send>
+<send>psnd("Portal/enter portal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1571,7 +1595,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Items/Get.wav")</send>
+<send>psnd("Items/Get.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1580,7 +1604,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerFail.wav")</send>
+<send>psnd("Mining/HammerFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1588,7 +1612,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/EatUp.wav")</send>
+<send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1598,7 +1622,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerSucceed.wav")</send>
+<send>psnd("Mining/HammerSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1614,7 +1638,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/head.wav")</send>
+<send>psnd("Player/head.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1624,7 +1648,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalSucceed.wav")</send>
+<send>psnd("Mining/CoalSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1632,7 +1656,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Split.wav")</send>
+<send>psnd("Firestarting/Split.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1641,7 +1665,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigFall.wav")</send>
+<send>psnd("Mining/DigFall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1650,7 +1674,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Sing.wav")</send>
+<send>psnd("Bard/Sing.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1658,7 +1682,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light1b.wav")</send>
+<send>psnd("Spells/light1b.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1666,7 +1690,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Vampire.wav")</send>
+<send>psnd("Rune/Vampire.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1674,7 +1698,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Banthar1.wav")</send>
+<send>psnd("Monsters/Banthar1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1682,7 +1706,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Lightning.wav")</send>
+<send>psnd("Rune/Lightning.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1690,8 +1714,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Angel.wav")</send>
-  <send>b fluegel von engel</send>
+<send>psnd("Monsters/Angel.ogg")
+world.Execute("b fluegel von engel")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1699,7 +1723,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light2a.wav")</send>
+<send>psnd("Spells/light2a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1707,7 +1731,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Hawk.wav")</send>
+<send>psnd("Monsters/Hawk.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1715,7 +1739,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Group.wav")</send>
+<send>psnd("Monsters/Vortex/Group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1723,7 +1747,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam2.wav")</send>
+<send>psnd("Spells/firebeam2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1731,7 +1755,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1739,7 +1763,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3a.wav")</send>
+<send>psnd("Spells/light3a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1747,7 +1771,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.wav")</send>
+<send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1756,7 +1780,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressRelease.wav")</send>
+<send>psnd("Mining/PressRelease.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1764,7 +1788,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/Damaged.wav")</send>
+<send>psnd("Smith/Damaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1773,7 +1797,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.wav")</send>
+<send>psnd("Misc/torch_on.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1781,7 +1805,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/say.wav")</send>
+<send>psnd("Player/say.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1789,7 +1813,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Boiling1.wav")</send>
+<send>psnd("Cook/Boiling1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1797,7 +1821,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/HeavyDamaged.wav")</send>
+<send>psnd("Smith/HeavyDamaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1806,7 +1830,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/cave/"..math.random(1,4)..".wav")</send>
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/cave/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1814,7 +1838,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."/Sounds/Footsteps/Steppy/"..math.random(1,10)..".wav")</send>
+  <send>Sound(GetInfo(67).."/Sounds/Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1822,7 +1846,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/Sword_Sheath.wav")</send>
+<send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1831,7 +1855,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigCaveInAlert.wav")</send>
+<send>psnd("Mining/DigCaveInAlert.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1839,7 +1863,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Build.wav")</send>
+<send>psnd("Firestarting/Build.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1847,7 +1871,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/bubble.wav")</send>
+<send>psnd("Cook/bubble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1855,7 +1879,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Burial.wav")</send>
+<send>psnd("Bard/Burial.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1863,7 +1887,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam1.wav")</send>
+<send>psnd("Spells/firebeam1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1871,7 +1895,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Melody.wav")</send>
+<send>psnd("Cook/Melody.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1879,7 +1903,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Chicken.wav")</send>
+<send>psnd("Monsters/Chicken.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1887,7 +1911,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Pig 3.wav")</send>
+<send>psnd("Monsters/Pig 3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1895,7 +1919,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltFinish.wav")</send>
+<send>psnd("Mining/MeltFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1905,7 +1929,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressBegin.wav")</send>
+<send>psnd("Mining/PressBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1913,7 +1937,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Lion.wav")</send>
+<send>psnd("Monsters/Lion.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1921,7 +1945,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.wav")</send>
+<send>psnd("Misc/torch_on.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1933,7 +1957,7 @@
    sequence="1"
    send_to="12"
   >
-<send>psnd("Items/Put.wav")</send>
+<send>psnd("Items/Put.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1941,7 +1965,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Pavian.wav")</send>
+<send>psnd("Monsters/Pavian.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1949,7 +1973,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1957,7 +1981,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.wav")</send>
+<send>psnd("Misc/torch_on.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1965,7 +1989,7 @@
    sequence="2"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Kill.wav")</send>
+<send>psnd("Monsters/Vortex/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1973,7 +1997,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.wav")</send>
+<send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1981,7 +2005,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Lag.wav")</send>
+<send>psnd("Bard/Lag.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1989,8 +2013,8 @@
    sequence="2"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Disintegrate.wav")</send>
-  <send>lege streitaxt in deinen rucksack</send>
+<send>psnd("Monsters/Vortex/Disintegrate.ogg")
+world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1998,7 +2022,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/group.wav")</send>
+<send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2006,7 +2030,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Birds_Start.wav")</send>
+<send>psnd("Bard/Birds_Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2015,7 +2039,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Items/GetMoney.wav")</send>
+<send>psnd("Items/GetMoney.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2023,7 +2047,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Bad.wav")</send>
+<send>psnd("Rune/Bad.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2031,7 +2055,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/ChopContinue.wav")</send>
+<send>psnd("Misc/ChopContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2048,7 +2072,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/laber.wav")</send>
+<send>psnd("Misc/laber.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2056,7 +2080,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Items/Give.wav")</send>
+<send>psnd("Items/Give.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2065,7 +2089,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressFinish.wav")</send>
+<send>psnd("Mining/PressFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2073,7 +2097,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Dig1.wav")</send>
+<send>psnd("WateringPlace/Dig1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2081,7 +2105,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/DisembowelFail.wav")</send>
+<send>psnd("Cook/DisembowelFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2089,7 +2113,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Disembowel1.wav")</send>
+<send>psnd("Cook/Disembowel1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2098,7 +2122,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigContinue.wav")</send>
+<send>psnd("Mining/DigContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2108,7 +2132,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltBubble.wav")</send>
+<send>psnd("Mining/MeltBubble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2117,7 +2141,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Turn.wav")</send>
+<send>psnd("Cook/Turn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2125,7 +2149,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Attack.wav")</send>
+<send>psnd("Player/Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2134,7 +2158,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/Empty.wav")</send>
+<send>psnd("Mining/Empty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2142,7 +2166,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Open.wav")</send>
+<send>psnd("Hiker/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2150,7 +2174,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam3.wav")</send>
+<send>psnd("Spells/firebeam3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2158,7 +2182,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Close.wav")</send>
+<send>psnd("Hiker/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2166,7 +2190,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/WringOut.wav")</send>
+<send>psnd("Hiker/WringOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2183,7 +2207,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Cougar1.wav")</send>
+<send>psnd("Monsters/Cougar1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2191,7 +2215,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/CleanDaemon.wav")</send>
+<send>psnd("Monsters/CleanDaemon.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2199,7 +2223,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Heal.wav")</send>
+<send>psnd("Bard/Heal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2207,7 +2231,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Riese.wav")</send>
+<send>psnd("Monsters/Riese.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2215,7 +2239,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Hypnosis.wav")</send>
+<send>psnd("Bard/Hypnosis.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2223,7 +2247,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Krebs.wav")</send>
+<send>psnd("Monsters/Krebs.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2232,7 +2256,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/HuntAbort.wav")</send>
+<send>psnd("Player/HuntAbort.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2240,7 +2264,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Catcher.wav")</send>
+<send>psnd("Bard/Catcher.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2249,7 +2273,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/complete.wav")</send>
+<send>psnd("Smith/complete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2257,7 +2281,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Dissonance.wav")</send>
+<send>psnd("Bard/Dissonance.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2266,32 +2290,104 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalSucceeded.wav")</send>
+<send>psnd("Mining/CoalSucceeded.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="* schiesst * auf *"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Weapons/arrow.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du kannst nicht mehr genug Deiner magischen Energie entbehren, um Deinen Speer weiterhin damit zu versorgen."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/waldtraene/forceend.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spuerst, wie &quot;Waldtraene&quot; von Deiner magischen Kraft zehrt."
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/waldtraene/sendzp.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in|Waldtraene zu sammeln.*"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/waldtraene/startzp.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="&quot;Waldtraene&quot; ist nun voll mit magischer Energie geladen."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/waldtraene/fullzp.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Traenen gleich fließen Tropfen goldenen Lichtes über die Blätter von &quot;Waldtraene&quot; auf * zu.|Sie scheinen ihm fürchterliche Schmerzen zu bereiten."
+   regexp="y"
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Weapons/waldtraene/"..math.random(1,3)..".ogg")</send>
+  </trigger>
+<trigger
+   match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
+   sequence="100"
+   send_to="12"
+   enabled="y"
+  >
+  <send>speedwalk_breaklegs()</send>
+  </trigger>
+<trigger
+   match="Du findest wieder festen Halt."
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>speedwalk_break()</send>
+</trigger>
 </triggers>
 
 <!--  Aliases  -->
 
 <aliases>
   <alias
-   match="/min_dhun"
+   match="speedwalk_break"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>
-3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n (ne) 5e (se) 2e (ne) 4e (se) e (se) 6s (sw) 5s (sw) s
-  </send>
+  <send>speedwalk_break()</send>
+</alias>
+  <alias
+   match="/min_dhun"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s")</send>
   </alias>
   <alias
     match="/dhun_min"
     enabled="y"
    sequence="100"
-   send_to="11"
+   send_to="12"
   >
-  <send>
-n (ne) 5n (ne) 6n (nw) w (nw) 4w (sw) 2w (nw) 5w (sw) s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) 2w s w 3s
-  </send>
+  <send>speedwalk_init("n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
   </alias>
   <alias
    match="janis"
@@ -2320,9 +2416,9 @@ n (ne) 5n (ne) 6n (nw) w (nw) 4w (sw) 2w (nw) 5w (sw) s (sw) s (sw) (se) 2(sw) 3
   <alias
    match="/cor_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
   >
-  <send>s (sw) w (sw) w 8(sw) w (sw) 2w 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n</send>
+  <send>speedwalk_init("s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n")</send>
   </alias>
   <alias
    match="janiw"
@@ -2335,13 +2431,10 @@ n (ne) 5n (ne) 6n (nw) w (nw) 4w (sw) 2w (nw) 5w (sw) s (sw) s (sw) (se) 2(sw) 3
   <alias
    match="/dk_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>
-n n n n n (ne) (ne) (ne) e e (ne) (ne) (ne) n (ne) n n n n n n (ne) (ne) (ne) (ne) (ne) (ne) (ne) (nw) (nw) (nw) (nw) (nw) (nw) n n (ne) n n n (nw) n n
-n n (nw) n n (nw) (ne) (ne) e (ne) e (ne) e e e e e e e e e e e e e e e e e e (se) e e (se) s (se) (se) (se) (se) (se) (se) (se) e e e (se) e e e e (ne)
-  </send>
+  <send>speedwalk_init("n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="sit"
@@ -2354,67 +2447,66 @@ setze auf stuhl</send>
   <alias
    match="/gwen_tin"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> s 11w (nw) w (nw) 5w (nw) 4w (nw) 2w (nw) 4w (nw)</send>
+  <send>speedwalk_init("s w w w w w w w w w w w nw w nw w w w w w nw w w w w nw w w nw w w w w nw")</send>
   </alias>
   <alias
    match="/haend_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> e n 3e 9n 3w 3n (ne) n (ne) e (ne) 2(nw) (ne) 3e (ne) n 9(ne) n 2(ne) n 4(ne) n (ne) n (ne) 3n 2(ne) 2n 3(nw) 2n 2(nw) n (nw) n (nw) n (nw) n 4(nw) 3n (nw) 4w 7(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e</send>
+  <send>speedwalk_init("o n o o o n n n n n n n n n w w w n n n no n no o no nw nw no o o o no n no no no no no no no no no n no no n no no no no n no n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/haf_amp"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 14w (sw) 2w (sw) 2w (nw) 2(ne) 3e (ne) 5e 2(ne)</send>
+  <send>speedwalk_init("w w w w w w w w w w w w w w sw w w sw w w nw no no o o o no o o o o o no no")</send>
   </alias>
   <alias
    match="/kram_haus"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>28w 10n (sw) </send>
+  <send>speedwalk_init("w w w w w w w w w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n sw")</send>
   </alias>
   <alias
    match="/lim_hol"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> (sw) w 2(nw) 4w (nw) (ne) 2e (ne) 2e (ne) e 2(ne) e (se) e (ne) 2e (ne) 2e 2(ne) 2n 2w</send>
+  <send>speedwalk_init("sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no no n n w w")</send>
   </alias>
   <alias
    match="/lor_mit"
    enabled="y"
-   send_to="11"
-   omit_from_output="y"
+   send_to="12"
    sequence="100"
   >
-  <send>6n 4(ne) 10n w nw w</send>
+  <send>speedwalk_init("n n n n n n no no no no n n n n n n n n n n w nw w")</send>
   </alias>
   <alias
    match="/los_ale"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>12e 3s (se) (sw) 2(se) 2e 3(se) 2e (se) s (sw) 3s (se) 2s (sw) s 2e </send>
+  <send>speedwalk_init("o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s o o")</send>
   </alias>
   <alias
    match="/los_jer"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>12e </send>
+  <send>speedwalk_init("o o o o o o o o o o o o")</send>
   </alias>
   <alias
    match="sup"
@@ -2427,358 +2519,354 @@ le stuhl in deinen sack</send>
   <alias
    match="/haf_jer"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 4w (nw) 3n</send>
+  <send>speedwalk_init("w w w w nw n n n")</send>
   </alias>
   <alias
    match="/haus_kram"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> (ne) 10s 28e</send>
+  <send>speedwalk_init("no s s s s s s s s s s o o o o o o o o o o o o o o o o o o o o o o o o o o o o")</send>
   </alias>
   <alias
    match="/haus_post"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> n 13w 5n 3w s</send>
+  <send>speedwalk_init("n w w w w w w w w w w w w w n n n n n w w w s")</send>
   </alias>
   <alias
    match="/haus_schmied"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>(nw) 10w 10s </send>
+  <send>speedwalk_init("nw w w w w w w w w w w s s s s s s s s s s")</send>
   </alias>
   <alias
    match="/haus_wal"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>n (o) (o) (o) (o) (o) (o) (o) (o) (o) n n n n n w w w w w w w w w w w n</send>
+  <send>speedwalk_init("n o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
   </alias>
   <alias
    match="/los_ver"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>12e 3s (se) (sw) 2(se) 2e 3(se) 2e (se) s (sw) 3s (se) 2s (sw) 2s 8(sw) 3w (sw) </send>
+  <send>speedwalk_init("o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s s sw sw sw sw sw sw sw sw w w w sw")</send>
   </alias>
   <alias
    match="/mad_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>2n 3e (se) 3e (se) 2e (se) e 2(se) 2e (se) e (se) s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) 2w s w 3s </send>
+  <send>speedwalk_init("n n o o o so o o o so o o so o so so o o so o so s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
   </alias>
   <alias
    match="/magi_wal"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> e 7s 27e n</send>
+  <send>speedwalk_init("o s s s s s s s o o o o o o o o o o o o o o o o o o o o o o o o o o o n")</send>
   </alias>
   <alias
    match="/min_abt"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>n n n e e e n (no) e e e e (no) n n n (no) n (no) n n n n n n (no) (nw) (nw) n (nw) (nw) w (nw) (nw) (no) n n n n n n n (nw) n (nw) n n n (no) (no) e e e (so) e e (so) e e e (no) e e e (no) e e e (so) e (so) e e (no) e (no) e (so) e (so) (no) n (kletter n) (kletter no) (kletter no) (no) n (kletter n) (kletter n) (kletter n) n</send>
+  <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n")</send>
   </alias>
   <alias
    match="/min_alo"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>3n 3e n (ne) 4e (ne) (se) 9e (ne) e 5(ne) e (ne) 7e (se) 12e 6(ne) n (ne) 14e (ne) 6e </send>
+  <send>speedwalk_init("n n n o o o n no o o o o no so o o o o o o o o o no o no no no no no o no o o o o o o o so o o o o o o o o o o o o no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
   </alias>
   <alias
    match="/min_ash"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>3n 4e s 7e (se) 2e 2(se) 3e (se) 4e (se) s (se) s 6(se) 2e (se) e 3(se) 2e (se) e s 2(se) 3e (se) 10e (ne) e 4(ne) s </send>
+  <send>speedwalk_init("n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o s so so o o o so o o o o o o o o o o no o no no no no s")</send>
   </alias>
   <alias
    match="/min_cor"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>3n 3e n (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2e (ne) e 8(ne) e (ne) e (ne) n </send>
+  <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no o o no o no no no no no no no no o no o no n")</send>
   </alias>
   <alias
    match="/min_mad"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n (nw) w (nw) 2w 2(nw) w (nw) 2w (nw) 3w (nw) 3w 2s</send>
+  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n nw w nw w w nw nw w nw w w nw w w w nw w w w s s")</send>
   </alias>
   <alias
    match="/min_san"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 3n 4e s 7e (se) 2e 2(se) 3e (se) 4e (se) s (se) s 6(se) 2e (se) e 3(se) 2e (se) e</send>
+  <send>speedwalk_init("n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o")</send>
   </alias>
   <alias
    match="/min_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 3n e n 2e (ne) 4e (ne) 3n (ne) n (ne) 6n (ne) 2(nw) n 2(nw) w 2(nw) (ne) 7n (nw) n (nw) 3n 2(ne) (nw) (ne) n (ne) n</send>
+  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n")</send>
   </alias>
   <alias
    match="/mit_lor"
    enabled="y"
-   send_to="11"
-   omit_from_output="y"
+   send_to="12"
    sequence="100"
   >
-  <send>e (se) e 10s 4(sw) 6s</send>
+  <send>speedwalk_init("o so o s s s s s s s s s s sw sw sw sw s s s s s s")</send>
   </alias>
   <alias
    match="/mos_ker"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 4n (sw) w (sw)</send>
+  <send>speedwalk_init("w nw nw")</send>
   </alias>
   <alias
    match="/por_ril"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>(ne) n (ne) 2n 2(nw) n (nw) 2n 2(ne) 3n 2w 3n (ne) </send>
+  <send>speedwalk_init("no n no n n nw nw n nw n n no no n n n w w n n n no")</send>
   </alias>
   <alias
    match="/por_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 14e 4(se) 3e (se) 4e 2(ne) e</send>
+  <send>speedwalk_init("o o o o o o o o o o o o o o so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/post_haus"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>n 3e 5s 13e s </send>
+  <send>speedwalk_init("n o o o s s s s s o o o o o o o o o o o o o s")</send>
   </alias>
   <alias
    match="/ril_por"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> (sw) 3s 2e 3s 2(sw) 2s (se) s 2(se) 2s (sw) s (sw)</send>
+  <send>speedwalk_init("sw s s s o o s s s sw sw s s so s so so s s sw s sw")</send>
   </alias>
   <alias
    match="/run_ker"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send> 5e 8n w (sw)</send>
+  <send>speedwalk_init("o o o o o n n n n n n n n w sw")</send>
   </alias>
   <alias
    match="/ruw_arg"
    enabled="y"
-   send_to="11"
-   omit_from_output="y"
+   send_to="12"
    sequence="100"
    >
-  <send>2n (nw) (no) 2(nw) 2(no) 2n 5(nw) w (sw) 2w (sw) w (nw) w (sw) 3w (sw) w (nw) w 2(nw) w (nw) w (sw) s (sw)</send>
+  <send>speedwalk_init("n n nw no nw nw no no n n nw nw nw nw nw w sw w w sw w nw w sw w w w sw w nw w nw nw w nw w sw s sw")</send>
   </alias>
   <alias
    match="/san_alo"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s 2(se) 3e (se) 10e (ne) e 4(ne) (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (ne) 14e (ne) 6e </send>
+  <send>speedwalk_init("s so so o o o so o o o o o o o o o o no o no no no no nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
   </alias>
   <alias
    match="/san_ash"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> s 2(se) 3e (se) 10e (ne) e 4(ne) s</send>
+  <send>speedwalk_init("s so so o o o so o o o o o o o o o o no o no no no no s")</send>
   </alias>
   <alias
    match="/uw-eingang_por"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>w 2(sw) 4w (nw) 3w 4(nw) 14w </send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw w w w w w w w w w w w w w w")</send>
   </alias>
   <alias
    match="/uw-eingang_skal"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 7(se) 4e (se) 3s 4(se) s (se) s (se) s (se) s 2(se) 2s 3(se) 2s 2(sw) 3s (sw) s (sw) s 4(sw) s 2(sw) s 9(sw) s (sw) 3w (sw) 2(se) (sw) w (sw) s (sw)</send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s sw s sw sw sw sw s sw sw s sw sw sw sw sw sw sw sw sw s sw w w w sw so so sw w sw s sw")</send>
   </alias>
   <alias
    match="/uw-eingang_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>e (ne) e (se) 2s (se) (sw) 3(se) e 2(se) e 4n (ne) 6n (nw) w (nw) 4w (sw) 2w (nw) 5w (sw) </send>
+  <send>speedwalk_init("o no o so s s so sw so so so o so so o n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw")</send>
   </alias>
   <alias
    match="/abt_min"
    enabled="y"
-   send_to="11"
-   ignore_case="y"
+   send_to="12"
    sequence="100"
    >
-  <send>s (kletter s) (kletter s) (kletter s) s (sw) (kletter sw) (kletter sw) (kletter s) s (sw) (nw) w (nw) w (sw) w (sw) w w (nw) w (nw) w w w (sw) w w w (sw) w w w (nw) w w (nw) w w w (sw) (sw) s s s (se) s (se) s s s s s s s (sw) (se) (se) e (se) (se) s (se) (se) (sw) s s s s s s (sw) s (sw) s s s (sw) w w w w (sw) s w w w s s s</send>
+  <send>speedwalk_init("s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s")</send>
   </alias>
   <alias
    match="/ver_los"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> (ne) 3e 8(ne) 2n (ne) 2n (nw) 3n (ne) n (nw) 2w 3(nw) 2w 2(nw) (ne) (nw) 3n 12w</send>
+  <send>speedwalk_init("no o o o no no no no no no no no n n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w")</send>
   </alias>
   <alias
    match="/abt_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (kletter s) (kletter s) (kletter s) s (sw) (kletter sw) (kletter sw) (kletter s) s (sw) (nw) w (nw) w (sw) w (sw) w w (nw) w (nw) w w w (sw) w w w (sw) w w w (nw) w w (nw) w w w (nw) (ne) n (ne) n</send>
+  <send>speedwalk_init("s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
   </alias>
   <alias
    match="/wal_bank"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>n 11w 5n 14e 2n </send>
+  <send>speedwalk_init("n w w w w w w w w w w w n n n n n o o o o o o o o o o o o o o n n")</send>
   </alias>
   <alias
    match="/ale_los"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 2w n (ne) 2n (nw) 3n (ne) n (nw) 2w 3(nw) 2w 2(nw) (ne) (nw) 3n 12w</send>
+  <send>speedwalk_init("w w n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w")</send>
   </alias>
   <alias
    match="/alo_ash"
    enabled="y"
-   send_to="11"
-   omit_from_output="y"
+   send_to="12"
    sequence="100"
    >
-  <send>6w (sw) 14w (sw) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) s </send>
+  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s")</send>
   </alias>
   <alias
    match="/alo_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 6w (sw) 14w (sw) s 6(sw) 12w (nw) 7w (sw) w 5(sw) w (sw) 9w (nw) (sw) 4w (sw) s 3w 3s</send>
+  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw w w w w w w w w w w w w nw w w w w w w w sw w sw sw sw sw sw w sw w w w w w w w w w nw sw w w w w sw s w w w s s s")</send>
   </alias>
   <alias
    match="/san_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>w (nw) 2w 3(nw) w (nw) 2w 6(nw) n (nw) n (nw) 4w (nw) 3w 2(nw) 2w (nw) 7w n 4w 3s </send>
+  <send>speedwalk_init("w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w n w w w w s s s")</send>
   </alias>
   <alias
    match="/schmied_haus"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 10n 10e (se)</send>
+  <send>speedwalk_init("n n n n n n n n n n o o o o o o o o o o so")</send>
   </alias>
   <alias
    match="/skal_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>(ne) n (ne) e (ne) 2(nw) (ne) 3e (ne) n 9(ne) n 2(ne) n 4(ne) n (ne) n (ne) 3n 2(ne) 2n 3(nw) 2n 2(nw) n (nw) n (nw) n (nw) n 4(nw) 3n (nw) 4w 7(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e </send>
+  <send>speedwalk_init("no n no o no nw nw no o o o no n no no no no no no no no no n no no n no no no no n no n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/tin_gwen"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>(se) 4e (se) 2e (se) 4e (se) 5e (se) e (se) 11e n </send>
+  <send>speedwalk_init("so o o o o so o o so o o o o so o o o o o so o so o o o o o o o o o o o n")</send>
   </alias>
   <alias
    match="/tin_wl"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>17n w </send>
+  <send>speedwalk_init("n n n n n n n n n n n n n n n n n w")</send>
   </alias>
   <alias
    match="/wal_haus"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (o) (o) (o) (o) (o) (o) (o) (o) (o) (o) (o) s s s s s w w w w w w w w w s</send>
+  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w s")</send>
   </alias>
   <alias
    match="/wal_magi"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s 27w 7n w </send>
+  <send>speedwalk_init("s w w w w w w w w w w w w w w w w w w w w w w w w w w w n n n n n n n w")</send>
   </alias>
   <alias
    match="/wl_tin"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> e 17s</send>
+  <send>speedwalk_init("o s s s s s s s s s s s s s s s s s")</send>
   </alias>
   <alias
    match="/alo_san"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 6w (sw) 14w (sw) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) 4(sw) w (sw) 10w (nw) 3w 2(nw) n</send>
+  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n")</send>
   </alias>
   <alias
    match="foien"
@@ -2791,10 +2879,10 @@ le stuhl in deinen sack</send>
   <alias
    match="/alo_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 6w (sw) 14w (sw) (nw) w 6(nw) 4n (nw) 3n (ne) 4n 2(nw) w (nw) 2w 2(nw) w (sw) (nw) w (nw) w (sw) w (sw) 2w (nw) w (nw) 3w (sw) 3w (sw) 3w (nw) 2w (nw) 3w (nw) (ne) n (ne) n</send>
+  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
   </alias>
   <alias
    match="foieno"
@@ -2807,66 +2895,66 @@ le stuhl in deinen sack</send>
   <alias
    match="/amp_aug"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>2(sw) 5w (sw) 3w 2(sw) 3w s 3w (sw) 2w (nw) 2w (nw) 5w </send>
+  <send>speedwalk_init("sw sw w w w w w sw w w w sw sw w w w s w w w sw w w nw w w nw w w w w w")</send>
   </alias>
   <alias
    match="/amp_haf"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-  <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (ne) 14e </send>
+  <send>speedwalk_init("sw sw w w w w w sw w w w sw sw so o o no o o no o o o o o o o o o o o o o o")</send>
   </alias>
   <alias
    match="/amp_ker"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
   >
-   <send>2(sw) 5w (sw) 3w 2(sw) (se) 2e (ne) 2e (se) 2s (se) s (sw) s 2w (nw) w (sw) w (sw) </send>
+   <send>speedwalk_init("sw sw w w w w w sw w w w sw sw so o o no o o so s s so s sw s w w nw w sw w sw")</send>
   </alias>
   <alias
    match="/us_abt"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (sw) s (sw) (se) e e e (so) e e (so) e e e (no) e e e (no) e e e (so) e (so) e e (no) e (no) e (so) e (so) (no) n (kletter n) (kletter no) (kletter no) (no) n (kletter n) (kletter n) (kletter n) n</send>
+  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n")</send>
   </alias>
   <alias
    match="/us_alo"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (sw) s (sw) (se) 3e (se) 2e (se) 3e (ne) 3e (ne) 3e (se) e (se) 2e (ne) e (ne) e (se) e (se) (ne) e 2(se) 2e (se) e 2(se) 4s (sw) 3s (se) 4s 6(se) e (se) (ne) 14e (ne) 6e </send>
+  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so no o o o o o o o o o o o o o o no o o o o o o")</send>
   </alias>
   <alias
    match="/us_ash"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (sw) s (sw) (se) 3e (se) 2e (se) 3e (ne) 3e (ne) 3e (se) e (se) 2e (ne) e (ne) e (se) e (se) (ne) e 2(se) 2e (se) e 2(se) 4s (sw) 3s (se) 4s 6(se) e (se) s 6(sw) 2(se) 2s (se) 7s 2(se) 3s 5(se) e (se) 2e (se) e (se) s </send>
+  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s")</send>
   </alias>
   <alias
    match="/us_cor"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) 2e (ne) e 8(ne) e (ne) e (ne) n</send>
+  <send>speedwalk_init("s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so o o no o no no no no no no no no o no o no n")</send>
   </alias>
   <alias
    match="/us_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>s (sw) s (sw) (se) 2(sw) 3s (se) s (se) 7s (sw) 2(se) e 2(se) s 2(se) (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) 2w s w 3s </send>
+  <send>speedwalk_init("s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
   </alias>
   <alias
    match="foienw"
@@ -2895,11 +2983,10 @@ le stuhl in deinen sack</send>
   <alias
    match="/arg_ruw"
    enabled="y"
-   send_to="11"
-   omit_from_output="y"
+   send_to="12"
    sequence="100"
    >
-  <send>(ne) n (ne) e (se) e 2(se) e (se) e (ne) 3e (ne) e (se) e (ne) 2e (ne) e 5(se) 2s 2(no) 2(se) (no) (se) 2s</send>
+  <send>speedwalk_init("no n no o so o so so o so o no o o o no o so o no o o no o so so so so so s s no no so so no so s s")</send>
   </alias>
   <alias
    match="foieso"
@@ -2912,10 +2999,10 @@ le stuhl in deinen sack</send>
   <alias
    match="/ash_alo"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> n (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (ne) 14e (ne) 6e</send>
+  <send>speedwalk_init("n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
   </alias>
   <alias
    match="foiesw"
@@ -2928,106 +3015,106 @@ le stuhl in deinen sack</send>
   <alias
    match="/ash_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> n 4(sw) w (sw) 10w (nw) 3w 2(nw) n w (nw) 2w 3(nw) w (nw) 2w 6(nw) n (nw) n (nw) 4w (nw) 3w 2(nw) 2w (nw) 7w n 4w 3s</send>
+  <send>speedwalk_init("n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w nw w w w s s s")</send>
   </alias>
   <alias
    match="/ash_san"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>n 4(sw) w (sw) 10w (nw) 3w 2(nw) n </send>
+  <send>speedwalk_init("n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n")</send>
   </alias>
   <alias
    match="/ash_us"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> n (nw) w (nw) 2w (nw) w 5(nw) 3n 2(nw) 7n (nw) 2n 2(nw) 6(ne) n (nw) w 6(nw) 4n (nw) 3n (ne) 4n 2(nw) w (nw) 2w 2(nw) w (sw) (nw) w (nw) w (sw) w (sw) 2w (nw) w (nw) 3w (sw) 3w (sw) 3w (nw) 2w (nw) 3w (nw) (ne) n (ne) n</send>
+  <send>speedwalk_init("n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
   </alias>
   <alias
    match="/her_hol"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> (se) 2e (ne) 2e (ne) e 2(ne) e (se) e (ne) 2e (ne) 2e 2(ne) 2n 2w</send>
+  <send>speedwalk_init("so o o no o o no o no no o so o no o o no o o no no n n w w")</send>
   </alias>
   <alias
    match="/hol_her"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>2e 2s 2(sw) 2w (sw) 2w (sw) w (nw) w 2(sw) w (sw) 2w (sw) 2w (nw) </send>
+  <send>speedwalk_init("o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w nw")</send>
   </alias>
   <alias
    match="/us_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>(ne) 5e (se) 2e (ne) 4e (se) e (se) 6s (sw) 4s w 2(nw) w 3(nw) (ne) (nw) 2n (nw) w (sw) w </send>
+  <send>speedwalk_init("no o o o o o so o o no o o o o so o so s s s s s s sw s s s s w nw nw w nw nw nw no nw n n nw w sw w")</send>
   </alias>
   <alias
    match="/hol_lim"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>2e 2s 2(sw) 2w (sw) 2w (sw) w (nw) w 2(sw) w (sw) 2w (sw) 2w (sw) (se) 4e 2(se) e (ne) </send>
+  <send>speedwalk_init("o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w sw so o o o o so so o no")</send>
   </alias>
   <alias
    match="/uw-eingang_camp"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 6(se) </send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so")</send>
   </alias>
   <alias
    match="/jas_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 2(ne) e 2(ne) e 3(ne) n 6(ne) 3n 3(ne) 2n 7(nw) 3n 2(ne) n 3(nw) w (nw) 2w 4(nw) 5w 13(nw) 4n (nw) (ne) 3n 2(ne) 3e 4(ne) 3n 2(ne) 6e (ne) 3e 9(ne) 3n 2(ne) (nw) w (nw) 2w (nw) 3w (nw) 3w (nw) 5w (nw) 2w (nw) 3w (nw) 5w (nw) w (nw) w (sw) 5w (nw) 6w (sw) 4w (sw) s 7(se) 3e (se) 4e 2(ne) e</send>
+  <send>speedwalk_init("no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/uw-eingang_haendler"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>w 2(sw) 4w (nw) 3w 7(nw) n (nw) 2w (nw) 18w (sw) w (sw) w 2(sw) (se) 2s (se) 4s (se) 3s (sw) 2s 7(se) 4e (se) 3s 4(se) s (se) s (se) s (se) s 2(se) 2s 3(se) 2s 2(sw) 3s (sw) s (sw) s 4(sw) s 2(sw) s 9(sw) s (sw) 3w (sw) 2(se) (sw) w (sw) s (sw) 3s 3e 9s 3w s w </send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s sw s sw sw sw sw s sw sw s sw sw sw sw sw sw sw sw sw s sw w w w sw so so sw w sw s sw s s s o o o s s s s s s s s s w w w s w")</send>
   </alias>
   <alias
    match="/jer_haf"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>3s (se) 4e </send>
+  <send>speedwalk_init("s s s so o o o o")</send>
   </alias>
   <alias
    match="/uw-eingang_jas"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>w 2(sw) 4w (nw) 3w 7(nw) n (ne) 4e (ne) 6e (se) 5e (ne) e (se) e (se) 5e (se) 3e (se) 2e (se) 5e (se) 3e (se) 3e (se) 2e (se) e (se) 2(sw) 3s 9(sw) 3w (sw) 6w 2(sw) 3s 4(sw) 3w 2(sw) 3s (sw) (se) 4s 13(se) 5e 4(se) 2e (se) e 3(se) s 2(sw) 3s 7(se) 2s 3(sw) 3s 6(sw) s 3(sw) w 2(sw) w 2(sw) </send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw")</send>
   </alias>
   <alias
    match="/uw-eingang_kap"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> w 2(sw) 4w (nw) 3w 7(nw) n (ne) 4e (ne) 6e (se) 5e (ne) e 3(ne) 3n 2(nw) w (nw) w (nw) 3w 2(nw) 7w (sw) 2w (nw) w (sw) 6w (nw) 4w 3n</send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o no no no n n n nw nw w nw w nw w w w nw nw w w w w w w w sw w w nw w sw w w w w w w nw w w w w n n n")</send>
   </alias>
   <alias
    match="foiew"
@@ -3056,10 +3143,10 @@ le stuhl in deinen sack</send>
   <alias
    match="/aug_amp"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 5e (se) 2e (se) 2e (ne) 3e n 3e 2(ne) 3e (ne) 5e 2(ne)</send>
+  <send>speedwalk_init("o o o o o so o o so o o no o o o n o o o no no o o o no o o o o o no no")</send>
   </alias>
   <alias
    match="janinw"
@@ -3072,10 +3159,10 @@ le stuhl in deinen sack</send>
   <alias
    match="/bank_wal"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 2s 14w 5s 11e s</send>
+  <send>speedwalk_init("s s w w w w w w w w w w w w w w s s s s s o o o o o o o o o o o s")</send>
   </alias>
   <alias
    match="janio"
@@ -3088,72 +3175,76 @@ le stuhl in deinen sack</send>
   <alias
    match="/uw-eingang_dk"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>
-w (sw) (sw) w w w w (nw) w w w (nw) (nw) (nw) (nw) (nw) (nw) (nw) n (nw) w w (nw) w w w w w w w w w w w w w w w w w w (sw) w (sw) w (sw) (sw) (se) s s (se)
-s s s s (se) s s s (sw) s s (se) (se) (se) (se) (se) (se) (sw) (sw) (sw) (sw) (sw) (sw) (sw) s s s s s s (sw) s (sw) (sw) (sw) w w (sw) (sw) (sw) s s s
-s s
-  </send>
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so
+s s s s so s s s sw s s so so so so so so sw sw sw sw sw sw sw s s s s s s sw s sw sw sw w w sw sw sw s s s
+s s")</send>
   </alias>
   <alias
    match="/camp_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 6(nw) 2n (ne) 3n (nw) 4n (nw) 2n (nw) 2(ne) e (ne) e (ne) 18e (se) 2e (se) s 7(se) 3e (se) 4e 2(ne) e</send>
+  <send>speedwalk_init("nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/cor_min"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> s (sw) w (sw) w 8(sw) w (sw) 2w (sw) 6s (sw) s (sw) 3s (sw) 4w (sw) s 3w 3s</send>
+  <send>speedwalk_init("s sw w sw w sw sw sw sw sw sw sw sw w sw w w sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s")</send>
   </alias>
   <alias
    match="/jer_los"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> 12w</send>
+  <send>speedwalk_init("w w w w w w w w w w w w")</send>
   </alias>
   <alias
    match="/kap_uw-eingang"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>3s 4e (se) 6e (ne) e (se) 2e (ne) 7e 2(se) 3e (se) e (se) e 2(se) 3s 3(sw) w (sw) 5w (nw) 6w (sw) 4w (sw) s 7(se) 3e (se) 4e 2(ne) e </send>
+  <send>speedwalk_init("s s s o o o o so o o o o o o no o so o o no o o o o o o o so so o o o so o so o so so s s s sw sw sw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
    match="/ker_amp"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send> (ne) e (ne) e (se) 2e n (ne) n (nw) 2n (nw) 2w (sw) 2w (nw) 2(ne) 3e (ne) 5e 2(ne)</send>
+  <send>speedwalk_init("no o no o so o o n no n nw n n nw w w sw w w nw no no o o o no o o o o o no no")</send>
   </alias>
   <alias
    match="/ker_mos"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>(ne) e (ne) 4s </send>
+  <send>speedwalk_init("so so o")</send>
   </alias>
   <alias
    match="/ker_run"
    enabled="y"
-   send_to="11"
+   send_to="12"
    sequence="100"
    >
-  <send>(ne) e 8s 5w </send>
+  <send>speedwalk_init("no o s s s s s s s s w w w w w")</send>
   </alias>
 </aliases>
+<timers>
+  <timer name="speedwalk" enabled="n" minute="0" second="0.30" offset_second="0.00"    send_to="12"
+>
+  <send>speedwalk_process()</send>
+  </timer>
+</timers>
 
 <!--  Script  -->
 
@@ -3166,6 +3257,9 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  error("Dependency plugin not installed!")
  end
 
+spdtbl ={}
+spdind =0
+world.Accelerator("ctrl+D", "speedwalk_break")
 function ksp1(zp,max_zp,mp,max_mp)
 g_zp=zp
 g_max_zp=max_zp
@@ -3193,10 +3287,39 @@ if g_tp == nil or g_max_tp == nil then
 return
 end
 percent=tonumber(g_tp) / (tonumber(g_max_tp) / 100)
-ppi.play(GetInfo(67).."/Sounds/tp.wav",0,2*math.floor(percent)-100)
+ppi.play(GetInfo(67).."/Sounds/tp.ogg",0,2*math.floor(percent)-100)
 end
 function psnd(file)
 Sound(GetInfo(67).."Sounds/"..file)
+end
+function speedwalk_init(speedwalk)
+spdtbl = utils.split(speedwalk, " ")
+spdind=1
+world.EnableTimer("speedwalk", true)
+end
+function speedwalk_process()
+if #spdtbl +1 ==spdind or spdind==0 then
+world.EnableTimer("speedwalk", false)
+spdind=0
+return
+end
+command=string.gsub(spdtbl[spdind], "_", " ")
+world.Execute(command)
+spdind=spdind+1
+end
+function speedwalk_break()
+if world.GetTimerInfo("speedwalk", 6) ==true then
+world.EnableTimer("speedwalk", false)
+else
+if not spdtbl[spdind] then 
+return
+end
+world.EnableTimer("speedwalk", true)
+end
+end
+function speedwalk_breaklegs()
+world.EnableTimer("speedwalk", false)
+spdind=spdind-2
 end
 ]]>
 </script>
