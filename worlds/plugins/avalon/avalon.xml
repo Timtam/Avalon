@@ -2462,7 +2462,31 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_init("n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
+  <send>speedwalk_init("n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o so so o")</send>
+  </alias>
+  <alias
+   match="/gol_affe"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_init("o o o o o o o o o o o o o o no o o no n n n nw w sw n")</send>
+  </alias>
+  <alias
+   match="/gol_mine"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_init("nw w sw so so o so so o so o o so so o o o o so o so o o o o o o no nw")</send>
+  </alias>
+  <alias
+   match="/mine_gol"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_init("so sw w w w w w w nw w nw w w w w nw nw w w nw w nw nw w nw nw no o so")</send>
   </alias>
   <alias
    match="sit"
@@ -2615,6 +2639,14 @@ le stuhl in deinen sack</send>
    sequence="100"
   >
   <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n")</send>
+  </alias>
+  <alias
+   match="/affe_gol"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_init("s no o so s s s sw w w sw w w w w w w w w w w w w w w")</send>
   </alias>
   <alias
    match="/min_alo"
@@ -3205,10 +3237,8 @@ le stuhl in deinen sack</send>
    enabled="y"
    send_to="12"
    sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so
-s s s s so s s s sw s s so so so so so so sw sw sw sw sw sw sw s s s s s s sw s sw sw sw w w sw sw sw s s s
-s s")</send>
+  >
+  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so sw sw sw sw sw sw sw s s s s s s sw s sw sw sw w w sw sw sw s s s s s")</send>
   </alias>
   <alias
    match="/camp_uw-eingang"

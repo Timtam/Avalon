@@ -431,4 +431,5 @@
 <include name="luaaudio.xml" plugin="y" />
 <include name="avalon\avalon.xml" plugin="y" />
 <include name="MushReader.xml" plugin="y" />
+<include name="output_functions.xml" plugin="y" />
 </muclient>
