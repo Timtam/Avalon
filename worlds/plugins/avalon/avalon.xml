@@ -45,6 +45,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Deine Robe schmiegt sich eng an Deinen Koerper."
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/Zwonirobe.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -386,11 +395,11 @@
   </trigger>
   <trigger
    enabled="y"
-   match="ZP:  */*  MP: */*"
+   match="TP:  */*      ZP:  */*       AP:  */*       MP: */*"
    send_to="12"
    sequence="100"
   >
-  <send>ksp1(%1,%2,%3,%4)</send>
+  <send>ksp(%1,%2,%3,%4,%5,%6,%7,%8)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -867,14 +876,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="TP:  */*  AP:  */*"
-   send_to="12"
-   sequence="100"
-  >
-  <send>ksp2(%1,%2,%3,%4)</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Fast ohne Widerstand senkt sich der Stempel tief in die Presse hinein.*"
    regexp="y"
    sequence="100"
@@ -1045,6 +1046,14 @@
    sequence="100"
   >
   <send>status(%1,%2,%3,%4)</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="(* Trefferpunkte)"
+   send_to="12"
+   sequence="100"
+  >
+  <send>status_simple(%1)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3087,35 +3096,56 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
 spdtbl ={}
 spdind =0
 world.Accelerator("ctrl+D", "speedwalk_break")
-function ksp1(zp,max_zp,mp,max_mp)
+
+function ksp(tp,max_tp,zp,max_zp,ap,max_ap,mp,max_mp)
+play_tp(tp)
+g_tp=tp
+g_max_tp=max_tp
 g_zp=zp
 g_max_zp=max_zp
+g_ap=ap
+g_max_ap=max_ap
 g_mp=mp
 g_max_mp=max_mp
 end
 
-function ksp2(tp,max_tp,ap,max_ap)
-g_tp=tp
-g_max_tp=max_tp
-g_ap=ap
-g_max_ap=max_ap
-play_tp()
-end
-
 function status(tp,zp,ap,mp)
+play_tp(tp)
 g_tp=tp
 g_zp=zp
 g_ap=ap
 g_mp=mp
-play_tp()
 end
-function play_tp()
+
+function status_simple(tp)
+
+play_tp(tp)
+g_tp=tp
+
+end
+
+function play_tp(tp)
 if g_tp == nil or g_max_tp == nil then
 return
 end
-percent=tonumber(g_tp) / (tonumber(g_max_tp) / 100)
-ppi.play(GetInfo(67).."/Sounds/tp.ogg",0,2*math.floor(percent)-100)
+percent=tonumber(tp) / (tonumber(g_max_tp) / 100)
+if tp > g_tp then
+ppi.play(GetInfo(67).."/Sounds/Player/tpUp.ogg",0,2*math.floor(percent)-100)
+elseif tp < g_tp then
+ppi.play(GetInfo(67).."/Sounds/Player/tpDown.ogg",0,2*math.floor(percent)-100)
+else
+ppi.play(GetInfo(67).."/Sounds/Player/tp.ogg",0,2*math.floor(percent)-100)
 end
+end
+
+function play_zp(zp)
+if g_zp == nil or g_max_zp == nil then
+return
+end
+percent=tonumber(zp) / (tonumber(g_max_zp) / 100)
+ppi.play(GetInfo(67).."/Sounds/Player/zp.ogg",0,2*math.floor(percent)-100)
+end
+
 function psnd(file)
 Sound(GetInfo(67).."Sounds/"..file)
 end
