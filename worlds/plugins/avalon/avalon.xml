@@ -125,6 +125,38 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du beginnst magische Rituale auszufuehren."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/ShieldRituals.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du verdrehst die Augen."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/ShieldConcentrate.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wirst von einem magischen Schild umgeben."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/ShieldOn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein magischer Schild loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/ShieldOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du hast erfolgreich .* in .*"
    regexp="y"
    sequence="100"
