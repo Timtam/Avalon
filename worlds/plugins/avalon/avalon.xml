@@ -45,7 +45,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Deine Robe schmiegt sich eng an Deinen Koerper."
+   match="Deine Robe schmiegt sich eng an Deinen Koerper.*"
    omit_from_output="y"
    sequence="100"
    send_to="12"
@@ -59,6 +59,22 @@
    send_to="12"
   >
   <send>psnd("Bard/Sun.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, &quot;Dolores' Euphorie&quot; auf * zu spielen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Euphoria.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast keine magische Kraft mehr, die Du in das Lied*"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/OutOfSpellPower.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -462,7 +478,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du erhebst .*$|^.* erhebt .*$"
+   match="^Du erhebst .*angriff.*$|^.* erhebt .*angriff.*$|^.* greift .* mit .* an.$|^.* Angriff auf .*$"
+   ignore_case="y"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1584,12 +1601,21 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spielst ein Lied auf *."
+   match="Du spielst * auf Deiner *"
    omit_from_output="y"
    sequence="100"
    send_to="12"
   >
 <send>psnd("Bard/Sing.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du singst * ohne instrumentale Unterstuetzung*"
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Bard/Sing_Vocal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
