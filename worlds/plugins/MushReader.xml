@@ -78,7 +78,7 @@ stop()
 say("mush reader initialized")
 end
 function say(str)
-nvda.say("       "..str)
+nvda.say(str)
 end
 function stop()
 nvda.stop()
