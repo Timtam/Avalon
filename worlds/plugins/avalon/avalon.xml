@@ -132,6 +132,22 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du springst in die Fluten."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/EnterWater.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du verlaesst das Wasser."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Player/ExitWater.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Mit dem Messer in der Hand machst Du Dich an die Arbeit."
    omit_from_output="y"
    sequence="100"
@@ -307,6 +323,15 @@
    send_to="12"
   >
 <send>psnd("Rune/FileStart.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du schwimmst nach .*$|^Du treibst mit der Stroemung nach .*$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
