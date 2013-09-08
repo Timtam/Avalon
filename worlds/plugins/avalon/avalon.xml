@@ -187,28 +187,12 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Roc."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Roc.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Vorsichtig polierst Du * noch etwas..."
    omit_from_output="y"
    sequence="100"
    send_to="12"
   >
 <send>psnd("Rune/Polish.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Schaf."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Goat 1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -220,14 +204,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Strassenkoeter."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Dog.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du faengst an, &quot;Renfields Wirrsal&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -236,27 +212,11 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Teufelsrind."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Bull.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du faengst an, * auszubessern."
    sequence="100"
    send_to="12"
   >
 <send>psnd("Smith/RepairStart.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Vogel Greif."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/grab.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -434,16 +394,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Die Fluegel des Wesens haben an Glanz verloren. Sie haengen schlaff von$|^seinem Ruecken herab.$"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/FallenAngel.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ein Weg, er verlaeuft von * nach *."
    omit_from_output="y"
    send_to="2"
@@ -471,14 +421,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Wildschwein."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Pig 2.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="^Du erhebst .*$|^.* erhebt .*$"
    regexp="y"
    sequence="100"
@@ -494,14 +436,6 @@
    send_to="12"
   >
 <send>psnd("Mining/CoalFail.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Wolf."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Wolf.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -857,29 +791,11 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine.*Ratte/."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Rat.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Das Knistern des Feuers wirkt irgendwie beruhigend auf Dich."
    sequence="100"
    send_to="12"
   >
 <send>psnd("Firestarting/Crackle.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine.*Taube/."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Pigeon.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1056,15 +972,6 @@
    send_to="12"
   >
 <send>psnd("Rune/Granite.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein riesiger Sumpfalligator/.|Ein Krokodil/."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Crocodile.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1248,27 +1155,11 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine Feuerkatze."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Firecat.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du befeuchtest Dein *"
    sequence="100"
    send_to="12"
   >
 <send>psnd("Hiker/Moisten.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine Seemoewe."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Seaguls.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1313,28 +1204,12 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* der Wuestendrache."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Dragon.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
    sequence="100"
    omit_from_output="y"
    send_to="12"
   >
 <send>psnd("Tan/Scrape1.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine Ziege."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Goat 2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1531,14 +1406,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Adler."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Eagle.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="* faellt bestimmt bald um."
    sequence="100"
    send_to="12"
@@ -1578,15 +1445,6 @@
    send_to="12"
   >
 <send>psnd("Firestarting/Sparks.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Eine.*Maus/."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/mouse.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1710,14 +1568,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Banthar."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Banthar1.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ein Blitz schiesst aus *"
    sequence="100"
    send_to="12"
@@ -1726,28 +1576,11 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Engel."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Angel.ogg")
-world.Execute("b fluegel von engel")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du bewegst Deine Haende auf mystische Weise."
    sequence="100"
    send_to="12"
   >
 <send>psnd("Spells/light2a.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Falke."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Hawk.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1918,22 +1751,6 @@ world.Execute("b fluegel von engel")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Huhn."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Chicken.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Keiler."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Pig 3.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ein Klumpen Metall faellt scheppernd in das Auffangbecken."
    sequence="100"
    send_to="12"
@@ -1949,14 +1766,6 @@ world.Execute("b fluegel von engel")</send>
    send_to="12"
   >
 <send>psnd("Mining/PressBegin.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Loewe."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Lion.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1977,14 +1786,6 @@ world.Execute("b fluegel von engel")</send>
    send_to="12"
   >
 <send>psnd("Items/Put.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Pavian."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Pavian.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2223,22 +2024,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Puma."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Cougar1.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Putzteufelchen."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/CleanDaemon.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du faengst an, &quot;Fabians Gnade&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -2247,27 +2032,11 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Ein Riese."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Riese.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du faengst an, &quot;Grinwells Stimme im Geist&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
   >
 <send>psnd("Bard/Hypnosis.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Ein Riesenkrebs."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Krebs.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
