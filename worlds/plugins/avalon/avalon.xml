@@ -2358,14 +2358,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>speedwalk_init("so sw w w w w w w nw w nw w w w w nw nw w w nw w nw nw w nw nw no o so")</send>
   </alias>
   <alias
-   match="sit"
-   enabled="y"
-   sequence="100"
-  >
-  <send>le stuhl von deinem sack
-setze auf stuhl</send>
-  </alias>
-  <alias
    match="/gwen_tin"
    enabled="y"
    send_to="12"
@@ -2390,12 +2382,12 @@ setze auf stuhl</send>
   <send>speedwalk_init("w w w w w w w w w w w w w w sw w w sw w w nw no no o o o no o o o o o no no")</send>
   </alias>
   <alias
-   match="/kram_haus"
+   match="/kram_wal"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_init("w w w w w w w w w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n sw")</send>
+  <send>speedwalk_init("w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n n n n n n w w w w w w w w w w w n")</send>
   </alias>
   <alias
    match="/lim_hol"
@@ -2430,14 +2422,6 @@ setze auf stuhl</send>
   <send>speedwalk_init("o o o o o o o o o o o o")</send>
   </alias>
   <alias
-   match="sup"
-   enabled="y"
-   sequence="100"
-  >
-  <send>stehe auf
-le stuhl in deinen sack</send>
-  </alias>
-  <alias
    match="/haf_jer"
    enabled="y"
    send_to="12"
@@ -2446,36 +2430,28 @@ le stuhl in deinen sack</send>
   <send>speedwalk_init("w w w w nw n n n")</send>
   </alias>
   <alias
-   match="/haus_kram"
+   match="/wal_kram"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_init("no s s s s s s s s s s o o o o o o o o o o o o o o o o o o o o o o o o o o o o")</send>
+  <send>speedwalk_init("s o o o o o o o o o o o s s s s s s s s s s s s s s s o o o o o o o o o o o o o o o o o o o o")</send>
   </alias>
   <alias
-   match="/haus_post"
+   match="/wal_post"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_init("n w w w w w w w w w w w w w n n n n n w w w s")</send>
+  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w w w n n n n n w w w s")</send>
   </alias>
   <alias
-   match="/haus_schmied"
+   match="/wal_schmied"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_init("nw w w w w w w w w w w s s s s s s s s s s")</send>
-  </alias>
-  <alias
-   match="/haus_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
+  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w s s s s s s s s s s")</send>
   </alias>
   <alias
    match="/los_ver"
@@ -2484,22 +2460,6 @@ le stuhl in deinen sack</send>
    sequence="100"
   >
   <send>speedwalk_init("o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s s sw sw sw sw sw sw sw sw w w w sw")</send>
-  </alias>
-  <alias
-   match="/mad_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n o o o so o o o so o o so o so so o o so o so s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
-  </alias>
-  <alias
-   match="/magi_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o s s s s s s s o o o o o o o o o o o o o o o o o o o o o o o o o o o n")</send>
   </alias>
   <alias
    match="/min_abt"
@@ -2540,14 +2500,6 @@ le stuhl in deinen sack</send>
    sequence="100"
   >
   <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no o o no o no no no no no no no no o no o no n")</send>
-  </alias>
-  <alias
-   match="/min_mad"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n nw w nw w w nw nw w nw w w nw w w w nw w w w s s")</send>
   </alias>
   <alias
    match="/min_san"
@@ -2598,12 +2550,12 @@ le stuhl in deinen sack</send>
   <send>speedwalk_init("o o o o o o o o o o o o o o so so so so o o o so o o o o no no o")</send>
   </alias>
   <alias
-   match="/post_haus"
+   match="/post_wal"
    enabled="y"
    send_to="12"
    sequence="100"
    >
-  <send>speedwalk_init("n o o o s s s s s o o o o o o o o o o o o o s")</send>
+  <send>speedwalk_init("n o o o s s s s s o o o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
   </alias>
   <alias
    match="/ril_por"
@@ -2734,12 +2686,12 @@ le stuhl in deinen sack</send>
   <send>speedwalk_init("w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w n w w w w s s s")</send>
   </alias>
   <alias
-   match="/schmied_haus"
+   match="/schmied_wal"
    enabled="y"
    send_to="12"
    sequence="100"
    >
-  <send>speedwalk_init("n n n n n n n n n n o o o o o o o o o o so")</send>
+  <send>speedwalk_init("n n n n n n n n n n o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
   </alias>
   <alias
    match="/skal_uw-eingang"
@@ -2764,22 +2716,6 @@ le stuhl in deinen sack</send>
    sequence="100"
    >
   <send>speedwalk_init("n n n n n n n n n n n n n n n n n w")</send>
-  </alias>
-  <alias
-   match="/wal_haus"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w s")</send>
-  </alias>
-  <alias
-   match="/wal_magi"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s w w w w w w w w w w w w w w w w w w w w w w w w w w w n n n n n n n w")</send>
   </alias>
   <alias
    match="/wl_tin"
