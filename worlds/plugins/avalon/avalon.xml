@@ -233,6 +233,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du hoerst auf, * zu singen."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Bard/Stop_Vocal.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Tue beendet."
    omit_from_output="y"
    sequence="100"
@@ -503,7 +511,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du erhebst .*angriff.*$|^.* erhebt .*angriff.*$|^.* greift .* mit .* an.$|^.* Angriff auf .*$"
+   match="^Du erhebst .*angriff.*$|^.* erhebt .*angriff.*$|^.* greift .* mit .* an.$|^.*Angriff auf.*$"
    ignore_case="y"
    regexp="y"
    sequence="100"
