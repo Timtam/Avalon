@@ -165,6 +165,42 @@
   </trigger>
   <trigger
    enabled="y"
+   match=".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/StoneskinOver.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du murmelst Beschwoerungsformeln. Staub und kleine Steinchen .*"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/StoneskinStart.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine graue Schicht ueberzieht langsam Deine Haut, die .*"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/StoneskinContinue.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bist nun vollkommen in eine Steinhaut eingehuellt, .*"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/StoneskinFinish.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du verdrehst die Augen."
    sequence="100"
    send_to="12"
