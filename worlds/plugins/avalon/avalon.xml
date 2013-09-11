@@ -95,6 +95,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match="^Die Lichtwesen von * scheinen Dein Mana etwas aufzufrischen.$|^Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir. $"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Sun_Regen.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, &quot;Dolores' Euphorie&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -1125,7 +1134,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du hoerst auf, 'Brems Vogellied' zu spielen."
+   match="Du hoerst auf, &quot;Brems Vogellied&quot; zu spielen."
    omit_from_output="y"
    sequence="99"
   >
@@ -1483,7 +1492,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine grosse Anzahl Voegel stuerzt auf * herab.*"
+   match="* Voegel stuerz* auf * herab.*"
    sequence="100"
    send_to="12"
   >
