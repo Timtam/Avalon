@@ -45,6 +45,39 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ploetzlich erscheint eine grosse Welle, und Du verschluckst Wasser. *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/Drown1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schluckst noch mehr Wasser."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/Drown2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beruhigst Dich wieder."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/Drown3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Du kletterst nach .*$|^.* klettert nach .*$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Sound(GetInfo(67).."Sounds/Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Deine Robe schmiegt sich eng an Deinen Koerper.*"
    omit_from_output="y"
    sequence="100"
@@ -149,7 +182,6 @@
   <trigger
    enabled="y"
    match="Mit dem Messer in der Hand machst Du Dich an die Arbeit."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -539,7 +571,6 @@
   <trigger
    enabled="y"
    match="Das riecht aber lecker."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -784,14 +815,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Stolz traegt der Engel seine Fluegel auf dem Ruecken. Sie sind von reinstem$|^Weiss und Du kannst auf ihnen keinerlei Makel erkennen.$"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-  >
-  </trigger>
-  <trigger
-   enabled="y"
    match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
    sequence="100"
    send_to="12"
@@ -817,7 +840,6 @@
   <trigger
    enabled="y"
    match="Der Feuerkristall leuchtet nun hellrot und strahlt dabei eine unheimliche*"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -842,7 +864,6 @@
   <trigger
    enabled="y"
    match="Der Nebel loest sich allmaehlich auf."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -867,7 +888,6 @@
   <trigger
    enabled="y"
    match="Ein kurzer Blick in die Pfanne verraet Dir, *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -893,7 +913,6 @@
   <trigger
    enabled="y"
    match="Daraufhin stellst Du den Topf auf das Kochgestell *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -910,7 +929,6 @@
   <trigger
    enabled="y"
    match="Daraufhin stellst Du die Pfanne mit *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -935,7 +953,6 @@
   <trigger
    enabled="y"
    match="Sogleich bildet sich ein dunkelblauer Nebel ueber dem Topf, *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -961,7 +978,6 @@
   <trigger
    enabled="y"
    match="Du meinst ein leises Plaetschern zu vernehmen."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1133,7 +1149,6 @@
   <trigger
    enabled="y"
    match="Du legst * in das kochende Wasser *"
-   omit_from_output="y"
    sequence="99"
    send_to="12"
   >
@@ -1142,7 +1157,6 @@
   <trigger
    enabled="y"
    match="Die rote Nebelwolke beginnt sich ploetzlich aufzuloesen."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1224,7 +1238,6 @@
   <trigger
    enabled="y"
    match="Du probierst ein bisschen von *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1249,7 +1262,6 @@
    enabled="y"
    match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
    sequence="100"
-   omit_from_output="y"
    send_to="12"
   >
 <send>psnd("Tan/Tear.ogg")</send>
@@ -1257,7 +1269,6 @@
   <trigger
    enabled="y"
    match="Du ruehrst * um."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1499,7 +1510,6 @@
   <trigger
    enabled="y"
    match="Eine kaum ertraegliche Hitze stroemt aus dem Nebel."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1525,7 +1535,6 @@
   <trigger
    enabled="y"
    match="Eine kleine freche Fliege will an Dein Essen, *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1551,7 +1560,6 @@
   <trigger
    enabled="y"
    match="Eine rote Nebelwolke bildet sich ueber dem Boden und umschliesst den*"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1795,7 +1803,6 @@
   <trigger
    enabled="y"
    match="In dem Kochtopf befindet sich jetzt erstaunlicherweise kochendes Wasser *"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1854,7 +1861,6 @@
   <trigger
    enabled="y"
    match="Kleine Luftblaeschen steigen aus dem Topf auf."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -1879,7 +1885,6 @@
   <trigger
    enabled="y"
    match="Du summst eine kleine Melodie, die Dir gerade so eingefallen ist."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
@@ -2094,7 +2099,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    enabled="y"
    match="Du wendest (das|den|die) .*"
    regexp="y"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
