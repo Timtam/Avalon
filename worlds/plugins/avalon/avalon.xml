@@ -215,6 +215,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/StoneskinBreak.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du murmelst Beschwoerungsformeln. Staub und kleine Steinchen .*"
    regexp="y"
    sequence="100"
@@ -576,6 +584,14 @@
    send_to="12"
   >
 <send>psnd("Spells/Prepare.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du versuchst Dich darauf zu konzentrieren, versagst jedoch klaeglich."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Spells/Fail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
