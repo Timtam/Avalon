@@ -53,6 +53,119 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du konzentriest Dich auf *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemConcentrate.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du versuchst * telepathisch einen Befehl zu geben."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemCommunicate.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Augen von * blitzen kurz auf."
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send></send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* trifft * mit seiner Faust. Gleichzeitig *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemManaPunch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* magischer Schutzschild loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemShieldOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* umgibt ein magischer Schutzschild."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemShield.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das Glitzern legt sich als schuetzendes Schild ueber Dich."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/CoreShieldCreate.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du konzentriest Dich."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("spells/Prepare.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du nimmst Deinen Energiekern in die Hand und *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/CoreShieldAbsorb.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das Leuchten Deines Energiekerns laesst nach, waehrend Du *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/CoreShieldShine.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Kernschild loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/CoreShieldBreak.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du suchst an * nach Rissen und anderen Macken."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemHealSearch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Schnell verschliesst Du die Wunden des Golems. Dabei murmelst Du *"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemHealFix.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* sieht schon viel besser aus."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("GolemCultists/GolemHealFinish.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du schluckst noch mehr Wasser."
    sequence="100"
    send_to="12"
