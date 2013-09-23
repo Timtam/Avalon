@@ -106,7 +106,8 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/CoreShieldCreate.ogg")</send>
+  <send>psnd("GolemCultists/CoreShieldCreate.ogg")
+        aura_add('Kernschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -138,7 +139,8 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/CoreShieldBreak.ogg")</send>
+  <send>psnd("GolemCultists/CoreShieldBreak.ogg")
+        aura_remove('Kernschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -324,7 +326,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinOver.ogg")</send>
+<send>psnd("Spells/StoneskinOver.ogg")
+      aura_remove('Steinhaut')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -332,7 +335,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinBreak.ogg")</send>
+<send>psnd("Spells/StoneskinBreak.ogg")
+      aura_remove('Steinhaut')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -359,7 +363,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinFinish.ogg")</send>
+<send>psnd("Spells/StoneskinFinish.ogg")
+      aura_add('Steinhaut')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -375,7 +380,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOn.ogg")</send>
+<send>psnd("Spells/ShieldOn.ogg")
+      aura_add('Schild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -383,7 +389,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOff.ogg")</send>
+<send>psnd("Spells/ShieldOff.ogg")
+      aura_remove('Schild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -747,7 +754,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3out.ogg")</send>
+<send>psnd("Spells/light3out.ogg")
+      aura_remove('Licht')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -755,7 +763,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3b.ogg")</send>
+<send>psnd("Spells/light3b.ogg")
+      aura_add('Licht')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -918,12 +927,30 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du loeschst.*|.* loescht .*|.*erlischt/."
+   match="Du loeschst.*|.*loescht.*|.*erlischt."
    regexp="y"
    sequence="100"
    send_to="12"
   >
 <send>psnd("Misc/torch_out.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Feuerkugel erlischt."
+   sequence="99"
+   send_to="12"
+  >
+<send>psnd("Misc/torch_out.ogg")
+      aura_remove('Licht')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Leuchtflamme erlischt."
+   sequence="99"
+   send_to="12"
+  >
+<send>psnd("Misc/torch_out.ogg")
+      aura_remove('Licht')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2052,7 +2079,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")</send>
+<send>psnd("Misc/torch_on.ogg")
+      aura_add('Licht')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2080,7 +2108,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")</send>
+<send>psnd("Misc/torch_on.ogg")
+      aura_add('Licht')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2440,6 +2469,14 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 <!--  Aliases  -->
 
 <aliases>
+  <alias
+   match="az"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>aura_status()</send>
+</alias>
   <alias
    match="speedwalk_break"
    enabled="y"
@@ -3300,8 +3337,38 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
 
 spdtbl ={}
 spdind =0
+auratbl={}
 world.Accelerator("ctrl+D", "speedwalk_break")
 
+function aura_add(sName)
+auratbl[sName]=os.time()
+table.sort(auratbl)
+end
+function aura_remove(sName)
+auratbl[sName]=nil
+end
+function aura_status()
+msg=''
+ltime=os.time()
+for aura,time in pairs(auratbl) do
+msg = msg..aura..': '
+timediff=ltime-time
+hours=math.floor(timediff/(60*60))
+mins=math.floor((timediff-hours*3600)/60)
+secs=math.floor(((timediff-hours*3600)-mins*60))
+if hours >0 then
+msg=msg..tostring(hours)..' Stunden, '
+end
+if mins>0 then
+msg=msg..tostring(mins)..' Minuten, '
+end
+msg=msg..tostring(secs)..' Sekunden\n' 
+end
+if msg=='' then
+msg='Zurzeit sind keine Zauber aktiv.'
+end
+world.Note(msg)
+end
 function ksp(tp,max_tp,zp,max_zp,ap,max_ap,mp,max_mp)
 play_tp(tp)
 g_tp=tp
