@@ -208,6 +208,38 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du faengst an, &quot;Rosarios Tanzlied&quot; auf * zu spielen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Dance.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du faengst an, &quot;Wallenroths Wut&quot; auf * zu spielen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Rage1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Bewegungen werden zusehends schneller."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Rage2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Kaum hast Du aufgehoert zu spielen, bewegt sich wieder alles in seiner"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/RageOver.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="^Die Lichtwesen von * scheinen Dein Mana etwas aufzufrischen.$|^Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir. $"
    regexp="y"
    sequence="100"
@@ -284,6 +316,14 @@
    send_to="12"
   >
 <send>psnd("Player/Kill.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* hat * getoetet."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Monsters/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -628,6 +668,14 @@
    send_to="12"
   >
 <send>psnd("Hiker/Knot.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein * ist wieder getrocknet."
+   sequence="100"
+   send_to="12"
+  >
+<send>psnd("Hiker/Dry.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
