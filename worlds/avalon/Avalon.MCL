@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Sonntag, April 22, 2012, 2:56  -->
-<!-- MuClient version 4.75 -->
+<!-- Saved on Dienstag, September 24, 2013, 8:46  -->
+<!-- MuClient version 4.84 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
 <muclient>
 <world
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -28,6 +28,7 @@
    terminal_identification="mushclient"
 
    arrows_change_history="y"
+   auto_repeat="n"
    auto_resize_minimum_lines="1"
    auto_resize_maximum_lines="20"
    chat_foreground_colour="red"
@@ -84,6 +85,8 @@
    timestamp_input_back_colour="black"
    timestamp_notes_back_colour="black"
    timestamp_output_back_colour="black"
+   tool_tip_visible_time="5000"
+   tool_tip_start_time="400"
    underline_hyperlinks="y"
    use_custom_link_colour="y"
    use_default_input_font="y"
@@ -100,36 +103,36 @@
 <!-- triggers -->
 
 <triggers
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 </triggers>
 
 <!-- aliases -->
 
 <aliases
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 </aliases>
 
 <!-- timers -->
 
 <timers
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 </timers>
 
 <!-- macros -->
 
 <macros
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 
   <macro name="up" type="send_now" >
@@ -221,18 +224,18 @@
 <!-- variables -->
 
 <variables
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 </variables>
 
 <!-- colours -->
 
 <colours
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 
 <ansi>
@@ -287,9 +290,9 @@
 <!-- keypad -->
 
 <keypad
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 
   <key name="0" >
@@ -401,9 +404,9 @@
 <!-- printing -->
 
 <printing
-   muclient_version="4.75"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2012-04-22 02:56:09"
+   date_saved="2013-09-24 08:46:11"
   >
 
 <ansi>
@@ -432,4 +435,5 @@
 <include name="avalon\avalon.xml" plugin="y" />
 <include name="MushReader.xml" plugin="y" />
 <include name="output_functions.xml" plugin="y" />
+<include name="omit_blank_lines.xml" plugin="y" />
 </muclient>

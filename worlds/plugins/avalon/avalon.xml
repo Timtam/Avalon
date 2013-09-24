@@ -2044,7 +2044,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."/Sounds/Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
+  <send>psnd"Sounds/Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2526,6 +2526,15 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>aura_status()</send>
 </alias>
   <alias
+   match="^/(.*?)$"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>speedwalk_start("%1")</send>
+</alias>
+  <alias
    match="speedwalk_break"
    enabled="y"
    send_to="12"
@@ -2533,22 +2542,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   >
   <send>speedwalk_break()</send>
 </alias>
-  <alias
-   match="/min_dhun"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s")</send>
-  </alias>
-  <alias
-    match="/dhun_min"
-    enabled="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_init("n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
-  </alias>
   <alias
    match="janis"
    enabled="y"
@@ -2574,427 +2567,12 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Tolsgal</send>
   </alias>
   <alias
-   match="/cor_us"
-   enabled="y"
-   send_to="12"
-  >
-  <send>speedwalk_init("s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n")</send>
-  </alias>
-  <alias
    match="janiw"
    enabled="y"
    send_to="2"
    sequence="100"
   >
   <send>Jerisa</send>
-  </alias>
-  <alias
-   match="/dk_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/gol_affe"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o o o o o o o o o o o o o o no o o no n n n nw w sw n")</send>
-  </alias>
-  <alias
-   match="/gol_mine"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("nw w sw so so o so so o so o o so so o o o o so o so o o o o o o no nw")</send>
-  </alias>
-  <alias
-   match="/mine_gol"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("so sw w w w w w w nw w nw w w w w nw nw w w nw w nw nw w nw nw no o so")</send>
-  </alias>
-  <alias
-   match="/gwen_tin"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("s w w w w w w w w w w w nw w nw w w w w w nw w w w w nw w w nw w w w w nw")</send>
-  </alias>
-  <alias
-   match="/haend_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o n o o o n n n n n n n n n w w w n n n no n no o no nw nw no o o o no n no no no no no no no no no n no no n no no no no n no n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/haf_amp"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("w w w w w w w w w w w w w w sw w w sw w w nw no no o o o no o o o o o no no")</send>
-  </alias>
-  <alias
-   match="/kram_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n n n n n n w w w w w w w w w w w n")</send>
-  </alias>
-  <alias
-   match="/lim_hol"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no no n n w w")</send>
-  </alias>
-  <alias
-   match="/lor_mit"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n n n n no no no no n n n n n n n n n n w nw w")</send>
-  </alias>
-  <alias
-   match="/los_ale"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s o o")</send>
-  </alias>
-  <alias
-   match="/los_jer"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o o o o o o o o o o o o")</send>
-  </alias>
-  <alias
-   match="/haf_jer"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("w w w w nw n n n")</send>
-  </alias>
-  <alias
-   match="/wal_kram"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("s o o o o o o o o o o o s s s s s s s s s s s s s s s o o o o o o o o o o o o o o o o o o o o")</send>
-  </alias>
-  <alias
-   match="/wal_post"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w w w n n n n n w w w s")</send>
-  </alias>
-  <alias
-   match="/wal_schmied"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w s s s s s s s s s s")</send>
-  </alias>
-  <alias
-   match="/los_ver"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s s sw sw sw sw sw sw sw sw w w w sw")</send>
-  </alias>
-  <alias
-   match="/min_abt"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n")</send>
-  </alias>
-  <alias
-   match="/affe_gol"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("s no o so s s s sw w w sw w w w w w w w w w w w w w w")</send>
-  </alias>
-  <alias
-   match="/min_alo"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o o o n no o o o o no so o o o o o o o o o no o no no no no no o no o o o o o o o so o o o o o o o o o o o o no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
-  </alias>
-  <alias
-   match="/min_ash"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o s so so o o o so o o o o o o o o o o no o no no no no s")</send>
-  </alias>
-  <alias
-   match="/min_cor"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o o o n no o o o o no n n n no n no n n n n n n no o o no o no no no no no no no no o no o no n")</send>
-  </alias>
-  <alias
-   match="/min_san"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o")</send>
-  </alias>
-  <alias
-   match="/min_us"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n")</send>
-  </alias>
-  <alias
-   match="/mit_lor"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o so o s s s s s s s s s s sw sw sw sw s s s s s s")</send>
-  </alias>
-  <alias
-   match="/mos_ker"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w nw nw")</send>
-  </alias>
-  <alias
-   match="/por_ril"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("no n no n n nw nw n nw n n no no n n n w w n n n no")</send>
-  </alias>
-  <alias
-   match="/por_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o o o o o o o o o o o o o o so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/post_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n o o o s s s s s o o o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
-  </alias>
-  <alias
-   match="/ril_por"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("sw s s s o o s s s sw sw s s so s so so s s sw s sw")</send>
-  </alias>
-  <alias
-   match="/run_ker"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("o o o o o n n n n n n n n w sw")</send>
-  </alias>
-  <alias
-   match="/ruw_arg"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n n nw no nw nw no no n n nw nw nw nw nw w sw w w sw w nw w sw w w w sw w nw w nw nw w nw w sw s sw")</send>
-  </alias>
-  <alias
-   match="/san_alo"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s so so o o o so o o o o o o o o o o no o no no no no nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
-  </alias>
-  <alias
-   match="/san_ash"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s so so o o o so o o o o o o o o o o no o no no no no s")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_por"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw w w w w w w w w w w w w w w")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_skal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s sw s sw sw sw sw s sw sw s sw sw sw sw sw sw sw sw sw s sw w w w sw so so sw w sw s sw")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_us"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o no o so s s so sw so so so o so so o n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw")</send>
-  </alias>
-  <alias
-   match="/abt_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s")</send>
-  </alias>
-  <alias
-   match="/ver_los"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no o o o no no no no no no no no n n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w")</send>
-  </alias>
-  <alias
-   match="/abt_us"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
-  </alias>
-  <alias
-   match="/wal_bank"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n w w w w w w w w w w w n n n n n o o o o o o o o o o o o o o n n")</send>
-  </alias>
-  <alias
-   match="/ale_los"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w")</send>
-  </alias>
-  <alias
-   match="/alo_ash"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s")</send>
-  </alias>
-  <alias
-   match="/alo_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw w w w w w w w w w w w w nw w w w w w w w sw w sw sw sw sw sw w sw w w w w w w w w w nw sw w w w w sw s w w w s s s")</send>
-  </alias>
-  <alias
-   match="/san_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w n w w w w s s s")</send>
-  </alias>
-  <alias
-   match="/schmied_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n n n n n n n n n n o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n")</send>
-  </alias>
-  <alias
-   match="/skal_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no n no o no nw nw no o o o no n no no no no no no no no no n no no n no no no no n no n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/tin_gwen"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("so o o o o so o o so o o o o so o o o o o so o so o o o o o o o o o o o n")</send>
-  </alias>
-  <alias
-   match="/tin_wl"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n n n n n n n n n n n n n n n n n w")</send>
-  </alias>
-  <alias
-   match="/wl_tin"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o s s s s s s s s s s s s s s s s s")</send>
-  </alias>
-  <alias
-   match="/alo_san"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n")</send>
   </alias>
   <alias
    match="foien"
@@ -3005,84 +2583,12 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Alotria</send>
   </alias>
   <alias
-   match="/alo_us"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w w w w w sw w w w w w w w w w w w w w w sw nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
-  </alias>
-  <alias
    match="foieno"
    enabled="y"
    send_to="2"
    sequence="100"
    >
   <send>Orkland</send>
-  </alias>
-  <alias
-   match="/amp_aug"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("sw sw w w w w w sw w w w sw sw w w w s w w w sw w w nw w w nw w w w w w")</send>
-  </alias>
-  <alias
-   match="/amp_haf"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("sw sw w w w w w sw w w w sw sw so o o no o o no o o o o o o o o o o o o o o")</send>
-  </alias>
-  <alias
-   match="/amp_ker"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-   <send>speedwalk_init("sw sw w w w w w sw w w w sw sw so o o no o o so s s so s sw s w w nw w sw w sw")</send>
-  </alias>
-  <alias
-   match="/us_abt"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n")</send>
-  </alias>
-  <alias
-   match="/us_alo"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so no o o o o o o o o o o o o o o no o o o o o o")</send>
-  </alias>
-  <alias
-   match="/us_ash"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s")</send>
-  </alias>
-  <alias
-   match="/us_cor"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so o o no o no no no no no no no no o no o no n")</send>
-  </alias>
-  <alias
-   match="/us_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s")</send>
   </alias>
   <alias
    match="foienw"
@@ -3109,14 +2615,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Corona</send>
   </alias>
   <alias
-   match="/arg_ruw"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no n no o so o so so o so o no o o o no o so o no o o no o so so so so so s s no no so so no so s s")</send>
-  </alias>
-  <alias
    match="foieso"
    enabled="y"
    send_to="2"
@@ -3125,124 +2623,12 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Usagor</send>
   </alias>
   <alias
-   match="/ash_alo"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o")</send>
-  </alias>
-  <alias
    match="foiesw"
    enabled="y"
    send_to="2"
    sequence="100"
    >
   <send>Minias</send>
-  </alias>
-  <alias
-   match="/ash_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w nw w w w s s s")</send>
-  </alias>
-  <alias
-   match="/ash_san"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n")</send>
-  </alias>
-  <alias
-   match="/ash_us"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n")</send>
-  </alias>
-  <alias
-   match="/her_hol"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("so o o no o o no o no no o so o no o o no o o no no n n w w")</send>
-  </alias>
-  <alias
-   match="/hol_her"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w nw")</send>
-  </alias>
-  <alias
-   match="/us_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no o o o o o so o o no o o o o so o so s s s s s s sw s s s s w nw nw w nw nw nw no nw n n nw w sw w")</send>
-  </alias>
-  <alias
-   match="/hol_lim"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w sw so o o o o so so o no")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_camp"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so")</send>
-  </alias>
-  <alias
-   match="/jas_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_haendler"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s sw s sw sw sw sw s sw sw s sw sw sw sw sw sw sw sw sw s sw w w w sw so so sw w sw s sw s s s o o o s s s s s s s s s w w w s w")</send>
-  </alias>
-  <alias
-   match="/jer_haf"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s s s so o o o o")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_jas"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw")</send>
-  </alias>
-  <alias
-   match="/uw-eingang_kap"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o no no no n n n nw nw w nw w nw w w w nw nw w w w w w w w sw w w nw w sw w w w w w w nw w w w w n n n")</send>
   </alias>
   <alias
    match="foiew"
@@ -3269,14 +2655,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Amphibos</send>
   </alias>
   <alias
-   match="/aug_amp"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("o o o o o so o o so o o no o o o n o o o no no o o o no o o o o o no no")</send>
-  </alias>
-  <alias
    match="janinw"
    enabled="y"
    send_to="2"
@@ -3285,84 +2663,12 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Holbytla</send>
   </alias>
   <alias
-   match="/bank_wal"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s s w w w w w w w w w w w w w w s s s s s o o o o o o o o o o o s")</send>
-  </alias>
-  <alias
    match="janio"
    enabled="y"
    send_to="2"
    sequence="100"
    >
   <send>Tintagel</send>
-  </alias>
-  <alias
-   match="/uw-eingang_dk"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_init("w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so sw sw sw sw sw sw sw s s s s s s sw s sw sw sw w w sw sw sw s s s s s")</send>
-  </alias>
-  <alias
-   match="/camp_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/cor_min"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s sw w sw w sw sw sw sw sw sw sw sw w sw w w sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s")</send>
-  </alias>
-  <alias
-   match="/jer_los"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("w w w w w w w w w w w w")</send>
-  </alias>
-  <alias
-   match="/kap_uw-eingang"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("s s s o o o o so o o o o o o no o so o o no o o o o o o o so so o o o so o so o so so s s s sw sw sw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o")</send>
-  </alias>
-  <alias
-   match="/ker_amp"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no o no o so o o n no n nw n n nw w w sw w w nw no no o o o no o o o o o no no")</send>
-  </alias>
-  <alias
-   match="/ker_mos"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("so so o")</send>
-  </alias>
-  <alias
-   match="/ker_run"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   >
-  <send>speedwalk_init("no o s s s s s s s s w w w w w")</send>
   </alias>
 </aliases>
 <timers>
@@ -3386,8 +2692,95 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
 spdtbl ={}
 spdind =0
 auratbl={}
+speedwalklist={}
+speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
+speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
+speedwalklist.cor_min="s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n"
+speedwalklist.dk_uw="n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o"
+speedwalklist.gol_affe="o o o o o o o o o o o o o o no o o no n n n nw w sw n"
+speedwalklist.gol_mine="nw w sw so so o so so o so o o so so o o o o so o so o o o o o o no nw"
+speedwalklist.ker_run="no o s s s s s s s s w w w w w"
+speedwalklist.ker_mos="so so o"
+speedwalklist.ker_amp="no o no o so o o n no n nw n n nw w w sw w w nw no no o o o no o o o o o no no"
+speedwalklist.kap_uw="s s s o o o o so o o o o o o no o so o o no o o o o o o o so so o o o so o so o so so s s s sw sw sw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
+speedwalklist.jer_los="w w w w w w w w w w w w"
+speedwalklist.cor_min="s sw w sw w sw sw sw sw sw sw sw sw w sw w w sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s"
+speedwalklist.camp_uw="nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o"
+speedwalklist.uw_dk="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so sw sw sw sw sw sw sw s s s s s s sw s sw sw sw w w sw sw sw s s s s s"
+speedwalklist.bank_wal="s s w w w w w w w w w w w w w w s s s s s o o o o o o o o o o o s"
+speedwalklist.aug_amp="o o o o o so o o so o o no o o o n o o o no no o o o no o o o o o no no"
+speedwalklist.uw_kap="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o no no no n n n nw nw w nw w nw w w w nw nw w w w w w w w sw w w nw w sw w w w w w w nw w w w w n n n"
+speedwalklist.uw_jas="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw"
+speedwalklist.jer_haf="s s s so o o o o"
+speedwalklist.jas_uw="no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
+speedwalklist.uw_camp="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so"
+speedwalklist.hol_lim="o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w sw so o o o o so so o no"
+speedwalklist.us_uw="no o o o o o so o o no o o o o so o so s s s s s s sw s s s s w nw nw w nw nw nw no nw n n nw w sw w"
+speedwalklist.hol_her="o o s s sw sw w w sw w w sw w nw w sw sw w sw w w sw w w nw"
+speedwalklist.her_hol="so o o no o o no o no no o so o no o o no o o no no n n w w"
+speedwalklist.ash_us="n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n"
+speedwalklist.ash_san="n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n"
+speedwalklist.ash_min="n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w nw w w w s s s"
+speedwalklist.ash_alo="n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o"
+speedwalklist.arg_ruw="no n no o so o so so o so o no o o o no o so o no o o no o so so so so so s s no no so so no so s s"
+speedwalklist.us_min="s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
+speedwalklist.us_cor="s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so o o no o no no no no no no no no o no o no n"
+speedwalklist.us_ash="s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s"
+speedwalklist.us_alo="s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so no o o o o o o o o o o o o o o no o o o o o o"
+speedwalklist.us_abt="s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n"
+speedwalklist.amp_ker="sw sw w w w w w sw w w w sw sw so o o no o o so s s so s sw s w w nw w sw w sw"
+speedwalklist.amp_haf="sw sw w w w w w sw w w w sw sw so o o no o o no o o o o o o o o o o o o o o"
+speedwalklist.amp_aug="sw sw w w w w w sw w w w sw sw w w w s w w w sw w w nw w w nw w w w w w"
+speedwalklist.alo_us="w w w w w w sw w w w w w w w w w w w w w w sw nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n"
+speedwalklist.alo_san="w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n"
+speedwalklist.mine_gol="so sw w w w w w w nw w nw w w w w nw nw w w nw w nw nw w nw nw no o so"
+speedwalklist.wl_tin="o s s s s s s s s s s s s s s s s s"
+speedwalklist.tin_wl="n n n n n n n n n n n n n n n n n w"
+speedwalklist.tin_gwen="so o o o o so o o so o o o o so o o o o o so o so o o o o o o o o o o o n"
+speedwalklist.skal_uw="no n no o no nw nw no o o o no n no no no no no no no no no n no no n no no no no n no n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o"
+speedwalklist.schmied_wal="n n n n n n n n n n o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n"
+speedwalklist.san_min="w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w n w w w w s s s"
+speedwalklist.alo_min="w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw w w w w w w w w w w w w nw w w w w w w w sw w sw sw sw sw sw w sw w w w w w w w w w nw sw w w w w sw s w w w s s s"
+speedwalklist.alo_ash="w w w w w w sw w w w w w w w w w w w w w w sw s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s"
+speedwalklist.ale_los="w w n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w"
+speedwalklist.wal_bank="n w w w w w w w w w w w n n n n n o o o o o o o o o o o o o o n n"
+speedwalklist.abt_us="s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n"
+speedwalklist.ver_los="no o o o no no no no no no no no n n no n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n w w w w w w w w w w w w"
+speedwalklist.abt_min="s kletter_s kletter_s kletter_s s sw kletter_sw kletter_sw kletter_s s sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s"
+speedwalklist.uw_us="o no o so s s so sw so so so o so so o n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw"
+speedwalklist.uw_skal="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s sw s sw sw sw sw s sw sw s sw sw sw sw sw sw sw sw sw s sw w w w sw so so sw w sw s sw"
+speedwalklist.uw_por="w sw sw w w w w nw w w w nw nw nw nw w w w w w w w w w w w w w w"
+speedwalklist.san_alo="s so so o o o so o o o o o o o o o o no o no no no no nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o"
+speedwalklist.san_ash="s so so o o o so o o o o o o o o o o no o no no no no s"
+speedwalklist.ruw_arg="n n nw no nw nw no no n n nw nw nw nw nw w sw w w sw w nw w sw w w w sw w nw w nw nw w nw w sw s sw"
+speedwalklist.run_ker="o o o o o n n n n n n n n w sw"
+speedwalklist.ril_por="sw s s s o o s s s sw sw s s so s so so s s sw s sw"
+speedwalklist.post_wal="n o o o s s s s s o o o o o o o o o o o o o o o o o o o o o o n n n n n w w w w w w w w w w w n"
+speedwalklist.min_san="n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o"
+speedwalklist.por_uw="o o o o o o o o o o o o o o so so so so o o o so o o o o no no o"
+speedwalklist.por_ril="no n no n n nw nw n nw n n no no n n n w w n n n no"
+speedwalklist.mos_ker="w nw nw"
+speedwalklist.mine_lor="o so o s s s s s s s s s s sw sw sw sw s s s s s s"
+speedwalklist.min_us="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n"
+speedwalklist.min_cor="n n n o o o n no o o o o no n n n no n no n n n n n n no o o no o no no no no no no no no o no o no n"
+speedwalklist.min_ash="n n n o o o o s o o o o o o o so o o so so o o o so o o o o so s so s so so so so so so o o so o so so so o o so o s so so o o o so o o o o o o o o o o no o no no no no s"
+speedwalklist.min_alo="n n n o o o n no o o o o no so o o o o o o o o o no o no no no no no o no o o o o o o o so o o o o o o o o o o o o no no no no no no n no o o o o o o o o o o o o o o no o o o o o o"
+speedwalklist.wal_post="s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w w w n n n n n w w w s"
+speedwalklist.wal_haendler="s o o o o o o o o o o o s s s s s s s s s s s s s s s o o o o o o o o o o o o o o o o o o o o"
+speedwalklist.affe_gol="s no o so s s s sw w w sw w w w w w w w w w w w w w w"
+speedwalklist.min_abt="n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no n kletter_n kletter_no kletter_no no n kletter_n kletter_n kletter_n n"
+speedwalklist.los_ale="o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s o o"
+speedwalklist.los_jer="o o o o o o o o o o o o"
+speedwalklist.los_ver="o o o o o o o o o o o o s s s so sw so so o o so so so o o so s sw s s s so s s sw s s sw sw sw sw sw sw sw sw w w w sw"
+speedwalklist.wal_schmied="s o o o o o o o o o o o s s s s s w w w w w w w w w w w w w w w w w w w w s s s s s s s s s s"
+speedwalklist.haf_jer="w w w w nw n n n"
+speedwalklist.haf_amp="w w w w w w w w w w w w w w sw w w sw w w nw no no o o o no o o o o o no no"
+speedwalklist.gwen_tin="s w w w w w w w w w w w nw w nw w w w w w nw w w w w nw w w nw w w w w nw"
+speedwalklist.haendler_wal="w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n n n n n n w w w w w w w w w w w n"
+speedwalklist.lor_mine="n n n n n n no no no no n n n n n n n n n n w nw w"
+speedwalklist.lim_hol="sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no no n n w w"
+table.sort(speedwalklist)
 world.Accelerator("ctrl+D", "speedwalk_break")
-
 function aura_add(sName)
 auratbl[sName]=os.time()
 table.sort(auratbl)
@@ -3468,6 +2861,45 @@ end
 
 function psnd(file)
 Sound(GetInfo(67).."Sounds/"..file)
+end
+function speedwalk_start(spd)
+if spd=='' or string.find(spd,'_')==nil then
+speedwalk_list(spd)
+return
+end
+if speedwalklist[spd]==nil then
+world.Note('Es existiert kein Speedwalk mit diesem Namen.')
+return
+end
+speedwalk_init(speedwalklist[spd])
+end
+function speedwalk_list(spd)
+if spd=='' then
+msg=''
+i=0
+for name,way in pairs(speedwalklist) do
+i=i+1
+msg=msg..name..'\n'
+end
+msg='Speedwalk-Liste ('..tostring(i)..'):\n'..msg
+else
+spd=string.lower(spd)
+msg=''
+i=0
+for name,way in pairs(speedwalklist) do
+sname=utils.split(name,'_')
+if string.lower(sname[1])==spd then
+i=i+1
+msg=msg..name..'\n'
+end
+end
+if i==0 then
+msg='Es sind keine Speedwalks vorhanden, die von '..spd..' starten.'
+else
+msg='Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
+end
+end
+world.Note(msg)
 end
 function speedwalk_init(speedwalk)
 spdtbl = utils.split(speedwalk, " ")
