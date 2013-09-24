@@ -189,7 +189,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
+  <send>psnd("Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -584,7 +584,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
+  <send>psnd("Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -593,7 +593,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
+  <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -630,7 +630,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/ice/"..math.random(1,1)..".ogg")</send>
+  <send>psnd("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1064,7 +1064,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/swim/"..math.random(1,10)..".ogg")</send>
+  <send>psnd("Footsteps/swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1186,7 +1186,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/stony/"..math.random(1,10)..".ogg")</send>
+  <send>psnd("Footsteps/stony/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2036,7 +2036,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>Sound(GetInfo(67).."Sounds/Footsteps/cave/"..math.random(1,4)..".ogg")</send>
+  <send>psnd("Footsteps/cave/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2044,7 +2044,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd"Sounds/Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
+  <send>psnd("Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
