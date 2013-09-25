@@ -2683,6 +2683,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <script>
 <![CDATA[
+require("pairsbykeys")
 PPI = require("ppi")
 ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  if not ppi then
@@ -2779,11 +2780,9 @@ speedwalklist.gwen_tin="s w w w w w w w w w w w nw w nw w w w w w nw w w w w nw 
 speedwalklist.haendler_wal="w w w w w w w w w w w w w w w w w w w w n n n n n n n n n n n n n n n w w w w w w w w w w w n"
 speedwalklist.lor_mine="n n n n n n no no no no n n n n n n n n n n w nw w"
 speedwalklist.lim_hol="sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no no n n w w"
-table.sort(speedwalklist)
 world.Accelerator("ctrl+D", "speedwalk_break")
 function aura_add(sName)
 auratbl[sName]=os.time()
-table.sort(auratbl)
 end
 function aura_remove(sName)
 auratbl[sName]=nil
@@ -2791,7 +2790,7 @@ end
 function aura_status()
 msg=''
 ltime=os.time()
-for aura,time in pairs(auratbl) do
+for aura,time in pairsByKeys(auratbl) do
 msg = msg..aura..': '
 timediff=ltime-time
 hours=math.floor(timediff/(60*60))
@@ -2877,7 +2876,7 @@ function speedwalk_list(spd)
 if spd=='' then
 msg=''
 i=0
-for name,way in pairs(speedwalklist) do
+for name,way in pairsByKeys(speedwalklist) do
 i=i+1
 msg=msg..name..'\n'
 end
@@ -2886,7 +2885,7 @@ else
 spd=string.lower(spd)
 msg=''
 i=0
-for name,way in pairs(speedwalklist) do
+for name,way in pairsByKeys(speedwalklist) do
 sname=utils.split(name,'_')
 if string.lower(sname[1])==spd then
 i=i+1
