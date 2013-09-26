@@ -29,6 +29,14 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du wirst von einer heiligen Aura umgeben."
+   send_to="12"
+   sequence="95"
+  >
+  <send>aura_add('Kampfbeschwoerung')</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="In einem unkonzentrierten Moment kommst Du ins Trudeln *"
    sequence="100"
    send_to="12"
@@ -546,12 +554,13 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".*heilige Aura loest sich auf.|Die heilige Aura von .* loest sich auf."
+   match="(.*) heilige Aura loest sich auf.|Die heilige Aura von (.*) loest sich auf."
    regexp="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/KB_Out.ogg")</send>
+<send>psnd("Spells/KB_Out.ogg")
+      kb_out("%1")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2781,10 +2790,33 @@ speedwalklist.haendler_wal="w w w w w w w w w w w w w w w w w w w w n n n n n n 
 speedwalklist.lor_mine="n n n n n n no no no no n n n n n n n n n n w nw w"
 speedwalklist.lim_hol="sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no no n n w w"
 world.Accelerator("ctrl+D", "speedwalk_break")
+function kb_out(sender)
+if sender=='Deine' then
+aura_remove('Kampfbeschwoerung')
+end
+end
 function aura_add(sName)
 auratbl[sName]=os.time()
 end
 function aura_remove(sName)
+if auratbl[sName]==nil then
+return
+end
+time=auratbl[sName]
+msg=sName..'beendet, Dauer: '
+ltime=os.time()
+timediff=ltime-time
+hours=math.floor(timediff/(60*60))
+mins=math.floor((timediff-hours*3600)/60)
+secs=math.floor(((timediff-hours*3600)-mins*60))
+if hours >0 then
+msg=msg..tostring(hours)..' Stunden, '
+end
+if mins>0 then
+msg=msg..tostring(mins)..' Minuten, '
+end
+msg=msg..tostring(secs)..' Sekunden\n' 
+world.Note(msg)
 auratbl[sName]=nil
 end
 function aura_status()
