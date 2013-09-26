@@ -2816,6 +2816,18 @@ speedwalklist.lor_haf="w w w w w w w w w w s s s s s s"
 speedwalklist.haf_lor="n n n n n n o o o o o o o o o o"
 speedwalklist.lor_druide="w w w w w w w w w w w w"
 speedwalklist.druide_lor="o o o o o o o o o o o o"
+speedwalklist.camp_tief="so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s so so s so so s so sw so s so s so so so so so so so s s s s so so so so so s s s s s s sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw s s s so s so s s s s s sw sw s s s s s so so so so s s s s so o o o o o so so s sw sw sw s s s s s s s s so so"
+speedwalklist.tief_camp="nw nw n n n n n n n n no no no n nw nw w w w w w nw n n n n nw nw nw nw n n n n n no no n n n n n nw n nw n n n no no no no no no no no no no no no no no no no no no no no no n n n n n n nw nw nw nw nw n n n n nw nw nw nw nw nw nw n nw n nw no nw n nw nw n nw nw n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw"
+speedwalklist.camp_druide="o o o s"
+speedwalklist.druide_camp="n w w w"
+speedwalklist.alo_tor="w w w w w w sw w w s s s"
+speedwalklist.tor_alo="n n n o o no o o o o o o"
+speedwalklist.ash_tor="n o o o o no no no no no"
+speedwalklist.tor_ash="sw sw sw sw sw w w w w s"
+speedwalklist.tor_min="n n nw w w w w w w w nw w w w s s s"
+speedwalklist.min_tor="n n n o o o so o o o o o o o so s s"
+speedwalklist.tor_cor="nw nw n n n n n no no no o no o no n"
+speedwalklist.cor_tor="s sw w sw w sw sw sw s s s s s so so"
 world.Accelerator("ctrl+D", "speedwalk_break")
 function kb_out(sender)
 if sender=='Deine' then
