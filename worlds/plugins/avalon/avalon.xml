@@ -2828,6 +2828,12 @@ speedwalklist.tor_min="n n nw w w w w w w w nw w w w s s s"
 speedwalklist.min_tor="n n n o o o so o o o o o o o so s s"
 speedwalklist.tor_cor="nw nw n n n n n no no no o no o no n"
 speedwalklist.cor_tor="s sw w sw w sw sw sw s s s s s so so"
+speedwalklist.haf_sol="sw sw sw sw n n n n n n"
+speedwalklist.sol_haf="s s s s s s no no no no"
+speedwalklist.sol_san="w w w w w s s sw sw sw sw w w w sw w sw w nw w nw n no"
+speedwalklist.san_sol="sw s so o so o no o no o o o no no no no n n o o o o o"
+speedwalklist.sol_schmied="s s s s s s no no no no no o o o o o no no no"
+speedwalklist.schmied_sol="sw sw sw w w w w w sw sw sw sw sw n n n n n n"
 world.Accelerator("ctrl+D", "speedwalk_break")
 function kb_out(sender)
 if sender=='Deine' then
