@@ -2528,6 +2528,14 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="speedwalk_break"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_break()</send>
+</alias>
+  <alias
    match="az"
    enabled="y"
    send_to="12"
@@ -2543,14 +2551,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    regexp="y"
   >
   <send>speedwalk_start("%1")</send>
-</alias>
-  <alias
-   match="speedwalk_break"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_break()</send>
 </alias>
   <alias
    match="janis"
@@ -2681,13 +2681,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Tintagel</send>
   </alias>
 </aliases>
-<timers>
-  <timer name="speedwalk" enabled="n" minute="0" second="0.30" offset_second="0.00"    send_to="12"
->
-  <send>speedwalk_process()</send>
-  </timer>
-</timers>
-
 <!--  Script  -->
 
 
@@ -2701,12 +2694,15 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  end
 
 spdtbl ={}
-spdind =0
+spdind=0
+spdactive=false
+spdspeed=0.3
+spdextraspeed=0.6
 auratbl={}
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
-speedwalklist.cor_min="s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n"
+speedwalklist.cor_us="s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n"
 speedwalklist.dk_uw="n n n n n no no no o o no no no n no n n n n n n no no no no no no no nw nw nw nw nw nw n n no n n n nw n n n n nw n n nw no no o no o no o o o o o o o o o o o o o o o o o o so o o so s so so so so so so so o o o so o o o o no no o"
 speedwalklist.gol_affe="o o o o o o o o o o o o o o no o o no n n n nw w sw n"
 speedwalklist.gol_mine="nw w sw so so o so so o so o o so so o o o o so o so o o o o o o no nw"
@@ -2994,30 +2990,38 @@ end
 function speedwalk_init(speedwalk)
 spdtbl = utils.split(speedwalk, " ")
 spdind=1
-world.EnableTimer("speedwalk", true)
+spdactive=true
+speedwalk_process()
 end
 function speedwalk_process()
-if #spdtbl +1 ==spdind or spdind==0 then
-world.EnableTimer("speedwalk", false)
-spdind=0
+if not spdactive then
 return
 end
 command=string.gsub(spdtbl[spdind], "_", " ")
 world.Execute(command)
 spdind=spdind+1
-end
-function speedwalk_break()
-if world.GetTimerInfo("speedwalk", 6) ==true then
-world.EnableTimer("speedwalk", false)
-else
-if not spdtbl[spdind] then 
+if spdind==#spdtbl+1 then
 return
 end
-world.EnableTimer("speedwalk", true)
+if string.len(spdtbl[spdind])<=2 then
+DoAfterSpecial(spdspeed,"speedwalk_process()",12)
+else
+DoAfterSpecial(spdextraspeed,"speedwalk_process()",12)
+end
+end
+function speedwalk_break()
+if spdactive then
+spdactive=false
+else
+if not spdtbl[spdind] then
+return
+end
+spdactive=true
+speedwalk_process()
 end
 end
 function speedwalk_breaklegs()
-world.EnableTimer("speedwalk", false)
+spdactive=false
 spdind=spdind-2
 end
 ]]>
