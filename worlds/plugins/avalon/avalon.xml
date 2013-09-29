@@ -29,6 +29,168 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Ploetzlich bildet sich eine dicke Wolke ueber Deinem Kopf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/WaterAura2.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Staubschleier loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/EarthAuraOff.ogg')
+        aura_remove('Erdaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hebst Deine Haende, beschreibst einen Halbkreis*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/EarthAuraOn.ogg')
+        aura_add('Erdaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Aus der Erde loesen sich kleine Partikel*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/EarthAura2.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hebst beide Arme, drehst die Handflaechen gen Boden*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/EarthAura1.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Watteflocken loesen sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/AirAuraOff.ogg')
+        aura_remove('Luftaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bist in den Watteflocken kaum noch auszumachen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/AirAuraOn.ogg')
+        aura_add('Luftaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst, aus dem Wattebausch kleine Flocken*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/AirAura2.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ziehst einen Wattebausch aus Deinem Gepaeck*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/AirAura1.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Wasserschleier loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/WaterAuraOff.ogg')
+        aura_remove('Wasseraura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Es regnet aus der Wolke auf Dich herab*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/WaterAuraOn.ogg')
+        aura_add('Wasseraura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beschreibst mit Deinen Haenden mystische Zeichen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/WaterAura1.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Todesaura loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/DeathAuraOff.ogg')
+        aura_remove('Todesaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du senkst Deine Haende, aber der Schutz der schwarzen Schleier*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/DeathAuraOn.ogg')
+        aura_add('Todesaura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Zwischen Deinen Handflaechen bilden sich schwarze Schleier*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/DeathAura1.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Feueraura loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/FireAuraOff.ogg')
+        aura_remove('Feueraura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du senkst Deine Haende, aber der Schutz der Manawolken*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/FireAuraOn.ogg')
+        aura_add('Feueraura')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Zwischen Deinen Handflaechen bilden sich Manawolken*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/FireAura2.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du streckst beide Handflaechen von Dir und beginnst*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd('Spells/FireAura1.ogg')</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du wirst von einer heiligen Aura umgeben."
    send_to="12"
    sequence="95"
@@ -755,7 +917,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$"
+   match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -2844,6 +3006,12 @@ speedwalklist.tor_abt="n n kletter_n no"
 speedwalklist.abt_tor="sw kletter_s s s"
 speedwalklist.tor_san="no no no no no no no no n o so o so so so o o o s o"
 speedwalklist.san_tor="w n w w w nw nw nw w nw w s sw sw sw sw sw sw sw sw"
+speedwalklist.uw_toe="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw no no nw nw nw nw nw nw sw sw s s sw sw so s so s so so so sw s o so o so o no o o o o o o o o so o o o o o no o o o o o so so so so so sw s s sw sw sw sw w w sw w w sw w w w sw w w sw w w w sw w s (so so so"
+speedwalklist.toe_uw="nw nw nw n no o o o no o o no o o o no o o no o o no no no no n n no nw nw nw nw nw w w w w w sw w w w w w nw w w w w w w w w sw w nw w nw w n no nw nw nw n nw n nw no no n n no no so so so so so so sw sw no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw (nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
+speedwalklist.camp_see="so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s so so s so so s so sw so s so s so so so so so so so s s s s so so so so so s s s s s s sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw s s s so s so s s s s s sw sw s s s s s so so so so s s s s so o o o o o so so s sw sw sw s s s s s s s s so so so w s s o s s o s o o s o o so so o so o o o o o o o o"
+speedwalklist.see_camp="w w w w w w w w nw w nw nw w w n w w n w n n w n n o nw nw nw n n n n n n n n no no no n nw nw w w w w w nw n n n n nw nw nw nw n n n n n no no n n n n n nw n nw n n n no no no no no no no no no no no no no no no no no no no no no n n n n n n nw nw nw nw nw n n n n nw nw nw nw nw nw nw n nw n nw no nw n nw nw n (nw nw n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw"
+speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
+speedwalklist.druide_sol="so o no o no o o o no no no no n n o o o o o"
 world.Accelerator("ctrl+D", "speedwalk_break")
 function kb_out(sender)
 if sender=='Deine' then
