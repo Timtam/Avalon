@@ -926,6 +926,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du wanderst auf einem Pfad auf der Insel Holbytla entlang. Er fuehrt von * nach *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du versuchst Dich darauf zu konzentrieren, versagst jedoch klaeglich."
    sequence="100"
    send_to="12"
@@ -2898,7 +2907,7 @@ speedwalklist.ash_us="n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n 
 speedwalklist.ash_san="n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n"
 speedwalklist.ash_min="n sw sw sw sw w sw w w w w w w w w w w nw w w w nw nw n w nw w w nw nw nw w nw w w nw nw nw nw nw nw n nw n nw w w w w nw w w w nw nw w w nw w w w w w w w nw w w w s s s"
 speedwalklist.ash_alo="n nw w nw w w nw w nw nw nw nw nw n n n nw nw n n n n n n n nw n n nw nw no no no no no no n no o o o o o o o o o o o o o o no o o o o o o"
-speedwalklist.arg_ruw="no n no o so o so so o so o no o o o no o so o no o o no o so so so so so s s no no so so no so s s"
+speedwalklist.arg_ruw="no n no o so o so so o so o no o o o no o so o no o o no o so so so so so s s sw sw so so sw so s s"
 speedwalklist.us_min="s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
 speedwalklist.us_cor="s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so o o no o no no no no no no no no o no o no n"
 speedwalklist.us_ash="s sw s sw so o o o so o o so o o o no o o o no o o o so o so o o no o no o so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so s sw sw sw sw sw sw so so s s so s s s s s s s so so s s s so so so so so o so o o so o so s"
@@ -3093,6 +3102,10 @@ elseif ntp < g_tp then
 htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpDown.ogg",0,2*math.floor(percent)-100)
 else
 htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tp.ogg",0,2*math.floor(percent)-100)
+end
+ppi.setPitch(2*(math.floor(percent)-100),htpsnd)
+if ntp == g_max_tp then
+htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpMax.ogg",0,0)
 end
 end
 
