@@ -29,6 +29,14 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du bist bereits am Spielen!"
+   send_to="12"
+   sequence="95"
+  >
+  <send>atcp.Send('ava_req_update','')</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Ploetzlich bildet sich eine dicke Wolke ueber Deinem Kopf."
    send_to="12"
    sequence="95"
@@ -900,14 +908,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="TP:  */*      ZP:  */*       AP:  */*       MP: */*"
-   send_to="12"
-   sequence="100"
-  >
-  <send>ksp(%1,%2,%3,%4,%5,%6,%7,%8)</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ein Weg, er verlaeuft von * nach *."
    omit_from_output="y"
    send_to="2"
@@ -1554,22 +1554,6 @@
    send_to="12"
   >
 <send>psnd("Smith/Repair2.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="( * TP; * ZP; * AP; * MP*"
-   send_to="12"
-   sequence="100"
-  >
-  <send>status(%1,%2,%3,%4)</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="(* Trefferpunkte)"
-   send_to="12"
-   sequence="100"
-  >
-  <send>status_simple(%1)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2848,13 +2832,36 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <script>
 <![CDATA[
+atcp=nil
+g_tp=nil
+g_max_tp=nil
+htpsnd=nil
 require("pairsbykeys")
 PPI = require("ppi")
 ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  if not ppi then
  error("Dependency plugin not installed!")
  end
-
+OnAvalonTP=function(message,ntp)
+ ntp=tonumber(ntp)
+ play_tp(ntp)
+ g_tp=ntp
+ end
+OnAvalonMax=function(message,value)
+ local type,content=string.match(value,"(%w+) (%d+)")
+ if type=="TP" then
+ g_max_tp=tonumber(content)
+ end
+ end
+OnPluginListChanged = function()
+  atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+  if not atcp then
+    Note("ATCP funktioniert nicht!")
+  elseif reloaded then
+    atcp.Listen("Avalon.TP",OnAvalonTP)
+    atcp.Listen("Avalon.MAX",OnAvalonMax)
+  end
+end
 spdtbl ={}
 spdind=0
 spdactive=false
@@ -3064,44 +3071,28 @@ msg='Zurzeit sind keine Zauber aktiv.'
 end
 world.Note(msg)
 end
-function ksp(tp,max_tp,zp,max_zp,ap,max_ap,mp,max_mp)
-play_tp(tp)
-g_tp=tp
-g_max_tp=max_tp
-g_zp=zp
-g_max_zp=max_zp
-g_ap=ap
-g_max_ap=max_ap
-g_mp=mp
-g_max_mp=max_mp
-end
-
-function status(tp,zp,ap,mp)
-play_tp(tp)
-g_tp=tp
-g_zp=zp
-g_ap=ap
-g_mp=mp
-end
-
-function status_simple(tp)
-
-play_tp(tp)
-g_tp=tp
-
-end
-
-function play_tp(tp)
-if g_tp == nil or g_max_tp == nil then
+function play_tp(ntp)
+local isplaying=function(id)
+ if id==nil then
+ return false
+ end
+ res=ppi.isPlaying(id)
+ if res==0 then
+ return false
+ else
+ return true
+ end
+ end
+if g_tp == nil or g_max_tp == nil or isplaying(htpsnd) then
 return
 end
-percent=tonumber(tp) / (tonumber(g_max_tp) / 100)
-if tp > g_tp then
-ppi.play(GetInfo(67).."/Sounds/Player/tpUp.ogg",0,2*math.floor(percent)-100)
-elseif tp < g_tp then
-ppi.play(GetInfo(67).."/Sounds/Player/tpDown.ogg",0,2*math.floor(percent)-100)
+percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
+if ntp > g_tp then
+htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpUp.ogg",0,2*math.floor(percent)-100)
+elseif ntp < g_tp then
+htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpDown.ogg",0,2*math.floor(percent)-100)
 else
-ppi.play(GetInfo(67).."/Sounds/Player/tp.ogg",0,2*math.floor(percent)-100)
+htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tp.ogg",0,2*math.floor(percent)-100)
 end
 end
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Dienstag, September 24, 2013, 8:46  -->
+<!-- Saved on Sonntag, September 29, 2013, 3:10  -->
 <!-- MuClient version 4.84 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -28,7 +28,6 @@
    terminal_identification="mushclient"
 
    arrows_change_history="y"
-   auto_repeat="n"
    auto_resize_minimum_lines="1"
    auto_resize_maximum_lines="20"
    chat_foreground_colour="red"
@@ -105,7 +104,7 @@
 <triggers
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 </triggers>
 
@@ -114,7 +113,7 @@
 <aliases
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 </aliases>
 
@@ -123,7 +122,7 @@
 <timers
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 </timers>
 
@@ -132,7 +131,7 @@
 <macros
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 
   <macro name="up" type="send_now" >
@@ -226,8 +225,15 @@
 <variables
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
+  <variable name="mxp_ap">40</variable>
+  <variable name="mxp_max_ap">91</variable>
+  <variable name="mxp_max_sp">150</variable>
+  <variable name="mxp_max_tp">153</variable>
+  <variable name="mxp_mp">8542</variable>
+  <variable name="mxp_sp">67</variable>
+  <variable name="mxp_tp">153</variable>
 </variables>
 
 <!-- colours -->
@@ -235,7 +241,7 @@
 <colours
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 
 <ansi>
@@ -292,7 +298,7 @@
 <keypad
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 
   <key name="0" >
@@ -406,7 +412,7 @@
 <printing
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-09-24 08:46:11"
+   date_saved="2013-09-29 15:10:16"
   >
 
 <ansi>
@@ -431,6 +437,7 @@
 </printing>
 
 <!-- plugins -->
+<include name="ATCP.plugin\plugin.xml" plugin="y" />
 <include name="luaaudio.xml" plugin="y" />
 <include name="avalon\avalon.xml" plugin="y" />
 <include name="MushReader.xml" plugin="y" />
