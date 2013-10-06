@@ -2844,6 +2844,10 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 atcp=nil
 g_tp=nil
 g_max_tp=nil
+g_sp=nil
+g_max_sp=nil
+g_ap=nil
+g_max_ap=nil
 htpsnd=nil
 require("pairsbykeys")
 PPI = require("ppi")
@@ -2856,10 +2860,24 @@ OnAvalonTP=function(message,ntp)
  play_tp(ntp)
  g_tp=ntp
  end
+OnAvalonSP=function(message,nsp)
+ nsp=tonumber(nsp)
+ play_sp(nsp)
+ g_sp=nsp
+ end
+OnAvalonAP=function(message,nap)
+ nap=tonumber(nap)
+ play_ap(nap)
+ g_ap=nap
+ end
 OnAvalonMax=function(message,value)
  local type,content=string.match(value,"(%w+) (%d+)")
  if type=="TP" then
  g_max_tp=tonumber(content)
+ elseif type=="SP" then
+ g_max_sp=tonumber(content)
+ elseif type=="AP" then
+ g_max_ap=tonumber(content)
  end
  end
 OnPluginListChanged = function()
@@ -2868,6 +2886,8 @@ OnPluginListChanged = function()
     Note("ATCP funktioniert nicht!")
   elseif reloaded then
     atcp.Listen("Avalon.TP",OnAvalonTP)
+    atcp.Listen("Avalon.SP",OnAvalonSP)
+    atcp.Listen("Avalon.AP",OnAvalonAP)
     atcp.Listen("Avalon.MAX",OnAvalonMax)
   end
 end
@@ -3081,17 +3101,6 @@ end
 world.Note(msg)
 end
 function play_tp(ntp)
-local isplaying=function(id)
- if id==nil then
- return false
- end
- res=ppi.isPlaying(id)
- if res==0 then
- return false
- else
- return true
- end
- end
 if g_tp == nil or g_max_tp == nil or isplaying(htpsnd) then
 return
 end
@@ -3109,12 +3118,46 @@ htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpMax.ogg",0,0)
 end
 end
 
-function play_zp(zp)
-if g_zp == nil or g_max_zp == nil then
+function play_sp(nsp)
+if g_sp == nil or g_max_sp == nil or isplaying(hspsnd) then
 return
 end
-percent=tonumber(zp) / (tonumber(g_max_zp) / 100)
-ppi.play(GetInfo(67).."/Sounds/Player/zp.ogg",0,2*math.floor(percent)-100)
+percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
+if nsp > g_sp then
+hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spUp.ogg",0,2*math.floor(percent)-100)
+elseif nsp < g_sp then
+hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spDown.ogg",0,2*math.floor(percent)-100)
+end
+if nsp == g_max_sp then
+hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spMax.ogg",0,0)
+end
+end
+
+function play_ap(nap)
+if g_ap == nil or g_max_ap == nil or isplaying(hapsnd) then
+return
+end
+percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
+if nap > g_ap then
+hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apUp.ogg",0,2*math.floor(percent)-100)
+elseif nap < g_ap then
+hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apDown.ogg",0,2*math.floor(percent)-100)
+end
+if nap == g_max_ap then
+hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apMax.ogg",0,0)
+end
+end
+
+function isplaying(id)
+if id==nil then
+return false
+end
+res=ppi.isPlaying(id)
+if res==0 then
+return false
+else
+return true
+end
 end
 
 function psnd(file)
