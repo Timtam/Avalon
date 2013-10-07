@@ -2683,6 +2683,30 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="snd_volume_up"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>snd_volume(5)</send>
+</alias>
+  <alias
+   match="snd_volume_down"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>snd_volume(-5)</send>
+</alias>
+  <alias
+   match="tts_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>tts_switch()</send>
+</alias>
+  <alias
    match="speedwalk_break"
    enabled="y"
    send_to="12"
@@ -2850,6 +2874,7 @@ g_ap=nil
 g_max_ap=nil
 htpsnd=nil
 require("pairsbykeys")
+ini=require('ini')
 PPI = require("ppi")
 ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  if not ppi then
@@ -2880,6 +2905,20 @@ OnAvalonMax=function(message,value)
  g_max_ap=tonumber(content)
  end
  end
+function OnPluginInstall()
+local ctbl=ini.read('config.dat')
+if ctbl then
+for name,section in pairs(ctbl) do
+for optionname,optionvalue in pairs(section) do
+configtbl[name][optionname]=optionvalue
+end
+end
+end
+world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
+end
+function OnPluginClose()
+ini.write('config.dat',configtbl)
+end
 OnPluginListChanged = function()
   atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
   if not atcp then
@@ -2897,6 +2936,10 @@ spdactive=false
 spdspeed=0.3
 spdextraspeed=0.6
 auratbl={}
+configtbl={}
+configtbl.settings={}
+configtbl.settings.ScreenReader='MushReader'
+configtbl.settings.SoundVolume=100
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
@@ -3049,6 +3092,9 @@ speedwalklist.see_camp="w w w w w w w w nw w nw nw w w n w w n w n n w n n o nw 
 speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
 speedwalklist.druide_sol="so o no o no o o o no no no no n n o o o o o"
 world.Accelerator("ctrl+D", "speedwalk_break")
+world.Accelerator("ctrl+F12","tts_switch")
+world.Accelerator("F9","snd_volume_down")
+world.Accelerator("F10","snd_volume_up")
 function kb_out(sender)
 if sender=='Deine' then
 aura_remove('Kampfbeschwoerung')
@@ -3106,15 +3152,18 @@ return
 end
 percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
 if ntp > g_tp then
-htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpUp.ogg",0,2*math.floor(percent)-100)
+htpsnd=psnd("Player/tpUp.ogg")
+ppi.setPan(2*math.floor(percent)-100,htpsnd)
 elseif ntp < g_tp then
-htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpDown.ogg",0,2*math.floor(percent)-100)
+htpsnd=psnd("Player/tpDown.ogg")
+ppi.setPan(2*math.floor(percent)-100,htpsnd)
 else
-htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tp.ogg",0,2*math.floor(percent)-100)
+htpsnd=psnd("Player/tp.ogg")
+ppi.setPan(2*math.floor(percent)-100,htpsnd)
 end
 ppi.setPitch(2*(math.floor(percent)-100),htpsnd)
 if ntp == g_max_tp then
-htpsnd=ppi.play(GetInfo(67).."/Sounds/Player/tpMax.ogg",0,0)
+psnd("Player/tpMax.ogg")
 end
 end
 
@@ -3124,12 +3173,14 @@ return
 end
 percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
 if nsp > g_sp then
-hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spUp.ogg",0,2*math.floor(percent)-100)
+hspsnd=psnd("Player/spUp.ogg")
+ppi.setPan(2*math.floor(percent)-100,hspsnd)
 elseif nsp < g_sp then
-hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spDown.ogg",0,2*math.floor(percent)-100)
+hspsnd=psnd("Player/spDown.ogg")
+ppi.setPan(2*math.floor(percent)-100,hspsnd)
 end
 if nsp == g_max_sp then
-hspsnd=ppi.play(GetInfo(67).."/Sounds/Player/spMax.ogg",0,0)
+psnd("Player/spMax.ogg")
 end
 end
 
@@ -3139,12 +3190,14 @@ return
 end
 percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
 if nap > g_ap then
-hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apUp.ogg",0,2*math.floor(percent)-100)
+hapsnd=psnd("Player/apUp.ogg")
+ppi.setPan(2*math.floor(percent)-100,hapsnd)
 elseif nap < g_ap then
-hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apDown.ogg",0,2*math.floor(percent)-100)
+hapsnd=psnd("Player/apDown.ogg")
+ppi.setPan(2*math.floor(percent)-100,hapsnd)
 end
 if nap == g_max_ap then
-hapsnd=ppi.play(GetInfo(67).."/Sounds/Player/apMax.ogg",0,0)
+psnd("Player/apMax.ogg")
 end
 end
 
@@ -3161,7 +3214,7 @@ end
 end
 
 function psnd(file)
-Sound(GetInfo(67).."Sounds/"..file)
+return ppi.play(GetInfo(67).."Sounds/"..file,0,0,configtbl.settings.SoundVolume)
 end
 function speedwalk_start(spd)
 if spd=='' or string.find(spd,'_')==nil then
@@ -3238,6 +3291,24 @@ end
 function speedwalk_breaklegs()
 spdactive=false
 spdind=spdind-2
+end
+function tts_switch()
+world.UnloadPlugin(configtbl.settings.ScreenReader)
+if configtbl.settings.ScreenReader=="MushReader" then
+configtbl.settings.ScreenReader='tts_jfw'
+else
+configtbl.settings.ScreenReader='MushReader'
+end
+world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
+world.Note('Ausgabesystem geändert.')
+end
+function snd_volume(value)
+if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
+return
+end
+configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
+psnd("Misc/VolumeSwitch.ogg")
+world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke')
 end
 ]]>
 </script>
