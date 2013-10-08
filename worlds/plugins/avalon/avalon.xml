@@ -2683,6 +2683,30 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="spbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>spbar_switch()</send>
+</alias>
+  <alias
+   match="apbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>apbar_switch()</send>
+</alias>
+  <alias
+   match="tpbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>tpbar_switch()</send>
+</alias>
+  <alias
    match="snd_volume_up"
    enabled="y"
    send_to="12"
@@ -2872,6 +2896,8 @@ g_sp=nil
 g_max_sp=nil
 g_ap=nil
 g_max_ap=nil
+hapsnd=nil
+hspnil=0
 htpsnd=nil
 require("pairsbykeys")
 ini=require('ini')
@@ -2910,7 +2936,11 @@ local ctbl=ini.read('config.dat')
 if ctbl then
 for name,section in pairs(ctbl) do
 for optionname,optionvalue in pairs(section) do
-configtbl[name][optionname]=optionvalue
+config=tonumber(optionvalue)
+if config==nil then
+config=optionvalue
+end
+configtbl[name][optionname]=config
 end
 end
 end
@@ -2940,6 +2970,9 @@ configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
+configtbl.settings.TPBar=1
+configtbl.settings.SPBar=1
+configtbl.settings.APBar=1
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
@@ -3093,6 +3126,9 @@ speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
 speedwalklist.druide_sol="so o no o no o o o no no no no n n o o o o o"
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12","tts_switch")
+world.Accelerator("F2","tpbar_switch")
+world.Accelerator("F3","spbar_switch")
+world.Accelerator("F4","apbar_switch")
 world.Accelerator("F9","snd_volume_down")
 world.Accelerator("F10","snd_volume_up")
 function kb_out(sender)
@@ -3147,9 +3183,13 @@ end
 world.Note(msg)
 end
 function play_tp(ntp)
-if g_tp == nil or g_max_tp == nil or isplaying(htpsnd) then
+if g_tp == nil or g_max_tp == nil then
 return
 end
+if configtbl.settings.TPBar==0 then
+return
+end
+stopifplaying(htpsnd)
 percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
 if ntp > g_tp then
 htpsnd=psnd("Player/tpUp.ogg")
@@ -3168,9 +3208,13 @@ end
 end
 
 function play_sp(nsp)
-if g_sp == nil or g_max_sp == nil or isplaying(hspsnd) then
+if g_sp == nil or g_max_sp == nil then
 return
 end
+if configtbl.settings.SPBar==0 then
+return
+end
+stopifplaying(hspsnd)
 percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
 if nsp > g_sp then
 hspsnd=psnd("Player/spUp.ogg")
@@ -3185,9 +3229,13 @@ end
 end
 
 function play_ap(nap)
-if g_ap == nil or g_max_ap == nil or isplaying(hapsnd) then
+if g_ap == nil or g_max_ap == nil then
 return
 end
+if configtbl.settings.APBar==0 then
+return
+end
+stopifplaying(hapsnd)
 percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
 if nap > g_ap then
 hapsnd=psnd("Player/apUp.ogg")
@@ -3200,19 +3248,15 @@ if nap == g_max_ap then
 psnd("Player/apMax.ogg")
 end
 end
-
-function isplaying(id)
+function stopifplaying(id)
 if id==nil then
 return false
 end
 res=ppi.isPlaying(id)
-if res==0 then
-return false
-else
-return true
+if res==1 then
+ppi.stop(id)
 end
 end
-
 function psnd(file)
 return ppi.play(GetInfo(67).."Sounds/"..file,0,0,configtbl.settings.SoundVolume)
 end
@@ -3301,6 +3345,7 @@ configtbl.settings.ScreenReader='MushReader'
 end
 world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
 world.Note('Ausgabesystem geändert.')
+psnd("Misc/ConfigSwitch.ogg")
 end
 function snd_volume(value)
 if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
@@ -3309,6 +3354,36 @@ end
 configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
 psnd("Misc/VolumeSwitch.ogg")
 world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke')
+end
+function tpbar_switch()
+if configtbl.settings.TPBar==1 then
+configtbl.settings.TPBar=0
+world.Note('TP-Ausgabe deaktiviert.')
+else
+configtbl.settings.TPBar=1
+world.Note('TP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
+end
+function apbar_switch()
+if configtbl.settings.APBar==1 then
+configtbl.settings.APBar=0
+world.Note('AP-Ausgabe deaktiviert.')
+else
+configtbl.settings.APBar=1
+world.Note('AP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
+end
+function spbar_switch()
+if configtbl.settings.SPBar==1 then
+configtbl.settings.SPBar=0
+world.Note('ZP-Ausgabe deaktiviert.')
+else
+configtbl.settings.SPBar=1
+world.Note('ZP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
 end
 ]]>
 </script>
