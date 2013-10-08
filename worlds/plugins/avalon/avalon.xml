@@ -3192,21 +3192,17 @@ end
 stopifplaying(htpsnd)
 percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
 if ntp > g_tp then
-htpsnd=psnd("Player/tpUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tpUp.ogg",2*math.floor(percent)-100)
 elseif ntp < g_tp then
-htpsnd=psnd("Player/tpDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tpDown.ogg",2*math.floor(percent)-100)
 else
-htpsnd=psnd("Player/tp.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tp.ogg",2*math.floor(percent)-100)
 end
 ppi.setPitch(2*(math.floor(percent)-100),htpsnd)
 if ntp == g_max_tp then
 psnd("Player/tpMax.ogg")
 end
 end
-
 function play_sp(nsp)
 if g_sp == nil or g_max_sp == nil then
 return
@@ -3217,17 +3213,14 @@ end
 stopifplaying(hspsnd)
 percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
 if nsp > g_sp then
-hspsnd=psnd("Player/spUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,hspsnd)
+hspsnd=psnd("Player/spUp.ogg",2*math.floor(percent)-100)
 elseif nsp < g_sp then
-hspsnd=psnd("Player/spDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,hspsnd)
+hspsnd=psnd("Player/spDown.ogg",2*math.floor(percent)-100)
 end
 if nsp == g_max_sp then
 psnd("Player/spMax.ogg")
 end
 end
-
 function play_ap(nap)
 if g_ap == nil or g_max_ap == nil then
 return
@@ -3238,11 +3231,9 @@ end
 stopifplaying(hapsnd)
 percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
 if nap > g_ap then
-hapsnd=psnd("Player/apUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,hapsnd)
+hapsnd=psnd("Player/apUp.ogg",2*math.floor(percent)-100)
 elseif nap < g_ap then
-hapsnd=psnd("Player/apDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,hapsnd)
+hapsnd=psnd("Player/apDown.ogg",2*math.floor(percent)-100)
 end
 if nap == g_max_ap then
 psnd("Player/apMax.ogg")
@@ -3257,8 +3248,9 @@ if res==1 then
 ppi.stop(id)
 end
 end
-function psnd(file)
-return ppi.play(GetInfo(67).."Sounds/"..file,0,0,configtbl.settings.SoundVolume)
+function psnd(file,pan)
+pan=pan or 0
+return ppi.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
 end
 function speedwalk_start(spd)
 if spd=='' or string.find(spd,'_')==nil then
