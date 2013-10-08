@@ -29,11 +29,87 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du streckst Deine Arme gen Himmel und *"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Zwischen Deinen Haenden entsteht eine leuchtende Kugel,*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Kugel zerspringt mit einem lauten Knall*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wirst von Sternenstaub umgeben."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/StardustOn.ogg")
+        aura_add("Sternenstaub")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Sternenstaub loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/StardustOff.ogg")
+        aura_add("Sternenstaub")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du bist bereits am Spielen!"
    send_to="12"
    sequence="95"
   >
   <send>atcp.Send('ava_req_update','')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst Deine regenerativen Energien anzuzapfen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicCharge1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spuerst, wie die Energien Dir zur Verfuegung stehen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicCharge2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicChargeOn.ogg")
+        aura_add("Magieaufladung")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Energien fliessen wieder normal."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicChargeOff.ogg")
+        aura_remove("Magieaufladung")</send>
   </trigger>
   <trigger
    enabled="y"
