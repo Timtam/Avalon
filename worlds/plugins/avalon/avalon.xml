@@ -11,7 +11,7 @@
    author="magician, dranor"
    id="02dade4f6131c8d67e85c7ee"
    language="Lua"
-   save_state="y"
+   save_state="n"
    date_written="2012-04-22 02:54:43"
    requires="4.70"
    version="1.0"
@@ -27,6 +27,15 @@
 <!--  Triggers  -->
 
 <triggers>
+  <trigger
+   enabled="y"
+   match="^.*labert lauthals.*$|^\[Laber\].*$|^Du laberst lauthals.*$"
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Misc/laber.ogg")</send>
+  </trigger>
   <trigger
    enabled="y"
    match="Du streckst Deine Arme gen Himmel und *"
@@ -2484,15 +2493,6 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
-   ignore_case="y"
-   match="*laber*"
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Misc/laber.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du gibst *"
    sequence="100"
    send_to="12"
@@ -2975,6 +2975,9 @@ g_max_ap=nil
 hapsnd=nil
 hspnil=0
 htpsnd=nil
+LevelUpdate=false
+PlayerEP=nil
+PlayerLevel=nil
 require("pairsbykeys")
 ini=require('ini')
 PPI = require("ppi")
@@ -2982,21 +2985,39 @@ ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
  if not ppi then
  error("Dependency plugin not installed!")
  end
+OnAvalonEP=function(message,ep)
+ ep=tonumber(ep)
+ PlayerEP=ep
+ if LevelUpdate then
+ psnd("Misc/LevelUp.ogg")
+ world.Note('Herzlichen Glueckwunsch! Level '..tostring(PlayerLevel)..' wurde mit '..tostring(PlayerEP)..' EP erreicht. Voraussichtliche EP zu Level '..tostring(PlayerLevel+1)..': '..tostring(round(PlayerEP*1.12-PlayerEP,0)))
+ LevelUpdate=false
+ end
+end
+OnAvalonLevel=function(type,message)
+ local level=string.match(message,"^S(%d+)$")
+ level=tonumber(level)
+ if PlayerLevel ~=nil and level>PlayerLevel then
+ LevelUpdate=true
+ atcp.Send('ava_req_update','')
+ end
+ PlayerLevel=level
+end
 OnAvalonTP=function(message,ntp)
  ntp=tonumber(ntp)
  play_tp(ntp)
  g_tp=ntp
- end
+end
 OnAvalonSP=function(message,nsp)
  nsp=tonumber(nsp)
  play_sp(nsp)
  g_sp=nsp
- end
+end
 OnAvalonAP=function(message,nap)
  nap=tonumber(nap)
  play_ap(nap)
  g_ap=nap
- end
+end
 OnAvalonMax=function(message,value)
  local type,content=string.match(value,"(%w+) (%d+)")
  if type=="TP" then
@@ -3006,7 +3027,7 @@ OnAvalonMax=function(message,value)
  elseif type=="AP" then
  g_max_ap=tonumber(content)
  end
- end
+end
 function OnPluginInstall()
 local ctbl=ini.read('config.dat')
 if ctbl then
@@ -3034,6 +3055,8 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.SP",OnAvalonSP)
     atcp.Listen("Avalon.AP",OnAvalonAP)
     atcp.Listen("Avalon.MAX",OnAvalonMax)
+    atcp.Listen('Avalon.EP',OnAvalonEP)
+    atcp.Listen('Avalon.Level',OnAvalonLevel)
   end
 end
 spdtbl ={}
@@ -3452,6 +3475,9 @@ configtbl.settings.SPBar=1
 world.Note('ZP-Ausgabe aktiviert.')
 end
 psnd("Misc/ConfigSwitch.ogg")
+end
+function round(num, idp)
+  return tonumber(string.format("%." .. (idp or 0) .. "f", num))
 end
 ]]>
 </script>
