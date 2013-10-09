@@ -29,11 +29,87 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du streckst Deine Arme gen Himmel und *"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Zwischen Deinen Haenden entsteht eine leuchtende Kugel,*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Kugel zerspringt mit einem lauten Knall*"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/Stardust3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wirst von Sternenstaub umgeben."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/StardustOn.ogg")
+        aura_add("Sternenstaub")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Sternenstaub loest sich auf."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/StardustOff.ogg")
+        aura_add("Sternenstaub")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du bist bereits am Spielen!"
    send_to="12"
    sequence="95"
   >
   <send>atcp.Send('ava_req_update','')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du beginnst Deine regenerativen Energien anzuzapfen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicCharge1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spuerst, wie die Energien Dir zur Verfuegung stehen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicCharge2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicChargeOn.ogg")
+        aura_add("Magieaufladung")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Energien fliessen wieder normal."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Spells/MagicChargeOff.ogg")
+        aura_remove("Magieaufladung")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2055,7 +2131,19 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spielst * auf Deiner *"
+   lines_to_match="2"
+   match="Du spielst eine leichte Melodie auf .*, mit der Du bei .* ein\nBild von Dir entstehen laesst, das .* gratuliert."
+   regexp="y"
+   multi_line="y"
+   keep_evaluating="n"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Bard/Grats.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du spielst * auf Deiner *."
    omit_from_output="y"
    sequence="100"
    send_to="12"
@@ -2683,6 +2771,30 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="spbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>spbar_switch()</send>
+</alias>
+  <alias
+   match="apbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>apbar_switch()</send>
+</alias>
+  <alias
+   match="tpbar_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>tpbar_switch()</send>
+</alias>
+  <alias
    match="snd_volume_up"
    enabled="y"
    send_to="12"
@@ -2872,6 +2984,8 @@ g_sp=nil
 g_max_sp=nil
 g_ap=nil
 g_max_ap=nil
+hapsnd=nil
+hspnil=0
 htpsnd=nil
 require("pairsbykeys")
 ini=require('ini')
@@ -2910,7 +3024,11 @@ local ctbl=ini.read('config.dat')
 if ctbl then
 for name,section in pairs(ctbl) do
 for optionname,optionvalue in pairs(section) do
-configtbl[name][optionname]=optionvalue
+config=tonumber(optionvalue)
+if config==nil then
+config=optionvalue
+end
+configtbl[name][optionname]=config
 end
 end
 end
@@ -2940,6 +3058,9 @@ configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
+configtbl.settings.TPBar=1
+configtbl.settings.SPBar=1
+configtbl.settings.APBar=1
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
@@ -3093,6 +3214,9 @@ speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
 speedwalklist.druide_sol="so o no o no o o o no no no no n n o o o o o"
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12","tts_switch")
+world.Accelerator("F2","tpbar_switch")
+world.Accelerator("F3","spbar_switch")
+world.Accelerator("F4","apbar_switch")
 world.Accelerator("F9","snd_volume_down")
 world.Accelerator("F10","snd_volume_up")
 function kb_out(sender)
@@ -3147,74 +3271,74 @@ end
 world.Note(msg)
 end
 function play_tp(ntp)
-if g_tp == nil or g_max_tp == nil or isplaying(htpsnd) then
+if g_tp == nil or g_max_tp == nil then
 return
 end
+if configtbl.settings.TPBar==0 then
+return
+end
+stopifplaying(htpsnd)
 percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
 if ntp > g_tp then
-htpsnd=psnd("Player/tpUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tpUp.ogg",2*math.floor(percent)-100)
 elseif ntp < g_tp then
-htpsnd=psnd("Player/tpDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tpDown.ogg",2*math.floor(percent)-100)
 else
-htpsnd=psnd("Player/tp.ogg")
-ppi.setPan(2*math.floor(percent)-100,htpsnd)
+htpsnd=psnd("Player/tp.ogg",2*math.floor(percent)-100)
 end
 ppi.setPitch(2*(math.floor(percent)-100),htpsnd)
 if ntp == g_max_tp then
 psnd("Player/tpMax.ogg")
 end
 end
-
 function play_sp(nsp)
-if g_sp == nil or g_max_sp == nil or isplaying(hspsnd) then
+if g_sp == nil or g_max_sp == nil then
 return
 end
+if configtbl.settings.SPBar==0 then
+return
+end
+stopifplaying(hspsnd)
 percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
 if nsp > g_sp then
-hspsnd=psnd("Player/spUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,hspsnd)
+hspsnd=psnd("Player/spUp.ogg",2*math.floor(percent)-100)
 elseif nsp < g_sp then
-hspsnd=psnd("Player/spDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,hspsnd)
+hspsnd=psnd("Player/spDown.ogg",2*math.floor(percent)-100)
 end
 if nsp == g_max_sp then
 psnd("Player/spMax.ogg")
 end
 end
-
 function play_ap(nap)
-if g_ap == nil or g_max_ap == nil or isplaying(hapsnd) then
+if g_ap == nil or g_max_ap == nil then
 return
 end
+if configtbl.settings.APBar==0 then
+return
+end
+stopifplaying(hapsnd)
 percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
 if nap > g_ap then
-hapsnd=psnd("Player/apUp.ogg")
-ppi.setPan(2*math.floor(percent)-100,hapsnd)
+hapsnd=psnd("Player/apUp.ogg",2*math.floor(percent)-100)
 elseif nap < g_ap then
-hapsnd=psnd("Player/apDown.ogg")
-ppi.setPan(2*math.floor(percent)-100,hapsnd)
+hapsnd=psnd("Player/apDown.ogg",2*math.floor(percent)-100)
 end
 if nap == g_max_ap then
 psnd("Player/apMax.ogg")
 end
 end
-
-function isplaying(id)
+function stopifplaying(id)
 if id==nil then
 return false
 end
 res=ppi.isPlaying(id)
-if res==0 then
-return false
-else
-return true
+if res==1 then
+ppi.stop(id)
 end
 end
-
-function psnd(file)
-return ppi.play(GetInfo(67).."Sounds/"..file,0,0,configtbl.settings.SoundVolume)
+function psnd(file,pan)
+pan=pan or 0
+return ppi.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
 end
 function speedwalk_start(spd)
 if spd=='' or string.find(spd,'_')==nil then
@@ -3301,6 +3425,7 @@ configtbl.settings.ScreenReader='MushReader'
 end
 world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
 world.Note('Ausgabesystem geändert.')
+psnd("Misc/ConfigSwitch.ogg")
 end
 function snd_volume(value)
 if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
@@ -3309,6 +3434,36 @@ end
 configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
 psnd("Misc/VolumeSwitch.ogg")
 world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke')
+end
+function tpbar_switch()
+if configtbl.settings.TPBar==1 then
+configtbl.settings.TPBar=0
+world.Note('TP-Ausgabe deaktiviert.')
+else
+configtbl.settings.TPBar=1
+world.Note('TP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
+end
+function apbar_switch()
+if configtbl.settings.APBar==1 then
+configtbl.settings.APBar=0
+world.Note('AP-Ausgabe deaktiviert.')
+else
+configtbl.settings.APBar=1
+world.Note('AP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
+end
+function spbar_switch()
+if configtbl.settings.SPBar==1 then
+configtbl.settings.SPBar=0
+world.Note('ZP-Ausgabe deaktiviert.')
+else
+configtbl.settings.SPBar=1
+world.Note('ZP-Ausgabe aktiviert.')
+end
+psnd("Misc/ConfigSwitch.ogg")
 end
 ]]>
 </script>
