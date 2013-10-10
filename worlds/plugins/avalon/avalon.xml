@@ -76,7 +76,7 @@
    sequence="95"
   >
   <send>psnd("Spells/StardustOff.ogg")
-        aura_add("Sternenstaub")</send>
+        aura_remove("Sternenstaub")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2984,6 +2984,9 @@ g_sp=nil
 g_max_sp=nil
 g_ap=nil
 g_max_ap=nil
+apfullannounced=false
+spfullannounced=false
+tpfullannounced=false
 hapsnd=nil
 hspnil=0
 htpsnd=nil
@@ -3304,14 +3307,14 @@ stopifplaying(htpsnd)
 percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
 if ntp > g_tp then
 htpsnd=psnd("Player/tpUp.ogg",2*math.floor(percent)-100)
+tpfullannounced=false
 elseif ntp < g_tp then
 htpsnd=psnd("Player/tpDown.ogg",2*math.floor(percent)-100)
-else
-htpsnd=psnd("Player/tp.ogg",2*math.floor(percent)-100)
+tpfullannounced=false
 end
-ppi.setPitch(2*(math.floor(percent)-100),htpsnd)
-if ntp == g_max_tp then
+if ntp == g_max_tp and tpfullannounced==false then
 psnd("Player/tpMax.ogg")
+tpfullannounced=true
 end
 end
 function play_sp(nsp)
@@ -3325,11 +3328,14 @@ stopifplaying(hspsnd)
 percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
 if nsp > g_sp then
 hspsnd=psnd("Player/spUp.ogg",2*math.floor(percent)-100)
+spfullannounced=false
 elseif nsp < g_sp then
 hspsnd=psnd("Player/spDown.ogg",2*math.floor(percent)-100)
+spfullannounced=false
 end
-if nsp == g_max_sp then
+if nsp == g_max_sp and spfullannounced==false then
 psnd("Player/spMax.ogg")
+spfullannounced=true
 end
 end
 function play_ap(nap)
@@ -3343,11 +3349,14 @@ stopifplaying(hapsnd)
 percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
 if nap > g_ap then
 hapsnd=psnd("Player/apUp.ogg",2*math.floor(percent)-100)
+apfullannounced=false
 elseif nap < g_ap then
 hapsnd=psnd("Player/apDown.ogg",2*math.floor(percent)-100)
+apfullannounced=false
 end
-if nap == g_max_ap then
+if nap == g_max_ap and apfullannounced==false then
 psnd("Player/apMax.ogg")
+apfullannounced=true
 end
 end
 function stopifplaying(id)
@@ -3490,6 +3499,23 @@ psnd("Misc/ConfigSwitch.ogg")
 end
 function round(num, idp)
   return tonumber(string.format("%." .. (idp or 0) .. "f", num))
+end
+function OnPluginDisconnect()
+g_tp=nil
+g_max_tp=nil
+g_sp=nil
+g_max_sp=nil
+g_ap=nil
+g_max_ap=nil
+apfullannounced=false
+tpfullannounced=false
+spfullannounced=false
+hapsnd=nil
+hspnil=0
+htpsnd=nil
+LevelUpdate=false
+PlayerEP=nil
+PlayerLevel=nil
 end
 ]]>
 </script>

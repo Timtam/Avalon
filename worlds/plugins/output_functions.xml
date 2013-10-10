@@ -10,7 +10,6 @@
    name="output_functions"
    author="Oriol Gomez"
    id="54846c23d8b15594e7eb4b8a"
-save_state="y"
    language="Lua"
    purpose="provides functions to help tts users."
    date_written="2010-04-06 08:37:40"
