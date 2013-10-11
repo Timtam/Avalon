@@ -2131,13 +2131,9 @@
   </trigger>
   <trigger
    enabled="y"
-   lines_to_match="2"
-   match="Du spielst eine leichte Melodie auf .*, mit der Du bei .* ein\nBild von Dir entstehen laesst, das .* gratuliert."
-   regexp="y"
-   multi_line="y"
-   keep_evaluating="n"
+   match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
    send_to="12"
-   sequence="99"
+   sequence="100"
   >
   <send>psnd("Bard/Grats.ogg")</send>
   </trigger>
