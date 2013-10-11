@@ -12,7 +12,6 @@
    id="aedf0cb0be5bf045860d54b7"
    language="Lua"
    purpose="Test audio plugin for lua"
-   save_state="y"
    date_written="2008-12-09 14:02:34"
    requires="4.37"
    version="1.0"
