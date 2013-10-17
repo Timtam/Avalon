@@ -1077,7 +1077,8 @@
    send_to="12"
   >
 <send>psnd("Spells/light3b.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2264,7 +2265,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")</send>
+<send>psnd("Misc/torch_on.ogg")
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2389,7 +2391,8 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2418,7 +2421,8 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2771,6 +2775,22 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="switch_mute"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>switch_mute()</send>
+</alias>
+  <alias
+   match="switch_fullmute"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>switch_fullmute()</send>
+</alias>
+  <alias
    match="volumetype_switch"
    enabled="y"
    send_to="12"
@@ -3122,6 +3142,8 @@ configtbl.settings.MusicVolume=50
 configtbl.settings.TPBar=1
 configtbl.settings.SPBar=1
 configtbl.settings.APBar=1
+configtbl.settings.SoundsMuted=0
+configtbl.settings.MusicMuted=0
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
@@ -3281,6 +3303,8 @@ world.Accelerator("F4","apbar_switch")
 world.Accelerator("F9","volume_down")
 world.Accelerator("F10","volume_up")
 world.Accelerator("F11","volumetype_switch")
+world.Accelerator("ctrl+F11","switch_mute")
+world.Accelerator("ctrl+shift+F11","switch_fullmute")
 function kb_out(sender)
 if sender=='Deine' then
 aura_remove('Kampfbeschwoerung')
@@ -3408,9 +3432,15 @@ end
 end
 function psnd(file,pan)
 pan=pan or 0
+if configtbl.settings.SoundsMuted==1 then
+return
+end
 return Audio.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
 end
 function pmusic(file)
+if configtbl.settings.MusicMuted==1 then
+return
+end
 if hmusic and Audio.isPlaying(hmusic)==1 then
 Audio.stop(hmusic)
 end
@@ -3528,7 +3558,7 @@ end
 function volumetype_switch()
 if volumetype==1 then
 volumetype=2
-world.Note('Lautstärke Regelung für Musik.')
+world.Note('Lautstärkeregelung für Musik.')
 else
 volumetype=1
 world.Note('Lautstärkeregelung für Sounds.')
@@ -3586,6 +3616,51 @@ LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
 RoomName=''
+end
+function switch_mute()
+if volumetype==1 then
+if configtbl.settings.SoundsMuted==0 then
+configtbl.settings.SoundsMuted=1
+world.Note('Sounds deaktiviert.')
+else
+configtbl.settings.SoundsMuted=0
+world.Note('Sounds aktiviert.')
+end
+else
+if configtbl.settings.MusicMuted==0 then
+configtbl.settings.MusicMuted=1
+if hmusic and Audio.isPlaying(hmusic)==1 then
+Audio.stop(hmusic)
+end
+world.Note('Musik deaktiviert.')
+else
+configtbl.settings.MusicMuted=0
+atcp.Send('ava_req_mapper','')
+world.Note('Musik aktiviert.')
+end
+end
+psnd('Misc/ConfigSwitch.ogg')
+end
+function switch_fullmute()
+if configtbl.settings.SoundsMuted==0 then
+configtbl.settings.SoundsMuted=1
+world.Note('Sounds deaktiviert.')
+else
+configtbl.settings.SoundsMuted=0
+world.Note('Sounds aktiviert.')
+end
+if configtbl.settings.MusicMuted==0 then
+configtbl.settings.MusicMuted=1
+if hmusic and Audio.isPlaying(hmusic)==1 then
+Audio.stop(hmusic)
+end
+world.Note('Musik deaktiviert.')
+else
+configtbl.settings.MusicMuted=0
+atcp.Send('ava_req_mapper','')
+world.Note('Musik aktiviert.')
+end
+psnd('Misc/ConfigSwitch.ogg')
 end
 ]]>
 </script>
