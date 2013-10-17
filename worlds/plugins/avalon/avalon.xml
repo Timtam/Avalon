@@ -3632,6 +3632,7 @@ configtbl.settings.MusicMuted=1
 if hmusic and Audio.isPlaying(hmusic)==1 then
 Audio.stop(hmusic)
 end
+RoomName=''
 world.Note('Musik deaktiviert.')
 else
 configtbl.settings.MusicMuted=0
@@ -3654,6 +3655,7 @@ configtbl.settings.MusicMuted=1
 if hmusic and Audio.isPlaying(hmusic)==1 then
 Audio.stop(hmusic)
 end
+RoomName=''
 world.Note('Musik deaktiviert.')
 else
 configtbl.settings.MusicMuted=0
