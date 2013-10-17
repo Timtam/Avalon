@@ -2771,6 +2771,14 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="volumetype_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>volumetype_switch()</send>
+</alias>
+  <alias
    match="spbar_switch"
    enabled="y"
    send_to="12"
@@ -2795,20 +2803,20 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>tpbar_switch()</send>
 </alias>
   <alias
-   match="snd_volume_up"
+   match="volume_up"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>snd_volume(5)</send>
+  <send>volume(5)</send>
 </alias>
   <alias
-   match="snd_volume_down"
+   match="volume_down"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>snd_volume(-5)</send>
+  <send>volume(-5)</send>
 </alias>
   <alias
    match="tts_switch"
@@ -2990,16 +2998,41 @@ tpfullannounced=false
 hapsnd=nil
 hspnil=0
 htpsnd=nil
+hmusic=nil
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
+RoomName=''
+volumetype=1
 require("pairsbykeys")
-ini=require('ini')
+Ini=require('ini')
+Path=require("pl.path")
 PPI = require("ppi")
-ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
- if not ppi then
+Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
+ if not Audio then
  error("Dependency plugin not installed!")
  end
+OnAvalonRoomID=function(type,message)
+ tmessage=utils.split(message," ")
+ id=tmessage[1]
+ name=tmessage[2]
+ x=tmessage[3]
+ y=tmessage[4]
+ if not name or name=='Bitte' then
+ return
+ end
+ if name==RoomName then
+ return
+ end
+ RoomName=name
+ if not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg') then
+ if hmusic and Audio.isPlaying(hmusic)==1 then
+ Audio.stop(hmusic)
+ end
+ return
+ end
+ pmusic(name..'.ogg')
+end 
 OnAvalonEP=function(message,ep)
  ep=tonumber(ep)
  PlayerEP=ep
@@ -3044,7 +3077,7 @@ OnAvalonMax=function(message,value)
  end
 end
 function OnPluginInstall()
-local ctbl=ini.read('config.dat')
+local ctbl=Ini.read('config.dat')
 if ctbl then
 for name,section in pairs(ctbl) do
 for optionname,optionvalue in pairs(section) do
@@ -3059,7 +3092,7 @@ end
 world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
 end
 function OnPluginClose()
-ini.write('config.dat',configtbl)
+Ini.write('config.dat',configtbl)
 end
 OnPluginListChanged = function()
   atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
@@ -3072,6 +3105,7 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.MAX",OnAvalonMax)
     atcp.Listen('Avalon.EP',OnAvalonEP)
     atcp.Listen('Avalon.Level',OnAvalonLevel)
+    atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
   end
 end
 spdtbl ={}
@@ -3084,6 +3118,7 @@ configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
+configtbl.settings.MusicVolume=50
 configtbl.settings.TPBar=1
 configtbl.settings.SPBar=1
 configtbl.settings.APBar=1
@@ -3243,8 +3278,9 @@ world.Accelerator("ctrl+F12","tts_switch")
 world.Accelerator("F2","tpbar_switch")
 world.Accelerator("F3","spbar_switch")
 world.Accelerator("F4","apbar_switch")
-world.Accelerator("F9","snd_volume_down")
-world.Accelerator("F10","snd_volume_up")
+world.Accelerator("F9","volume_down")
+world.Accelerator("F10","volume_up")
+world.Accelerator("F11","volumetype_switch")
 function kb_out(sender)
 if sender=='Deine' then
 aura_remove('Kampfbeschwoerung')
@@ -3365,14 +3401,20 @@ function stopifplaying(id)
 if id==nil then
 return false
 end
-res=ppi.isPlaying(id)
+res=Audio.isPlaying(id)
 if res==1 then
-ppi.stop(id)
+Audio.stop(id)
 end
 end
 function psnd(file,pan)
 pan=pan or 0
-return ppi.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
+return Audio.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
+end
+function pmusic(file)
+if hmusic and Audio.isPlaying(hmusic)==1 then
+Audio.stop(hmusic)
+end
+hmusic=Audio.play(GetInfo(67)..'Sounds/Music/'..file,1,0,configtbl.settings.MusicVolume)
 end
 function speedwalk_start(spd)
 if spd=='' or string.find(spd,'_')==nil then
@@ -3463,13 +3505,35 @@ world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml'
 world.Note('Ausgabesystem geändert.')
 psnd("Misc/ConfigSwitch.ogg")
 end
-function snd_volume(value)
+function volume(value)
+if volumetype==1 then
 if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
 return
 end
 configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
 psnd("Misc/VolumeSwitch.ogg")
-world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke')
+world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke für Sounds')
+else
+if configtbl.settings.MusicVolume+value >100 or configtbl.settings.MusicVolume+value<0 then
+return
+end
+configtbl.settings.MusicVolume=configtbl.settings.MusicVolume+value
+psnd("Misc/VolumeSwitch.ogg")
+if hmusic and Audio.isPlaying(hmusic)==1 then
+Audio.setVol(configtbl.settings.MusicVolume,hmusic)
+end
+world.Note(tostring(configtbl.settings.MusicVolume)..'% Lautstärke für Musik')
+end
+end
+function volumetype_switch()
+if volumetype==1 then
+volumetype=2
+world.Note('Lautstärke Regelung für Musik.')
+else
+volumetype=1
+world.Note('Lautstärkeregelung für Sounds.')
+end
+psnd('Misc/ConfigSwitch.ogg')
 end
 function tpbar_switch()
 if configtbl.settings.TPBar==1 then
@@ -3515,11 +3579,13 @@ apfullannounced=false
 tpfullannounced=false
 spfullannounced=false
 hapsnd=nil
+hmusic=nil
 hspnil=0
 htpsnd=nil
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
+RoomName=''
 end
 ]]>
 </script>
