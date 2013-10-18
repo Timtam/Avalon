@@ -1077,7 +1077,8 @@
    send_to="12"
   >
 <send>psnd("Spells/light3b.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2260,7 +2261,8 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")</send>
+<send>psnd("Misc/torch_on.ogg")
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2385,7 +2387,8 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2414,7 +2417,8 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')</send>
+      aura_add('Licht')
+      atcp.Send('ava_req_mapper','')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2767,6 +2771,30 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <aliases>
   <alias
+   match="switch_mute"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>switch_mute()</send>
+</alias>
+  <alias
+   match="switch_fullmute"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>switch_fullmute()</send>
+</alias>
+  <alias
+   match="volumetype_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>volumetype_switch()</send>
+</alias>
+  <alias
    match="spbar_switch"
    enabled="y"
    send_to="12"
@@ -2791,20 +2819,20 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>tpbar_switch()</send>
 </alias>
   <alias
-   match="snd_volume_up"
+   match="volume_up"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>snd_volume(5)</send>
+  <send>volume(5)</send>
 </alias>
   <alias
-   match="snd_volume_down"
+   match="volume_down"
    enabled="y"
    send_to="12"
    sequence="100"
   >
-  <send>snd_volume(-5)</send>
+  <send>volume(-5)</send>
 </alias>
   <alias
    match="tts_switch"
@@ -2986,16 +3014,39 @@ tpfullannounced=false
 hapsnd=nil
 hspnil=0
 htpsnd=nil
+hmusic=nil
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
+RoomName=''
+volumetype=1
 require("pairsbykeys")
-ini=require('ini')
+Ini=require('ini')
+Path=require("pl.path")
 PPI = require("ppi")
-ppi = PPI.Load("aedf0cb0be5bf045860d54b7")
- if not ppi then
+Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
+ if not Audio then
  error("Dependency plugin not installed!")
  end
+OnAvalonRoomID=function(type,message)
+ tmessage=utils.split(message," ")
+ id=tmessage[1]
+ name=tmessage[2]
+ x=tmessage[3]
+ y=tmessage[4]
+ if not name or name=='Bitte' then
+ return
+ end
+ if name==RoomName then
+ return
+ end
+ RoomName=name
+ if not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg') then
+ stopifplaying(hmusic)
+ return
+ end
+ pmusic(name..'.ogg')
+end 
 OnAvalonEP=function(message,ep)
  ep=tonumber(ep)
  PlayerEP=ep
@@ -3040,7 +3091,7 @@ OnAvalonMax=function(message,value)
  end
 end
 function OnPluginInstall()
-local ctbl=ini.read('config.dat')
+local ctbl=Ini.read('config.dat')
 if ctbl then
 for name,section in pairs(ctbl) do
 for optionname,optionvalue in pairs(section) do
@@ -3055,7 +3106,7 @@ end
 world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
 end
 function OnPluginClose()
-ini.write('config.dat',configtbl)
+Ini.write('config.dat',configtbl)
 end
 OnPluginListChanged = function()
   atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
@@ -3068,6 +3119,7 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.MAX",OnAvalonMax)
     atcp.Listen('Avalon.EP',OnAvalonEP)
     atcp.Listen('Avalon.Level',OnAvalonLevel)
+    atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
   end
 end
 spdtbl ={}
@@ -3080,9 +3132,12 @@ configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
+configtbl.settings.MusicVolume=50
 configtbl.settings.TPBar=1
 configtbl.settings.SPBar=1
 configtbl.settings.APBar=1
+configtbl.settings.SoundsMuted=0
+configtbl.settings.MusicMuted=0
 speedwalklist={}
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
@@ -3228,8 +3283,8 @@ speedwalklist.tor_abt="n n kletter_n no"
 speedwalklist.abt_tor="sw kletter_s s s"
 speedwalklist.tor_san="no no no no no no no no n o so o so so so o o o s o"
 speedwalklist.san_tor="w n w w w nw nw nw w nw w s sw sw sw sw sw sw sw sw"
-speedwalklist.uw_toe="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw no no nw nw nw nw nw nw sw sw s s sw sw so s so s so so so sw s o so o so o no o o o o o o o o so o o o o o no o o o o o so so so so so sw s s sw sw sw sw w w sw w w sw w w w sw w w sw w w w sw w s (so so so"
-speedwalklist.toe_uw="nw nw nw n no o o o no o o no o o o no o o no o o no no no no n n no nw nw nw nw nw w w w w w sw w w w w w nw w w w w w w w w sw w nw w nw w n no nw nw nw n nw n nw no no n n no no so so so so so so sw sw no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw (nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
+speedwalklist.uw_toe="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw no no nw nw nw nw nw nw sw sw s s sw sw so s so s so so so sw s o so o so o no o o o o o o o o so o o o o o no o o o o o so so so so so sw s s sw sw sw sw w w sw w w sw w w w sw w w sw w w w sw w s so so so"
+speedwalklist.toe_uw="nw nw nw n no o o o no o o no o o o no o o no o o no no no no n n no nw nw nw nw nw w w w w w sw w w w w w nw w w w w w w w w sw w nw w nw w n no nw nw nw n nw n nw no no n n no no so so so so so so sw sw no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
 speedwalklist.camp_see="so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s so so s so so s so sw so s so s so so so so so so so s s s s so so so so so s s s s s s sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw s s s so s so s s s s s sw sw s s s s s so so so so s s s s so o o o o o so so s sw sw sw s s s s s s s s so so so w s s o s s o s o o s o o so so o so o o o o o o o o"
 speedwalklist.see_camp="w w w w w w w w nw w nw nw w w n w w n w n n w n n o nw nw nw n n n n n n n n no no no n nw nw w w w w w nw n n n n nw nw nw nw n n n n n no no n n n n n nw n nw n n n no no no no no no no no no no no no no no no no no no no no no n n n n n n nw nw nw nw nw n n n n nw nw nw nw nw nw nw n nw n nw no nw n nw nw n nw nw n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw"
 speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
@@ -3239,8 +3294,11 @@ world.Accelerator("ctrl+F12","tts_switch")
 world.Accelerator("F2","tpbar_switch")
 world.Accelerator("F3","spbar_switch")
 world.Accelerator("F4","apbar_switch")
-world.Accelerator("F9","snd_volume_down")
-world.Accelerator("F10","snd_volume_up")
+world.Accelerator("F9","volume_down")
+world.Accelerator("F10","volume_up")
+world.Accelerator("F11","volumetype_switch")
+world.Accelerator("ctrl+F11","switch_mute")
+world.Accelerator("ctrl+shift+F11","switch_fullmute")
 function kb_out(sender)
 if sender=='Deine' then
 aura_remove('Kampfbeschwoerung')
@@ -3266,7 +3324,7 @@ end
 if mins>0 then
 msg=msg..tostring(mins)..' Minuten, '
 end
-msg=msg..tostring(secs)..' Sekunden\n' 
+msg=msg..tostring(secs)..' Sekunden' 
 world.Note(msg)
 auratbl[sName]=nil
 end
@@ -3289,6 +3347,8 @@ msg=msg..tostring(secs)..' Sekunden\n'
 end
 if msg=='' then
 msg='Zurzeit sind keine Zauber aktiv.'
+else
+msg=string.sub(msg,1,-2)
 end
 world.Note(msg)
 end
@@ -3359,14 +3419,24 @@ function stopifplaying(id)
 if id==nil then
 return false
 end
-res=ppi.isPlaying(id)
+res=Audio.isPlaying(id)
 if res==1 then
-ppi.stop(id)
+Audio.stop(id)
 end
 end
 function psnd(file,pan)
 pan=pan or 0
-return ppi.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
+if configtbl.settings.SoundsMuted==1 then
+return
+end
+return Audio.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
+end
+function pmusic(file)
+if configtbl.settings.MusicMuted==1 then
+return
+end
+stopifplaying(hmusic)
+hmusic=Audio.play(GetInfo(67)..'Sounds/Music/'..file,1,0,configtbl.settings.MusicVolume)
 end
 function speedwalk_start(spd)
 if spd=='' or string.find(spd,'_')==nil then
@@ -3388,6 +3458,7 @@ i=i+1
 msg=msg..name..'\n'
 end
 msg='Speedwalk-Liste ('..tostring(i)..'):\n'..msg
+msg=string.sub(msg,1,-2)
 else
 spd=string.lower(spd)
 msg=''
@@ -3403,6 +3474,7 @@ if i==0 then
 msg='Es sind keine Speedwalks vorhanden, die von '..spd..' starten.'
 else
 msg='Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
+msg=string.sub(msg,1,-2)
 end
 end
 world.Note(msg)
@@ -3455,13 +3527,35 @@ world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml'
 world.Note('Ausgabesystem geändert.')
 psnd("Misc/ConfigSwitch.ogg")
 end
-function snd_volume(value)
+function volume(value)
+if volumetype==1 then
 if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
 return
 end
 configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
 psnd("Misc/VolumeSwitch.ogg")
-world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke')
+world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke für Sounds')
+else
+if configtbl.settings.MusicVolume+value >100 or configtbl.settings.MusicVolume+value<0 then
+return
+end
+configtbl.settings.MusicVolume=configtbl.settings.MusicVolume+value
+psnd("Misc/VolumeSwitch.ogg")
+if hmusic and Audio.isPlaying(hmusic)==1 then
+Audio.setVol(configtbl.settings.MusicVolume,hmusic)
+end
+world.Note(tostring(configtbl.settings.MusicVolume)..'% Lautstärke für Musik')
+end
+end
+function volumetype_switch()
+if volumetype==1 then
+volumetype=2
+world.Note('Lautstärkeregelung für Musik.')
+else
+volumetype=1
+world.Note('Lautstärkeregelung für Sounds.')
+end
+psnd('Misc/ConfigSwitch.ogg')
 end
 function tpbar_switch()
 if configtbl.settings.TPBar==1 then
@@ -3507,11 +3601,57 @@ apfullannounced=false
 tpfullannounced=false
 spfullannounced=false
 hapsnd=nil
+hmusic=nil
 hspnil=0
 htpsnd=nil
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
+RoomName=''
+stopifplaying(hmusic)
+end
+function switch_mute()
+if volumetype==1 then
+if configtbl.settings.SoundsMuted==0 then
+configtbl.settings.SoundsMuted=1
+world.Note('Sounds deaktiviert.')
+else
+configtbl.settings.SoundsMuted=0
+world.Note('Sounds aktiviert.')
+end
+else
+if configtbl.settings.MusicMuted==0 then
+configtbl.settings.MusicMuted=1
+stopifplaying(hmusic)
+RoomName=''
+world.Note('Musik deaktiviert.')
+else
+configtbl.settings.MusicMuted=0
+atcp.Send('ava_req_mapper','')
+world.Note('Musik aktiviert.')
+end
+end
+psnd('Misc/ConfigSwitch.ogg')
+end
+function switch_fullmute()
+if configtbl.settings.SoundsMuted==0 then
+configtbl.settings.SoundsMuted=1
+world.Note('Sounds deaktiviert.')
+else
+configtbl.settings.SoundsMuted=0
+world.Note('Sounds aktiviert.')
+end
+if configtbl.settings.MusicMuted==0 then
+configtbl.settings.MusicMuted=1
+stopifplaying(hmusic)
+RoomName=''
+world.Note('Musik deaktiviert.')
+else
+configtbl.settings.MusicMuted=0
+atcp.Send('ava_req_mapper','')
+world.Note('Musik aktiviert.')
+end
+psnd('Misc/ConfigSwitch.ogg')
 end
 ]]>
 </script>
