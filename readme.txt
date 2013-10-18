@@ -1,144 +1,98 @@
-MUSHclient version 4.84
-=======================
+Herzlich Willkommen zu unserem Soundpack für das MUD Avalon. Bereits seid 2011 entwickeln Dranor und Magician daran weiter, immer wieder unterstützt von anderen Leuten, die uns ihre Ideen zuleiten und das Soundpack somit indirekt weiterentwickeln. In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu allen Feature-Details finden. Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden. Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
 
-Sunday, 30th September 2012
-
-Author: Nick Gammon
-Web support: http://www.gammon.com.au/forum/
-
------------------------------------------
-If you are reading this file with NotePad,
-enable "Word Wrap" under the Edit menu for
-proper viewing of it.
------------------------------------------
-
-MUSHclient is produced by Gammon Software Solutions:
-  http://www.gammon.com.au/
-
-MUSHclient home page:
-  http://www.gammon.com.au/mushclient/
-
-A MUSHclient bug and suggestion list is at:
-  http://www.gammon.com.au/mushclient/buglist.htm
-
-Forum for MUSHclient discussions, submitting bugs and suggestions:
-  http://www.gammon.com.au/forum/?bbsection_id=1
-
-MUSHclient scripting functions (and a copy of the help file) are at:
-	http://www.gammon.com.au/scripts/doc.php
-
-MUSHclient plugins are available at:
-	http://www.mushclient.com/plugins/
-
-
-Changes in this version
------------------------
-
-Release notes for every version are kept here:
-
-  http://www.gammon.com.au/scripts/showrelnote.php
-
-
-License
--------
-
-Use of this program is subject to the License agreement. See Help menu -> About -> License.
-
-In particular, the software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement.
-
-
-FreeWare
---------
-
-MUSHclient is distributed as FreeWare. There is no fee for using it.
-
-
-Source code
------------
-
-The source code for MUSHclient is available from:
-
-  http://github.com/nickgammon/mushclient/
-
-
-Operating System
-----------------
-
-MUSHclient version 3.xx will run on: 
-
-Windows 95, Windows 98, Windows ME, Windows NT 4, Windows NT 2000, Windows XP, and Windows Vista.
-
-It will not run on Windows 3.1 or Windows 3.11, sorry! This is because the enhancements in version 3.x use various 32-bit features of the more recent Windows operating systems. If you wish to continue using Windows 3.1, then MUSHclient 1.04 is still a very fast, reliable MUD client.
-
-It should work on Linux running Wine. See: http://www.gammon.com.au/forum/?id=8380
-
-
-Bug reports
------------
-
-Please submit bug reports or suggested enhancements to the MUSHclient forum:
-
-  http://www.gammon.com.au/forum/?bbsection_id=1
-
-There is a "MUSHclient bug list" page on the Web, you may wish to check that page first to see if the bug you are reporting is already known. The bug list page is at:
-
-  http://www.mushclient.com/buglist.htm
-
-
-FAQ
+Sounds
 ---
+Wie man sicherlich erraten kann, ist die Hauptfunktion des Soundpacks, Avalon mit Geräuschen zu untermalen. Diesbezüglich gibt es natürlich einige Konfigurationen, die ihr vornehmen könnt. Hier die dazu verwendeten Tastenkombinationen:
+F9 - Lautstärke der Geräusche leiser drehen
+F10 - Lautstärke der Geräusche lauter drehen
 
-The MUSHclient FAQ (Frequently Asked Questions) page is at:
+Musik
+---
+Wir versuchen ebenfalls, Avalon mit Musik zu unterlegen, um das Spielen spaßiger zu machen und den verschiedenen Regionen etwas mehr Pepp zu verleihen. Natürlich gibt es auch hier einige Tastenkombinationen:
+F11 - Wechsel zwischen der Sound-Lautstärkeregelung und Musiklautstärkeregelung
+F9 - Falls mit F11 auf Musik umgestellt wurde, regelt man hiermit die Lautstärke nach unten
+F10 - Falls mit F11 auf Musik umgestellt, wird hiermit die Lautstärke hochgedreht.
 
-  http://www.gammon.com.au/scripts/showfaq.php
+Muting
+---
+Eingefleischte Zocker wissen, dass man unter Muting das Stummschalten bezeichnet. Das Soundpack bietet die Möglichkeit, Sounds, Musik oder beides gleichzeitig stumm zu schalten. Dazu drückt man Strg+F11. Je nachdem, welche Lautstärkeregelung man mit F11 gerade eingestellt hat, wird dieses System stummgeschaltet. Mit Strg+Umschalt+F11 werden alle Systeme stummgeschaltet.
 
+ScreenReader-Unterstützung
+---
+Da einige Leute mit der Unterstützung von Jaws mit dem von uns verwendeten Ausgabe-Plugin hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
 
-Answers to common questions are also found at the MUSHclient forum:
+TP-, ZP- und AP-Ausgabe
+---
+Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds. Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren. Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus :).
+Hinweis: Falls ihr euch wundert, dass die Sound-Ausgaben etwas asynchron zum Spielverlauf arbeiten und ihr denkt, dass es zu langsam bzw. ineffizient wäre - falsch gedacht. Tatsächlich ist es schneller und präziser als die Ingame-Ausgabe, da die Ingame-Ausgabe höchstens jede Sekunde Werte ausgibt, die Sound-Ausgaben jedoch sofort reagiert.
 
-  http://www.gammon.com.au/forum/?bbsection_id=1
+zauber-Tracking
+---
+Wir haben die Funktion eingebaut, dass man vor Allem Schutzzauber startet und anschließend jeder Zeit die bereits laufende Zeit der zauber abfragen kann. Dazu benötigt man nur das Kommando "az".
+Hinweis: Bisher sind noch nicht alle Zauber unterstützt. Wir werden jedoch versuchen, nach und nach alle Zauber aufzunehmen. Falls ihr noch etwas hinzugefügt haben wollt, meldet euch einfach bei uns.
 
+Optimierte Ausgabe
+---
+Mithilfe der Tastenkombination Strg+Tab ist es möglich, in ein Ausgabefenster zu wechseln, welches dem Windows Editor nachempfunden ist. Hier werden auch sämmtliche Ausgaben von Avalon hineingeleitet und können ohne weiteres nachgelesen und herauskopiert werden. Um wieder in die Avalon Eingabe zu gelangen, wird einfach Strg+Tab erneut gedrückt.
 
-MUSHclient home page
---------------------
+Speedwalking
+---
+Das Speedwalking ist ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Dabei muss man keinen Finger krümmen, dass Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl listet alle vorhandenen Speedwalks auf. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen. Damit auch ihr durch unser System durchsteigt, findet ihr im Anschluss eine Liste aller bisherigen Abkürzungen inkl. detaillierter Erklärung. Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: / um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, _ um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels. Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor". Mit einem / und folgender Startposition, ohne dem _ und der Angabe einer Zielposition kann man sich alle Speedwalks filtern, welche von der Startposition starten. Mithilfe der Tastenkombination Strg+D wird das momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Es kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
+Hinweis: Es sind längst noch nicht alle Wege im Soundpack vorhanden. Da das Integrieren dieser Wege recht zeitaufwändig ist bitten wir um Verständnis, dass wir bisher nicht alle Wege unterstützen. Ihr könnt uns jedoch unterstützen, indem ihr uns auf einen nicht vorhandenen Weg hinweist oder uns sogar einen von euch notierten Weg schickt, damit wir ihn mit in unser System aufnehmen.
 
-The MUSHclient home page on the Web is:
-
-	http://www.mushclient.com/
-
-
-Compatibility with old world files
-----------------------------------
-
-MUSHclient version 4 will read world (and trigger, alias etc.) files produced by versions from 3.21 onwards. 
-You are advised to backup your world and other files, in case you wish to go back to an earlier version. 
-
-
-
-Credits
--------
-
-Various aspects of MUSHclient have been written with the help of other people. 
-
-Please see Help -> About -> Credits for a list of those who have contributed.
-
-
-Comments welcome
-----------------
-
-Please let me know if you have any problems. Check out the web pages mentioned above for details about later versions or known bugs.
-
-Send support requests, bug reports, general queries or comments to the forum:
-
-  http://www.gammon.com.au/forum/?bbsection_id=1
-
-
-
-Thanks!
--------
-
-Thanks to everyone who has supported MUSHclient, either by registering earlier versions, or by sending in comments. Your support is appreciated. 
-
-
-Thanks again. I hope you enjoy using MUSHclient, as much as I have writing it.
-
-- Nick Gammon
+Nun noch die Liste unserer Abkürzungen in alphabetischer Reihenfolge:
+abt - Portal Abtei, Nereid
+affe - Anleger Affenkopfinsel, Unterwelt
+ale - Zugang Alemnia, Losaria
+alo - Westtor Alotria, Nereid
+amp - Mondtor, Amphibos
+arg - Meister aller Waffen Ruwenda, Elandor
+ash - Feld nördlich vom Nordtor Ashar, Nereid
+aug - Tor Augyra, Amphibos
+bank - Bank, Diverse
+camp - Zugang Camp Baralon, Unterwelt
+cor - Vor der Höhle Corona, Nereid
+dhun - Feld vor dem Transportkorb Dhungar, Nereid
+dk - Standort der Säule, Dämonenkriegergilde, Unterwelt
+dol - Mondtor, Dolphinia
+druide - Druide, Diverse
+gol - Gilde Golemkultisten, Unterwelt
+gwen - Bettler Gwendon, Tintagel
+haendler - Gemischtwahrenladen, diverse
+haf - Häfen diverser Inseln, Elandor
+hain - Eingang Druidenhain, Solgard
+her - Hermine Eisenbieger, Holbytla
+hol - Mondtor, Holbytla
+ilme - Ilmelorn, Tintagel
+jagd - Jäger, Diverse
+jas - Tor Jasthan, Unterwelt
+jer - Feld vor dem ersten Feld Jeresa, Losaria
+kap - Priester in der Kapelle Zugang Rilauven, Unterwelt
+ker - Vor dem Tor, Kergora, Amphibos
+lim - Zugang Limarch, Holbytla
+lor - Mondtor, Lorinant
+los - Mondtor, Losaria
+min - Marktplatz Minias, Nereid
+mine - Mine (Gold, Silber, Mithril, Golemmine) Zugang
+mos - Goblinfestung Mossul, Amphibos
+por - Portal Rilauven, Unterwelt
+post - Post, diverse
+ril - Zentrum Rilauven, Unterwelt
+run - Übergang zu den Runenschmieden, Amphibos
+ruw - Hafen Ruwenda, Elandor
+san - Südtor Sandutz, Nereid
+schmied - Schmiedezunft, diverse
+see - Quecksilbersee, Unterwelt
+siedlung - Zugang Waldsiedlung, Tintagel
+skal - Tor Skalewar, Unterwelt
+sol - Zentrum, Solgard
+tief - Zentrum Tiefebene, Unterwelt
+tin - Mondtor, Tintagel
+toe - Absprungstelle Totenebene, Unterwelt
+tol - Mondtor, Tolsgal
+tor - jeweiliges Mondtor, Nereid
+us - Weggabelung nach Loretta, Nereid
+uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
+ver - Vern, Losaria
+wal - Hütte, Walhalla
+wl - Waldläufer, Tintagel

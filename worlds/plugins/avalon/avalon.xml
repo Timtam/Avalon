@@ -3046,9 +3046,7 @@ OnAvalonRoomID=function(type,message)
  end
  RoomName=name
  if not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg') then
- if hmusic and Audio.isPlaying(hmusic)==1 then
- Audio.stop(hmusic)
- end
+ stopifplaying(hmusic)
  return
  end
  pmusic(name..'.ogg')
@@ -3441,9 +3439,7 @@ function pmusic(file)
 if configtbl.settings.MusicMuted==1 then
 return
 end
-if hmusic and Audio.isPlaying(hmusic)==1 then
-Audio.stop(hmusic)
-end
+stopifplaying(hmusic)
 hmusic=Audio.play(GetInfo(67)..'Sounds/Music/'..file,1,0,configtbl.settings.MusicVolume)
 end
 function speedwalk_start(spd)
@@ -3616,6 +3612,7 @@ LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
 RoomName=''
+stopifplaying(hmusic)
 end
 function switch_mute()
 if volumetype==1 then
@@ -3629,9 +3626,7 @@ end
 else
 if configtbl.settings.MusicMuted==0 then
 configtbl.settings.MusicMuted=1
-if hmusic and Audio.isPlaying(hmusic)==1 then
-Audio.stop(hmusic)
-end
+stopifplaying(hmusic)
 RoomName=''
 world.Note('Musik deaktiviert.')
 else
@@ -3652,9 +3647,7 @@ world.Note('Sounds aktiviert.')
 end
 if configtbl.settings.MusicMuted==0 then
 configtbl.settings.MusicMuted=1
-if hmusic and Audio.isPlaying(hmusic)==1 then
-Audio.stop(hmusic)
-end
+stopifplaying(hmusic)
 RoomName=''
 world.Note('Musik deaktiviert.')
 else
