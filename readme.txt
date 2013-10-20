@@ -35,6 +35,10 @@ Optimierte Ausgabe
 ---
 Mithilfe der Tastenkombination Strg+Tab ist es möglich, in ein Ausgabefenster zu wechseln, welches dem Windows Editor nachempfunden ist. Hier werden auch sämmtliche Ausgaben von Avalon hineingeleitet und können ohne weiteres nachgelesen und herauskopiert werden. Um wieder in die Avalon Eingabe zu gelangen, wird einfach Strg+Tab erneut gedrückt.
 
+Mondsuche
+---
+Da es einige vergessliche Menschen gibt, die sich die Zielpositionen der Monde Foie und Jani nicht merken können, gibt es eine Reihe von Aliasen, die es euch ermöglichen, die Position mithilfe eines einzelnen Kommandos abzufragen. Die Aliase sind wie folgt aufgebaut: MondnamePosition. Beispiel: foien für Foie Norden =Alotria, foienw für Foie Nordwesten =Sandutz.
+
 Speedwalking
 ---
 Das Speedwalking ist ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Dabei muss man keinen Finger krümmen, dass Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl listet alle vorhandenen Speedwalks auf. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen. Damit auch ihr durch unser System durchsteigt, findet ihr im Anschluss eine Liste aller bisherigen Abkürzungen inkl. detaillierter Erklärung. Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: / um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, _ um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels. Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor". Mit einem / und folgender Startposition, ohne dem _ und der Angabe einer Zielposition kann man sich alle Speedwalks filtern, welche von der Startposition starten. Mithilfe der Tastenkombination Strg+D wird das momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Es kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
