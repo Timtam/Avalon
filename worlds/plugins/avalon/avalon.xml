@@ -3058,7 +3058,7 @@ OnAvalonEP=function(message,ep)
  PlayerEP=ep
  if LevelUpdate then
  psnd("Misc/LevelUp.ogg")
- world.Note('Herzlichen Glueckwunsch! Level '..tostring(PlayerLevel)..' wurde mit '..tostring(PlayerEP)..' EP erreicht. Voraussichtliche EP zu Level '..tostring(PlayerLevel+1)..': '..tostring(round(PlayerEP*1.12-PlayerEP,0)))
+ world.Note('Herzlichen Glueckwunsch! Level '..tostring(PlayerLevel)..' wurde mit '..tostring(PlayerEP)..' EP erreicht. Voraussichtliche EP zu Level '..tostring(PlayerLevel+1)..': '..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
  LevelUpdate=false
  end
 end
@@ -3486,10 +3486,15 @@ end
 world.Note(msg)
 end
 function speedwalk_init(speedwalk)
+if spdactive==false then
 spdtbl = utils.split(speedwalk, " ")
 spdind=1
 spdactive=true
 speedwalk_process()
+else
+spdtbl=array_concat(spdtbl,utils.split(speedwalk," "))
+world.Note('Der neue Speedwalk wurde an den momentan laufenden angehängt.')
+end
 end
 function speedwalk_process()
 if not spdactive then
@@ -3658,6 +3663,23 @@ atcp.Send('ava_req_mapper','')
 world.Note('Musik aktiviert.')
 end
 psnd('Misc/ConfigSwitch.ogg')
+end
+function array_concat(...)
+    local t = {}
+    local arg ={...}
+
+    for i = 1, #arg do
+        local array = arg[i]
+        if (type(array) == "table") then
+            for j = 1, #array do
+                t[#t+1] = array[j]
+            end
+        else
+            t[#t+1] = array
+        end
+    end
+
+    return t
 end
 ]]>
 </script>
