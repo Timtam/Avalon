@@ -353,7 +353,8 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/GolemShieldOff.ogg")</send>
+  <send>psnd("GolemCultists/GolemShieldOff.ogg")
+        aura_remove('Golemschutzschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -361,7 +362,8 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/GolemShield.ogg")</send>
+  <send>psnd("GolemCultists/GolemShield.ogg")
+        aura_add('Golemschutzschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3285,7 +3287,7 @@ speedwalklist.abt_tor="sw kletter_s s s"
 speedwalklist.tor_san="no no no no no no no no n o so o so so so o o o s o"
 speedwalklist.san_tor="w n w w w nw nw nw w nw w s sw sw sw sw sw sw sw sw"
 speedwalklist.uw_toe="w sw sw w w w w nw w w w nw nw nw nw nw nw nw n no o o o o no o o o o o o so o o o o o no o so o so o o o o o so o o o so o o so o o o o o so o o o so o o o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw no no nw nw nw nw nw nw sw sw s s sw sw so s so s so so so sw s o so o so o no o o o o o o o o so o o o o o no o o o o o so so so so so sw s s sw sw sw sw w w sw w w sw w w w sw w w sw w w w sw w s so so so"
-speedwalklist.toe_uw="nw nw nw n no o o o no o o no o o o no o o no o o no no no no n n no nw nw nw nw nw w w w w w sw w w w w w nw w w w w w w w w sw w nw w nw w n no nw nw nw n nw n nw no no n n no no so so so so so so sw sw no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
+speedwalklist.toe_uw="nw nw nw n o no o o o no o o no o o o no o o no o o no no no no n n no nw nw nw nw nw w w w w w sw w w w w w nw w w w w w w w w sw w nw w nw w n no nw nw nw n nw n nw no no n n no no so so so so so so sw sw no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n n n nw no n n n no no o o o no no no no n n n no no o o o o o o no o o o no no no no no no no no no n n n no no nw w nw w w nw w w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw s so so so so so so so o o o so o o o o no no o"
 speedwalklist.camp_see="so o o o o so s s s so so so so s so s so s so s so so s s so so so s s sw sw s s s sw s so so s so so s so sw so s so s so so so so so so so s s s s so so so so so s s s s s s sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw sw s s s so s so s s s s s sw sw s s s s s so so so so s s s s so o o o o o so so s sw sw sw s s s s s s s s so so so w s s o s s o s o o s o o so so o so o o o o o o o o"
 speedwalklist.see_camp="w w w w w w w w nw w nw nw w w n w w n w n n w n n o nw nw nw n n n n n n n n no no no n nw nw w w w w w nw n n n n nw nw nw nw n n n n n no no n n n n n nw n nw n n n no no no no no no no no no no no no no no no no no no no no no n n n n n n nw nw nw nw nw n n n n nw nw nw nw nw nw nw n nw n nw no nw n nw nw n nw nw n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw"
 speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
@@ -3602,7 +3604,6 @@ apfullannounced=false
 tpfullannounced=false
 spfullannounced=false
 hapsnd=nil
-hmusic=nil
 hspnil=0
 htpsnd=nil
 LevelUpdate=false
@@ -3610,6 +3611,7 @@ PlayerEP=nil
 PlayerLevel=nil
 RoomName=''
 stopifplaying(hmusic)
+hmusic=nil
 end
 function switch_mute()
 if volumetype==1 then
