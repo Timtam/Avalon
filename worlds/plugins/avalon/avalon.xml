@@ -2143,11 +2143,7 @@
   </trigger>
   <trigger
    enabled="y"
-   lines_to_match="2"
-   match="Du spielst eine leichte Melodie auf .*, mit der Du bei .* ein\nBild von Dir entstehen laesst, das .* gratuliert."
-   regexp="y"
-   multi_line="y"
-   keep_evaluating="n"
+   match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
    send_to="12"
    sequence="99"
   >
@@ -2155,7 +2151,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spielst * auf Deiner *."
+   match="Du spielst .* auf Deine.*"
+   regexp="y"
    omit_from_output="y"
    sequence="100"
    send_to="12"
