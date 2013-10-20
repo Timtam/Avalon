@@ -2143,13 +2143,14 @@
    enabled="y"
    match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
    send_to="12"
-   sequence="100"
+   sequence="99"
   >
   <send>psnd("Bard/Grats.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Du spielst * auf Deiner *."
+   match="Du spielst .* auf Deine.*"
+   regexp="y"
    omit_from_output="y"
    sequence="100"
    send_to="12"
