@@ -1004,6 +1004,24 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Unter dem Pfad der Unterwelt. Er fuehrt nach * und *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du wanderst auf einem Pfad auf der Insel Holbytla entlang. Er fuehrt nach *, * und *."
+   omit_from_output="y"
+   send_to="2"
+   sequence="100"
+  >
+  <send>%1, %2, %3</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$"
    regexp="y"
    sequence="100"
@@ -3483,7 +3501,7 @@ end
 world.Note(msg)
 end
 function speedwalk_init(speedwalk)
-if spdactive==false then
+if not spdactive then
 spdtbl = utils.split(speedwalk, " ")
 spdind=1
 spdactive=true
@@ -3501,6 +3519,7 @@ command=string.gsub(spdtbl[spdind], "_", " ")
 world.Execute(command)
 spdind=spdind+1
 if spdind==#spdtbl+1 then
+spdactive=false
 return
 end
 if string.len(spdtbl[spdind])<=2 then
