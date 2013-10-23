@@ -3037,7 +3037,7 @@ hapsnd=nil
 hspnil=0
 htpsnd=nil
 hmusic=nil
-LastCommand=''
+LastCommand=nil
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
@@ -3138,9 +3138,13 @@ Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
  end
 end
 function OnPluginCommandEntered(text)
-if text=='' and LastCommand~='' then
+if text=='' and LastCommand~=nil then
 return LastCommand
 else
+if text==' ' then
+LastCommand=''
+return ''
+end
 LastCommand=text
 return text
 end
