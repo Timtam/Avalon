@@ -3335,6 +3335,8 @@ speedwalklist.camp_see="so o o o o so s s s so so so so s so s so s so s so so s
 speedwalklist.see_camp="w w w w w w w w nw w nw nw w w n w w n w n n w n n o nw nw nw n n n n n n n n no no no n nw nw w w w w w nw n n n n nw nw nw nw n n n n n no no n n n n n nw n nw n n n no no no no no no no no no no no no no no no no no no no no no n n n n n n nw nw nw nw nw n n n n nw nw nw nw nw nw nw n nw n nw no nw n nw nw n nw nw n no n n n no no n n nw nw nw n n nw nw n nw n nw n nw n nw nw nw nw n n n nw w w w w nw"
 speedwalklist.sol_druide="w w w w w s s sw sw sw sw w w w sw w sw w nw"
 speedwalklist.druide_sol="so o no o no o o o no no no no n n o o o o o"
+speedwalklist.min_schlucht="n n n o o o so o o o o o o o so o o so so o o o s kletter_s kletter_so kletter_sw kletter_sw s s kletter_s kletter_s"
+speedwalklist.schlucht_min="kletter_n kletter_n n n kletter_no kletter_no kletter_nw kletter_n n w w w nw nw w w nw w w w w w w w nw w w w s s s"
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12","tts_switch")
 world.Accelerator("F2","tpbar_switch")

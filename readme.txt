@@ -85,6 +85,7 @@ ril - Zentrum Rilauven, Unterwelt
 run - Übergang zu den Runenschmieden, Amphibos
 ruw - Hafen Ruwenda, Elandor
 san - Südtor Sandutz, Nereid
+schlucht - Zugang Knochenschlucht, Nereid
 schmied - Schmiedezunft, diverse
 see - Quecksilbersee, Unterwelt
 siedlung - Zugang Waldsiedlung, Tintagel
