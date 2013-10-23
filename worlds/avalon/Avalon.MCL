@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Samstag, Oktober 12, 2013, 2:58  -->
+<!-- Saved on Mittwoch, Oktober 23, 2013, 9:29  -->
 <!-- MuClient version 4.84 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
@@ -8,7 +8,7 @@
 <world
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -28,7 +28,6 @@
    terminal_identification="mushclient"
 
    arrows_change_history="y"
-   auto_repeat="y"
    auto_resize_minimum_lines="1"
    auto_resize_maximum_lines="20"
    chat_foreground_colour="red"
@@ -105,7 +104,7 @@
 <triggers
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 </triggers>
 
@@ -114,7 +113,7 @@
 <aliases
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 </aliases>
 
@@ -123,7 +122,7 @@
 <timers
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 </timers>
 
@@ -132,7 +131,7 @@
 <macros
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 
   <macro name="up" type="send_now" >
@@ -226,15 +225,15 @@
 <variables
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
-  <variable name="mxp_ap">40</variable>
-  <variable name="mxp_max_ap">91</variable>
-  <variable name="mxp_max_sp">150</variable>
-  <variable name="mxp_max_tp">153</variable>
-  <variable name="mxp_mp">8542</variable>
-  <variable name="mxp_sp">67</variable>
-  <variable name="mxp_tp">153</variable>
+  <variable name="mxp_ap">30</variable>
+  <variable name="mxp_max_ap">96</variable>
+  <variable name="mxp_max_sp">157</variable>
+  <variable name="mxp_max_tp">167</variable>
+  <variable name="mxp_mp">8245</variable>
+  <variable name="mxp_sp">29</variable>
+  <variable name="mxp_tp">167</variable>
 </variables>
 
 <!-- colours -->
@@ -242,7 +241,7 @@
 <colours
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 
 <ansi>
@@ -299,7 +298,7 @@
 <keypad
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 
   <key name="0" >
@@ -413,7 +412,7 @@
 <printing
    muclient_version="4.84"
    world_file_version="15"
-   date_saved="2013-10-12 02:58:48"
+   date_saved="2013-10-23 09:29:43"
   >
 
 <ansi>
