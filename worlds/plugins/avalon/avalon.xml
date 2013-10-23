@@ -3022,6 +3022,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 
 <script>
 <![CDATA[
+Audio=nil
 atcp=nil
 g_tp=nil
 g_max_tp=nil
@@ -3036,19 +3037,21 @@ hapsnd=nil
 hspnil=0
 htpsnd=nil
 hmusic=nil
+LastCommand=''
 LevelUpdate=false
 PlayerEP=nil
 PlayerLevel=nil
+plugintbl={}
+plugintbl[1]='ATCP.plugin/plugin.xml'
+plugintbl[2]="LuaAudio.xml"
+plugintbl[3]="output_functions.xml"
+plugintbl[4]="omit_blank_lines.xml"
 RoomName=''
 volumetype=1
 require("pairsbykeys")
 Ini=require('ini')
 Path=require("pl.path")
 PPI = require("ppi")
-Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
- if not Audio then
- error("Dependency plugin not installed!")
- end
 OnAvalonRoomID=function(type,message)
  tmessage=utils.split(message," ")
  id=tmessage[1]
@@ -3124,12 +3127,29 @@ configtbl[name][optionname]=config
 end
 end
 end
-world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
+plugintbl[5]=configtbl.settings.ScreenReader..'.xml'
+for number,plugin in pairs(plugintbl) do
+pluginpath=world.GetInfo(60)..'/'..plugin
+world.LoadPlugin(pluginpath)
+end
+Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
+ if not Audio then
+ error("Audio-Ausgabe konnte nicht initialisiert werden.")
+ end
+end
+function OnPluginCommandEntered(text)
+if text=='' and LastCommand~='' then
+return LastCommand
+else
+LastCommand=text
+return text
+end
 end
 function OnPluginClose()
 Ini.write('config.dat',configtbl)
 end
 OnPluginListChanged = function()
+  if atcp==nil then
   atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
   if not atcp then
     Note("ATCP funktioniert nicht!")
@@ -3141,6 +3161,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.EP',OnAvalonEP)
     atcp.Listen('Avalon.Level',OnAvalonLevel)
     atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
+  end
   end
 end
 spdtbl ={}
