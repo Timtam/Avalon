@@ -29,12 +29,11 @@
 <triggers>
   <trigger
    enabled="y"
-   match="^.*labert lauthals.*$|^\[Laber\].*$|^Du laberst lauthals.*$"
-   regexp="y"
+   match="Es wurden * Gegenstaende geladen."
    send_to="12"
    sequence="95"
   >
-  <send>psnd("Misc/laber.ogg")</send>
+  <send>atcp.Send('ava_set_channel 1')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -84,7 +83,8 @@
    send_to="12"
    sequence="95"
   >
-  <send>atcp.Send('ava_req_update','')</send>
+  <send>atcp.Send('ava_req_update')
+        atcp.Send('ava_set_channel 1')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1098,7 +1098,7 @@
   >
 <send>psnd("Spells/light3b.ogg")
       aura_add('Licht')
-      atcp.Send('ava_req_mapper','')</send>
+      atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2283,7 +2283,7 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      atcp.Send('ava_req_mapper','')</send>
+      atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2409,7 +2409,7 @@
   >
 <send>psnd("Misc/torch_on.ogg")
       aura_add('Licht')
-      atcp.Send('ava_req_mapper','')</send>
+      atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2439,7 +2439,7 @@
   >
 <send>psnd("Misc/torch_on.ogg")
       aura_add('Licht')
-      atcp.Send('ava_req_mapper','')</send>
+      atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3052,6 +3052,12 @@ require("pairsbykeys")
 Ini=require('ini')
 Path=require("pl.path")
 PPI = require("ppi")
+OnAvalonChannel=function(type,message)
+ channel,text=string.match(message,"^(%w+) (.*)$")
+ if channel=="laber" then
+ psnd('Misc/laber.ogg')
+ end
+end
 OnAvalonRoomID=function(type,message)
  tmessage=utils.split(message," ")
  id=tmessage[1]
@@ -3085,7 +3091,7 @@ OnAvalonLevel=function(type,message)
  level=tonumber(level)
  if PlayerLevel ~=nil and level>PlayerLevel then
  LevelUpdate=true
- atcp.Send('ava_req_update','')
+ atcp.Send('ava_req_update')
  end
  PlayerLevel=level
 end
@@ -3165,6 +3171,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.EP',OnAvalonEP)
     atcp.Listen('Avalon.Level',OnAvalonLevel)
     atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
+    atcp.Listen('Avalon.Channel',OnAvalonChannel)
   end
   end
 end
@@ -3681,7 +3688,7 @@ RoomName=''
 world.Note('Musik deaktiviert.')
 else
 configtbl.settings.MusicMuted=0
-atcp.Send('ava_req_mapper','')
+atcp.Send('ava_req_mapper')
 world.Note('Musik aktiviert.')
 end
 end
@@ -3702,7 +3709,7 @@ RoomName=''
 world.Note('Musik deaktiviert.')
 else
 configtbl.settings.MusicMuted=0
-atcp.Send('ava_req_mapper','')
+atcp.Send('ava_req_mapper')
 world.Note('Musik aktiviert.')
 end
 psnd('Misc/ConfigSwitch.ogg')

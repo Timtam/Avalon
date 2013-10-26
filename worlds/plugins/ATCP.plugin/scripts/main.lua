@@ -136,7 +136,7 @@ local PPI = require("libraries.ppi")
 PPI.Expose("Send",
   function(message)
     message = tostring(message)
-    SendPkt(codes.IAC_SB_ATCP .. message .. "\n" .. codes.IAC_SE)
+    SendPkt(codes.IAC_SB_ATCP .. message .. codes.IAC_SE)
   end
 )
 PPI.Expose("Listen",
