@@ -54,6 +54,7 @@ arg - Meister aller Waffen Ruwenda, Elandor
 ash - Feld nördlich vom Nordtor Ashar, Nereid
 aug - Tor Augyra, Amphibos
 bank - Bank, Diverse
+barde - Barden, Diverse
 camp - Zugang Camp Baralon, Unterwelt
 cor - Vor der Höhle Corona, Nereid
 dhun - Feld vor dem Transportkorb Dhungar, Nereid
@@ -76,6 +77,7 @@ ker - Vor dem Tor, Kergora, Amphibos
 lim - Zugang Limarch, Holbytla
 lor - Mondtor, Lorinant
 los - Mondtor, Losaria
+magier bzw. magier1 bis magierN - Magie-Lehrmeister, Diverse
 min - Marktplatz Minias, Nereid
 mine - Mine (Gold, Silber, Mithril, Golemmine) Zugang
 mos - Goblinfestung Mossul, Amphibos
