@@ -3227,7 +3227,8 @@ OnPluginListChanged = function()
   end
 end
 spdtbl ={}
-spdind=0
+spdind={0,0}
+spdstationstbl={}
 spdactive=false
 spdspeed=0.3
 spdextraspeed=0.6
@@ -3404,20 +3405,15 @@ return
 end
 if configtbl.settings.SafeSpeedwalks==1 then
 if not stations[spd] then
-world.Note("Es existiert noch keine Positionsangabe für den Start dieses Speedwalks. Falle auf altes Speedwalk-System zurück...")
+world.Note("Dieses Speedwalk muss nach dem alten System umgesetzt werden.")
+spdstationstbl[#spdstationstbl+1]=nil
 speedwalk_init(speedwalklist[spd])
 return
 end
-if Dunkel==1 then
-world.Note("Um sichere Speedwalks nutzen zu können, muss es auf deinem Feld hell sein.")
-return
-end
-if RoomID~=stations[spd] then
-world.Note("Der Speedwalk startet hier nicht.")
-return
-end
+spdstationstbl[#spdstationstbl+1]=stations[spd]
 speedwalk_init(speedwalklist[spd])
 else
+spdstationstbl[#spdstationstbl+1]=nil
 speedwalk_init(speedwalklist[spd])
 end
 end
@@ -3453,27 +3449,46 @@ world.Note(msg)
 end
 function speedwalk_init(speedwalk)
 if not spdactive then
-spdtbl = utils.split(speedwalk, " ")
-spdind=1
+spdtbl={}
+spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+spdstationstbl={spdstationstbl[#spdstationstbl]}
+spdind={1,1}
 spdactive=true
 speedwalk_process()
 else
-spdtbl=array_concat(spdtbl,utils.split(speedwalk," "))
+spdtbl[#spdtbl+1]=utils.split(speedwalk," ")
 world.Note('Der neue Speedwalk wurde an den momentan laufenden angehängt.')
 end
 end
 function speedwalk_process()
-if not spdactive then
-return
-end
-command=string.gsub(spdtbl[spdind], "_", " ")
-world.Execute(command)
-spdind=spdind+1
-if spdind==#spdtbl+1 then
+if configtbl.settings.SafeSpeedwalks==1 and spdind[2]==1 and spdstationstbl[spdind[1]]~=nil then
+if Dunkel==1 then
+world.Note("Um sichere Speedwalks nutzen zu können, muss es auf deinem Feld hell sein.")
 spdactive=false
 return
 end
-if string.len(spdtbl[spdind])<=2 then
+if RoomID~=spdstationstbl[spdind[1]] then
+world.Note("Der Speedwalk startet hier nicht.")
+spdactive=false
+return
+end
+end
+if not spdactive then
+return
+end
+command=string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
+world.Execute(command)
+spdind={spdind[1],spdind[2]+1}
+if spdind[2]==#spdtbl[spdind[1]]+1 then
+if not spdtbl[spdind[1]+1] then
+spdactive=false
+spdind={0,0}
+return
+else
+spdind={spdind[1]+1,1}
+end
+end
+if string.len(spdtbl[spdind[1]][spdind[2]])<=2 then
 DoAfterSpecial(spdspeed,"speedwalk_process()",12)
 else
 DoAfterSpecial(spdextraspeed,"speedwalk_process()",12)
@@ -3483,7 +3498,10 @@ function speedwalk_break()
 if spdactive then
 spdactive=false
 else
-if not spdtbl[spdind] then
+if spdind[1]==0 and spdind[2]==0 then
+return
+end
+if not spdtbl[spdind[1]][spdind[2]] then
 return
 end
 spdactive=true
@@ -3491,8 +3509,11 @@ speedwalk_process()
 end
 end
 function speedwalk_breaklegs()
+if spdind[1]==0 and spdind[2]==0 then
+return
+end
 spdactive=false
-spdind=spdind-2
+spdind={spdind[1],spdind[2]-2}
 end
 function tts_switch()
 world.UnloadPlugin(configtbl.settings.ScreenReader)
