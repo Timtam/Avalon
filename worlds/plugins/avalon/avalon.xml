@@ -33,7 +33,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>atcp.Send('ava_set_channel 1')</send>
+  <send>OnAvalonLogin()</send>
   </trigger>
   <trigger
    enabled="y"
@@ -83,8 +83,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>atcp.Send('ava_req_update')
-        atcp.Send('ava_set_channel 1')</send>
+  <send>OnAvalonLogin()</send>
   </trigger>
   <trigger
    enabled="y"
@@ -139,7 +138,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du hebst Deine Haende, beschreibst einen Halbkreis*"
+   match="Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich."
+   regexp="y"
    send_to="12"
    sequence="95"
   >
@@ -259,8 +259,9 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du senkst Deine Haende, aber der Schutz der Manawolken*"
+   match="Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich."
    send_to="12"
+   regexp="y"
    sequence="95"
   >
   <send>psnd('Spells/FireAuraOn.ogg')
@@ -3096,14 +3097,19 @@ require("pairsbykeys")
 Ini=require('ini')
 Path=require("pl.path")
 PPI = require("ppi")
+function OnAvalonLogin()
+atcp.Send("ava_set_channel 1")
+atcp.Send("ava_req_update")
+end
 OnAvalonDunkel=function(type,message)
  Dunkel=tonumber(message)
 end
 OnAvalonChannel=function(type,message)
  channel,text=string.match(message,"^(%w+) (.*)$")
- if channel=="laber" then
- psnd('Misc/laber.ogg')
+ if Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg") then
+ psnd("Channels/"..channel..".ogg")
  end
+ world.Note(text)
 end
 OnAvalonRoomID=function(type,message)
  tmessage=utils.split(message," ")
