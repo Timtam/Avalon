@@ -79,7 +79,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du bist bereits am Spielen!"
+   match="Verwende alten Koerper..."
    send_to="12"
    sequence="95"
   >
@@ -3066,6 +3066,8 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 Audio=nil
 atcp=nil
 Dunkel=0
+EPKampfStart=nil
+EPStack={0}
 g_tp=nil
 g_max_tp=nil
 g_sp=nil
@@ -3082,6 +3084,7 @@ hmusic=nil
 LastCommand=nil
 LevelUpdate=false
 PlayerEP=nil
+PlayerKill=false
 PlayerLevel=nil
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
@@ -3099,13 +3102,48 @@ Path=require("pl.path")
 PPI = require("ppi")
 function OnAvalonLogin()
 atcp.Send("ava_set_channel 1")
+atcp.Send("ava_set_noinband_channel 1")
 atcp.Send("ava_req_update")
+end
+OnAvalonGetoetet=function(type,message)
+ PlayerKill=true
+end
+OnAvalonKampf=function(type,message)
+ if message=="1" then
+ EPKampfStart=PlayerEP
+ PlayerKill=false
+ elseif message=="0" then
+ if EPKampfStart-PlayerEP==0 then
+ return
+ end
+ if PlayerKill==true then
+ if EPStack[#EPStack]~=10 then
+ monsterep=EPStack[#EPStack]
+ elseif EPStack[#EPStack]==10 and EPStack[#EPStack-1]~=10 then
+ monsterep=EPStack[#EPStack-1]
+ else
+ monsterep=10
+ end
+ world.Note("Dieses Monstergab "..monsterep.." EP.")
+ end
+ if EPKampfStart+EPStack[#EPStack]~=PlayerEP and EPKampfStart~=PlayerEP then
+ if PlayerKill==true then
+ extraep=PlayerEP-(EPKampfStart+monsterep)
+ else
+ extraep=PlayerEP-EPKampfStart
+ end
+ world.Note("In diesem Kampf wurden zusätzlich "..extraep.." EP erreicht.")
+ end
+ end
 end
 OnAvalonDunkel=function(type,message)
  Dunkel=tonumber(message)
 end
 OnAvalonChannel=function(type,message)
  channel,text=string.match(message,"^(%w+) (.*)$")
+ if channel=="magier" or channel=="hyraskrieger" or channel=="barden" or channel=="golemkultisten" or channel=="druiden" or channel=="runenschmiede" or channel=="formwandler" or channel=="daemonenkrieger" then
+ channel=="gilde"
+ end
  if Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg") then
  psnd("Channels/"..channel..".ogg")
  end
@@ -3135,6 +3173,9 @@ OnAvalonRoomID=function(type,message)
 end 
 OnAvalonEP=function(message,ep)
  ep=tonumber(ep)
+ if PlayerEP and ep-PlayerLP >0 then
+ EPStack[#EPStack+1]=ep-PlayerEP
+ end
  PlayerEP=ep
  if LevelUpdate then
  psnd("Misc/LevelUp.ogg")
@@ -3229,6 +3270,8 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
     atcp.Listen('Avalon.Channel',OnAvalonChannel)
     atcp.Listen('Avalon.Dunkel',OnAvalonDunkel)
+    atcp.Listen('Avalon.Kampf',OnAvalonKampf)
+    atcp.Listen('Avalon.Getoetet',OnAvalonGetoetet)
   end
   end
 end
