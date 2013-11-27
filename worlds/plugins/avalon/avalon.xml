@@ -603,14 +603,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du hast * getoetet."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Player/Kill.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="* hat * getoetet."
    sequence="100"
    send_to="12"
@@ -3091,6 +3083,7 @@ plugintbl[1]='ATCP.plugin/plugin.xml'
 plugintbl[2]="LuaAudio.xml"
 plugintbl[3]="output_functions.xml"
 plugintbl[4]="omit_blank_lines.xml"
+plugintbl[5]="channel_history.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -3106,17 +3099,10 @@ atcp.Send("ava_set_noinband_channel 1")
 atcp.Send("ava_req_update")
 end
 OnAvalonGetoetet=function(type,message)
- PlayerKill=true
-end
-OnAvalonKampf=function(type,message)
- if message=="1" then
- EPKampfStart=PlayerEP
- PlayerKill=false
- elseif message=="0" then
- if EPKampfStart-PlayerEP==0 then
+ psnd("Player/Kill.ogg")
+ if PlayerEP-EPKampfStart==0 then
  return
  end
- if PlayerKill==true then
  i=#EPStack
  cep=EPKampfStart
  repeat
@@ -3130,15 +3116,20 @@ OnAvalonKampf=function(type,message)
  if not monsterep then
  monsterep=10
  end
- world.Note("Dieses Monstergab "..monsterep.." EP.")
- end
+ world.Note("Dieses Monster gab "..monsterep.." EP.")
  if EPKampfStart+EPStack[#EPStack]~=PlayerEP and EPKampfStart~=PlayerEP then
- if PlayerKill==true then
  extraep=PlayerEP-(EPKampfStart+monsterep)
- else
- extraep=PlayerEP-EPKampfStart
- end
  world.Note("In diesem Kampf wurden zusätzlich "..extraep.." EP erreicht.")
+ end
+end
+OnAvalonKampf=function(type,message)
+ if message=="1" then
+ EPKampfStart=PlayerEP
+ PlayerKill=false
+ elseif message=="1" then
+ if PlayerKill==false then
+ extraep=PlayerEP-EPKampfStart
+ world.Note("In diesem Kampf hast du "..extraep.." EP erhalten.")
  end
  end
 end
@@ -3154,6 +3145,7 @@ OnAvalonChannel=function(type,message)
  psnd("Channels/"..channel..".ogg")
  end
  world.Note(text)
+ world.Execute(";history_add "..channel.."="..text)
 end
 OnAvalonRoomID=function(type,message)
  tmessage=utils.split(message," ")
@@ -3179,7 +3171,7 @@ OnAvalonRoomID=function(type,message)
 end 
 OnAvalonEP=function(message,ep)
  ep=tonumber(ep)
- if PlayerEP and ep-PlayerLP >0 then
+ if PlayerEP and ep-PlayerEP >0 then
  EPStack[#EPStack+1]=ep-PlayerEP
  end
  PlayerEP=ep
@@ -3236,7 +3228,7 @@ configtbl[name][optionname]=config
 end
 end
 end
-plugintbl[5]=configtbl.settings.ScreenReader..'.xml'
+plugintbl[#plugintbl+1]=configtbl.settings.ScreenReader..'.xml'
 for number,plugin in pairs(plugintbl) do
 pluginpath=world.GetInfo(60)..'/'..plugin
 world.LoadPlugin(pluginpath)
