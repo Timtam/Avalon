@@ -3117,11 +3117,17 @@ OnAvalonKampf=function(type,message)
  return
  end
  if PlayerKill==true then
- if EPStack[#EPStack]~=10 then
- monsterep=EPStack[#EPStack]
- elseif EPStack[#EPStack]==10 and EPStack[#EPStack-1]~=10 then
- monsterep=EPStack[#EPStack-1]
- else
+ i=#EPStack
+ cep=EPKampfStart
+ repeat
+ if EPStack[i]~=10 then
+ monsterep=EPStack[i]
+ break
+ end
+ cep=cep+EPStack[i]
+ i=i-1
+ until cep==PlayerEP
+ if not monsterep then
  monsterep=10
  end
  world.Note("Dieses Monstergab "..monsterep.." EP.")
@@ -3142,7 +3148,7 @@ end
 OnAvalonChannel=function(type,message)
  channel,text=string.match(message,"^(%w+) (.*)$")
  if channel=="magier" or channel=="hyraskrieger" or channel=="barden" or channel=="golemkultisten" or channel=="druiden" or channel=="runenschmiede" or channel=="formwandler" or channel=="daemonenkrieger" then
- channel=="gilde"
+ channel="gilde"
  end
  if Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg") then
  psnd("Channels/"..channel..".ogg")
