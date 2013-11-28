@@ -3100,6 +3100,9 @@ atcp.Send("ava_req_update")
 end
 OnAvalonGetoetet=function(type,message)
  psnd("Player/Kill.ogg")
+ if not EPKampfStart then
+ return
+ end
  if PlayerEP-EPKampfStart==0 then
  return
  end
@@ -3121,6 +3124,7 @@ OnAvalonGetoetet=function(type,message)
  extraep=PlayerEP-(EPKampfStart+monsterep)
  world.Note("In diesem Kampf wurden zusätzlich "..extraep.." EP erreicht.")
  end
+ EPKampfStart=PlayerEP
 end
 OnAvalonKampf=function(type,message)
  if message=="1" then
@@ -3130,6 +3134,7 @@ OnAvalonKampf=function(type,message)
  if PlayerKill==false then
  extraep=PlayerEP-EPKampfStart
  world.Note("In diesem Kampf hast du "..extraep.." EP erhalten.")
+ EPKampfStart=PlayerEP
  end
  end
 end
