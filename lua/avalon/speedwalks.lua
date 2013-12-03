@@ -205,3 +205,5 @@ speedwalklist.lor_magier="nw nw nw nw nw nw nw nw nw n no no no n n n n n n n n 
 speedwalklist.magier_lor="o o o o o o o s s s s s s s s s s s sw sw sw s so so so so so so so so so"
 speedwalklist.jer_magier="n n nw n n"
 speedwalklist.magier_jer="s s so s s"
+speedwalklist.ker_magier="so so s so so betrete_höhle no nw sw sw"
+speedwalklist.magier_ker="no no so sw raus nw nw n nw nw"

@@ -3461,7 +3461,7 @@ end
 if configtbl.settings.SafeSpeedwalks==1 then
 if not stations[spd] then
 world.Note("Dieses Speedwalk muss nach dem alten System umgesetzt werden.")
-spdstationstbl[#spdstationstbl+1]=nil
+spdstationstbl[#spdstationstbl+1]=''
 speedwalk_init(speedwalklist[spd])
 return
 end
@@ -3516,13 +3516,13 @@ world.Note('Der neue Speedwalk wurde an den momentan laufenden angehängt.')
 end
 end
 function speedwalk_process()
-if configtbl.settings.SafeSpeedwalks==1 and spdind[2]==1 and spdstationstbl[spdind[1]]~=nil then
+if configtbl.settings.SafeSpeedwalks==1 and spdind[2]==1 and spdstationstbl[spdind[1]]~='' then
 if Dunkel==1 then
 world.Note("Um sichere Speedwalks nutzen zu können, muss es auf deinem Feld hell sein.")
 spdactive=false
 return
 end
-if RoomID~=spdstationstbl[spdind[1]] then
+if RoomID~=spdstationstbl[spdind[1]] and spdstationstbl[spdind[1]]~='' then
 world.Note("Der Speedwalk startet hier nicht.")
 spdactive=false
 return
