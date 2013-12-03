@@ -43,6 +43,14 @@ Navigation
 ---
 Damit sich einige Leute vielleicht doch besser zurechtfinden oder einfach nur aus Spaß gibt es jetzt das Kommando "pos". Dieses Kommando gibt die zuletzt erkannte Position, die ihr besucht habt, aus und, falls ihr euch auf einer Karte bewegt, auch eure X bzw. Y-Koordinaten.
 
+Kanalhistorie
+---
+Seid einiger Zeit gibt es die Möglichkeit, die letzten 10 Meldungen aller öffentlichen Kanäle auch Client-Inern abzufragen. Dazu gibt es die folgenden Tastenkombinationen:
+Alt+Pfeilrechts/Pfeillinks - Kanäle durchschalten
+Alt+1-0 - Nachricht via Sprache ausgeben
+Alt+1-0 zwei mal schnell drücken - Text in die Zwischenablage kopieren
+Alt+1-0 drei mal schnell drücken - Text an dieser Stelle einfügen
+
 Speedwalking
 ---
 Das Speedwalking ist ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Dabei muss man keinen Finger krümmen, dass Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl listet alle vorhandenen Speedwalks auf. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen. Damit auch ihr durch unser System durchsteigt, findet ihr im Anschluss eine Liste aller bisherigen Abkürzungen inkl. detaillierter Erklärung. Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: / um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, _ um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels. Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor". Mit einem / und folgender Startposition, ohne dem _ und der Angabe einer Zielposition kann man sich alle Speedwalks filtern, welche von der Startposition starten. Mithilfe der Tastenkombination Strg+D wird das momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Es kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.

@@ -603,14 +603,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* hat * getoetet."
-   sequence="100"
-   send_to="12"
-  >
-<send>psnd("Monsters/Kill.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du springst in die Fluten."
    sequence="100"
    send_to="12"
@@ -3099,7 +3091,11 @@ atcp.Send("ava_set_noinband_channel 1")
 atcp.Send("ava_req_update")
 end
 OnAvalonGetoetet=function(type,message)
+ if type=="Avalon.Getoetet" then
  psnd("Player/Kill.ogg")
+ elseif type=="Avalon.GruppeGetoetet" then
+ psnd("Monsters/Kill.ogg")
+ end
  if not EPKampfStart then
  return
  end
@@ -3130,12 +3126,12 @@ OnAvalonKampf=function(type,message)
  if message=="1" then
  EPKampfStart=PlayerEP
  PlayerKill=false
- elseif message=="1" then
- if PlayerKill==false then
+ elseif message=="0" then
+ if PlayerKill==false and PlayerEP-EPKampfStart>0 then
  extraep=PlayerEP-EPKampfStart
  world.Note("In diesem Kampf hast du "..extraep.." EP erhalten.")
- EPKampfStart=PlayerEP
  end
+ EPKampfStart=PlayerEP
  end
 end
 OnAvalonDunkel=function(type,message)
@@ -3242,6 +3238,12 @@ Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
  if not Audio then
  error("Audio-Ausgabe konnte nicht initialisiert werden.")
  end
+if not Path.exists("config.dat") then
+res=utils.msgbox("Es scheint, dass sie das Soundpack für Avalon das erste mal ausführen. Wenn dies so ist möchten wir sie gern auf die Readme-Datei hinweisen, welche alle Möglichkeiten des Soundpacks auflistet. Möchten sie diese Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
+if res=="yes" then
+os.execute("notepad.exe readme.txt")
+end
+end
 end
 function OnPluginCommandEntered(text)
 if text=='' and LastCommand~=nil then
@@ -3275,6 +3277,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.Dunkel',OnAvalonDunkel)
     atcp.Listen('Avalon.Kampf',OnAvalonKampf)
     atcp.Listen('Avalon.Getoetet',OnAvalonGetoetet)
+    atcp.Listen("Avalon.GruppeGetoetet",OnAvalonGetoetet)
   end
   end
 end
