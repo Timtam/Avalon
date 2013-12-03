@@ -3478,7 +3478,15 @@ msg=''
 i=0
 for name,way in pairsByKeys(speedwalklist) do
 i=i+1
-msg=msg..name..'\n'
+msg=msg..name
+if configtbl.settings.SafeSpeedwalks==1 then
+if stations[name] then
+msg=msg.." (sicher)"
+else
+msg=msg.." (unsicher)"
+end
+end
+msg=msg.."\n"
 end
 msg='Speedwalk-Liste ('..tostring(i)..'):\n'..msg
 msg=string.sub(msg,1,-2)
@@ -3490,7 +3498,15 @@ for name,way in pairsByKeys(speedwalklist) do
 sname=utils.split(name,'_')
 if string.lower(sname[1])==spd then
 i=i+1
-msg=msg..name..'\n'
+msg=msg..name
+if configtbl.settings.SafeSpeedwalks==1 then
+if stations[name] then
+msg=msg.." (sicher)"
+else
+msg=msg.." (unsicher)"
+end
+end
+msg=msg.."\n"
 end
 end
 if i==0 then
