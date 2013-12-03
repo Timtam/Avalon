@@ -86,6 +86,7 @@ jas - Tor Jasthan, Unterwelt
 jer - Feld vor dem ersten Feld Jeresa, Losaria
 kap - Priester in der Kapelle Zugang Rilauven, Unterwelt
 ker - Vor dem Tor, Kergora, Amphibos
+koch - Kochzunft, Holbytla
 lim - Zugang Limarch, Holbytla
 lor - Mondtor, Lorinant
 los - Mondtor, Losaria
