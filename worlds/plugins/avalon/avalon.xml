@@ -233,7 +233,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du senkst Deine Haende, aber der Schutz der schwarzen Schleier*"
+   match="Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich."
+   regexp="y"
    send_to="12"
    sequence="95"
   >
@@ -3323,7 +3324,7 @@ if auratbl[sName]==nil then
 return
 end
 time=auratbl[sName]
-msg=sName..'beendet, Dauer: '
+msg=sName..' beendet, Dauer: '
 ltime=os.time()
 timediff=ltime-time
 hours=math.floor(timediff/(60*60))
