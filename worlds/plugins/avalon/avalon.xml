@@ -3161,7 +3161,7 @@ OnAvalonRoomID=function(type,message)
  if not name or name=='Bitte' then
  return
  end
- if name==RoomName then
+ if name==RoomName and hmusic~=nil and Audio.isPlaying(hmusic)==1 then
  return
  end
  RoomName=name
