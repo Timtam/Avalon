@@ -155,3 +155,6 @@ stations.magier_lor="raum/59a3a571aa59ab91a917ee0dbb88747e"
 stations.lor_magier=lor
 stations.mine_lor="raum/920e14f6bdb889346521a46d281d36cd"
 stations.lor_mine=lor
+stations.camp_druide=camp
+stations.alo_orks=alo
+stations.orks_alo="raum/5bc897b006a7f64bd8ac5606382df2b6"

@@ -94,6 +94,7 @@ magier bzw. magier1 bis magierN - Magie-Lehrmeister, Diverse
 min - Marktplatz Minias, Nereid
 mine - Mine (Gold, Silber, Mithril, Golemmine) Zugang
 mos - Goblinfestung Mossul, Amphibos
+orks - Orkjägerlager, Nereid
 por - Portal Rilauven, Unterwelt
 post - Post, diverse
 ril - Zentrum Rilauven, Unterwelt
