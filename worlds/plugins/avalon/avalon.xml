@@ -3077,6 +3077,7 @@ plugintbl[2]="LuaAudio.xml"
 plugintbl[3]="output_functions.xml"
 plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
+plugintbl[6]="hyperlink_url2.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -3763,7 +3764,7 @@ end
 function rgbtohex(r,g,b)
 return r+(g*256)+(b*65536)
 end
-function NoteColour(text,rt,gt,bt,rb,gb,bb)
+function NoteColour(text,rt,gt,bt,rb,gb,bb,style)
 if not rt then
 rt=255
 end
@@ -3783,7 +3784,13 @@ if not bb then
 bb=0
 end
 world.NoteColourRGB(rgbtohex(rt,gt,bt),rgbtohex(rb,gb,bb))
+if style then
+world.NoteStyle(style)
+end
 world.Note(text)
+if style then
+world.NoteStyle(0)
+end
 world.NoteColourRGB(rgbtohex(255,255,255),0)
 end
 ]]>
