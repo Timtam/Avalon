@@ -3139,14 +3139,14 @@ OnAvalonDunkel=function(type,message)
  Dunkel=tonumber(message)
 end
 OnAvalonChannel=function(type,message)
- channel,text=string.match(message,"^(%w+) (.*)$")
+ channel,text=string.match(message,"^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
  if channel=="magier" or channel=="hyraskrieger" or channel=="barden" or channel=="golemkultisten" or channel=="druiden" or channel=="runenschmiede" or channel=="formwandler" or channel=="daemonenkrieger" then
  channel="gilde"
  end
  if Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg") then
  psnd("Channels/"..channel..".ogg")
  end
- world.Note(text)
+ NoteColour(text,255,255,150)
  world.Execute(";history_add "..channel.."="..text)
 end
 OnAvalonRoomID=function(type,message)
@@ -3759,6 +3759,32 @@ end
 if Y then
 world.Note("Y: "..tostring(Y))
 end
+end
+function rgbtohex(r,g,b)
+return r+(g*256)+(b*65536)
+end
+function NoteColour(text,rt,gt,bt,rb,gb,bb)
+if not rt then
+rt=255
+end
+if not gt then
+gt=255
+end
+if not bt then
+bt=255
+end
+if not rb then
+rb=0
+end
+if not gb then
+gb=0
+end
+if not bb then
+bb=0
+end
+world.NoteColourRGB(rgbtohex(rt,gt,bt),rgbtohex(rb,gb,bb))
+world.Note(text)
+world.NoteColourRGB(rgbtohex(255,255,255),0)
 end
 ]]>
 </script>
