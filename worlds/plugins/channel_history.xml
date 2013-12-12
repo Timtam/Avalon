@@ -69,7 +69,7 @@ clipboard, and 3 times will paste it into the command window.
 
   <alias
    script="history_add"
-   match="^history_add (\w+)=(.*)"
+   match="^history_add (\[?\w+\-?\w*\-?\w*\]?)=(.*)"
    enabled="y"
    omit_from_command_history="y"
    omit_from_log="y"

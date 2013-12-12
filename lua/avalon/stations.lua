@@ -169,3 +169,5 @@ stations.sol_druide=sol
 stations.druide_sol="raum/98d2c77d43d9090528adb1d740d14349"
 stations.sol_schmied=sol
 stations.schmied_sol="raum/7dbdb1b5fd8ce7253812bd195c424fa3"
+stations.schmied_gwen="raum/47acbba45a73652cab06466ec20686dc"
+stations.gwen_schmied=gwen
