@@ -1,3 +1,13 @@
+require('pairsbykeys')
+function stations_getspeedwalksbyroomid(roomid)
+rettbl={}
+for name,id in pairsByKeys(stations) do
+if id==roomid then
+rettbl[#rettbl+1]=name
+end
+end
+return rettbl
+end
 abt="raum/b3870144ea3bbbe607804126f3b9c39e"
 alo="raum/e4fdca13e0ce2426c14221923d632606"
 amp="raum/e75e105053625dce0f77ce56e879f25c"

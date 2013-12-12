@@ -3154,11 +3154,17 @@ OnAvalonRoomID=function(type,message)
  tmessage=utils.split(message," ")
  id=tmessage[1]
  name=tmessage[2]
- x=tonumber(tmessage[3])
- y=tonumber(tmessage[4])
+ if tmessage[3] then
+ X=tonumber(utils.split(tmessage[3],"=")[2])
+ else
+ X=nil
+ end
+ if tmessage[4] then
+ Y=tonumber(utils.split(tmessage[4],"=")[2])
+ else
+ Y=nil
+ end
  RoomID=id
- X=x
- Y=y
  if not name or name=='Bitte' then
  return
  end
@@ -3480,7 +3486,7 @@ msg=''
 i=0
 for name,way in pairsByKeys(speedwalklist) do
 i=i+1
-msg=msg..name
+msg=msg..'\t'..name
 if configtbl.settings.SafeSpeedwalks==1 then
 if stations[name] then
 msg=msg.." (sicher)"
@@ -3500,7 +3506,7 @@ for name,way in pairsByKeys(speedwalklist) do
 sname=utils.split(name,'_')
 if string.lower(sname[1])==spd then
 i=i+1
-msg=msg..name
+msg=msg..'\t'..name
 if configtbl.settings.SafeSpeedwalks==1 then
 if stations[name] then
 msg=msg.." (sicher)"
@@ -3753,12 +3759,27 @@ end
 psnd("Misc/ConfigSwitch.ogg")
 end
 function print_position()
-world.Note("Zuletzt erkannte Position: "..RoomName)
+if Dunkel==1 then
+world.Note('Für diesen Raum konnten keine Informationen abgefragt werden, da es hier derzeit dunkel ist.')
+return
+end
+world.Note("Raumname: "..RoomName)
 if X then
 world.Note("X: "..tostring(X))
 end
 if Y then
 world.Note("Y: "..tostring(Y))
+end
+if configtbl.settings.SafeSpeedwalks==1 then
+list=stations_getspeedwalksbyroomid(RoomID)
+if #list>0 then
+msg='Von hier starten folgende sichere Speedwalks ('..#list..'):\n'
+for number,walk in pairs(list) do
+msg=msg..'\t'..walk..'\n'
+end
+msg=string.sub(msg,1,-2)
+world.Note(msg)
+end
 end
 end
 function rgbtohex(r,g,b)
