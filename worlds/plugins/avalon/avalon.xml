@@ -3344,7 +3344,7 @@ if mins>0 then
 msg=msg..tostring(mins)..' Minuten, '
 end
 msg=msg..tostring(secs)..' Sekunden' 
-world.Note(msg)
+NoteColour(msg,150,0,0,255,255,0)
 auratbl[sName]=nil
 end
 function aura_status()
