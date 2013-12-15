@@ -117,3 +117,8 @@ uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in de
 ver - Vern, Losaria
 wal - Hütte, Walhalla
 wl - Waldläufer, Tintagel
+
+Unterstützte Spiele
+---
+Wir werden anfangen, Spiele, soweit es möglich ist, mit Geräuschen zu untermalen und vielleicht auch für den Spielenden einfacher zu gestalten, vor Allem bei eher für Sehende ausgelegten Spielen kann dies für Blinde durchaus besser sein. Hier findet ihr eine Liste der bisher unterstützten Spiele, inklusive derer Spezialkommandos:
+Hajo: Vollständig mit Sounds unterlegt. Hajo besitzt ein extra alias "rausl", welches das MUD-Kommando rauslegen abkürzt und also genau so verwendet werden kann.

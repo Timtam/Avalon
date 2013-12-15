@@ -28,6 +28,139 @@
 
 <triggers>
   <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="* hat damit * Punkte erreicht und gewonnen!"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/loose.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du hast * Punkte erreicht und damit gewonnen. Herzlichen Glueckwunsch!"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/win.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Damit ist dieses Spiel beendet."
+   send_to="12"
+   sequence="95"
+  >
+  <send>world.EnableGroup("Spiele_Hajo",0)</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match=".* scheint etwas unaufmerksam gewesen zu sein.*|Du bist etwas unaufmerksam und bemerkst nicht.*"
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/dicefail.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du kannst in diesem 2. Zug nichts herauslegen *"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/secondturn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match=".* bekommt insgesamt .* Punkte gutgeschrieben. Der Joker.*|Du bekommst insgesamt .* Punkte gutgeschrieben. Du hattest.*"
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/writejoker.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du setzt Deinen Joker\.|.* setzt seinen Joker\."
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/joker.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du konntest auch nach drei Zuegen noch keine Punkte machen\.|.* konnte auch nach drei Zuegen noch keine Punkte machen\."
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/nowrite.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Nun bist Du an der Reihe."
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/yourturn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du bekommst insgesamt .* Punkte gutgeschrieben\.|.* bekommt insgesamt .* Punkte gutgeschrieben\."
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/write.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du konntest mit allen rausgelegten Wuerfeln Punkte machen .*|.* konnte alle Wuerfel rauslegen und hat nun aufs neue 3 Zuege.*"
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/again.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du legst .* raus\.|.* legt .* raus\."
+   regexp="y"
+   send_to="12"
+   sequence="94"
+  >
+  <send>psnd("Games/Hajo/collect.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Spiele_Hajo"
+   match="Du wuerfelst .*|.* wuerfelt .*"
+   regexp="y"
+   send_to="12"
+   sequence="95"
+  >
+  <send>psnd("Games/Hajo/dice.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Alle angegebenen Spieler sind da, also kann's ja losgehen."
+   send_to="12"
+   sequence="95"
+  >
+  <send>world.EnableGroup("Spiele_Hajo",1)</send>
+  </trigger>
+  <trigger
    enabled="y"
    match="Es wurden * Gegenstaende geladen."
    send_to="12"
@@ -2428,7 +2561,7 @@
    keep_evaluating="y"
    match="^Du legst .*$|^.* legt .* hin.$"
    regexp="y"
-   sequence="1"
+   sequence="95"
    send_to="12"
   >
 <send>psnd("Items/Put.ogg")</send>
@@ -2801,6 +2934,15 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
 <!--  Aliases  -->
 
 <aliases>
+  <alias
+   match="rausl *"
+   group="Spiele_Hajo"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>world.Execute("rauslegen %1")</send>
+</alias>
   <alias
    match="pos"
    enabled="y"
