@@ -198,8 +198,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd("Spells/StardustOn.ogg")
-        aura_add("Sternenstaub")</send>
+  <send>psnd("Spells/StardustOn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -207,8 +206,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd("Spells/StardustOff.ogg")
-        aura_remove("Sternenstaub")</send>
+  <send>psnd("Spells/StardustOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -240,8 +238,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd("Spells/MagicChargeOn.ogg")
-        aura_add("Magieaufladung")</send>
+  <send>psnd("Spells/MagicChargeOn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -249,8 +246,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd("Spells/MagicChargeOff.ogg")
-        aura_remove("Magieaufladung")</send>
+  <send>psnd("Spells/MagicChargeOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -266,8 +262,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/EarthAuraOff.ogg')
-        aura_remove('Erdaura')</send>
+  <send>psnd('Spells/EarthAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -276,8 +271,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/EarthAuraOn.ogg')
-        aura_add('Erdaura')</send>
+  <send>psnd('Spells/EarthAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -301,8 +295,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/AirAuraOff.ogg')
-        aura_remove('Luftaura')</send>
+  <send>psnd('Spells/AirAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -310,8 +303,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/AirAuraOn.ogg')
-        aura_add('Luftaura')</send>
+  <send>psnd('Spells/AirAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -335,8 +327,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/WaterAuraOff.ogg')
-        aura_remove('Wasseraura')</send>
+  <send>psnd('Spells/WaterAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -344,8 +335,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/WaterAuraOn.ogg')
-        aura_add('Wasseraura')</send>
+  <send>psnd('Spells/WaterAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -361,8 +351,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/DeathAuraOff.ogg')
-        aura_remove('Todesaura')</send>
+  <send>psnd('Spells/DeathAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -371,8 +360,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/DeathAuraOn.ogg')
-        aura_add('Todesaura')</send>
+  <send>psnd('Spells/DeathAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -388,8 +376,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>psnd('Spells/FireAuraOff.ogg')
-        aura_remove('Feueraura')</send>
+  <send>psnd('Spells/FireAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -398,8 +385,7 @@
    regexp="y"
    sequence="95"
   >
-  <send>psnd('Spells/FireAuraOn.ogg')
-        aura_add('Feueraura')</send>
+  <send>psnd('Spells/FireAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -416,14 +402,6 @@
    sequence="95"
   >
   <send>psnd('Spells/FireAura1.ogg')</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Du wirst von einer heiligen Aura umgeben."
-   send_to="12"
-   sequence="95"
-  >
-  <send>aura_add('Kampfbeschwoerung')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -488,8 +466,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/GolemShieldOff.ogg")
-        aura_remove('Golemschutzschild')</send>
+  <send>psnd("GolemCultists/GolemShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -497,8 +474,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/GolemShield.ogg")
-        aura_add('Golemschutzschild')</send>
+  <send>psnd("GolemCultists/GolemShield.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -506,8 +482,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/CoreShieldCreate.ogg")
-        aura_add('Kernschild')</send>
+  <send>psnd("GolemCultists/CoreShieldCreate.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -539,8 +514,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("GolemCultists/CoreShieldBreak.ogg")
-        aura_remove('Kernschild')</send>
+  <send>psnd("GolemCultists/CoreShieldBreak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -774,8 +748,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinOver.ogg")
-      aura_remove('Steinhaut')</send>
+<send>psnd("Spells/StoneskinOver.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -783,8 +756,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinBreak.ogg")
-      aura_remove('Steinhaut')</send>
+<send>psnd("Spells/StoneskinBreak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -811,8 +783,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinFinish.ogg")
-      aura_add('Steinhaut')</send>
+<send>psnd("Spells/StoneskinFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -828,8 +799,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOn.ogg")
-      aura_add('Schild')</send>
+<send>psnd("Spells/ShieldOn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -837,8 +807,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOff.ogg")
-      aura_remove('Schild')</send>
+<send>psnd("Spells/ShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -954,13 +923,12 @@
   </trigger>
   <trigger
    enabled="y"
-   match="(.*) heilige Aura loest sich auf.|Die heilige Aura von (.*) loest sich auf."
+   match=".* heilige Aura loest sich auf.|Die heilige Aura von .* loest sich auf."
    regexp="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/KB_Out.ogg")
-      kb_out("%1")</send>
+<send>psnd("Spells/KB_Out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1230,8 +1198,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3out.ogg")
-      aura_remove('Licht')</send>
+<send>psnd("Spells/light3out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1240,7 +1207,6 @@
    send_to="12"
   >
 <send>psnd("Spells/light3b.ogg")
-      aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
@@ -1417,8 +1383,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.ogg")
-      aura_remove('Licht')</send>
+<send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1426,8 +1391,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.ogg")
-      aura_remove('Licht')</send>
+<send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2551,7 +2515,6 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
@@ -2581,7 +2544,6 @@
    send_to="12"
   >
 <send>psnd("Misc/torch_on.ogg")
-      aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
@@ -3045,7 +3007,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    send_to="12"
    sequence="100"
   >
-  <send>aura_status()</send>
+  <send>spells_status()</send>
 </alias>
   <alias
    match="^/(.*?)$"
@@ -3223,12 +3185,26 @@ plugintbl[6]="hyperlink_url2.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
+require("avalon.activespells")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
 Ini=require('ini')
 Path=require("pl.path")
 PPI = require("ppi")
+spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\.","Dein Sternenstaub loest sich auf\.")
+spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\.","Deine Energien fliessen wieder normal\.")
+spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\.","Dein Staubschleier loest sich auf\.")
+spells_register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\.","Deine Watteflocken loesen sich auf\.")
+spells_register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\.")
+spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\.","Deine Todesaura loest sich auf\.")
+spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\.","Deine Feueraura loest sich auf\.")
+spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\.","Deine heilige Aura loest sich auf\.")
+spells_register("Golemschutzschild",".* umgibt ein magischer Schutzschild\.",".* magischer Schutzschild loest sich auf\.")
+spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\.","Dein Kernschild loest sich auf\.")
+spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
+spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
+spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 function OnAvalonLogin()
 atcp.Send("ava_set_channel 1")
 atcp.Send("ava_set_noinband_channel 1")
@@ -3460,59 +3436,6 @@ world.Accelerator("F10","volume_up")
 world.Accelerator("F11","volumetype_switch")
 world.Accelerator("ctrl+F11","switch_mute")
 world.Accelerator("ctrl+shift+F11","switch_fullmute")
-function kb_out(sender)
-if sender=='Deine' then
-aura_remove('Kampfbeschwoerung')
-end
-end
-function aura_add(sName)
-auratbl[sName]=os.time()
-end
-function aura_remove(sName)
-if auratbl[sName]==nil then
-return
-end
-time=auratbl[sName]
-msg=sName..' beendet, Dauer: '
-ltime=os.time()
-timediff=ltime-time
-hours=math.floor(timediff/(60*60))
-mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
-if hours >0 then
-msg=msg..tostring(hours)..' Stunden, '
-end
-if mins>0 then
-msg=msg..tostring(mins)..' Minuten, '
-end
-msg=msg..tostring(secs)..' Sekunden' 
-NoteColour(msg,150,0,0,255,255,0)
-auratbl[sName]=nil
-end
-function aura_status()
-msg=''
-ltime=os.time()
-for aura,time in pairsByKeys(auratbl) do
-msg = msg..aura..': '
-timediff=ltime-time
-hours=math.floor(timediff/(60*60))
-mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
-if hours >0 then
-msg=msg..tostring(hours)..' Stunden, '
-end
-if mins>0 then
-msg=msg..tostring(mins)..' Minuten, '
-end
-msg=msg..tostring(secs)..' Sekunden\n' 
-end
-if msg=='' then
-msg='Zurzeit sind keine Zauber aktiv.'
-else
-msg=string.sub(msg,1,-2)
-end
-world.Note(msg)
-end
 function play_tp(ntp)
 if g_tp == nil or g_max_tp == nil then
 return
