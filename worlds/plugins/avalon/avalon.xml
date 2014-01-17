@@ -170,6 +170,78 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Deine Fuehler fangen an zu blitzen, und darauf fangen sie an in einem"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/BallStart.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ueber Deinem Kopf entsteht eine gleissend helle Energiekugel, um deren"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/BallCreate.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Deine Energiekugel schiesst los und fliegt direkt auf *"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/Ball.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du konzentrierst Dich auf * waehrend*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/TailStart.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schiesst einen Feuerschweif auf *"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/Tail.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du starrst * an, waehrend*"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/ShockStart.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Vibration uebertraegt sich immer staerker werdend auf Deinen gesamten"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/ShockCharge.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Schockwelle breitet sich aus, und fliegt in Richtung*"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/Shock.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Als Du eine Leiche mit Deinen gelben Augen entdeckst, machst Du Dich sofort"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/Devour.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du streckst Deine Arme gen Himmel und *"
    send_to="12"
    sequence="95"
