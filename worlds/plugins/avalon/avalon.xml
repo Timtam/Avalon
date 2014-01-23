@@ -212,7 +212,7 @@
    enabled="y"
    match="Du starrst * an, waehrend*"
    send_to="12"
-   sequence="99"
+   sequence="100"
   >
   <send>psnd("Febracim/ShockStart.ogg")</send>
   </trigger>
@@ -220,7 +220,7 @@
    enabled="y"
    match="Die Vibration uebertraegt sich immer staerker werdend auf Deinen gesamten"
    send_to="12"
-   sequence="99"
+   sequence="100"
   >
   <send>psnd("Febracim/ShockCharge.ogg")</send>
   </trigger>
@@ -228,17 +228,113 @@
    enabled="y"
    match="Die Schockwelle breitet sich aus, und fliegt in Richtung*"
    send_to="12"
-   sequence="99"
+   sequence="100"
   >
   <send>psnd("Febracim/Shock.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Als Du eine Leiche mit Deinen gelben Augen entdeckst, machst Du Dich sofort"
+   match="Als Du * mit Deinen gelben Augen*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/Devour.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du Sprichst laut die Worte: Febra mestasa. Kurz darauf oeffnet sich gleich"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberOpen.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mit einem langsamen Knirschen schliesst sich die Luke ueber Dir. Was hat"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberClose.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Langsam beginnt sich der Raum mit einer Fluessigkeit zu fuellen."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberFill1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Boden unter Dir ist schon gar nicht mehr zu erkennen, und Du merkst,"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberFill1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die Fluessigkeit steigt immer weiter. Panik will in Dir aufkommen. Der"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberFill2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bist nun voellig von Dieser Fluessigkeit umgeben. Deine Lungen fuellen"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberLungs.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Febracim entspannt sich und geniesst das Bad in dieser seltsamen"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberFill2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du gewoehnst Dich langsam an das Einatmen der Fluessigkeit statt der"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberStretch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Febracim scheint sich zu Strecken und fuehlt sich scheinbar richtig"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberStretch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Febracim heilt sich langsam."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberHeal.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bekommst wieder Boden unter den Fuessen."
    send_to="12"
    sequence="99"
   >
-  <send>psnd("Febracim/Devour.ogg")</send>
+  <send>psnd("Febracim/ChamberStop.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mit einem Knirschen an der Decke oeffnet sich die Luke wieder. Der Febracim"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Febracim/ChamberOpen.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
