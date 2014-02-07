@@ -258,6 +258,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Mit einem langsamen Knirschen schliesst sich die Luke wieder, und ist schon"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Febracim/ChamberClose.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Langsam beginnt sich der Raum mit einer Fluessigkeit zu fuellen."
    send_to="12"
    sequence="100"
@@ -775,6 +783,24 @@
    send_to="12"
   >
   <send>psnd("Bard/Sun.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Da Du * im Schlaf beherrschst*"
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/InstrumentMaster.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="*dass Du sogar etwas Kraft sparst."
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send></send>
   </trigger>
   <trigger
    enabled="y"
