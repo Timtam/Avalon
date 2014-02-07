@@ -8,13 +8,13 @@
 <muclient>
 <plugin
    name="avalon"
-   author="magician, dranor"
+   author="Magician, Dranor, Chiaray"
    id="02dade4f6131c8d67e85c7ee"
    language="Lua"
    save_state="n"
-   date_written="2012-04-22 02:54:43"
+   date_written="2014-02-07 09:28:30"
    requires="4.70"
-   version="1.0"
+   version="2.0"
    >
 
 </plugin>
@@ -872,7 +872,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerFailed.ogg")</send>
+  <send>psnd("Mining/HammerFailed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -881,7 +881,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/QuiteGood.ogg")</send>
+  <send>psnd("Rune/QuiteGood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -891,7 +891,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Harden.ogg")</send>
+  <send>psnd("Rune/Harden.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -901,7 +901,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Hammer1.ogg")</send>
+  <send>psnd("Rune/Hammer1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -909,7 +909,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/EnterWater.ogg")</send>
+  <send>psnd("Player/EnterWater.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -917,7 +917,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/ExitWater.ogg")</send>
+  <send>psnd("Player/ExitWater.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -925,7 +925,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Disembowel2.ogg")</send>
+  <send>psnd("Cook/Disembowel2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -933,7 +933,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldRituals.ogg")</send>
+  <send>psnd("Spells/ShieldRituals.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -942,7 +942,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinOver.ogg")
+  <send>psnd("Spells/StoneskinOver.ogg")
       aura_remove('Steinhaut')</send>
   </trigger>
   <trigger
@@ -951,7 +951,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinBreak.ogg")
+  <send>psnd("Spells/StoneskinBreak.ogg")
       aura_remove('Steinhaut')</send>
   </trigger>
   <trigger
@@ -961,7 +961,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinStart.ogg")</send>
+  <send>psnd("Spells/StoneskinStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -970,7 +970,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinContinue.ogg")</send>
+  <send>psnd("Spells/StoneskinContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -979,7 +979,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/StoneskinFinish.ogg")
+  <send>psnd("Spells/StoneskinFinish.ogg")
       aura_add('Steinhaut')</send>
   </trigger>
   <trigger
@@ -988,24 +988,26 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldConcentrate.ogg")</send>
+  <send>psnd("Spells/ShieldConcentrate.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Du wirst von einem magischen Schild umgeben."
+   match="Du wirst von einem magischen Schild umgeben*"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOn.ogg")
+  <send>psnd("Spells/ShieldOn.ogg")
       aura_add('Schild')</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein magischer Schild loest sich auf."
+   match="Dein * loest sich auf."
+   regexp="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/ShieldOff.ogg")
+  <send>psnd("Spells/ShieldOff.ogg")
       aura_remove('Schild')</send>
   </trigger>
   <trigger
@@ -1015,17 +1017,16 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveFinish.ogg")</send>
+  <send>psnd("Rune/EngraveFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Mit einem lauten Knall laesst Du Deinen Schmiedehammer .*|niedersausen."
-   omit_from_output="y"
+   match="Mit einem lauten Knall laesst .* Schmiedehammer .*"
    regexp="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer1.ogg")</send>
+  <send>psnd("Smith/hammer1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1033,7 +1034,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopComplete.ogg")</send>
+  <send>psnd("Misc/ChopComplete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1042,7 +1043,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Finish2.ogg")</send>
+  <send>psnd("Tan/Finish2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1050,7 +1051,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Stop.ogg")</send>
+  <send>psnd("Bard/Stop.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1058,7 +1059,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Stop_Vocal.ogg")</send>
+  <send>psnd("Bard/Stop_Vocal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1067,7 +1068,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Done.ogg")</send>
+  <send>psnd("Misc/Done.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1076,7 +1077,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Finish1.ogg")</send>
+  <send>psnd("Tan/Finish1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1085,7 +1086,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/RuneGone.ogg")</send>
+  <send>psnd("Rune/RuneGone.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1094,7 +1095,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Polish.ogg")</send>
+  <send>psnd("Rune/Polish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1102,7 +1103,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/noway.ogg")</send>
+  <send>psnd("Misc/noway.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1110,7 +1111,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Confusion.ogg")</send>
+  <send>psnd("Bard/Confusion.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1118,7 +1119,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/RepairStart.ogg")</send>
+  <send>psnd("Smith/RepairStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1127,7 +1128,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/KB_Out.ogg")
+  <send>psnd("Spells/KB_Out.ogg")
       kb_out("%1")</send>
   </trigger>
   <trigger
@@ -1136,7 +1137,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/start.ogg")</send>
+  <send>psnd("Smith/start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1144,7 +1145,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Flame.ogg")</send>
+  <send>psnd("Rune/Flame.ogg")</send>
   </trigger>
   <trigger
    match="Du faengst an, .* auf .*"
@@ -1152,7 +1153,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/FileStart.ogg")</send>
+  <send>psnd("Rune/FileStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1179,7 +1180,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveStart.ogg")</send>
+  <send>psnd("Rune/EngraveStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1198,7 +1199,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/EngraveCorrect.ogg")</send>
+  <send>psnd("Rune/EngraveCorrect.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1217,7 +1218,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltClick.ogg")</send>
+  <send>psnd("Mining/MeltClick.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1227,7 +1228,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressContinue.ogg")</send>
+  <send>psnd("Mining/PressContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1235,7 +1236,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Track/Begin.ogg")</send>
+  <send>psnd("Track/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1243,7 +1244,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/HuntStart.ogg")</send>
+  <send>psnd("Player/HuntStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1251,7 +1252,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Knot.ogg")</send>
+  <send>psnd("Hiker/Knot.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1259,7 +1260,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Dry.ogg")</send>
+  <send>psnd("Hiker/Dry.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1267,7 +1268,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigGranite.ogg")</send>
+  <send>psnd("Mining/DigGranite.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1276,7 +1277,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Breath.ogg")</send>
+  <send>psnd("Tan/Breath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1284,7 +1285,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/FileEnd.ogg")</send>
+  <send>psnd("Rune/FileEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1294,7 +1295,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Hammer2.ogg")</send>
+  <send>psnd("Rune/Hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1302,7 +1303,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/RepairEnd.ogg")</send>
+  <send>psnd("Smith/RepairEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1338,7 +1339,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/Prepare.ogg")</send>
+  <send>psnd("Spells/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1355,7 +1356,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/Fail.ogg")</send>
+  <send>psnd("Spells/Fail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1363,7 +1364,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Smell.ogg")</send>
+  <send>psnd("Cook/Smell.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1373,7 +1374,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/CounterAttack.ogg")</send>
+  <send>psnd("Weapons/CounterAttack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1382,7 +1383,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalFail.ogg")</send>
+  <send>psnd("Mining/CoalFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1390,7 +1391,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Begin.ogg")</send>
+  <send>psnd("WateringPlace/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1398,7 +1399,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3out.ogg")
+  <send>psnd("Spells/light3out.ogg")
       aura_remove('Licht')</send>
   </trigger>
   <trigger
@@ -1407,7 +1408,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3b.ogg")
+  <send>psnd("Spells/light3b.ogg")
       aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
@@ -1417,7 +1418,17 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopBegin.ogg")</send>
+  <send>psnd("Misc/ChopBegin.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   lines_to_match="2"
+   match=".*, die Duesterklinge fluestert zu Dir: "
+   multi_line="y"
+   omit_from_output="y"
+   regexp="y"
+   sequence="100"
+  >
   </trigger>
   <trigger
    enabled="y"
@@ -1426,7 +1437,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Strong.ogg")</send>
+  <send>psnd("Monsters/Vortex/Strong.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1434,7 +1445,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Succeed.ogg")</send>
+  <send>psnd("Firestarting/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1443,7 +1454,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltRumble.ogg")</send>
+  <send>psnd("Mining/MeltRumble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1452,7 +1463,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/File.ogg")</send>
+  <send>psnd("Rune/File.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1461,7 +1472,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigCaveInDistant.ogg")</send>
+  <send>psnd("Mining/DigCaveInDistant.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1477,7 +1488,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Hunt.ogg")</send>
+  <send>psnd("Player/Hunt.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1485,7 +1496,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Prepare.ogg")</send>
+  <send>psnd("WateringPlace/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1493,7 +1504,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/sword_draw.ogg")</send>
+  <send>psnd("Weapons/sword_draw.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1501,7 +1512,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Calidus.ogg")</send>
+  <send>psnd("Misc/Calidus.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1510,7 +1521,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/Repair1.ogg")</send>
+  <send>psnd("Smith/Repair1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1518,7 +1529,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Wall.ogg")</send>
+  <send>psnd("Misc/Wall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1526,7 +1537,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/Stop.ogg")</send>
+  <send>psnd("Spells/Stop.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1534,7 +1545,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Tan/Finish3.ogg")</send>
+  <send>psnd("Tan/Finish3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1542,7 +1553,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Start.ogg")</send>
+  <send>psnd("Firestarting/Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1550,7 +1561,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1559,7 +1570,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer2.ogg")</send>
+  <send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1568,7 +1579,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/hammer2.ogg")</send>
+  <send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1577,7 +1588,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.ogg")</send>
+  <send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1585,7 +1596,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.ogg")
+  <send>psnd("Misc/torch_out.ogg")
       aura_remove('Licht')</send>
   </trigger>
   <trigger
@@ -1594,7 +1605,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/torch_out.ogg")
+  <send>psnd("Misc/torch_out.ogg")
       aura_remove('Licht')</send>
   </trigger>
   <trigger
@@ -1604,7 +1615,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigFinish.ogg")</send>
+  <send>psnd("Mining/DigFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1612,7 +1623,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Moisten.ogg")</send>
+  <send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1621,7 +1632,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Eat.ogg")</send>
+  <send>psnd("Player/Eat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1629,7 +1640,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/FailStart.ogg")</send>
+  <send>psnd("Firestarting/FailStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1637,7 +1648,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/FailSpark.ogg")</send>
+  <send>psnd("Firestarting/FailSpark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1645,7 +1656,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit3.ogg")</send>
+  <send>psnd("Spells/lavahit3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1653,7 +1664,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FireCrystal.ogg")</send>
+  <send>psnd("Cook/FireCrystal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1669,7 +1680,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit4.ogg")</send>
+  <send>psnd("Spells/lavahit4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1677,7 +1688,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FogOut.ogg")</send>
+  <send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1685,7 +1696,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Wave.ogg")</send>
+  <send>psnd("Rune/Wave.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1693,7 +1704,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.ogg")</send>
+  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1701,7 +1712,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Pan.ogg")</send>
+  <send>psnd("Cook/Pan.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1710,7 +1721,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/quake.ogg")</send>
+  <send>psnd("Portal/quake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1718,7 +1729,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Succeed.ogg")</send>
+  <send>psnd("WateringPlace/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1726,7 +1737,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Cook.ogg")</send>
+  <send>psnd("Cook/Cook.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1734,7 +1745,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.ogg")</send>
+  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1742,7 +1753,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Roast.ogg")</send>
+  <send>psnd("Cook/Roast.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1750,7 +1761,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.ogg")</send>
+  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1758,7 +1769,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/GoOut.ogg")</send>
+  <send>psnd("Firestarting/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1766,7 +1777,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fog.ogg")</send>
+  <send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1774,7 +1785,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Spark.ogg")</send>
+  <send>psnd("Rune/Spark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1791,7 +1802,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Plash.ogg")</send>
+  <send>psnd("Cook/Plash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1799,7 +1810,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/DisembowelSuccess.ogg")</send>
+  <send>psnd("Cook/DisembowelSuccess.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1808,7 +1819,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/ChartEnd.ogg")</send>
+  <send>psnd("Rune/ChartEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1816,7 +1827,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/GoOut.ogg")</send>
+  <send>psnd("WateringPlace/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1825,7 +1836,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressEmpty.ogg")</send>
+  <send>psnd("Mining/PressEmpty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1834,7 +1845,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltHeatUp.ogg")</send>
+  <send>psnd("Mining/MeltHeatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1843,7 +1854,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerSucceeded.ogg")</send>
+  <send>psnd("Mining/HammerSucceeded.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1851,7 +1862,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Open.ogg")</send>
+  <send>psnd("Misc/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1860,7 +1871,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/DoCancel.ogg")</send>
+  <send>psnd("Misc/DoCancel.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1868,7 +1879,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Unpack.ogg")</send>
+  <send>psnd("Cook/Unpack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1876,7 +1887,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/heal.ogg")</send>
+  <send>psnd("Spells/heal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1884,7 +1895,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit1.ogg")</send>
+  <send>psnd("Spells/lavahit1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1892,7 +1903,7 @@
    sequence="101"
    send_to="12"
   >
-<send>psnd("Player/EatUp.ogg")</send>
+  <send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1900,7 +1911,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/CookFinish.ogg")</send>
+  <send>psnd("Cook/CookFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1908,7 +1919,7 @@
    sequence="102"
    send_to="12"
   >
-<send>psnd("Items/Take.ogg")</send>
+  <send>psnd("Items/Take.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1916,7 +1927,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Granite.ogg")</send>
+  <send>psnd("Rune/Granite.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1931,7 +1942,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/create.ogg")</send>
+  <send>psnd("Portal/create.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1946,7 +1957,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Snake.ogg")</send>
+  <send>psnd("Rune/Snake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1954,7 +1965,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Zwoni.ogg")</send>
+  <send>psnd("Misc/Zwoni.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1962,7 +1973,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Cook/Boiling2.ogg")</send>
+  <send>psnd("Cook/Boiling2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1970,7 +1981,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/FogOut.ogg")</send>
+  <send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1979,7 +1990,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Smith/Repair2.ogg")</send>
+  <send>psnd("Smith/Repair2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1988,7 +1999,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigRocks.ogg")</send>
+  <send>psnd("Mining/DigRocks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1996,7 +2007,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Appear.ogg")</send>
+  <send>psnd("Monsters/Vortex/Appear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2004,7 +2015,7 @@
    sequence="99"
    send_to="12"
   >
-<send>psnd("Cook/RoastFinish.ogg")</send>
+  <send>psnd("Cook/RoastFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2012,7 +2023,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Swirl1.ogg")</send>
+  <send>psnd("Monsters/Vortex/Swirl1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2027,7 +2038,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.ogg")</send>
+  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2035,7 +2046,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Try.ogg")</send>
+  <send>psnd("Cook/Try.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2050,7 +2061,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Dig2.ogg")</send>
+  <send>psnd("WateringPlace/Dig2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2058,7 +2069,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Tan/Tear.ogg")</send>
+  <send>psnd("Tan/Tear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2066,7 +2077,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Stir.ogg")</send>
+  <send>psnd("Cook/Stir.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2074,7 +2085,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/say.ogg")</send>
+  <send>psnd("Player/say.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2083,7 +2094,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Scrape2.ogg")</send>
+  <send>psnd("Tan/Scrape2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2091,7 +2102,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Moisten.ogg")</send>
+  <send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2100,7 +2111,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigMud.ogg")</send>
+  <send>psnd("Mining/DigMud.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2108,7 +2119,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Fire.ogg")</send>
+  <send>psnd("Rune/Fire.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2116,7 +2127,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Swirl2.ogg")</send>
+  <send>psnd("Monsters/Vortex/Swirl2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2124,7 +2135,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Begin.ogg")</send>
+  <send>psnd("Firestarting/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2132,7 +2143,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Flood.ogg")</send>
+  <send>psnd("Rune/Flood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2141,7 +2152,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Scrape1.ogg")</send>
+  <send>psnd("Tan/Scrape1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2149,7 +2160,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/apear.ogg")</send>
+  <send>psnd("Portal/apear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2158,7 +2169,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalBegin.ogg")</send>
+  <send>psnd("Mining/CoalBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2166,7 +2177,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2174,7 +2185,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Colapse.ogg")</send>
+  <send>psnd("WateringPlace/Colapse.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2182,7 +2193,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2190,7 +2201,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam4.ogg")</send>
+  <send>psnd("Spells/firebeam4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2198,7 +2209,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/heal2.ogg")</send>
+  <send>psnd("Spells/heal2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2207,7 +2218,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigTool.ogg")</send>
+  <send>psnd("Mining/DigTool.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2215,7 +2226,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HackSucceed2.ogg")</send>
+  <send>psnd("Mining/HackSucceed2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2223,7 +2234,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/Close.ogg")</send>
+  <send>psnd("Misc/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2231,7 +2242,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/lavahit2.ogg")</send>
+  <send>psnd("Spells/lavahit2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2240,7 +2251,7 @@
    omit_from_output="y"
    send_to="12"
   >
-<send>psnd("Tan/Cut.ogg")</send>
+  <send>psnd("Tan/Cut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2248,7 +2259,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/Sword_Sheath.ogg")</send>
+  <send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2256,7 +2267,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/offhead.ogg")</send>
+  <send>psnd("Player/offhead.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2265,7 +2276,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Chart.ogg")</send>
+  <send>psnd("Rune/Chart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2273,7 +2284,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/WoodSplit.ogg")</send>
+  <send>psnd("Misc/WoodSplit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2281,7 +2292,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Birds_Attack.ogg")</send>
+  <send>psnd("Bard/Birds_Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2289,7 +2300,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Wear.ogg")</send>
+  <send>psnd("Player/Wear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2299,7 +2310,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerBegin.ogg")</send>
+  <send>psnd("Mining/HammerBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2307,7 +2318,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Heat.ogg")</send>
+  <send>psnd("Cook/Heat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2315,7 +2326,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Unwear.ogg")</send>
+  <send>psnd("Player/Unwear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2324,7 +2335,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HackSucceed1.ogg")</send>
+  <send>psnd("Mining/HackSucceed1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2332,7 +2343,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fly.ogg")</send>
+  <send>psnd("Cook/Fly.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2340,7 +2351,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2349,7 +2360,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigBegin.ogg")</send>
+  <send>psnd("Mining/DigBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2357,7 +2368,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Fog.ogg")</send>
+  <send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2365,7 +2376,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Flee.ogg")</send>
+  <send>psnd("Monsters/Flee.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2373,7 +2384,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Sparks.ogg")</send>
+  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2381,7 +2392,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/burst.ogg")</send>
+  <send>psnd("Firestarting/burst.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2389,7 +2400,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Portal/enter portal.ogg")</send>
+  <send>psnd("Portal/enter portal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2398,7 +2409,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Items/Get.ogg")</send>
+  <send>psnd("Items/Get.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2407,7 +2418,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerFail.ogg")</send>
+  <send>psnd("Mining/HammerFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2415,7 +2426,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/EatUp.ogg")</send>
+  <send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2425,7 +2436,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/HammerSucceed.ogg")</send>
+  <send>psnd("Mining/HammerSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2441,7 +2452,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/head.ogg")</send>
+  <send>psnd("Player/head.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2451,7 +2462,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalSucceed.ogg")</send>
+  <send>psnd("Mining/CoalSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2459,7 +2470,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Split.ogg")</send>
+  <send>psnd("Firestarting/Split.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2468,7 +2479,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigFall.ogg")</send>
+  <send>psnd("Mining/DigFall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2486,7 +2497,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Sing.ogg")</send>
+  <send>psnd("Bard/Sing.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2495,7 +2506,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Sing_Vocal.ogg")</send>
+  <send>psnd("Bard/Sing_Vocal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2503,7 +2514,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light1b.ogg")</send>
+  <send>psnd("Spells/light1b.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2511,7 +2522,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Vampire.ogg")</send>
+  <send>psnd("Rune/Vampire.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2519,7 +2530,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Lightning.ogg")</send>
+  <send>psnd("Rune/Lightning.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2527,7 +2538,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light2a.ogg")</send>
+  <send>psnd("Spells/light2a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2535,7 +2546,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Group.ogg")</send>
+  <send>psnd("Monsters/Vortex/Group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2543,7 +2554,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam2.ogg")</send>
+  <send>psnd("Spells/firebeam2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2551,7 +2562,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2559,7 +2570,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/light3a.ogg")</send>
+  <send>psnd("Spells/light3a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2567,7 +2578,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Crackle.ogg")</send>
+  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2576,7 +2587,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressRelease.ogg")</send>
+  <send>psnd("Mining/PressRelease.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2584,7 +2595,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/Damaged.ogg")</send>
+  <send>psnd("Smith/Damaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2593,7 +2604,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")
+  <send>psnd("Misc/torch_on.ogg")
       atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
@@ -2602,7 +2613,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/say.ogg")</send>
+  <send>psnd("Player/say.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2610,7 +2621,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Boiling1.ogg")</send>
+  <send>psnd("Cook/Boiling1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2618,7 +2629,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/HeavyDamaged.ogg")</send>
+  <send>psnd("Smith/HeavyDamaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2643,7 +2654,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/Sword_Sheath.ogg")</send>
+  <send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2652,7 +2663,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigCaveInAlert.ogg")</send>
+  <send>psnd("Mining/DigCaveInAlert.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2660,7 +2671,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Firestarting/Build.ogg")</send>
+  <send>psnd("Firestarting/Build.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2668,7 +2679,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/bubble.ogg")</send>
+  <send>psnd("Cook/bubble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2676,7 +2687,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Burial.ogg")</send>
+  <send>psnd("Bard/Burial.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2684,7 +2695,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam1.ogg")</send>
+  <send>psnd("Spells/firebeam1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2692,7 +2703,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Melody.ogg")</send>
+  <send>psnd("Cook/Melody.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2700,7 +2711,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltFinish.ogg")</send>
+  <send>psnd("Mining/MeltFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2710,7 +2721,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressBegin.ogg")</send>
+  <send>psnd("Mining/PressBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2718,7 +2729,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")
+  <send>psnd("Misc/torch_on.ogg")
       aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
@@ -2732,7 +2743,7 @@
    sequence="95"
    send_to="12"
   >
-<send>psnd("Items/Put.ogg")</send>
+  <send>psnd("Items/Put.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2740,7 +2751,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2748,7 +2759,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/torch_on.ogg")
+  <send>psnd("Misc/torch_on.ogg")
       aura_add('Licht')
       atcp.Send('ava_req_mapper')</send>
   </trigger>
@@ -2758,7 +2769,7 @@
    sequence="2"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Kill.ogg")</send>
+  <send>psnd("Monsters/Vortex/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2766,7 +2777,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/ChopHit.ogg")</send>
+  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2774,7 +2785,7 @@
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Lag.ogg")</send>
+  <send>psnd("Bard/Lag.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2782,7 +2793,7 @@
    sequence="2"
    send_to="12"
   >
-<send>psnd("Monsters/Vortex/Disintegrate.ogg")
+  <send>psnd("Monsters/Vortex/Disintegrate.ogg")
 world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
@@ -2792,7 +2803,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Misc/group.ogg")</send>
+  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2800,7 +2811,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Birds_Start.ogg")</send>
+  <send>psnd("Bard/Birds_Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2809,7 +2820,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="99"
    send_to="12"
   >
-<send>psnd("Items/GetMoney.ogg")</send>
+  <send>psnd("Items/GetMoney.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2817,7 +2828,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Rune/Bad.ogg")</send>
+  <send>psnd("Rune/Bad.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2825,7 +2836,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="99"
    send_to="12"
   >
-<send>psnd("Misc/ChopContinue.ogg")</send>
+  <send>psnd("Misc/ChopContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2841,7 +2852,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Items/Give.ogg")</send>
+  <send>psnd("Items/Give.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2850,7 +2861,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/PressFinish.ogg")</send>
+  <send>psnd("Mining/PressFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2858,7 +2869,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("WateringPlace/Dig1.ogg")</send>
+  <send>psnd("WateringPlace/Dig1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2866,7 +2877,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/DisembowelFail.ogg")</send>
+  <send>psnd("Cook/DisembowelFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2874,7 +2885,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Disembowel1.ogg")</send>
+  <send>psnd("Cook/Disembowel1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2883,7 +2894,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/DigContinue.ogg")</send>
+  <send>psnd("Mining/DigContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2893,7 +2904,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/MeltBubble.ogg")</send>
+  <send>psnd("Mining/MeltBubble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2902,7 +2913,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Cook/Turn.ogg")</send>
+  <send>psnd("Cook/Turn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2910,7 +2921,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/Attack.ogg")</send>
+  <send>psnd("Player/Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2919,7 +2930,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/Empty.ogg")</send>
+  <send>psnd("Mining/Empty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2927,7 +2938,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Open.ogg")</send>
+  <send>psnd("Hiker/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2935,7 +2946,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Spells/firebeam3.ogg")</send>
+  <send>psnd("Spells/firebeam3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2943,7 +2954,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/Close.ogg")</send>
+  <send>psnd("Hiker/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2951,7 +2962,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Hiker/WringOut.ogg")</send>
+  <send>psnd("Hiker/WringOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2968,7 +2979,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Heal.ogg")</send>
+  <send>psnd("Bard/Heal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2976,7 +2987,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Hypnosis.ogg")</send>
+  <send>psnd("Bard/Hypnosis.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2985,7 +2996,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/HuntAbort.ogg")</send>
+  <send>psnd("Player/HuntAbort.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2993,7 +3004,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Catcher.ogg")</send>
+  <send>psnd("Bard/Catcher.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3002,7 +3013,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Smith/complete.ogg")</send>
+  <send>psnd("Smith/complete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3010,7 +3021,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Bard/Dissonance.ogg")</send>
+  <send>psnd("Bard/Dissonance.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3019,7 +3030,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Mining/CoalSucceeded.ogg")</send>
+  <send>psnd("Mining/CoalSucceeded.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3027,7 +3038,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/arrow.ogg")</send>
+  <send>psnd("Weapons/arrow.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3035,7 +3046,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/waldtraene/forceend.ogg")</send>
+  <send>psnd("Player/waldtraene/forceend.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3044,7 +3055,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/waldtraene/sendzp.ogg")</send>
+  <send>psnd("Player/waldtraene/sendzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3053,7 +3064,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/waldtraene/startzp.ogg")</send>
+  <send>psnd("Player/waldtraene/startzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3061,17 +3072,17 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
    sequence="100"
    send_to="12"
   >
-<send>psnd("Player/waldtraene/fullzp.ogg")</send>
+  <send>psnd("Player/waldtraene/fullzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Traenen gleich fließen Tropfen goldenen Lichtes über die Blätter von 'Waldtraene' auf * zu.|Sie scheinen ihm fürchterliche Schmerzen zu bereiten."
+   match="Traenen gleich fliessen Tropfen goldenen Lichtes ueber die Blaetter von 'Waldtraene' auf * zu.|Sie scheinen ihm fuerchterliche Schmerzen zu bereiten."
    regexp="y"
    omit_from_output="y"
    sequence="100"
    send_to="12"
   >
-<send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
+  <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
 <trigger
    match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
@@ -3361,791 +3372,837 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   <send>Tintagel</send>
   </alias>
 </aliases>
-<!--  Script  -->
 
+<!--  Script  -->
 
 <script>
 <![CDATA[
-Audio=nil
-atcp=nil
-Dunkel=0
-EPKampfStart=nil
-EPStack={0}
-g_tp=nil
-g_max_tp=nil
-g_sp=nil
-g_max_sp=nil
-g_ap=nil
-g_max_ap=nil
-apfullannounced=false
-spfullannounced=false
-tpfullannounced=false
-hapsnd=nil
-hspnil=0
-htpsnd=nil
-hmusic=nil
-LastCommand=nil
-LevelUpdate=false
-PlayerEP=nil
-PlayerKill=false
-PlayerLevel=nil
-plugintbl={}
-plugintbl[1]='ATCP.plugin/plugin.xml'
-plugintbl[2]="LuaAudio.xml"
-plugintbl[3]="output_functions.xml"
-plugintbl[4]="omit_blank_lines.xml"
-plugintbl[5]="channel_history.xml"
-plugintbl[6]="hyperlink_url2.xml"
-RoomID=nil
-RoomName=''
-volumetype=1
+Audio              = nil
+atcp               = nil
+Dunkel             = 0
+EPKampfStart       = nil
+EPStack            = {0}
+g_tp               = nil
+g_max_tp           = nil
+g_sp               = nil
+g_max_sp           = nil
+g_ap               = nil
+g_max_ap           = nil
+apfullannounced    = false
+spfullannounced    = false
+tpfullannounced    = false
+hapsnd             = nil
+hspnil             = 0
+htpsnd             = nil
+hmusic             = nil
+LastCommand        = nil
+LevelUpdate        = false
+PlayerEP           = nil
+PlayerKill         = false
+PlayerLevel        = nil
+plugintbl          = {}
+plugintbl[1]       = "ATCP.plugin/plugin.xml"
+plugintbl[2]       = "LuaAudio.xml"
+plugintbl[3]       = "output_functions.xml"
+plugintbl[4]       = "omit_blank_lines.xml"
+plugintbl[5]       = "channel_history.xml"
+plugintbl[6]       = "hyperlink_url2.xml"
+RoomID             = nil
+RoomName           = ''
+volumetype         = 1
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
-Ini=require('ini')
-Path=require("pl.path")
+Ini = require("ini")
+Path = require("pl.path")
 PPI = require("ppi")
+
 function OnAvalonLogin()
-atcp.Send("ava_set_channel 1")
-atcp.Send("ava_set_noinband_channel 1")
-atcp.Send("ava_req_update")
+  atcp.Send("ava_set_channel 1")
+  atcp.Send("ava_set_noinband_channel 1")
+  atcp.Send("ava_req_update")
 end
-OnAvalonGetoetet=function(type,message)
- if type=="Avalon.Getoetet" then
- psnd("Player/Kill.ogg")
- elseif type=="Avalon.GruppeGetoetet" then
- psnd("Monsters/Kill.ogg")
- end
- if not EPKampfStart then
- return
- end
- if PlayerEP-EPKampfStart==0 then
- return
- end
- i=#EPStack
- cep=EPKampfStart
- repeat
- if EPStack[i]~=10 then
- monsterep=EPStack[i]
- break
- end
- cep=cep+EPStack[i]
- i=i-1
- until cep==PlayerEP
- if not monsterep then
- monsterep=10
- end
- world.Note("Dieses Monster gab "..monsterep.." EP.")
- if EPKampfStart+EPStack[#EPStack]~=PlayerEP and EPKampfStart~=PlayerEP then
- extraep=PlayerEP-(EPKampfStart+monsterep)
- world.Note("In diesem Kampf wurden zusätzlich "..extraep.." EP erreicht.")
- end
- EPKampfStart=PlayerEP
+
+OnAvalonGetoetet = function(type, message)
+  if (type == "Avalon.Getoetet") then
+    psnd("Player/Kill.ogg")
+  elseif (type == "Avalon.GruppeGetoetet") then
+    psnd("Monsters/Kill.ogg")
+  end
+  if not EPKampfStart then
+    return
+  end
+  if (PlayerEP - EPKampfStart == 0) then
+    return
+  end
+  i = #EPStack
+  cep = EPKampfStart
+  repeat
+    if (EPStack[i] ~= 10) then
+      monsterep = EPStack[i]
+      break
+    end
+    cep = cep + EPStack[i]
+    i = i - 1
+  until cep == PlayerEP
+  if not monsterep then
+    monsterep = 10
+  end
+  world.Note("Dieses Monster gab "..monsterep.." EP.")
+  if (EPKampfStart + EPStack[#EPStack] ~= PlayerEP) and (EPKampfStart ~= PlayerEP) then
+    extra_ep = PlayerEP - (EPKampfStart + monsterep)
+    world.Note("In diesem Kampf wurden zusaetzlich "..extra_ep.." EP erreicht.")
+  end
+  EPKampfStart = PlayerEP
 end
-OnAvalonKampf=function(type,message)
- if message=="1" then
- EPKampfStart=PlayerEP
- PlayerKill=false
- elseif message=="0" then
- if PlayerKill==false and PlayerEP-EPKampfStart>0 then
- extraep=PlayerEP-EPKampfStart
- world.Note("In diesem Kampf hast du "..extraep.." EP erhalten.")
- end
- EPKampfStart=PlayerEP
- end
+
+OnAvalonKampf = function(type, message)
+  if (message == "1") then
+    EPKampfStart = PlayerEP
+    PlayerKill = false
+  elseif (message == "0") then
+    if (PlayerKill == false) and (PlayerEP - EPKampfStart > 0) then
+      extra_ep = PlayerEP - EPKampfStart
+      world.Note("In diesem Kampf hast Du "..extra_ep.." EP erhalten.")
+    end
+    EPKampfStart = PlayerEP
+  end
 end
-OnAvalonDunkel=function(type,message)
- Dunkel=tonumber(message)
+
+OnAvalonDunkel = function(type, message)
+  Dunkel = tonumber(message)
 end
-OnAvalonChannel=function(type,message)
- channel,text=string.match(message,"^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
- if channel=="magier" or channel=="hyraskrieger" or channel=="barden" or channel=="golemkultisten" or channel=="druiden" or channel=="runenschmiede" or channel=="formwandler" or channel=="daemonenkrieger" then
- channel="gilde"
- end
- if Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg") then
- psnd("Channels/"..channel..".ogg")
- end
- NoteColour(text,255,255,150)
- world.Execute(";history_add "..channel.."="..text)
+
+OnAvalonChannel = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  if (channel == "magier") or (channel == "hyraskrieger") or (channel == "barden") or (channel == "golemkultisten") or (channel == "druiden") or (channel == "runenschmiede") or (channel == "formwandler") or (channel == "daemonenkrieger") then
+    channel="gilde"
+  end
+  if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
+    psnd("Channels/"..channel..".ogg")
+  end
+  NoteColour(text, 255, 255, 150)
+  world.Execute(";history_add "..channel.."="..text)
 end
-OnAvalonRoomID=function(type,message)
- tmessage=utils.split(message," ")
- id=tmessage[1]
- name=tmessage[2]
- if tmessage[3] then
- X=tonumber(utils.split(tmessage[3],"=")[2])
- else
- X=nil
- end
- if tmessage[4] then
- Y=tonumber(utils.split(tmessage[4],"=")[2])
- else
- Y=nil
- end
- RoomID=id
- if not name or name=='Bitte' then
- return
- end
- if name==RoomName and hmusic~=nil and Audio.isPlaying(hmusic)==1 then
- return
- end
- RoomName=name
- if not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg') then
- stopifplaying(hmusic)
- return
- end
- pmusic(name..'.ogg')
+
+OnAvalonRoomID = function(type, message)
+  tmessage = utils.split(message, " ")
+  id = tmessage[1]
+  name = tmessage[2]
+  if tmessage[3] then
+    X = tonumber(utils.split(tmessage[3],"=")[2])
+  else
+    X = nil
+  end
+  if tmessage[4] then
+    Y = tonumber(utils.split(tmessage[4],"=")[2])
+  else
+    Y = nil
+  end
+  RoomID = id
+  if (not name) or (name == 'Bitte') then
+    return
+  end
+  if (name == RoomName) and (hmusic ~= nil) and (Audio.isPlaying(hmusic) == 1) then
+    return
+  end
+  RoomName = name
+  if (not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg')) then
+    stopifplaying(hmusic)
+    return
+  end
+  pmusic(name..'.ogg')
 end 
-OnAvalonEP=function(message,ep)
- ep=tonumber(ep)
- if PlayerEP and ep-PlayerEP >0 then
- EPStack[#EPStack+1]=ep-PlayerEP
- end
- PlayerEP=ep
- if LevelUpdate then
- psnd("Misc/LevelUp.ogg")
- world.Note('Herzlichen Glueckwunsch! Level '..tostring(PlayerLevel)..' wurde mit '..tostring(PlayerEP)..' EP erreicht. Voraussichtliche EP zu Level '..tostring(PlayerLevel+1)..': '..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
- LevelUpdate=false
- end
+
+OnAvalonEP = function(message, ep)
+  ep = tonumber(ep)
+  if PlayerEP and (ep - PlayerEP > 0) then
+    EPStack[#EPStack+1] = ep - PlayerEP
+  end
+  PlayerEP = ep
+  if LevelUpdate then
+    psnd("Misc/LevelUp.ogg")
+    world.Note("Herzlichen Glueckwunsch! Level "..tostring(PlayerLevel).." wurde mit "..tostring(PlayerEP).." EP erreicht. Voraussichtliche EP zu Level "..tostring(PlayerLevel+1)..": "..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
+    LevelUpdate = false
+  end
 end
-OnAvalonLevel=function(type,message)
- local level=string.match(message,"^S(%d+)$")
- level=tonumber(level)
- if PlayerLevel ~=nil and level>PlayerLevel then
- LevelUpdate=true
- atcp.Send('ava_req_update')
- end
- PlayerLevel=level
+
+OnAvalonLevel = function(type, message)
+  local level = string.match(message, "^S(%d+)$")
+  level = tonumber(level)
+  if (PlayerLevel ~= nil) and (level > PlayerLevel) then
+    LevelUpdate = true
+    atcp.Send('ava_req_update')
+  end
+  PlayerLevel = level
 end
-OnAvalonTP=function(message,ntp)
- ntp=tonumber(ntp)
- play_tp(ntp)
- g_tp=ntp
+
+OnAvalonTP = function(message, ntp)
+  ntp = tonumber(ntp)
+  play_tp(ntp)
+  g_tp=ntp
 end
-OnAvalonSP=function(message,nsp)
- nsp=tonumber(nsp)
- play_sp(nsp)
- g_sp=nsp
+
+OnAvalonSP=function(message, nsp)
+  nsp = tonumber(nsp)
+  play_sp(nsp)
+  g_sp=nsp
 end
-OnAvalonAP=function(message,nap)
- nap=tonumber(nap)
- play_ap(nap)
- g_ap=nap
+
+OnAvalonAP = function(message, nap)
+  nap = tonumber(nap)
+  play_ap(nap)
+  g_ap = nap
 end
-OnAvalonMax=function(message,value)
- local type,content=string.match(value,"(%w+) (%d+)")
- if type=="TP" then
- g_max_tp=tonumber(content)
- elseif type=="SP" then
- g_max_sp=tonumber(content)
- elseif type=="AP" then
- g_max_ap=tonumber(content)
- end
+
+OnAvalonMax = function(message, value)
+  local type, content = string.match(value,"(%w+) (%d+)")
+  if (type == "TP") then
+    g_max_tp = tonumber(content)
+  elseif (type == "SP") then
+    g_max_sp = tonumber(content)
+  elseif (type == "AP") then
+    g_max_ap = tonumber(content)
+  end
 end
+
 function OnPluginInstall()
-local ctbl=Ini.read('config.dat')
-if ctbl then
-for name,section in pairs(ctbl) do
-for optionname,optionvalue in pairs(section) do
-config=tonumber(optionvalue)
-if config==nil then
-config=optionvalue
+  local ctbl = Ini.read('config.dat')
+  if ctbl then
+    for name, section in pairs(ctbl) do
+      for optionname, optionvalue in pairs(section) do
+        config = tonumber(optionvalue)
+        if (config == nil) then
+          config = optionvalue
+        end
+        configtbl[name][optionname] = config
+      end
+    end
+  end
+  plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..'.xml'
+  for number, plugin in pairs(plugintbl) do
+    pluginpath = world.GetInfo(60)..'/'..plugin
+    world.LoadPlugin(pluginpath)
+  end
+  Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
+  if not Audio then
+    error("Audio-Ausgabe konnte nicht initialisiert werden.")
+  end
+  if not Path.exists("config.dat") then
+    res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
+    if (res == "yes") then
+      os.execute("notepad.exe readme.txt")
+    end
+  end
 end
-configtbl[name][optionname]=config
-end
-end
-end
-plugintbl[#plugintbl+1]=configtbl.settings.ScreenReader..'.xml'
-for number,plugin in pairs(plugintbl) do
-pluginpath=world.GetInfo(60)..'/'..plugin
-world.LoadPlugin(pluginpath)
-end
-Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
- if not Audio then
- error("Audio-Ausgabe konnte nicht initialisiert werden.")
- end
-if not Path.exists("config.dat") then
-res=utils.msgbox("Es scheint, dass sie das Soundpack für Avalon das erste mal ausführen. Wenn dies so ist möchten wir sie gern auf die Readme-Datei hinweisen, welche alle Möglichkeiten des Soundpacks auflistet. Möchten sie diese Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
-if res=="yes" then
-os.execute("notepad.exe readme.txt")
-end
-end
-end
+
 function OnPluginCommandEntered(text)
-if configtbl.settings.RepeatCommand==0 then
-return text
+  if (configtbl.settings.RepeatCommand == 0) then
+    return text
+  end
+  if (text == "") and (LastCommand ~= nil) then
+    return LastCommand
+  else
+    if (text =="") then
+      LastCommand = ''
+      return ''
+    end
+    LastCommand = text
+    return text
+  end
 end
-if text=='' and LastCommand~=nil then
-return LastCommand
-else
-if text==' ' then
-LastCommand=''
-return ''
-end
-LastCommand=text
-return text
-end
-end
+
 function OnPluginClose()
-Ini.write('config.dat',configtbl)
+  Ini.write('config.dat', configtbl)
 end
+
 OnPluginListChanged = function()
-  if atcp==nil then
+  if (atcp == nil) then
   atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
   if not atcp then
     Note("ATCP funktioniert nicht!")
   elseif reloaded then
-    atcp.Listen("Avalon.TP",OnAvalonTP)
-    atcp.Listen("Avalon.SP",OnAvalonSP)
-    atcp.Listen("Avalon.AP",OnAvalonAP)
-    atcp.Listen("Avalon.MAX",OnAvalonMax)
-    atcp.Listen('Avalon.EP',OnAvalonEP)
-    atcp.Listen('Avalon.Level',OnAvalonLevel)
-    atcp.Listen('Avalon.RoomID',OnAvalonRoomID)
-    atcp.Listen('Avalon.Channel',OnAvalonChannel)
-    atcp.Listen('Avalon.Dunkel',OnAvalonDunkel)
-    atcp.Listen('Avalon.Kampf',OnAvalonKampf)
-    atcp.Listen('Avalon.Getoetet',OnAvalonGetoetet)
-    atcp.Listen("Avalon.GruppeGetoetet",OnAvalonGetoetet)
+    atcp.Listen("Avalon.TP", OnAvalonTP)
+    atcp.Listen("Avalon.SP", OnAvalonSP)
+    atcp.Listen("Avalon.AP", OnAvalonAP)
+    atcp.Listen("Avalon.MAX", OnAvalonMax)
+    atcp.Listen('Avalon.EP', OnAvalonEP)
+    atcp.Listen('Avalon.Level', OnAvalonLevel)
+    atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
+    atcp.Listen('Avalon.Channel', OnAvalonChannel)
+    atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
+    atcp.Listen('Avalon.Kampf', OnAvalonKampf)
+    atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
+    atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
   end
   end
 end
-spdtbl ={}
-spdind={0,0}
-spdstationstbl={}
-spdactive=false
-spdspeed=0.3
-spdextraspeed=0.7
-auratbl={}
-configtbl={}
-configtbl.settings={}
-configtbl.settings.ScreenReader='MushReader'
-configtbl.settings.SoundVolume=100
-configtbl.settings.MusicVolume=50
-configtbl.settings.TPBar=1
-configtbl.settings.SPBar=1
-configtbl.settings.APBar=1
-configtbl.settings.SoundsMuted=0
-configtbl.settings.MusicMuted=0
-configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.RepeatCommand=1
+
+spdtbl                            = {}
+spdind                            = {0,0}
+spdstationstbl                    = {}
+spdactive                         = false
+spdspeed                          = 0.3
+spdextraspeed                     = 0.7
+auratbl                           = {}
+configtbl                         = {}
+configtbl.settings                = {}
+configtbl.settings.ScreenReader   = 'MushReader'
+configtbl.settings.SoundVolume    = 100
+configtbl.settings.MusicVolume    = 50
+configtbl.settings.TPBar          = 1
+configtbl.settings.SPBar          = 1
+configtbl.settings.APBar          = 1
+configtbl.settings.SoundsMuted    = 0
+configtbl.settings.MusicMuted     = 0
+configtbl.settings.SafeSpeedwalks = 1
+configtbl.settings.RepeatCommand  = 1
+
+
 world.Accelerator("ctrl+D", "speedwalk_break")
-world.Accelerator("ctrl+F12","tts_switch")
-world.Accelerator("F2","tpbar_switch")
-world.Accelerator("F3","spbar_switch")
-world.Accelerator("F4","apbar_switch")
-world.Accelerator("F5","safespeedwalks_switch")
-world.Accelerator("F6","repeatcommand_switch")
-world.Accelerator("F9","volume_down")
-world.Accelerator("F10","volume_up")
-world.Accelerator("F11","volumetype_switch")
-world.Accelerator("ctrl+F11","switch_mute")
-world.Accelerator("ctrl+shift+F11","switch_fullmute")
+world.Accelerator("ctrl+F12", "tts_switch")
+world.Accelerator("F2", "tpbar_switch")
+world.Accelerator("F3", "spbar_switch")
+world.Accelerator("F4", "apbar_switch")
+world.Accelerator("F5", "safespeedwalks_switch")
+world.Accelerator("F6", "repeatcommand_switch")
+world.Accelerator("F9", "volume_down")
+world.Accelerator("F10", "volume_up")
+world.Accelerator("F11", "volumetype_switch")
+world.Accelerator("ctrl+F11", "switch_mute")
+world.Accelerator("ctrl+shift+F11", "switch_fullmute")
+
 function kb_out(sender)
-if sender=='Deine' then
-aura_remove('Kampfbeschwoerung')
+  if (sender == 'Deine') then
+    aura_remove('Kampfbeschwoerung')
+  end
 end
-end
+
 function aura_add(sName)
-auratbl[sName]=os.time()
+  auratbl[sName] = os.time()
 end
+
 function aura_remove(sName)
-if auratbl[sName]==nil then
-return
+  if (auratbl[sName] == nil) then
+    return
+  end
+  time = auratbl[sName]
+  msg = sName..' beendet, Dauer: '
+  ltime = os.time()
+  timediff = ltime - time
+  hours = math.floor(timediff / (60 * 60))
+  mins = math.floor((timediff - hours * 3600) / 60)
+  secs = math.floor(((timediff - hours * 3600) - mins * 60))
+  if (hours > 0) then
+    msg = msg..tostring(hours)..' Stunden, '
+  end
+  if (mins > 0) then
+    msg = msg..tostring(mins)..' Minuten, '
+  end
+  msg = msg..tostring(secs)..' Sekunden' 
+  NoteColour(msg, 150, 0, 0, 255, 255, 0)
+  auratbl[sName] = nil
 end
-time=auratbl[sName]
-msg=sName..' beendet, Dauer: '
-ltime=os.time()
-timediff=ltime-time
-hours=math.floor(timediff/(60*60))
-mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
-if hours >0 then
-msg=msg..tostring(hours)..' Stunden, '
-end
-if mins>0 then
-msg=msg..tostring(mins)..' Minuten, '
-end
-msg=msg..tostring(secs)..' Sekunden' 
-NoteColour(msg,150,0,0,255,255,0)
-auratbl[sName]=nil
-end
+
 function aura_status()
-msg=''
-ltime=os.time()
-for aura,time in pairsByKeys(auratbl) do
-msg = msg..aura..': '
-timediff=ltime-time
-hours=math.floor(timediff/(60*60))
-mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
-if hours >0 then
-msg=msg..tostring(hours)..' Stunden, '
-end
-if mins>0 then
-msg=msg..tostring(mins)..' Minuten, '
-end
-msg=msg..tostring(secs)..' Sekunden\n' 
-end
-if msg=='' then
-msg='Zurzeit sind keine Zauber aktiv.'
-else
-msg=string.sub(msg,1,-2)
-end
-world.Note(msg)
-end
-function play_tp(ntp)
-if g_tp == nil or g_max_tp == nil then
-return
-end
-if configtbl.settings.TPBar==0 then
-return
-end
-stopifplaying(htpsnd)
-percent=tonumber(ntp) / (tonumber(g_max_tp) / 100)
-if ntp > g_tp then
-htpsnd=psnd("Player/tpUp.ogg",2*math.floor(percent)-100)
-tpfullannounced=false
-elseif ntp < g_tp then
-htpsnd=psnd("Player/tpDown.ogg",2*math.floor(percent)-100)
-tpfullannounced=false
-end
-if ntp == g_max_tp and tpfullannounced==false then
-psnd("Player/tpMax.ogg")
-tpfullannounced=true
-end
-end
-function play_sp(nsp)
-if g_sp == nil or g_max_sp == nil then
-return
-end
-if configtbl.settings.SPBar==0 then
-return
-end
-stopifplaying(hspsnd)
-percent=tonumber(nsp) / (tonumber(g_max_sp) / 100)
-if nsp > g_sp then
-hspsnd=psnd("Player/spUp.ogg",2*math.floor(percent)-100)
-spfullannounced=false
-elseif nsp < g_sp then
-hspsnd=psnd("Player/spDown.ogg",2*math.floor(percent)-100)
-spfullannounced=false
-end
-if nsp == g_max_sp and spfullannounced==false then
-psnd("Player/spMax.ogg")
-spfullannounced=true
-end
-end
-function play_ap(nap)
-if g_ap == nil or g_max_ap == nil then
-return
-end
-if configtbl.settings.APBar==0 then
-return
-end
-stopifplaying(hapsnd)
-percent=tonumber(nap) / (tonumber(g_max_ap) / 100)
-if nap > g_ap then
-hapsnd=psnd("Player/apUp.ogg",2*math.floor(percent)-100)
-apfullannounced=false
-elseif nap < g_ap then
-hapsnd=psnd("Player/apDown.ogg",2*math.floor(percent)-100)
-apfullannounced=false
-end
-if nap == g_max_ap and apfullannounced==false then
-psnd("Player/apMax.ogg")
-apfullannounced=true
-end
-end
-function stopifplaying(id)
-if id==nil then
-return false
-end
-res=Audio.isPlaying(id)
-if res==1 then
-Audio.stop(id)
-end
-end
-function psnd(file,pan)
-pan=pan or 0
-if configtbl.settings.SoundsMuted==1 then
-return
-end
-return Audio.play(GetInfo(67).."Sounds/"..file,0,pan,configtbl.settings.SoundVolume)
-end
-function pmusic(file)
-if configtbl.settings.MusicMuted==1 then
-return
-end
-stopifplaying(hmusic)
-hmusic=Audio.play(GetInfo(67)..'Sounds/Music/'..file,1,0,configtbl.settings.MusicVolume)
-end
-function speedwalk_start(spd)
-if spd=='' or string.find(spd,'_')==nil then
-speedwalk_list(spd)
-return
-end
-if speedwalklist[spd]==nil then
-world.Note('Es existiert kein Speedwalk mit diesem Namen.')
-return
-end
-if configtbl.settings.SafeSpeedwalks==1 then
-if not stations[spd] then
-world.Note("Dieses Speedwalk muss nach dem alten System umgesetzt werden.")
-spdstationstbl[#spdstationstbl+1]=''
-speedwalk_init(speedwalklist[spd])
-return
-end
-spdstationstbl[#spdstationstbl+1]=stations[spd]
-speedwalk_init(speedwalklist[spd])
-else
-spdstationstbl[#spdstationstbl+1]=nil
-speedwalk_init(speedwalklist[spd])
-end
-end
-function speedwalk_list(spd)
-if spd=='' then
-msg=''
-i=0
-for name,way in pairsByKeys(speedwalklist) do
-i=i+1
-msg=msg..'\t'..name
-if configtbl.settings.SafeSpeedwalks==1 then
-if stations[name] then
-msg=msg.." (sicher)"
-else
-msg=msg.." (unsicher)"
-end
-end
-msg=msg.."\n"
-end
-msg='Speedwalk-Liste ('..tostring(i)..'):\n'..msg
-msg=string.sub(msg,1,-2)
-else
-spd=string.lower(spd)
-msg=''
-i=0
-for name,way in pairsByKeys(speedwalklist) do
-sname=utils.split(name,'_')
-if string.lower(sname[1])==spd then
-i=i+1
-msg=msg..'\t'..name
-if configtbl.settings.SafeSpeedwalks==1 then
-if stations[name] then
-msg=msg.." (sicher)"
-else
-msg=msg.." (unsicher)"
-end
-end
-msg=msg.."\n"
-end
-end
-if i==0 then
-msg='Es sind keine Speedwalks vorhanden, die von '..spd..' starten.'
-else
-msg='Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
-msg=string.sub(msg,1,-2)
-end
-end
-world.Note(msg)
-end
-function speedwalk_init(speedwalk)
-if not spdactive then
-spdtbl={}
-spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
-spdstationstbl={spdstationstbl[#spdstationstbl]}
-spdind={1,1}
-spdactive=true
-speedwalk_process()
-else
-spdtbl[#spdtbl+1]=utils.split(speedwalk," ")
-world.Note('Der neue Speedwalk wurde an den momentan laufenden angehängt.')
-end
-end
-function speedwalk_process()
-if configtbl.settings.SafeSpeedwalks==1 and spdind[2]==1 and spdstationstbl[spdind[1]]~='' then
-if Dunkel==1 then
-world.Note("Um sichere Speedwalks nutzen zu können, muss es auf deinem Feld hell sein.")
-spdactive=false
-return
-end
-if RoomID~=spdstationstbl[spdind[1]] and spdstationstbl[spdind[1]]~='' then
-world.Note("Der Speedwalk startet hier nicht.")
-spdactive=false
-return
-end
-end
-if not spdactive then
-return
-end
-command=string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
-world.Execute(command)
-spdind={spdind[1],spdind[2]+1}
-if spdind[2]==#spdtbl[spdind[1]]+1 then
-if not spdtbl[spdind[1]+1] then
-spdactive=false
-spdind={0,0}
-return
-else
-spdind={spdind[1]+1,1}
-end
-end
-if string.len(spdtbl[spdind[1]][spdind[2]])<=2 then
-DoAfterSpecial(spdspeed,"speedwalk_process()",12)
-else
-DoAfterSpecial(spdextraspeed,"speedwalk_process()",12)
-end
-end
-function speedwalk_break()
-if spdactive then
-spdactive=false
-else
-if spdind[1]==0 and spdind[2]==0 then
-return
-end
-if not spdtbl[spdind[1]][spdind[2]] then
-return
-end
-spdactive=true
-speedwalk_process()
-end
-end
-function speedwalk_breaklegs()
-if spdind[1]==0 and spdind[2]==0 then
-return
-end
-spdactive=false
-spdind={spdind[1],spdind[2]-2}
-end
-function tts_switch()
-world.UnloadPlugin(configtbl.settings.ScreenReader)
-if configtbl.settings.ScreenReader=="MushReader" then
-configtbl.settings.ScreenReader='tts_jfw'
-else
-configtbl.settings.ScreenReader='MushReader'
-end
-world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
-world.Note('Ausgabesystem geändert.')
-psnd("Misc/ConfigSwitch.ogg")
-end
-function volume(value)
-if volumetype==1 then
-if configtbl.settings.SoundVolume+value >100 or configtbl.settings.SoundVolume+value<0 then
-return
-end
-configtbl.settings.SoundVolume=configtbl.settings.SoundVolume+value
-psnd("Misc/VolumeSwitch.ogg")
-world.Note(tostring(configtbl.settings.SoundVolume)..'% Lautstärke für Sounds')
-else
-if configtbl.settings.MusicVolume+value >100 or configtbl.settings.MusicVolume+value<0 then
-return
-end
-configtbl.settings.MusicVolume=configtbl.settings.MusicVolume+value
-psnd("Misc/VolumeSwitch.ogg")
-if hmusic and Audio.isPlaying(hmusic)==1 then
-Audio.setVol(configtbl.settings.MusicVolume,hmusic)
-end
-world.Note(tostring(configtbl.settings.MusicVolume)..'% Lautstärke für Musik')
-end
-end
-function volumetype_switch()
-if volumetype==1 then
-volumetype=2
-world.Note('Lautstärkeregelung für Musik.')
-else
-volumetype=1
-world.Note('Lautstärkeregelung für Sounds.')
-end
-psnd('Misc/ConfigSwitch.ogg')
-end
-function tpbar_switch()
-if configtbl.settings.TPBar==1 then
-configtbl.settings.TPBar=0
-world.Note('TP-Ausgabe deaktiviert.')
-else
-configtbl.settings.TPBar=1
-world.Note('TP-Ausgabe aktiviert.')
-end
-psnd("Misc/ConfigSwitch.ogg")
-end
-function apbar_switch()
-if configtbl.settings.APBar==1 then
-configtbl.settings.APBar=0
-world.Note('AP-Ausgabe deaktiviert.')
-else
-configtbl.settings.APBar=1
-world.Note('AP-Ausgabe aktiviert.')
-end
-psnd("Misc/ConfigSwitch.ogg")
-end
-function spbar_switch()
-if configtbl.settings.SPBar==1 then
-configtbl.settings.SPBar=0
-world.Note('ZP-Ausgabe deaktiviert.')
-else
-configtbl.settings.SPBar=1
-world.Note('ZP-Ausgabe aktiviert.')
-end
-psnd("Misc/ConfigSwitch.ogg")
-end
-function repeatcommand_switch()
-if configtbl.settings.RepeatCommand==1 then
-configtbl.settings.RepeatCommand=0
-world.Note('Letztes Kommando mit Enter wiederholen deaktiviert.')
-else
-configtbl.settings.RepeatCommand=1
-world.Note('Letztes Kommando mit Enter wiederholen aktiviert.')
-end
-psnd("Misc/ConfigSwitch.ogg")
-end
-function round(num, idp)
-  return tonumber(string.format("%." .. (idp or 0) .. "f", num))
-end
-function OnPluginDisconnect()
-g_tp=nil
-g_max_tp=nil
-g_sp=nil
-g_max_sp=nil
-g_ap=nil
-g_max_ap=nil
-apfullannounced=false
-tpfullannounced=false
-spfullannounced=false
-hapsnd=nil
-hspnil=0
-htpsnd=nil
-LevelUpdate=false
-PlayerEP=nil
-PlayerLevel=nil
-RoomName=''
-stopifplaying(hmusic)
-hmusic=nil
-end
-function switch_mute()
-if volumetype==1 then
-if configtbl.settings.SoundsMuted==0 then
-configtbl.settings.SoundsMuted=1
-world.Note('Sounds deaktiviert.')
-else
-configtbl.settings.SoundsMuted=0
-world.Note('Sounds aktiviert.')
-end
-else
-if configtbl.settings.MusicMuted==0 then
-configtbl.settings.MusicMuted=1
-stopifplaying(hmusic)
-RoomName=''
-world.Note('Musik deaktiviert.')
-else
-configtbl.settings.MusicMuted=0
-atcp.Send('ava_req_mapper')
-world.Note('Musik aktiviert.')
-end
-end
-psnd('Misc/ConfigSwitch.ogg')
-end
-function switch_fullmute()
-if configtbl.settings.SoundsMuted==0 then
-configtbl.settings.SoundsMuted=1
-world.Note('Sounds deaktiviert.')
-else
-configtbl.settings.SoundsMuted=0
-world.Note('Sounds aktiviert.')
-end
-if configtbl.settings.MusicMuted==0 then
-configtbl.settings.MusicMuted=1
-stopifplaying(hmusic)
-RoomName=''
-world.Note('Musik deaktiviert.')
-else
-configtbl.settings.MusicMuted=0
-atcp.Send('ava_req_mapper')
-world.Note('Musik aktiviert.')
-end
-psnd('Misc/ConfigSwitch.ogg')
-end
-function array_concat(...)
-    local t = {}
-    local arg ={...}
-
-    for i = 1, #arg do
-        local array = arg[i]
-        if (type(array) == "table") then
-            for j = 1, #array do
-                t[#t+1] = array[j]
-            end
-        else
-            t[#t+1] = array
-        end
+  msg = ''
+  ltime = os.time()
+  for aura, time in pairsByKeys(auratbl) do
+    msg = msg..aura..': '
+    timediff = ltime - time
+    hours = math.floor(timediff / (60*60))
+    mins = math.floor((timediff - hours * 3600) / 60)
+    secs = math.floor(((timediff - hours * 3600) - mins * 60))
+    if (hours > 0) then
+      msg = msg..tostring(hours)..' Stunden, '
     end
+    if (mins > 0) then
+      msg = msg..tostring(mins)..' Minuten, '
+    end
+    msg = msg..tostring(secs)..' Sekunden\n' 
+  end
+  if (msg == '') then
+    msg = 'Zurzeit sind keine Zauber aktiv.'
+  else
+    msg = string.sub(msg, 1, -2)
+  end
+  world.Note(msg)
+end
 
-    return t
+function play_tp(ntp)
+  if (g_tp == nil) or (g_max_tp == nil) then
+    return
+  end
+  if (configtbl.settings.TPBar == 0) then
+    return
+  end
+  stopifplaying(htpsnd)
+  percent = tonumber(ntp) / (tonumber(g_max_tp) / 100)
+  if (ntp > g_tp) then
+    htpsnd = psnd("Player/tpUp.ogg", 2 * math.floor(percent) - 100)
+    tpfullannounced = false
+  elseif (ntp < g_tp) then
+    htpsnd = psnd("Player/tpDown.ogg", 2 * math.floor(percent) - 100)
+    tpfullannounced = false
+  end
+  if (ntp == g_max_tp) and (tpfullannounced == false) then
+    psnd("Player/tpMax.ogg")
+    tpfullannounced = true
+  end
 end
+
+function play_sp(nsp)
+  if (g_sp == nil) or (g_max_sp == nil) then
+    return
+  end
+  if (configtbl.settings.SPBar == 0) then
+    return
+  end
+  stopifplaying(hspsnd)
+  percent = tonumber(nsp) / (tonumber(g_max_sp) / 100)
+  if (nsp > g_sp) then
+    hspsnd = psnd("Player/spUp.ogg", 2 * math.floor(percent) - 100)
+    spfullannounced = false
+  elseif (nsp < g_sp) then
+    hspsnd = psnd("Player/spDown.ogg", 2 * math.floor(percent) - 100)
+    spfullannounced = false
+  end
+  if (nsp == g_max_sp) and (spfullannounced == false) then
+    psnd("Player/spMax.ogg")
+    spfullannounced = true
+  end
+end
+
+function play_ap(nap)
+  if (g_ap == nil) or (g_max_ap == nil) then
+    return
+  end
+  if (configtbl.settings.APBar == 0) then
+    return
+  end
+  stopifplaying(hapsnd)
+  percent = tonumber(nap) / (tonumber(g_max_ap) / 100)
+  if (nap > g_ap) then
+    hapsnd = psnd("Player/apUp.ogg", 2 * math.floor(percent) - 100)
+    apfullannounced = false
+  elseif (nap < g_ap) then
+    hapsnd = psnd("Player/apDown.ogg", 2 * math.floor(percent) - 100)
+    apfullannounced = false
+  end
+  if (nap == g_max_ap) and (apfullannounced == false) then
+    psnd("Player/apMax.ogg")
+    apfullannounced = true
+  end
+end
+
+function stopifplaying(id)
+  if (id == nil) then
+    return false
+  end
+  res = Audio.isPlaying(id)
+  if (res == 1) then
+    Audio.stop(id)
+  end
+end
+
+function psnd(file, pan)
+  pan = pan or 0
+  if (configtbl.settings.SoundsMuted == 1) then
+    return
+  end
+  return Audio.play(GetInfo(67)..'Sounds/'..file, 0, pan, configtbl.settings.SoundVolume)
+end
+
+function pmusic(file)
+  if (configtbl.settings.MusicMuted == 1) then
+    return
+  end
+  stopifplaying(hmusic)
+  hmusic = Audio.play(GetInfo(67)..'Sounds/Music/'..file, 1, 0, configtbl.settings.MusicVolume)
+end
+
+function speedwalk_start(spd)
+  if (spd == '') or (string.find(spd, '_') == nil) then
+    speedwalk_list(spd)
+    return
+  end
+  if (speedwalklist[spd] == nil) then
+    world.Note("Es existiert kein Speedwalk mit diesem Namen.")
+    return
+  end
+  if (configtbl.settings.SafeSpeedwalks == 1) then
+    if not stations[spd] then
+      world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
+      spdstationstbl[#spdstationstbl+1] = ''
+      speedwalk_init(speedwalklist[spd])
+      return
+    end
+    spdstationstbl[#spdstationstbl+1] = stations[spd]
+    speedwalk_init(speedwalklist[spd])
+  else
+    spdstationstbl[#spdstationstbl+1] = nil
+    speedwalk_init(speedwalklist[spd])
+  end
+end
+
+function speedwalk_list(spd)
+  if (spd == '') then
+    msg = ''
+    i = 0
+    for name, way in pairsByKeys(speedwalklist) do
+      i = i + 1
+      msg = msg..'\t'..name
+      if (configtbl.settings.SafeSpeedwalks == 1) then
+        if (stations[name]) then
+          msg = msg.." (sicher)"
+        else
+          msg = msg.." (unsicher)"
+        end
+      end
+      msg = msg.."\n"
+    end
+    msg = 'Speedwalk-Liste ('..tostring(i)..'):\n'..msg
+    msg = string.sub(msg, 1, -2)
+  else
+    spd = string.lower(spd)
+    msg = ''
+    i = 0
+    for name, way in pairsByKeys(speedwalklist) do
+      sname = utils.split(name, '_')
+      if (string.lower(sname[1]) == spd) then
+        i = i + 1
+        msg = msg..'\t'..name
+        if (configtbl.settings.SafeSpeedwalks == 1) then
+          if (stations[name]) then
+            msg = msg.." (sicher)"
+          else
+            msg=msg.." (unsicher)"
+          end
+        end
+        msg = msg.."\n"
+      end
+    end
+    if (i == 0) then
+      msg = "Es sind keine Speedwalks vorhanden, die von '..spd..' starten."
+    else
+      msg = "Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n"..msg
+      msg = string.sub(msg, 1, -2)
+    end
+  end
+  world.Note(msg)
+end
+
+function speedwalk_init(speedwalk)
+  if not spdactive then
+    spdtbl = {}
+    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+    spdstationstbl = {spdstationstbl[#spdstationstbl]}
+    spdind = {1,1}
+    spdactive = true
+    speedwalk_process()
+  else
+    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+    world.Note("Der neue Speedwalk wurde an den momentan laufenden angehängt.")
+  end
+end
+
+function speedwalk_process()
+  if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
+    if (Dunkel == 1) then
+      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein.")
+      spdactive = false
+      return
+    end
+    if (RoomID ~= spdstationstbl[spdind[1]]) and (spdstationstbl[spdind[1]] ~= '') then
+      world.Note("Der Speedwalk startet hier nicht.")
+      spdactive = false
+      return
+    end
+  end
+  if not spdactive then
+    return
+  end
+  command = string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
+  world.Execute(command)
+  spdind = {spdind[1], spdind[2]+1}
+  if (spdind[2] == #spdtbl[spdind[1]] + 1) then
+    if not spdtbl[spdind[1]+1] then
+      spdactive = false
+      spdind = {0,0}
+      return
+    else
+      spdind = {spdind[1] + 1,1}
+    end
+  end
+  if (string.len(spdtbl[spdind[1]][spdind[2]]) <= 2) then
+    DoAfterSpecial(spdspeed, "speedwalk_process()", 12)
+  else
+    DoAfterSpecial(spdextraspeed, "speedwalk_process()", 12)
+  end
+end
+
+function speedwalk_break()
+  if spdactive then
+    spdactive = false
+  else
+    if (spdind[1] == 0) and (spdind[2] == 0) then
+      return
+    end
+    if not spdtbl[spdind[1]][spdind[2]] then
+      return
+    end
+    spdactive = true
+    speedwalk_process()
+  end
+end
+
+function speedwalk_breaklegs()
+  if (spdind[1] == 0) and (spdind[2] == 0) then
+    return
+  end
+  spdactive = false
+  spdind = {spdind[1],spdind[2]-2}
+end
+
+function tts_switch()
+  world.UnloadPlugin(configtbl.settings.ScreenReader)
+  if (configtbl.settings.ScreenReader == "MushReader") then
+    configtbl.settings.ScreenReader = 'tts_jfw'
+  else
+    configtbl.settings.ScreenReader = 'MushReader'
+  end
+  world.LoadPlugin(world.GetInfo(60)..'/'..configtbl.settings.ScreenReader..'.xml')
+  world.Note('Ausgabesystem geändert.')
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function volume(value)
+  if (volumetype == 1) then
+    if (configtbl.settings.SoundVolume+value > 100) or (configtbl.settings.SoundVolume+value < 0) then
+      return
+    end
+    configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
+    psnd("Misc/VolumeSwitch.ogg")
+    world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
+  else
+    if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
+      return
+    end
+    configtbl.settings.MusicVolume = configtbl.settings.MusicVolume + value
+    psnd("Misc/VolumeSwitch.ogg")
+    if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
+      Audio.setVol(configtbl.settings.MusicVolume, hmusic)
+    end
+    world.Note("Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+  end
+end
+
+function volumetype_switch()
+  if (volumetype == 1) then
+    volumetype = 2
+    world.Note("Lautstärkeregelung für Musik.")
+  else
+    volumetype = 1
+    world.Note("Lautstärkeregelung für Sounds.")
+  end
+  psnd('Misc/ConfigSwitch.ogg')
+end
+
+function tpbar_switch()
+  if (configtbl.settings.TPBar == 1) then
+    configtbl.settings.TPBar = 0
+    world.Note("TP-Ausgabe ausgeschaltet.")
+  else
+    configtbl.settings.TPBar = 1
+    world.Note("TP-Ausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function apbar_switch()
+  if (configtbl.settings.APBar == 1) then
+    configtbl.settings.APBar = 0
+    world.Note("AP-Ausgabe ausgeschaltet.")
+  else
+    configtbl.settings.APBar = 1
+    world.Note("AP-Ausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function spbar_switch()
+  if (configtbl.settings.SPBar == 1) then
+    configtbl.settings.SPBar = 0
+    world.Note("ZP-Ausgabe ausgeschaltet.")
+  else
+    configtbl.settings.SPBar = 1
+    world.Note("ZP-Ausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function repeatcommand_switch()
+  if (configtbl.settings.RepeatCommand == 1) then
+    configtbl.settings.RepeatCommand = 0
+    world.Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
+  else
+    configtbl.settings.RepeatCommand = 1
+    world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function round(num, idp)
+  return tonumber(string.format(" %." .. (idp or 0) .. "f", num))
+end
+
+function OnPluginDisconnect()
+  g_tp = nil
+  g_max_tp = nil
+  g_sp = nil
+  g_max_sp = nil
+  g_ap = nil
+  g_max_ap = nil
+  apfullannounced = false
+  tpfullannounced = false
+  spfullannounced = false
+  hapsnd = nil
+  hspnil = 0
+  htpsnd = nil
+  LevelUpdate = false
+  PlayerEP = nil
+  PlayerLevel = nil
+  RoomName = ''
+  stopifplaying(hmusic)
+  hmusic = nil
+end
+
+function switch_mute()
+  if (volumetype == 1) then
+    if (configtbl.settings.SoundsMuted == 0) then
+      configtbl.settings.SoundsMuted = 1
+      world.Note("Sounds ausgeschaltet.")
+    else
+      configtbl.settings.SoundsMuted = 0
+      world.Note("Sounds eingeschaltet.")
+    end
+  else
+    if (configtbl.settings.MusicMuted == 0) then
+      configtbl.settings.MusicMuted = 1
+      stopifplaying(hmusic)
+      RoomName = ''
+      world.Note("Musik ausgeschaltet.")
+    else
+      configtbl.settings.MusicMuted = 0
+      atcp.Send('ava_req_mapper')
+      world.Note("Musik eingeschaltet.")
+    end
+  end
+  psnd('Misc/ConfigSwitch.ogg')
+end
+
+function switch_fullmute()
+  if (configtbl.settings.SoundsMuted == 0) then
+    configtbl.settings.SoundsMuted = 1
+    world.Note("Sounds ausgeschaltet.")
+  else
+    configtbl.settings.SoundsMuted = 0
+    world.Note("Sounds eingeschaltet.")
+  end
+  if (configtbl.settings.MusicMuted == 0) then
+    configtbl.settings.MusicMuted = 1
+    stopifplaying(hmusic)
+    RoomName = ''
+    world.Note("Musik ausgeschaltet.")
+  else
+    configtbl.settings.MusicMuted = 0
+    atcp.Send('ava_req_mapper')
+    world.Note("Musik eingeschaltet.")
+  end
+  psnd('Misc/ConfigSwitch.ogg')
+end
+
+function array_concat(...)
+  local t = {}
+  local arg ={...}
+  for i = 1, #arg do
+    local array = arg[i]
+    if (type(array) == "table") then
+      for j = 1, #array do
+        t[#t+1] = array[j]
+      end
+    else
+      t[#t+1] = array
+    end
+  end
+  return t
+end
+
 function safespeedwalks_switch()
-if configtbl.settings.SafeSpeedwalks==1 then
-world.Note("Deine Speedwalks werden nun nicht mehr überprüft.")
-configtbl.settings.SafeSpeedwalks=0
-else
-world.Note("Deine Speedwalks werden nun möglichst abgesichert.")
-configtbl.settings.SafeSpeedwalks=1
+  if (configtbl.settings.SafeSpeedwalks == 1) then
+    configtbl.settings.SafeSpeedwalks = 0
+    world.Note("Die Speedwalks werden nun nicht mehr überprüft.")
+  else
+    configtbl.settings.SafeSpeedwalks = 1
+    world.Note("Die Speedwalks werden nun möglichst abgesichert.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
 end
-psnd("Misc/ConfigSwitch.ogg")
-end
+
 function print_position()
-if Dunkel==1 then
-world.Note('Für diesen Raum konnten keine Informationen abgefragt werden, da es hier derzeit dunkel ist.')
-return
+  if (Dunkel == 1) then
+    world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
+    return
+  end
+  world.Note("Raumname: "..RoomName)
+  if (X and Y) then
+    world.Note("X: "..tostring(X)..", Y: "..tostring(Y))
+  end
+  if (configtbl.settings.SafeSpeedwalks == 1) then
+    list = stations_getspeedwalksbyroomid(RoomID)
+    if (#list > 0) then
+      msg = 'Von hier starten folgende sichere Speedwalks ('..#list..'):\n'
+      for number, walk in pairs(list) do
+        msg = msg..'\t'..walk..'\n'
+      end
+      msg = string.sub(msg, 1, -2)
+      world.Note(msg)
+    end
+  end
 end
-world.Note("Raumname: "..RoomName)
-if X then
-world.Note("X: "..tostring(X))
+
+function rgbtohex(r, g, b)
+  return r + (g * 256) + (b * 65536)
 end
-if Y then
-world.Note("Y: "..tostring(Y))
-end
-if configtbl.settings.SafeSpeedwalks==1 then
-list=stations_getspeedwalksbyroomid(RoomID)
-if #list>0 then
-msg='Von hier starten folgende sichere Speedwalks ('..#list..'):\n'
-for number,walk in pairs(list) do
-msg=msg..'\t'..walk..'\n'
-end
-msg=string.sub(msg,1,-2)
-world.Note(msg)
-end
-end
-end
-function rgbtohex(r,g,b)
-return r+(g*256)+(b*65536)
-end
-function NoteColour(text,rt,gt,bt,rb,gb,bb,style)
-if not rt then
-rt=255
-end
-if not gt then
-gt=255
-end
-if not bt then
-bt=255
-end
-if not rb then
-rb=0
-end
-if not gb then
-gb=0
-end
-if not bb then
-bb=0
-end
-world.NoteColourRGB(rgbtohex(rt,gt,bt),rgbtohex(rb,gb,bb))
-if style then
-world.NoteStyle(style)
-end
-world.Note(text)
-if style then
-world.NoteStyle(0)
-end
-world.NoteColourRGB(rgbtohex(255,255,255),0)
+
+function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
+  if not rt then
+    rt = 255
+  end
+  if not gt then
+    gt = 255
+  end
+  if not bt then
+    bt = 255
+  end
+  if not rb then
+    rb = 0
+  end
+  if not gb then
+    gb = 0
+  end
+  if not bb then
+    bb = 0
+  end
+  world.NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
+  if style then
+    world.NoteStyle(style)
+  end
+  world.Note(text)
+  if style then
+    world.NoteStyle(0)
+  end
+  world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
 end
 ]]>
 </script>
