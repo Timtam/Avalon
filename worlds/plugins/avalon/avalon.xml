@@ -2824,7 +2824,7 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="*Gruppe*"
+   match="*[Gruppe]*"
    keep_evaluating="y"
    sequence="100"
    send_to="12"
