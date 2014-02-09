@@ -1028,13 +1028,22 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Dein * loest sich auf."
+   match="Du wirst von einem magischen Schild umgeben*"
    regexp="y"
    sequence="100"
    send_to="12"
   >
+  <send>psnd("Spells/ShieldOn.ogg")
+      aura_add('Schwarzschild')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Schwarzschild loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
   <send>psnd("Spells/ShieldOff.ogg")
-      aura_remove('Schild')</send>
+      aura_remove('Schwarzschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2011,7 +2020,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein tiefer Kratzer in * muss *"
+   match="Ein tiefer Kratzer in .* muss .*"
    sequence="100"
    omit_from_output="y"
    send_to="12"
@@ -3420,6 +3429,9 @@ tpfullannounced    = false
 hapsnd             = nil
 hspnil             = 0
 htpsnd             = nil
+g_combat           = nil
+g_combat_music     = nil
+g_combat_music_name= nil
 hmusic             = nil
 LastCommand        = nil
 LevelUpdate        = false
@@ -3484,9 +3496,13 @@ end
 
 OnAvalonKampf = function(type, message)
   if (message == "1") then
+    g_combat = true
+    combat_music()
     EPKampfStart = PlayerEP
     PlayerKill = false
   elseif (message == "0") then
+    g_combat = false
+    combat_music()
     if (PlayerKill == false) and (PlayerEP - EPKampfStart > 0) then
       extra_ep = PlayerEP - EPKampfStart
       world.Note("In diesem Kampf hast Du "..extra_ep.." EP erhalten.")
@@ -3567,6 +3583,7 @@ OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
   play_tp(ntp)
   g_tp=ntp
+  combat_music()
 end
 
 OnAvalonSP=function(message, nsp)
@@ -3585,6 +3602,7 @@ OnAvalonMax = function(message, value)
   local type, content = string.match(value,"(%w+) (%d+)")
   if (type == "TP") then
     g_max_tp = tonumber(content)
+    combat_music()
   elseif (type == "SP") then
     g_max_sp = tonumber(content)
   elseif (type == "AP") then
@@ -3676,11 +3694,13 @@ configtbl.settings                = {}
 configtbl.settings.ScreenReader   = 'MushReader'
 configtbl.settings.SoundVolume    = 100
 configtbl.settings.MusicVolume    = 50
+configtbl.settings.CombatMusicVolume    = 50
 configtbl.settings.TPBar          = 1
 configtbl.settings.SPBar          = 1
 configtbl.settings.APBar          = 1
 configtbl.settings.SoundsMuted    = 0
 configtbl.settings.MusicMuted     = 0
+configtbl.settings.CombatMusicMuted     = 0
 configtbl.settings.SafeSpeedwalks = 1
 configtbl.settings.RepeatCommand  = 1
 
@@ -3828,6 +3848,7 @@ function stopifplaying(id)
   res = Audio.isPlaying(id)
   if (res == 1) then
     Audio.stop(id)
+    return true
   end
 end
 
@@ -4010,7 +4031,7 @@ function volume(value)
     configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
     psnd("Misc/VolumeSwitch.ogg")
     world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
-  else
+  elseif (volumetype == 2) then
     if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
       return
     end
@@ -4019,15 +4040,28 @@ function volume(value)
     if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
       Audio.setVol(configtbl.settings.MusicVolume, hmusic)
     end
-    world.Note("Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+    world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+  else
+    if (configtbl.settings.CombatMusicVolume+value > 100) or (configtbl.settings.CombatMusicVolume + value < 0) then
+      return
+    end
+    configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
+    psnd("Misc/VolumeSwitch.ogg")
+    if (g_combat_music) and (Audio.isPlaying(g_combat_music) == 1) then
+      Audio.setVol(configtbl.settings.CombatMusicVolume, g_combat_music)
+    end
+    world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
   end
 end
 
 function volumetype_switch()
   if (volumetype == 1) then
     volumetype = 2
-    world.Note("Lautstärkeregelung für Musik.")
-  else
+    world.Note("Lautstärkeregelung für Hintergrund-Musik.")
+  elseif (volumetype == 2) then
+    volumetype = 3
+    world.Note("Lautstärkeregelung für Kampf-Musik.")
+  else    
     volumetype = 1
     world.Note("Lautstärkeregelung für Sounds.")
   end
@@ -4112,16 +4146,25 @@ function switch_mute()
       configtbl.settings.SoundsMuted = 0
       world.Note("Sounds eingeschaltet.")
     end
-  else
+  elseif (volumetype == 2) then
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
       stopifplaying(hmusic)
       RoomName = ''
-      world.Note("Musik ausgeschaltet.")
+      world.Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
       atcp.Send('ava_req_mapper')
-      world.Note("Musik eingeschaltet.")
+      world.Note("Hintergrund-Musik eingeschaltet.")
+    end
+  else
+    if (configtbl.settings.CombatMusicMuted == 0) then
+      configtbl.settings.CombatMusicMuted = 1
+      stopifplaying(g_combat_music)
+      world.Note("Kampf-Musik ausgeschaltet.")
+    else
+      configtbl.settings.CombatMusicMuted = 0
+      world.Note("Kampf-Musik eingeschaltet.")
     end
   end
   psnd('Misc/ConfigSwitch.ogg')
@@ -4139,11 +4182,19 @@ function switch_fullmute()
     configtbl.settings.MusicMuted = 1
     stopifplaying(hmusic)
     RoomName = ''
-    world.Note("Musik ausgeschaltet.")
+    world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
     atcp.Send('ava_req_mapper')
-    world.Note("Musik eingeschaltet.")
+    world.Note("Hintergrund-Musik eingeschaltet.")
+  end
+  if (configtbl.settings.CombatMusicMuted == 0) then
+    configtbl.settings.CombatMusicMuted = 1
+    stopifplaying(g_combat_music)
+    world.Note("Kampf-Musik ausgeschaltet.")
+  else
+    configtbl.settings.CombatMusicMuted = 0
+    world.Note("Kampf-Musik eingeschaltet.")
   end
   psnd('Misc/ConfigSwitch.ogg')
 end
@@ -4229,6 +4280,46 @@ function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
     world.NoteStyle(0)
   end
   world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
+end
+
+function combat_music()
+  if g_combat == nil or g_combat == false then
+    if stopifplaying(g_combat_music) then
+      if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
+        Audio.setVol(configtbl.settings.MusicVolume, hmusic)
+      end
+    end
+    return
+  end
+  if g_tp == nil or g_max_tp == nil or configtbl.settings.CombatMusicMuted == 1 then
+    return
+  end
+  percentage = g_tp / (g_max_tp / 100)
+  if percentage >= 86 then
+    music = "excellent.ogg"
+  elseif percentage >= 72 then
+    music = "scratches.ogg"
+  elseif percentage >= 58 then
+    music = "small wounds.ogg"
+  elseif percentage >= 42 then
+    music = "quite a few.ogg"
+  elseif percentage >= 28 then
+    music = "big nasty.ogg"
+  elseif percentage >= 14 then
+    music = "pretty hurt.ogg"
+  elseif percentage >= 0 then
+    music = "awful.ogg"
+  end
+  if g_combat_music_name == nil or music ~= g_combat_music_name then
+    g_combat_music_name = music
+    stopifplaying(g_combat_music)
+  end
+  if g_combat_music == nil or Audio.isPlaying(g_combat_music) == 0 then
+    if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
+      Audio.setVol(0, hmusic)
+    end
+    g_combat_music = Audio.play(GetInfo(67)..'Sounds/Music/Combat/'..g_combat_music_name, 1, 0, configtbl.settings.CombatMusicVolume)
+  end
 end
 ]]>
 </script>
