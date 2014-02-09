@@ -1028,13 +1028,22 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Dein * loest sich auf."
+   match="Du wirst von einem magischen Schild umgeben*"
    regexp="y"
    sequence="100"
    send_to="12"
   >
+  <send>psnd("Spells/ShieldOn.ogg")
+      aura_add('Schwarzschild')</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein Schwarzschild loest sich auf."
+   sequence="100"
+   send_to="12"
+  >
   <send>psnd("Spells/ShieldOff.ogg")
-      aura_remove('Schild')</send>
+      aura_remove('Schwarzschild')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2011,7 +2020,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein tiefer Kratzer in * muss *"
+   match="Ein tiefer Kratzer in .* muss .*"
    sequence="100"
    omit_from_output="y"
    send_to="12"
