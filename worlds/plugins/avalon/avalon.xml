@@ -3420,6 +3420,9 @@ tpfullannounced    = false
 hapsnd             = nil
 hspnil             = 0
 htpsnd             = nil
+g_combat           = nil
+g_combat_music     = nil
+g_combat_music_name= nil
 hmusic             = nil
 LastCommand        = nil
 LevelUpdate        = false
@@ -3484,9 +3487,13 @@ end
 
 OnAvalonKampf = function(type, message)
   if (message == "1") then
+    g_combat = true
+    combat_music()
     EPKampfStart = PlayerEP
     PlayerKill = false
   elseif (message == "0") then
+    g_combat = false
+    combat_music()
     if (PlayerKill == false) and (PlayerEP - EPKampfStart > 0) then
       extra_ep = PlayerEP - EPKampfStart
       world.Note("In diesem Kampf hast Du "..extra_ep.." EP erhalten.")
@@ -3567,6 +3574,7 @@ OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
   play_tp(ntp)
   g_tp=ntp
+  combat_music()
 end
 
 OnAvalonSP=function(message, nsp)
@@ -3585,6 +3593,7 @@ OnAvalonMax = function(message, value)
   local type, content = string.match(value,"(%w+) (%d+)")
   if (type == "TP") then
     g_max_tp = tonumber(content)
+    combat_music()
   elseif (type == "SP") then
     g_max_sp = tonumber(content)
   elseif (type == "AP") then
@@ -3828,6 +3837,7 @@ function stopifplaying(id)
   res = Audio.isPlaying(id)
   if (res == 1) then
     Audio.stop(id)
+    return true
   end
 end
 
@@ -4229,6 +4239,46 @@ function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
     world.NoteStyle(0)
   end
   world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
+end
+
+function combat_music()
+  if g_combat == nil or g_combat == false then
+    if stopifplaying(g_combat_music) then
+      if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
+        Audio.setVol(configtbl.settings.MusicVolume, hmusic)
+      end
+    end
+    return
+  end
+  if g_tp == nil or g_max_tp == nil then
+    return
+  end
+  percentage = g_tp / (g_max_tp / 100)
+  if percentage >= 86 then
+    music = "excellent.ogg"
+  elseif percentage >= 72 then
+    music = "scratches.ogg"
+  elseif percentage >= 58 then
+    music = "small wounds.ogg"
+  elseif percentage >= 42 then
+    music = "quite a few.ogg"
+  elseif percentage >= 28 then
+    music = "big nasty.ogg"
+  elseif percentage >= 14 then
+    music = "pretty hurt.ogg"
+  elseif percentage >= 0 then
+    music = "awful.ogg"
+  end
+  if g_combat_music_name == nil or music ~= g_combat_music_name then
+    g_combat_music_name = music
+    stopifplaying(g_combat_music)
+  end
+  if g_combat_music == nil or Audio.isPlaying(g_combat_music) == 0 then
+    if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
+      Audio.setVol(0, hmusic)
+    end
+    g_combat_music = Audio.play(GetInfo(67)..'Sounds/Music/Combat/'..g_combat_music_name, 1, 0, configtbl.settings.MusicVolume)
+  end
 end
 ]]>
 </script>
