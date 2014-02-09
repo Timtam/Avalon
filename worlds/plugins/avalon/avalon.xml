@@ -3685,11 +3685,13 @@ configtbl.settings                = {}
 configtbl.settings.ScreenReader   = 'MushReader'
 configtbl.settings.SoundVolume    = 100
 configtbl.settings.MusicVolume    = 50
+configtbl.settings.CombatMusicVolume    = 50
 configtbl.settings.TPBar          = 1
 configtbl.settings.SPBar          = 1
 configtbl.settings.APBar          = 1
 configtbl.settings.SoundsMuted    = 0
 configtbl.settings.MusicMuted     = 0
+configtbl.settings.CombatMusicMuted     = 0
 configtbl.settings.SafeSpeedwalks = 1
 configtbl.settings.RepeatCommand  = 1
 
@@ -4020,7 +4022,7 @@ function volume(value)
     configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
     psnd("Misc/VolumeSwitch.ogg")
     world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
-  else
+  elseif (volumetype == 2) then
     if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
       return
     end
@@ -4029,15 +4031,28 @@ function volume(value)
     if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
       Audio.setVol(configtbl.settings.MusicVolume, hmusic)
     end
-    world.Note("Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+    world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+  else
+    if (configtbl.settings.CombatMusicVolume+value > 100) or (configtbl.settings.CombatMusicVolume + value < 0) then
+      return
+    end
+    configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
+    psnd("Misc/VolumeSwitch.ogg")
+    if (g_combat_music) and (Audio.isPlaying(g_combat_music) == 1) then
+      Audio.setVol(configtbl.settings.CombatMusicVolume, g_combat_music)
+    end
+    world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
   end
 end
 
 function volumetype_switch()
   if (volumetype == 1) then
     volumetype = 2
-    world.Note("Lautstärkeregelung für Musik.")
-  else
+    world.Note("Lautstärkeregelung für Hintergrund-Musik.")
+  elseif (volumetype == 2) then
+    volumetype = 3
+    world.Note("Lautstärkeregelung für Kampf-Musik.")
+  else    
     volumetype = 1
     world.Note("Lautstärkeregelung für Sounds.")
   end
@@ -4122,16 +4137,25 @@ function switch_mute()
       configtbl.settings.SoundsMuted = 0
       world.Note("Sounds eingeschaltet.")
     end
-  else
+  elseif (volumetype == 2) then
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
       stopifplaying(hmusic)
       RoomName = ''
-      world.Note("Musik ausgeschaltet.")
+      world.Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
       atcp.Send('ava_req_mapper')
-      world.Note("Musik eingeschaltet.")
+      world.Note("Hintergrund-Musik eingeschaltet.")
+    end
+  else
+    if (configtbl.settings.CombatMusicMuted == 0) then
+      configtbl.settings.CombatMusicMuted = 1
+      stopifplaying(g_combat_music)
+      world.Note("Kampf-Musik ausgeschaltet.")
+    else
+      configtbl.settings.CombatMusicMuted = 0
+      world.Note("Kampf-Musik eingeschaltet.")
     end
   end
   psnd('Misc/ConfigSwitch.ogg')
@@ -4149,11 +4173,19 @@ function switch_fullmute()
     configtbl.settings.MusicMuted = 1
     stopifplaying(hmusic)
     RoomName = ''
-    world.Note("Musik ausgeschaltet.")
+    world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
     atcp.Send('ava_req_mapper')
-    world.Note("Musik eingeschaltet.")
+    world.Note("Hintergrund-Musik eingeschaltet.")
+  end
+  if (configtbl.settings.CombatMusicMuted == 0) then
+    configtbl.settings.CombatMusicMuted = 1
+    stopifplaying(g_combat_music)
+    world.Note("Kampf-Musik ausgeschaltet.")
+  else
+    configtbl.settings.CombatMusicMuted = 0
+    world.Note("Kampf-Musik eingeschaltet.")
   end
   psnd('Misc/ConfigSwitch.ogg')
 end
@@ -4250,7 +4282,7 @@ function combat_music()
     end
     return
   end
-  if g_tp == nil or g_max_tp == nil then
+  if g_tp == nil or g_max_tp == nil or configtbl.settings.CombatMusicMuted == 1 then
     return
   end
   percentage = g_tp / (g_max_tp / 100)
@@ -4277,7 +4309,7 @@ function combat_music()
     if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
       Audio.setVol(0, hmusic)
     end
-    g_combat_music = Audio.play(GetInfo(67)..'Sounds/Music/Combat/'..g_combat_music_name, 1, 0, configtbl.settings.MusicVolume)
+    g_combat_music = Audio.play(GetInfo(67)..'Sounds/Music/Combat/'..g_combat_music_name, 1, 0, configtbl.settings.CombatMusicVolume)
   end
 end
 ]]>
