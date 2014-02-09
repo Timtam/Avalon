@@ -238,7 +238,7 @@ end
 -- helper function to say stuff
 function say(x) 
 if(GetVariable("tts")=="1") then
-Execute("tts_interrupt " .. x)
+Execute(";tts_interrupt " .. x)
 else
 Note(x)
 end
