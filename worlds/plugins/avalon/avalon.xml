@@ -3417,11 +3417,13 @@ configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
 configtbl.settings.MusicVolume=50
+configtbl.settings.CombatMusicVolume=50
 configtbl.settings.TPBar=1
 configtbl.settings.SPBar=1
 configtbl.settings.APBar=1
 configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
+configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.RepeatCommand=1
 world.Accelerator("ctrl+D", "speedwalk_break")
