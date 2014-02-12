@@ -3100,6 +3100,14 @@ world.Execute("lege streitaxt in deinen rucksack")</send>
   >
   <send>psnd("Player/waldtraene/vibration.ogg")</send>
 </trigger>
+<trigger
+   enabled="y"
+   match="Jemand klopft von draussen laut gegen die Tuer!"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/DoorKnock.ogg")</send>
+</trigger>
 </triggers>
 
 <!--  Aliases  -->
@@ -3811,12 +3819,12 @@ function speedwalk_list(spd)
       msg = msg..'\t'..name
       if (configtbl.settings.SafeSpeedwalks == 1) then
         if (stations[name]) then
-          msg = msg.." (sicher)"
+          msg = msg..' (sicher)'
         else
-          msg = msg.." (unsicher)"
+          msg = msg..' (unsicher)'
         end
       end
-      msg = msg.."\n"
+      msg = msg..'\n'
     end
     msg = 'Speedwalk-Liste ('..tostring(i)..'):\n'..msg
     msg = string.sub(msg, 1, -2)
@@ -3831,18 +3839,18 @@ function speedwalk_list(spd)
         msg = msg..'\t'..name
         if (configtbl.settings.SafeSpeedwalks == 1) then
           if (stations[name]) then
-            msg = msg.." (sicher)"
+            msg = msg..' (sicher)'
           else
-            msg=msg.." (unsicher)"
+            msg=msg..' (unsicher)'
           end
         end
-        msg = msg.."\n"
+        msg = msg..'\n'
       end
     end
     if (i == 0) then
-      msg = "Es sind keine Speedwalks vorhanden, die von '..spd..' starten."
+      msg = 'Es sind keine Speedwalks vorhanden, die von "..spd.." starten.'
     else
-      msg = "Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n"..msg
+      msg = 'Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
       msg = string.sub(msg, 1, -2)
     end
   end
@@ -3879,7 +3887,7 @@ function speedwalk_process()
   if not spdactive then
     return
   end
-  command = string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
+  command = string.gsub(spdtbl[spdind[1]][spdind[2]], '_', ' ')
   world.Execute(command)
   spdind = {spdind[1], spdind[2]+1}
   if (spdind[2] == #spdtbl[spdind[1]] + 1) then
