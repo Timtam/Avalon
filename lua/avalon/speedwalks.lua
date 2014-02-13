@@ -233,3 +233,7 @@ speedwalklist.min_form="n n n o o o n no o o o o no so o o o o o o o o o n nw nw
 speedwalklist.form_min="so so so so s w w w w w w w w w nw sw w w w w sw s w w w s s s"
 speedwalklist.tol_form="o o o o no no n nw nw nw no no no nw nw nw nw sw nw w w w nw sw w"
 speedwalklist.form_tol="o no so o o o so no so so so so sw sw sw so so so s sw sw w w w w"
+speedwalklist.lim_muehle="sw w nw nw w w w w nw no o o no o o no o no no o so o no o n"
+speedwalklist.muehle_lim="s w sw w nw w sw sw w sw w w sw w w sw so o o o o so so o no"
+speedwalklist.lim_schmied="sw w nw nw w w w w nw no o o no o o no o no no o so o no o o no o o no o"
+speedwalklist.schmied_lim="w sw w w sw w w sw w nw w sw sw w sw w w sw w w sw so o o o o so so o no"

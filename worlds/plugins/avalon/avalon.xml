@@ -2786,7 +2786,7 @@
    send_to="12"
   >
   <send>psnd("Monsters/Vortex/Disintegrate.ogg")
-world.Execute("lege streitaxt in deinen rucksack")</send>
+  world.Execute("stecke streitaxt in meinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -4155,8 +4155,16 @@ function print_position()
   end
   if (configtbl.settings.SafeSpeedwalks == 1) then
     list = stations_getspeedwalksbyroomid(RoomID)
-    if (#list > 0) then
-      msg = 'Von hier starten folgende sichere Speedwalks ('..#list..'):\n'
+    if (#list == 1) then
+      msg = 'Von hier startet ein sicherer Speedwalk:\n'
+      for number, walk in pairs(list) do
+        msg = msg..'\t'..walk..'\n'
+      end
+      msg = string.sub(msg, 1, -2)
+      world.Note(msg)
+    end
+    if (#list > 1) then
+      msg = 'Von hier starten '..#list..' sichere Speedwalks:\n'
       for number, walk in pairs(list) do
         msg = msg..'\t'..walk..'\n'
       end
