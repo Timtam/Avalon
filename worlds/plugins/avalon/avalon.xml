@@ -4149,14 +4149,14 @@ function print_position()
     world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
     return
   end
-  world.Note("Raumname: "..RoomName)
+  world.Note("Ort:\t"..RoomName)
   if (X and Y) then
-    world.Note("X: "..tostring(X)..", Y: "..tostring(Y))
+    world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end
   if (configtbl.settings.SafeSpeedwalks == 1) then
     list = stations_getspeedwalksbyroomid(RoomID)
     if (#list == 1) then
-      msg = 'Von hier startet ein sicherer Speedwalk:\n'
+      msg = '\nVon hier startet ein sicherer Speedwalk:\n'
       for number, walk in pairs(list) do
         msg = msg..'\t'..walk..'\n'
       end
@@ -4164,7 +4164,7 @@ function print_position()
       world.Note(msg)
     end
     if (#list > 1) then
-      msg = 'Von hier starten '..#list..' sichere Speedwalks:\n'
+      msg = '\nVon hier starten '..#list..' sichere Speedwalks:\n'
       for number, walk in pairs(list) do
         msg = msg..'\t'..walk..'\n'
       end
