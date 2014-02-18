@@ -895,8 +895,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung|der Rune auf .* nach."
-   omit_from_output="y"
+   match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung .*"
    regexp="y"
    sequence="100"
    send_to="12"
