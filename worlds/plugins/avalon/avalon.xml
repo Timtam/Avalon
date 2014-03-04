@@ -2798,6 +2798,22 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* moechte mit Dir eine Gruppe bilden."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/group.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du bildest mit * eine neue Gruppe."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/group.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du faengst an, &quot;Brems Vogellied&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -3873,7 +3889,7 @@ end
 function speedwalk_process()
   if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
     if (Dunkel == 1) then
-      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein.")
+      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
       spdactive = false
       return
     end
@@ -4135,10 +4151,10 @@ end
 function safespeedwalks_switch()
   if (configtbl.settings.SafeSpeedwalks == 1) then
     configtbl.settings.SafeSpeedwalks = 0
-    world.Note("Die Speedwalks werden nun nicht mehr überprüft.")
+    world.Note("Die Speedwalks werden nicht mehr abgesichert.")
   else
     configtbl.settings.SafeSpeedwalks = 1
-    world.Note("Die Speedwalks werden nun möglichst abgesichert.")
+    world.Note("Die Speedwalks werden nun abgesichert.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
