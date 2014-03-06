@@ -1,4 +1,5 @@
 require('pairsbykeys')
+require("string_indexing")
 spells={}
 warnings={}
 function spells_register(name,starttext,endtext)
@@ -8,7 +9,9 @@ spells[name]=0
 end
 function spells_start(name)
 spells[name]=os.time()
-spells_warn(name)
+if warnings[name]~=nil then
+spells_warn(name,warnings[name])
+end
 end
 function spells_stop(name)
 if spells[name]==nil or spells[name]==0 then
@@ -57,8 +60,8 @@ msg=string.sub(msg,1,-2)
 end
 world.Note(msg)
 end
-function spells_warn(spell)
-if spells[spell]==0 or warnings[spell]==nil then
+function spells_warn(spell,guid)
+if spells[spell]==0 or warnings[spell]~=guid then
 return
 end
 time=os.time()
@@ -76,7 +79,7 @@ end
 msg=msg.." aktiv"
 world.Note(msg)
 end
-world.DoAfterSpecial((60-seconds),"spells_warn('"..spell.."')",12)
+world.DoAfterSpecial((60-seconds),"spells_warn('"..spell.."', '"..guid.."')",12)
 end
 function spells_parsewarnings(warns)
 if warns==nil then
@@ -84,7 +87,11 @@ return
 end
 awarns=utils.split(warns,",")
 for key,value in pairs(awarns) do
-warnings[value]=true
+if spells[value]==nil then
+world.Note('Die Warnung für den Zauber "'..value..'" konnte nicht eingerichtet werden: dieser Zauber wird vom Soundpack momentan nicht unterstützt.')
+else
+warnings[value]=world.CreateGUID()
+end
 end
 end
 function spells_retrievewarnings()
@@ -92,7 +99,12 @@ swarns=''
 for key,value in pairs(warnings) do
 swarns=swarns..key..","
 end
-return string.sub(swarns,2,-2)
+if swarns[1]==',' then
+startind=2
+else
+startind=1
+end
+return string.sub(swarns,startind,-2)
 end
 function spells_printwarnings()
 i=0
@@ -126,8 +138,8 @@ return
 end
 if warnings[stbl[cnt]]==nil then
 world.Note("Warnungen für "..stbl[cnt].." aktiviert.")
-warnings[stbl[cnt]]=true
-spells_warn(stbl[cnt])
+warnings[stbl[cnt]]=world.CreateGUID()
+spells_warn(stbl[cnt],warnings[stbl[cnt]])
 else
 world.Note("Warnungen für "..stbl[cnt].." deaktiviert.")
 warnings[stbl[cnt]]=nil
