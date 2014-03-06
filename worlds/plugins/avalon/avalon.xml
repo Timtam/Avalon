@@ -1000,7 +1000,6 @@
   <trigger
    enabled="y"
    match="Dein * loest sich auf."
-   regexp="y"
    sequence="100"
    send_to="12"
   >
@@ -3259,6 +3258,15 @@
   <send>speedwalk_start("%1")</send>
 </alias>
   <alias
+   match="^!(.*?)$"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>warnings_access("%1")</send>
+</alias>
+  <alias
    match="janis"
    enabled="y"
    send_to="2"
@@ -3654,6 +3662,7 @@ function OnPluginInstall()
     pluginpath = world.GetInfo(60)..'/'..plugin
     world.LoadPlugin(pluginpath)
   end
+  spells_parsewarnings(configtbl.settings.Warnings)
   Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
   if not Audio then
     error("Audio-Ausgabe konnte nicht initialisiert werden.")
@@ -3683,6 +3692,7 @@ function OnPluginCommandEntered(text)
 end
 
 function OnPluginClose()
+  configtbl.settings.Warnings=spells_retrievewarnings()
   Ini.write('config.dat', configtbl)
 end
 
@@ -4260,6 +4270,13 @@ function combat_music()
       Audio.setVol(0, hmusic)
     end
     g_combat_music = Audio.play(GetInfo(67)..'Sounds/Music/Combat/'..g_combat_music_name, 1, 0, configtbl.settings.CombatMusicVolume)
+  end
+end
+function warnings_access(warn)
+  if warn=='' then
+    spells_printwarnings()
+  else
+    spells_togglewarnings(warn)
   end
 end
 ]]>
