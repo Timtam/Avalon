@@ -1,4 +1,4 @@
-Herzlich Willkommen zu unserem Soundpack für das MUD Avalon. Bereits seid 2011 entwickeln Dranor und Magician daran weiter, immer wieder unterstützt von anderen Leuten, die uns ihre Ideen zuleiten und das Soundpack somit indirekt weiterentwickeln. In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu allen Feature-Details finden. Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden. Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
+Herzlich Willkommen zu unserem Soundpack für das MUD Avalon. Bereits seid 2011 entwickeln Dranor und Magician daran weiter, immer wieder unterstützt von anderen Leuten, die uns ihre Ideen zuleiten und das Soundpack somit indirekt weiterentwickeln. Seit 2014 ist auch Chiaray mit im Entwicklerteam. In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu allen Feature-Details finden. Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden. Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
 
 Sounds
 ---
@@ -19,16 +19,19 @@ Eingefleischte Zocker wissen, dass man unter Muting das Stummschalten bezeichnet
 
 ScreenReader-Unterstützung
 ---
-Da einige Leute mit der Unterstützung von Jaws mit dem von uns verwendeten Ausgabe-Plugin hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
+Da einige Leute mit der Unterstützung von Jaws mit dem von uns verwendeten Ausgabe-Plugin Probleme hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
 
 TP-, ZP- und AP-Ausgabe
 ---
 Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds. Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren. Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus :).
 Hinweis: Falls ihr euch wundert, dass die Sound-Ausgaben etwas asynchron zum Spielverlauf arbeiten und ihr denkt, dass es zu langsam bzw. ineffizient wäre - falsch gedacht. Tatsächlich ist es schneller und präziser als die Ingame-Ausgabe, da die Ingame-Ausgabe höchstens jede Sekunde Werte ausgibt, die Sound-Ausgaben jedoch sofort reagiert.
 
-zauber-Tracking
+zauber-Tracking und Warnungen
 ---
 Wir haben die Funktion eingebaut, dass man vor Allem Schutzzauber startet und anschließend jeder Zeit die bereits laufende Zeit der zauber abfragen kann. Dazu benötigt man nur das Kommando "az".
+Dazugekommen ist außerdem die Möglichkeit, sich Warnungen über den aktuellen Verlauf eines Zaubers ausgeben lassen zu können. Dazu benötigt man ausschließlich das Ausrufezeichen (!). Tippt man einfach nur !, so werden einem die unterstützten Zauber ausgegeben, zusammen mit einer Nummer, die benötigt wird, wenn ihr eine Warnung einschalten wollt. Tippt ihr das !, direkt gefolgt von der Nummer, so wird die Warnung für diesen Zauber aktiviert/deaktiviert.
+Beispiel: !9
+Anschließend wird minütlich eine Warnung ausgegeben, die euch darauf hinweist, dass euer Zauber noch läuft.
 Hinweis: Bisher sind noch nicht alle Zauber unterstützt. Wir werden jedoch versuchen, nach und nach alle Zauber aufzunehmen. Falls ihr noch etwas hinzugefügt haben wollt, meldet euch einfach bei uns.
 
 Optimierte Ausgabe
