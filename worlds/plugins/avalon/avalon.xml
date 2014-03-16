@@ -605,7 +605,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du konzentriest Dich auf *"
+   match="Du konzentriest|konzentrierst Dich auf .*"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
@@ -3874,7 +3875,7 @@ function speedwalk_list(spd)
       end
     end
     if (i == 0) then
-      msg = 'Es sind keine Speedwalks vorhanden, die von "..spd.." starten.'
+      msg = 'Es sind keine Speedwalks vorhanden, die von '..spd..' starten.'
     else
       msg = 'Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
       msg = string.sub(msg, 1, -2)
