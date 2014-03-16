@@ -27,6 +27,18 @@
 <!--  Triggers  -->
 
 <triggers>
+<!--  <trigger
+<!--   enabled="y"
+<!--   match="^Im\sMoment\skennst\sDu\sfolgende\sDaemonen\:\s(?s)(.*)\sDamit\skennst\sDu\sbereits\s.*\swahre\sNamen\svon\sDaemonen\.\Z"
+<!--   multi_line="y"
+<!--   lines_to_match="13"
+<!--   regexp="y"
+<!--   send_to="12"
+<!--   sequence="95"
+<!--  >
+<!--  <send>str=[[%1]]
+<!--        Test(str)</send>
+<!--  </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
@@ -345,7 +357,8 @@
   <send>psnd("Febracim/ChamberOpen.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Du streckst Deine Arme gen Himmel und *"
    send_to="12"
    sequence="95"
@@ -353,7 +366,8 @@
   <send>psnd("Spells/Stardust1.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Zwischen Deinen Haenden entsteht eine leuchtende Kugel,*"
    send_to="12"
    sequence="95"
@@ -361,7 +375,8 @@
   <send>psnd("Spells/Stardust2.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Die Kugel zerspringt mit einem lauten Knall*"
    send_to="12"
    sequence="95"
@@ -369,7 +384,8 @@
   <send>psnd("Spells/Stardust3.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Du wirst von Sternenstaub umgeben."
    send_to="12"
    sequence="95"
@@ -377,7 +393,8 @@
   <send>psnd("Spells/StardustOn.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Dein Sternenstaub loest sich auf."
    send_to="12"
    sequence="95"
@@ -393,7 +410,8 @@
   <send>OnAvalonLogin()</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Du beginnst Deine regenerativen Energien anzuzapfen."
    send_to="12"
    sequence="95"
@@ -401,7 +419,8 @@
   <send>psnd("Spells/MagicCharge1.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Du spuerst, wie die Energien Dir zur Verfuegung stehen."
    send_to="12"
    sequence="95"
@@ -409,7 +428,8 @@
   <send>psnd("Spells/MagicCharge2.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt."
    send_to="12"
    sequence="95"
@@ -417,7 +437,8 @@
   <send>psnd("Spells/MagicChargeOn.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Magier"
    match="Deine Energien fliessen wieder normal."
    send_to="12"
    sequence="95"
@@ -604,7 +625,8 @@
   <send>psnd("Player/Drown1.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Du konzentriest|konzentrierst Dich auf .*"
    regexp="y"
    sequence="100"
@@ -613,7 +635,8 @@
   <send>psnd("GolemCultists/GolemConcentrate.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Du versuchst * telepathisch einen Befehl zu geben."
    sequence="100"
    send_to="12"
@@ -621,7 +644,8 @@
   <send>psnd("GolemCultists/GolemCommunicate.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Die Augen von * blitzen kurz auf."
    omit_from_output="y"
    sequence="100"
@@ -630,7 +654,8 @@
   <send></send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="* trifft * mit seiner Faust. Gleichzeitig *"
    sequence="100"
    send_to="12"
@@ -638,7 +663,8 @@
   <send>psnd("GolemCultists/GolemManaPunch.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="* magischer Schutzschild loest sich auf."
    sequence="100"
    send_to="12"
@@ -646,7 +672,8 @@
   <send>psnd("GolemCultists/GolemShieldOff.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="* umgibt ein magischer Schutzschild."
    sequence="100"
    send_to="12"
@@ -654,7 +681,8 @@
   <send>psnd("GolemCultists/GolemShield.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Das Glitzern legt sich als schuetzendes Schild ueber Dich."
    sequence="100"
    send_to="12"
@@ -662,7 +690,8 @@
   <send>psnd("GolemCultists/CoreShieldCreate.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Du konzentriest Dich."
    sequence="100"
    send_to="12"
@@ -670,7 +699,8 @@
   <send>psnd("spells/Prepare.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Du nimmst Deinen Energiekern in die Hand und *"
    sequence="100"
    send_to="12"
@@ -678,7 +708,8 @@
   <send>psnd("GolemCultists/CoreShieldAbsorb.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Das Leuchten Deines Energiekerns laesst nach, waehrend Du *"
    sequence="100"
    send_to="12"
@@ -686,7 +717,8 @@
   <send>psnd("GolemCultists/CoreShieldShine.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Dein Kernschild loest sich auf."
    sequence="100"
    send_to="12"
@@ -694,7 +726,8 @@
   <send>psnd("GolemCultists/CoreShieldBreak.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Du suchst an * nach Rissen und anderen Macken."
    sequence="100"
    send_to="12"
@@ -702,7 +735,8 @@
   <send>psnd("GolemCultists/GolemHealSearch.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="Schnell verschliesst Du die Wunden des Golems. Dabei murmelst Du *"
    sequence="100"
    send_to="12"
@@ -710,7 +744,8 @@
   <send>psnd("GolemCultists/GolemHealFix.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Golemkultisten"
    match="* sieht schon viel besser aus."
    sequence="100"
    send_to="12"
@@ -752,7 +787,8 @@
   <send>psnd("Misc/Zwonirobe.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -760,7 +796,8 @@
   <send>psnd("Bard/Sun.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Da Du * im Schlaf beherrschst*"
    omit_from_output="y"
    sequence="100"
@@ -769,7 +806,8 @@
   <send>psnd("Bard/InstrumentMaster.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="*dass Du sogar etwas Kraft sparst."
    omit_from_output="y"
    sequence="100"
@@ -778,7 +816,8 @@
   <send></send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Rosarios Tanzlied&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -786,7 +825,8 @@
   <send>psnd("Bard/Dance.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Rumbolds Ruhe&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -794,7 +834,8 @@
   <send>psnd("Bard/Quietness.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Eine Stimmung der Ruhe und Friedfertigkeit benebelt alle Gegner."
    sequence="100"
    send_to="12"
@@ -802,7 +843,8 @@
   <send>psnd("Bard/QuietnessOn.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="* kann sich langsam vom beruhigenden *"
    sequence="100"
    send_to="12"
@@ -810,7 +852,8 @@
   <send>psnd("Bard/QuietnessOff.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Wallenroths Wut&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -818,7 +861,8 @@
   <send>psnd("Bard/Rage1.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Deine Bewegungen werden zusehends schneller."
    sequence="100"
    send_to="12"
@@ -826,7 +870,8 @@
   <send>psnd("Bard/Rage2.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Kaum hast Du aufgehoert zu spielen, bewegt sich wieder alles in seiner"
    sequence="100"
    send_to="12"
@@ -843,7 +888,8 @@
   <send>psnd("Bard/Sun_Regen.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Dolores' Euphorie&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -851,7 +897,8 @@
   <send>psnd("Bard/Euphoria.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du hast keine magische Kraft mehr, die Du in das Lied*"
    sequence="100"
    send_to="12"
@@ -876,7 +923,8 @@
   <send>psnd("Mining/HammerFailed.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match=".*Sie ist noch ganz gut zu erkennen.*|.*Sie ist noch ausreichend zu erkennen.*"
    regexp="y"
    sequence="100"
@@ -885,7 +933,8 @@
   <send>psnd("Rune/QuiteGood.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du haertest den Rohling wieder und wieder, damit er spaeter den magischen|Energien beim Gravieren standhalten kann."
    omit_from_output="y"
    regexp="y"
@@ -895,7 +944,8 @@
   <send>psnd("Rune/Harden.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung .*"
    regexp="y"
    sequence="100"
@@ -1007,7 +1057,8 @@
   <send>psnd("Spells/ShieldOff.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du hast erfolgreich .* in .*"
    regexp="y"
    sequence="100"
@@ -1042,7 +1093,8 @@
   <send>psnd("Tan/Finish2.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du hoerst auf, * zu spielen."
    sequence="100"
    send_to="12"
@@ -1050,7 +1102,8 @@
   <send>psnd("Bard/Stop.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du hoerst auf, * zu singen."
    sequence="100"
    send_to="12"
@@ -1076,7 +1129,8 @@
   <send>psnd("Tan/Finish1.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Von der .*rune .*|Schliesslich ist von der .*rune nichts mehr uebrig."
    regexp="y"
    sequence="100"
@@ -1085,7 +1139,8 @@
   <send>psnd("Rune/RuneGone.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Vorsichtig polierst Du * noch etwas..."
    omit_from_output="y"
    sequence="100"
@@ -1102,7 +1157,8 @@
   <send>psnd("Misc/noway.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Renfields Wirrsal&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -1135,7 +1191,8 @@
   <send>psnd("Smith/start.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Auf * lodert eine kleine Flamme kurz auf."
    sequence="100"
    send_to="12"
@@ -1143,6 +1200,8 @@
   <send>psnd("Rune/Flame.ogg")</send>
   </trigger>
   <trigger
+   enabled="n"
+   group="Runenschmiede"
    match="Du faengst an, .* auf .*"
    regexp="y"
    sequence="100"
@@ -1169,7 +1228,8 @@
   <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du faengst an, .* in .*"
    regexp="y"
    sequence="100"
@@ -1187,7 +1247,8 @@
   <send>%1, %2</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
    omit_from_output="y"
    regexp="y"
@@ -1275,7 +1336,8 @@
   <send>psnd("Tan/Breath.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Schliesslich bist Du der Meinung, die Rune nicht weiter nachziehen zu"
    sequence="100"
    send_to="12"
@@ -1283,7 +1345,8 @@
   <send>psnd("Rune/FileEnd.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
    omit_from_output="y"
    regexp="y"
@@ -1452,7 +1515,8 @@
   <send>psnd("Mining/MeltRumble.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du feilst vorsichtig die Raender der .* auf .*|Kraftvoll schleifst Du die .* von .*"
    regexp="y"
    sequence="100"
@@ -1684,7 +1748,8 @@
   <send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Ein kleiner Wasserschwall schwappt von Deinem *"
    sequence="100"
    send_to="12"
@@ -1773,7 +1838,8 @@
   <send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Einige Funken springen von Deinem *"
    sequence="100"
    send_to="12"
@@ -1806,7 +1872,8 @@
   <send>psnd("Cook/DisembowelSuccess.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Endlich bist Du mit dem Vorzeichnen fertig."
    omit_from_output="y"
    sequence="100"
@@ -1915,7 +1982,8 @@
   <send>psnd("Items/Take.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Die Illusion einer Granitfaust schiesst aus *"
    sequence="100"
    send_to="12"
@@ -1923,7 +1991,8 @@
   <send>psnd("Rune/Granite.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Die Lichtwesen folgen Dir."
    omit_from_output="y"
    sequence="100"
@@ -1938,14 +2007,16 @@
   <send>psnd("Portal/create.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du hoerst auf, &quot;Brems Vogellied&quot; zu spielen."
    omit_from_output="y"
    sequence="99"
   >
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Die Schlangenrune *"
    sequence="100"
    send_to="12"
@@ -2108,7 +2179,8 @@
   <send>psnd("Mining/DigMud.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Eine Stichflamme schiesst aus *"
    sequence="100"
    send_to="12"
@@ -2132,7 +2204,8 @@
   <send>psnd("Firestarting/Begin.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Eine Wasserfontaene schiesst aus *"
    sequence="100"
    send_to="12"
@@ -2264,7 +2337,8 @@
   <send>psnd("Player/offhead.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du zeichnest vorsichtig die Rune auf * vor."
    omit_from_output="y"
    sequence="100"
@@ -2281,7 +2355,8 @@
   <send>psnd("Misc/WoodSplit.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="* Voegel stuerz* auf * herab.*"
    sequence="100"
    send_to="12"
@@ -2398,7 +2473,6 @@
   </trigger>
   <trigger
    enabled="y"
-   group="Player"
    match="* gibt Dir *"
    sequence="100"
    send_to="12"
@@ -2476,7 +2550,8 @@
   <send>psnd("Mining/DigFall.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
    send_to="12"
    sequence="99"
@@ -2484,7 +2559,8 @@
   <send>psnd("Bard/Grats.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du spielst .* auf Deine.*"
    regexp="y"
    omit_from_output="y"
@@ -2494,7 +2570,8 @@
   <send>psnd("Bard/Sing.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du singst * ohne instrumentale Unterstuetzung*"
    omit_from_output="y"
    sequence="100"
@@ -2511,7 +2588,8 @@
   <send>psnd("Spells/light1b.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
    sequence="100"
    send_to="12"
@@ -2519,7 +2597,8 @@
   <send>psnd("Rune/Vampire.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="Ein Blitz schiesst aus *"
    sequence="100"
    send_to="12"
@@ -2676,7 +2755,8 @@
   <send>psnd("Cook/bubble.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du stimmst eine dunkle, getragene Totenklage *"
    sequence="100"
    send_to="12"
@@ -2728,7 +2808,6 @@
   </trigger>
   <trigger
    enabled="y"
-   group="Player"
    ignore_case="y"
    keep_evaluating="y"
    match="^Du legst .*$|^.* legt .* hin.$"
@@ -2772,7 +2851,8 @@
   <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Auroras Lag&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -2814,7 +2894,8 @@
   <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Brems Vogellied&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -2831,7 +2912,8 @@
   <send>psnd("Items/GetMoney.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Runenschmiede"
    match="*Sie ist kaum noch zu erkennen*"
    sequence="100"
    send_to="12"
@@ -2982,7 +3064,8 @@
   <send>%1, %2</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Fabians Gnade&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -2990,7 +3073,8 @@
   <send>psnd("Bard/Heal.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Grinwells Stimme im Geist&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -3007,7 +3091,8 @@
   <send>psnd("Player/HuntAbort.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Josuas Rattenfaengerlied&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -3024,7 +3109,8 @@
   <send>psnd("Smith/complete.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
+   enabled="n"
+   group="Barden"
    match="Du faengst an, &quot;Kakos Missklang&quot; auf * zu spielen."
    sequence="100"
    send_to="12"
@@ -3445,6 +3531,7 @@ spdactive=false
 spdspeed=0.3
 spdextraspeed=0.7
 auratbl={}
+gildentbl={'Barden','Hyraskrieger','Runenschmiede','Golemkultisten','Formwandler','Magier','Kleriker','Daemonenkrieger','Druiden'}
 configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
@@ -3491,6 +3578,15 @@ spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueb
 spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
+function OnAvalonGilde(type,message)
+for number,gilde in pairs(gildentbl) do
+if gilde==message then
+world.EnableGroup(gilde,1)
+else
+world.EnableGroup(gilde,0)
+end
+end
+end
 function OnAvalonLogin()
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_noinband_channel 1")
@@ -3716,6 +3812,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.Kampf', OnAvalonKampf)
     atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
     atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
+    atcp.Listen('Avalon.Gilde',OnAvalonGilde)
   end
   end
 end
@@ -4281,6 +4378,9 @@ function warnings_access(warn)
     spells_togglewarnings(warn)
   end
 end
+--function Test(str)
+--world.Note("Stringstart:"..str.."Stringende")
+--end
 ]]>
 </script>
 
