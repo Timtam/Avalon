@@ -123,7 +123,6 @@ end
 world.Execute('befehle '..dname..' name von '..dtarget)
 end
 function dk_insertname(dname,dtype)
-world.Note('erfolgreich')
 dtype=string.lower(string.sub(dtype,1,-2))
 demons[dtype][#demons[dtype]+1]=dname
 end
@@ -154,4 +153,11 @@ if not dname then
 return
 end
 world.Execute('erloese '..dname)
+end
+function dk_zvs(dname)
+dname=dk_getname(dname)
+if not dname then
+return
+end
+world.Execute('zauber verschmelzung '..dname)
 end

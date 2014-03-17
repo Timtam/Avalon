@@ -30,6 +30,15 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="Du schliesst Deine Augen, konzentrierst Dich und verbannst *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>world.Execute("daemonenliste")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match='^Dein\sFokuskristall\sblitzt\skurz\sauf\sund\sder\sName\s\"(.*)\"\szuckt\,\sverbunden\smit\sdem\sAbbild\seines\s(.*)\sdurch\sDeine\sGedanken\.\Z'
    multi_line="y"
    lines_to_match="2"
@@ -3227,6 +3236,15 @@
 <!--  Aliases  -->
 
 <aliases>
+  <alias
+   match="zvs *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_zvs("%1")</send>
+</alias>
   <alias
    match="vg *"
    group="Daemonenkrieger"
