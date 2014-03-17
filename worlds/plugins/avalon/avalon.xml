@@ -27,18 +27,30 @@
 <!--  Triggers  -->
 
 <triggers>
-<!--  <trigger
-<!--   enabled="y"
-<!--   match="^Im\sMoment\skennst\sDu\sfolgende\sDaemonen\:\s(?s)(.*)\sDamit\skennst\sDu\sbereits\s.*\swahre\sNamen\svon\sDaemonen\.\Z"
-<!--   multi_line="y"
-<!--   lines_to_match="13"
-<!--   regexp="y"
-<!--   send_to="12"
-<!--   sequence="95"
-<!--  >
-<!--  <send>str=[[%1]]
-<!--        Test(str)</send>
-<!--  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match='^Dein\sFokuskristall\sblitzt\skurz\sauf\sund\sder\sName\s\"(.*)\"\szuckt\,\sverbunden\smit\sdem\sAbbild\seines\s(.*)\sdurch\sDeine\sGedanken\.\Z'
+   multi_line="y"
+   lines_to_match="2"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_insertname("%1","%2")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="^Im\sMoment\skennst\sDu\sfolgende\sDaemonen\:\s(?s)(.*)\sDamit\skennst\sDu\sbereits\s.*\swahre\sNamen\svon\sDaemonen\.\Z"
+   multi_line="y"
+   lines_to_match="13"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_parse([[%1]])</send>
+  </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
@@ -3216,6 +3228,96 @@
 
 <aliases>
   <alias
+   match="vg *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_vg("%1")</send>
+</alias>
+  <alias
+   match="el *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_el("%1")</send>
+</alias>
+  <alias
+   match="dbw *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_dbw("%1")</send>
+</alias>
+  <alias
+   match="zgp *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_zgp("%1")</send>
+</alias>
+  <alias
+   match="bwv * *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_bwv("%1","%2")</send>
+</alias>
+  <alias
+   match="brv * *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_brv("%1","%2")</send>
+</alias>
+  <alias
+   match="bbs * *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_bbs("%1","%2")</send>
+</alias>
+  <alias
+   match="bnm * *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_bnm("%1","%2")</send>
+</alias>
+  <alias
+   match="zw *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_zw("%1")</send>
+</alias>
+  <alias
+   match="zh *"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_zh("%1")</send>
+</alias>
+  <alias
    match="rausl *"
    group="Spiele_Hajo"
    enabled="n"
@@ -3559,6 +3661,7 @@ world.Accelerator("F11", "volumetype_switch")
 world.Accelerator("ctrl+F11", "switch_mute")
 world.Accelerator("ctrl+shift+F11", "switch_fullmute")
 require("avalon.activespells")
+require("avalon.demon_warriors")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
@@ -4378,9 +4481,6 @@ function warnings_access(warn)
     spells_togglewarnings(warn)
   end
 end
---function Test(str)
---world.Note("Stringstart:"..str.."Stringende")
---end
 ]]>
 </script>
 
