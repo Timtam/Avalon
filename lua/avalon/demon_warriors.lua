@@ -73,7 +73,7 @@ world.Note('Dieser Name passt auf mehrere Daemonen:')
 for ddnumber,ddname in pairs(dname) do
 world.Note('\t'..ddname)
 end
-world.Note('Bitte geben sie den Namen genauer an.')
+world.Note('Bitte gib den Namen genauer an.')
 elseif not dname then
 world.Note('Es passt kein Daemonenname auf Deine Eingabe.')
 else
@@ -160,4 +160,9 @@ if not dname then
 return
 end
 world.Execute('zauber verschmelzung '..dname)
+end
+function dk_init(start)
+if start then
+world.Execute('daemonenliste')
+end
 end
