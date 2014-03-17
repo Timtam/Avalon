@@ -2887,6 +2887,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* moechte sich Deiner Gruppe anschliessen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/group.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du bildest mit * eine neue Gruppe."
    sequence="100"
    send_to="12"
