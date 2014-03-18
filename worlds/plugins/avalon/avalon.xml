@@ -3237,6 +3237,15 @@
 
 <aliases>
   <alias
+   match="dli"
+   group="Daemonenkrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_printlist()</send>
+</alias>
+  <alias
    match="zvs *"
    group="Daemonenkrieger"
    enabled="n"

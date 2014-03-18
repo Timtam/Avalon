@@ -1,4 +1,6 @@
 types=require("pl.types")
+require('pairsbykeys')
+require('string_indexing')
 demons={}
 demons['azmarog']={}
 demons['bullrik']={}
@@ -8,9 +10,9 @@ function dk_parse(list)
 for dtype in pairs(demons) do
 demons[dtype]={}
 end
-sregexp="Einen (.*)\, namens (.*) %- .*"
+sregexp="^Einen (.*)\, namens (.*) %- (.*)$"
 for lind,line in pairs(utils.split(list,"\n")) do
-dtype,dname=string.match(line,sregexp)
+dtype,dname,djob=string.match(line,sregexp)
 dtype=string.lower(dtype)
 demons[dtype][#demons[dtype]+1]=dname
 end
@@ -20,16 +22,7 @@ dtype=nil
 sregexp="(%D*)(%d*)"
 shortdtype,dnumber=string.match(str,sregexp)
 if shortdtype then
-shortdtype=string.lower(shortdtype)
-if shortdtype=='a' then
-dtype='azmarog'
-elseif shortdtype=='b' then
-dtype='bullrik'
-elseif shortdtype=='k' then
-dtype='krasit'
-elseif shortdtype=='s' then
-dtype='sensal'
-end
+dtype=dk_getdtype(shortdtype)
 end
 dnumber=tonumber(dnumber)
 if shortdtype and not dnumber then
@@ -164,5 +157,28 @@ end
 function dk_init(start)
 if start then
 world.Execute('daemonenliste')
+end
+end
+function dk_getdtype(shortdtype)
+shortdtype=string.lower(shortdtype)
+if shortdtype=='a' then
+return 'azmarog'
+elseif shortdtype=='b' then
+return 'bullrik'
+elseif shortdtype=='k' then
+return 'krasit'
+elseif shortdtype=='s' then
+return 'sensal'
+end
+end
+function dk_getshortdtype(dtype)
+return string.lower(dtype[1])
+end
+function dk_printlist()
+for dtype,dlist in pairsByKeys(demons) do
+shortdtype=dk_getshortdtype(dtype)
+for dnumber,dname in pairs(dlist) do
+world.Note(dtype..' '..shortdtype..tostring(dnumber)..': '..dname)
+end
 end
 end
