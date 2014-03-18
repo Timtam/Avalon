@@ -125,3 +125,22 @@ Unterstützte Spiele
 ---
 Wir werden anfangen, Spiele, soweit es möglich ist, mit Geräuschen zu untermalen und vielleicht auch für den Spielenden einfacher zu gestalten, vor Allem bei eher für Sehende ausgelegten Spielen kann dies für Blinde durchaus besser sein. Hier findet ihr eine Liste der bisher unterstützten Spiele, inklusive derer Spezialkommandos:
 Hajo: Vollständig mit Sounds unterlegt. Hajo besitzt ein extra alias "rausl", welches das MUD-Kommando rauslegen abkürzt und also genau so verwendet werden kann.
+
+Gildenerweiterungen
+---
+Bei Gilden, für welche eine Optimierung hilfreich wäre und außerdem akzeptiert werden kann, werden wir diese zur Verfügung stellen. Hier werden wir die Erweiterungen, welche nutzbar sind, aufführen.
+Dämonenkrieger:
+Die Dämonenkrieger sollten wissen, dass es teilweise sehr schwer sein kann, den Überblick über die wahren Namen seiner Dämonen zu behalten. Darum kann das Soundpack dies auch übernehmen. Möglich wird dies durch das einfache Aufrufen der Dämonenliste, was beim Einloggen eines Dämonenkriegers standardmäßig das erste mal vom Script getan wird. Nun kennt das Script die Namen der Dämonen und generiert automatisch Abkürzungen dafür.
+Die Abkürzungen sehen standardmäßig so aus: Anfangsbuchstabe des Dämonentyps (a, b, k oder s), gefolgt von einer fortlaufenden Nummer (1, 2, 3, 4, ...). Will man also einen Bullrik beschwören, wird er mit b1, b2, b3... je nachdem, wie viele man besitzt und welchen man beschwören will, beschworen. Besitzt man nur einen Bullrik, kann man auch einfach b nehmen, die 1 ist dann nicht nötig. Will man die automatische Nomenklatur nicht verwenden, reicht auch einfach das angeben der ersten Buchstaben des Namens. Insofern diese Buchstaben eindeutig zuweisbar sind, wir der vollständige Name ergänzt.
+Zu beachten ist jedoch, dass hierbei nicht die normale Spiel-Syntax verwendet werden kann, da man dann einen zu großen Eingriff in das Spielerleben vornehmen würde. Vielleicht möchten ja einige Spieler trotzdem die normale Spielweise fortführen, einfach weil es ihnen vom Rollenspiel-Charakter her besser gefällt? Darum haben wir Aliase definiert, die das Spielen angenehmer gestalten und gleichzeitig die Namensvervollständigung integrieren. Folgend findet ihr die vollständige Liste aller dafür vorgesehenen Aliase:
+zh name - Hervorrufung
+zw name - Wegschicken
+zgp name - Gedankenpeitsche
+zvs name - Verschmelzung
+bnm name typ - Name
+bbs name ziel - Beschützen
+brv name ziel - Rüstungsverstärkung
+bwv name ziel - Waffenverstärkung
+el name - Erlösen
+vg name - Vergessen
+dli - Abrufen der internen Dämonenliste inkl. Abkürzungen
