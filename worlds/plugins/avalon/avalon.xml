@@ -30,6 +30,78 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="* schreit hasserfuellt auf und will sich *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demondisappear.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/portalappear.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du starrst den * mit festem Blick an."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/crystallight.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du nimmst Deinen Fokuskristall fest in Deine freie Hand, deutest*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/crystalfocus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du schlaegst ruckartig Deinen Fokuskristall *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demonappear.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du schliesst die Augen und sendest einen telepathischen Ruf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demoncall.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du konzentrierst Dich auf Deinen Kristall welcher in einem *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/crystallight.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du nimmst Deinen Fokuskristall in beide Haende."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/crystalfocus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match="Du schliesst Deine Augen, konzentrierst Dich und verbannst *"
    send_to="12"
    sequence="100"
@@ -2319,7 +2391,7 @@
   <trigger
    enabled="y"
    match="Du schliesst *"
-   sequence="100"
+   sequence="102"
    send_to="12"
   >
   <send>psnd("Misc/Close.ogg")</send>

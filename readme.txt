@@ -144,3 +144,4 @@ bwv name ziel - Waffenverstärkung
 el name - Erlösen
 vg name - Vergessen
 dli - Abrufen der internen Dämonenliste inkl. Abkürzungen
+dbw name - Einen Dämon bewerten
