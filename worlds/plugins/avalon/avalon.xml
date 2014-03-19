@@ -3867,7 +3867,8 @@ end
 
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  if (channel == "magier") or (channel == "hyraskrieger") or (channel == "barden") or (channel == "golemkultisten") or (channel == "druiden") or (channel == "runenschmiede") or (channel == "formwandler") or (channel == "daemonenkrieger") then
+  fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
+  if gildentbl[fchannel] then
     channel="gilde"
   end
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
