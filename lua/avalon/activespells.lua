@@ -8,7 +8,7 @@ world.AddTriggerEx(name..'_stop',endtext,'spells_stop("'..name..'")',trigger_fla
 spells[name]=0
 end
 function spells_start(name)
-spells[name]=os.time()
+spells[name]=GetUnixTime()
 if warnings[name]~=nil then
 spells_warn(name,warnings[name])
 end
@@ -19,11 +19,11 @@ return
 end
 time=spells[name]
 msg=name..' beendet, Dauer: '
-ltime=os.time()
+ltime=GetUnixTime()
 timediff=ltime-time
-hours=math.floor(timediff/(60*60))
+hours=math.floor(timediff/3600)
 mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
+secs=round(((timediff-hours*3600)-mins*60),0)
 if hours >0 then
 msg=msg..tostring(hours)..' Stunden, '
 end
@@ -39,19 +39,19 @@ end
 end
 function spells_status()
 msg=''
-ltime=os.time()
+ltime=GetUnixTime()
 for spell,time in pairsByKeys(spells) do
 if time>0 then
 msg = msg..spell..': '
 timediff=ltime-time
-hours=math.floor(timediff/(60*60))
+hours=math.floor(timediff/3600)
 mins=math.floor((timediff-hours*3600)/60)
-secs=math.floor(((timediff-hours*3600)-mins*60))
+secs=round((timediff-hours*3600)-mins*60,0)
 if hours >0 then
-msg=msg..tostring(hours)..' Stunden, '
+msg=msg..tostring(hours)..' Stunde(n), '
 end
 if mins>0 then
-msg=msg..tostring(mins)..' Minuten, '
+msg=msg..tostring(mins)..' Minute(n), '
 end
 msg=msg..tostring(secs)..' Sekunden\n' 
 end
@@ -67,14 +67,14 @@ function spells_warn(spell,guid)
 if spells[spell]==0 or warnings[spell]~=guid then
 return
 end
-time=os.time()
+time=GetUnixTime()
 if time-spells[spell]==0 then
 world.Note(spell.." gestartet.")
 seconds=0
 else
 diff=time-spells[spell]
-seconds=diff%60
-minutes=(diff-seconds)/60
+seconds=round(diff%60,0)
+minutes=math.floor((diff-seconds)/60)
 msg=spell.." bereits "..tostring(minutes).. " Minute(n)"
 if seconds>0 then
 msg=msg.." und "..tostring(seconds).." Sekunde(n)"

@@ -3723,6 +3723,7 @@ LevelUpdate=false
 PlayerEP=nil
 PlayerKill=false
 PlayerLevel=nil
+timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
 plugintbl[2]="LuaAudio.xml"
@@ -3730,6 +3731,7 @@ plugintbl[3]="output_functions.xml"
 plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
+plugintbl[7]="timecatcher.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4600,6 +4602,12 @@ function warnings_access(warn)
 end
 function gildendummy(start)
 return
+end
+function GetUnixTime()
+world.CallPlugin(timepluginid,"time","")
+rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
+rtime=world.Replace(rtime,',','.',false)
+return tonumber(rtime)
 end
 ]]>
 </script>
