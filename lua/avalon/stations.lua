@@ -273,3 +273,10 @@ stations.lim_schmied=lim
 stations.schmied_lim="raum/2a76d2fbc07a9652d09bd5a82d81b0fc"
 stations.toe_yol=toe
 stations.yol_toe="raum/89036876d7fc916f521e7e1f3d4dafd9"
+stations.alo_wahrsager=alo
+stations.wahrsager_alo="raum/4823cf696d43a9df30d39500380e4278"
+stations.ash_dichter=ash
+stations.dichter_ash="raum/07e730bb54564fd4c15a3e4e7d8e325d"
+stations.alo_papierfalter=alo
+stations.papierfalter_alo="raum/c2b98600fcedfc6d50dac98f665c47f9"
+
