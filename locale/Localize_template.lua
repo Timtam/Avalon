@@ -1,6 +1,6 @@
 -- MUSHclient localization file
 
--- Written: Sunday, 20 April 2014 at 13:09:34
+-- Written: Thursday, 17 October 2013 at 20:01:14
 
 -- Static messages
 
@@ -18,19 +18,19 @@ messages = {
   ["Finding..."] =
     "",
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:442
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:432
   ["OLE initialization failed"] =
     "",
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:599
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:589
   ["Unable to load main frame window"] =
     "",
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:822
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:812
   ["I notice that this is the first time you have used MUSHclient on this PC."] =
     "",
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:989
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:979
   ["This will end your MUSHclient session."] =
     "",
 
@@ -566,7 +566,7 @@ messages = {
 
 -- /cygdrive/c/source/mushclient/dialogs/world_prefs/prefspropertypages.cpp:7388
 
--- /cygdrive/c/source/mushclient/doc.cpp:7720
+-- /cygdrive/c/source/mushclient/doc.cpp:7715
   ["Unable to edit the script file."] =
     "",
 
@@ -966,23 +966,23 @@ messages = {
   ["Recalling..."] =
     "",
 
--- /cygdrive/c/source/mushclient/doc.cpp:6451
+-- /cygdrive/c/source/mushclient/doc.cpp:6446
 
--- /cygdrive/c/source/mushclient/doc.cpp:6473
+-- /cygdrive/c/source/mushclient/doc.cpp:6468
   ["Send-to-script cannot execute because scripting is not enabled."] =
     "",
 
--- /cygdrive/c/source/mushclient/doc.cpp:6542
+-- /cygdrive/c/source/mushclient/doc.cpp:6537
   ["Unable to allocate memory for host name lookup"] =
     "",
 
--- /cygdrive/c/source/mushclient/doc.cpp:7004
+-- /cygdrive/c/source/mushclient/doc.cpp:6999
 
--- /cygdrive/c/source/mushclient/doc.cpp:7006
+-- /cygdrive/c/source/mushclient/doc.cpp:7001
   ["Proxy server refused authentication"] =
     "",
 
--- /cygdrive/c/source/mushclient/doc.cpp:7164
+-- /cygdrive/c/source/mushclient/doc.cpp:7159
   ["Proxy server username or password lengths cannot be > 255 characters"] =
     "",
 
@@ -992,11 +992,11 @@ messages = {
   ["Ready"] =
     "",
 
--- /cygdrive/c/source/mushclient/doc_construct.cpp:790
+-- /cygdrive/c/source/mushclient/doc_construct.cpp:788
   ["Your world name cannot be blank."] =
     "",
 
--- /cygdrive/c/source/mushclient/doc_construct.cpp:796
+-- /cygdrive/c/source/mushclient/doc_construct.cpp:794
   ["The world TCP/IP address cannot be blank."] =
     "",
 
@@ -1574,13 +1574,9 @@ messages = {
   ["Error context in script:"] =
     "",
 
--- /cygdrive/c/source/mushclient/scripting/scripting.cpp:554
-  ["Error context in script:\n"] =
-    "",
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:568
 
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:572
-
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:775
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:771
   ["Cannot process compressed output. World closed."] =
     "",
 
@@ -1694,7 +1690,7 @@ messages = {
   ["Never"] =
     "",
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:734
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:731
   ["Loading plugins ..."] =
     "",
   } -- end messages
@@ -1717,42 +1713,42 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:565
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:555
   ["Internal MUSHclient error, config name collision: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:842
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:832
   ["Welcome to MUSHclient, version %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:843
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:833
   ["Thank you for upgrading MUSHclient to version %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:1422
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:1412
   ["Function '%s' not in spellchecker.lua file"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:1453
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:1443
   ["Could not initialise zlib decompression engine: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/MUSHclient.cpp:1456
+-- /cygdrive/c/source/mushclient/MUSHclient.cpp:1446
   ["Could not initialise zlib decompression engine: %i"] =
     function (a)
      
@@ -2989,7 +2985,7 @@ formatted = {
 
 -- /cygdrive/c/source/mushclient/doc.cpp:3975
 
--- /cygdrive/c/source/mushclient/doc.cpp:6616
+-- /cygdrive/c/source/mushclient/doc.cpp:6611
   ["Unable to connect to \"%s\", code = %i (%s)\n\nError occurred during phase: %s"] =
     function (a, b, c, d)
      
@@ -3068,44 +3064,44 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:6557
+-- /cygdrive/c/source/mushclient/doc.cpp:6552
   ["Unable to initiate host name lookup for \"%s\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:6769
+-- /cygdrive/c/source/mushclient/doc.cpp:6764
   ["Could not open log file \"%s\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:6982
+-- /cygdrive/c/source/mushclient/doc.cpp:6977
   ["Proxy server cannot authenticate, reason: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:7048
+-- /cygdrive/c/source/mushclient/doc.cpp:7043
 
--- /cygdrive/c/source/mushclient/doc.cpp:7086
+-- /cygdrive/c/source/mushclient/doc.cpp:7081
   ["Proxy server refused connection, reason: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:7116
+-- /cygdrive/c/source/mushclient/doc.cpp:7111
   ["Unexpected proxy server response %i, expected %i"] =
     function (a, b)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/doc.cpp:7690
+-- /cygdrive/c/source/mushclient/doc.cpp:7685
   ["Unable to edit file %s."] =
     function (a)
      
@@ -3828,9 +3824,9 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/scripting/lua_scripting.cpp:487
+-- /cygdrive/c/source/mushclient/scripting/lua_scripting.cpp:447
 
--- /cygdrive/c/source/mushclient/scripting/lua_scripting.cpp:703
+-- /cygdrive/c/source/mushclient/scripting/lua_scripting.cpp:663
 
 -- /cygdrive/c/source/mushclient/scripting/scriptengine.cpp:70
   ["Executing %s script \"%s\""] =
@@ -4300,18 +4296,18 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:586
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:582
 
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:789
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:785
   ["Could not reset zlib decompression engine: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:589
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:585
 
--- /cygdrive/c/source/mushclient/telnet_phases.cpp:792
+-- /cygdrive/c/source/mushclient/telnet_phases.cpp:788
   ["Could not reset zlib decompression engine: %i"] =
     function (a)
      
@@ -5098,39 +5094,39 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:667
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:664
   ["Attribute not used: %s=\"%s\""] =
     function (a, b)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:683
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:680
   ["Tag not used: <%s>"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:751
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:748
   ["Loading plugin: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1047
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1044
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1113
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1110
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1144
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:1141
   ["option '%s' not set"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:2417
+-- /cygdrive/c/source/mushclient/xml/xml_load_world.cpp:2414
   ["%s loading plugin %s ..."] =
     function (a, b)
      
@@ -5150,7 +5146,7 @@ times = {
 
 -- /cygdrive/c/source/mushclient/doc.cpp:2940
 
--- /cygdrive/c/source/mushclient/doc.cpp:6798
+-- /cygdrive/c/source/mushclient/doc.cpp:6793
 
 -- /cygdrive/c/source/mushclient/mushview.cpp:3807
 
@@ -5158,7 +5154,7 @@ times = {
 
 -- /cygdrive/c/source/mushclient/scripting/methods/methods_chat.cpp:700
 
--- /cygdrive/c/source/mushclient/xml/xml_save_world.cpp:52
+-- /cygdrive/c/source/mushclient/xml/xml_save_world.cpp:49
   ["%A, %B %d, %Y, %#I:%M %p"] =
     "",
 
@@ -5166,16 +5162,12 @@ times = {
   ["%A, %B %d, %Y, %#I:%M:%S %p"] =
     "",
 
--- /cygdrive/c/source/mushclient/doc.cpp:6705
+-- /cygdrive/c/source/mushclient/doc.cpp:6700
   ["--- Connected on %A, %B %d, %Y, %#I:%M %p ---"] =
     "",
 
 -- /cygdrive/c/source/mushclient/mushview.cpp:4341
   ["%A, %B %d, %#I:%M:%S %p"] =
-    "",
-
--- /cygdrive/c/source/mushclient/scripting/lua_scripting.cpp:436
-  ["\n\n--- Scripting error on %A, %B %d, %Y, %#I:%M %p ---\n\n"] =
     "",
 
 -- /cygdrive/c/source/mushclient/world_debug.cpp:976

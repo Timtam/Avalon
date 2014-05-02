@@ -1,8 +1,7 @@
-MUSHclient version 4.92
+MUSHclient version 4.84
 =======================
 
-Sunday, 20th April 2014
-
+Sunday, 30th September 2012
 
 Author: Nick Gammon
 Web support: http://www.gammon.com.au/forum/
