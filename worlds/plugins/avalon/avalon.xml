@@ -275,6 +275,70 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Eine heilige Macht umgibt Dich."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/might_on.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Die heilige Macht weicht von Dir."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/might_off.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/weak.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein heiliges, gefuehrtes Schwert leuchtet auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein heiliges, gefuehrtes Schwert erstrahlt kurz."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/shine.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein heiliges, gefuehrtes Schwert blitzt auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/flash.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine goettliche Macht hilft Dir."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Weapons/holy_sword/devine.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Deine Fuehler fangen an zu blitzen, und darauf fangen sie an in einem"
    send_to="12"
    sequence="100"
