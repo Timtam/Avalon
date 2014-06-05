@@ -3849,7 +3849,6 @@ spells_register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wa
 spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\.","Deine Todesaura loest sich auf\.")
 spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\.","Deine Feueraura loest sich auf\.")
 spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\.","Deine heilige Aura loest sich auf\.")
-spells_register("Golemschutzschild",".* umgibt ein magischer Schutzschild\.",".* magischer Schutzschild loest sich auf\.")
 spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\.","Dein Kernschild loest sich auf\.")
 spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
