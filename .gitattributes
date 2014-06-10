@@ -1,0 +1,14 @@
+* eol=crlf
+*.exe binary
+*.sqlite binary
+*.hlp binary
+*.dll binary
+*.ico binary
+*.gid binary
+*.cnt binary
+*.lib binary
+*.db binary
+*.fon binary
+*.ogg binary
+*.tlb binary
+*.flf binary
