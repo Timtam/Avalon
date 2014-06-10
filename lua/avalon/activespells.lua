@@ -85,7 +85,7 @@ end
 world.DoAfterSpecial((60-seconds),"spells_warn('"..spell.."', '"..guid.."')",12)
 end
 function spells_parsewarnings(warns)
-if warns==nil then
+if warns==nil or warns=='' then
 return
 end
 awarns=utils.split(warns,",")
