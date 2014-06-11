@@ -12,3 +12,5 @@
 *.ogg binary
 *.tlb binary
 *.flf binary
+*.png binary
+*.pdf binary
