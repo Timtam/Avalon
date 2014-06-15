@@ -275,6 +275,22 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du bist soeben gestorben."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Player/Die.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein weisser Schatten fliegt gen Himmel."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Player/Die.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Eine heilige Macht umgibt Dich."
    send_to="12"
    sequence="100"
