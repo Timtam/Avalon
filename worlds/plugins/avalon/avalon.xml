@@ -4081,7 +4081,7 @@ function OnPluginCommandEntered(text)
   if (text == "") and (LastCommand ~= nil) then
     return LastCommand
   else
-    if (text =="") then
+    if (text ==" ") then
       LastCommand = ''
       return ''
     end
@@ -4446,6 +4446,7 @@ end
 
 function repeatcommand_switch()
   if (configtbl.settings.RepeatCommand == 1) then
+    LastCommand=nil
     configtbl.settings.RepeatCommand = 0
     world.Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
   else
