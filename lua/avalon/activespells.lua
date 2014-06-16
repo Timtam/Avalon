@@ -73,8 +73,8 @@ world.Note(spell.." gestartet.")
 seconds=0
 else
 diff=time-spells[spell]
-seconds=round(diff%60,0)
-minutes=math.floor((diff-seconds)/60)
+seconds=round(diff,0)%60
+minutes=math.floor((round(diff,0)-seconds)/60)
 msg=spell.." bereits "..tostring(minutes).. " Minute(n)"
 if seconds>0 then
 msg=msg.." und "..tostring(seconds).." Sekunde(n)"
@@ -82,7 +82,7 @@ end
 msg=msg.." aktiv"
 world.Note(msg)
 end
-world.DoAfterSpecial((60-seconds),"spells_warn('"..spell.."', '"..guid.."')",12)
+world.DoAfterSpecial((60-(time-spells[spell])%60),"spells_warn('"..spell.."', '"..guid.."')",12)
 end
 function spells_parsewarnings(warns)
 if warns==nil or warns=='' then
