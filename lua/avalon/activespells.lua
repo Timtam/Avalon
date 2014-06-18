@@ -35,6 +35,7 @@ NoteColour(msg,150,0,0,255,255,0)
 spells[name]=0
 if warnings[name]~=nil then
 warnings[name]=world.CreateGUID()
+psnd("spells/warn.ogg")
 end
 end
 function spells_status()
