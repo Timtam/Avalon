@@ -3898,6 +3898,7 @@ OnAvalonGetoetet = function(type, message)
   elseif (type == "Avalon.GruppeGetoetet") then
     psnd("Monsters/Kill.ogg")
   end
+  psnd("monsters/deaths/"..math.random(1,57)..".ogg")
   if not EPKampfStart then
     return
   end
