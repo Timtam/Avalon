@@ -3854,10 +3854,10 @@ require("avalon.demon_warriors")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
-tablex = require("pl.tablex")
 Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
+Tablex = require("pl.tablex")
 spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\.","Dein Sternenstaub loest sich auf\.")
 spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\.","Deine Energien fliessen wieder normal\.")
 spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\.","Dein Staubschleier loest sich auf\.")
@@ -3976,7 +3976,7 @@ OnAvalonRoomID = function(type, message)
     Y = nil
   end
   RoomID = id
-  if (tablex.find(tablex.values(stations), RoomID) ~= nil) then
+  if (Tablex.find(Tablex.values(stations), RoomID) ~= nil) then
      psnd("Misc/Waypoint.ogg")
   end
   if (not name) or (name == 'Bitte') then
