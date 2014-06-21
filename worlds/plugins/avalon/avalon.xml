@@ -3854,6 +3854,8 @@ require("avalon.demon_warriors")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
+Dir = require('pl.dir')
+File = require('pl.file')
 Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
@@ -4076,6 +4078,14 @@ function OnPluginInstall()
     if (res == "yes") then
       os.execute("notepad.exe readme.txt")
     end
+  end
+  newfiles=Dir.getfiles(world.GetInfo(66),"*\.new")
+  if #newfiles>0 then
+    for _, dfile in pairs(newfiles) do
+      File.delete(string.sub(dfile,1,-5))
+      File.move(dfile,string.sub(dfile,1,-5))
+    end
+    world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
 end
 
