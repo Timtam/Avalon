@@ -2,21 +2,6 @@ types=require("pl.types")
 require('pairsbykeys')
 require('string_indexing')
 demons={}
-demons['azmarog']={}
-demons['bullrik']={}
-demons['krasit']={}
-demons['sensal']={}
-function dk_parse(list)
-for dtype in pairs(demons) do
-demons[dtype]={}
-end
-sregexp="^Einen (.*)\, namens (.*) %- (.*)$"
-for lind,line in pairs(utils.split(list,"\n")) do
-dtype,dname,djob=string.match(line,sregexp)
-dtype=string.lower(dtype)
-demons[dtype][#demons[dtype]+1]=dname
-end
-end
 function dk_getfullname(str)
 dtype=nil
 sregexp="(%D*)(%d*)"
@@ -116,7 +101,7 @@ end
 world.Execute('befehle '..dname..' name von '..dtarget)
 end
 function dk_insertname(dname,dtype)
-dtype=string.lower(string.sub(dtype,1,-2))
+dtype=string.lower(dtype)
 demons[dtype][#demons[dtype]+1]=dname
 end
 function dk_dbw(dname)
@@ -156,6 +141,7 @@ world.Execute('zauber verschmelzung '..dname)
 end
 function dk_init(start)
 if start then
+dk_reset()
 world.Execute('daemonenliste')
 end
 end
@@ -181,4 +167,11 @@ for dnumber,dname in pairs(dlist) do
 world.Note(dtype..' '..shortdtype..tostring(dnumber)..': '..dname)
 end
 end
+end
+function dk_reset()
+demons={}
+demons['azmarog']={}
+demons['bullrik']={}
+demons['krasit']={}
+demons['sensal']={}
 end
