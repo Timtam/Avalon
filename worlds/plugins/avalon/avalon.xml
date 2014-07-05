@@ -275,6 +275,27 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du peilst mit Deinem Sextanten die beiden Monde an, und kannst schon nach"
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="kurzer Zeit ihre Position ausmachen. Du gruebelst noch ein wenig, und"
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
+   match="kommst schliesslich zu folgendem Ergebnis:"
+   omit_from_output="y"
+   sequence="100"
+  >
+  </trigger>
+  <trigger
+   enabled="y"
    match="Es wurden * Gegenstaende geladen."
    send_to="12"
    sequence="95"
@@ -1647,7 +1668,6 @@
    sequence="100"
    send_to="12"
   >
-
   <send>psnd("Spells/light3b.ogg")
         atcp.Send('ava_req_mapper')</send>
   </trigger>
@@ -1658,16 +1678,6 @@
    send_to="12"
   >
   <send>psnd("Misc/ChopBegin.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   lines_to_match="2"
-   match=".*, die Duesterklinge fluestert zu Dir: "
-   multi_line="y"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-  >
   </trigger>
   <trigger
    enabled="y"
