@@ -989,6 +989,15 @@
   <send>psnd("Misc/Zwonirobe.ogg")</send>
   </trigger>
   <trigger
+   enabled="y"
+   match="Du hast einen neuen Brief von * bekommen."
+   omit_from_output="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/Post.ogg")</send>
+  </trigger>
+  <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
