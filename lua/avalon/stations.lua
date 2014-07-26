@@ -281,3 +281,5 @@ stations.alo_papierfalter=alo
 stations.papierfalter_alo="raum/c2b98600fcedfc6d50dac98f665c47f9"
 stations.wtoe_htoe="raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
 stations.htoe_wtoe="raum/37238d5027e07dd53dff22692785455e"
+stations.abt_alo=abt
+stations.alo_abt=alo
