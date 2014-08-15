@@ -251,6 +251,8 @@ speedwalklist.wtoe_htoe="so so so so so so so so so so so s s s s s s s s so s s
 speedwalklist.htoe_wtoe="o o o o o o n no no n n n n n n no no no no no no no n n n n n n n n no n nw n n n n n n n n nw nw nw nw nw nw nw nw nw nw nw"
 speedwalklist.abt_alo="s kletter_s sw sw sw sw sw sw sw so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so no o o o o o o o o o o o o o o no o o o o o o"
 speedwalklist.alo_abt="w w w w w w sw w w w w w w w w w w w w w w sw nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw no no no no no no no kletter_n n"
+speedwalklist.ilme_haf="no n nw nw nw w w w w w w"
+speedwalklist.haf_ilme="o o o o o o so so so s sw"
 speedwalksafety={}
 for name,way in pairs(speedwalklist) do
 		speedwalksafety[name]=false
@@ -357,3 +359,5 @@ speedwalksafety['ash_form']=true
 speedwalksafety['form_ash']=true
 speedwalksafety['tol_form']=true
 speedwalksafety['form_tol']=true
+speedwalksafety['ilme_haf']=true
+speedwalksafety['haf_ilme']=true
