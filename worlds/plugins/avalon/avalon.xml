@@ -2354,14 +2354,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du sagst: *"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Player/say.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du schabst fleissig weiter."
    sequence="100"
    omit_from_output="y"
@@ -2887,14 +2879,6 @@
   >
   <send>psnd("Misc/torch_on.ogg")
       atcp.Send('ava_req_mapper')</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="* sagt: *"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Player/say.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3927,6 +3911,14 @@ end
 function OnAvalonLogin()
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_noinband_channel 1")
+  atcp.Send("ava_set_rcomm 1")
+  atcp.Send("ava_set_noinband_rcomm 1")
+  atcp.Send("ava_set_comm 1")
+  atcp.Send("ava_set_noinband_comm 1")
+  atcp.Send("ava_set_soul 1")
+  atcp.Send("ava_set_noinband_soul 1")
+  atcp.Send("ava_set_rsoul 1")
+  atcp.Send("ava_set_noinband_rsoul 1")
   atcp.Send("ava_req_update")
 end
 
@@ -3983,6 +3975,18 @@ end
 
 OnAvalonDunkel = function(type, message)
   Dunkel = tonumber(message)
+end
+
+OnAvalonRSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  world.Note(text)
+  world.Execute(";history_add REDEN="..text)
+end
+
+OnAvalonSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  world.Note(text)
+  world.Execute(";history_add SAGEN="..text)
 end
 
 OnAvalonChannel = function(type, message)
@@ -4164,6 +4168,10 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
     atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
     atcp.Listen('Avalon.Gilde',OnAvalonGilde)
+    atcp.Listen('Avalon.RComm',OnAvalonChannel)
+    atcp.Listen('Avalon.Comm',OnAvalonChannel)
+    atcp.Listen('Avalon.Soul',OnAvalonSoul)
+    atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
   end
   end
 end
