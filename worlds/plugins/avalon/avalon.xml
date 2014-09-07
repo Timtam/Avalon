@@ -304,6 +304,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Gratulation! Du hast eine Tagesaufgabe geloest."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/DailyTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du bist soeben gestorben."
    send_to="12"
    sequence="100"
