@@ -3985,8 +3985,12 @@ end
 
 OnAvalonSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  if not text then
+    startpos, endpos = string.find(message, " ", 1, true)
+    text = string.sub(message, endpos+1, -1)
+  end
   world.Note(text)
-  world.Execute(";history_add SAGEN="..text)
+  world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
 end
 
 OnAvalonChannel = function(type, message)
