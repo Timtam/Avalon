@@ -3999,7 +3999,7 @@ OnAvalonSoul = function(type, message)
     startpos, endpos = string.find(message, " ", 1, true)
     text = string.sub(message, endpos+1, -1)
   end
-  world.Note(text)
+  world.AnsiNote(world.Replace(world.Replace(text,'%^NO_ITALIC%^',ANSI(23),true),'%^ITALIC%^',ANSI(3),true))
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
 end
 
