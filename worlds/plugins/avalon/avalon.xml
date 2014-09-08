@@ -282,14 +282,16 @@
   </trigger>
   <trigger
    enabled="y"
-   match="kurzer Zeit ihre Position ausmachen. Du gruebelst noch ein wenig, und"
+   match="kurzer Zeit ihre Position ausmachen\. Du gruebelst noch ein wenig.*"
+   regexp="y"
    omit_from_output="y"
    sequence="100"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="kommst schliesslich zu folgendem Ergebnis:"
+   match=".*schliesslich zu folgendem Ergebnis:"
+   regexp="y"
    omit_from_output="y"
    sequence="100"
   >
