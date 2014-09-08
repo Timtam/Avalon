@@ -3198,8 +3198,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren. Ob das Metall schon| schmilzt."
-   omit_from_output="y"
+   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren.*"
    regexp="y"
    sequence="100"
    send_to="12"
