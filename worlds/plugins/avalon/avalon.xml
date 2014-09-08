@@ -306,6 +306,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="KRAACK. Uh, oh. Das klang nicht gut. Vielleicht solltest Du *"
+   sequence="102"
+   send_to="12"
+  >
+  <send>psnd("Items/ArmorBreak.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
    send_to="12"
    sequence="100"
