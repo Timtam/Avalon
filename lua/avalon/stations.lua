@@ -310,3 +310,7 @@ stations.teich_abt=teich
 stations.teich_min=teich
 stations.teich_us=teich
 stations.us_teich=us
+stations.cor_alo=cor
+stations.alo_cor=alo
+stations.min_magier=min
+stations.magier_min="raum/8a27d49f514fc549ebcf06678b82f64c"
