@@ -3848,6 +3848,7 @@ plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
+plugintbl[8]="avalon/speedwalk-mapper.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
