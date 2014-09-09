@@ -68,14 +68,17 @@ Warned=false
 PPI=require("ppi")
 Avalon=PPI.Load("02dade4f6131c8d67e85c7ee")
 Shorters={}
-Shorters.osten=o
-Shorters.westen=w
-Shorters.suedwesten=sw
-Shorters.sueden=s
-Shorters.norden=n
-Shorters.suedosten=so
-Shorters.nordosten=no
-Shorters.nordwesten=nw
+Shorters.osten='o'
+Shorters.westen='w'
+Shorters.suedwesten='sw'
+Shorters.sueden='s'
+Shorters.norden='n'
+Shorters.suedosten='so'
+Shorters.nordosten='no'
+Shorters.nordwesten='nw'
+Shorters.e='o'
+Shorters.se='so'
+Shorters.ne='no'
 Directives={}
 Directives.o='w'
 Directives.so='nw'
@@ -106,6 +109,10 @@ Active=true
 world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte verwende bis zum Ende der Aufnahme nur Kommandos, welche im eigentlichen Speedwalk auch auftauchen sollen. Es sollten außerdem keine selbst definierten Aliase verwendet werden')
 end
 function spm_stop()
+if not Active then
+return
+end
+if #CmdStack>0 then
 id=Avalon.IID()
 if not id then
 world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Bitte erzeuge erst eine Lichtquelle, bevor das Speedwalk beendet werden kann.')
@@ -113,11 +120,17 @@ return
 end
 EndID=id
 EndName=Avalon.Location()
-Active=false
-Warned=false
 world.Note('Die Aufzeichnung ist abgeschlossen. Nun wird die Verarbeitung gestartet. Dabei werden einige Fragen gestellt, welche beantwortet werden müssen.')
 StartName=utils.inputbox('Bitte gib den Namen der Startposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',StartName)
+if StartName==nil then
+world.Note('Der Name einer Position muss festgelegt sein.')
+return
+end
 EndName=utils.inputbox('Bitte gib den Namen der Endposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',EndName)
+if EndName==nil then
+world.Note('Der Name einer Position muss festgelegt sein.')
+return
+end
 safety=utils.msgbox('Ist der Speedwalk sicher, d.h. er führt nur über Pfade und ist daher ungefährlich?','Avalon Speedwalk Mapper','yesno','?',1)
 speedwalk=_spm_getspeedwalk()
 output='stations.'..StartName..'_'..EndName..'="'..StartID..'"\r\n'
@@ -126,12 +139,17 @@ if safety=='yes' then
 output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true'
 end
 world.SetClipboard(output)
+world.Note('Die Aufnahme wurde beendet. Der Speedwalk befindet sich in der Zwischenablage.')
+else
+world.Note('Für diesen Speedwalk wurden keine Kommandos registriert. Es wird keine weitere Verarbeitung stattfinden.')
+end
 CmdStack={}
 EndName=''
 EndID=''
 StartName=''
 StartID=''
-world.Note('Die Aufnahme wurde beendet. Der Speedwalk befindet sich in der Zwischenablage.')
+Active=false
+Warned=false
 end
 function spm_removelast()
 world.Note('Kommando '..CmdStack[#CmdStack]..' wird gelöscht.')
@@ -152,9 +170,6 @@ text=Shorters[text]
 end
 if string.find(text,' ',1,true) then
 text=world.Replace(text,' ','_',true)
-end
-if string.find(text,'e',1,true) then
-text=world.Replace(text,'e','o',true)
 end
 if (not Directives[text]) and not (string.find(text,'kletter',1,true)==1) and not (string.find(text,'schwimm',1,true)==1) and (not Warned) then
 world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kommando für die Aufnahme nicht vorgesehen war, können sie es jetzt mithilfe des Kommandos \'spm z\' entfernen.')
