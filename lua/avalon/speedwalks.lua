@@ -277,6 +277,8 @@ speedwalklist.cor_alo="s sw w sw w sw sw sw sw sw sw sw sw w sw w w sw s s s s s
 speedwalklist.alo_cor="w w w w w w sw w w w w w w w w w w w w w w sw sw s sw sw sw sw sw w w w w w w w w w w w w nw w w w w w w w sw w sw sw sw sw sw w sw w w w w w w w w w nw n n n no n no n n n n n n no o o no o no no no no no no no no o no o no n"
 speedwalklist.min_magier="n n n o o o s s s s s s s s s s s s"
 speedwalklist.magier_min="n n n n n n n n n n n n w w w s s s"
+speedwalklist.min_imker="n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n no o sw"
+speedwalklist.imker_min="no w sw s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s"
 speedwalksafety={}
 for name,way in pairs(speedwalklist) do
 		speedwalksafety[name]=false

@@ -3874,6 +3874,7 @@ configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.RepeatCommand=1
+configtbl.settings.NumpadWalk=1
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
@@ -3886,6 +3887,7 @@ world.Accelerator("F10", "volume_up")
 world.Accelerator("F11", "volumetype_switch")
 world.Accelerator("ctrl+F11", "switch_mute")
 world.Accelerator("ctrl+shift+F11", "switch_fullmute")
+world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.speedwalks")
@@ -4129,6 +4131,7 @@ function OnPluginInstall()
     world.LoadPlugin(pluginpath)
   end
   spells_parsewarnings(configtbl.settings.Warnings)
+  NumpadInit()
   gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,gildendummy},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy}}
   Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
   if not Audio then
@@ -4799,6 +4802,38 @@ world.CallPlugin(timepluginid,"time","")
 rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
 rtime=world.Replace(rtime,',','.',false)
 return tonumber(rtime)
+end
+function NumpadInit()
+if configtbl.settings.NumpadWalk==1 then
+world.Accelerator('Numpad1','sw')
+world.Accelerator('Numpad2','s')
+world.Accelerator('Numpad3','so')
+world.Accelerator('Numpad4','w')
+world.Accelerator('Numpad6','o')
+world.Accelerator('Numpad7','nw')
+world.Accelerator('Numpad8','n')
+world.Accelerator('Numpad9','no')
+else
+world.Accelerator('Numpad1','spaehe kurz sw')
+world.Accelerator('Numpad2','spaehe kurz s')
+world.Accelerator('Numpad3','spaehe kurz so')
+world.Accelerator('Numpad4','spaehe kurz w')
+world.Accelerator('Numpad6','spaehe kurz o')
+world.Accelerator('Numpad7','spaehe kurz nw')
+world.Accelerator('Numpad8','spaehe kurz n')
+world.Accelerator('Numpad9','spaehe kurz no')
+end
+end
+function NumpadSwitch()
+if configtbl.settings.NumpadWalk==1 then
+configtbl.settings.NumpadWalk=0
+world.Note('Nummernblock auf Spähen konfiguriert')
+else
+configtbl.settings.NumpadWalk=1
+world.Note('Nummernblock auf Laufen konfiguriert')
+end
+NumpadInit()
+psnd("Misc/ConfigSwitch.ogg")
 end
 ]]>
 </script>

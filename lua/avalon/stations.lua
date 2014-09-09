@@ -314,3 +314,5 @@ stations.cor_alo=cor
 stations.alo_cor=alo
 stations.min_magier=min
 stations.magier_min="raum/8a27d49f514fc549ebcf06678b82f64c"
+stations.min_imker=min
+stations.imker_min="raum/2f00647f8e8aac02e1af5577b398889f"
