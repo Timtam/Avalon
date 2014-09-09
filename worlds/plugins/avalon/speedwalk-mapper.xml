@@ -7,7 +7,7 @@
 
 <muclient>
 <plugin
-   name="avalon_speedwalk_mapper"
+   name="Avalon_Speedwalk_Mapper"
    author="Magician"
    id="deb5a26f21c54c6a913af6d9"
    language="Lua"
@@ -58,6 +58,7 @@
 
 <script>
 <![CDATA[
+require('tprint')
 Active=false
 CmdStack={}
 EndID=''
@@ -106,7 +107,7 @@ end
 StartName=Avalon.Location()
 StartID=id
 Active=true
-world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte verwende bis zum Ende der Aufnahme nur Kommandos, welche im eigentlichen Speedwalk auch auftauchen sollen. Es sollten außerdem keine selbst definierten Aliase verwendet werden')
+world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte verwende bis zum Ende der Aufnahme nur Kommandos, welche im eigentlichen Speedwalk auch auftauchen sollen. Es sollten außerdem keine selbst definierten Aliase verwendet werden. Um die Aufnahme zu beenden, bitte verwende das Kommando \'spm stop\'')
 end
 function spm_stop()
 if not Active then
@@ -132,14 +133,21 @@ world.Note('Der Name einer Position muss festgelegt sein.')
 return
 end
 safety=utils.msgbox('Ist der Speedwalk sicher, d.h. er führt nur über Pfade und ist daher ungefährlich?','Avalon Speedwalk Mapper','yesno','?',1)
-speedwalk=_spm_getspeedwalk()
+tprint(CmdStack)
+local speedwalk=_spm_getspeedwalk()
+local reversespeedwalk=_spm_getspeedwalkreverse()
+world.Note('Speedwalk:'..speedwalk)
+world.Note('reverse:'..reversespeedwalk)
 output='stations.'..StartName..'_'..EndName..'="'..StartID..'"\r\n'
-output=output..'speedwalklist.'..StartName..'_'..EndName..'="'..speedwalk..'"'
+output=output..'stations.'..EndName..'_'..StartName..'="'..EndID..'"\r\n'
+output=output..'speedwalklist.'..StartName..'_'..EndName..'="'..speedwalk..'"\r\n'
+output=output..'speedwalklist.'..EndName..'_'..StartName..'="'..reversespeedwalk..'"'
 if safety=='yes' then
-output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true'
+output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true\r\n'
+output=output..'speedwalksafety[\''..EndName..'_'..StartName..'\']=true'
 end
 world.SetClipboard(output)
-world.Note('Die Aufnahme wurde beendet. Der Speedwalk befindet sich in der Zwischenablage.')
+world.Note('Die Aufnahme wurde beendet. Der Speedwalk, inklusive seinem Gegenstück, befindet sich in der Zwischenablage.')
 else
 world.Note('Für diesen Speedwalk wurden keine Kommandos registriert. Es wird keine weitere Verarbeitung stattfinden.')
 end
@@ -160,8 +168,7 @@ speedwalk=''
 for index,cmd in pairs(CmdStack) do
 speedwalk=speedwalk..cmd..' '
 end
-speedwalk=string.sub(speedwalk,1,-2)
-return speedwalk
+return string.sub(speedwalk,1,-2)
 end
 function _spm_processcommand(text)
 text=string.lower(text)
@@ -176,6 +183,28 @@ world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kom
 Warned=true
 end
 return text
+end
+function _spm_getspeedwalkreverse()
+speedwalk=''
+for i = #CmdStack, 1, -1 do
+cmd=CmdStack[i]
+split=utils.split(cmd,'_')
+if Directives[cmd] then
+cmd=Directives[cmd]
+elseif string.find(cmd,'kletter',1,true)==1 and Directives[split[2]] then
+cmd=split[1]..'_'..Directives[split[2]]
+elseif string.find(cmd,'schwimm',1,true)==1 and Directives[split[2]] then
+cmd=split[1]..'_'..Directives[split[2]]
+else
+cmd=utils.inputbox('Das eingegebene Kommando \''..cmd..'\' kann nicht automatisiert umgekehrt werden. Bitte geben sie die umgekehrte Variante dieses Kommandos ein, sodass er bei dem umgekehrten Speedwalk verwendet werden kann:','Avalon Speedwalk Mapper',cmd)
+if cmd==nil then
+world.Note('Es muss ein umgekehrtes Kommando angegeben werden.')
+return
+end
+end
+speedwalk=speedwalk..cmd..' '
+end
+return string.sub(speedwalk,1,-2)
 end
 ]]>
 </script>
