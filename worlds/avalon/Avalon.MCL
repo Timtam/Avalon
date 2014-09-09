@@ -302,7 +302,7 @@
   >
 
   <key name="0" >
-  <send>look</send>
+  <send>l</send>
   </key>
 
   <key name="1" >
@@ -310,7 +310,7 @@
   </key>
 
   <key name="2" >
-  <send>south</send>
+  <send>s</send>
   </key>
 
   <key name="3" >
@@ -318,15 +318,15 @@
   </key>
 
   <key name="4" >
-  <send>west</send>
+  <send>w</send>
   </key>
 
   <key name="5" >
-  <send>WHO</send>
+  <send>wer</send>
   </key>
 
   <key name="6" >
-  <send>east</send>
+  <send>o</send>
   </key>
 
   <key name="7" >
@@ -334,11 +334,11 @@
   </key>
 
   <key name="8" >
-  <send>north</send>
+  <send>n</send>
   </key>
 
   <key name="9" >
-  <send>ne</send>
+  <send>no</send>
   </key>
 
   <key name="." >
@@ -350,15 +350,15 @@
   </key>
 
   <key name="*" >
-  <send>score</send>
+  <send>sp</send>
   </key>
 
   <key name="-" >
-  <send>up</send>
+  <send>h</send>
   </key>
 
   <key name="+" >
-  <send>down</send>
+  <send>r</send>
   </key>
 
   <key name="Ctrl+0" >
