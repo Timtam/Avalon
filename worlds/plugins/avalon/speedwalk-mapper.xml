@@ -94,7 +94,6 @@ Directives.runter='hoch'
 function OnPluginSend(text)
 if Active then
 text=_spm_processcommand(text)
-CmdStack[#CmdStack+1]=text
 end
 return true
 end
@@ -120,7 +119,6 @@ world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Bitte erz
 return
 end
 EndID=id
-
 EndName=Avalon.Location()
 world.Note('Die Aufzeichnung ist abgeschlossen. Nun wird die Verarbeitung gestartet. Dabei werden einige Fragen gestellt, welche beantwortet werden müssen.')
 StartName=utils.inputbox('Bitte gib den Namen der Startposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',StartName)
@@ -138,11 +136,8 @@ world.Note('Der Beginn und das Ende des Speedwalks müssen unterschiedlich heißen
 return
 end
 safety=utils.msgbox('Ist der Speedwalk sicher, d.h. er führt nur über Pfade und ist daher ungefährlich?','Avalon Speedwalk Mapper','yesno','?',1)
-tprint(CmdStack)
 local speedwalk=_spm_getspeedwalk()
 local reversespeedwalk=_spm_getspeedwalkreverse()
-world.Note('Speedwalk:'..speedwalk)
-world.Note('reverse:'..reversespeedwalk)
 output='stations.'..StartName..'_'..EndName..'="'..StartID..'"\r\n'
 output=output..'stations.'..EndName..'_'..StartName..'="'..EndID..'"\r\n'
 output=output..'speedwalklist.'..StartName..'_'..EndName..'="'..speedwalk..'"\r\n'
@@ -154,7 +149,11 @@ end
 world.SetClipboard(output)
 world.Note('Die Aufnahme wurde beendet. Der Speedwalk, inklusive seinem Gegenstück, befindet sich in der Zwischenablage.')
 else
+if StartID==Avalon.IID() then
+world.Note('Der Speedwalk führt von diesem Ort nicht weg, daher wird er auch nicht verarbeitet.')
+else
 world.Note('Für diesen Speedwalk wurden keine Kommandos registriert. Es wird keine weitere Verarbeitung stattfinden.')
+end
 end
 CmdStack={}
 EndName=''
@@ -187,7 +186,24 @@ if (not Directives[text]) and not (string.find(text,'kletter',1,true)==1) and no
 world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kommando für die Aufnahme nicht vorgesehen war, können sie es jetzt mithilfe des Kommandos \'spm z\' entfernen.')
 Warned=true
 end
-return text
+if #CmdStack==0 then
+CmdStack[#CmdStack+1]=text
+return
+end
+split=utils.split(text,'_')
+lastsplit=utils.split(CmdStack[#CmdStack],'_')
+if Directives[text] and CmdStack[#CmdStack]==Directives[text] then
+CmdStack[#CmdStack]=nil
+world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
+elseif (string.find(text,'kletter',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
+CmdStack[#CmdStack]=nil
+world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
+elseif (string.find(text,'schwimm',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
+CmdStack[#CmdStack]=nil
+world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
+else
+CmdStack[#CmdStack+1]=text
+end
 end
 function _spm_getspeedwalkreverse()
 speedwalk=''
