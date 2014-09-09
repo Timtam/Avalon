@@ -113,13 +113,14 @@ function spm_stop()
 if not Active then
 return
 end
-if #CmdStack>0 then
+if #CmdStack>0 and Avalon.IID()~=StartID then
 id=Avalon.IID()
 if not id then
 world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Bitte erzeuge erst eine Lichtquelle, bevor das Speedwalk beendet werden kann.')
 return
 end
 EndID=id
+
 EndName=Avalon.Location()
 world.Note('Die Aufzeichnung ist abgeschlossen. Nun wird die Verarbeitung gestartet. Dabei werden einige Fragen gestellt, welche beantwortet werden müssen.')
 StartName=utils.inputbox('Bitte gib den Namen der Startposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',StartName)
@@ -130,6 +131,10 @@ end
 EndName=utils.inputbox('Bitte gib den Namen der Endposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',EndName)
 if EndName==nil then
 world.Note('Der Name einer Position muss festgelegt sein.')
+return
+end
+if StartName==EndName then
+world.Note('Der Beginn und das Ende des Speedwalks müssen unterschiedlich heißen.')
 return
 end
 safety=utils.msgbox('Ist der Speedwalk sicher, d.h. er führt nur über Pfade und ist daher ungefährlich?','Avalon Speedwalk Mapper','yesno','?',1)
