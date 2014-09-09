@@ -4148,6 +4148,29 @@ function OnPluginInstall()
     end
     world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
+  PPI.Expose('IID',
+    function()
+      if Dunkel==1 then
+        return nil
+      else
+        return RoomID
+      end
+    end)
+  PPI.Expose('Location',
+    function()
+      res=nil
+      for key,value in pairs(stations) do
+        if value==RoomID then
+          res=key
+          break
+        end
+      end
+      if res ~= nil then
+        return utils.split(res,'_')[1]
+      else
+        return nil
+      end
+    end)
 end
 
 function OnPluginCommandEntered(text)
