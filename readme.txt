@@ -99,9 +99,12 @@ barde - Barden, Diverse
 camp - Zugang Camp Baralon, Unterwelt
 cor - Vor der Höhle Corona, Nereid
 dhun - Feld vor dem Transportkorb Dhungar, Nereid
+dichter - Feld vor dem Haus der Dichterzunft, Nereid
 dk - Standort der Säule, Dämonenkriegergilde, Unterwelt
 dol - Mondtor, Dolphinia
 druide - Druide, Diverse
+farm - Eingang der Pfeifenkrautfarm, Holbytla
+form - Formwandler, Diverse
 gol - Gilde Golemkultisten, Unterwelt
 gwen - Bettler Gwendon, Tintagel
 haendler - Gemischtwahrenladen, diverse
@@ -109,7 +112,8 @@ haf - Häfen diverser Inseln, Elandor
 hain - Eingang Druidenhain, Solgard
 her - Hermine Eisenbieger, Holbytla
 hol - Mondtor, Holbytla
-ilme - Ilmelorn, Tintagel
+htoe - Feld vor der Höhle / dem Ausgang der Totenebene zurück in die Unterwelt
+ilme - Ilmelorn, Tolsgal
 jagd - Jäger, Diverse
 jas - Tor Jasthan, Unterwelt
 jer - Feld vor dem ersten Feld Jeresa, Losaria
@@ -122,8 +126,11 @@ los - Mondtor, Losaria
 magier bzw. magier1 bis magierN - Magie-Lehrmeister, Diverse
 min - Marktplatz Minias, Nereid
 mine - Mine (Gold, Silber, Mithril, Golemmine) Zugang
+moor - Moor der Untoten, Unterwelt, Ankunft nach Aushebeln der Planken bei Anlegestelle 1, Minias
 mos - Goblinfestung Mossul, Amphibos
+muehle - Mühle, Holbytla
 orks - Orkjägerlager, Nereid
+papierfalter - Feld vor dem Haus der Origamizunft, Nereid
 por - Portal Rilauven, Unterwelt
 post - Post, diverse
 ril - Zentrum Rilauven, Unterwelt
@@ -136,6 +143,8 @@ see - Quecksilbersee, Unterwelt
 siedlung - Zugang Waldsiedlung, Tintagel
 skal - Tor Skalewar, Unterwelt
 sol - Zentrum, Solgard
+teich - Teich westlich von Alotria (Zugang Walhalla), Nereid
+tempel - Febracim-Tempel, Unterwelt
 tief - Zentrum Tiefebene, Unterwelt
 tin - Mondtor, Tintagel
 toe - Absprungstelle Totenebene, Unterwelt
@@ -144,8 +153,11 @@ tor - jeweiliges Mondtor, Nereid
 us - Weggabelung nach Loretta, Nereid
 uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
 ver - Vern, Losaria
+wahrsager - Feld vor dem Zelt der Wahrsagerzunft, Nereid
 wal - Hütte, Walhalla
 wl - Waldläufer, Tintagel
+wtoe - Wegweiser in der Totenebene, ein Feld östlich von Absprungsstelle
+yol - ?
 
 Unterstützte Spiele
 -------------------
