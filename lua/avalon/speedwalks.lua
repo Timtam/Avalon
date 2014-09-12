@@ -279,6 +279,10 @@ speedwalklist.min_magier="n n n o o o s s s s s s s s s s s s"
 speedwalklist.magier_min="n n n n n n n n n n n n w w w s s s"
 speedwalklist.min_imker="n n n o o o n no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n no o sw"
 speedwalklist.imker_min="no w sw s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw s w w w s s s"
+speedwalklist.lederer_min="o sw s nw nw nw n n w w w w w w w w w w w"
+speedwalklist.min_lederer="o o o o o o o o o o o s s so so so n no w"
+speedwalklist.dinsel_jas="sw sw sw sw sw sw sw sw w w w nw w w nw w w nw w w w nw w w w nw w nw w nw w nw w nw w w nw w w w w w w w w w s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw"
+speedwalklist.jas_dinsel="no no o no no o no no no n no no no no no no n n n no no no n n nw nw nw nw nw nw nw n n n no no n nw nw nw w nw w w nw nw nw nw w w w w w nw nw nw nw nw nw nw nw nw nw nw nw nw n n o o o o o o o o o so o o so o so o so o so o so o o o so o o o so o o so o o so o o o no no no no no no no no"
 speedwalksafety={}
 for name,way in pairs(speedwalklist) do
 		speedwalksafety[name]=false
@@ -403,3 +407,5 @@ speedwalksafety['cor_alo']=true
 speedwalksafety['alo_cor']=true
 speedwalksafety['min_magier']=true
 speedwalksafety['magier_min']=true
+speedwalksafety['lederer_min']=true
+speedwalksafety['min_lederer']=true

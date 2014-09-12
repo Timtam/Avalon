@@ -3934,7 +3934,6 @@ function OnAvalonLogin()
   atcp.Send("ava_set_rcomm 1")
   atcp.Send("ava_set_noinband_rcomm 1")
   atcp.Send("ava_set_comm 1")
-  atcp.Send("ava_set_noinband_comm 1")
   atcp.Send("ava_set_soul 1")
   atcp.Send("ava_set_noinband_soul 1")
   atcp.Send("ava_set_rsoul 1")
@@ -4011,6 +4010,15 @@ OnAvalonSoul = function(type, message)
   end
   world.AnsiNote(world.Replace(world.Replace(text,'%^NO_ITALIC%^',ANSI(23),true),'%^ITALIC%^',ANSI(3),true))
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
+end
+
+OnAvalonComm=function(type,message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
+  if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
+    psnd("Channels/"..channel..".ogg")
+  end
+  world.Execute(";history_add "..channel.."="..world.Replace(text,'\n',' '))
 end
 
 OnAvalonChannel = function(type, message)
@@ -4217,7 +4225,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
     atcp.Listen('Avalon.Gilde',OnAvalonGilde)
     atcp.Listen('Avalon.RComm',OnAvalonChannel)
-    atcp.Listen('Avalon.Comm',OnAvalonChannel)
+    atcp.Listen('Avalon.Comm',OnAvalonComm)
     atcp.Listen('Avalon.Soul',OnAvalonSoul)
     atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
   end

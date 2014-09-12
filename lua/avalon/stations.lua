@@ -316,3 +316,7 @@ stations.min_magier=min
 stations.magier_min="raum/8a27d49f514fc549ebcf06678b82f64c"
 stations.min_imker=min
 stations.imker_min="raum/2f00647f8e8aac02e1af5577b398889f"
+stations.lederer_min="raum/e056d17d21ec278b3df3541aee285604"
+stations.min_lederer=min
+stations.dinsel_jas="raum/4405d3cc8b5a9de94d8683b2e7fa38b6"
+stations.jas_dinsel=jas
