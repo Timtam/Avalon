@@ -421,3 +421,5 @@ speedwalksafety['ril_magier']=true
 speedwalksafety['magier_ril']=true
 speedwalksafety['skal_magier']=true
 speedwalksafety['magier_skal']=true
+speedwalksafety['toe_yol']=true
+speedwalksafety['yol_toe']=true
