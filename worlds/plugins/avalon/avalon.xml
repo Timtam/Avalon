@@ -1170,27 +1170,6 @@
   <send>psnd("Rune/QuiteGood.ogg")</send>
   </trigger>
   <trigger
-   enabled="n"
-   group="Runenschmiede"
-   match="Du haertest den Rohling wieder und wieder, damit er spaeter den magischen|Energien beim Gravieren standhalten kann."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Rune/Harden.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Runenschmiede"
-   match="Mit Deinem Schmiedehammer und einem kleinen Stichel ziehst Du die Zeichnung .*"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Rune/Hammer1.ogg")</send>
-  </trigger>
-  <trigger
    enabled="y"
    match="Du springst in die Fluten."
    sequence="100"
@@ -1302,15 +1281,6 @@
    send_to="12"
   >
   <send>psnd("Rune/EngraveFinish.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Mit einem lauten Knall laesst .* Schmiedehammer .*"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Smith/hammer1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1484,17 +1454,6 @@
   <send>%1, %2</send>
   </trigger>
   <trigger
-   enabled="n"
-   group="Runenschmiede"
-   match="Noch ein paar Feinkorrekturen, sonst wirkt die Rune am Ende gar nicht wie|sie soll!"
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Rune/EngraveCorrect.ogg")</send>
-  </trigger>
-  <trigger
    enabled="y"
    match="Auf einer Eisscholle,.*|In einer Eiswueste.*"
    regexp="y"
@@ -1580,17 +1539,6 @@
    send_to="12"
   >
   <send>psnd("Rune/FileEnd.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Runenschmiede"
-   match="Du kommst ins Schwitzen, es ist ganz schoen anstrengend, mit so einem|grossen Hammer so fein dosierte Schlaege auf den Stichel auszufuehren."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Rune/Hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3890,6 +3838,7 @@ world.Accelerator("ctrl+shift+F11", "switch_fullmute")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
+require("avalon.multilinetrigger")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
