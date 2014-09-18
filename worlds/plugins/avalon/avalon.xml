@@ -29,6 +29,60 @@
 <triggers>
   <trigger
    enabled="n"
+   group="Magier"
+   match="Dein * flackert heftig auf, lange wird * Dich wohl nicht mehr"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/flicker.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Magier"
+   match="Du beginnst, Deine Haende auf mystische Art und Weise zu bewegen."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/ArkanShield1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Magier"
+   match="Zwischen Deinen Haenden entsteht eine leuchtende Wolke, die sich immer mehr"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/ArkanShield2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Magier"
+   match="Die Wolke verteilt sich auf Deinen gesamten Koerper."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/ArkanShield3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Magier"
+   match="Du wirst von einem Arkanschild umgeben."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/ArkanShieldOn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Magier"
+   match="Dein Arkanschild loest sich auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("spells/ArkanShieldOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
    group="Daemonenkrieger"
    match="* schreit hasserfuellt auf und will sich *"
    send_to="12"
@@ -1257,7 +1311,7 @@
   <trigger
    enabled="y"
    match="Dein * loest sich auf."
-   sequence="100"
+   sequence="101"
    send_to="12"
   >
   <send>psnd("Spells/ShieldOff.ogg")</send>
@@ -3783,6 +3837,7 @@ spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueb
 spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
+spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
 function OnAvalonGilde(type,message)
 for gilde,gtbl in pairs(gildentbl) do
 if gilde==message then
