@@ -1117,7 +1117,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Die Lichtwesen von * scheinen Dein Mana etwas aufzufrischen.$|^Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir. $"
+   match="^Die Lichtwesen von .* scheinen Dein Mana etwas aufzufrischen\.$|^Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir\.$"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1141,15 +1141,6 @@
    send_to="12"
   >
   <send>psnd("Bard/OutOfSpellPower.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match=".*Fast sofort flackert im Ofen ein heisses|Feuerchen auf."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/MeltBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1208,7 +1199,6 @@
    sequence="100"
    send_to="12"
   >
-
   <send>psnd("Spells/StoneskinOver.ogg")</send>
   </trigger>
   <trigger
@@ -1464,26 +1454,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du hoerst ein lautes Klacken und daraufhin ein Quietschen. Jetzt faellt|wohl gleich ein Klumpen Metall aus dem Rohr."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/MeltClick.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Nur unter Aufbietung aller Kraefte gelingt es Dir, den Hebel bis fast ganz|nach unten zu ziehen."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/PressContinue.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du kniest nieder und suchst den Boden nach Spuren ab."
    sequence="100"
    send_to="12"
@@ -1642,7 +1612,6 @@
    sequence="100"
    send_to="12"
   >
-
   <send>psnd("Spells/light3out.ogg")</send>
   </trigger>
   <trigger
@@ -1697,15 +1666,6 @@
    send_to="12"
   >
   <send>psnd("Rune/File.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Der Boden vibriert heftig und ein ohrenbetaeubendes Rumpeln und Krachen|ertoent von irgendwo in der Mine. Das muss ein heftiger Einsturz gewesen|sein, hoffentlich ist niemand dabei zu Schaden gekommen."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/DigCaveInDistant.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1838,15 +1798,6 @@
    send_to="12"
   >
   <send>psnd("Misc/torch_out.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="So, das duerfte weit genug sein. Gleich mal schaun, ob sich die Arbeit auch|gelohnt hat."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/DigFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2707,15 +2658,6 @@
   <send>psnd("Firestarting/Split.ogg")</send>
   </trigger>
   <trigger
-   enabled="y"
-   match="Huch, jetzt bist Du tatsaechlich auf einen anderen Stollen gestossen und|faellst prompt hinunter."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/DigFall.ogg")</send>
-  </trigger>
-  <trigger
    enabled="n"
    group="Barden"
    match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
@@ -2889,15 +2831,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Irgendwie hast Du hier ein mulmiges Gefuehl, das Dir sagt.|RAUS HIER.*|Die Waende dieses Stollens knirschen verdaechtig. Es hoert sich so an, als|ob jetzt der richtige Zeitpunkt waere, um die Beine in die Hand zu nehmen.|Nichts wie weg.|Ploetzlich hoerst Du Steineknirschen und ein lautes Rumpeln. Irgendwie sagt|Dir das, dass Du hier schnell weg solltest."
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/DigCaveInAlert.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Du stellst die Holzstuecke zu einer kleinen Pyramide auf *"
    sequence="100"
    send_to="12"
@@ -2944,16 +2877,6 @@
    send_to="12"
   >
   <send>psnd("Mining/MeltFinish.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Du ergreifst die Holzstange ganz am Ende, um einen moeglichst langen Hebel|zu haben, und ziehst sie kraftvoll nach unten."
-   omit_from_output="y"
-   regexp="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Mining/PressBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
