@@ -84,11 +84,60 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="Du nimmst Deinen Fokuskristall zur Hand und beginnst Dich zu konzentrieren."
+   send_to="12"
+   sequence="100"
+  >
+  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du spuerst den Widerstand des Daemons auf Deinen Willen *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demoncommand.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du tastest telepathisch nach dem Bewusstsein von * und *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demoncontrol.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="^Du oeffnest Deine Augen.*$|^Du oeffnest in dem Moment Deine Augen als.*$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demonexecute.ogg")
+        Audio.fadeout(hdksnd,1000)</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du reibst Dir Deine Schlaefen um den pochenden Schmerz zu vertreiben.*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("demon_warriors/demoncounter.ogg")
+        Audio.fadeout(hdksnd,1000)</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match="* schreit hasserfuellt auf und will sich *"
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demondisappear.ogg")</send>
+  <send>psnd("demon_warriors/demondisappear.ogg")
+        Audio.fadeout(hdksnd,1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -115,7 +164,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/crystalfocus.ogg")</send>
+  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -124,7 +173,8 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demonappear.ogg")</send>
+  <send>psnd("demon_warriors/demonappear.ogg")
+        Audio.fadeout(hdksnd,1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -151,7 +201,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/crystalfocus.ogg")</send>
+  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2098,7 +2148,7 @@
   <trigger
    enabled="y"
    match="Du oeffnest *"
-   sequence="100"
+   sequence="101"
    send_to="12"
   >
   <send>psnd("Misc/Open.ogg")</send>
@@ -3756,6 +3806,7 @@ apfullannounced=false
 spfullannounced=false
 tpfullannounced=false
 hapsnd=nil
+hdksnd=nil
 hspnil=0
 htpsnd=nil
 hmusic=nil
