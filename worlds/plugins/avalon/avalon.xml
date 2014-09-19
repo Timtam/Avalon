@@ -3910,14 +3910,10 @@ end
 end
 function OnAvalonLogin()
   atcp.Send("ava_set_channel 1")
-  atcp.Send("ava_set_noinband_channel 1")
   atcp.Send("ava_set_rcomm 1")
-  atcp.Send("ava_set_noinband_rcomm 1")
   atcp.Send("ava_set_comm 1")
   atcp.Send("ava_set_soul 1")
-  atcp.Send("ava_set_noinband_soul 1")
   atcp.Send("ava_set_rsoul 1")
-  atcp.Send("ava_set_noinband_rsoul 1")
   atcp.Send("ava_req_update")
 end
 
@@ -3978,7 +3974,6 @@ end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  world.Note(text)
   world.Execute(";history_add REDEN="..text)
 end
 
@@ -3988,7 +3983,6 @@ OnAvalonSoul = function(type, message)
     startpos, endpos = string.find(message, " ", 1, true)
     text = string.sub(message, endpos+1, -1)
   end
-  world.AnsiNote(world.Replace(world.Replace(text,'%^NO_ITALIC%^',ANSI(23),true),'%^ITALIC%^',ANSI(3),true))
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
 end
 
@@ -4010,7 +4004,6 @@ OnAvalonChannel = function(type, message)
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
-  NoteColour(text, 255, 255, 150)
   world.Execute(";history_add "..channel.."="..text)
 end
 
