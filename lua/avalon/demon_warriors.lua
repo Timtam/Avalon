@@ -37,7 +37,9 @@ return demons[dtype]
 end
 end
 elseif shortdtype and dnumber then
-if demons[dtype][dnumber] then
+if not demons[dtype] then
+return nil
+elseif demons[dtype][dnumber] then
 return demons[dtype][dnumber]
 else
 return nil
@@ -155,6 +157,8 @@ elseif shortdtype=='k' then
 return 'krasit'
 elseif shortdtype=='s' then
 return 'sensal'
+else
+return nil
 end
 end
 function dk_getshortdtype(dtype)
