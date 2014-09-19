@@ -3799,6 +3799,8 @@ g_sp=nil
 g_max_sp=nil
 g_ap=nil
 g_max_ap=nil
+g_mp=nil
+g_max_mp=9999
 g_combat           = nil
 g_combat_music     = nil
 g_combat_music_name= nil
@@ -4080,6 +4082,11 @@ OnAvalonSP=function(message, nsp)
   g_sp=nsp
 end
 
+OnAvalonMP=function(message,nmp)
+  g_mp=tonumber(nmp)
+  return
+end
+
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
@@ -4160,6 +4167,22 @@ function OnPluginInstall()
         return nil
       end
     end)
+  PPI.Expose('AP',
+    function()
+      return g_ap, g_max_ap
+    end)
+  PPI.Expose('MP',
+    function()
+      return g_mp, g_max_mp
+    end)
+  PPI.Expose('SP',
+    function()
+      return g_sp, g_max_sp
+    end)
+  PPI.Expose('TP',
+    function()
+      return g_tp, g_max_tp
+    end)
 end
 
 function OnPluginCommandEntered(text)
@@ -4192,6 +4215,7 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.TP", OnAvalonTP)
     atcp.Listen("Avalon.SP", OnAvalonSP)
     atcp.Listen("Avalon.AP", OnAvalonAP)
+    atcp.Listen("Avalon.MP", OnAvalonMP)
     atcp.Listen("Avalon.MAX", OnAvalonMax)
     atcp.Listen('Avalon.EP', OnAvalonEP)
     atcp.Listen('Avalon.Level', OnAvalonLevel)
