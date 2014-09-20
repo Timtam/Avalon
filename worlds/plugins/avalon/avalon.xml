@@ -379,14 +379,14 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du peilst mit Deinem Sextanten die beiden Monde an, und kannst schon nach"
+   match="Du peilst mit Deinem Sextanten * an, und kannst schon nach"
    omit_from_output="y"
    sequence="100"
   >
   </trigger>
   <trigger
    enabled="y"
-   match="kurzer Zeit ihre Position ausmachen\. Du gruebelst noch ein wenig.*"
+   match="kurzer Zeit .* Position ausmachen\. Du gruebelst noch ein wenig.*"
    regexp="y"
    omit_from_output="y"
    sequence="100"
