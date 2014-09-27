@@ -89,8 +89,8 @@ Directives.w='o'
 Directives.nw='so'
 Directives.n='s'
 Directives.no='sw'
-Directives.hoch='runter'
-Directives.runter='hoch'
+Directives.hoch='r'
+Directives.runter='h'
 function OnPluginSend(text)
 if Active then
 text=_spm_processcommand(text)
@@ -106,7 +106,7 @@ end
 StartName=Avalon.Location()
 StartID=id
 Active=true
-world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte verwende bis zum Ende der Aufnahme nur Kommandos, welche im eigentlichen Speedwalk auch auftauchen sollen. Es sollten außerdem keine selbst definierten Aliase verwendet werden. Um die Aufnahme zu beenden, bitte verwende das Kommando \'spm stop\'')
+world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte bis zum Ende der Aufnahme nur Kommandos verwenden, die im eigentlichen Speedwalk auch auftauchen sollen. Es dürfen dabei keine selbst definierten Aliase verwendet werden. Zum Beenden das Kommando \"spm stop\" benutzen')
 end
 function spm_stop()
 if not Active then
@@ -115,27 +115,27 @@ end
 if #CmdStack>0 and Avalon.IID()~=StartID then
 id=Avalon.IID()
 if not id then
-world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Bitte erzeuge erst eine Lichtquelle, bevor das Speedwalk beendet werden kann.')
+world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Dafuer wird eine Lichtquelle benoetigt, bevor der Speedwalk beendet werden kann.')
 return
 end
 EndID=id
 EndName=Avalon.Location()
-world.Note('Die Aufzeichnung ist abgeschlossen. Nun wird die Verarbeitung gestartet. Dabei werden einige Fragen gestellt, welche beantwortet werden müssen.')
-StartName=utils.inputbox('Bitte gib den Namen der Startposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',StartName)
+world.Note('Die Aufzeichnung ist abgeschlossen. Anschliessend werden noch folgende Informationen benoetigt:')
+StartName=utils.inputbox('Bitte den Namen der Startposition des Speedwalks eingeben:','Avalon Speedwalk Mapper',StartName)
 if StartName==nil then
-world.Note('Der Name einer Position muss festgelegt sein.')
+world.Note('Der Name der Startposition darf nicht leer sein. - Beispiel: min (fuer Minias)')
 return
 end
-EndName=utils.inputbox('Bitte gib den Namen der Endposition des Speedwalks ein (falls er bisher nicht existiert, wird er neu angelegt, also wähle sinnvoll):','Avalon Speedwalk Mapper',EndName)
+EndName=utils.inputbox('Bitte den Namen der Endposition des Speedwalks eingeben:','Avalon Speedwalk Mapper',EndName)
 if EndName==nil then
-world.Note('Der Name einer Position muss festgelegt sein.')
+world.Note('Der Name der Endposition darf nicht leer sein. - Beispiel: haf (fuer Hafen)')
 return
 end
 if StartName==EndName then
-world.Note('Der Beginn und das Ende des Speedwalks müssen unterschiedlich heißen.')
+world.Note('Die Start- und Endpositionen dürfen nicht den identischen Namen haben.')
 return
 end
-safety=utils.msgbox('Ist der Speedwalk sicher, d.h. er führt nur über Pfade und ist daher ungefährlich?','Avalon Speedwalk Mapper','yesno','?',1)
+safety=utils.msgbox('Führt der Speedwalk über einen ungefährlichen Pfad? (Anmerkung: Ja, für sichere Speedwalks, der nur über einen Pfad verläuft, auf dem sich keine Monster befinden)','Avalon Speedwalk Mapper','yesno','?',1)
 local speedwalk=_spm_getspeedwalk()
 local reversespeedwalk=_spm_getspeedwalkreverse()
 output='stations.'..StartName..'_'..EndName..'="'..StartID..'"\r\n'
@@ -147,12 +147,12 @@ output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true\r\n'
 output=output..'speedwalksafety[\''..EndName..'_'..StartName..'\']=true'
 end
 world.SetClipboard(output)
-world.Note('Die Aufnahme wurde beendet. Der Speedwalk, inklusive seinem Gegenstück, befindet sich in der Zwischenablage.')
+world.Note('Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.')
 else
 if StartID==Avalon.IID() then
-world.Note('Der Speedwalk führt von diesem Ort nicht weg, daher wird er auch nicht verarbeitet.')
+world.Note('Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.')
 else
-world.Note('Für diesen Speedwalk wurden keine Kommandos registriert. Es wird keine weitere Verarbeitung stattfinden.')
+world.Note('Für diesen Speedwalk wurden keine Kommandos registriert.')
 end
 end
 CmdStack={}
@@ -164,7 +164,7 @@ Active=false
 Warned=false
 end
 function spm_removelast()
-world.Note('Kommando '..CmdStack[#CmdStack]..' wird gelöscht.')
+world.Note('Kommando \"'..CmdStack[#CmdStack]..'\" wird gelöscht.')
 CmdStack[#CmdStack]=nil
 end
 function _spm_getspeedwalk()
@@ -183,7 +183,7 @@ if string.find(text,' ',1,true) then
 text=world.Replace(text,' ','_',true)
 end
 if (not Directives[text]) and not (string.find(text,'kletter',1,true)==1) and not (string.find(text,'schwimm',1,true)==1) and (not Warned) then
-world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kommando für die Aufnahme nicht vorgesehen war, können sie es jetzt mithilfe des Kommandos \'spm z\' entfernen.')
+world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kommando für die Aufnahme nicht vorgesehen war, können Sie es jetzt mit Hilfe des Kommandos \"spm z\" entfernen.')
 Warned=true
 end
 if #CmdStack==0 then
@@ -194,13 +194,13 @@ split=utils.split(text,'_')
 lastsplit=utils.split(CmdStack[#CmdStack],'_')
 if Directives[text] and CmdStack[#CmdStack]==Directives[text] then
 CmdStack[#CmdStack]=nil
-world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
+world.Note('Dieses und vorheriges Kommando gelöscht, da die beiden sich gegenseitig aufheben.')
 elseif (string.find(text,'kletter',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
 CmdStack[#CmdStack]=nil
 world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
 elseif (string.find(text,'schwimm',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
 CmdStack[#CmdStack]=nil
-world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
+world.Note('Dieses und vorheriges Kommando gelöscht, da die beiden sich gegenseitig aufheben.')
 else
 CmdStack[#CmdStack+1]=text
 end
@@ -217,7 +217,7 @@ cmd=split[1]..'_'..Directives[split[2]]
 elseif string.find(cmd,'schwimm',1,true)==1 and Directives[split[2]] then
 cmd=split[1]..'_'..Directives[split[2]]
 else
-cmd=utils.inputbox('Das eingegebene Kommando \''..cmd..'\' kann nicht automatisiert umgekehrt werden. Bitte geben sie die umgekehrte Variante dieses Kommandos ein, sodass er bei dem umgekehrten Speedwalk verwendet werden kann:','Avalon Speedwalk Mapper',cmd)
+cmd=utils.inputbox('Das eingegebene Kommando \"'..cmd..'\" konnte nicht automatisch umgekehrt werden. Bitte die umgekehrte Variante dieses Kommandos eingeben, dass dieser bei der Umkehrung verwendet werden kann: ','Avalon Speedwalk Mapper',cmd)
 if cmd==nil then
 world.Note('Es muss ein umgekehrtes Kommando angegeben werden.')
 return
