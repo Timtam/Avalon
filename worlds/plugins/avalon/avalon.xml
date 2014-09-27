@@ -2281,7 +2281,6 @@
    match="Ein tiefer Kratzer in .* muss .*"
    sequence="100"
    regexp="y"
-   omit_from_output="y"
    send_to="12"
   >
   <send>psnd("Smith/Repair2.ogg")</send>
