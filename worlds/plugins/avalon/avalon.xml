@@ -2774,7 +2774,6 @@
    group="Barden"
    match="Du spielst .* auf Deine.*"
    regexp="y"
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
