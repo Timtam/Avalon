@@ -89,8 +89,8 @@ Directives.w='o'
 Directives.nw='so'
 Directives.n='s'
 Directives.no='sw'
-Directives.hoch='r'
-Directives.runter='h'
+Directives.hoch='runter'
+Directives.runter='hoch'
 function OnPluginSend(text)
 if Active then
 text=_spm_processcommand(text)

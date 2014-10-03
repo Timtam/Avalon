@@ -289,6 +289,10 @@ speedwalklist.ril_magier="nw n n nw nw w sw nw"
 speedwalklist.magier_ril="so no o so so s s so"
 speedwalklist.skal_magier="oeffne_tor s s s w w w w w w n"
 speedwalklist.magier_skal="s o o o o o o n n oeffne_tor n"
+speedwalklist.aug_ker="o o o o o so o o so o o no o o o n o o o so o o no o o so s s so s sw s w w nw w sw w sw"
+speedwalklist.ker_aug="no o no o so o o n no n nw n n nw w w sw w w nw w w w s w w w sw w w nw w w nw w w w w w"
+speedwalklist.aug_mos="o o o o o so o o so o o no o o o n o o o so o o no o o so s s so s sw s w w nw w sw w sw so so o"
+speedwalklist.mos_aug="w nw nw no o no o so o o n no n nw n n nw w w sw w w nw w w w s w w w sw w w nw w w nw w w w w w"
 speedwalksafety={}
 for name,way in pairs(speedwalklist) do
 		speedwalksafety[name]=false
