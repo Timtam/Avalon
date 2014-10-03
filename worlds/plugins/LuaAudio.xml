@@ -133,6 +133,9 @@ function slideVol(x,id,time)
 audio.slideVol(x,id,time)
 end
 function fadeout(id,time)
+if id==nil then
+return
+end
 audio.fadeout(id,time)
 end
 function slidePan(x,id,time)
