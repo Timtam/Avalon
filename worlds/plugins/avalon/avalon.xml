@@ -426,6 +426,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Besonderes Glueck!"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/DayGift.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du bist soeben gestorben."
    send_to="12"
    sequence="100"
