@@ -418,6 +418,48 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du holst kraeftig mit Deiner Angel aus und wirfst den Koeder weit *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishCast.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das muss ein .* Fisch sein, der da angebissen hat."
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>psnd("Fishing/Fish.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mist. Du stellst Dich viel zu ungeschickt an, .*"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>psnd("Fishing/FishEscape.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast einen schoenen Fisch geangelt."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishCatch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ziehst mit Leibeskraeften an der Angel, um den Fisch aus dem Wasser zu"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishLinePull.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
    send_to="12"
    sequence="100"
@@ -466,41 +508,51 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
+   match=".* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/weak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert leuchtet auf."
+   match=".* heiliges, gefuehrtes Schwert leuchtet auf."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert erstrahlt kurz."
+   match=".* heiliges, gefuehrtes Schwert erstrahlt kurz."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert blitzt auf."
+   match=".* heiliges, gefuehrtes Schwert blitzt auf."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/flash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
+   match=".* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
   </trigger>
@@ -1121,7 +1173,6 @@
   <trigger
    enabled="y"
    match="Du hast einen neuen Brief von * bekommen."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
