@@ -301,16 +301,8 @@
    date_saved="2013-10-23 09:29:43"
   >
 
-  <key name="0" >
-  <send>l</send>
-  </key>
-
-  <key name="5" >
-  <send>wer</send>
-  </key>
-
   <key name="/" >
-  <send>blink</send>
+  <send>ksp</send>
   </key>
 
   <key name="*" >
@@ -318,11 +310,55 @@
   </key>
 
   <key name="-" >
-  <send>h</send>
+  <send>r</send>
   </key>
 
   <key name="+" >
-  <send>r</send>
+  <send>h</send>
+  </key>
+
+  <key name="7" >
+  <send>nw</send>
+  </key>
+
+  <key name="8" >
+  <send>n</send>
+  </key>
+
+  <key name="9" >
+  <send>no</send>
+  </key>
+
+  <key name="4" >
+  <send>w</send>
+  </key>
+
+  <key name="5" >
+  <send>bl</send>
+  </key>
+
+  <key name="6" >
+  <send>o</send>
+  </key>
+
+  <key name="1" >
+  <send>sw</send>
+  </key>
+
+  <key name="2" >
+  <send>s</send>
+  </key>
+
+  <key name="3" >
+  <send>so</send>
+  </key>
+
+  <key name="0" >
+  <send>b</send>
+  </key>
+
+  <key name="." >
+  <send>wer</send>
   </key>
 
   <key name="Ctrl+0" >
