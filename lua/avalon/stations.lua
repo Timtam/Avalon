@@ -449,3 +449,7 @@ stations.ilme_magier1=ilme
 stations.magier1_ilme="raum/3bdfb9b7a849acade8dfbe95094cef8f"
 stations.ilme_magier2=ilme
 stations.magier2_ilme="raum/00981bf47fa9ab872770071450b168e5"
+stations.jas_bank=jas
+stations.bank_jas="raum/9ea9dec24cdbc8f999982d48591aa365"
+stations.jas_haendler=jas
+stations.haendler_jas="raum/134946a87d61d0524fe28a431ff926e7"

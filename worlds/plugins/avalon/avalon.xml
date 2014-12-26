@@ -2288,7 +2288,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein schwarzes Mondtor steigt aus dem Boden empor."
+   match="Ein * Mondtor steigt aus dem Boden empor."
    sequence="100"
    send_to="12"
   >
