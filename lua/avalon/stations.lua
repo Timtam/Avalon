@@ -453,3 +453,5 @@ stations.jas_bank=jas
 stations.bank_jas="raum/9ea9dec24cdbc8f999982d48591aa365"
 stations.jas_haendler=jas
 stations.haendler_jas="raum/134946a87d61d0524fe28a431ff926e7"
+stations.min_bote=min
+stations.bote_min="raum/f3d2b779c1e2b864a82abd23b7786d6b"

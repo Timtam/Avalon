@@ -1,4 +1,6 @@
 speedwalklist={}
+speedwalklist.min_bote="o o o o o o no s s s s s s s s s no oeffne_tuer o"
+speedwalklist.bote_min="oeffne_tuer w sw n n n n n n n n n sw w w w w w w"
 speedwalklist.min_dhun="n n n o n o o no o o o o no n n n no n no n n n n n n no nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n no o o o o o so o o no o o o o so o so oeffne_tor s s s s s s sw s s s s s sw s"
 speedwalklist.dhun_min="n no n n n n n no n n n n n oeffne_tor n nw w nw w w w w sw w w nw w w w w w sw s sw s sw so sw sw s s s so s so s s s s s s s sw so so o so so s so so sw s s s s s s sw s sw s s s sw w w w w sw w w s w s s s"
 speedwalklist.cor_us="s sw w sw w sw sw sw sw sw sw sw sw w sw w w nw nw n nw nw w nw nw no n n n n n n n nw n nw n n n no no nw no n no n"
@@ -639,3 +641,5 @@ speedwalksafety['jas_bank']=true
 speedwalksafety['bank_jas']=true
 speedwalksafety['jas_haendler']=true
 speedwalksafety['haendler_jas']=true
+speedwalksafety['min_bote']=true
+speedwalksafety['bote_min']=true
