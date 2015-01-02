@@ -1769,7 +1769,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du erhebst .* angriff .*$|^.* erhebt .* angriff .*$|^.* greift .* mit .* an.$|^.* Angriff auf .*$"
+   match="^Du erhebst.*angriff.*$|^.*erhebt.*angriff.*$|^.*greift.*mit.*an.$|^.*Angriff auf.*$"
    ignore_case="y"
    regexp="y"
    sequence="100"
