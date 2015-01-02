@@ -468,6 +468,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Dein blaeulich-silberner, getragener Ring leuchtet kurz auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Rings/Bonus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
    send_to="12"
    sequence="100"
