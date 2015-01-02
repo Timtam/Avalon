@@ -460,6 +460,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Dein blaeulich-silberner, getragener Ring entfaltet nun seine Wirkung."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Rings/Bonus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
    send_to="12"
    sequence="100"
@@ -1176,7 +1184,7 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Misc/Post.ogg")</send>
+  <send>psnd("Misc/Post"..math.random(1,2)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1535,6 +1543,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* folgt Dir."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Smith/Following.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match=".* heilige Aura loest sich auf.|Die heilige Aura von .* loest sich auf."
    regexp="y"
    sequence="100"
@@ -1553,7 +1569,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Auf * lodert eine kleine Flamme kurz auf."
+   match="Auf * lodert eine kleine Flamme kurz auf.|Das Feuer hinterlaesst tiefe, gluehende Spuren auf *"
    sequence="100"
    send_to="12"
   >
@@ -1744,7 +1760,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du erhebst .*angriff.*$|^.* erhebt .*angriff.*$|^.* greift .* mit .* an.$|^.*Angriff auf.*$"
+   match="^Du erhebst .* angriff .*$|^.* erhebt .* angriff .*$|^.* greift .* mit .* an.$|^.* Angriff auf .*$"
    ignore_case="y"
    regexp="y"
    sequence="100"
@@ -1779,7 +1795,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus."
+   match="Ein grosser Lichtbogen breitet sich ueber * Kopf aus."
    sequence="100"
    send_to="12"
   >
@@ -1788,7 +1804,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, mit * zu faellen."
+   match="Du faengst an, mit * zu faellen.|* faengt an, mit * zu faellen"
    sequence="100"
    send_to="12"
   >
@@ -1939,7 +1955,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du loeschst.*|.*loescht.*|.*erlischt."
+   match="Du loeschst.*|.*loescht.*|.*erlischt.|.*erloeschen."
    regexp="y"
    sequence="100"
    send_to="12"
@@ -2247,7 +2263,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du nimmst einen grossen Schluck *"
+   match="Du nimmst einen * Schluck *"
    sequence="101"
    send_to="12"
   >
@@ -3154,7 +3170,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* gibt Dir .* (Lapis|Obsidian).*"
+   match=".* gibt Dir .* (Lapis|Obsidian|Konochen).*"
    regexp="y"
    sequence="99"
    send_to="12"
@@ -3427,38 +3443,38 @@
   >
   <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
-<trigger
+  <trigger
    match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
+   enabled="y"
    sequence="100"
    send_to="12"
-   enabled="y"
   >
   <send>speedwalk_breaklegs()</send>
   </trigger>
-<trigger
+  <trigger
    match="Du findest wieder festen Halt."
    enabled="y"
    sequence="100"
    send_to="12"
   >
   <send>speedwalk_break()</send>
-</trigger>
-<trigger
+  </trigger>
+  <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
    enabled="y"
    sequence="100"
    send_to="12"
   >
   <send>psnd("Player/waldtraene/vibration.ogg")</send>
-</trigger>
-<trigger
+  </trigger>
+  <trigger
    enabled="y"
    match="Jemand klopft von draussen laut gegen die Tuer!"
    sequence="100"
    send_to="12"
   >
   <send>psnd("Misc/DoorKnock.ogg")</send>
-</trigger>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
