@@ -1544,6 +1544,7 @@
   <trigger
    enabled="y"
    match="* folgt Dir."
+   omit_from_output="y"   
    sequence="100"
    send_to="12"
   >
