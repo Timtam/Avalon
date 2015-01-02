@@ -4048,7 +4048,7 @@ end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  world.Execute(";history_add REDEN="..text)
+  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
 end
 
 OnAvalonSoul = function(type, message)
