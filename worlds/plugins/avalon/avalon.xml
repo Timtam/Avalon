@@ -2320,6 +2320,14 @@
   <send>psnd("Portal/create.ogg")</send>
   </trigger>
   <trigger
+   enabled="y"
+   match="Ein * Mondtor verschwindet wieder spurlos im Boden."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Portal/quake.ogg")</send>
+  </trigger>
+  <trigger
    enabled="n"
    group="Barden"
    match="Du hoerst auf, &quot;Brems Vogellied&quot; zu spielen."
