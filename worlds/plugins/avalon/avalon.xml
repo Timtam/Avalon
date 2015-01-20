@@ -4906,6 +4906,8 @@ world.Accelerator('Numpad6','o')
 world.Accelerator('Numpad7','nw')
 world.Accelerator('Numpad8','n')
 world.Accelerator('Numpad9','no')
+world.Accelerator('Add','r')
+world.Accelerator('Subtract','h')
 else
 world.Accelerator('Numpad1','spaehe kurz sw')
 world.Accelerator('Numpad2','spaehe kurz s')
@@ -4915,6 +4917,8 @@ world.Accelerator('Numpad6','spaehe kurz o')
 world.Accelerator('Numpad7','spaehe kurz nw')
 world.Accelerator('Numpad8','spaehe kurz n')
 world.Accelerator('Numpad9','spaehe kurz no')
+world.Accelerator('Add','spaehe kurz h')
+world.Accelerator('Subtract','spaehe kurz r')
 end
 end
 function NumpadSwitch()
