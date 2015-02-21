@@ -402,7 +402,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Es wurden * Gegenstaende geladen."
+   match="Dein letzter Logout war am *"
    send_to="12"
    sequence="95"
   >
