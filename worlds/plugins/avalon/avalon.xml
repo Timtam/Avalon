@@ -4122,11 +4122,16 @@ OnAvalonRoomID = function(type, message)
     return
   end
   RoomName = name
-  if (not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg')) then
+  if (not Path.isfile(GetInfo(67)..'Sounds/Music/'..name..'.ogg') and not Path.isdir(GetInfo(67)..'Sounds/Music/'..name)) then
     stopifplaying(hmusic)
     return
   end
-  pmusic(name..'.ogg')
+  if (Path.isfile(GetInfo(67)..'Sounds/Music/'..name..'.ogg')) then
+    pmusic(name..'.ogg')
+  else
+    files=Dir.getfiles(GetInfo(67)..'Sounds/Music/'..name)
+    pmusic(files[math.random(1,#files)])
+  end
 end 
 
 OnAvalonEP = function(message, ep)
@@ -4399,15 +4404,21 @@ function psnd(file, pan)
   if (configtbl.settings.SoundsMuted == 1) then
     return
   end
-  return Audio.play(GetInfo(67)..'Sounds/'..file, 0, pan, configtbl.settings.SoundVolume)
+  if(not Path.isabs(file)) then
+    file=GetInfo(67)..'Sounds/'..file
+  end
+  return Audio.play(file, 0, pan, configtbl.settings.SoundVolume)
 end
 
 function pmusic(file)
   if (configtbl.settings.MusicMuted == 1) then
     return
   end
+  if(not Path.isabs(file)) then
+    file=GetInfo(67)..'Sounds/Music/'..file
+  end
   stopifplaying(hmusic)
-  hmusic = Audio.play(GetInfo(67)..'Sounds/Music/'..file, 1, 0, configtbl.settings.MusicVolume)
+  hmusic = Audio.play(file, 1, 0, configtbl.settings.MusicVolume)
 end
 
 function speedwalk_start(spd)
