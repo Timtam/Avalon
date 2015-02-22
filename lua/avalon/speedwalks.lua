@@ -405,6 +405,8 @@ speedwalklist.wal_schmied="s o o o o o o o o o o o s s s s s w w w w w w w w w w
 speedwalklist.wl_tin="o s s s s s s s s s s s s s s s s s"
 speedwalklist.wtoe_htoe="so so so so so so so so so so so s s s s s s s s so s sw s s s s s s s s sw sw sw sw sw sw sw s s s s s s sw sw s w w w w w w"
 speedwalklist.yol_toe="w sw w w nw w w w w nw w w w w w w nw nw n n n no no no no n n n n n nw nw"
+speedwalklist.gwen_jagd="s w w w w w w w w w w w w w w w w w w w nw nw nw nw nw nw nw nw nw n n n n hoch"
+speedwalklist.jagd_gwen="runter s s s s so so so so so so so so so o o o o o o o o o o o o o o o o o o o n"
 speedwalksafety={}
 for name,way in pairs(speedwalklist) do
 		speedwalksafety[name]=false
@@ -635,3 +637,5 @@ speedwalksafety['ver_haf']=true
 speedwalksafety['ver_jer']=true
 speedwalksafety['wl_tin']=true
 speedwalksafety['yol_toe']=true
+speedwalksafety['gwen_jagd']=true
+speedwalksafety['jagd_gwen']=true
