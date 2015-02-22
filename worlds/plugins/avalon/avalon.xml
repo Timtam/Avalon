@@ -4908,7 +4908,7 @@ rtime=world.Replace(rtime,',','.',false)
 return tonumber(rtime)
 end
 function NumpadInit()
-if configtbl.settings.NumpadWalk==1 then
+if configtbl.settings.NumpadWalk==0 then
 world.Accelerator('Numpad1','sw')
 world.Accelerator('Numpad2','s')
 world.Accelerator('Numpad3','so')
@@ -4919,7 +4919,7 @@ world.Accelerator('Numpad8','n')
 world.Accelerator('Numpad9','no')
 world.Accelerator('Add','r')
 world.Accelerator('Subtract','h')
-else
+elseif configtbl.settings.NumpadWalk==2 then
 world.Accelerator('Numpad1','spaehe kurz sw')
 world.Accelerator('Numpad2','spaehe kurz s')
 world.Accelerator('Numpad3','spaehe kurz so')
@@ -4930,15 +4930,29 @@ world.Accelerator('Numpad8','spaehe kurz n')
 world.Accelerator('Numpad9','spaehe kurz no')
 world.Accelerator('Add','spaehe kurz h')
 world.Accelerator('Subtract','spaehe kurz r')
+elseif configtbl.settings.NumpadWalk==1 then
+world.Accelerator('Numpad1','spaehe sw')
+world.Accelerator('Numpad2','spaehe s')
+world.Accelerator('Numpad3','spaehe so')
+world.Accelerator('Numpad4','spaehe w')
+world.Accelerator('Numpad6','spaehe o')
+world.Accelerator('Numpad7','spaehe nw')
+world.Accelerator('Numpad8','spaehe n')
+world.Accelerator('Numpad9','spaehe no')
+world.Accelerator('Add','spaehe h')
+world.Accelerator('Subtract','spaehe r')
 end
 end
 function NumpadSwitch()
 if configtbl.settings.NumpadWalk==1 then
+configtbl.settings.NumpadWalk=2
+world.Note('Nummernblock auf kurzes Spähen konfiguriert')
+elseif configtbl.settings.NumpadWalk==2 then
 configtbl.settings.NumpadWalk=0
-world.Note('Nummernblock auf Spähen konfiguriert')
-else
-configtbl.settings.NumpadWalk=1
 world.Note('Nummernblock auf Laufen konfiguriert')
+elseif configtbl.settings.NumpadWalk==0 then
+configtbl.settings.NumpadWalk=1
+world.Note('Nummernblock auf langes Spähen konfiguriert')
 end
 NumpadInit()
 psnd("Misc/ConfigSwitch.ogg")
