@@ -4947,15 +4947,17 @@ function NumpadSwitch()
 if configtbl.settings.NumpadWalk==1 then
 configtbl.settings.NumpadWalk=2
 world.Note('Nummernblock auf kurzes Spähen konfiguriert')
+psnd("Misc/NumPadScoutShort.ogg")
 elseif configtbl.settings.NumpadWalk==2 then
 configtbl.settings.NumpadWalk=0
 world.Note('Nummernblock auf Laufen konfiguriert')
+psnd("Misc/NumPadWalk.ogg")
 elseif configtbl.settings.NumpadWalk==0 then
 configtbl.settings.NumpadWalk=1
 world.Note('Nummernblock auf langes Spähen konfiguriert')
+psnd("Misc/NumPadScoutLong.ogg")
 end
 NumpadInit()
-psnd("Misc/ConfigSwitch.ogg")
 end
 ]]>
 </script>
