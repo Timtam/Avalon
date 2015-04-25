@@ -4088,6 +4088,9 @@ end
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
+  if fchannel=="RUNTIME" or fchannel=="FEHLER" then
+    return
+  end
   if gildentbl[fchannel] then
     channel="gilde"
   end
