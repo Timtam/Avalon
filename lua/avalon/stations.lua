@@ -463,3 +463,7 @@ stations.wtoe_htoe="raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
 stations.yol_toe="raum/89036876d7fc916f521e7e1f3d4dafd9"
 stations.gwen_jagd=gwen
 stations.jagd_gwen="raum/6913ea429bac1520415ae076e4dc85a8"
+stations.uw_haf=uw
+stations.haf_uw="raum/94c562aea6a4c8dbfa806a300e606a67"
+stations.ash_wlm=ash
+stations.wlm_ash="raum/bf04da5e1cd00894c8cdafdc56d7e1ca"
