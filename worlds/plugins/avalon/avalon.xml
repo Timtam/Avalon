@@ -3881,8 +3881,6 @@
 Audio=nil
 atcp=nil
 Dunkel=0
-EPKampfStart=nil
-EPStack={0}
 g_tp=nil
 g_max_tp=nil
 g_sp=nil
@@ -3904,8 +3902,6 @@ htpsnd=nil
 hmusic=nil
 LastCommand=nil
 LevelUpdate=false
-PlayerEP=nil
-PlayerKill=false
 PlayerLevel=nil
 timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
@@ -4014,47 +4010,15 @@ OnAvalonGetoetet = function(type, message)
     psnd("Monsters/Kill.ogg")
   end
   psnd("monsters/deaths/"..math.random(1,57)..".ogg")
-  if not EPKampfStart then
-    return
-  end
-  if (PlayerEP - EPKampfStart == 0) then
-    return
-  end
-  i = #EPStack
-  cep = EPKampfStart
-  repeat
-    if (EPStack[i] ~= 10) then
-      monsterep = EPStack[i]
-      break
-    end
-    cep = cep + EPStack[i]
-    i = i - 1
-  until cep == PlayerEP
-  if not monsterep then
-    monsterep = 10
-  end
-  world.Note("Dieses Monster gab "..monsterep.." EP.")
-  if (EPKampfStart + EPStack[#EPStack] ~= PlayerEP) and (EPKampfStart ~= PlayerEP) then
-    extra_ep = PlayerEP - (EPKampfStart + monsterep)
-    world.Note("In diesem Kampf wurden zusaetzlich "..extra_ep.." EP erreicht.")
-  end
-  EPKampfStart = PlayerEP
 end
 
 OnAvalonKampf = function(type, message)
   if (message == "1") then
     g_combat = true
     combat_music()
-    EPKampfStart = PlayerEP
-    PlayerKill = false
   elseif (message == "0") then
     g_combat = false
     combat_music()
-    if (PlayerKill == false) and (PlayerEP - EPKampfStart > 0) then
-      extra_ep = PlayerEP - EPKampfStart
-      world.Note("In diesem Kampf hast Du "..extra_ep.." EP erhalten.")
-    end
-    EPKampfStart = PlayerEP
   end
 end
 
@@ -4088,9 +4052,6 @@ end
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
-  if fchannel=="RUNTIME" or fchannel=="FEHLER" then
-    return
-  end
   if gildentbl[fchannel] then
     channel="gilde"
   end
@@ -4138,11 +4099,6 @@ OnAvalonRoomID = function(type, message)
 end 
 
 OnAvalonEP = function(message, ep)
-  ep = tonumber(ep)
-  if PlayerEP and (ep - PlayerEP > 0) then
-    EPStack[#EPStack+1] = ep - PlayerEP
-  end
-  PlayerEP = ep
   if LevelUpdate then
     psnd("Misc/LevelUp.ogg")
     world.Note("Herzlichen Glueckwunsch! Level "..tostring(PlayerLevel).." wurde mit "..tostring(PlayerEP).." EP erreicht. Voraussichtliche EP zu Level "..tostring(PlayerLevel+1)..": "..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
@@ -4683,7 +4639,6 @@ function OnPluginDisconnect()
   hspnil = 0
   htpsnd = nil
   LevelUpdate = false
-  PlayerEP = nil
   PlayerLevel = nil
   RoomName = ''
   stopifplaying(hmusic)
