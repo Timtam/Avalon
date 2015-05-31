@@ -4098,19 +4098,11 @@ OnAvalonRoomID = function(type, message)
   end
 end 
 
-OnAvalonEP = function(message, ep)
-  if LevelUpdate then
-    psnd("Misc/LevelUp.ogg")
-    world.Note("Herzlichen Glueckwunsch! Level "..tostring(PlayerLevel).." wurde mit "..tostring(PlayerEP).." EP erreicht. Voraussichtliche EP zu Level "..tostring(PlayerLevel+1)..": "..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
-    LevelUpdate = false
-  end
-end
-
 OnAvalonLevel = function(type, message)
   local level = string.match(message, "^S(%d+)$")
   level = tonumber(level)
   if (PlayerLevel ~= nil) and (level > PlayerLevel) then
-    LevelUpdate = true
+    psnd("Misc/LevelUp.ogg")
     atcp.Send('ava_req_update')
   end
   PlayerLevel = level
@@ -4264,7 +4256,6 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.AP", OnAvalonAP)
     atcp.Listen("Avalon.MP", OnAvalonMP)
     atcp.Listen("Avalon.MAX", OnAvalonMax)
-    atcp.Listen('Avalon.EP', OnAvalonEP)
     atcp.Listen('Avalon.Level', OnAvalonLevel)
     atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
     atcp.Listen('Avalon.Channel', OnAvalonChannel)
