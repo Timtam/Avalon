@@ -4103,7 +4103,6 @@ OnAvalonLevel = function(type, message)
   level = tonumber(level)
   if (PlayerLevel ~= nil) and (level > PlayerLevel) then
     psnd("Misc/LevelUp.ogg")
-    atcp.Send('ava_req_update')
   end
   PlayerLevel = level
 end
