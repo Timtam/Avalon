@@ -476,9 +476,9 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gratulation! Du hast eine (Tages|Wochen|Aktions)aufgabe geloest."
+   match="Gratulation! Du hast eine (Tagesaufgabe|Wochenaufgabe|Aktionsaufgabe) geloest."
    regexp="y"
-   send_to="12"
+      send_to="12"
    sequence="100"
   >
   <send>psnd("Misc/TaskDone.ogg")</send>
