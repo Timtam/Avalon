@@ -95,6 +95,7 @@ abt - Portal Abtei, Nereid
 affe - Anleger Affenkopfinsel, Unterwelt
 ale - Zugang Alemnia, Losaria
 alo - Westtor Alotria, Nereid
+aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
 amp - Mondtor, Amphibos
 arg - Meister aller Waffen Ruwenda, Elandor
 ash - Feld nördlich vom Nordtor Ashar, Nereid
@@ -161,6 +162,7 @@ ver - Vern, Losaria
 wahrsager - Feld vor dem Zelt der Wahrsagerzunft, Nereid
 wal - Hütte, Walhalla
 wl - Waldläufer, Tintagel
+wlm bzw. wlm1 bis wlmN - Waffen-Lehrmeister, Diverse
 wtoe - Wegweiser in der Totenebene, ein Feld östlich von Absprungsstelle
 yol - ?
 
