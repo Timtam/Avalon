@@ -3501,6 +3501,14 @@
   >
   <send>psnd("Portal/ShadowWall.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Insgesamt warst Du * in Avalon."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/out.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
