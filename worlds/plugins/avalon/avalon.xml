@@ -3507,7 +3507,10 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Misc/out.ogg")</send>
+  <send>
+  Audio.setVol(0, hmusic)
+  psnd("Misc/out.ogg")
+  </send>
   </trigger>
 </triggers>
 
