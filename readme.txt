@@ -99,11 +99,13 @@ aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
 amp - Mondtor, Amphibos
 arg - Meister aller Waffen Ruwenda, Elandor
 ash - Feld nördlich vom Nordtor Ashar, Nereid
+ashz - Platz der Helden in Ashar, Nereid
 aug - Tor Augyra, Amphibos
 bank - Bank, Diverse
 barde - Barden, Diverse
 camp - Zugang Camp Baralon, Unterwelt
 cor - Vor der Höhle Corona, Nereid
+corz - Platz des Lebens in Corona, Nereid
 dhun - Feld vor dem Transportkorb Dhungar, Nereid
 dichter - Feld vor dem Haus der Dichterzunft, Nereid
 dk - Standort der Säule, Dämonenkriegergilde, Unterwelt
@@ -156,6 +158,7 @@ tin - Mondtor, Tintagel
 toe - Absprungstelle Totenebene, Unterwelt
 tol - Mondtor, Tolsgal
 tor - jeweiliges Mondtor, Nereid
+umi - Im Zentrum des Hauptplatzes von Uminotokai, Amphibos
 us - Weggabelung nach Loretta, Nereid
 uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
 ver - Vern, Losaria
