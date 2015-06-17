@@ -3493,25 +3493,6 @@
   >
   <send>psnd("Misc/DoorKnock.ogg")</send>
   </trigger>
-  <trigger
-   enabled="y"
-   match="Mutigen Schrittes trittst Du durch die schwarze, glitzernde Wand."
-   sequence="100"
-   send_to="12"
-  >
-  <send>psnd("Portal/ShadowWall.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Insgesamt warst Du * in Avalon."
-   sequence="100"
-   send_to="12"
-  >
-  <send>
-  Audio.setVol(0, hmusic)
-  psnd("Misc/out.ogg")
-  </send>
-  </trigger>
 </triggers>
 
 <!--  Aliases  -->
