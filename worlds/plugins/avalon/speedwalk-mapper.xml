@@ -146,6 +146,7 @@ if safety=='yes' then
 output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true\r\n'
 output=output..'speedwalksafety[\''..EndName..'_'..StartName..'\']=true'
 end
+output=output..'\r\n'
 world.SetClipboard(output)
 world.Note('Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.')
 else
