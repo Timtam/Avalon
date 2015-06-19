@@ -97,6 +97,7 @@ ale - Zugang Alemnia, Losaria
 alo - Westtor Alotria, Nereid
 aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
 amp - Mondtor, Amphibos
+anl - Diverse Anlegestellen, Unterwelt
 arg - Meister aller Waffen Ruwenda, Elandor
 ash - Feld nördlich vom Nordtor Ashar, Nereid
 ashz - Platz der Helden in Ashar, Nereid
