@@ -396,6 +396,7 @@ speedwalklist.teich_cor="sw w w w w w w w w sw sw s sw sw sw sw sw w w w w w w w
 speedwalklist.teich_min="s w w w w w w w w w sw sw s sw sw sw sw sw w w w w w w w w w w w w nw w w w w w w w sw w sw sw sw sw sw w sw w w w w w w w w w nw sw w w w w sw sw w w s s s"
 speedwalklist.teich_tor="s o o o s s s"
 speedwalklist.teich_us="sw w w w w w w w w w w w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w nw no n no n"
+speedwalklist.teich_wunsch="nw nw nw nw nw nw nw w w w w w n o o o o o"
 speedwalklist.tempel_anl="o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw w w w nw nw nw"
 speedwalklist.tempel_camp="w w nw w w w nw w w w w w nw w w nw w w w nw w w w w w nw w nw w sw w w w w w nw w w w w w w sw w w w w sw nw w w nw w w w w w w w w w w w w w w w w w w sw w sw w sw sw so s s so s s s s so s s s sw s s so so so so so so"
 speedwalklist.tempel_jas="o so o o so o so sw sw s s s sw sw sw sw sw sw sw sw sw w w w sw w w w w w w sw sw s s s sw sw sw sw w w w sw sw s s s sw so s s s s so so so so so so so so so so so so so o o o o o so so so so o o so o so so so s sw sw s s s so so so so so so so s s sw sw sw s s s sw sw sw sw sw sw s sw sw sw w sw sw w sw sw"
@@ -480,6 +481,7 @@ speedwalklist.wlm_corz="n o o"
 speedwalklist.wlm1_min="no o o o o o no o o"
 speedwalklist.wlm2_min="raus s o n n n n n n n n no no no no no w w w w s s s"
 speedwalklist.wtoe_htoe="so so so so so so so so so so so s s s s s s s s so s sw s s s s s s s s sw sw sw sw sw sw sw s s s s s s sw sw s w w w w w w"
+speedwalklist.wunsch_teich="w w w w w s o o o o o so so so so so so so"
 speedwalklist.yol_toe="w sw w w nw w w w w nw w w w w w w nw nw n n n no no no no n n n n n nw nw"
 
 speedwalksafety={}
