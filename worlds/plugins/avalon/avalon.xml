@@ -3512,6 +3512,14 @@
   psnd("Misc/out.ogg")
   </send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="* hat einen neuen Abenteuerbericht verfasst."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/Report.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
