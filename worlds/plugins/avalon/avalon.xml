@@ -3520,6 +3520,14 @@
   >
   <send>psnd("Misc/Report.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Ein kleiner, roter Briefkasten (Post ist da!)."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/LetterBox.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
