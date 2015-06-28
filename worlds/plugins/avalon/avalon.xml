@@ -476,12 +476,27 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gratulation! Du hast eine (Tagesaufgabe|Wochenaufgabe|Aktionsaufgabe) geloest."
-   regexp="y"
-      send_to="12"
+   match="Gratulation! Du hast eine Tagesaufgabe geloest."
+   send_to="12"
    sequence="100"
   >
-  <send>psnd("Misc/TaskDone.ogg")</send>
+  <send>psnd("Misc/DailyTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gratulation! Du hast eine Wochenaufgabe geloest."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/WeeklyTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gratulation! Du hast eine Aktionsaufgabe geloest."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/SpecialTask.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
