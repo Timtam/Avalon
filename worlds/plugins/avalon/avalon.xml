@@ -402,6 +402,22 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Ok, ASCII-Grafiken werden nun nicht mehr vermieden."
+   send_to="12"
+   sequence="95"
+  >
+  <send>config_graphics(true)</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ok, ASCII-Grafiken werden nun moeglichst vermieden."
+   send_to="12"
+   sequence="95"
+  >
+  <send>config_graphics(false)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Dein letzter Logout war am *"
    send_to="12"
    sequence="95"
@@ -3953,6 +3969,7 @@ htpsnd=nil
 hmusic=nil
 LastCommand=nil
 LevelUpdate=false
+mxp_output=false
 PlayerLevel=nil
 timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
@@ -3990,6 +4007,7 @@ configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.RepeatCommand=1
 configtbl.settings.NumpadWalk=1
+configtbl.settings.MXP=0
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
@@ -4028,6 +4046,13 @@ spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuell
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
+function OnAvalonGrafikVermeiden(type,message)
+if tonumber(message)==1 then
+config_graphics(false)
+else
+config_graphics(true)
+end
+end
 function OnAvalonGilde(type,message)
 for gilde,gtbl in pairs(gildentbl) do
 if gilde==message then
@@ -4052,6 +4077,7 @@ function OnAvalonLogin()
   atcp.Send("ava_set_soul 1")
   atcp.Send("ava_set_rsoul 1")
   atcp.Send("ava_req_update")
+  atcp.Send("ava_req_graphics_status")
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -4207,6 +4233,11 @@ function OnPluginInstall()
       end
     end
   end
+  if configtbl.settings.MXP==1 then
+    config_graphics(true,false)
+  else
+    config_graphics(false,false)
+  end
   plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..'.xml'
   for number, plugin in pairs(plugintbl) do
     pluginpath = world.GetInfo(60)..'/'..plugin
@@ -4318,6 +4349,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.Comm',OnAvalonComm)
     atcp.Listen('Avalon.Soul',OnAvalonSoul)
     atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
+    atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
   end
   end
 end
@@ -4957,6 +4989,31 @@ world.Note('Nummernblock auf langes Spähen konfiguriert')
 psnd("Misc/NumPadScoutLong.ogg")
 end
 NumpadInit()
+end
+
+function config_graphics(enable,output)
+output=output or true
+if enable then
+if tonumber(world.GetOption("use_mxp"))==2 then
+return
+end
+world.SetOption("use_mxp",2)
+configtbl.settings.MXP=1
+if output and not mxp_output then
+world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+mxp_output=true
+end
+else
+if tonumber(world.GetOption("use_mxp"))==3 then
+return
+end
+world.SetOption("use_mxp",3)
+configtbl.settings.MXP=0
+if output and not mxp_output then
+world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
+mxp_output=true
+end
+end
 end
 ]]>
 </script>
