@@ -4135,6 +4135,9 @@ OnAvalonChannel = function(type, message)
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
+  if ((channel == "fehler") or (channel == "runtime")) then
+    return
+  end
   world.Execute(";history_add "..channel.."="..text)
 end
 
