@@ -4005,7 +4005,7 @@ configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.RepeatCommand=1
+configtbl.settings.RepeatCommand=0
 configtbl.settings.NumpadWalk=1
 configtbl.settings.MXP=0
 world.Accelerator("ctrl+D", "speedwalk_break")
