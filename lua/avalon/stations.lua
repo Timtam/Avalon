@@ -9,6 +9,20 @@ end
 return rettbl
 end
 
+function stations_getnamebyroomid(roomid)
+for name,id in pairsByKeys(stations) do
+if id==roomid then
+split_name = utils.split(name, "_")
+if split_name ~= nil then
+return split_name[1]
+else
+return nil
+end
+end
+end
+return nil
+end
+
 abt="raum/b3870144ea3bbbe607804126f3b9c39e"
 ale="raum/3ad9d9e430091b746159a1f2f9b0a85a"
 alo="raum/e4fdca13e0ce2426c14221923d632606"
