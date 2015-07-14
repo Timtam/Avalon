@@ -3518,7 +3518,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Jemand klopft von draussen laut gegen die Tuer!"
+   match="Jemand klopft von draussen laut gegen die *!"
    sequence="100"
    send_to="12"
   >
@@ -3558,6 +3558,22 @@
    send_to="12"
   >
   <send>psnd("Player/LetterBox.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Echos des grossen Krieges"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Advance.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Vergiss Deine Kriegsbeute nicht"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Loot.ogg")</send>
   </trigger>
 </triggers>
 
