@@ -542,7 +542,6 @@ stations.us_uw=us
 stations.uw_camp=uw
 stations.uw_dhun=uw_oben
 stations.uw_dk=uw
-stations.uw_haf=uw
 stations.uw_ilme="raum/f0edb0c34886662762d179996fa6f634"
 stations.uw_jas=uw
 stations.uw_kap=uw
