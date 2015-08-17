@@ -3576,6 +3576,22 @@
   <send>psnd("WarEchoes/Loot.ogg")</send>
   </trigger>
   <trigger
+   enabled="y"
+   match="Dafuer hast Du leider nicht genug Zauberpunkte."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Spells/OutOfSpellPower.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du brichst Dein Dauerzaubern ab."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Spells/EndOfContinuousSpell.ogg")</send>
+  </trigger>
+  <trigger
    enabled="n"
    group="Nekromanten"
    match="Der wirbelnde Schild aus Knochen umgibt dich weiterhin."
