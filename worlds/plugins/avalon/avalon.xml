@@ -3594,11 +3594,11 @@
   <trigger
    enabled="n"
    group="Nekromanten"
-   match="Der wirbelnde Schild aus Knochen umgibt dich weiterhin."
+   match="Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich"
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Necromancers/BoneArmorOn.ogg")</send>
+  <send>psnd("Necromancers/BoneShieldOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -3607,7 +3607,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Necromancers/BoneArmorOff.ogg")</send>
+  <send>psnd("Necromancers/BoneShieldOff.ogg")</send>
   </trigger>
 </triggers>
 
@@ -4093,7 +4093,7 @@ spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarz
 spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\.","Deine Feueraura loest sich auf\.")
 spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\.","Deine heilige Aura loest sich auf\.")
 spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\.","Dein Kernschild loest sich auf\.")
-spells_register("Knochenschild","Der wirbelnde Schild aus Knochen umgibt dich weiterhin\.","Deine schuetzende Knochenwolke loest sich auf\.")
+spells_register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\.")
 spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
