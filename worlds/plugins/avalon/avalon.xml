@@ -4524,6 +4524,10 @@ function speedwalk_start(spd)
   end
   if (speedwalklist[spd] == nil) then
     world.Note("Es existiert kein Speedwalk mit diesem Namen.")
+    if (string.find(spd, '_us') ~= nil or string.find(spd, 'us_') ~= nil) then
+      world.Note("Hinweis: Die Station 'us' wurde in vielen Speedwalks nach 'zwerge' umbenannt (z.B. min_zwerge statt min_us).")
+      world.Note("Die Station 'us' bezieht sich ausschlieﬂlich auf Usagoor.")
+    end
     return
   end
   if (configtbl.settings.SafeSpeedwalks == 1) then
