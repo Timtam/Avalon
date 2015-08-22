@@ -4298,9 +4298,9 @@ function OnPluginInstall()
     end
   end
   if configtbl.settings.MXP==1 then
-    config_graphics(true,false)
+    config_graphics(true,true)
   else
-    config_graphics(false,false)
+    config_graphics(false,true)
   end
   plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..'.xml'
   for number, plugin in pairs(plugintbl) do
@@ -5062,15 +5062,15 @@ end
 NumpadInit()
 end
 
-function config_graphics(enable,output)
-output=output or true
+function config_graphics(enable,omit_output)
+omit_output=omit_output or false
 if enable then
 if tonumber(world.GetOption("use_mxp"))==2 then
 return
 end
 world.SetOption("use_mxp",2)
 configtbl.settings.MXP=1
-if output and not mxp_output then
+if not omit_output and not mxp_output then
 world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
 mxp_output=true
 end
@@ -5080,7 +5080,7 @@ return
 end
 world.SetOption("use_mxp",3)
 configtbl.settings.MXP=0
-if output and not mxp_output then
+if not omit_output and not mxp_output then
 world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
 mxp_output=true
 end
