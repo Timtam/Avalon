@@ -3939,7 +3939,7 @@
    send_to="2"
    sequence="100"
    >
-  <send>Usagor</send>
+  <send>Zwergental</send>
   </alias>
   <alias
    match="foiesw"
