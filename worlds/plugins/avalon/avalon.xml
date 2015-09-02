@@ -4032,6 +4032,7 @@ plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
 plugintbl[8]="avalon/speedwalk-mapper.xml"
+plugintbl[9]="avalon/healthbar.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4043,6 +4044,7 @@ spdspeed=0.3
 spdextraspeed=0.7
 auratbl={}
 gildentbl={}
+callbacktbl={}
 configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
@@ -4293,6 +4295,9 @@ function OnPluginInstall()
         if (config == nil) then
           config = optionvalue
         end
+        if configtbl[name]==nil then
+          configtbl[name]={}
+        end
         configtbl[name][optionname] = config
       end
     end
@@ -4370,6 +4375,24 @@ function OnPluginInstall()
     function()
       return g_tp, g_max_tp
     end)
+  PPI.Expose('GetConfig',
+    function(table,key)
+      if configtbl[table]==nil then
+        return 0
+      end
+      return configtbl[table][key] or 0
+    end)
+  PPI.Expose('SetConfig',
+    function(table,key,value)
+      if configtbl[table]==nil then
+        configtbl[table]={}
+      end
+      configtbl[table][key]=value
+    end)
+  PPI.Expose('HookCallback',
+    function(event,callback)
+      return hook_callback(event,callback)
+    end)
 end
 
 function OnPluginCommandEntered(text)
@@ -4389,6 +4412,11 @@ function OnPluginCommandEntered(text)
 end
 
 function OnPluginClose()
+  if callbacktbl.CLOSE then
+    for ci,cf in pairs(callbacktbl.CLOSE) do
+      cf()
+    end
+  end
   configtbl.settings.Warnings=spells_retrievewarnings()
   Ini.write('config.dat', configtbl)
 end
@@ -5085,6 +5113,27 @@ world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zei
 mxp_output=true
 end
 end
+end
+function hook_callback(event,callback)
+if not callbacktbl[event] then
+callbacktbl[event]={}
+end
+if Tablex.find(callbacktbl[event],callback) ~=nil then
+return false
+end
+callbacktbl[event][#(callbacktbl[event])]=callback
+return true
+end
+function unhook_callback(event,callback)
+if callbacktbl[event]==nil then
+return false
+end
+index=Tablex.find(callbacktbl[event],callback)
+if index ~=nil then
+callbacktbl[event]=Tablex.removevalues(callbacktbl[event],index,index)
+return true
+end
+return false
 end
 ]]>
 </script>

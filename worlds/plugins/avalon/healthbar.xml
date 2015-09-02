@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE muclient>
+<!-- MuClient version 4.71 -->
+
+<muclient>
+
+<plugin
+   name="Healthbar_Plugin"
+   id="1e227333692fd2f33a42bf2c"
+   language="Lua"
+   save_state="n"
+   date_written="2012-02-25 13:45:00"
+   requires="4.71"
+   version="1.0"
+   >
+</plugin>
+
+<include name="constants.lua" />
+
+<script>
+<![CDATA[
+-- Used to load the ATCP interface
+avalonid="02dade4f6131c8d67e85c7ee"
+PPI = require("ppi")
+
+-- Will contain the ATCP interface
+atcp = nil
+avalon=PPI.Load(avalonid)
+world.DoAfterSpecial(2.0, "PluginInstall()",12)
+GAUGE_LEFT = 120
+GAUGE_HEIGHT = 20
+
+WINDOW_WIDTH = 400
+WINDOW_HEIGHT = 85
+NUMBER_OF_TICKS = 9
+
+BACKGROUND_COLOUR = ColourNameToRGB "rosybrown"
+FONT_COLOUR = ColourNameToRGB "black"
+BORDER_COLOUR = ColourNameToRGB "#553333"
+
+
+function mousedown(flags, hotspot_id)
+
+  -- find where mouse is so we can adjust window relative to mouse
+  startx, starty = WindowInfo (win, 14), WindowInfo (win, 15)
+
+  -- find where window is in case we drag it offscreen
+  origx, origy = WindowInfo (win, 10), WindowInfo (win, 11)
+end -- mousedown
+
+function dragmove(flags, hotspot_id)
+
+  -- find where it is now
+  local posx, posy = WindowInfo (win, 17),
+                     WindowInfo (win, 18)
+
+  -- move the window to the new location
+  WindowPosition(win, posx - startx, posy - starty, 0, 2);
+
+  -- change the mouse cursor shape appropriately
+  if posx < 0 or posx > GetInfo (281) or
+     posy < 0 or posy > GetInfo (280) then
+    check (SetCursor ( 11))   -- X cursor
+  else
+    check (SetCursor ( 1))   -- hand cursor
+  end -- if
+
+end -- dragmove
+
+function dragrelease(flags, hotspot_id)
+  local newx, newy = WindowInfo (win, 17), WindowInfo (win, 18)
+
+  -- don't let them drag it out of view
+  if newx < 0 or newx > GetInfo (281) or
+     newy < 0 or newy > GetInfo (280) then
+     -- put it back
+    WindowPosition(win, origx, origy, 0, 2);
+  end -- if out of bounds
+
+end -- dragrelease
+
+
+function DoGauge (sPrompt, Percent, Colour)
+
+  local Fraction = tonumber (Percent)
+
+  if Fraction > 1 then Fraction = 1 end
+  if Fraction < 0 then Fraction = 0 end
+
+  local width = WindowTextWidth (win, font_id, sPrompt)
+
+  WindowText (win, font_id, sPrompt, 10, vertical, 0, 0, FONT_COLOUR)
+
+  WindowRectOp (win, 2, GAUGE_LEFT, vertical, WINDOW_WIDTH - 5, vertical + GAUGE_HEIGHT,
+                          BACKGROUND_COLOUR)  -- fill entire box
+
+
+  local gauge_width = (WINDOW_WIDTH - GAUGE_LEFT - 5) * Fraction
+
+   -- box size must be > 0 or WindowGradient fills the whole thing
+  if math.floor (gauge_width) > 0 then
+
+    -- top half
+    WindowGradient (win, GAUGE_LEFT, vertical, GAUGE_LEFT + gauge_width, vertical + GAUGE_HEIGHT / 2,
+                    0x000000,
+                    Colour, 2)
+
+    -- bottom half
+    WindowGradient (win, GAUGE_LEFT, vertical + GAUGE_HEIGHT / 2,
+                    GAUGE_LEFT + gauge_width, vertical +  GAUGE_HEIGHT,
+                    Colour,
+                    0x000000,
+                    2)
+
+  end -- non-zero
+
+  -- show ticks
+  local ticks_at = (WINDOW_WIDTH - GAUGE_LEFT - 5) / (NUMBER_OF_TICKS + 1)
+
+  -- ticks
+  for i = 1, NUMBER_OF_TICKS do
+    WindowLine (win, GAUGE_LEFT + (i * ticks_at), vertical,
+                GAUGE_LEFT + (i * ticks_at), vertical + GAUGE_HEIGHT, ColourNameToRGB ("silver"), 0, 1)
+  end -- for
+
+  -- draw a box around it
+  check (WindowRectOp (win, 1, GAUGE_LEFT, vertical, WINDOW_WIDTH - 5, vertical + GAUGE_HEIGHT,
+          ColourNameToRGB ("lightgrey")))  -- frame entire box
+
+  vertical = vertical + font_height + 3
+end -- function
+
+function do_prompt (name, line, wildcards)
+
+  tp, max_tp = tonumber (wildcards [1]), tonumber (wildcards [2])
+  zp, max_zp = tonumber (wildcards [3]), tonumber (wildcards [4])
+  ap, max_ap = tonumber (wildcards [5]), tonumber (wildcards [6])
+  mana = tonumber (wildcards [7])
+
+  tp_percent = tp / max_tp
+  zp_percent = zp / max_zp
+  ap_percent = ap / max_ap
+  mana_percent = mana / 9999
+
+  -- fill entire box to clear it
+  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+
+  -- Edge around box rectangle
+  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+
+  vertical = 6  -- pixel to start at
+
+  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
+
+  WindowShow (win, true)
+  
+end -- draw_bar
+
+OnAvalonTP = function(message, tp)
+--  Note("TP: "..tp)
+
+  NEED_OUTPUT = true
+
+  tp_percent = tp / max_tp
+  zp_percent = zp / max_zp
+  ap_percent = ap / max_ap
+  mana_percent = mana / 9999
+
+  -- fill entire box to clear it
+  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+
+  -- Edge around box rectangle
+  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+
+  vertical = 6  -- pixel to start at
+
+  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
+
+  WindowShow (win, true)
+
+end
+
+OnAvalonSP = function(message, zp)
+--  Note("ZP: "..zp)
+
+  NEED_OUTPUT = true
+  
+  tp_percent = tp / max_tp
+  zp_percent = zp / max_zp
+  ap_percent = ap / max_ap
+  mana_percent = mana / 9999
+
+  -- fill entire box to clear it
+  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+
+  -- Edge around box rectangle
+  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+
+  vertical = 6  -- pixel to start at
+
+  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
+
+  WindowShow (win, true)
+
+end
+
+OnAvalonAP = function(message, ap)
+--  Note("AP: "..ap)
+
+  NEED_OUTPUT = true
+
+  tp_percent = tp / max_tp
+  zp_percent = zp / max_zp
+  ap_percent = ap / max_ap
+  mana_percent = mana / 9999
+
+  -- fill entire box to clear it
+  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+
+  -- Edge around box rectangle
+  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+
+  vertical = 6  -- pixel to start at
+
+  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
+
+  WindowShow (win, true)
+
+end
+
+OnAvalonMP = function(message, mana)
+--  Note("Mana: "..mana)
+
+  NEED_OUTPUT = true
+
+  tp_percent = tp / max_tp
+  zp_percent = zp / max_zp
+  ap_percent = ap / max_ap
+  mana_percent = mana / 9999
+
+  -- fill entire box to clear it
+  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+
+  -- Edge around box rectangle
+  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+
+  vertical = 6  -- pixel to start at
+
+  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
+
+  WindowShow (win, true)
+end
+
+-- Loads the ATCP library
+OnPluginListChanged = function()
+  local atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+  if not atcp then
+    Note("ATCP funktioniert nicht!")
+  elseif reloaded then
+    -- Registers a function to call when Room.Brief is received.
+    atcp.Listen("Avalon.TP", OnAvalonTP)
+    atcp.Listen("Avalon.SP", OnAvalonSP)
+    atcp.Listen("Avalon.AP", OnAvalonAP)
+    atcp.Listen("Avalon.MP", OnAvalonMP)
+  end
+end
+
+
+function PluginInstall ()
+  avalon.HookCallback("CLOSE",PluginClose)
+
+  win = "Health_Bar_Miniwindow"
+  font_id = "fn"
+
+  font_name = "Fixedsys"    -- the actual font
+
+  local x, y, mode, flags =
+      tonumber (avalon.GetConfig("healthbar","windowx")) or 0,
+      tonumber (avalon.GetConfig ("healthbar","windowy")) or 0,
+      tonumber (avalon.GetConfig("healthbar","windowmode")) or 8, -- bottom right
+      tonumber (avalon.GetConfig("healthbar","windowflags")) or 0
+
+  -- make miniwindow so I can grab the font info
+  check (WindowCreate (win,
+                 x, y, WINDOW_WIDTH, WINDOW_HEIGHT,
+                 mode,
+                 flags,
+                 BACKGROUND_COLOUR) )
+
+  -- make a hotspot
+  WindowAddHotspot(win, "hs1",
+                   0, 0, 0, 0,   -- whole window
+                   "",   -- MouseOver
+                   "",   -- CancelMouseOver
+                   "mousedown",
+                   "",   -- CancelMouseDown
+                   "",   -- MouseUp
+                   "Drag to move",  -- tooltip text
+                   1, 0)  -- hand cursor
+
+  WindowDragHandler(win, "hs1", "dragmove", "dragrelease", 0)
+
+  check (WindowFont (win, font_id, font_name, 9, false, false, false, false, 0, 0))  -- normal
+
+  font_height = WindowFontInfo (win, font_id, 1)  -- height
+
+  if avalon.GetConfig ("healthbar","enabled") == "false" then
+    ColourNote ("yellow", "", "Warning: Plugin " .. GetPluginName ().. " is currently disabled.")
+    check (EnablePlugin(GetPluginID (), false))
+    return
+  end -- they didn't enable us last time
+
+  tp = 500
+  zp = 500
+  ap = 500
+  mana = 9999
+  max_tp = 500
+  max_zp = 500
+  max_ap = 500
+  tp_percent = 1
+  zp_percent = 1
+  ap_percent = 1
+  mana_percent = 1
+
+end -- PluginInstall
+
+function OnPluginDisable ()
+  WindowShow (win, false)
+end -- OnPluginDisable
+
+function PluginClose ()
+  avalon.SetConfig("healthbar","enabled", tostring (GetPluginInfo (GetPluginID (), 17)))
+  avalon.SetConfig("healthbar","windowx", tostring (WindowInfo (win, 10)))
+  avalon.SetConfig("healthbar","windowy", tostring (WindowInfo (win, 11)))
+  avalon.SetConfig("healthbar","windowmode", tostring (WindowInfo (win, 7)))
+  avalon.SetConfig("healthbar","windowflags", tostring (WindowInfo (win, 8)))
+end -- PluginClose
+]]>
+</script>
+
+</muclient>
