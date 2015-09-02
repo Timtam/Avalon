@@ -19,12 +19,8 @@
 
 <script>
 <![CDATA[
--- Used to load the ATCP interface
 avalonid="02dade4f6131c8d67e85c7ee"
 PPI = require("ppi")
-
--- Will contain the ATCP interface
-atcp = nil
 avalon=PPI.Load(avalonid)
 world.DoAfterSpecial(2.0, "PluginInstall()",12)
 GAUGE_LEFT = 120
@@ -38,6 +34,17 @@ BACKGROUND_COLOUR = ColourNameToRGB "rosybrown"
 FONT_COLOUR = ColourNameToRGB "black"
 BORDER_COLOUR = ColourNameToRGB "#553333"
 
+tp = 500
+zp = 500
+ap = 500
+mana = 9999
+max_tp = 500
+max_zp = 500
+max_ap = 500
+tp_percent = 1
+zp_percent = 1
+ap_percent = 1
+mana_percent = 1
 
 function mousedown(flags, hotspot_id)
 
@@ -159,7 +166,7 @@ function do_prompt (name, line, wildcards)
   
 end -- draw_bar
 
-OnAvalonTP = function(message, tp)
+OnAvalonTP=function(tp)
 --  Note("TP: "..tp)
 
   NEED_OUTPUT = true
@@ -186,7 +193,7 @@ OnAvalonTP = function(message, tp)
 
 end
 
-OnAvalonSP = function(message, zp)
+OnAvalonSP = function(zp)
 --  Note("ZP: "..zp)
 
   NEED_OUTPUT = true
@@ -213,7 +220,7 @@ OnAvalonSP = function(message, zp)
 
 end
 
-OnAvalonAP = function(message, ap)
+OnAvalonAP = function(ap)
 --  Note("AP: "..ap)
 
   NEED_OUTPUT = true
@@ -240,7 +247,7 @@ OnAvalonAP = function(message, ap)
 
 end
 
-OnAvalonMP = function(message, mana)
+OnAvalonMP = function(mana)
 --  Note("Mana: "..mana)
 
   NEED_OUTPUT = true
@@ -266,24 +273,16 @@ OnAvalonMP = function(message, mana)
   WindowShow (win, true)
 end
 
--- Loads the ATCP library
-OnPluginListChanged = function()
-  local atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
-  if not atcp then
-    Note("ATCP funktioniert nicht!")
-  elseif reloaded then
-    -- Registers a function to call when Room.Brief is received.
-    atcp.Listen("Avalon.TP", OnAvalonTP)
-    atcp.Listen("Avalon.SP", OnAvalonSP)
-    atcp.Listen("Avalon.AP", OnAvalonAP)
-    atcp.Listen("Avalon.MP", OnAvalonMP)
-  end
+OnAvalonMax = function(maxtp,maxzp,maxap)
+  max_tp = maxtp
+  max_zp = maxzp
+  max_ap = max_ap
+  OnAvalonTP(tp)
+  OnAvalonZP(zp)
+  OnAvalonAP(ap)
 end
 
-
 function PluginInstall ()
-  avalon.HookCallback("CLOSE",PluginClose)
-
   win = "Health_Bar_Miniwindow"
   font_id = "fn"
 
@@ -325,17 +324,12 @@ function PluginInstall ()
     return
   end -- they didn't enable us last time
 
-  tp = 500
-  zp = 500
-  ap = 500
-  mana = 9999
-  max_tp = 500
-  max_zp = 500
-  max_ap = 500
-  tp_percent = 1
-  zp_percent = 1
-  ap_percent = 1
-  mana_percent = 1
+  avalon.HookCallback("TP",OnAvalonTP)
+  avalon.HookCallback("SP",OnAvalonSP)
+  avalon.HookCallback("MP",OnAvalonMana)
+  avalon.HookCallback("AP",OnAvalonAP)
+  avalon.HookCallback("MAX",OnAvalonMax)
+  avalon.HookCallback("CLOSE",PluginClose)
 
 end -- PluginInstall
 

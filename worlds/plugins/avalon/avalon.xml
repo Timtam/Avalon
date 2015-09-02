@@ -4255,23 +4255,42 @@ OnAvalonTP = function(message, ntp)
   play_tp(ntp)
   g_tp=ntp
   combat_music()
+  if callbacktbl.TP then
+    for ci,cf in pairs(callbacktbl.TP) do
+      cf(g_tp)
+    end
+  end
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
   play_sp(nsp)
   g_sp=nsp
+  if callbacktbl.SP then
+    for ci,cf in pairs(callbacktbl.SP) do
+      cf(g_sp)
+    end
+  end
 end
 
 OnAvalonMP=function(message,nmp)
   g_mp=tonumber(nmp)
-  return
+  if callbacktbl.MP then
+    for ci,cf in pairs(callbacktbl.MP) do
+      cf(g_mp)
+    end
+  end
 end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
   g_ap = nap
+  if callbacktbl.AP then
+    for ci,cf in pairs(callbacktbl.AP) do
+      cf(g_ap)
+    end
+  end
 end
 
 OnAvalonMax = function(message, value)
@@ -4283,6 +4302,11 @@ OnAvalonMax = function(message, value)
     g_max_sp = tonumber(content)
   elseif (type == "AP") then
     g_max_ap = tonumber(content)
+  end
+  if callbacktbl.MAX and (max_tp ~=nil and max_sp ~=nil and max_ap ~=nil) then
+    for ci,cf in pairs(callbacktbl.MAX) do
+      cf(g_max_tp,g_max_sp,g_max_ap)
+    end
   end
 end
 
