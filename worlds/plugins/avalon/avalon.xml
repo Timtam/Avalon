@@ -4303,7 +4303,7 @@ OnAvalonMax = function(message, value)
   elseif (type == "AP") then
     g_max_ap = tonumber(content)
   end
-  if callbacktbl.MAX and (max_tp ~=nil and max_sp ~=nil and max_ap ~=nil) then
+  if callbacktbl.MAX and (g_max_tp ~=nil and g_max_sp ~=nil and g_max_ap ~=nil) then
     for ci,cf in pairs(callbacktbl.MAX) do
       cf(g_max_tp,g_max_sp,g_max_ap)
     end

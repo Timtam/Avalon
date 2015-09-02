@@ -167,7 +167,6 @@ function do_prompt (name, line, wildcards)
 end -- draw_bar
 
 OnAvalonTP=function(tp)
---  Note("TP: "..tp)
 
   NEED_OUTPUT = true
 
@@ -194,7 +193,6 @@ OnAvalonTP=function(tp)
 end
 
 OnAvalonSP = function(zp)
---  Note("ZP: "..zp)
 
   NEED_OUTPUT = true
   
@@ -221,7 +219,6 @@ OnAvalonSP = function(zp)
 end
 
 OnAvalonAP = function(ap)
---  Note("AP: "..ap)
 
   NEED_OUTPUT = true
 
@@ -248,7 +245,6 @@ OnAvalonAP = function(ap)
 end
 
 OnAvalonMP = function(mana)
---  Note("Mana: "..mana)
 
   NEED_OUTPUT = true
 
@@ -276,9 +272,9 @@ end
 OnAvalonMax = function(maxtp,maxzp,maxap)
   max_tp = maxtp
   max_zp = maxzp
-  max_ap = max_ap
+  max_ap = maxap
   OnAvalonTP(tp)
-  OnAvalonZP(zp)
+  OnAvalonSP(zp)
   OnAvalonAP(ap)
 end
 
@@ -326,7 +322,7 @@ function PluginInstall ()
 
   avalon.HookCallback("TP",OnAvalonTP)
   avalon.HookCallback("SP",OnAvalonSP)
-  avalon.HookCallback("MP",OnAvalonMana)
+  avalon.HookCallback("MP",OnAvalonMP)
   avalon.HookCallback("AP",OnAvalonAP)
   avalon.HookCallback("MAX",OnAvalonMax)
   avalon.HookCallback("CLOSE",PluginClose)
