@@ -19,7 +19,7 @@
 
 <script>
 <![CDATA[
-avalonid="02dade4f6131c8d67e85c7ee"
+avalonid=world.GetPluginVariable("","avalon")
 PPI = require("ppi")
 avalon=PPI.Load(avalonid)
 world.DoAfterSpecial(0.5, "PluginInstall()",12)
