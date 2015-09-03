@@ -11,7 +11,7 @@
    save_state="n"
    date_written="2012-02-25 13:45:00"
    requires="4.71"
-   version="1.0"
+   version="1.1"
    >
 </plugin>
 
@@ -22,13 +22,13 @@
 avalonid="02dade4f6131c8d67e85c7ee"
 PPI = require("ppi")
 avalon=PPI.Load(avalonid)
-world.DoAfterSpecial(2.0, "PluginInstall()",12)
-GAUGE_LEFT = 120
+world.DoAfterSpecial(0.5, "PluginInstall()",12)
+GAUGE_LEFT = 110
 GAUGE_HEIGHT = 20
 
-WINDOW_WIDTH = 400
-WINDOW_HEIGHT = 85
-NUMBER_OF_TICKS = 9
+WINDOW_WIDTH = 410
+WINDOW_HEIGHT = 100
+NUMBER_OF_TICKS = 3
 
 BACKGROUND_COLOUR = ColourNameToRGB "rosybrown"
 FONT_COLOUR = ColourNameToRGB "black"
@@ -41,6 +41,7 @@ mana = 9999
 max_tp = 500
 max_zp = 500
 max_ap = 500
+max_mp = 9999
 tp_percent = 1
 zp_percent = 1
 ap_percent = 1
@@ -96,13 +97,19 @@ function DoGauge (sPrompt, Percent, Colour)
 
   local width = WindowTextWidth (win, font_id, sPrompt)
 
-  WindowText (win, font_id, sPrompt, 10, vertical, 0, 0, FONT_COLOUR)
+  WindowText (win, font_id, sPrompt, 10, vertical+2.5, 0, 0, FONT_COLOUR)
 
-  WindowRectOp (win, 2, GAUGE_LEFT, vertical, WINDOW_WIDTH - 5, vertical + GAUGE_HEIGHT,
+  WindowRectOp (win, 2, GAUGE_LEFT, vertical, WINDOW_WIDTH - 20, vertical + GAUGE_HEIGHT,
                           BACKGROUND_COLOUR)  -- fill entire box
 
 
-  local gauge_width = (WINDOW_WIDTH - GAUGE_LEFT - 5) * Fraction
+  local gauge_width = (WINDOW_WIDTH - GAUGE_LEFT - 20) * Fraction
+  local bar = (WINDOW_WIDTH - GAUGE_LEFT - 20)
+  WindowText (win, font_id, "0%", GAUGE_LEFT - 8, 4, 0, 0, FONT_COLOUR)
+  WindowText (win, font_id, "25%", GAUGE_LEFT + (bar/4) - 8, 4, 0, 0, FONT_COLOUR)
+  WindowText (win, font_id, "50%", GAUGE_LEFT + (bar/4 * 2) -8, 4, 0, 0, FONT_COLOUR)
+  WindowText (win, font_id, "75%", GAUGE_LEFT + (bar/4 * 3) -8, 4, 0, 0, FONT_COLOUR)
+  WindowText (win, font_id, "100%", GAUGE_LEFT + bar - 16, 4, 0, 0, FONT_COLOUR)
 
    -- box size must be > 0 or WindowGradient fills the whole thing
   if math.floor (gauge_width) > 0 then
@@ -122,7 +129,7 @@ function DoGauge (sPrompt, Percent, Colour)
   end -- non-zero
 
   -- show ticks
-  local ticks_at = (WINDOW_WIDTH - GAUGE_LEFT - 5) / (NUMBER_OF_TICKS + 1)
+  local ticks_at = (WINDOW_WIDTH - GAUGE_LEFT - 20) / (NUMBER_OF_TICKS + 1)
 
   -- ticks
   for i = 1, NUMBER_OF_TICKS do
@@ -131,151 +138,68 @@ function DoGauge (sPrompt, Percent, Colour)
   end -- for
 
   -- draw a box around it
-  check (WindowRectOp (win, 1, GAUGE_LEFT, vertical, WINDOW_WIDTH - 5, vertical + GAUGE_HEIGHT,
+  check (WindowRectOp (win, 1, GAUGE_LEFT, vertical, WINDOW_WIDTH - 20, vertical + GAUGE_HEIGHT,
           ColourNameToRGB ("lightgrey")))  -- frame entire box
 
   vertical = vertical + font_height + 3
 end -- function
 
-function do_prompt (name, line, wildcards)
+Data = function(typ, wert)
+  if typ == "Avalon.MAXTP" then max_tp = wert end
+  if typ == "Avalon.MAXSP" then max_zp = wert end
+  if typ == "Avalon.MAXAP" then max_ap = wert end
+  if typ == "Avalon.MAXMP" then max_mp = wert end
+  if typ == "Avalon.TP" then tp = wert end
+  if typ == "Avalon.SP" then zp = wert end
+  if typ == "Avalon.AP" then ap = wert end
+  if typ == "Avalon.MP" then mp = wert end
+  if max_tp ~= nil and max_zp ~= nil and max_ap ~= nil and max_mp ~= nil and
+         tp ~= nil and     zp ~= nil and     ap ~= nil and     mp ~= nil
+  then
+    
+    tp_percent = tp / max_tp
+    zp_percent = zp / max_zp
+    ap_percent = ap / max_ap
+    mp_percent = mp / 9999
+    -- fill entire box to clear it
+    check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
 
-  tp, max_tp = tonumber (wildcards [1]), tonumber (wildcards [2])
-  zp, max_zp = tonumber (wildcards [3]), tonumber (wildcards [4])
-  ap, max_ap = tonumber (wildcards [5]), tonumber (wildcards [6])
-  mana = tonumber (wildcards [7])
+    -- Edge around box rectangle
+    check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
 
-  tp_percent = tp / max_tp
-  zp_percent = zp / max_zp
-  ap_percent = ap / max_ap
-  mana_percent = mana / 9999
+    vertical = 20  -- pixel to start at
 
-  -- fill entire box to clear it
-  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
+    DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
+    DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
+    DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
+    DoGauge ("Mana: "..mp.."  ", mp_percent, ColourNameToRGB "deepblue")
 
-  -- Edge around box rectangle
-  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
+    WindowShow (win, true)
 
-  vertical = 6  -- pixel to start at
-
-  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
-  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
-  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
-  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
-
-  WindowShow (win, true)
-  
-end -- draw_bar
+  end
+end
 
 OnAvalonTP=function(tp)
-
-  NEED_OUTPUT = true
-
-  tp_percent = tp / max_tp
-  zp_percent = zp / max_zp
-  ap_percent = ap / max_ap
-  mana_percent = mana / 9999
-
-  -- fill entire box to clear it
-  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
-
-  -- Edge around box rectangle
-  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
-
-  vertical = 6  -- pixel to start at
-
-  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
-  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
-  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
-  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
-
-  WindowShow (win, true)
-
+  Data("Avalon.TP",tp)
 end
 
 OnAvalonSP = function(zp)
-
-  NEED_OUTPUT = true
-  
-  tp_percent = tp / max_tp
-  zp_percent = zp / max_zp
-  ap_percent = ap / max_ap
-  mana_percent = mana / 9999
-
-  -- fill entire box to clear it
-  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
-
-  -- Edge around box rectangle
-  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
-
-  vertical = 6  -- pixel to start at
-
-  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
-  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
-  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
-  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
-
-  WindowShow (win, true)
-
+  Data("Avalon.SP",zp)
 end
 
 OnAvalonAP = function(ap)
-
-  NEED_OUTPUT = true
-
-  tp_percent = tp / max_tp
-  zp_percent = zp / max_zp
-  ap_percent = ap / max_ap
-  mana_percent = mana / 9999
-
-  -- fill entire box to clear it
-  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
-
-  -- Edge around box rectangle
-  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
-
-  vertical = 6  -- pixel to start at
-
-  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
-  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
-  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
-  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
-
-  WindowShow (win, true)
-
+  Data("Avalon.AP",ap)
 end
 
 OnAvalonMP = function(mana)
-
-  NEED_OUTPUT = true
-
-  tp_percent = tp / max_tp
-  zp_percent = zp / max_zp
-  ap_percent = ap / max_ap
-  mana_percent = mana / 9999
-
-  -- fill entire box to clear it
-  check (WindowRectOp (win, 2, 0, 0, 0, 0, BACKGROUND_COLOUR))  -- fill entire box
-
-  -- Edge around box rectangle
-  check (WindowCircleOp (win, 3, 0, 0, 0, 0, BORDER_COLOUR, 0, 2, 0, 1))
-
-  vertical = 6  -- pixel to start at
-
-  DoGauge ("TP: "..tp.."/"..max_tp.."  ", tp_percent, ColourNameToRGB "green")
-  DoGauge ("ZP: "..zp.."/"..max_zp.."  ", zp_percent, ColourNameToRGB "dodgerblue")
-  DoGauge ("AP: "..ap.."/"..max_ap.."  ", ap_percent, ColourNameToRGB "red")
-  DoGauge ("Mana: "..mana.."  ", mana_percent, ColourNameToRGB "deepblue")
-
-  WindowShow (win, true)
+  Data("Avalon.MP",mana)
 end
 
 OnAvalonMax = function(maxtp,maxzp,maxap)
-  max_tp = maxtp
-  max_zp = maxzp
-  max_ap = maxap
-  OnAvalonTP(tp)
-  OnAvalonSP(zp)
-  OnAvalonAP(ap)
+  Data("Avalon.MAXTP",maxtp)
+  Data("Avalon.MAXSP",maxzp)
+  Data("Avalon.MAXAP",maxap)
+  Data("Avalon.MAXMP",9999)
 end
 
 function PluginInstall ()
