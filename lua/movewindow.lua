@@ -115,8 +115,9 @@ Example of use:
     
 --]]
 
+PPI=require("ppi")
 movewindow = {}  -- table to hold functions like movewindow.install
-avalon=world.GetPluginVariable("","avalon")
+avalon=PPI.Load(world.GetPluginVariable("","avalon"))
 config="movewindow"
 
 -- make a mouse-down handler with the movement information as an upvalue

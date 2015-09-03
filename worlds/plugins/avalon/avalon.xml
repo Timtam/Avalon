@@ -4061,6 +4061,8 @@ configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.RepeatCommand=0
 configtbl.settings.NumpadWalk=1
 configtbl.settings.MXP=0
+configtbl.messagebox={}
+configtbl.messagebox.echo="false"
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
