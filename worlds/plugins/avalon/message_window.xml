@@ -751,7 +751,6 @@ tlines[1]=''
 tstr=utils.split(str," ")
 while strindex<=#tstr do
 line=tstr[strindex]
-Note(line)
 if string.len(line)+string.len(tlines[tlinesindex])>line_length then
 if tlines[tlinesindex]=='' then
 tlines[tlinesindex]=tlines[tlinesindex]..line.." "
