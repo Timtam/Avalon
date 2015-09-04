@@ -4163,6 +4163,11 @@ end
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
+  if callbacktbl.CHANNEL ~=nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonSoul = function(type, message)
@@ -4172,6 +4177,11 @@ OnAvalonSoul = function(type, message)
     text = string.sub(message, endpos+1, -1)
   end
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
+  if callbacktbl.CHANNEL ~=nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonComm=function(type,message)
@@ -4181,6 +4191,11 @@ OnAvalonComm=function(type,message)
     psnd("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text,'\n',' '))
+  if callbacktbl.CHANNEL ~=nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonChannel = function(type, message)

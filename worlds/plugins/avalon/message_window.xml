@@ -209,6 +209,16 @@ end  -- ResizeReleaseCallback
 function PluginInstall()
     avalon.HookCallback("CLOSE",PluginClose)
     avalon.HookCallback("CHANNEL",chats)
+    for cn,cc in pairs(channelcolours) do
+      ctext=avalon.GetConfig("messagebox","custom"..tostring(cc).."text")
+      if ctext ~=0 then
+        world.SetCustomColourText(cc,ctext)
+      end
+      cback=avalon.GetConfig("messagebox","custom"..tostring(cc).."back")
+      if cback ~=0 then
+        world.SetCustomColourBackground(cc,cback)
+      end
+    end
     timestamp = not (avalon.GetConfig("messagebox","timestamp") == "false")
     echo = not (avalon.GetConfig("messagebox","echo") == "false")
 
@@ -290,13 +300,6 @@ function init(firstTime)
     refresh()
 end  -- function init
 
-function OnPluginClose ()
-    -- if enabled
-    if GetPluginInfo (GetPluginID(), 17) then
-        OnPluginDisable()
-    end -- if enabled
-end -- function OnPluginClose
-
 function OnPluginEnable ()
     WindowShow (Win, true)
 end -- function OnPluginEnable
@@ -311,6 +314,14 @@ function PluginClose ()
     avalon.SetConfig("messagebox","date_format", date_format)
     avalon.SetConfig("messagebox","WINDOW_WIDTH", WINDOW_WIDTH)
     avalon.SetConfig("messagebox","WINDOW_HEIGHT", WINDOW_HEIGHT)
+    -- if enabled
+    if GetPluginInfo (GetPluginID(), 17) then
+        OnPluginDisable()
+    end -- if enabled
+    for cn,cc in pairs(channelcolours) do
+      avalon.SetConfig("messagebox","custom"..tostring(cc).."text",world.GetCustomColourText(cc))
+      avalon.SetConfig("messagebox","custom"..tostring(cc).."back",world.GetCustomColourBackground(cc))
+    end
 end -- function OnPluginSaveState
 
 function OnPluginDisable ()

@@ -8,6 +8,11 @@ In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu 
 Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden.
 Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
 
+Generelle Informationen
+------------
+
+Allgemein für das Soundpack gilt folgende Regel: In keinem Fall dürft ihr Änderungen an der Welt speichern, wenn ihr beim Schließen des Clients danach gefragt werdet. Sollten, wie hier in dieser Datei beschrieben, Änderungen an der Welt vorgenommen worden sein, dann werden diese Daten anderweitig gespeichert, sodass sie euch, auch wenn ihr die Welt nicht speichert, beim nächsten Start zur Verfügung stehen werden. Solltet ihr die Welt dennoch speichern, wird es garantiert zu diversen Fehlern kommen, für welche wir keinerlei Gewehrleistung tragen. Solltet ihr sie dennoch einmal ungewollt gespeichert haben, könnt ihr sie mithilfe des Updaters zurücksetzen. Führt dafür einfach ein reguläres Update aus, indem ihr die update.exe im Soundpack-Ordner startet und den Anweisungen folgt. 
+
 Sounds
 ------
 
