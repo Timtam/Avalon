@@ -71,11 +71,35 @@ Damit sich einige Leute vielleicht doch besser zurechtfinden oder einfach nur au
 Kanalverlauf
 ------------
 
+Für Blinde
+------------
+
 Seit einiger Zeit gibt es die Möglichkeit, die letzten 10 Meldungen aller öffentlichen Kanäle auch Client-intern abzufragen. Dazu gibt es die folgenden Tastenkombinationen:
 Alt+Pfeilrechts/Pfeillinks - Kanäle durchschalten
 Alt+1-0 - Nachricht via Sprache ausgeben
 Alt+1-0 zwei mal schnell drücken - Text in die Zwischenablage kopieren
 Alt+1-0 drei mal schnell drücken - Text an dieser Stelle einfügen
+
+Für Sehende
+------------
+
+Im Zuge einer Überarbeitung für Sehende wurde dem Soundpack auch ein Ausgabefenster für Kanal-Nachrichten hinzugefügt. Die Farben der Kanäle sind dabei frei wählbar, stimmen allerdings nicht mit den Farben überein, die ihr für das normale Verbindungsfenster in Avalon gewählt habt. Stattdessen müsst ihr unter Game -> Configure -> Custom Colours eure eigenen Farben definieren. Es folgt eine Liste von Kanälen mit den zugehörigen Zahlen der Custom Colours, damit ihr sie euch passend einfärben könnt:
+Sagen 1
+Reden 2
+Laber 3
+Gruppe 4
+Neuling 5
+Verkündungen 6
+Tod 7
+Schwafel 8
+Login, Logout, Statue 9
+Monster, Rufen 10
+Gilde 11
+Gilden, Rätsel, Spiele 12
+Zeitung 13
+Tafelrunde 14
+D-Chat 15
+Restliche 16
 
 Speedwalking
 ------------
