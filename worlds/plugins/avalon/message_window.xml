@@ -71,7 +71,7 @@ require "copytable"
 PPI=require("ppi")
 
 BODY_FONT_NAME = "Dina"
-BODY_FONT_SIZE = 8
+BODY_FONT_SIZE = 12
 SCROLL_BAR_WIDTH = 15
 MAX_LINES = 10000 -- how many lines to store in scrollback
 
@@ -122,6 +122,29 @@ theme = {
 }  -- end theme table
 
 line_length=70 -- maximum length of line
+channelcolours={}
+channelcolours["d-chat"]=15
+channelcolours["gebruell"]=10
+channelcolours["gilde"]=11
+channelcolours["gilden"]=12
+channelcolours["gruppe"]=4
+channelcolours["laber"]=3
+channelcolours["login"]=9
+channelcolours["logout"]=9
+channelcolours["monster"]=10
+channelcolours["neuling"]=5
+channelcolours["raetsel"]=12
+channelcolours["reden"]=2
+channelcolours["sagen"]=1
+channelcolours["schwafel"]=8
+channelcolours["spiele"]=12
+channelcolours["statue"]=9
+channelcolours["tafelrunde"]=14
+channelcolours["tod"]=7
+channelcolours["verkuendungen"]=6
+channelcolours["zeitung"]=13
+channelcolours["other"]=16
+
 avalon=PPI.Load(world.GetPluginVariable("","avalon")) -- avalon soundpack
 world.DoAfterSpecial(0.5,"PluginInstall()",12)
 -- replacement for WindowRectOp action 5, which allows for a 3D look while maintaining color theme
@@ -205,7 +228,7 @@ function PluginInstall()
     windowinfo = movewindow.install (Win, miniwin.pos_top_right, miniwin.create_absolute_location, true)
 
     -- check for Echo/Timestamp/date_format/window size (in pixels) variables, if not there, set them
-    if date_format == nil or date_format=='' then
+    if date_format == nil or date_format=='' or date_format == 0 then
         date_format = "[%d %b %H:%M:%S] "
     end -- if
     if WINDOW_WIDTH == nil or WINDOW_WIDTH == 0 then
@@ -490,7 +513,7 @@ end  -- function fillBuffer
 
 -- Main capture routine
 function chats (channel,text)
-    styles=format_text(text)
+    styles=format_text(channel,text)
     -- echo in this world as well if the user wants
     if echo then
         for _, v in ipairs (styles) do
@@ -742,35 +765,41 @@ function right_click_menu ()
     end -- if
 end -- function right_click_menu
 
-function format_text(str)
+function format_text(channel,text)
 styles={}
-tlinesindex=1
-strindex=1
-tlines={}
-tlines[1]=''
-tstr=utils.split(str," ")
-while strindex<=#tstr do
-line=tstr[strindex]
-if string.len(line)+string.len(tlines[tlinesindex])>line_length then
-if tlines[tlinesindex]=='' then
-tlines[tlinesindex]=tlines[tlinesindex]..line.." "
-strindex=strindex+1
-end
-tlinesindex=tlinesindex+1
-tlines[tlinesindex]='    '
+-- auskommentiert, da eine Zeile besser aussieht
+--tlinesindex=1
+--strindex=1
+--tlines={}
+--tlines[1]=''
+--tstr=utils.split(text," ")
+--while strindex<=#tstr do
+--line=tstr[strindex]
+--if string.len(line)+string.len(tlines[tlinesindex])>line_length then
+--if tlines[tlinesindex]=='' then
+--tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+--strindex=strindex+1
+--end
+--tlinesindex=tlinesindex+1
+--tlines[tlinesindex]='    '
+--else
+--tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+--strindex=strindex+1
+--end
+--end
+--for tind,tline in pairs(tlines) do
+styles[1]={}
+if channelcolours[string.lower(channel)] ~= nil then
+styles[1].textcolour=GetCustomColourText(channelcolours[string.lower(channel)])
+styles[1].backcolour=GetCustomColourBackground(channelcolours[string.lower(channel)])
 else
-tlines[tlinesindex]=tlines[tlinesindex]..line.." "
-strindex=strindex+1
+styles[1].textcolour=GetCustomColourText(channelcolours.other)
+styles[1].backcolour=GetCustomColourBackground(channelcolours.other)
 end
-end
-for tind,tline in pairs(tlines) do
-styles[tind]={}
-styles[tind].textcolour=16777215
-styles[tind].backcolour=0
-styles[tind].length=string.len(tline)
-styles[tind].style=1
-styles[tind].text=tline
-end
+styles[1].length=string.len(text)
+styles[1].style=1
+styles[1].text=text
+--end
 return styles
 end
 ]]>
