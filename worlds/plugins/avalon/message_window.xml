@@ -185,6 +185,7 @@ end  -- ResizeReleaseCallback
 
 function PluginInstall()
     avalon.HookCallback("CLOSE",PluginClose)
+    avalon.HookCallback("CHANNEL",chats)
     timestamp = not (avalon.GetConfig("messagebox","timestamp") == "false")
     echo = not (avalon.GetConfig("messagebox","echo") == "false")
 
@@ -204,13 +205,13 @@ function PluginInstall()
     windowinfo = movewindow.install (Win, miniwin.pos_top_right, miniwin.create_absolute_location, true)
 
     -- check for Echo/Timestamp/date_format/window size (in pixels) variables, if not there, set them
-    if date_format == nil then
+    if date_format == nil or date_format=='' then
         date_format = "[%d %b %H:%M:%S] "
     end -- if
-    if WINDOW_WIDTH == nil then
+    if WINDOW_WIDTH == nil or WINDOW_WIDTH == 0 then
         WINDOW_WIDTH = (font_width*80)+SCROLL_BAR_WIDTH -- 80 columns
     end
-    if WINDOW_HEIGHT == nil then
+    if WINDOW_HEIGHT == nil  or WINDOW_HEIGHT == 0 then
         WINDOW_HEIGHT = theme.TITLE_HEIGHT+(line_height*6)+2 -- 6 lines
     end -- if
     init(true)
@@ -488,7 +489,8 @@ function fillBuffer(rawstyles)
 end  -- function fillBuffer
 
 -- Main capture routine
-function chats (name, line, wildcards, styles)
+function chats (channel,text)
+    styles=format_text(text)
     -- echo in this world as well if the user wants
     if echo then
         for _, v in ipairs (styles) do
@@ -739,6 +741,39 @@ function right_click_menu ()
         ColourNote ("yellow", "", "Timestamps in communication window ENABLED using format like '1:22:06 PM'.")
     end -- if
 end -- function right_click_menu
+
+function format_text(str)
+styles={}
+tlinesindex=1
+strindex=1
+tlines={}
+tlines[1]=''
+tstr=utils.split(str," ")
+while strindex<=#tstr do
+line=tstr[strindex]
+Note(line)
+if string.len(line)+string.len(tlines[tlinesindex])>line_length then
+if tlines[tlinesindex]=='' then
+tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+strindex=strindex+1
+end
+tlinesindex=tlinesindex+1
+tlines[tlinesindex]='    '
+else
+tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+strindex=strindex+1
+end
+end
+for tind,tline in pairs(tlines) do
+styles[tind]={}
+styles[tind].textcolour=16777215
+styles[tind].backcolour=0
+styles[tind].length=string.len(tline)
+styles[tind].style=1
+styles[tind].text=tline
+end
+return styles
+end
 ]]>
 </script>
 </muclient>

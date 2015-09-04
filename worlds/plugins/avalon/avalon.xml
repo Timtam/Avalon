@@ -4033,6 +4033,7 @@ plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
 plugintbl[8]="avalon/speedwalk-mapper.xml"
 plugintbl[9]="avalon/healthbar.xml"
+plugintbl[10]="avalon/message_window.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4195,6 +4196,11 @@ OnAvalonChannel = function(type, message)
     return
   end
   world.Execute(";history_add "..channel.."="..text)
+  if callbacktbl.CHANNEL ~= nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonRoomID = function(type, message)
