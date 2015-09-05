@@ -4162,6 +4162,7 @@ end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
   if callbacktbl.CHANNEL ~=nil then
     for ci,cf in pairs(callbacktbl.CHANNEL) do
@@ -4176,16 +4177,13 @@ OnAvalonSoul = function(type, message)
     startpos, endpos = string.find(message, " ", 1, true)
     text = string.sub(message, endpos+1, -1)
   end
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
-  if callbacktbl.CHANNEL ~=nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
 end
 
 OnAvalonComm=function(type,message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
@@ -4200,6 +4198,7 @@ end
 
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
   if gildentbl[fchannel] then
     channel="gilde"
