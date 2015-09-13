@@ -3570,7 +3570,7 @@
   <trigger
    enabled="y"
    match="Vergiss Deine Kriegsbeute nicht|Kriegsbeute fuer Deine bisherigen Bemuehungen"
-   regex="y"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
