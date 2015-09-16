@@ -29,6 +29,24 @@
 <triggers>
   <trigger
    enabled="n"
+   group="Golemkultisten"
+   match="Dein * pulsiert kurz warm in Deiner Hand."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoadFull.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Golemkultisten"
+   match="Dein Energiekern vibriert kurz."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
    group="Magier"
    match="Dein * flackert heftig auf, lange wird * Dich wohl nicht mehr"
    send_to="12"
@@ -1059,7 +1077,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentriest|konzentrierst Dich auf .*"
+   match="Du konzentrierst|konzentrierst Dich auf .*"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1124,7 +1142,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentriest Dich."
+   match="Du konzentrierst Dich."
    sequence="100"
    send_to="12"
   >
