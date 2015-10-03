@@ -2047,7 +2047,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du faengst an, .* zu essen.$|^Mhmmm, schmeckt das gut ...$|^. o Keine Frage, ein Genuss! o . $|^Du geniesst diese Speise in vollen Zuegen.$"
+   match="^Du faengst an, .* zu essen.$|^Du denkst Dir: Mhmmm, schmeckt das gut...$|^Du denkst Dir: Keine Frage, ein Genuss!$|^Du geniesst diese Speise in vollen Zuegen.$"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -4122,30 +4122,33 @@ spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuell
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
-function OnAvalonGrafikVermeiden(type,message)
-if tonumber(message)==1 then
-config_graphics(false)
-else
-config_graphics(true)
+
+function OnAvalonGrafikVermeiden(type, message)
+  if tonumber(message) == 1 then
+    config_graphics(false)
+  else
+    config_graphics(true)
+  end
 end
+
+function OnAvalonGilde(type, message)
+  for gilde, gtbl in pairs(gildentbl) do
+    if gilde == message then
+      if not gtbl[1] then
+        world.EnableGroup(gilde, 1)
+        gtbl[1] = true
+        gtbl[2](true)
+      end
+    else
+    if gtbl[1] then
+        world.EnableGroup(gilde, 0)
+        gtbl[1] = false
+        gtbl[2](false)
+      end
+    end
+  end
 end
-function OnAvalonGilde(type,message)
-for gilde,gtbl in pairs(gildentbl) do
-if gilde==message then
-if not gtbl[1] then
-world.EnableGroup(gilde,1)
-gtbl[1]=true
-gtbl[2](true)
-end
-else
-if gtbl[1] then
-world.EnableGroup(gilde,0)
-gtbl[1]=false
-gtbl[2](false)
-end
-end
-end
-end
+
 function OnAvalonLogin()
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_rcomm 1")
@@ -4946,7 +4949,7 @@ end
 
 function array_concat(...)
   local t = {}
-  local arg ={...}
+  local arg = {...}
   for i = 1, #arg do
     local array = arg[i]
     if (type(array) == "table") then
