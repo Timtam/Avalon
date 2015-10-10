@@ -3611,6 +3611,14 @@
   <send>psnd("Spells/EndOfContinuousSpell.ogg")</send>
   </trigger>
   <trigger
+   enabled="y"
+   match="Ein riesiger, mit Runen ueberzogener Obelisk."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Obelisk.ogg")</send>
+  </trigger>
+  <trigger
    enabled="n"
    group="Nekromanten"
    match="Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich"
