@@ -231,6 +231,12 @@ vg name - Vergessen
 dli - Abrufen der internen Dämonenliste inkl. Abkürzungen
 dbw name - Einen Dämon bewerten
 
+Der integrierte Kompass
+-----------------------
+
+Analog zu dem bestehenden Befehl "pos" gibt es nun die Möglichkeit sich schon während des Herumlaufens das Gebiet und die aktuellen Standortkoordinaten sich gleich ausgeben zu können, anstelle auf jedem Feld separat "pos" eingeben zu müssen.
+Eine Hilfe zum Kompass gibt es mit "kompass hilfe" oder "kompass ?".
+Der Befehl "pos" bleibt nach wie vor erhalten.
 Wir wünschen nun viel Spaß und gute Unterhaltung beim Spielen!
 
 Das Entwicklerteam
