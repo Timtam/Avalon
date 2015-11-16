@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE muclient>
+<!-- MuClient version 4.71 -->
+
+<muclient>
+
+<plugin
+   name="Kompass"
+   author="Dragoon, Chiaray"
+   id="8822bdfc9c0f259131815f29"
+   language="Lua"
+   save_state="y"
+   date_written="2015-09-10 02:28:00"
+   requires="4.71"
+   version="1.0"
+   >
+</plugin>
+
+<aliases>
+  <alias
+   match="^kompass$"
+   enabled="y"
+   regexp="y"
+   name="lesen"
+   script="lies_kompass"
+   sequence="100">
+  </alias>
+  <alias
+   match="^kompass (hilfe|\?)$"
+   enabled="y"
+   regexp="y"
+   name="hilfe"
+   script="help_kompass"
+   sequence="100">
+  </alias>
+  <alias
+   match="^kompass blind$"
+   enabled="y"
+   regexp="y"
+   name="blind"
+   script="blind_kompass"
+   sequence="100">
+  </alias>
+  <alias
+   match="^kompass perma$"
+   enabled="y"
+   regexp="y"
+   name="perma"
+   script="perma_kompass"
+   sequence="100">
+  </alias>
+</aliases>
+
+<script>
+<![CDATA[
+
+-- Used to load the ATCP interface
+PPI = require("ppi")
+
+OnAvalonRoomID = function(message, roomid)
+  x = nil
+  y = nil
+  area = nil
+  cut_roomid = string.sub(roomid, 39)
+  find_area = string.find(cut_roomid, "x")
+  if find_area == nil then
+    area = cut_roomid
+  else area = string.sub(cut_roomid, 1, find_area-2)
+    cut_roomid = string.sub(cut_roomid, find_area)
+    find_x = string.find(cut_roomid, "%s")
+    x = string.sub(cut_roomid, 3, find_x-1)
+    cut_roomid = string.sub(cut_roomid, find_x+1)
+    y = string.sub(cut_roomid, 3)
+  end
+  if x ~= nil and y ~= nil and area ~= nil and perma == true and blind == true then
+    Note("X = "..x..", Y = "..y.." ("..area..")")
+  end
+  if x ~= nil and y ~= nil and perma == true and blind == false then
+    ColourNote("#0080FF", "black", area..": ", "black", "rosybrown", "X = "..x, "#0080FF", "black", ",", "black", "rosybrown", "Y = "..y)
+  end
+end
+
+function lies_kompass(name, line, wildcards)
+  if blind == nil then
+    blind = false
+  end
+  if x ~= nil and y ~= nil and area ~= nil then
+    if blind == true then
+      Note("X = "..x..", Y = "..y.." ("..area..")")
+    end
+    if blind == false then
+      ColourNote("#0080FF", "black", area..": ", "black", "rosybrown", "X = "..x, "#0080FF", "black", ",", "black", "rosybrown", " Y = "..y)
+    end
+  elseif area == nil then
+    Note("Kompass-Fehler: Der Standort konnte nicht ermittelt werden. Bitte einmal bewegen!")
+  elseif area ~= "" then
+    Note(area)
+  end
+end
+
+-- Hilfeseite zum Kompass
+function help_kompass(name, line, wildcards)
+  print([[
+
+  Das Plugin bietet folgende Funktionen:
+    - Anzeigen der aktuellen Gegend und Koordinaten auf Außengelände.
+    - Optionale Anzeigen-Einstellung für Blinde.
+
+  Kommandos:
+    lies kompass       - Gibt die Gegend und wenn vorhanden die Koordinaten
+                         des aktuellen Standorts aus.
+    /kompass blind     - Stellt die Anzeige blindenfreundlich um oder zurück.
+    /kompass perma     - Gibt bei Raumwechsel immer die Koordinaten aus.
+    /kompass hilfe, ?  - Diese Hilfeseite.
+  ]])
+end
+
+-- Toggle um Modus für Blinde ein-/auszustellen
+function blind_kompass(name, line, wildcards)
+  if blind == nil then
+    blind = false
+  end
+  if blind == true then
+    blind = false
+    Note("Kompass: Modus für Blinde ausgeschaltet.")
+    SaveState("")
+  elseif blind == false then
+    blind = true
+    Note("Kompass: Modus für Blinde eingeschaltet.")
+    SaveState("")
+  else Note(blind)
+  end
+end
+
+-- Toggle um Modus für permanente Anzeige ein-/auszustellen
+function perma_kompass(name, line, wildcards)
+  if perma == nil then
+    perma = false
+  end
+  if perma == true then
+    perma = false
+    Note("Kompass: Permanenten Kompassmodus ausgeschaltet.")
+    SaveState("")
+  elseif perma == false then
+    perma = true
+    Note("Kompass: Permanenten Kompassmodus eingeschaltet.")
+    SaveState("")
+  else Note(perma)
+  end
+end
+
+-- Loads the ATCP library
+OnPluginListChanged = function()
+  local atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+  if not atcp then
+    Note("ATCP funktioniert nicht!")
+  elseif reloaded then
+    -- Registers a function to call when Room.Brief is received.
+    atcp.Listen("Avalon.RoomID", OnAvalonRoomID)
+  end
+end
+
+function OnPluginInstall()
+-- Einstellung für Blinde global laden
+  if tonumber(GetVariable("blind")) ~= nil then
+    blind_save = tonumber(GetVariable("blind"))
+  end
+  if blind_save == nil or blind_save == 0 then
+    blind = false
+  end
+  if blind_save == 1 then
+    blind = true
+  end
+-- Einstellung für permanenten Kompass global laden
+  if tonumber(GetVariable("perma")) ~= nil then
+    perma_save = tonumber(GetVariable("perma"))
+  end
+  if perma_save == nil or perma_save == 0 then
+    perma = false
+  end
+  if perma_save == 1 then
+    perma = true
+  end
+end -- function OnPluginInstall
+
+function OnPluginSaveState()
+-- Einstellung für Blinde global speichern
+  if blind == false then
+    blind_save = "0"
+  end
+  if blind == true then
+    blind_save = "1"
+  end
+  if blind_save == "0" or blind_save == "1" then
+    SetVariable("blind", blind_save)
+  end
+-- Einstellung für permanenten Kompass global speichern  
+  if perma == false then
+    perma_save = "0"
+  end
+  if perma == true then
+    perma_save = "1"
+  end
+  if perma_save == "0" or perma_save == "1" then
+    SetVariable("perma", perma_save)
+  end
+end -- function OnPluginSaveState
+
+]]>
+</script>
+
+</muclient>

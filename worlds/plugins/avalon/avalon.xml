@@ -4061,6 +4061,7 @@ plugintbl[7]="timecatcher.xml"
 plugintbl[8]="avalon/speedwalk-mapper.xml"
 plugintbl[9]="avalon/healthbar.xml"
 plugintbl[10]="avalon/message_window.xml"
+plugintbl[11]="avalon/kompass.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
