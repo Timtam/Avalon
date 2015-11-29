@@ -4296,6 +4296,9 @@ end
 
 OnAvalonLevel = function(type, message)
   local level = string.match(message, "^S(%d+)$")
+  if not level then
+    return
+  end
   level = tonumber(level)
   if (PlayerLevel ~= nil) and (level > PlayerLevel) then
     psnd("Misc/LevelUp.ogg")
