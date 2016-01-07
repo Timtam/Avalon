@@ -397,7 +397,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du peilst mit Deinem Sextanten * an, und kannst schon nach"
+   match="Du peilst mit Deinem Sextanten * an* und kannst schon nach"
    omit_from_output="y"
    sequence="100"
   >
@@ -4159,6 +4159,7 @@ function OnAvalonGilde(type, message)
 end
 
 function OnAvalonLogin()
+  atcp.Send("ava_set_soundpack")
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_rcomm 1")
   atcp.Send("ava_set_comm 1")
