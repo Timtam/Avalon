@@ -245,12 +245,31 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="\|\s+(\w+)\s+\|\s+(Krasit|Azmarog|Sensal|Bullrik)\s+\|\s+\w+\s+\|"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_insertname("%1","%2")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog),\s+namens\s+(\w+)"
    regexp="y"
    send_to="12"
    sequence="100"
   >
   <send>dk_insertname("%2","%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="|               Uebersicht ueber Deine Daemonen               |"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_reset()</send>
   </trigger>
   <trigger
    enabled="n"
