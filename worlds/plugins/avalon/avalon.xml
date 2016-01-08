@@ -4046,7 +4046,6 @@ hstationsnd=nil
 htpsnd=nil
 hmusic=nil
 LastCommand=nil
-LevelUpdate=false
 mxp_output=false
 PlayerLevel=nil
 timepluginid="1cb498c9a895e1f5af23cbc8"
@@ -4350,16 +4349,27 @@ OnAvalonAP = function(message, nap)
   end
 end
 
-OnAvalonMax = function(message, value)
-  local type, content = string.match(value,"(%w+) (%d+)")
-  if (type == "TP") then
-    g_max_tp = tonumber(content)
-    combat_music()
-  elseif (type == "SP") then
-    g_max_sp = tonumber(content)
-  elseif (type == "AP") then
-    g_max_ap = tonumber(content)
-  end
+OnAvalonMaxTP=function(message,value)
+  value=tonumber(value)
+  g_max_tp=value
+  combat_music()
+  OnAvalonMax()
+end
+
+OnAvalonMaxSP=function(message,value)
+  value=tonumber(value)
+  g_max_sp=value
+  OnAvalonMax()
+end
+
+OnAvalonMaxAP=function(message,value)
+  value=tonumber(value)
+  g_max_ap=value
+  OnAvalonMax()
+end
+
+-- Magician: nur noch als Uebergangsloesung, muss mal in die einzelnen Handler zerlegt werden
+OnAvalonMax = function()
   if callbacktbl.MAX and (g_max_tp ~=nil and g_max_sp ~=nil and g_max_ap ~=nil) then
     for ci,cf in pairs(callbacktbl.MAX) do
       cf(g_max_tp,g_max_sp,g_max_ap)
@@ -4512,7 +4522,9 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.SP", OnAvalonSP)
     atcp.Listen("Avalon.AP", OnAvalonAP)
     atcp.Listen("Avalon.MP", OnAvalonMP)
-    atcp.Listen("Avalon.MAX", OnAvalonMax)
+    atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
+    atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
+    atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
     atcp.Listen('Avalon.Level', OnAvalonLevel)
     atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
     atcp.Listen('Avalon.Channel', OnAvalonChannel)
@@ -4891,7 +4903,6 @@ function OnPluginDisconnect()
   hapsnd = nil
   hspnil = 0
   htpsnd = nil
-  LevelUpdate = false
   PlayerLevel = nil
   RoomName = ''
   stopifplaying(hmusic)
