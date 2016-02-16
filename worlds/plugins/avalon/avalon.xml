@@ -3661,6 +3661,14 @@
 
 <aliases>
   <alias
+   match="numpad"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>NumpadSwitch()</send>
+</alias>
+  <alias
    match="dli"
    group="Daemonenkrieger"
    enabled="n"
@@ -4123,8 +4131,6 @@ world.Accelerator("F11", "volumetype_switch")
 world.Accelerator("ctrl+F11", "switch_mute")
 world.Accelerator("ctrl+shift+F11", "switch_fullmute")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
-world.AcceleratorTo('Clear','NumpadSwitch()',12)
-world.AcceleratorTo('Oem_Clear','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
