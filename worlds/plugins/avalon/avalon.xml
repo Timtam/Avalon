@@ -3180,6 +3180,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* wurde von dem Febron * getoetet."
+   sequence="2"
+   send_to="12"
+  >
+  <send>psnd("Monsters/Vortex/Kill.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="* Luftvortex hat * getoetet."
    sequence="2"
    send_to="12"
