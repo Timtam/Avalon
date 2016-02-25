@@ -5176,6 +5176,26 @@ world.Accelerator('Numpad8','n')
 world.Accelerator('Numpad9','no')
 world.Accelerator('Add','r')
 world.Accelerator('Subtract','h')
+elseif configtbl.settings.NumpadWalk==4 then
+world.Accelerator('Numpad1','schwimme sw')
+world.Accelerator('Numpad2','schwimme s')
+world.Accelerator('Numpad3','schwimme so')
+world.Accelerator('Numpad4','schwimme w')
+world.Accelerator('Numpad6','schwimme o')
+world.Accelerator('Numpad7','schwimme nw')
+world.Accelerator('Numpad8','schwimme n')
+world.Accelerator('Numpad9','schwimme no')
+elseif configtbl.settings.NumpadWalk==3 then
+world.Accelerator('Numpad1','kletter sw')
+world.Accelerator('Numpad2','kletter s')
+world.Accelerator('Numpad3','kletter so')
+world.Accelerator('Numpad4','kletter w')
+world.Accelerator('Numpad6','kletter o')
+world.Accelerator('Numpad7','kletter nw')
+world.Accelerator('Numpad8','kletter n')
+world.Accelerator('Numpad9','kletter no')
+world.Accelerator('Add','kletter hoch')
+world.Accelerator('Subtract','kletter runter')
 elseif configtbl.settings.NumpadWalk==2 then
 world.Accelerator('Numpad1','spaehe kurz sw')
 world.Accelerator('Numpad2','spaehe kurz s')
@@ -5206,6 +5226,14 @@ configtbl.settings.NumpadWalk=2
 world.Note('Nummernblock auf kurzes Spähen konfiguriert')
 psnd("Misc/NumPadScoutShort.ogg")
 elseif configtbl.settings.NumpadWalk==2 then
+configtbl.settings.NumpadWalk=3
+world.Note('Nummernblock auf Klettern konfiguriert')
+psnd("Misc/NumPadClaim.ogg")
+elseif configtbl.settings.NumpadWalk==3 then
+configtbl.settings.NumpadWalk=4
+world.Note('Nummernblock auf Schwimmen konfiguriert')
+psnd("Misc/NumPadSwim.ogg")
+elseif configtbl.settings.NumpadWalk==4 then
 configtbl.settings.NumpadWalk=0
 world.Note('Nummernblock auf Laufen konfiguriert')
 psnd("Misc/NumPadWalk.ogg")
