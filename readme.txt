@@ -73,7 +73,7 @@ Navigation
 
 Damit sich einige Leute vielleicht doch besser zurechtfinden oder einfach nur aus Spaß gibt es jetzt das Kommando "pos". Dieses Kommando gibt die zuletzt erkannte Position, die ihr besucht habt, aus und, falls ihr euch auf einer Karte bewegt, auch eure X bzw. Y-Koordinaten.
 Außerdem zur Navigation gehört die Möglichkeit, sich via Nummernblock, so man einen hat, zu bewegen.
-Dabeibesitzt jede Taste drei Funktionen. Entweder langes spähen, kurzes spähen oder laufen, wobei die ersteren beiden Optionen nur mithilfe eines Fernrohrs möglich sind. Umgeschaltet werden diese Modi mithilfe der Multiplikations- oder auch Löschen Taste. Sollte diese Taste mal nicht reagieren, wird mithilfe des Befehls numpad Abhilfe geschaffen.
+Dabeibesitzt jede Taste fünf Funktionen. Entweder langes spähen, kurzes spähen, klettern, schwimmen oder laufen, wobei die ersteren beiden Optionen nur mithilfe eines Fernrohrs möglich sind. Umgeschaltet werden diese Modi mithilfe der Multiplikations- oder auch Löschen Taste. Sollte diese Taste mal nicht reagieren, wird mithilfe des Befehls numpad Abhilfe geschaffen.
 Die Tasten sind in den entsprechenden Himmelsrichtungen angeordnet, heißt südwesten =1, nordosten = 9, osten = 6, Norden = 8 und so weiter. Die restlichen Tasten geben den Spielstand entweder lang oder kurz aus oder schauen sich im derzeitigen Raum um.
 
 Kanalverlauf
