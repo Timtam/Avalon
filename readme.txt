@@ -8,6 +8,11 @@ In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu 
 Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden.
 Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
 
+Generelle Informationen
+------------
+
+Allgemein für das Soundpack gilt folgende Regel: In keinem Fall dürft ihr Änderungen an der Welt speichern, wenn ihr beim Schließen des Clients danach gefragt werdet. Sollten, wie hier in dieser Datei beschrieben, Änderungen an der Welt vorgenommen worden sein, dann werden diese Daten anderweitig gespeichert, sodass sie euch, auch wenn ihr die Welt nicht speichert, beim nächsten Start zur Verfügung stehen werden. Solltet ihr die Welt dennoch speichern, wird es garantiert zu diversen Fehlern kommen, für welche wir keinerlei Gewehrleistung tragen. Solltet ihr sie dennoch einmal ungewollt gespeichert haben, könnt ihr sie mithilfe des Updaters zurücksetzen. Führt dafür einfach ein reguläres Update aus, indem ihr die update.exe im Soundpack-Ordner startet und den Anweisungen folgt. 
+
 Sounds
 ------
 
@@ -32,12 +37,14 @@ Eingefleischte Zocker von euch wissen, dass man unter Muting das Stummschalten b
 ScreenReader-Unterstützung
 --------------------------
 
-Da einige Leute mit der Unterstützung von Jaws mit dem von uns verwendeten Ausgabe-Plugin Probleme hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
+Da einige Leute mit der Unterstützung von JAWS mit dem von uns verwendeten Ausgabe-Plugin Probleme hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
 
 TP-, ZP- und AP-Ausgabe
 -----------------------
 
-Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds. Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren. Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus :).
+Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds.
+Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren.
+Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus.
 
 Hinweis: Falls ihr euch wundert, dass die Sound-Ausgaben etwas asynchron zum Spielverlauf arbeiten und ihr denkt, dass es zu langsam bzw. ineffizient wäre - falsch gedacht. Tatsächlich ist es schneller und präziser als die Ingame-Ausgabe, da die Ingame-Ausgabe höchstens jede Sekunde Werte ausgibt, die Sound-Ausgaben jedoch sofort reagiert.
 
@@ -47,7 +54,7 @@ zauber-Tracking und Warnungen
 Hierzu haben wir die Funktion eingebaut, dass man vor Allem Schutzzauber startet und anschließend jeder Zeit die bereits laufende Zeit der zauber abfragen kann. Dazu benötigt man nur das Kommando "az".
 Dazugekommen ist außerdem die Möglichkeit, sich Warnungen über den aktuellen Verlauf eines Zaubers ausgeben lassen zu können. Dazu benötigt man ausschließlich das Ausrufezeichen (!). Tippt man einfach nur !, so werden einem die unterstützten Zauber ausgegeben, zusammen mit einer Nummer, die benötigt wird, wenn ihr eine Warnung einschalten wollt. Tippt ihr das !, direkt gefolgt von der Nummer, so wird die Warnung für diesen Zauber aktiviert/deaktiviert.
 Beispiel: !9
-Anschließend wird minütlich eine Warnung ausgegeben, die euch darauf hinweist, dass euer Zauber noch läuft.
+Anschließend wird jede Minute eine Warnung ausgegeben, die euch darauf hinweist, dass euer Zauber noch läuft.
 
 Hinweis: Bisher sind noch nicht alle Zauber unterstützt. Wir werden jedoch versuchen, nach und nach alle Zauber aufzunehmen. Falls ihr noch etwas hinzugefügt haben wollt, meldet euch einfach bei uns.
 
@@ -65,15 +72,42 @@ Navigation
 ----------
 
 Damit sich einige Leute vielleicht doch besser zurechtfinden oder einfach nur aus Spaß gibt es jetzt das Kommando "pos". Dieses Kommando gibt die zuletzt erkannte Position, die ihr besucht habt, aus und, falls ihr euch auf einer Karte bewegt, auch eure X bzw. Y-Koordinaten.
+Außerdem zur Navigation gehört die Möglichkeit, sich via Nummernblock, so man einen hat, zu bewegen.
+Dabeibesitzt jede Taste fünf Funktionen. Entweder langes spähen, kurzes spähen, klettern, schwimmen oder laufen, wobei die ersteren beiden Optionen nur mithilfe eines Fernrohrs möglich sind. Umgeschaltet werden diese Modi mithilfe der Multiplikations- oder auch Löschen Taste. Sollte diese Taste mal nicht reagieren, wird mithilfe des Befehls numpad Abhilfe geschaffen.
+Die Tasten sind in den entsprechenden Himmelsrichtungen angeordnet, heißt südwesten =1, nordosten = 9, osten = 6, Norden = 8 und so weiter. Die restlichen Tasten geben den Spielstand entweder lang oder kurz aus oder schauen sich im derzeitigen Raum um.
 
 Kanalverlauf
 ------------
 
-Seit einiger Zeit gibt es die Möglichkeit, die letzten 10 Meldungen aller öffentlichen Kanäle auch Client-inern abzufragen. Dazu gibt es die folgenden Tastenkombinationen:
+Für Blinde
+------------
+
+Seit einiger Zeit gibt es die Möglichkeit, die letzten 10 Meldungen aller öffentlichen Kanäle auch Client-intern abzufragen. Dazu gibt es die folgenden Tastenkombinationen:
 Alt+Pfeilrechts/Pfeillinks - Kanäle durchschalten
 Alt+1-0 - Nachricht via Sprache ausgeben
 Alt+1-0 zwei mal schnell drücken - Text in die Zwischenablage kopieren
 Alt+1-0 drei mal schnell drücken - Text an dieser Stelle einfügen
+
+Für Sehende
+------------
+
+Im Zuge einer Überarbeitung für Sehende wurde dem Soundpack auch ein Ausgabefenster für Kanal-Nachrichten hinzugefügt. Die Farben der Kanäle sind dabei frei wählbar, stimmen allerdings nicht mit den Farben überein, die ihr für das normale Verbindungsfenster in Avalon gewählt habt. Stattdessen müsst ihr unter Game -> Configure -> Custom Colours eure eigenen Farben definieren. Es folgt eine Liste von Kanälen mit den zugehörigen Zahlen der Custom Colours, damit ihr sie euch passend einfärben könnt:
+Sagen 1
+Reden 2
+Laber 3
+Gruppe 4
+Neuling 5
+Verkündungen 6
+Tod 7
+Schwafel 8
+Login, Logout, Statue 9
+Monster, Rufen 10
+Gilde 11
+Gilden, Rätsel, Spiele 12
+Zeitung 13
+Tafelrunde 14
+D-Chat 15
+Restliche 16
 
 Speedwalking
 ------------
@@ -95,14 +129,18 @@ abt - Portal Abtei, Nereid
 affe - Anleger Affenkopfinsel, Unterwelt
 ale - Zugang Alemnia, Losaria
 alo - Westtor Alotria, Nereid
+aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
 amp - Mondtor, Amphibos
+anl - Diverse Anlegestellen, Unterwelt
 arg - Meister aller Waffen Ruwenda, Elandor
 ash - Feld nördlich vom Nordtor Ashar, Nereid
+ashz - Platz der Helden in Ashar, Nereid
 aug - Tor Augyra, Amphibos
 bank - Bank, Diverse
 barde - Barden, Diverse
 camp - Zugang Camp Baralon, Unterwelt
 cor - Vor der Höhle Corona, Nereid
+corz - Platz des Lebens in Corona, Nereid
 dhun - Feld vor dem Transportkorb Dhungar, Nereid
 dichter - Feld vor dem Haus der Dichterzunft, Nereid
 dk - Standort der Säule, Dämonenkriegergilde, Unterwelt
@@ -124,7 +162,7 @@ jas - Tor Jasthan, Unterwelt
 jer - Feld vor dem ersten Feld Jeresa, Losaria
 kap - Priester in der Kapelle Zugang Rilauven, Unterwelt
 ker - Vor dem Tor, Kergora, Amphibos
-koch - Kochzunft, Holbytla
+koch - Kochzunft auf Holbytla
 lim - Zugang Limarch, Holbytla
 lor - Mondtor, Lorinant
 los - Mondtor, Losaria
@@ -155,20 +193,23 @@ tin - Mondtor, Tintagel
 toe - Absprungstelle Totenebene, Unterwelt
 tol - Mondtor, Tolsgal
 tor - jeweiliges Mondtor, Nereid
-us - Weggabelung nach Loretta, Nereid
+umi - Im Zentrum des Hauptplatzes von Uminotokai, Amphibos
 uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
 ver - Vern, Losaria
 wahrsager - Feld vor dem Zelt der Wahrsagerzunft, Nereid
 wal - Hütte, Walhalla
 wl - Waldläufer, Tintagel
+wlm bzw. wlm1 bis wlmN - Waffen-Lehrmeister, Diverse
 wtoe - Wegweiser in der Totenebene, ein Feld östlich von Absprungsstelle
-yol - ?
+yol - Bis vor die Yoldatfest in der Unterwelt
+zwerge - Weggabelung nach Loretta, Nereid
 
 Unterstützte Spiele
 -------------------
 
 Wir werden anfangen, Spiele, soweit es möglich ist, mit Geräuschen zu untermalen und vielleicht auch für den Spielenden einfacher zu gestalten, vor Allem bei eher für Sehende ausgelegten Spielen kann dies für Blinde durchaus besser sein. Hier findet ihr eine Liste der bisher unterstützten Spiele, inklusive derer Spezialkommandos:
-Hajo: Vollständig mit Sounds unterlegt. Hajo besitzt ein extra alias "rausl", welches das MUD-Kommando rauslegen abkürzt und also genau so verwendet werden kann.
+Hajo: Vollständig mit Sounds unterlegt.
+Dieses Spiel besitzt ein extra alias "rausl", welches das MUD-Kommando rauslegen abkürzt und also genau so verwendet werden kann.
 
 Gildenerweiterungen
 -------------------
@@ -193,6 +234,12 @@ vg name - Vergessen
 dli - Abrufen der internen Dämonenliste inkl. Abkürzungen
 dbw name - Einen Dämon bewerten
 
+Der integrierte Kompass
+-----------------------
+
+Analog zu dem bestehenden Befehl "pos" gibt es nun die Möglichkeit sich schon während des Herumlaufens das Gebiet und die aktuellen Standortkoordinaten sich gleich ausgeben zu können, anstelle auf jedem Feld separat "pos" eingeben zu müssen.
+Eine Hilfe zum Kompass gibt es mit "kompass hilfe" oder "kompass ?".
+Der Befehl "pos" bleibt nach wie vor erhalten.
 Wir wünschen nun viel Spaß und gute Unterhaltung beim Spielen!
 
 Das Entwicklerteam

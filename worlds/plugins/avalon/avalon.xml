@@ -25,7 +25,26 @@
 <include name="constants.lua"/>
 
 <!--  Triggers  -->
+
 <triggers>
+  <trigger
+   enabled="n"
+   group="Golemkultisten"
+   match="Dein * pulsiert kurz warm in Deiner Hand."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoadFull.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Golemkultisten"
+   match="Dein Energiekern vibriert kurz."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
+  </trigger>
   <trigger
    enabled="n"
    group="Magier"
@@ -226,12 +245,31 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="\|\s+(\w+)\s+\|\s+(Krasit|Azmarog|Sensal|Bullrik)\s+\|\s+\w+\s+\|"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_insertname("%1","%2")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog),\s+namens\s+(\w+)"
    regexp="y"
    send_to="12"
    sequence="100"
   >
   <send>dk_insertname("%2","%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="|               Uebersicht ueber Deine Daemonen               |"
+   send_to="12"
+   sequence="100"
+  >
+  <send>dk_reset()</send>
   </trigger>
   <trigger
    enabled="n"
@@ -378,7 +416,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du peilst mit Deinem Sextanten * an, und kannst schon nach"
+   match="Du peilst mit Deinem Sextanten * an* und kannst schon nach"
    omit_from_output="y"
    sequence="100"
   >
@@ -401,7 +439,23 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Es wurden * Gegenstaende geladen."
+   match="Ok, ASCII-Grafiken werden nun nicht mehr vermieden."
+   send_to="12"
+   sequence="95"
+  >
+  <send>config_graphics(true)</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ok, ASCII-Grafiken werden nun moeglichst vermieden."
+   send_to="12"
+   sequence="95"
+  >
+  <send>config_graphics(false)</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein letzter Logout war am *"
    send_to="12"
    sequence="95"
   >
@@ -417,11 +471,93 @@
   </trigger>
   <trigger
    enabled="y"
+   match="Du holst kraeftig mit Deiner Angel aus und wirfst den Koeder weit *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishCast.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Das muss ein .* Fisch sein, der da angebissen hat."
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>psnd("Fishing/Fish.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mist. Du stellst Dich viel zu ungeschickt an, .*"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>psnd("Fishing/FishEscape.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du hast einen schoenen Fisch geangelt."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishCatch.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du ziehst mit Leibeskraeften an der Angel, um den Fisch aus dem Wasser zu"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Fishing/FishLinePull.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein blaeulich-silberner, getragener Ring entfaltet nun seine Wirkung."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Rings/Bonus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein blaeulich-silberner, getragener Ring leuchtet kurz auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Rings/Bonus.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
    send_to="12"
    sequence="100"
   >
   <send>psnd("Misc/DailyTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gratulation! Du hast eine Wochenaufgabe geloest."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/WeeklyTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Gratulation! Du hast eine Aktionsaufgabe geloest."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/SpecialTask.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Besonderes Glueck!"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/DayGift.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -457,41 +593,51 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
+   match=".* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/weak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert leuchtet auf."
+   match=".* heiliges, gefuehrtes Schwert leuchtet auf."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert erstrahlt kurz."
+   match=".* heiliges, gefuehrtes Schwert erstrahlt kurz."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert blitzt auf."
+   match=".* heiliges, gefuehrtes Schwert blitzt auf."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/flash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Dein heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
+   match=".* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
    send_to="12"
    sequence="100"
+   regexp="y"
+   omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
   </trigger>
@@ -950,7 +1096,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentriest|konzentrierst Dich auf .*"
+   match="Du konzentrierst|konzentrierst Dich auf .*"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1015,7 +1161,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentriest Dich."
+   match="Du konzentrierst Dich."
    sequence="100"
    send_to="12"
   >
@@ -1112,11 +1258,10 @@
   <trigger
    enabled="y"
    match="Du hast einen neuen Brief von * bekommen."
-   omit_from_output="y"
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Misc/Post.ogg")</send>
+  <send>psnd("Misc/Post"..math.random(1,2)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1475,6 +1620,15 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* folgt Dir."
+   omit_from_output="y"   
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Smith/Following.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match=".* heilige Aura loest sich auf.|Die heilige Aura von .* loest sich auf."
    regexp="y"
    sequence="100"
@@ -1493,7 +1647,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Auf * lodert eine kleine Flamme kurz auf."
+   match="Auf * lodert eine kleine Flamme kurz auf.|Das Feuer hinterlaesst tiefe, gluehende Spuren auf *"
    sequence="100"
    send_to="12"
   >
@@ -1684,7 +1838,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du erhebst .*angriff.*$|^.* erhebt .*angriff.*$|^.* greift .* mit .* an.$|^.*Angriff auf.*$"
+   match="^Du erhebst.*angriff.*$|^.*erhebt.*angriff.*$|^.*greift.*mit.*an.$|^.*Angriff auf.*$"
    ignore_case="y"
    regexp="y"
    sequence="100"
@@ -1719,7 +1873,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus."
+   match="Ein grosser Lichtbogen breitet sich ueber * Kopf aus."
    sequence="100"
    send_to="12"
   >
@@ -1728,7 +1882,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, mit * zu faellen."
+   match="Du faengst an, mit * zu faellen.|* faengt an, mit * zu faellen"
    sequence="100"
    send_to="12"
   >
@@ -1879,7 +2033,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du loeschst.*|.*loescht.*|.*erlischt."
+   match="Du loeschst.*|.*loescht.*|.*erlischt.|.*erloeschen."
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1912,7 +2066,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du faengst an, .* zu essen.$|^Mhmmm, schmeckt das gut ...$|^. o Keine Frage, ein Genuss! o . $|^Du geniesst diese Speise in vollen Zuegen.$"
+   match="^Du faengst an, .* zu essen.$|^Du denkst Dir: Mhmmm, schmeckt das gut...$|^Du denkst Dir: Keine Frage, ein Genuss!$|^Du geniesst diese Speise in vollen Zuegen.$"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -2093,7 +2247,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Super! Mit praezisen Schnitten weidest Du * aus."
+   match="Super! Mit praezisen Schnitten weidest Du *"
    sequence="100"
    send_to="12"
   >
@@ -2187,7 +2341,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du nimmst einen grossen Schluck *"
+   match="Du nimmst einen * Schluck *"
    sequence="101"
    send_to="12"
   >
@@ -2228,11 +2382,19 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein schwarzes Mondtor steigt aus dem Boden empor."
+   match="Ein * Mondtor steigt aus dem Boden empor."
    sequence="100"
    send_to="12"
   >
   <send>psnd("Portal/create.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein * Mondtor verschwindet wieder spurlos im Boden."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Portal/quake.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -3018,6 +3180,14 @@
   </trigger>
   <trigger
    enabled="y"
+   match="* wurde von dem Febron * getoetet."
+   sequence="2"
+   send_to="12"
+  >
+  <send>psnd("Monsters/Vortex/Kill.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="* Luftvortex hat * getoetet."
    sequence="2"
    send_to="12"
@@ -3094,7 +3264,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* gibt Dir .* (Lapis|Obsidian).*"
+   match=".* gibt Dir .* (Lapis|Obsidian|Konochen).*"
    regexp="y"
    sequence="99"
    send_to="12"
@@ -3196,7 +3366,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du greifst * mit * an."
+   match="Du greifst * mit *"
    sequence="100"
    send_to="12"
   >
@@ -3367,43 +3537,145 @@
   >
   <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
-<trigger
+  <trigger
    match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
+   enabled="y"
    sequence="100"
    send_to="12"
-   enabled="y"
   >
   <send>speedwalk_breaklegs()</send>
   </trigger>
-<trigger
+  <trigger
    match="Du findest wieder festen Halt."
    enabled="y"
    sequence="100"
    send_to="12"
   >
   <send>speedwalk_break()</send>
-</trigger>
-<trigger
+  </trigger>
+  <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
    enabled="y"
    sequence="100"
    send_to="12"
   >
   <send>psnd("Player/waldtraene/vibration.ogg")</send>
-</trigger>
-<trigger
+  </trigger>
+  <trigger
    enabled="y"
-   match="Jemand klopft von draussen laut gegen die Tuer!"
+   match="Jemand klopft von draussen laut gegen die *!"
    sequence="100"
    send_to="12"
   >
   <send>psnd("Misc/DoorKnock.ogg")</send>
-</trigger>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Mutigen Schrittes trittst Du durch die schwarze, glitzernde Wand."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Portal/ShadowWall.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Insgesamt warst Du * in Avalon."
+   sequence="100"
+   send_to="12"
+  >
+  <send>
+  Audio.setVol(0, hmusic)
+  psnd("Misc/out.ogg")
+  </send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* hat einen neuen Abenteuerbericht verfasst."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/Report.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein kleiner, roter Briefkasten (Post ist da!)."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/LetterBox.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Echos des grossen Krieges"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Advance.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Vergiss Deine Kriegsbeute nicht|Kriegsbeute fuer Deine bisherigen Bemuehungen"
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Loot.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dafuer hast Du leider nicht genug Zauberpunkte."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Spells/OutOfSpellPower.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du brichst Dein Dauerzaubern ab."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Spells/EndOfContinuousSpell.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Ein riesiger, mit Runen ueberzogener Obelisk."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/Obelisk.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShieldOn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Deine schuetzende Knochenwolke loest sich auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShieldOff.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
 
 <aliases>
+  <alias
+   match="numpad"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>NumpadSwitch()</send>
+</alias>
   <alias
    match="dli"
    group="Daemonenkrieger"
@@ -3729,7 +4001,7 @@
    send_to="2"
    sequence="100"
    >
-  <send>Usagor</send>
+  <send>Zwergental</send>
   </alias>
   <alias
    match="foiesw"
@@ -3788,8 +4060,6 @@
 Audio=nil
 atcp=nil
 Dunkel=0
-EPKampfStart=nil
-EPStack={0}
 g_tp=nil
 g_max_tp=nil
 g_sp=nil
@@ -3807,12 +4077,11 @@ tpfullannounced=false
 hapsnd=nil
 hdksnd=nil
 hspnil=0
+hstationsnd=nil
 htpsnd=nil
 hmusic=nil
 LastCommand=nil
-LevelUpdate=false
-PlayerEP=nil
-PlayerKill=false
+mxp_output=false
 PlayerLevel=nil
 timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
@@ -3824,17 +4093,27 @@ plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
 plugintbl[8]="avalon/speedwalk-mapper.xml"
+plugintbl[9]="avalon/healthbar.xml"
+plugintbl[10]="avalon/message_window.xml"
+plugintbl[11]="avalon/kompass.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
+spdtbl={}
+spdind={0,0}
+spdstationstbl={}
+spdactive=false
+spdspeed=0.3
+spdextraspeed=0.7
 auratbl={}
 gildentbl={}
+callbacktbl={}
 configtbl={}
 configtbl.settings={}
 configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
-configtbl.settings.MusicVolume=50
-configtbl.settings.CombatMusicVolume=50
+configtbl.settings.MusicVolume=10
+configtbl.settings.CombatMusicVolume=10
 configtbl.settings.TPBar=1
 configtbl.settings.SPBar=1
 configtbl.settings.APBar=1
@@ -3842,8 +4121,11 @@ configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.RepeatCommand=1
+configtbl.settings.RepeatCommand=0
 configtbl.settings.NumpadWalk=1
+configtbl.settings.MXP=0
+configtbl.messagebox={}
+configtbl.messagebox.echo="false"
 world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
@@ -3860,7 +4142,6 @@ world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
-require("avalon.speedwalking")
 require("avalon.speedwalks")
 require("avalon.stations")
 require("pairsbykeys")
@@ -3879,34 +4160,47 @@ spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarz
 spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\.","Deine Feueraura loest sich auf\.")
 spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\.","Deine heilige Aura loest sich auf\.")
 spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\.","Dein Kernschild loest sich auf\.")
+spells_register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\.")
 spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
-function OnAvalonGilde(type,message)
-for gilde,gtbl in pairs(gildentbl) do
-if gilde==message then
-if not gtbl[1] then
-world.EnableGroup(gilde,1)
-gtbl[1]=true
-gtbl[2](true)
+
+function OnAvalonGrafikVermeiden(type, message)
+  if tonumber(message) == 1 then
+    config_graphics(false)
+  else
+    config_graphics(true)
+  end
 end
-else
-if gtbl[1] then
-world.EnableGroup(gilde,0)
-gtbl[1]=false
-gtbl[2](false)
+
+function OnAvalonGilde(type, message)
+  for gilde, gtbl in pairs(gildentbl) do
+    if gilde == message then
+      if not gtbl[1] then
+        world.EnableGroup(gilde, 1)
+        gtbl[1] = true
+        gtbl[2](true)
+      end
+    else
+    if gtbl[1] then
+        world.EnableGroup(gilde, 0)
+        gtbl[1] = false
+        gtbl[2](false)
+      end
+    end
+  end
 end
-end
-end
-end
+
 function OnAvalonLogin()
+  atcp.Send("ava_set_soundpack")
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_rcomm 1")
   atcp.Send("ava_set_comm 1")
   atcp.Send("ava_set_soul 1")
   atcp.Send("ava_set_rsoul 1")
   atcp.Send("ava_req_update")
+  atcp.Send("ava_req_graphics_status")
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -3916,47 +4210,15 @@ OnAvalonGetoetet = function(type, message)
     psnd("Monsters/Kill.ogg")
   end
   psnd("monsters/deaths/"..math.random(1,57)..".ogg")
-  if not EPKampfStart then
-    return
-  end
-  if (PlayerEP - EPKampfStart == 0) then
-    return
-  end
-  i = #EPStack
-  cep = EPKampfStart
-  repeat
-    if (EPStack[i] ~= 10) then
-      monsterep = EPStack[i]
-      break
-    end
-    cep = cep + EPStack[i]
-    i = i - 1
-  until cep == PlayerEP
-  if not monsterep then
-    monsterep = 10
-  end
-  world.Note("Dieses Monster gab "..monsterep.." EP.")
-  if (EPKampfStart + EPStack[#EPStack] ~= PlayerEP) and (EPKampfStart ~= PlayerEP) then
-    extra_ep = PlayerEP - (EPKampfStart + monsterep)
-    world.Note("In diesem Kampf wurden zusaetzlich "..extra_ep.." EP erreicht.")
-  end
-  EPKampfStart = PlayerEP
 end
 
 OnAvalonKampf = function(type, message)
   if (message == "1") then
     g_combat = true
     combat_music()
-    EPKampfStart = PlayerEP
-    PlayerKill = false
   elseif (message == "0") then
     g_combat = false
     combat_music()
-    if (PlayerKill == false) and (PlayerEP - EPKampfStart > 0) then
-      extra_ep = PlayerEP - EPKampfStart
-      world.Note("In diesem Kampf hast Du "..extra_ep.." EP erhalten.")
-    end
-    EPKampfStart = PlayerEP
   end
 end
 
@@ -3966,7 +4228,13 @@ end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  world.Execute(";history_add REDEN="..text)
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
+  if callbacktbl.CHANNEL ~=nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonSoul = function(type, message)
@@ -3975,20 +4243,28 @@ OnAvalonSoul = function(type, message)
     startpos, endpos = string.find(message, " ", 1, true)
     text = string.sub(message, endpos+1, -1)
   end
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add SAGEN="..world.Replace(text,'\n',' ',true))
 end
 
 OnAvalonComm=function(type,message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text,'\n',' '))
+  if callbacktbl.CHANNEL ~=nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
   if gildentbl[fchannel] then
     channel="gilde"
@@ -3996,7 +4272,15 @@ OnAvalonChannel = function(type, message)
   if (Path.exists(GetInfo(67).."Sounds/Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
+  if ((channel == "fehler") or (channel == "runtime")) then
+    return
+  end
   world.Execute(";history_add "..channel.."="..text)
+  if callbacktbl.CHANNEL ~= nil then
+    for ci,cf in pairs(callbacktbl.CHANNEL) do
+      cf(channel,text)
+    end
+  end
 end
 
 OnAvalonRoomID = function(type, message)
@@ -4013,10 +4297,19 @@ OnAvalonRoomID = function(type, message)
   else
     Y = nil
   end
-  RoomID = id
-  if (Tablex.find(Tablex.values(stations), RoomID) ~= nil) then
-     psnd("Misc/Waypoint.ogg")
+  if id ~= RoomID then
+    station_name = stations_getnamebyroomid(id)
+    if station_name ~= nil then
+      if (Path.exists(GetInfo(67).."Sounds/Stations/"..station_name..".ogg")) then
+        stationsnd = GetInfo(67).."Sounds/Stations/"..station_name..".ogg"
+      else
+        stationsnd = GetInfo(67).."Sounds/Stations/Misc.ogg"
+      end
+      stopifplaying(hstationsnd)
+      hstationsnd = Audio.play(stationsnd, 0, 0, configtbl.settings.SoundVolume)
+    end
   end
+  RoomID = id
   if (not name) or (name == 'Bitte') then
     return
   end
@@ -4024,32 +4317,26 @@ OnAvalonRoomID = function(type, message)
     return
   end
   RoomName = name
-  if (not Path.exists(GetInfo(67)..'Sounds/Music/'..name..'.ogg')) then
+  if (not Path.isfile(GetInfo(67)..'Sounds/Music/'..name..'.ogg') and not Path.isdir(GetInfo(67)..'Sounds/Music/'..name)) then
     stopifplaying(hmusic)
     return
   end
-  pmusic(name..'.ogg')
+  if (Path.isfile(GetInfo(67)..'Sounds/Music/'..name..'.ogg')) then
+    pmusic(name..'.ogg')
+  else
+    files=Dir.getfiles(GetInfo(67)..'Sounds/Music/'..name)
+    pmusic(files[math.random(1,#files)])
+  end
 end 
-
-OnAvalonEP = function(message, ep)
-  ep = tonumber(ep)
-  if PlayerEP and (ep - PlayerEP > 0) then
-    EPStack[#EPStack+1] = ep - PlayerEP
-  end
-  PlayerEP = ep
-  if LevelUpdate then
-    psnd("Misc/LevelUp.ogg")
-    world.Note("Herzlichen Glueckwunsch! Level "..tostring(PlayerLevel).." wurde mit "..tostring(PlayerEP).." EP erreicht. Voraussichtliche EP zu Level "..tostring(PlayerLevel+1)..": "..tostring(round(PlayerEP*1.1145-PlayerEP,0)))
-    LevelUpdate = false
-  end
-end
 
 OnAvalonLevel = function(type, message)
   local level = string.match(message, "^S(%d+)$")
+  if not level then
+    return
+  end
   level = tonumber(level)
   if (PlayerLevel ~= nil) and (level > PlayerLevel) then
-    LevelUpdate = true
-    atcp.Send('ava_req_update')
+    psnd("Misc/LevelUp.ogg")
   end
   PlayerLevel = level
 end
@@ -4059,34 +4346,69 @@ OnAvalonTP = function(message, ntp)
   play_tp(ntp)
   g_tp=ntp
   combat_music()
+  if callbacktbl.TP then
+    for ci,cf in pairs(callbacktbl.TP) do
+      cf(g_tp)
+    end
+  end
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
   play_sp(nsp)
   g_sp=nsp
+  if callbacktbl.SP then
+    for ci,cf in pairs(callbacktbl.SP) do
+      cf(g_sp)
+    end
+  end
 end
 
 OnAvalonMP=function(message,nmp)
   g_mp=tonumber(nmp)
-  return
+  if callbacktbl.MP then
+    for ci,cf in pairs(callbacktbl.MP) do
+      cf(g_mp)
+    end
+  end
 end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
   g_ap = nap
+  if callbacktbl.AP then
+    for ci,cf in pairs(callbacktbl.AP) do
+      cf(g_ap)
+    end
+  end
 end
 
-OnAvalonMax = function(message, value)
-  local type, content = string.match(value,"(%w+) (%d+)")
-  if (type == "TP") then
-    g_max_tp = tonumber(content)
-    combat_music()
-  elseif (type == "SP") then
-    g_max_sp = tonumber(content)
-  elseif (type == "AP") then
-    g_max_ap = tonumber(content)
+OnAvalonMaxTP=function(message,value)
+  value=tonumber(value)
+  g_max_tp=value
+  combat_music()
+  OnAvalonMax()
+end
+
+OnAvalonMaxSP=function(message,value)
+  value=tonumber(value)
+  g_max_sp=value
+  OnAvalonMax()
+end
+
+OnAvalonMaxAP=function(message,value)
+  value=tonumber(value)
+  g_max_ap=value
+  OnAvalonMax()
+end
+
+-- Magician: nur noch als Uebergangsloesung, muss mal in die einzelnen Handler zerlegt werden
+OnAvalonMax = function()
+  if callbacktbl.MAX and (g_max_tp ~=nil and g_max_sp ~=nil and g_max_ap ~=nil) then
+    for ci,cf in pairs(callbacktbl.MAX) do
+      cf(g_max_tp,g_max_sp,g_max_ap)
+    end
   end
 end
 
@@ -4099,9 +4421,17 @@ function OnPluginInstall()
         if (config == nil) then
           config = optionvalue
         end
+        if configtbl[name]==nil then
+          configtbl[name]={}
+        end
         configtbl[name][optionname] = config
       end
     end
+  end
+  if configtbl.settings.MXP==1 then
+    config_graphics(true,true)
+  else
+    config_graphics(false,true)
   end
   plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..'.xml'
   for number, plugin in pairs(plugintbl) do
@@ -4110,7 +4440,7 @@ function OnPluginInstall()
   end
   spells_parsewarnings(configtbl.settings.Warnings)
   NumpadInit()
-  gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,gildendummy},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy}}
+  gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,gildendummy},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy},['Nekromanten']={false,gildendummy}}
   Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
   if not Audio then
     error("Audio-Ausgabe konnte nicht initialisiert werden.")
@@ -4168,6 +4498,27 @@ function OnPluginInstall()
     function()
       return g_tp, g_max_tp
     end)
+  PPI.Expose('GetConfig',
+    function(table,key)
+      if configtbl[table]==nil then
+        return 0
+      end
+      return configtbl[table][key] or 0
+    end)
+  PPI.Expose('SetConfig',
+    function(table,key,value)
+      if configtbl[table]==nil then
+        configtbl[table]={}
+      end
+      configtbl[table][key]=value
+    end)
+  PPI.Expose('HookCallback',
+    function(event,callback)
+      return hook_callback(event,callback)
+    end)
+  if Path.exists(world.GetInfo(60).."avalon/user.xml") then
+    world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
+  end
 end
 
 function OnPluginCommandEntered(text)
@@ -4187,6 +4538,11 @@ function OnPluginCommandEntered(text)
 end
 
 function OnPluginClose()
+  if callbacktbl.CLOSE then
+    for ci,cf in pairs(callbacktbl.CLOSE) do
+      cf()
+    end
+  end
   configtbl.settings.Warnings=spells_retrievewarnings()
   Ini.write('config.dat', configtbl)
 end
@@ -4201,8 +4557,9 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.SP", OnAvalonSP)
     atcp.Listen("Avalon.AP", OnAvalonAP)
     atcp.Listen("Avalon.MP", OnAvalonMP)
-    atcp.Listen("Avalon.MAX", OnAvalonMax)
-    atcp.Listen('Avalon.EP', OnAvalonEP)
+    atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
+    atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
+    atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
     atcp.Listen('Avalon.Level', OnAvalonLevel)
     atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
     atcp.Listen('Avalon.Channel', OnAvalonChannel)
@@ -4215,6 +4572,7 @@ OnPluginListChanged = function()
     atcp.Listen('Avalon.Comm',OnAvalonComm)
     atcp.Listen('Avalon.Soul',OnAvalonSoul)
     atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
+    atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
   end
   end
 end
@@ -4301,15 +4659,164 @@ function psnd(file, pan)
   if (configtbl.settings.SoundsMuted == 1) then
     return
   end
-  return Audio.play(GetInfo(67)..'Sounds/'..file, 0, pan, configtbl.settings.SoundVolume)
+  if(not Path.isabs(file)) then
+    file=GetInfo(67)..'Sounds/'..file
+  end
+  return Audio.play(file, 0, pan, configtbl.settings.SoundVolume)
 end
 
 function pmusic(file)
   if (configtbl.settings.MusicMuted == 1) then
     return
   end
+  if(not Path.isabs(file)) then
+    file=GetInfo(67)..'Sounds/Music/'..file
+  end
   stopifplaying(hmusic)
-  hmusic = Audio.play(GetInfo(67)..'Sounds/Music/'..file, 1, 0, configtbl.settings.MusicVolume)
+  hmusic = Audio.play(file, 1, 0, configtbl.settings.MusicVolume)
+end
+
+function speedwalk_start(spd)
+  if (spd == '') or (string.find(spd, '_') == nil) then
+    speedwalk_list(spd)
+    return
+  end
+  if (speedwalklist[spd] == nil) then
+    world.Note("Es existiert kein Speedwalk mit diesem Namen.")
+    if (string.find(spd, '_us') ~= nil or string.find(spd, 'us_') ~= nil) then
+      world.Note("Hinweis: Die Station 'us' wurde in vielen Speedwalks nach 'zwerge' umbenannt (z.B. min_zwerge statt min_us).")
+      world.Note("Die Station 'us' bezieht sich ausschließlich auf Usagoor.")
+    end
+    return
+  end
+  if (configtbl.settings.SafeSpeedwalks == 1) then
+    if not stations[spd] then
+      world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
+      spdstationstbl[#spdstationstbl+1] = ''
+      speedwalk_init(speedwalklist[spd])
+      return
+    end
+    spdstationstbl[#spdstationstbl+1] = stations[spd]
+    speedwalk_init(speedwalklist[spd])
+  else
+    spdstationstbl[#spdstationstbl+1] = nil
+    speedwalk_init(speedwalklist[spd])
+  end
+end
+
+function speedwalk_list(spd)
+  if (spd == '') then
+    msg = ''
+    i = 0
+    for name, way in pairsByKeys(speedwalklist) do
+      i = i + 1
+      msg = msg..'\t'..name
+      if (speedwalksafety[name]) then
+        msg = msg..' (sicher)'
+      else
+        msg = msg..' (unsicher)'
+      end
+      msg = msg..'\n'
+    end
+    msg = 'Speedwalk-Liste ('..tostring(i)..'):\n'..msg
+    msg = string.sub(msg, 1, -2)
+  else
+    spd = string.lower(spd)
+    msg = ''
+    i = 0
+    for name, way in pairsByKeys(speedwalklist) do
+      sname = utils.split(name, '_')
+      if (string.lower(sname[1]) == spd) then
+        i = i + 1
+        msg = msg..'\t'..name
+        if (speedwalksafety[name]) then
+          msg = msg..' (sicher)'
+        else
+          msg=msg..' (unsicher)'
+        end
+        msg = msg..'\n'
+      end
+    end
+    if (i == 0) then
+      msg = 'Es sind keine Speedwalks vorhanden, die von '..spd..' starten.'
+    else
+      msg = 'Speedwalks, die von '..spd..' starten ('..tostring(i)..'):\n'..msg
+      msg = string.sub(msg, 1, -2)
+    end
+  end
+  world.Note(msg)
+end
+
+function speedwalk_init(speedwalk)
+  if not spdactive then
+    spdtbl = {}
+    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+    spdstationstbl = {spdstationstbl[#spdstationstbl]}
+    spdind = {1,1}
+    spdactive = true
+    speedwalk_process()
+  else
+    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+    world.Note("Der neue Speedwalk wurde an den momentan laufenden angehängt.")
+  end
+end
+
+function speedwalk_process()
+  if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
+    if (Dunkel == 1) then
+      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
+      spdactive = false
+      return
+    end
+    if (RoomID ~= spdstationstbl[spdind[1]]) and (spdstationstbl[spdind[1]] ~= '') then
+      world.Note("Der Speedwalk startet hier nicht.")
+      spdactive = false
+      return
+    end
+  end
+  if not spdactive then
+    return
+  end
+  command = string.gsub(spdtbl[spdind[1]][spdind[2]], '_', ' ')
+  world.Execute(command)
+  spdind = {spdind[1], spdind[2]+1}
+  if (spdind[2] == #spdtbl[spdind[1]] + 1) then
+    if not spdtbl[spdind[1]+1] then
+      spdactive = false
+      spdind = {0,0}
+      return
+    else
+      spdind = {spdind[1] + 1,1}
+    end
+  end
+  if (string.len(spdtbl[spdind[1]][spdind[2]]) <= 2) then
+    DoAfterSpecial(spdspeed, "speedwalk_process()", 12)
+  else
+    DoAfterSpecial(spdextraspeed, "speedwalk_process()", 12)
+  end
+end
+
+function speedwalk_break()
+  if spdactive then
+    spdactive = false
+  else
+    if (spdind[1] == 0) and (spdind[2] == 0) then
+      return
+    end
+    if not spdtbl[spdind[1]][spdind[2]] then
+      return
+    end
+    spdactive = true
+    speedwalk_process()
+  end
+end
+
+function speedwalk_breaklegs()
+  if (spdind[1] == 0) and (spdind[2] == 0) then
+    return
+  end
+  spdactive = false
+  spdind = {spdind[1],spdind[2]-2}
 end
 
 function tts_switch()
@@ -4431,8 +4938,6 @@ function OnPluginDisconnect()
   hapsnd = nil
   hspnil = 0
   htpsnd = nil
-  LevelUpdate = false
-  PlayerEP = nil
   PlayerLevel = nil
   RoomName = ''
   stopifplaying(hmusic)
@@ -4503,7 +5008,7 @@ end
 
 function array_concat(...)
   local t = {}
-  local arg ={...}
+  local arg = {...}
   for i = 1, #arg do
     local array = arg[i]
     if (type(array) == "table") then
@@ -4660,7 +5165,7 @@ rtime=world.Replace(rtime,',','.',false)
 return tonumber(rtime)
 end
 function NumpadInit()
-if configtbl.settings.NumpadWalk==1 then
+if configtbl.settings.NumpadWalk==0 then
 world.Accelerator('Numpad1','sw')
 world.Accelerator('Numpad2','s')
 world.Accelerator('Numpad3','so')
@@ -4669,7 +5174,29 @@ world.Accelerator('Numpad6','o')
 world.Accelerator('Numpad7','nw')
 world.Accelerator('Numpad8','n')
 world.Accelerator('Numpad9','no')
-else
+world.Accelerator('Add','r')
+world.Accelerator('Subtract','h')
+elseif configtbl.settings.NumpadWalk==4 then
+world.Accelerator('Numpad1','schwimme sw')
+world.Accelerator('Numpad2','schwimme s')
+world.Accelerator('Numpad3','schwimme so')
+world.Accelerator('Numpad4','schwimme w')
+world.Accelerator('Numpad6','schwimme o')
+world.Accelerator('Numpad7','schwimme nw')
+world.Accelerator('Numpad8','schwimme n')
+world.Accelerator('Numpad9','schwimme no')
+elseif configtbl.settings.NumpadWalk==3 then
+world.Accelerator('Numpad1','kletter sw')
+world.Accelerator('Numpad2','kletter s')
+world.Accelerator('Numpad3','kletter so')
+world.Accelerator('Numpad4','kletter w')
+world.Accelerator('Numpad6','kletter o')
+world.Accelerator('Numpad7','kletter nw')
+world.Accelerator('Numpad8','kletter n')
+world.Accelerator('Numpad9','kletter no')
+world.Accelerator('Add','kletter hoch')
+world.Accelerator('Subtract','kletter runter')
+elseif configtbl.settings.NumpadWalk==2 then
 world.Accelerator('Numpad1','spaehe kurz sw')
 world.Accelerator('Numpad2','spaehe kurz s')
 world.Accelerator('Numpad3','spaehe kurz so')
@@ -4678,18 +5205,90 @@ world.Accelerator('Numpad6','spaehe kurz o')
 world.Accelerator('Numpad7','spaehe kurz nw')
 world.Accelerator('Numpad8','spaehe kurz n')
 world.Accelerator('Numpad9','spaehe kurz no')
+world.Accelerator('Add','spaehe kurz h')
+world.Accelerator('Subtract','spaehe kurz r')
+elseif configtbl.settings.NumpadWalk==1 then
+world.Accelerator('Numpad1','spaehe sw')
+world.Accelerator('Numpad2','spaehe s')
+world.Accelerator('Numpad3','spaehe so')
+world.Accelerator('Numpad4','spaehe w')
+world.Accelerator('Numpad6','spaehe o')
+world.Accelerator('Numpad7','spaehe nw')
+world.Accelerator('Numpad8','spaehe n')
+world.Accelerator('Numpad9','spaehe no')
+world.Accelerator('Add','spaehe h')
+world.Accelerator('Subtract','spaehe r')
 end
 end
 function NumpadSwitch()
 if configtbl.settings.NumpadWalk==1 then
+configtbl.settings.NumpadWalk=2
+world.Note('Nummernblock auf kurzes Spähen konfiguriert')
+psnd("Misc/NumPadScoutShort.ogg")
+elseif configtbl.settings.NumpadWalk==2 then
+configtbl.settings.NumpadWalk=3
+world.Note('Nummernblock auf Klettern konfiguriert')
+psnd("Misc/NumPadClaim.ogg")
+elseif configtbl.settings.NumpadWalk==3 then
+configtbl.settings.NumpadWalk=4
+world.Note('Nummernblock auf Schwimmen konfiguriert')
+psnd("Misc/NumPadSwim.ogg")
+elseif configtbl.settings.NumpadWalk==4 then
 configtbl.settings.NumpadWalk=0
-world.Note('Nummernblock auf Spähen konfiguriert')
-else
-configtbl.settings.NumpadWalk=1
 world.Note('Nummernblock auf Laufen konfiguriert')
+psnd("Misc/NumPadWalk.ogg")
+elseif configtbl.settings.NumpadWalk==0 then
+configtbl.settings.NumpadWalk=1
+world.Note('Nummernblock auf langes Spähen konfiguriert')
+psnd("Misc/NumPadScoutLong.ogg")
 end
 NumpadInit()
-psnd("Misc/ConfigSwitch.ogg")
+end
+
+function config_graphics(enable,omit_output)
+omit_output=omit_output or false
+if enable then
+if tonumber(world.GetOption("use_mxp"))==2 then
+return
+end
+world.SetOption("use_mxp",2)
+configtbl.settings.MXP=1
+if not omit_output and not mxp_output then
+world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+mxp_output=true
+end
+else
+if tonumber(world.GetOption("use_mxp"))==3 then
+return
+end
+world.SetOption("use_mxp",3)
+configtbl.settings.MXP=0
+if not omit_output and not mxp_output then
+world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
+mxp_output=true
+end
+end
+end
+function hook_callback(event,callback)
+if not callbacktbl[event] then
+callbacktbl[event]={}
+end
+if Tablex.find(callbacktbl[event],callback) ~=nil then
+return false
+end
+callbacktbl[event][#(callbacktbl[event])]=callback
+return true
+end
+function unhook_callback(event,callback)
+if callbacktbl[event]==nil then
+return false
+end
+index=Tablex.find(callbacktbl[event],callback)
+if index ~=nil then
+callbacktbl[event]=Tablex.removevalues(callbacktbl[event],index,index)
+return true
+end
+return false
 end
 ]]>
 </script>

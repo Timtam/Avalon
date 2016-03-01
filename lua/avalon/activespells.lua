@@ -69,18 +69,11 @@ if spells[spell]==0 or warnings[spell]~=guid then
 return
 end
 time=GetUnixTime()
-if time-spells[spell]==0 then
-world.Note(spell.." gestartet.")
-seconds=0
-else
 diff=time-spells[spell]
 seconds=round(diff,0)%60
 minutes=math.floor((round(diff,0)-seconds)/60)
-msg=spell.." bereits "..tostring(minutes).. " Minute(n)"
-if seconds>0 then
-msg=msg.." und "..tostring(seconds).." Sekunde(n)"
-end
-msg=msg.." aktiv"
+if seconds==0 then
+msg=spell.." bereits "..tostring(minutes).. " Minute(n) aktiv"
 world.Note(msg)
 end
 world.DoAfterSpecial((60-(time-spells[spell])%60),"spells_warn('"..spell.."', '"..guid.."')",12)

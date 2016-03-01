@@ -115,7 +115,10 @@ Example of use:
     
 --]]
 
+PPI=require("ppi")
 movewindow = {}  -- table to hold functions like movewindow.install
+avalon=PPI.Load(world.GetPluginVariable("","avalon"))
+config="movewindow"
 
 -- make a mouse-down handler with the movement information as an upvalue
 
@@ -303,10 +306,10 @@ function movewindow.install (win, default_position, default_flags, nocheck, frie
      win = win,   -- save window ID
      
      -- save current position in table (obtained from state file)
-     window_left  = tonumber (GetVariable ("mw_" .. win .. "_windowx")) or (start_position and start_position.x) or 0,
-     window_top   = tonumber (GetVariable ("mw_" .. win .. "_windowy")) or (start_position and start_position.y) or 0,     
-     window_mode  = tonumber (GetVariable ("mw_" .. win .. "_windowmode")) or default_position,
-     window_flags = tonumber (GetVariable ("mw_" .. win .. "_windowflags")) or default_flags,
+     window_left  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowx")) or (start_position and start_position.x) or 0,
+     window_top   = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowy")) or (start_position and start_position.y) or 0,     
+     window_mode  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowmode")) or default_position,
+     window_flags = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowflags")) or default_flags,
      window_friends = friends or {},
      window_friend_deltas = {},
      margin = 20,  -- how close we can put to the edge of the window
@@ -393,19 +396,23 @@ function movewindow.save_state (win)
   end -- no such window
   
   -- remember where the window was 
-  SetVariable ("mw_" .. win .. "_windowx",      mwi.window_left)
-  SetVariable ("mw_" .. win .. "_windowy",      mwi.window_top)
-  SetVariable ("mw_" .. win .. "_windowmode",   mwi.window_mode)
-  SetVariable ("mw_" .. win .. "_windowflags",  mwi.window_flags)
+  avalon.SetConfig (config,"mw_" .. win .. "_windowx",      mwi.window_left)
+  avalon.SetConfig (config,"mw_" .. win .. "_windowy",      mwi.window_top)
+  avalon.SetConfig (config,"mw_" .. win .. "_windowmode",   mwi.window_mode)
+  avalon.SetConfig (config,"mw_" .. win .. "_windowflags",  mwi.window_flags)
   
   -- use actual position, not where we happen to think it is, in case another plugin moves it
   -- suggested by Fiendish, 27 August 2012.
   if WindowInfo (win, 10) then
-    SetVariable ("mw_" .. win .. "_windowx",    WindowInfo(win, 10))
+    avalon.SetConfig (config,"mw_" .. win .. "_windowx",    WindowInfo(win, 10))
   end
   if WindowInfo (win, 11) then
-    SetVariable ("mw_" .. win .. "_windowy",    WindowInfo(win, 11))
+    avalon.SetConfig (config,"mw_" .. win .. "_windowy",    WindowInfo(win, 11))
   end
   
 
 end -- movewindow.save_state  
+
+function movewindow.config(sconfig)
+  config = sconfig
+end
