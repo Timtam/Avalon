@@ -1,6 +1,6 @@
 -- MUSHclient localization file
 
--- Written: Sunday, 17 January 2016 at 13:48:03
+-- Written: Friday, 05 February 2016 at 15:40:36
 
 -- Static messages
 
