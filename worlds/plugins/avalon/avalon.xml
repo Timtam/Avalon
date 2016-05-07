@@ -408,7 +408,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Alle angegebenen Spieler sind da, also kann's ja losgehen."
+   match="Alle angegebenen Spieler sind da, also kann es losgehen."
    send_to="12"
    sequence="95"
   >
