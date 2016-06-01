@@ -125,84 +125,85 @@ Anschließend werden die Namen für die Start- und die Endposition abgefragt. Eben
 Danach stehen die Informationen in der Zwischenablage zur Verfügung.
 
 Nun noch die Liste der Abkürzungen in alphabetischer Reihenfolge:
-abt - Portal Abtei, Nereid
-affe - Anleger Affenkopfinsel, Unterwelt
-ale - Zugang Alemnia, Losaria
-alo - Westtor Alotria, Nereid
+abt - Portal Abtei auf Nereid
+affe - Anleger Affenkopfinsel in der Unterwelt
+ale - Zugang Alemnja auf Losaria
+alo - Westtor von Alotria auf Nereid
 aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
-amp - Mondtor, Amphibos
-anl - Diverse Anlegestellen, Unterwelt
-arg - Meister aller Waffen Ruwenda, Elandor
-ash - Feld nördlich vom Nordtor Ashar, Nereid
-ashz - Platz der Helden in Ashar, Nereid
-aug - Tor Augyra, Amphibos
-bank - Bank, Diverse
-barde - Barden, Diverse
-camp - Zugang Camp Baralon, Unterwelt
-cor - Vor der Höhle Corona, Nereid
-corz - Platz des Lebens in Corona, Nereid
-dhun - Feld vor dem Transportkorb Dhungar, Nereid
-dichter - Feld vor dem Haus der Dichterzunft, Nereid
-dk - Standort der Säule, Dämonenkriegergilde, Unterwelt
-dol - Mondtor, Dolphinia
-druide - Druide, Diverse
-farm - Eingang der Pfeifenkrautfarm, Holbytla
-form - Formwandler, Diverse
-gol - Gilde Golemkultisten, Unterwelt
-gwen - Bettler Gwendon, Tintagel
-haendler - Gemischtwahrenladen, diverse
-haf - Häfen diverser Inseln, Elandor
-hain - Eingang Druidenhain, Solgard
-her - Hermine Eisenbieger, Holbytla
-hol - Mondtor, Holbytla
+amp - Mondtor von Amphibos
+anl - Diverse Anlegestellen in der Unterwelt
+apf - Der absonderliche Apfel von Bauer Block auf Nereid
+arg - Meister aller Waffen auf Ruwenda
+ash - Feld nördlich vom Nordtor Ashar
+ashz - Platz der Helden in Ashar
+aug - Tor Augyra auf Amphibos
+bank - Bank (Diverse)
+barde - Barden (Diverse)
+camp - Zugang Camp Baralon in der Unterwelt
+cor - Vor der Höhle von Corona
+corz - Platz des Lebens in Corona
+dhun - Feld vor dem Transportkorb in Dhungar
+dichter - Feld vor dem Haus der Dichterzunft
+dk - Standort der Säule der Dämonenkriegergilde in der Unterwelt
+dol - Mondtor auf Dolphinia
+druide - Druide (diverse)
+farm - Eingang der Pfeifenkrautfarm auf Holbytla
+form - Formwandler (diverse)
+gol - Gilde der Golemkultisten in der Unterwelt
+gwen - Bettler in Gwendon auf Tintagel
+haendler - Gemischtwahrenlaeden (diverse)
+haf - Häfen diverser Inseln auf Elandor
+hain - Eingang Druidenhain auf Solgard
+her - Hermine Eisenbieger auf Holbytla
+hol - Mondtor auf Holbytla
 htoe - Feld vor der Höhle / dem Ausgang der Totenebene zurück in die Unterwelt
-ilme - Ilmelorn, Tolsgal
-jagd - Jäger, Diverse
-jas - Tor Jasthan, Unterwelt
-jer - Feld vor dem ersten Feld Jeresa, Losaria
-kap - Priester in der Kapelle Zugang Rilauven, Unterwelt
-ker - Vor dem Tor, Kergora, Amphibos
+ilme - Ilmelorn auf Tolsgal
+jagd - Jäger (diverse)
+jas - Stadttor von Jasthan in der Unterwelt
+jer - Feld vor dem ersten Feld Jeresa auf Losaria
+kap - Priester in der Kapelle, Zugang Rilauven in der Unterwelt
+ker - Vor dem Tor, Kergora auf Amphibos
 koch - Kochzunft auf Holbytla
-lim - Zugang Limarch, Holbytla
-lor - Mondtor, Lorinant
-los - Mondtor, Losaria
-magier bzw. magier1 bis magierN - Magie-Lehrmeister, Diverse
-min - Marktplatz Minias, Nereid
-mine - Mine (Gold, Silber, Mithril, Golemmine) Zugang
-moor - Moor der Untoten, Unterwelt, Ankunft nach Aushebeln der Planken bei Anlegestelle 1, Minias
-mos - Goblinfestung Mossul, Amphibos
-muehle - Mühle, Holbytla
-orks - Orkjägerlager, Nereid
-papierfalter - Feld vor dem Haus der Origamizunft, Nereid
-por - Portal Rilauven, Unterwelt
-post - Post, diverse
-ril - Zentrum Rilauven, Unterwelt
-run - Übergang zu den Runenschmieden, Amphibos
-ruw - Hafen Ruwenda, Elandor
-san - Südtor Sandutz, Nereid
-schlucht - Zugang Knochenschlucht, Nereid
-schmied - Schmiedezunft, diverse
-see - Quecksilbersee, Unterwelt
-siedlung - Zugang Waldsiedlung, Tintagel
-skal - Tor Skalewar, Unterwelt
-sol - Zentrum, Solgard
-teich - Teich westlich von Alotria (Zugang Walhalla), Nereid
-tempel - Febracim-Tempel, Unterwelt
-tief - Zentrum Tiefebene, Unterwelt
-tin - Mondtor, Tintagel
-toe - Absprungstelle Totenebene, Unterwelt
-tol - Mondtor, Tolsgal
-tor - jeweiliges Mondtor, Nereid
-umi - Im Zentrum des Hauptplatzes von Uminotokai, Amphibos
+lim - Zugang Limarch auf Holbytla
+lor - Mondtor von Lorinant
+los - Mondtor von Losaria
+magier bzw. magier1 bis magierN - Magie-Lehrmeister (diverse)
+min - Marktplatz von Minias auf Nereid
+mine - Minenzugang (Gold, Silber, Mithril, Diamantmine und Golemmine)
+moor - Moor der Untoten, Unterwelt, Ankunft nach Aushebeln der Planken bei Anlegestelle 1 in Minias
+mos - Goblinburg Mossul auf Amphibos
+muehle - Mühle auf Holbytla
+orks - Orkjägerlager auf Nereid
+papierfalter - Feld vor dem Haus der Origamizunft auf Nereid
+por - Portal Rilauven in der Unterwelt
+post - Post (diverse)
+ril - Zentrum Rilauven in der Unterwelt
+run - Übergang zu den Runenschmieden auf Amphibos
+ruw - Hafen von Ruwenda auf Elandor
+san - Südtor von Sandutz auf Nereid
+schlucht - Zugang der Knochenschlucht auf Nereid
+schmied - Nebenstellen der Schmiedezunft (diverse)
+see - Quecksilbersee in der Unterwelt
+siedlung - Zugang Waldsiedlung auf Tintagel
+skal - Stadttor von Skalewar in der Unterwelt
+sol - Zentrum von Solgard
+teich - Teich westlich von Alotria (Zugang Walhalla) auf Nereid
+tempel - Febracim-Tempel in der Unterwelt
+tief - Zentrum Tiefebene in der Unterwelt
+tin - Mondtor von Tintagel
+toe - Absprungstelle Totenebene in der Unterwelt
+tol - Mondtor von Tolsgal
+tor - Jeweiliges Mondtor auf Nereid
+umi - Im Zentrum des Hauptplatzes von Uminotokai auf Amphibos
 uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
-ver - Vern, Losaria
-wahrsager - Feld vor dem Zelt der Wahrsagerzunft, Nereid
-wal - Hütte, Walhalla
-wl - Waldläufer, Tintagel
-wlm bzw. wlm1 bis wlmN - Waffen-Lehrmeister, Diverse
-wtoe - Wegweiser in der Totenebene, ein Feld östlich von Absprungsstelle
+ver - Vern auf Losaria
+wahrsager - Feld vor dem Zelt der Wahrsagerzunft auf Nereid
+wal - Hütte in Walhalla
+wl - Waldläufer auf Tintagel
+wlm bzw. wlm1 bis wlmN - Waffenlehrmeister (diverse)
+wtoe - Wegweiser in der Totenebene, ein Feld östlich von der Absprungsstelle
 yol - Bis vor die Yoldatfest in der Unterwelt
-zwerge - Weggabelung nach Loretta, Nereid
+zwerge - Weggabelung im mördlichen Gebirge auf Nereid
 
 Unterstützte Spiele
 -------------------
