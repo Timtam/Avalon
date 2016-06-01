@@ -3180,7 +3180,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* wurde von dem Febron * getoetet."
+   match=".* wurde von dem Febron * getoetet\.|.* hat .* getoetet\."
+   regexp="y"
    sequence="2"
    send_to="12"
   >
