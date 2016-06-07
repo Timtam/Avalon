@@ -4166,6 +4166,8 @@ spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuell
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
+spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\.","Dein Manarausch laesst wieder nach\.")
+spells_register("Magiertrance","Du sinkst in tiefe Trance\.","Du erwachst aus Deiner Trance\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
