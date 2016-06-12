@@ -4168,6 +4168,7 @@ spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf a
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
 spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\.","Dein Manarausch laesst wieder nach\.")
 spells_register("Magiertrance","Du sinkst in tiefe Trance\.","Du erwachst aus Deiner Trance\.")
+spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\.","Deine Windhaut loest sich auf\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
