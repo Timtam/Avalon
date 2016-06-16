@@ -1,26 +1,26 @@
 require('pairsbykeys')
 function stations_getspeedwalksbyroomid(roomid)
-rettbl={}
-for name,id in pairsByKeys(stations) do
-if id==roomid then
-rettbl[#rettbl+1]=name
-end
-end
-return rettbl
+  rettbl = {}
+  for name, id in pairsByKeys(stations) do
+    if id == roomid then
+      rettbl[#rettbl+1] = name
+    end
+  end
+  return rettbl
 end
 
 function stations_getnamebyroomid(roomid)
-for name,id in pairsByKeys(stations) do
-if id==roomid then
-split_name = utils.split(name, "_")
-if split_name ~= nil then
-return split_name[1]
-else
-return nil
-end
-end
-end
-return nil
+  for name, id in pairsByKeys(stations) do
+    if id == roomid then
+      split_name = utils.split(name, "_")
+      if split_name ~= nil then
+        return split_name[1]
+      else
+        return nil
+      end
+    end
+  end
+  return nil
 end
 
 abt="raum/b3870144ea3bbbe607804126f3b9c39e"
@@ -107,7 +107,7 @@ stations.alo_wahrsager=alo
 stations.alo_zwerge=alo
 stations.aloz_baecker="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_bank=aloz
-stations.aloz_gast1="raum/097f6fb19bff88530b738f2bfe0bbca2"
+stations.aloz_gast="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_haendler=aloz
 stations.aloz_haf="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_leder=aloz
@@ -241,8 +241,8 @@ stations.form_min="raum/fec14a5d61754d7d899ec62d15527aa2"
 stations.form_sol="raum/a070d55ba96aa72706f9369a7d44bd6c"
 stations.form_tol="raum/caa9d6a78d7f9c7fd34774cc9b4e049a"
 stations.form_zwerge="raum/9c68db550b53110505961914c47c4df5"
-stations.gast1_aloz="raum/b3e12f5b9b9e4330fee7a36526cc1377"
-stations.gast1_min="raum/1aa8679dae51c2b17b6b9c1883c9ef0a"
+stations.gast_aloz="raum/b3e12f5b9b9e4330fee7a36526cc1377"
+stations.gast_min="raum/1aa8679dae51c2b17b6b9c1883c9ef0a"
 stations.gast_ashz="raum/107e0608db24dee1136396c8ef609310"
 stations.gol_affe="raum/015ca4c68d90adbf6cd212253cd1706a"
 stations.gol_mine="raum/015ca4c68d90adbf6cd212253cd1706a"
@@ -397,7 +397,7 @@ stations.min_cor=min
 stations.min_dhun=min
 stations.min_druide=min
 stations.min_form=min
-stations.min_gast1="raum/1363d90eb536ec54b8e893d46d73a598"
+stations.min_gast="raum/1363d90eb536ec54b8e893d46d73a598"
 stations.min_haendler=min
 stations.min_imker=min
 stations.min_lederer=min
