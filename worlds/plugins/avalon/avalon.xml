@@ -2140,7 +2140,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Die Aeste des Lagerfeuers knacken und einige Funken steigen auf."
+   match="Das Holz des Lagerfeuers knacken und einige Funken steigen auf."
    sequence="100"
    send_to="12"
   >
