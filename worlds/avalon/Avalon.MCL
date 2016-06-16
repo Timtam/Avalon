@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE muclient>
-<!-- Saved on Donnerstag, Juni 16, 2016, 2:06  -->
-<!-- MuClient version 5.01 -->
+<!-- Saved on Mittwoch, Oktober 23, 2013, 9:29  -->
+<!-- MuClient version 4.84 -->
 <!-- Written by Nick Gammon -->
 <!-- Home Page: http://www.mushclient.com/ -->
 <muclient>
 <world
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
 
    auto_say_override_prefix="-"
    auto_say_string="say "
@@ -46,7 +46,6 @@
    enable_beeps="y"
    enable_command_stack="y"
    enable_scripts="y"
-   enable_spam_prevention="y"
    enable_speed_walk="y"
    enable_timers="y"
    enable_triggers="y"
@@ -74,6 +73,8 @@
    proxy_port="1080"
    send_file_delay_per_lines="1"
    send_mxp_afk_response="y"
+   show_connect_disconnect="y"
+   show_italic="y"
    show_underline="y"
    spam_line_count="20"
    speed_walk_delay="400"
@@ -86,13 +87,11 @@
    timestamp_output_back_colour="black"
    tool_tip_visible_time="5000"
    tool_tip_start_time="400"
-   translate_german="y"
    underline_hyperlinks="y"
    use_custom_link_colour="y"
    use_default_input_font="y"
    use_default_output_font="y"
-   use_mxp="3"
-   utf_8="y"
+   use_mxp="2"
    warn_if_scripting_inactive="y"
    wrap="y"
    wrap_column="80"
@@ -104,36 +103,36 @@
 <!-- triggers -->
 
 <triggers
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 </triggers>
 
 <!-- aliases -->
 
 <aliases
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 </aliases>
 
 <!-- timers -->
 
 <timers
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 </timers>
 
 <!-- macros -->
 
 <macros
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 
   <macro name="up" type="send_now" >
@@ -225,9 +224,9 @@
 <!-- variables -->
 
 <variables
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
   <variable name="avalon">02dade4f6131c8d67e85c7ee</variable>
   <variable name="mxp_ap">30</variable>
@@ -242,9 +241,9 @@
 <!-- colours -->
 
 <colours
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 
 <ansi>
@@ -299,54 +298,10 @@
 <!-- keypad -->
 
 <keypad
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
-
-  <key name="0" >
-  <send>b</send>
-  </key>
-
-  <key name="1" >
-  <send>sw</send>
-  </key>
-
-  <key name="2" >
-  <send>south</send>
-  </key>
-
-  <key name="3" >
-  <send>se</send>
-  </key>
-
-  <key name="4" >
-  <send>west</send>
-  </key>
-
-  <key name="5" >
-  <send>bl</send>
-  </key>
-
-  <key name="6" >
-  <send>east</send>
-  </key>
-
-  <key name="7" >
-  <send>nw</send>
-  </key>
-
-  <key name="8" >
-  <send>north</send>
-  </key>
-
-  <key name="9" >
-  <send>ne</send>
-  </key>
-
-  <key name="." >
-  <send>wer</send>
-  </key>
 
   <key name="/" >
   <send>ksp</send>
@@ -356,12 +311,16 @@
   <send>sp</send>
   </key>
 
-  <key name="-" >
-  <send>up</send>
+  <key name="5" >
+  <send>bl</send>
   </key>
 
-  <key name="+" >
-  <send>down</send>
+  <key name="0" >
+  <send>b</send>
+  </key>
+
+  <key name="." >
+  <send>wer</send>
   </key>
 
   <key name="Ctrl+0" >
@@ -413,9 +372,9 @@
 <!-- printing -->
 
 <printing
-   muclient_version="5.01"
+   muclient_version="4.84"
    world_file_version="15"
-   date_saved="2016-06-16 14:06:20"
+   date_saved="2013-10-23 09:29:43"
   >
 
 <ansi>
@@ -441,17 +400,4 @@
 
 <!-- plugins -->
 <include name="avalon\avalon.xml" plugin="y" />
-<include name="ATCP.plugin\plugin.xml" plugin="y" />
-<include name="LuaAudio.xml" plugin="y" />
-<include name="output_functions.xml" plugin="y" />
-<include name="omit_blank_lines.xml" plugin="y" />
-<include name="channel_history.xml" plugin="y" />
-<include name="hyperlink_url2.xml" plugin="y" />
-<include name="timecatcher.xml" plugin="y" />
-<include name="avalon\speedwalk-mapper.xml" plugin="y" />
-<include name="avalon\healthbar.xml" plugin="y" />
-<include name="avalon\message_window.xml" plugin="y" />
-<include name="avalon\kompass.xml" plugin="y" />
-<include name="MushReader.xml" plugin="y" />
-<include name="avalon\user.xml" plugin="y" />
 </muclient>
