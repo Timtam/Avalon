@@ -2789,7 +2789,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine kleine freche Fliege will an Dein Essen, *"
+   match="Eine kleine, freche Fliege will an Dein Essen, *"
    sequence="100"
    send_to="12"
   >
