@@ -255,7 +255,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog),\s+namens\s+(\w+)"
+   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog)\s+namens\s+(\w+)"
    regexp="y"
    send_to="12"
    sequence="100"
