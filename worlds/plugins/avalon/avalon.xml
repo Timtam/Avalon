@@ -206,7 +206,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du konzentrierst Dich auf Deinen Kristall, welcher in einem *"
+   match="Du konzentrierst Dich auf Deinen Kristall welcher in einem *"
    send_to="12"
    sequence="100"
   >
@@ -233,7 +233,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match='^Dein\sFokuskristall\sblitzt\skurz\sauf\sund\sder\sName\s(.*)\szuckt\,\sverbunden\smit\sdem\sAbbild\seines\s(.*)\sdurch\sDeine\sGedanken\.\Z'
+   match='^Dein\sFokuskristall\sblitzt\skurz\sauf\sund\sder\sName\s\"(.*)\"\szuckt\,\sverbunden\smit\sdem\sAbbild\seines\s(.*)\sdurch\sDeine\sGedanken\.\Z'
    multi_line="y"
    lines_to_match="2"
    regexp="y"
@@ -274,7 +274,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Im Moment kennst Du folgende Daemonen:"
+   match="Im Moment kennst Du folgende Daemonen"
    regexp="y"
    send_to="12"
    sequence="100"
