@@ -4453,7 +4453,7 @@ function OnPluginInstall()
   if not Path.exists("config.dat") then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
     if (res == "yes") then
-      os.execute("notepad.exe readme.txt")
+      os.execute("notepad.exe readme_soundpack.txt")
     end
   end
   newfiles=Dir.getfiles(world.GetInfo(66),"*\.new")
