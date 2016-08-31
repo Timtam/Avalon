@@ -13,7 +13,7 @@
    language="Lua"
    save_state="n"
    date_written="2014-02-07 09:28:30"
-   requires="4.70"
+   requires="4.92"
    version="1.0"
    >
 
@@ -4464,6 +4464,7 @@ function OnPluginInstall()
     end
     world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
+  world.SetOption ("omit_date_from_save_files", 1)
   PPI.Expose('IID',
     function()
       if Dunkel==1 then
