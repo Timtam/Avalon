@@ -13,7 +13,7 @@
    language="Lua"
    save_state="n"
    date_written="2014-02-07 09:28:30"
-   requires="4.70"
+   requires="4.92"
    version="1.0"
    >
 
@@ -197,7 +197,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du schliesst die Augen und sendest einen telepathischen Ruf *"
+   match="Du schliesst kurz Deine Augen und konzentrierst Dich. Dann sendest Du einen *"
    send_to="12"
    sequence="100"
   >
@@ -228,7 +228,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>world.Execute("daemonenliste")</send>
+  <send>Execute("daemonenliste")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -255,7 +255,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog),\s+namens\s+(\w+)"
+   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog)\s+namens\s+(\w+)"
    regexp="y"
    send_to="12"
    sequence="100"
@@ -408,7 +408,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Alle angegebenen Spieler sind da, also kann's ja losgehen."
+   match="Alle angegebenen Spieler sind da, also kann es losgehen."
    send_to="12"
    sequence="95"
   >
@@ -2140,7 +2140,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Die Aeste des Lagerfeuers knacken und einige Funken steigen auf."
+   match="Das Holz des Lagerfeuers knacken und einige Funken steigen auf."
    sequence="100"
    send_to="12"
   >
@@ -2789,7 +2789,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine kleine freche Fliege will an Dein Essen, *"
+   match="Eine kleine, freche Fliege will an Dein Essen, *"
    sequence="100"
    send_to="12"
   >
@@ -3180,7 +3180,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* wurde von dem Febron * getoetet."
+   match=".* wurde von dem Febron * getoetet\.|.* hat .* getoetet\."
+   regexp="y"
    sequence="2"
    send_to="12"
   >
@@ -4165,6 +4166,10 @@ spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuell
 spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
 spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
 spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
+spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\.","Dein Manarausch laesst wieder nach\.")
+spells_register("Magiertrance","Du sinkst in tiefe Trance\.","Du erwachst aus Deiner Trance\.")
+spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\.","Deine Windhaut loest sich auf\.")
+spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\.","Deine Daemonenhaut loest sich auf\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
@@ -4448,7 +4453,7 @@ function OnPluginInstall()
   if not Path.exists("config.dat") then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
     if (res == "yes") then
-      os.execute("notepad.exe readme.txt")
+      os.execute("notepad.exe readme_soundpack.txt")
     end
   end
   newfiles=Dir.getfiles(world.GetInfo(66),"*\.new")
@@ -4459,6 +4464,7 @@ function OnPluginInstall()
     end
     world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
+  world.SetOption ("omit_date_from_save_files", 1)
   PPI.Expose('IID',
     function()
       if Dunkel==1 then

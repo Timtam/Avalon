@@ -1,6 +1,6 @@
 -- MUSHclient localization file
 
--- Written: Sunday, 17 January 2016 at 13:48:03
+-- Written: Sunday, 26 June 2016 at 12:05:18
 
 -- Static messages
 
@@ -364,9 +364,9 @@ messages = {
 
 -- /cygdrive/c/source/mushclient/dialogs/world_prefs/EditVariable.cpp:52
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:205
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:206
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:269
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:265
   ["The variable name must start with a letter and consist of letters, numbers or the underscore character."] =
     "",
 
@@ -378,37 +378,37 @@ messages = {
   ["Edit variable"] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:130
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:131
   ["The timer interval must be greater than zero."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:137
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:138
   ["The timer offset must be less than the timer period."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:179
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:180
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:244
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:240
 
 -- /cygdrive/c/source/mushclient/dialogs/world_prefs/triggdlg.cpp:288
   ["The label must start with a letter and consist of letters, numbers or the underscore character."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:192
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:193
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:256
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:252
 
 -- /cygdrive/c/source/mushclient/dialogs/world_prefs/triggdlg.cpp:259
   ["When sending to a variable you must specify a variable name. "] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:234
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:235
   ["The timer contents cannot be blank unless you specify a script subroutine."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:247
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:248
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:312
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:308
 
 -- /cygdrive/c/source/mushclient/dialogs/world_prefs/triggdlg.cpp:303
   ["The script subroutine name must start with a letter and consist of letters, numbers or the underscore character."] =
@@ -418,11 +418,11 @@ messages = {
   ["The alias cannot be blank."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:299
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:295
   ["The alias contents cannot be blank unless you specify a script subroutine."] =
     "",
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:470
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:466
   ["Edit alias 'match' text"] =
     "",
 
@@ -1138,41 +1138,41 @@ messages = {
   ["Unable to open the plugins web page: "] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:3848
+-- /cygdrive/c/source/mushclient/mushview.cpp:3856
   ["Printing world..."] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4034
+-- /cygdrive/c/source/mushclient/mushview.cpp:4042
   ["Printing cancelled"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4525
+-- /cygdrive/c/source/mushclient/mushview.cpp:4533
   ["No URL selected"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4527
+-- /cygdrive/c/source/mushclient/mushview.cpp:4535
   ["URL too long"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4567
+-- /cygdrive/c/source/mushclient/mushview.cpp:4575
   ["No email address selected"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4569
+-- /cygdrive/c/source/mushclient/mushview.cpp:4577
   ["Email address too long"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5308
+-- /cygdrive/c/source/mushclient/mushview.cpp:5321
   ["Cannot find style of this character"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5755
+-- /cygdrive/c/source/mushclient/mushview.cpp:5768
   ["@ must be followed by a variable name"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:6341
+-- /cygdrive/c/source/mushclient/mushview.cpp:6354
 
--- /cygdrive/c/source/mushclient/mushview.cpp:6425
+-- /cygdrive/c/source/mushclient/mushview.cpp:6438
   ["Cannot compile regular expression"] =
     "",
 
@@ -1632,7 +1632,7 @@ messages = {
   ["Cannot process compressed output. World closed."] =
     "",
 
--- /cygdrive/c/source/mushclient/timers.cpp:311
+-- /cygdrive/c/source/mushclient/timers.cpp:314
   ["Reconnecting ..."] =
     "",
 
@@ -1857,7 +1857,7 @@ formatted = {
 
 -- /cygdrive/c/source/mushclient/doc.cpp:5798
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5424
+-- /cygdrive/c/source/mushclient/mushview.cpp:5437
 
 -- /cygdrive/c/source/mushclient/sendvw.cpp:2325
   ["Notepad: %s"] =
@@ -2707,7 +2707,7 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:163
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/TimerDlg.cpp:164
   ["The timer label \"%s\" is already in the list of timers."] =
     function (a)
      
@@ -2728,7 +2728,7 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:228
+-- /cygdrive/c/source/mushclient/dialogs/world_prefs/aliasdlg.cpp:224
   ["The alias label \"%s\" is already in the list of aliases."] =
     function (a)
      
@@ -3130,7 +3130,7 @@ formatted = {
 
 -- /cygdrive/c/source/mushclient/doc.cpp:5130
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5477
+-- /cygdrive/c/source/mushclient/mushview.cpp:5490
   ["Recall: %s"] =
     function (a)
      
@@ -3211,7 +3211,7 @@ formatted = {
 
 -- /cygdrive/c/source/mushclient/evaluate.cpp:962
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5863
+-- /cygdrive/c/source/mushclient/mushview.cpp:5876
   ["Alias: %s"] =
     function (a)
      
@@ -3220,7 +3220,7 @@ formatted = {
 
 -- /cygdrive/c/source/mushclient/evaluate.cpp:993
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5793
+-- /cygdrive/c/source/mushclient/mushview.cpp:5806
   ["processing alias \"%s\""] =
     function (a)
      
@@ -3234,74 +3234,74 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:2252
+-- /cygdrive/c/source/mushclient/mushview.cpp:2259
   ["Plugin \"%s\" is not installed"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:2257
+-- /cygdrive/c/source/mushclient/mushview.cpp:2264
   ["Script routine \"%s\" is not in plugin %s"] =
     function (a, b)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:2264
+-- /cygdrive/c/source/mushclient/mushview.cpp:2271
   ["An error occurred calling plugin %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:2317
+-- /cygdrive/c/source/mushclient/mushview.cpp:2324
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5601
+-- /cygdrive/c/source/mushclient/mushview.cpp:5614
   ["Hyperlink action \"%s\" - permission denied."] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:2322
+-- /cygdrive/c/source/mushclient/mushview.cpp:2329
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5606
+-- /cygdrive/c/source/mushclient/mushview.cpp:5619
   ["Unable to open the hyperlink \"%s\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4440
+-- /cygdrive/c/source/mushclient/mushview.cpp:4448
   ["Line %ld, %s%s"] =
     function (a, b, c)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4537
+-- /cygdrive/c/source/mushclient/mushview.cpp:4545
   ["Unable to open the URL \"%s\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4571
+-- /cygdrive/c/source/mushclient/mushview.cpp:4579
   ["Email address \"%s\" invalid - does not contain a \"@\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4579
+-- /cygdrive/c/source/mushclient/mushview.cpp:4587
   ["Unable to send mail to \"%s\""] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/mushview.cpp:5765
+-- /cygdrive/c/source/mushclient/mushview.cpp:5778
   ["Variable '%s' is not defined."] =
     function (a)
      
@@ -4408,14 +4408,14 @@ formatted = {
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/timers.cpp:175
+-- /cygdrive/c/source/mushclient/timers.cpp:178
   ["Timer: %s"] =
     function (a)
      
       return ""
     end,  -- function
 
--- /cygdrive/c/source/mushclient/timers.cpp:197
+-- /cygdrive/c/source/mushclient/timers.cpp:200
   ["processing timer \"%s\""] =
     function (a)
      
@@ -5242,7 +5242,7 @@ times = {
 
 -- /cygdrive/c/source/mushclient/doc.cpp:6858
 
--- /cygdrive/c/source/mushclient/mushview.cpp:3898
+-- /cygdrive/c/source/mushclient/mushview.cpp:3906
 
 -- /cygdrive/c/source/mushclient/plugins.cpp:997
 
@@ -5260,7 +5260,7 @@ times = {
   ["--- Connected on %A, %B %d, %Y, %#I:%M %p ---"] =
     "",
 
--- /cygdrive/c/source/mushclient/mushview.cpp:4432
+-- /cygdrive/c/source/mushclient/mushview.cpp:4440
   ["%A, %B %d, %#I:%M:%S %p"] =
     "",
 

@@ -8,10 +8,10 @@
 <muclient>
     <plugin
     name="Chat_Capture_Miniwindow"
-    author="Fiendish, modify by Haerdalis"
+    author="Fiendish, modified by Haerdalis"
     id="565dae21eb816a2fdb8d50f9"
     language="Lua"
-    purpose="Move chats to a miniwindow"
+    purpose="Moves chats to a miniwindow"
     date_written="2010-04-04"
     date_modified="2011-01-05"
     requires="4.52"
@@ -22,13 +22,13 @@
 <description trim="y">
 USAGE:
 
-  chats echo on    : echo chats in main window
-  chats echo off   : do not echo chats
-  chats show       : show chats window
-  chats hide       : hide chats window
+  chats echo on    : Echoes chats in main window
+  chats echo off   : Do not echo chats.
+  chats show       : Shows chats window.
+  chats hide       : Hide chats window.
   
-  LH-click a line to copy it to the clipboard
-  RH-click main window to see menu of options
+  LH-click a line to copy it into the clipboard.
+  RH-click main window to see the options menu.
   
   Click title bar to drag window.
 </description>
@@ -47,20 +47,21 @@ USAGE:
 
     <alias
     script="chat_show"
-    match="chats show"
+    match="^chats show$"
     enabled="y"
+    regexp="y"
     sequence="100"
     ignore_case="y"
     ></alias>
 
     <alias
     script="chat_hide"
-    match="chats hide"
+    match="^chats hide$"
     enabled="y"
+    regexp="y"
     sequence="100"
     ignore_case="y"
     ></alias>
-        
 </aliases>
 
 <script>
@@ -211,11 +212,11 @@ function PluginInstall()
     avalon.HookCallback("CHANNEL",chats)
     for cn,cc in pairs(channelcolours) do
       ctext=avalon.GetConfig("messagebox","custom"..tostring(cc).."text")
-      if ctext ~=0 then
+      if ctext ~= 0 then
         world.SetCustomColourText(cc,ctext)
       end
       cback=avalon.GetConfig("messagebox","custom"..tostring(cc).."back")
-      if cback ~=0 then
+      if cback ~= 0 then
         world.SetCustomColourBackground(cc,cback)
       end
     end

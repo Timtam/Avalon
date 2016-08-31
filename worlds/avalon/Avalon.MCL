@@ -69,7 +69,7 @@
    output_font_weight="400"
    paste_delay_per_lines="1"
    pixel_offset="1"
-   port="23"
+   port="7777"
    proxy_port="1080"
    send_file_delay_per_lines="1"
    send_mxp_afk_response="y"

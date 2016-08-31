@@ -1,26 +1,26 @@
 require('pairsbykeys')
 function stations_getspeedwalksbyroomid(roomid)
-rettbl={}
-for name,id in pairsByKeys(stations) do
-if id==roomid then
-rettbl[#rettbl+1]=name
-end
-end
-return rettbl
+  rettbl = {}
+  for name, id in pairsByKeys(stations) do
+    if id == roomid then
+      rettbl[#rettbl+1] = name
+    end
+  end
+  return rettbl
 end
 
 function stations_getnamebyroomid(roomid)
-for name,id in pairsByKeys(stations) do
-if id==roomid then
-split_name = utils.split(name, "_")
-if split_name ~= nil then
-return split_name[1]
-else
-return nil
-end
-end
-end
-return nil
+  for name, id in pairsByKeys(stations) do
+    if id == roomid then
+      split_name = utils.split(name, "_")
+      if split_name ~= nil then
+        return split_name[1]
+      else
+        return nil
+      end
+    end
+  end
+  return nil
 end
 
 abt="raum/b3870144ea3bbbe607804126f3b9c39e"
@@ -37,6 +37,7 @@ camp="raum/8cc3a00b4e5e23c0eb37c3651b305ad4"
 cor="raum/d40620bc448ec9ef50da45c8669d08a3"
 corz="raum/e43e39a401794260080bd8750d5a0618"
 dhun="raum/e004dda09968e9a63464ea2191c6cede"
+dhun3="raum/62733b0fc85683d590345e3ba8fe9bcc"
 gwen="raum/5c8450f4ee0ad1e55a0f44f8c78a2a68"
 hol="raum/c565529eba8cd3d895f8b655c9887f39"
 ilme="raum/fc982966d5469bea1cd5fe8266997d58"
@@ -52,6 +53,7 @@ min="raum/1363d90eb536ec54b8e893d46d73a598"
 mos="raum/a1ce5765b0568f98dde987fdf9749ca4"
 nekro="raum/56fa846ef63ed7a117850e41fa09ebb5"
 nuel="raum/dcf94ff3e035aa03992c851656e958c4"
+quelle="raum/7091aabf721fbd5946bdd405d995fb0c"
 ril="raum/2759daa74ac2124b61ca8ce2fc8fe5a6"
 san="raum/9677492e37dc76e4b21b25510f9945f1"
 see="raum/51023cd5e5ae352dd197ca431a276f4f"
@@ -105,7 +107,7 @@ stations.alo_wahrsager=alo
 stations.alo_zwerge=alo
 stations.aloz_baecker="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_bank=aloz
-stations.aloz_gast1="raum/097f6fb19bff88530b738f2bfe0bbca2"
+stations.aloz_gast="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_haendler=aloz
 stations.aloz_haf="raum/097f6fb19bff88530b738f2bfe0bbca2"
 stations.aloz_leder=aloz
@@ -153,11 +155,13 @@ stations.aug_bank=aug
 stations.aug_haf=aug
 stations.aug_ker=aug
 stations.aug_mos=aug
+stations.aug_troph=aug
 stations.baecker_aloz="raum/f8f9e9059a7816fe410b03e1e29e2b9f"
 stations.bank_aloz="raum/1d69ce4b15bd02f4b94d8259c20ac567"
 stations.bank_aug="raum/80623eb8d90046ad2a76a39714d7493e"
 stations.bank_ashz="raum/b2b59cdcef2d62792c6b8224f161403d"
 stations.bank_corz="raum/04b7d55df416e3dbd5276b14d4276f1a"
+stations.bank_dhun2="raum/10c05c2717a68aad52dbca1ea23197d5"
 stations.bank_ilme="raum/44f0bc731a6c345759b1859f1f12d666"
 stations.bank_jas="raum/9ea9dec24cdbc8f999982d48591aa365"
 stations.bank_jer="raum/e60306e79b263b6b12bf1ca6bd6ad296"
@@ -183,6 +187,9 @@ stations.barde_tin="raum/b7b1beb946b25bdc47bddcab6579e991"
 stations.barde_tol="raum/350250fc59347acbda9b914b82fbe134"
 stations.barde_zwerge="raum/454500e19bdf9c2c9a53d26dee5339e2"
 stations.bote_min="raum/f3d2b779c1e2b864a82abd23b7786d6b"
+stations.bruecke_muw2="raum/2f355ff38379d6d36adecb498d95f930"
+stations.bruecke1_muw="raum/2f355ff38379d6d36adecb498d95f930"
+stations.bruecke2_muw="raum/7fa06877478eba534fb935cd14b686f4"
 stations.camp_anl=camp
 stations.camp_dk=camp
 stations.camp_druide=camp
@@ -212,6 +219,15 @@ stations.dhun_min=dhun
 stations.dhun_nuel=dhun
 stations.dhun_uw=dhun
 stations.dhun_zwerge=dhun
+stations.dhun0_haendler="raum/5dfe55b0c8d769e865fd85ba63127fbc"
+stations.dhun0_schmied="raum/5dfe55b0c8d769e865fd85ba63127fbc"
+stations.dhun2_bank="raum/7380c211fa363daa4ea79a849a74027a"
+stations.dhun2_gast="raum/7380c211fa363daa4ea79a849a74027a"
+stations.dhun2_haendler="raum/7380c211fa363daa4ea79a849a74027a"
+stations.dhun2_post="raum/7380c211fa363daa4ea79a849a74027a"
+stations.dhun3_magier=dhun3
+stations.dhun3_wlm1="raum/62733b0fc85683d590345e3ba8fe9bcc"
+stations.dhun3_wlm2="raum/62733b0fc85683d590345e3ba8fe9bcc"
 stations.dichter_ash="raum/07e730bb54564fd4c15a3e4e7d8e325d"
 stations.dinsel_jas="raum/4405d3cc8b5a9de94d8683b2e7fa38b6"
 stations.dk_camp="raum/c9654fc89fd112b98001fce9a7757f1c"
@@ -237,8 +253,9 @@ stations.form_min="raum/fec14a5d61754d7d899ec62d15527aa2"
 stations.form_sol="raum/a070d55ba96aa72706f9369a7d44bd6c"
 stations.form_tol="raum/caa9d6a78d7f9c7fd34774cc9b4e049a"
 stations.form_zwerge="raum/9c68db550b53110505961914c47c4df5"
-stations.gast1_aloz="raum/b3e12f5b9b9e4330fee7a36526cc1377"
-stations.gast1_min="raum/1aa8679dae51c2b17b6b9c1883c9ef0a"
+stations.gast_aloz="raum/b3e12f5b9b9e4330fee7a36526cc1377"
+stations.gast_dhun2="raum/f19e3c04c2c88c7ab61ce5e3aee6893c"
+stations.gast_min="raum/1aa8679dae51c2b17b6b9c1883c9ef0a"
 stations.gast_ashz="raum/107e0608db24dee1136396c8ef609310"
 stations.gol_affe="raum/015ca4c68d90adbf6cd212253cd1706a"
 stations.gol_mine="raum/015ca4c68d90adbf6cd212253cd1706a"
@@ -252,12 +269,15 @@ stations.gwen_tin=gwen
 stations.haendler_aloz="raum/7a71c11e797bc94301b6ba15ee48124d"
 stations.haendler_ashz="raum/ccb82ff23c8a469373789a071b80149c"
 stations.haendler_corz="raum/5391ea97794e4d4e7c8ca5f734f9910f"
+stations.haendler_dhun0="raum/047d287961f1b75b23edcaa09f876f8f"
+stations.haendler_dhun2="raum/bda960c71429a15fb529c130459aeab5"
 stations.haendler_gwen="raum/5119621acbceb2b999d84a89925d5845"
 stations.haendler_ilme="raum/76390f82483218c4f34638f78a519d8b"
 stations.haendler_jas="raum/134946a87d61d0524fe28a431ff926e7"
 stations.haendler_jer="raum/a3a026a79f2cc4fddb0847cd46b1fadb"
 stations.haendler_lor="raum/0f9c55bf250e4ad816cdceede226a054"
-stations.haendler_min="raum/7dedeeebd064e446df9720d2665b0fd7"
+stations.haendler1_min="raum/7dedeeebd064e446df9720d2665b0fd7"
+stations.haendler2_min="raum/4f84a6165ccd462fb80957e17f6c4b4b"
 stations.haendler_skal="raum/96bdfcdf4a7e0b169800ec3d4504ac39"
 stations.haendler_us="raum/4ef6d4918856d027cf1d728aacc432c4"
 stations.haendler_wal="raum/14d8914348ed7beb7294706b3c260bae"
@@ -273,7 +293,9 @@ stations.haf_jas="raum/f4421896c051342efc070bc6ade69ae5"
 stations.haf_jer=loshaf
 stations.haf_ker=amphaf
 stations.haf_koch="raum/63ab4d672c1bb5fbac5bc23f3b31396b"
+stations.haf_lim="raum/63ab4d672c1bb5fbac5bc23f3b31396b"
 stations.haf_lor="raum/51c6d00a73fae493f310ba99895a8f1e"
+stations.haf_min="raum/a8fecc7971c9e7ec1f27e22cc0009152"
 stations.haf_sol="raum/2bb629d877a810d8746ce7fc51884fee"
 stations.haf_tol=tolhaf
 stations.haf_umi=amphaf
@@ -282,6 +304,7 @@ stations.haf_vul="raum/c4766a4d999824b45d3ce1e74ba7b8a3"
 stations.haf2_umi="raum/6c8a85b417c97e660fc1ca0c05986364"
 stations.hain_sol="raum/45f6cb3c6a8b3a90ab146ec7c8c2a985"
 stations.her_hol="raum/fbb85ec48b6ccccbdc957882e1436a2c"
+stations.her_lim="raum/fbb85ec48b6ccccbdc957882e1436a2c"
 stations.hol_barde=hol
 stations.hol_farm=hol
 stations.hol_haf=hol
@@ -339,11 +362,14 @@ stations.ker_magier=ker
 stations.ker_mos=ker
 stations.ker_run=ker
 stations.ker_troph=ker
+stations.ker_wlm=ker
 stations.koch_haf="raum/6675b678e153063003c188f8c021b05a"
 stations.koch_hol="raum/6675b678e153063003c188f8c021b05a"
 stations.leder_aloz="raum/05f376d741238d1ba03483b425d29076"
 stations.lederer_min="raum/e056d17d21ec278b3df3541aee285604"
 stations.lim_druide="raum/8b1b11b86e425b2d294c51cf4fa9fb26"
+stations.lim_haf="raum/8b1b11b86e425b2d294c51cf4fa9fb26"
+stations.lim_her="raum/8b1b11b86e425b2d294c51cf4fa9fb26"
 stations.lim_hol="raum/8b1b11b86e425b2d294c51cf4fa9fb26"
 stations.lim_muehle=lim
 stations.lim_schmied=lim
@@ -362,6 +388,7 @@ stations.los_magier=los
 stations.los_ver=los
 stations.magier_ashz="raum/005e3b60dcc45f42e00d7e8e95384f94"
 stations.magier_corz="raum/635097e0d11f371677321c8d28563c7d"
+stations.magier_dhun3="raum/964aba9a128fd841514481eaba87be7e"
 stations.magier_gwen="raum/3a49f9dde3a766f8114413854705fb4e"
 stations.magier_jas="raum/8b4655acf85e25c2c38cf46f89155cbc"
 stations.magier_jer="raum/d616460ea86fcaf9fa4a5eea80850029"
@@ -391,17 +418,21 @@ stations.min_cor=min
 stations.min_dhun=min
 stations.min_druide=min
 stations.min_form=min
-stations.min_gast1="raum/1363d90eb536ec54b8e893d46d73a598"
-stations.min_haendler=min
+stations.min_gast=min
+stations.min_haf="raum/1363d90eb536ec54b8e893d46d73a598"
+stations.min_haendler1=min
+stations.min_haendler2="raum/1363d90eb536ec54b8e893d46d73a598"
 stations.min_imker=min
 stations.min_lederer=min
 stations.min_magier1=min
 stations.min_magier2=min
 stations.min_magier3=min
 stations.min_post=min
+stations.min_quelle=min
 stations.min_san=min
 stations.min_schlucht=min
 stations.min_schmied=min
+stations.min_stadtwache=min
 stations.min_teich=min
 stations.min_tor=min
 stations.min_uw=min
@@ -422,6 +453,12 @@ stations.moor_nekro="raum/a80d2d97e77a5d6f7f2bf9c2d2d19364"
 stations.mos_aug=mos
 stations.mos_ker=mos
 stations.muehle_lim="raum/82dfb814ead873764262de7e97b1c39d"
+stations.muw_bruecke1="raum/cc1dab284a9b7f636cc0132d7809f14a"
+stations.muw_bruecke2="raum/cc1dab284a9b7f636cc0132d7809f14a"
+stations.muw_muw2="raum/fa2f28795adbaec8c3e9696b4eed49ea"
+stations.muw_spalt="raum/cc1dab284a9b7f636cc0132d7809f14a"
+stations.muw2_bruecke="raum/fa2f28795adbaec8c3e9696b4eed49ea"
+stations.muw2_muw="raum/cc1dab284a9b7f636cc0132d7809f14a"
 stations.nekro_jas=nekro
 stations.nekro_moor=nekro
 stations.nekro_uw=nekro
@@ -435,12 +472,15 @@ stations.por_ril="raum/d54cd830e2e89f97d28ed47e89e46995"
 stations.por_uw="raum/e63b887cab42a5455a25e0cb0ed2417f"
 stations.post_ashz="raum/3e5e2fbb4cbf27eedaf8988e994ebb20"
 stations.post_corz="raum/47f7ae8bc73e63130d553c7525d5c647"
+stations.post_dhun2="raum/80503ae07f9214b2404a67438c91bb76"
 stations.post_ilme="raum/80c9a7ae717170ecc9bbf36179c65d06"
 stations.post_jas="raum/88ad6ce6f1e513dcd183048db306a360"
 stations.post_min="raum/1a0f901489449df0d68ca3c4e0a96796"
 stations.post_ril="raum/22913a107af377e7d8693810175444b7"
 stations.post_skal="raum/85cf388c659b5a0f7e50bdd840f6837f"
 stations.post_wal="raum/a0081825fc22e3f5b5df95ad167b21e9"
+stations.quelle_min=quelle
+stations.quelle_san=quelle
 stations.ril_barde=ril
 stations.ril_kap="raum/2759daa74ac2124b61ca8ce2fc8fe5a6"
 stations.ril_magier=ril
@@ -455,10 +495,12 @@ stations.san_ash=san
 stations.san_barde=san
 stations.san_cor=san
 stations.san_min=san
+stations.san_quelle=san
 stations.san_tor=san
 stations.san_zwerge=san
 stations.schlucht_min="raum/fa398dc34af4fa62e711156aeb872a9d"
 stations.schmied_ale="raum/6329f60dfefc8695b7059262f8622be4"
+stations.schmied_dhun0="raum/927255e39142c68b0ebd8b58203aef0b"
 stations.schmied_gwen=tinschmied
 stations.schmied_jas="raum/cd9a095daf8402b884caf647eafb26cb"
 stations.schmied_jer="raum/6329f60dfefc8695b7059262f8622be4"
@@ -487,12 +529,15 @@ stations.skal_schmied=skal
 stations.skal_tief=skal
 stations.skal_troph=skal
 stations.skal_uw=skal
+stations.skal_wlm=skal
 stations.sol_barde=sol
 stations.sol_druide=sol
 stations.sol_form=sol
 stations.sol_haf=sol
 stations.sol_hain=sol
 stations.sol_schmied=sol
+stations.spalt_muw="raum/affa52b16202badbcc39569dcdcca1db"
+stations.stadtwache_min="raum/c4f071ce9543c7b10965b75d9b9654ad"
 stations.teich_abt=teich
 stations.teich_alo=teich
 stations.teich_apf=teich
@@ -538,6 +583,7 @@ stations.tor_min="raum/af86dda24087a60231795e18e03b3b78"
 stations.tor_san="raum/044e996d908244b0bbb62e018d47d610"
 stations.tor_teich="raum/2bcb8b05509ef84ce6bb36dd50729e2c"
 stations.tor_zwerge="raum/9593dfdc9de52235fbcbcb84507ab690"
+stations.troph_aug="raum/fd8ae8d465b02f081e3f5b06402d1b57"
 stations.troph_ker="raum/f6bb25e56443f99ee2cf5f356181e0b9"
 stations.troph_skal="raum/b8e61ebe866ff63145f17072c0fa7ba5"
 stations.troph_us="raum/52d9081687d2baae6b2b58eeee1127e8"
@@ -581,15 +627,19 @@ stations.wal_schmied=wal
 stations.wal_uw=wal
 stations.wl_amp="raum/feb6b971c32946a68ab49068fd5c5042"
 stations.wl_tin="raum/42f62fdfb745f33115afd6e4bb5309e6"
+stations.wlm_skal=skal
+stations.wtoe_htoe="raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
+stations.wlm1_dhun3="raum/7364c0f8179b00902e87697844e173cb"
+stations.wlm1_ilme="raum/0be6ca4adefc8353bd2100fb34f1094f"
+stations.wlm1_min="raum/ffcc1e26e2e43dc91037175ff3a1496c"
+stations.wlm2_dhun3="raum/0bde5beaba17beeb0c2af2bceb91de5f"
+stations.wlm2_ilme="raum/ddbb89202f537ceb15dfdef783d75969"
+stations.wlm2_min="raum/90c08c9ebfa173ef4c0073c0968f7c2c"
 stations.wlm_ash="raum/bf04da5e1cd00894c8cdafdc56d7e1ca"
 stations.wlm_ashz="raum/5aa3c1d71a430965e5529529bd433642"
 stations.wlm_corz="raum/8c28ed588888da3e2c17a550091005c0"
-stations.wlm1_ilme="raum/0be6ca4adefc8353bd2100fb34f1094f"
-stations.wlm1_min="raum/ffcc1e26e2e43dc91037175ff3a1496c"
-stations.wlm2_min="raum/90c08c9ebfa173ef4c0073c0968f7c2c"
-stations.wlm2_ilme="raum/ddbb89202f537ceb15dfdef783d75969"
+stations.wlm_ker="raum/32f38c702c8dc32f97670d4a3486f8b2"
 stations.wlm_umi="raum/81f260813111d0a73649a8b8bb76027b"
-stations.wtoe_htoe="raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
 stations.wunsch_teich="raum/645a3ae8528a2332752d481891cb0f8e"
 stations.yol_bank=yol
 stations.yol_schmied=yol

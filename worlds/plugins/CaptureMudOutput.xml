@@ -8,7 +8,7 @@
 <muclient>
 <plugin
    name="CaptureMudOutput"
-   author="Sean randall"
+   author="Sean Randall"
    id="fb1229fd8aa21fed1531db5c"
    language="VBscript"
    purpose="Allows quick logging of text from the connected world to a notepad window."
