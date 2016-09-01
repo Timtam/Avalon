@@ -12,7 +12,7 @@
    id="deb5a26f21c54c6a913af6d9"
    language="Lua"
    purpose="Zeichnet Avalon Speedwalks auf und formatiert sie in das Soundpack-gerechte Format"
-   save_state="y"
+   save_state="n"
    date_written="2014-09-09 10:32:54"
    requires="4.70"
    version="1.0"

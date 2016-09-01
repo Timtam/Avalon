@@ -9,7 +9,7 @@
    author="Dragoon, Chiaray"
    id="8822bdfc9c0f259131815f29"
    language="Lua"
-   save_state="y"
+   save_state="n"
    date_written="2015-09-10 02:28:00"
    requires="4.71"
    version="1.0"
