@@ -1,12 +1,13 @@
 require("avalon.speedwalks")
 require("avalon.stations")
+require("bit")
 
 spdtbl={}
 spdind={0,0}
 spdstationstbl={}
-spdactive=false
 spdspeed=0.3
 spdextraspeed=0.7
+spdstep=0
 
 function speedwalk_start(spd)
   if (spd == '') or (string.find(spd, '_') == nil) then
@@ -25,15 +26,13 @@ function speedwalk_start(spd)
     if not stations[spd] then
       world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
       spdstationstbl[#spdstationstbl+1] = ''
-      speedwalk_init(speedwalklist[spd])
-      return
+    else
+      spdstationstbl[#spdstationstbl+1] = stations[spd]
     end
-    spdstationstbl[#spdstationstbl+1] = stations[spd]
-    speedwalk_init(speedwalklist[spd])
   else
     spdstationstbl[#spdstationstbl+1] = nil
-    speedwalk_init(speedwalklist[spd])
   end
+  speedwalk_init(speedwalklist[spd])
 end
 
 function speedwalk_list(spd)
@@ -79,13 +78,18 @@ function speedwalk_list(spd)
   world.Note(msg)
 end
 
-function speedwalk_init(speedwalk)
-  if not spdactive then
+function speedwalk_init(speedwalk, walk_on)
+  walk_on = walk_on or false
+  if walk_on == true then
+    spdstep = GetUnixTime()
+    world.AddTriggerEx("speedwalk_handler", "*", 'speedwalk_process()', bit.bor(trigger_flag.Enabled, trigger_flag.KeepEvaluating), NOCHANGE, 0, '', '', -10000, sendto.script)
+  end
+  if spdstep==0 then
     spdtbl = {}
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
-    spdstationstbl = {spdstationstbl[#spdstationstbl]}
     spdind = {1,1}
-    spdactive = true
+    spdstep = GetUnixTime()
+    world.AddTriggerEx("speedwalk_handler", "*", 'speedwalk_process()', bit.bor(trigger_flag.Enabled, trigger_flag.KeepEvaluating), NOCHANGE, 0, '', '', -10000, sendto.script)
     speedwalk_process()
   else
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
@@ -94,19 +98,34 @@ function speedwalk_init(speedwalk)
 end
 
 function speedwalk_process()
+  if spdstep > 0 then
+    current_time=GetUnixTime()
+    continue_time=spdstep
+    if spdind[2]>1 then
+      if string.len(spdtbl[spdind[1]][spdind[2]]) <= 2 then
+        continue_time = continue_time + spdspeed
+      else
+        continue_time = continue_time + spdextraspeed
+      end
+    end
+    if continue_time > current_time then
+      world.DoAfterSpecial(continue_time - current_time, "speedwalk_process()", sendto.script)
+      return
+    end
+  end
   if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
     if (Dunkel == 1) then
       world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
-      spdactive = false
+      speedwalk_deinit()
       return
     end
     if (RoomID ~= spdstationstbl[spdind[1]]) and (spdstationstbl[spdind[1]] ~= '') then
       world.Note("Der Speedwalk startet hier nicht.")
-      spdactive = false
+      speedwalk_deinit()
       return
     end
   end
-  if not spdactive then
+  if spdstep == 0 then
     return
   end
   command = string.gsub(spdtbl[spdind[1]][spdind[2]], '_', ' ')
@@ -114,23 +133,19 @@ function speedwalk_process()
   spdind = {spdind[1], spdind[2]+1}
   if (spdind[2] == #spdtbl[spdind[1]] + 1) then
     if not spdtbl[spdind[1]+1] then
-      spdactive = false
+      speedwalk_deinit()
       spdind = {0,0}
       return
     else
       spdind = {spdind[1] + 1,1}
     end
   end
-  if (string.len(spdtbl[spdind[1]][spdind[2]]) <= 2) then
-    DoAfterSpecial(spdspeed, "speedwalk_process()", 12)
-  else
-    DoAfterSpecial(spdextraspeed, "speedwalk_process()", 12)
-  end
+  spdstep = GetUnixTime()
 end
 
 function speedwalk_break()
-  if spdactive then
-    spdactive = false
+  if spdstep > 0 then
+    speedwalk_deinit()
   else
     if (spdind[1] == 0) and (spdind[2] == 0) then
       return
@@ -138,17 +153,9 @@ function speedwalk_break()
     if not spdtbl[spdind[1]][spdind[2]] then
       return
     end
-    spdactive = true
+    speedwalk_init(nil, true)
     speedwalk_process()
   end
-end
-
-function speedwalk_breaklegs()
-  if (spdind[1] == 0) and (spdind[2] == 0) then
-    return
-  end
-  spdactive = false
-  spdind = {spdind[1],spdind[2]-2}
 end
 
 function safespeedwalks_switch()
@@ -160,4 +167,9 @@ function safespeedwalks_switch()
     world.Note("Die Speedwalks werden nun abgesichert.")
   end
   psnd("Misc/ConfigSwitch.ogg")
+end
+
+function speedwalk_deinit()
+  world.DeleteTrigger("speedwalk_handler")
+  spdstep = 0
 end
