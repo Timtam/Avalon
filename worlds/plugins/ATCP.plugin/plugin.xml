@@ -12,6 +12,7 @@
    date_modified="2010-01-15 12:27:00"
    requires="4.50"
    version="2.002"
+   save_state="n"
    >
 </plugin>
 
