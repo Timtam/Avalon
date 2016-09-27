@@ -3664,6 +3664,14 @@
   >
   <send>psnd("Necromancers/BoneShieldOff.ogg")</send>
   </trigger>
+  <trigger
+   enabled="n"
+   match="Dazugelernt!"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/SkillGain.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
