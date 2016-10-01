@@ -3673,6 +3673,22 @@
   >
   <send>psnd("Misc/SkillGain.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Du erstarrst."
+   send_to="12"
+   sequence="100"
+  >
+  <send>
+  for name, value in pairsByKeys(spells) do
+    spells[name] = 0
+  end
+  for name, value in pairsByKeys(warnings) do
+    warnings[name] = 0
+  end
+  psnd("Player/Statue.ogg")
+  </send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
@@ -4215,6 +4231,7 @@ function OnAvalonLogin()
   atcp.Send("ava_set_rsoul 1")
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
+  psnd("Player/Login.ogg")
 end
 
 OnAvalonGetoetet = function(type, message)
