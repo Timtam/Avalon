@@ -1882,7 +1882,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du faengst an, mit * zu faellen.|* faengt an, mit * zu faellen"
+   regexp="y"
+   match="Du faengst an, mit .* zu faellen.|.* faengt an, mit .* zu faellen"
    sequence="100"
    send_to="12"
   >
