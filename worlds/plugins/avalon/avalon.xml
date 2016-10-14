@@ -3884,14 +3884,6 @@
   <send>tpbar_switch()</send>
 </alias>
   <alias
-   match="repeatcommand_switch"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>repeatcommand_switch()</send>
-</alias>
-  <alias
    match="volume_up"
    enabled="y"
    send_to="12"
@@ -4147,7 +4139,6 @@ configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.RepeatCommand=0
 configtbl.settings.NumpadWalk=1
 configtbl.settings.MXP=0
 configtbl.messagebox={}
@@ -4158,7 +4149,6 @@ world.Accelerator("F2", "tpbar_switch")
 world.Accelerator("F3", "spbar_switch")
 world.Accelerator("F4", "apbar_switch")
 world.Accelerator("F5", "safespeedwalks_switch")
-world.Accelerator("F6", "repeatcommand_switch")
 world.Accelerator("F9", "volume_down")
 world.Accelerator("F10", "volume_up")
 world.Accelerator("F11", "volumetype_switch")
@@ -4553,22 +4543,6 @@ function OnPluginInstall()
   end
 end
 
-function OnPluginCommandEntered(text)
-  if (configtbl.settings.RepeatCommand == 0) then
-    return text
-  end
-  if (text == "") and (LastCommand ~= nil) then
-    return LastCommand
-  else
-    if (text ==" ") then
-      LastCommand = ''
-      return ''
-    end
-    LastCommand = text
-    return text
-  end
-end
-
 function OnPluginClose()
   if callbacktbl.CLOSE then
     for ci,cf in pairs(callbacktbl.CLOSE) do
@@ -4937,18 +4911,6 @@ function spbar_switch()
   else
     configtbl.settings.SPBar = 1
     world.Note("ZP-Ausgabe eingeschaltet.")
-  end
-  psnd("Misc/ConfigSwitch.ogg")
-end
-
-function repeatcommand_switch()
-  if (configtbl.settings.RepeatCommand == 1) then
-    LastCommand=nil
-    configtbl.settings.RepeatCommand = 0
-    world.Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
-  else
-    configtbl.settings.RepeatCommand = 1
-    world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
