@@ -1522,7 +1522,8 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du hast es geschafft, * faellt um*|* hat es geschafft, * faellt um*"
+   match="Du hast es geschafft, .* faellt um.*|.* hat es geschafft, .* faellt um.*"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
