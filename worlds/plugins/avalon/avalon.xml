@@ -3948,7 +3948,7 @@
    send_to="2"
    sequence="100"
   >
-  <send>Skilletan</send>
+  <send>Dolphinia</send>
   </alias>
   <alias
    match="janiso"
@@ -3956,7 +3956,7 @@
    send_to="2"
    sequence="100"
   >
-  <send>Lorinant</send>
+  <send>Lorinand</send>
   </alias>
   <alias
    match="janisw"
@@ -3972,7 +3972,7 @@
    send_to="2"
    sequence="100"
   >
-  <send>Jerisa</send>
+  <send>Losaria</send>
   </alias>
   <alias
    match="foien"
