@@ -129,8 +129,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="^Du oeffnest Deine Augen.*$|^Du oeffnest in dem Moment Deine Augen als.*$"
-   regexp="y"
+   match="In dem Moment, als er Dir den gewuentschten Namen uebermittelt, oeffnest*"
    send_to="12"
    sequence="100"
   >
@@ -140,7 +139,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du reibst Dir Deine Schlaefen um den pochenden Schmerz zu vertreiben.*"
+   match="Du reibst Dir Deine Schlaefen, um den pochenden Schmerz zu vertreiben.*"
    send_to="12"
    sequence="100"
   >
@@ -150,7 +149,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="* schreit hasserfuellt auf und will sich *"
+   match="* schreit hasserfuellt auf und wollte sich *"
    send_to="12"
    sequence="100"
   >
@@ -160,7 +159,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen *"
+   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen*"
    send_to="12"
    sequence="100"
   >
@@ -2631,9 +2630,9 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gerade als Du fertig bist den Rand zu befestigen rutscht alles zurueck *"
-   sequence="100"
+   match="Gerade als Du fertig bist, den Rand zu befestigen, rutscht *"
    send_to="12"
+   sequence="100"
   >
   <send>psnd("WateringPlace/Colapse.ogg")</send>
   </trigger>
