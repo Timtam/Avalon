@@ -4234,6 +4234,11 @@ function OnAvalonLogin()
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
   psnd("Player/Login.ogg")
+  if callbacktbl.LOGIN ~=nil then
+    for ci,cf in pairs(callbacktbl.LOGIN) do
+      cf()
+    end
+  end
 end
 
 OnAvalonGetoetet = function(type, message)
