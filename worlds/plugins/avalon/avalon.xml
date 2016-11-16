@@ -2166,7 +2166,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein letzter pruefender Blick und Du erkennst, dass sich bereits Wasser *"
+   match="Ein pruefender Blick und Du erkennst, dass sich bereits Wasser *"
    sequence="100"
    send_to="12"
   >
