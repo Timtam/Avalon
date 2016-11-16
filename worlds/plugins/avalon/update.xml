@@ -65,10 +65,10 @@ world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
-  --if path.isdir(world.GetInfo(66)..".git") == true then
-  --  world.Note("Soundpack laeuft via Git, Updates werden nicht automatisch geprueft.")
-  --  return
-  --end
+  if path.isdir(world.GetInfo(66)..".git") == true then
+    world.Note("Soundpack laeuft via Git, Updates werden nicht automatisch geprueft.")
+    return
+  end
   if informed == true then
     return -- updater will check at next start only, since we already informed one time
   end
