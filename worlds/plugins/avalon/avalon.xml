@@ -4122,6 +4122,7 @@ plugintbl[8]="avalon/speedwalk-mapper.xml"
 plugintbl[9]="avalon/healthbar.xml"
 plugintbl[10]="avalon/message_window.xml"
 plugintbl[11]="avalon/kompass.xml"
+plugintbl[12]="avalon/update.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4548,6 +4549,8 @@ function OnPluginInstall()
     function(event,callback)
       return hook_callback(event,callback)
     end)
+  PPI.Expose('PSND',
+    psnd)
   if Path.exists(world.GetInfo(60).."avalon/user.xml") then
     world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
   end
