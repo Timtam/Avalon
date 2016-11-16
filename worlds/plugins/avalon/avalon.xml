@@ -4151,6 +4151,7 @@ configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.NumpadWalk=1
 configtbl.settings.RepeatCommand=0
 configtbl.settings.MXP=0
+configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
 world.Accelerator("ctrl+D", "speedwalk_break")
@@ -4477,12 +4478,13 @@ function OnPluginInstall()
   if not Audio then
     error("Audio-Ausgabe konnte nicht initialisiert werden.")
   end
-  if not Path.exists("config.dat") then
+  if configtbl.settings.FirstRun == 1 then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
     if (res == "yes") then
       os.execute("notepad.exe readme_soundpack.txt")
     end
   end
+  configtbl.settings.FirstRun = 0
   newfiles=Dir.getfiles(world.GetInfo(66),"*\\.new")
   if #newfiles>0 then
     for _, dfile in pairs(newfiles) do
