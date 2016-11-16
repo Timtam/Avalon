@@ -23,7 +23,7 @@
 <aliases>
   <alias
    regexp="y"
-   match="aktualisiere|update"
+   match="^aktualisiere|update$"
    enabled="y"
    send_to="12"
    sequence="100"
@@ -32,7 +32,7 @@
   </alias>
   <alias
    regexp="y"
-   match="(aktualisiere|update) har(d|t)"
+   match="^(aktualisiere|update) har(d|t)$"
    enabled="y"
    send_to="12"
    sequence="100"
