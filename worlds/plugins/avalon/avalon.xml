@@ -4958,6 +4958,11 @@ function OnPluginDisconnect()
   RoomName = ""
   stopifplaying(hmusic)
   hmusic = nil
+  if callbacktbl.LOGOUT ~=nil then
+    for ci,cf in pairs(callbacktbl.LOGOUT) do
+      cf()
+    end
+  end
 end
 
 function switch_mute()

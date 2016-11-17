@@ -58,22 +58,38 @@ commitFetchUrl="https://api.github.com/repos/Timtam/Avalon/commits?sha=master"
 downloadThread = nil
 informed = false
 json=require("json")
+loggedIn = false
 path = require("pl.path")
 ppi=require("ppi")
+stringx = require("pl.stringx")
+verbose = false
 
 world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
-  --if path.isdir(world.GetInfo(66)..".git") == true then
-  --  world.Note("Soundpack laeuft via Git, Updates werden nicht automatisch geprueft.")
-  --  return
-  --end
+  if path.isdir(world.GetInfo(66)..".git") == true then
+    if verbose == true then
+      world.Note("Soundpack laeuft via Git, Updates werden nicht automatisch geprueft.")
+      verbose = false
+    end
+    return
+  end
   if informed == true then
+    -- no verbose check here, since verbose is always toggled by user command
+    -- and a second run can't be invoked by users yet
     return -- updater will check at next start only, since we already informed one time
   end
-  downloadThread = async.request(commitFetchUrl, "HTTPS")
-  world.DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
+  if loggedIn == true then
+    downloadThread = async.request(commitFetchUrl, "HTTPS")
+    world.DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
+  else
+    if verbose == true then
+      world.Note("Damit eine Pruefung durchgefuehrt werden kann, muss ein")
+      world.Note("Charakter in Avalon eingeloggt sein.")
+      verbose = false
+    end
+  end
 end
 
 function updateCheckFinished()
@@ -89,15 +105,35 @@ function updateCheckFinished()
     if current == 0 or avalon.GetConfig("update", "updated") == 1 then
       -- no hash set yet, for example when downloading as zip file
       -- also the updater may have run recently, same procedure
+      -- or the user forced to update the current hash value
       avalon.SetConfig("update","hash",commits[1]["sha"])
       avalon.SetConfig("update", "updated", 0)
+      if verbose == true then
+        world.Note("Die derzeitige Version wurde auf folgenden Hash festgesetzt:")
+        world.Note(commits[1]["sha"])
+        verbose = false
+      end
     else
       -- valid hash already set and updater not active since the last check
       if current ~= commits[1]["sha"] then
         printUpdateMessage(commits, current)
         informed = true
+        verbose = false
         avalon.PSND("misc/update.ogg")
+      else
+        if verbose == true then
+          world.Note("Das Soundpack ist aktuell.")
+          verbose = false
+        end
       end
+    end
+  else
+    if verbose == true then
+      world.Note("Es trat ein Fehler beim Download der Update-Informationen auf.")
+      world.Note("Eventuell ist der Server derzeit nicht erreichbar oder")
+      world.Note("der Zugriff wird durch eine Firewall oder einen")
+      world.Note("Proxy-Server eingeschraenkt.")
+      verbose = false
     end
   end
   world.DoAfterSpecial(checkPeriod, "updateCheck()", sendto.script)
@@ -105,7 +141,11 @@ end
 
 function PluginInstall()
   avalon.HookCallback("LOGIN", function()
+    loggedIn = true
     updateCheck()
+  end)
+  avalon.HookCallback("LOGOUT", function()
+    loggedIn = false
   end)
 end
 
@@ -116,7 +156,8 @@ function printUpdateMessage(commits, current)
   local message
   while currentIndex <= #commits and commits[currentIndex]["sha"] ~= current do
     -- we'll filter all merge commits right here
-    if string.find(commits[currentIndex]["commit"]["message"], "Merge branch") == 1 then
+    -- and also all commits with no message
+    if string.find(commits[currentIndex]["commit"]["message"], "Merge branch") == 1 or stringx.strip(commits[currentIndex]["commit"]["message"])=="" then
       table.remove(commits, currentIndex)
     else
       currentIndex = currentIndex + 1
@@ -157,8 +198,8 @@ function updateCheckForce()
     return
   end
   informed = false
+  verbose = true
   world.Note("Es wird nach Aktualisierungen gesucht...")
-  world.Note("Sollte keine Meldung angezeigt werden, ist das Soundpack bereits aktuell.")
   updateCheck()
 end
 
@@ -167,9 +208,11 @@ function updateReset()
     world.Note("Es laeuft derzeit eine Pruefung.")
     return
   end
+  verbose = true
+  informed = false
   avalon.SetConfig("update", "updated", 1)
-  updateCheck()
   world.Note("Die aktuelle Soundpack-Version wird auf die derzeit neueste Version festgelegt.")
+  updateCheck()
 end
 ]]>
 </script>
