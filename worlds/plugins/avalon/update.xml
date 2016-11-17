@@ -70,7 +70,7 @@ avalon = ppi.Load(avalonId)
 function updateCheck()
   if path.isdir(world.GetInfo(66)..".git") == true then
     if verbose == true then
-      world.Note("Soundpack laeuft via Git, Updates werden nicht automatisch geprueft.")
+      world.Note("Soundpack laeuft via Git, Updates werden nicht geprueft.")
       verbose = false
     end
     return
@@ -93,7 +93,7 @@ function updateCheck()
 end
 
 function updateCheckFinished()
-  local commits, current
+  local commits, current, hours, minutes, seconds
   if downloadThread:alive()==true then
     world.DoAfterSpecial(1, "updateCheckFinished()", sendto.script)
     return
@@ -136,7 +136,10 @@ function updateCheckFinished()
       verbose = false
     end
   end
-  world.DoAfterSpecial(checkPeriod, "updateCheck()", sendto.script)
+  hours = math.floor(checkPeriod/3600)
+  minutes = math.floor((checkPeriod - hours*3600)/60)
+  seconds = checkPeriod - hours * 3600 - minutes*60
+  world.AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled+timer_flag.OneShot+timer_flag.Temporary, "updateCheck") 
 end
 
 function PluginInstall()
@@ -146,6 +149,8 @@ function PluginInstall()
   end)
   avalon.HookCallback("LOGOUT", function()
     loggedIn = false
+    world.EnableTimer("updateCheckTimer", 0)
+    world.DeleteTimer("updateCheckTimer")
   end)
 end
 
