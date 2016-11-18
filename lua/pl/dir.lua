@@ -1,5 +1,6 @@
+--- Listing files in directories and creating/removing directory paths.
 --
--- Dependencies: `pl.utils`, `pl.path`, `pl.tablex`
+-- Dependencies: `pl.utils`, `pl.path`
 --
 -- Soft Dependencies: `alien`, `ffi` (either are used on Windows for copying/moving files)
 -- @module pl.dir
@@ -7,13 +8,11 @@
 local utils = require 'pl.utils'
 local path = require 'pl.path'
 local is_windows = path.is_windows
-local tablex = require 'pl.tablex'
 local ldir = path.dir
-local chdir = path.chdir
 local mkdir = path.mkdir
 local rmdir = path.rmdir
 local sub = string.sub
-local os,pcall,ipairs,pairs,require,setmetatable,_G = os,pcall,ipairs,pairs,require,setmetatable,_G
+local os,pcall,ipairs,pairs,require,setmetatable = os,pcall,ipairs,pairs,require,setmetatable
 local remove = os.remove
 local append = table.insert
 local wrap = coroutine.wrap
@@ -32,35 +31,37 @@ local function assert_file (n,val)
 end
 
 local function filemask(mask)
-    mask = utils.escape(mask)
-    return mask:gsub('%%%*','.+'):gsub('%%%?','.')..'$'
+    mask = utils.escape(path.normcase(mask))
+    return '^'..mask:gsub('%%%*','.*'):gsub('%%%?','.')..'$'
 end
 
---- does the filename match the shell pattern?.
--- (cf. fnmatch.fnmatch in Python, 11.8)
--- @string file A file name
--- @string pattern A shell pattern
+--- Test whether a file name matches a shell pattern.
+-- Both parameters are case-normalized if operating system is
+-- case-insensitive.
+-- @string filename A file name.
+-- @string pattern A shell pattern. The only special characters are
+-- `'*'` and `'?'`: `'*'` matches any sequence of characters and
+-- `'?'` matches any single character.
 -- @treturn bool
--- @raise file and pattern must be strings
-function dir.fnmatch(file,pattern)
-    assert_string(1,file)
+-- @raise dir and mask must be strings
+function dir.fnmatch(filename,pattern)
+    assert_string(1,filename)
     assert_string(2,pattern)
-    return path.normcase(file):find(filemask(pattern)) ~= nil
+    return path.normcase(filename):find(filemask(pattern)) ~= nil
 end
 
---- return a list of all files which match the pattern.
--- (cf. fnmatch.filter in Python, 11.8)
--- @string files A table containing file names
+--- Return a list of all file names within an array which match a pattern.
+-- @tab filenames An array containing file names.
 -- @string pattern A shell pattern.
--- @treturn List(string) list of files
--- @raise file and pattern must be strings
-function dir.filter(files,pattern)
-    assert_arg(1,files,'table')
+-- @treturn List(string) List of matching file names.
+-- @raise dir and mask must be strings
+function dir.filter(filenames,pattern)
+    assert_arg(1,filenames,'table')
     assert_string(2,pattern)
     local res = {}
     local mask = filemask(pattern)
-    for i,f in ipairs(files) do
-        if f:find(mask) then append(res,f) end
+    for i,f in ipairs(filenames) do
+        if path.normcase(f):find(mask) then append(res,f) end
     end
     return setmetatable(res,List)
 end
@@ -92,7 +93,7 @@ function dir.getfiles(dir,mask)
     if mask then
         mask = filemask(mask)
         match = function(f)
-            return f:find(mask)
+            return path.normcase(f):find(mask)
         end
     end
     return _listfiles(dir,true,match)
@@ -107,26 +108,19 @@ function dir.getdirectories(dir)
     return _listfiles(dir,false)
 end
 
-local function quote_argument (f)
-    f = path.normcase(f)
-    if f:find '%s' then
-        return '"'..f..'"'
-    else
-        return f
-    end
-end
-
-
 local alien,ffi,ffi_checked,CopyFile,MoveFile,GetLastError,win32_errors,cmd_tmpfile
 
 local function execute_command(cmd,parms)
    if not cmd_tmpfile then cmd_tmpfile = path.tmpname () end
    local err = path.is_windows and ' > ' or ' 2> '
-    cmd = cmd..' '..parms..err..cmd_tmpfile
+    cmd = cmd..' '..parms..err..utils.quote_arg(cmd_tmpfile)
     local ret = utils.execute(cmd)
     if not ret then
-        return false,(utils.readfile(cmd_tmpfile):gsub('\n(.*)',''))
+        local err = (utils.readfile(cmd_tmpfile):gsub('\n(.*)',''))
+        remove(cmd_tmpfile)
+        return false,err
     else
+        remove(cmd_tmpfile)
         return true
     end
 end
@@ -190,7 +184,7 @@ local function find_ffi_copyfile ()
 end
 
 local function two_arguments (f1,f2)
-    return quote_argument(f1)..' '..quote_argument(f2)
+    return utils.quote_arg(f1)..' '..utils.quote_arg(f2)
 end
 
 local function file_op (is_copy,src,dest,flag)
@@ -209,7 +203,7 @@ local function file_op (is_copy,src,dest,flag)
             local res, err = execute_command('copy',two_arguments(src,dest))
             if not res then return false,err end
             if not is_copy then
-                return execute_command('del',quote_argument(src))
+                return execute_command('del',utils.quote_arg(src))
             end
             return true
         else
@@ -319,9 +313,11 @@ function dir.rmtree(fullpath)
     if path.islink(fullpath) then return false,'will not follow symlink' end
     for root,dirs,files in dir.walk(fullpath,true) do
         for i,f in ipairs(files) do
-            remove(path.join(root,f))
+            local res, err = remove(path.join(root,f))
+            if not res then return nil,err end
         end
-        rmdir(root)
+        local res, err = rmdir(root)
+        if not res then return nil,err end
     end
     return true
 end

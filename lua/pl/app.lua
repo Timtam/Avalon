@@ -85,11 +85,7 @@ function app.lua ()
     end
     local cmd, append = {}, table.insert
     for i = imin,-1 do
-        local a = args[i]
-        if a:match '%s' then
-            a = '"'..a..'"'
-        end
-        append(cmd,a)
+        append(cmd, utils.quote_arg(args[i]))
     end
     return table.concat(cmd,' '),args[imin]
 end
@@ -123,7 +119,7 @@ function app.parse_args (args,flags_with_values)
                 v = v:sub(2)
             end
             if flags_with_values[v] then
-                if i == #_args or args[i+1]:find '^-' then
+                if i == #args or args[i+1]:find '^-' then
                     return utils.raise ("no value for '"..v.."'")
                 end
                 flags[v] = args[i+1]

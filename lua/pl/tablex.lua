@@ -337,21 +337,24 @@ function tablex.transform (fun,t,...)
     end
 end
 
---- generate a table of all numbers in a range
+--- generate a table of all numbers in a range.
+-- This is consistent with a numerical for loop.
 -- @int start  number
 -- @int finish number
--- @int[opt=1] step  (-1 for decreasing)
+-- @int[opt=1] step  make this negative for start < finish
 function tablex.range (start,finish,step)
-    if start == finish then return {start}
-    elseif start > finish then return {}
+    local res
+    step = step or 1
+    if start == finish then
+        res = {start}
+    elseif (start > finish and step > 0) or (finish > start and step < 0) then
+        res = {}
+    else
+        local k = 1
+        res = {}
+        for i=start,finish,step do res[k]=i; k=k+1 end
     end
-    local res = {}
-    local k = 1
-    if not step then
-        if finish > start then step = finish > start and 1 or -1 end
-    end
-    for i=start,finish,step do res[k]=i; k=k+1 end
-    return res
+    return makelist(res)
 end
 
 --- apply a function to values from two tables.
@@ -470,8 +473,8 @@ end
 
 --- call the function with the key and value pairs from a table.
 -- The function can return a value and a key (note the order!). If both
--- are not nil, then this pair is inserted into the result. If only value is not nil, then
--- it is appended to the result.
+-- are not nil, then this pair is inserted into the result: if the key already exists, we convert the value for that
+-- key into a table and append into it. If only value is not nil, then it is appended to the result.
 -- @within MappingAndFiltering
 -- @func fun A function which will be passed each key and value as arguments, plus any extra arguments to pairmap.
 -- @tab t A table
@@ -485,7 +488,15 @@ function tablex.pairmap(fun,t,...)
     for k,v in pairs(t) do
         local rv,rk = fun(k,v,...)
         if rk then
-            res[rk] = rv
+			if res[rk] then
+				if type(res[rk]) == 'table' then
+					table.insert(res[rk],rv)
+				else
+					res[rk] = {res[rk], rv}
+				end
+			else
+            	res[rk] = rv
+			end
         else
             res[#res+1] = rv
         end
@@ -560,6 +571,25 @@ function tablex.merge (t1,t2,dup)
     return setmeta(res,t1,Map)
 end
 
+--- the union of two map-like tables.
+-- If there are duplicate keys, the second table wins.
+-- @tab t1 a table
+-- @tab t2 a table
+-- @treturn tab
+-- @see tablex.merge
+function tablex.union(t1, t2)
+    return tablex.merge(t1, t2, true)
+end
+
+--- the intersection of two map-like tables.
+-- @tab t1 a table
+-- @tab t2 a table
+-- @treturn tab
+-- @see tablex.merge
+function tablex.intersection(t1, t2)
+    return tablex.merge(t1, t2, false)
+end
+
 --- a new table which is the difference of two tables.
 -- With sets (where the values are all true) this is set difference and
 -- symmetric difference depending on the third parameter.
@@ -591,7 +621,7 @@ end
 function tablex.count_map (t,cmp)
     assert_arg_indexable(1,t)
     local res,mask = {},{}
-    cmp = function_arg(2,cmp)
+    cmp = function_arg(2,cmp or '==')
     local n = #t
     for i = 1,#t do
         local v = t[i]
@@ -601,12 +631,7 @@ function tablex.count_map (t,cmp)
             res[v] = 1  -- there's at least one instance
             for j = i+1,n do
                 local w = t[j]
-                local ok
-                if cmp then
-                    ok = cmp(v,w)
-                else
-                    ok = v == w
-                end
+                local ok = cmp(v,w)
                 if ok then
                     res[v] = res[v] + 1
                     mask[w] = true
@@ -866,12 +891,14 @@ end
 -- @usage for k,v in tablex.sortv(t) do print(k,v) end
 -- @return an iterator to traverse elements sorted by the values
 function tablex.sortv(t,f)
-    local rev = {}
-    for k,v in pairs(t) do rev[v] = k end
-    local next = tablex.sort(rev,f)
+    f = function_arg(2, f or '<')
+    local keys = {}
+    for k in pairs(t) do keys[#keys + 1] = k end
+    tsort(keys,function(x, y) return f(t[x], t[y]) end)
+    local i = 0
     return function()
-        local value,key = next()
-        return key,value
+        i = i + 1
+        return keys[i], t[keys[i]]
     end
 end
 

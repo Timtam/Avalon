@@ -11,13 +11,13 @@
 
 local tablex = require 'pl.tablex'
 local utils = require 'pl.utils'
+local List = require 'pl.List'
 local stdmt = utils.stdmt
 local tmakeset,deepcompare,merge,keys,difference,tupdate = tablex.makeset,tablex.deepcompare,tablex.merge,tablex.keys,tablex.difference,tablex.update
 
 local pretty_write = require 'pl.pretty' . write
 local Map = stdmt.Map
 local Set = stdmt.Set
-local List = stdmt.List
 
 local class = require 'pl.class'
 
@@ -73,6 +73,7 @@ end
 Map.len = tablex.size
 
 --- put a value into the map.
+-- This will remove the key if the value is `nil`
 -- @param key the key
 -- @param val the value
 function Map:set (key,val)
