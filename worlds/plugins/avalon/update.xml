@@ -39,6 +39,15 @@
   >
   <send>updateReset()</send>
   </alias>
+  <alias
+   regexp="y"
+   match="^(aktualisiere|update) vcs$"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>updateVCS()</send>
+  </alias>
 </aliases>
 
 <!--  Get our standard constants -->
@@ -72,19 +81,27 @@ translationTable["Ö"] = "Oe"
 translationTable["Ü"] = "Ue"
 translationTable["ß"] = "ss"
 -- uglyness ends here
+vcsFolders={".git",".svn"}
 verbose = false
 
 world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
-  --if path.isdir(world.GetInfo(66)..".git") == true then
-  --  if verbose == true then
-  --    world.Note("Soundpack laeuft via Git, Updates werden nicht geprueft.")
-  --    verbose = false
-  --  end
-  --  return
-  --end
+  local vcs
+  if avalon.GetConfig("update","vcspassthrough") == 0 then
+    for vcs in pairs(vcsFolders) do
+      if path.isdir(world.GetInfo(66)..vcsFolders[vcs]) == true then
+        if verbose == true then
+          world.Note("Soundpack laeuft via VCS, Updates werden nicht geprueft.")
+          world.Note("Dieses Verhalten kann mittels update/aktualisiere vcs geaendert werden.")
+          world.Note("Vorsicht: Dies kann zu fehlerhaft gemeldeten Aktualisierungen fuehren.")
+          verbose = false
+        end
+        return
+      end
+    end
+  end
   if informed == true then
     -- no verbose check here, since verbose is always toggled by user command
     -- and a second run can't be invoked by users yet
@@ -167,7 +184,7 @@ end
 function printUpdateMessage(commits, current)
   -- will print an update message, displaying new stuff for the user
   local char
-  local currentIndex = 2
+  local currentIndex = 1
   local i
   local message
   while currentIndex <= #commits and commits[currentIndex]["sha"] ~= current do
@@ -187,16 +204,21 @@ function printUpdateMessage(commits, current)
 
   -- formatting the message
   message = "Es ist ein Update fuer das Soundpack verfuegbar!\n"
-  message = message.."Die neuesten Aenderungen auf einen Blick:\n"
+  if i == 0 then
+    -- the newest commit is ONLY a merge commit or a commit without a message
+    message = message.."Es sind allerdings keine Informationen ueber den Inhalt bekannt.\n"
+  else
+    message = message.."Die neuesten Aenderungen auf einen Blick:\n"
 
-  while i >= 1 do
-    message = message.. tostring(currentIndex - i)..".\n\t"
-    message = message..string.gsub(commits[i]["commit"]["message"], "\n", "\n\t").."\n"
-    i = i - 1
-  end
-  if currentIndex > #commits then
-    message = message.."Weitere Aenderungen koennten vorgenommen worden sein.\n"
-    message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen.\n"
+    while i >= 1 do
+      message = message.. tostring(currentIndex - i)..".\n\t"
+      message = message..string.gsub(commits[i]["commit"]["message"], "\n", "\n\t").."\n"
+      i = i - 1
+    end
+    if currentIndex > #commits then
+      message = message.."Weitere Aenderungen koennten vorgenommen worden sein.\n"
+      message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen.\n"
+    end
   end
   message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafuer muss der MUSHclient geschlossen\n"
   message = message.."und die update.exe im Soundpack ausgefuehrt werden.\n"
@@ -233,6 +255,23 @@ function updateReset()
   avalon.SetConfig("update", "updated", 1)
   world.Note("Die aktuelle Soundpack-Version wird auf die derzeit neueste Version festgelegt.")
   updateCheck()
+end
+
+function updateVCS()
+  if downloadThread ~= nil and downloadThread:alive() == true then
+    world.Note("Es laeuft gerade eine Pruefung.")
+    return
+  end
+  if avalon.GetConfig("update", "vcspassthrough") == 0 then
+    world.Note("Updates werden nun trotz Verwendung von externen VCS geprueft.")
+    avalon.SetConfig("update", "vcspassthrough", 1)
+    updateCheck()
+  else
+    world.Note("Die Update-Pruefung wird wieder unterbunden.")
+    avalon.SetConfig("update", "vcspassthrough", 0)
+    world.EnableTimer("updateCheckTimer", 0)
+    world.DeleteTimer("updateCheckTimer")
+  end
 end
 ]]>
 </script>
