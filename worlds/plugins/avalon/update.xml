@@ -62,19 +62,29 @@ loggedIn = false
 path = require("pl.path")
 ppi=require("ppi")
 stringx = require("pl.stringx")
+translationTable={}
+-- this is unbelievably ugly, but it works... as long as the encodings support doesn't get better
+translationTable["ä"] = "ae"
+translationTable["ü"] = "ue"
+translationTable["ö"] = "oe"
+translationTable["Ä"] = "Ae"
+translationTable["Ö"] = "Oe"
+translationTable["Ü"] = "Ue"
+translationTable["ß"] = "ss"
+-- uglyness ends here
 verbose = false
 
 world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
-  if path.isdir(world.GetInfo(66)..".git") == true then
-    if verbose == true then
-      world.Note("Soundpack laeuft via Git, Updates werden nicht geprueft.")
-      verbose = false
-    end
-    return
-  end
+  --if path.isdir(world.GetInfo(66)..".git") == true then
+  --  if verbose == true then
+  --    world.Note("Soundpack laeuft via Git, Updates werden nicht geprueft.")
+  --    verbose = false
+  --  end
+  --  return
+  --end
   if informed == true then
     -- no verbose check here, since verbose is always toggled by user command
     -- and a second run can't be invoked by users yet
@@ -156,6 +166,7 @@ end
 
 function printUpdateMessage(commits, current)
   -- will print an update message, displaying new stuff for the user
+  local char
   local currentIndex = 2
   local i
   local message
@@ -165,6 +176,10 @@ function printUpdateMessage(commits, current)
     if string.find(commits[currentIndex]["commit"]["message"], "Merge branch") == 1 or stringx.strip(commits[currentIndex]["commit"]["message"])=="" then
       table.remove(commits, currentIndex)
     else
+      -- and we will replace all misformatted chars
+      for char in pairs(translationTable) do
+        commits[currentIndex]["commit"]["message"]=string.gsub(commits[currentIndex]["commit"]["message"], char, translationTable[char])
+      end
       currentIndex = currentIndex + 1
     end
   end
