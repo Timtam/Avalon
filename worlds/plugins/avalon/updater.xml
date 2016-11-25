@@ -68,9 +68,11 @@ downloadThread = nil
 informed = false
 json=require("json")
 loggedIn = false
+messageWidth = 80
 path = require("pl.path")
 ppi=require("ppi")
 stringx = require("pl.stringx")
+tabLength=4
 translationTable={}
 -- this is unbelievably ugly, but it works... as long as the encodings support doesn't get better
 translationTable["ä"] = "ae"
@@ -211,8 +213,8 @@ function printUpdateMessage(commits, current)
     message = message.."Die neuesten Aenderungen auf einen Blick:\n"
 
     while i >= 1 do
-      message = message.. tostring(currentIndex - i)..".\n\t"
-      message = message..string.gsub(commits[i]["commit"]["message"], "\n", "\n\t").."\n"
+      message = message.. tostring(currentIndex - i)..".\n"
+      message = message..formatCommitMessage(commits[i]["commit"]["message"]).."\n"
       i = i - 1
     end
     if currentIndex > #commits then
@@ -272,6 +274,41 @@ function updateVCS()
     world.EnableTimer("updateCheckTimer", 0)
     world.DeleteTimer("updateCheckTimer")
   end
+end
+
+function formatCommitMessage(msg)
+  -- copied and adapted from original source in message_window plugin
+  -- will cut the messages into size and format them properly
+  local words
+  local wordindex
+  local message
+  local messageindex
+  local tlinesindex = 1
+  local tlines = {}
+  for messageindex, message in pairs(utils.split(msg, "\n")) do
+    wordindex = 1
+    words = {}
+    for line in string.gmatch(message, "%S+") do
+      words[#words + 1] = line
+    end
+    while wordindex <= #words do
+      line = words[wordindex]
+      tlines[tlinesindex] = tlines[tlinesindex] or stringx.expandtabs("\t", tabLength)
+      if string.len(line)+string.len(tlines[tlinesindex])>messageWidth then
+        if tlines[tlinesindex]==stringx.expandtabs("\t", tabLength) then
+          tlines[tlinesindex]=tlines[tlinesindex]..line
+          wordindex = wordindex + 1
+        end
+        tlinesindex=tlinesindex+1
+      else
+        tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+        wordindex = wordindex + 1
+      end
+    end
+    tlinesindex = tlinesindex + 1
+  end
+
+  return table.concat(tlines, "\n")
 end
 ]]>
 </script>
