@@ -7,7 +7,7 @@
 
 <muclient>
 <plugin
-   name="Avalon_Speedwalk_Mapper"
+   name="speedwalk_mapper"
    author="Magician"
    id="deb5a26f21c54c6a913af6d9"
    language="Lua"
@@ -29,7 +29,8 @@
 
 <aliases>
   <alias
-   match="spm start"
+   regexp="y"
+   match="^spm start$"
    enabled="y"
    sequence="100"
    send_to="12"
@@ -37,7 +38,8 @@
   <send>spm_start()</send>
   </alias>
   <alias
-   match="spm z"
+   regexp="y"
+   match="^spm z$"
    enabled="y"
    sequence="100"
    send_to="12"
@@ -45,7 +47,8 @@
   <send>spm_removelast()</send>
   </alias>
   <alias
-   match="spm stop"
+   regexp="y"
+   match="^spm (stopp|stop)$"
    enabled="y"
    sequence="100"
    send_to="12"
