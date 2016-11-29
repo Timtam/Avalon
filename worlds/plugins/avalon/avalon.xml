@@ -4746,8 +4746,7 @@ function speedwalk_list(spd)
       end
       msg = msg.."\n"
     end
-    msg = "Speedwalk-Liste ("..tostring(i).."):\n"..msg
-    msg = string.sub(msg, 1, -2)
+    msg = "Die Liste umfasst derzeit "..tostring(i).." Speedwalks."
   else
     spd = string.lower(spd)
     msg = ""
@@ -4768,7 +4767,7 @@ function speedwalk_list(spd)
     if (i == 0) then
       msg = "Es sind keine Speedwalks vorhanden, die von "..spd.." starten."
     else
-      msg = "Speedwalks, die von "..spd.." starten ("..tostring(i).."):\n"..msg
+      msg = "Speedwalks, die von "..spd.." starten "..tostring(i).."):\n"..msg
       msg = string.sub(msg, 1, -2)
     end
   end
