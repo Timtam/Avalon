@@ -139,6 +139,15 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
+   match="Erfolgreich hast Du Deinen Daemon an *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Audio.fadeout(hdksnd,1000)</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
    match="Du reibst Dir Deine Schlaefen, um den pochenden Schmerz zu vertreiben.*"
    send_to="12"
    sequence="100"
@@ -205,7 +214,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du konzentrierst Dich auf Deinen Kristall welcher in einem *"
+   match="Du konzentrierst Dich auf ihn, woraufhin dieser *"
    send_to="12"
    sequence="100"
   >
@@ -244,7 +253,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="\|\s+(\w+)\s+\|\s+(Krasit|Azmarog|Sensal|Bullrik)\s+\|\s+\w+\s+\|"
+   match="\|?\s*(\w+)\s+\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+.*"
    regexp="y"
    send_to="12"
    sequence="100"
@@ -254,26 +263,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog)\s+namens\s+(\w+)"
-   regexp="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>dk_insertname("%2","%1")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
-   match="|               Uebersicht ueber Deine Daemonen               |"
-   send_to="12"
-   sequence="100"
-  >
-  <send>dk_reset()</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
-   match="Im Moment kennst Du folgende Daemonen"
+   match="\|?\s?Uebersicht ueber Deine Daemonen\s*\|?"
    regexp="y"
    send_to="12"
    sequence="100"
