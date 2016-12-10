@@ -4190,6 +4190,7 @@ spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eing
 spells_register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.")
 spells_register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
 spells_register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
+spells_register("Friedfertigkeit", "Du fuehlst Dich nun ein bisschen friedfertig\\.|Du fuehlst dich nun sehr friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
