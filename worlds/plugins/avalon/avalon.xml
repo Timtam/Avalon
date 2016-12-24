@@ -2685,7 +2685,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du schneidest Dir ein Stueck zur Bearbeitung aus Deiner Tierhaut."
+   match="Du schneidest ein Stueck zur Bearbeitung aus Deiner Tierhaut."
    sequence="100"
    omit_from_output="y"
    send_to="12"
