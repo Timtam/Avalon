@@ -1812,7 +1812,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du versuchst Dich darauf zu konzentrieren, versagst jedoch klaeglich."
+   match="Du versuchst Dich darauf zu konzentrieren, * versagst Du jedoch klaeglich."
    sequence="100"
    send_to="12"
   >
