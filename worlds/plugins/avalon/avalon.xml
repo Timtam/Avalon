@@ -139,7 +139,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Erfolgreich hast Du Deinen Daemon an *"
+   match="Erfolgreich hast Du Deinen Daemon in *"
    send_to="12"
    sequence="100"
   >
