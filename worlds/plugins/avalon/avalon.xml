@@ -5172,6 +5172,12 @@ function repeatcommand_switch()
   psnd("Misc/ConfigSwitch.ogg")
 end
 
+function OnPluginScreendraw(type, log, line)
+  if type == 0 then
+    speedwalk_process()
+  end
+end
+
 ]]>
 </script>
 

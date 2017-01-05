@@ -1,6 +1,5 @@
 require("avalon.speedwalks")
 require("avalon.stations")
-require("bit")
 
 spdtbl={}
 spdind={0,0}
@@ -82,14 +81,12 @@ function speedwalk_init(speedwalk, walk_on)
   walk_on = walk_on or false
   if walk_on == true then
     spdstep = GetUnixTime()
-    world.AddTriggerEx("speedwalk_handler", "*", 'speedwalk_process()', bit.bor(trigger_flag.Enabled, trigger_flag.KeepEvaluating), NOCHANGE, 0, '', '', -10000, sendto.script)
   end
   if spdstep==0 then
     spdtbl = {}
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
     spdind = {1,1}
     spdstep = GetUnixTime()
-    world.AddTriggerEx("speedwalk_handler", "*", 'speedwalk_process()', bit.bor(trigger_flag.Enabled, trigger_flag.KeepEvaluating), NOCHANGE, 0, '', '', -10000, sendto.script)
     speedwalk_process()
   else
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
@@ -170,6 +167,5 @@ function safespeedwalks_switch()
 end
 
 function speedwalk_deinit()
-  world.DeleteTrigger("speedwalk_handler")
   spdstep = 0
 end
