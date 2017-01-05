@@ -129,8 +129,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="^Du oeffnest Deine Augen.*$|^Du oeffnest in dem Moment Deine Augen als.*$"
-   regexp="y"
+   match="In dem Moment, als er Dir den gewuentschten Namen uebermittelt, oeffnest*"
    send_to="12"
    sequence="100"
   >
@@ -140,7 +139,16 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du reibst Dir Deine Schlaefen um den pochenden Schmerz zu vertreiben.*"
+   match="Erfolgreich hast Du Deinen Daemon in *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>Audio.fadeout(hdksnd,1000)</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Daemonenkrieger"
+   match="Du reibst Dir Deine Schlaefen, um den pochenden Schmerz zu vertreiben.*"
    send_to="12"
    sequence="100"
   >
@@ -150,7 +158,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="* schreit hasserfuellt auf und will sich *"
+   match="* schreit hasserfuellt auf und wollte sich *"
    send_to="12"
    sequence="100"
   >
@@ -160,7 +168,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen *"
+   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen*"
    send_to="12"
    sequence="100"
   >
@@ -206,7 +214,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du konzentrierst Dich auf Deinen Kristall welcher in einem *"
+   match="Du konzentrierst Dich auf ihn, woraufhin dieser *"
    send_to="12"
    sequence="100"
   >
@@ -245,7 +253,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="\|\s+(\w+)\s+\|\s+(Krasit|Azmarog|Sensal|Bullrik)\s+\|\s+\w+\s+\|"
+   match="\|?\s*(\w+)\s+\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+.*"
    regexp="y"
    send_to="12"
    sequence="100"
@@ -255,26 +263,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Einen\s+(Krasit|Sensal|Bullrik|Azmarog)\s+namens\s+(\w+)"
-   regexp="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>dk_insertname("%2","%1")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
-   match="|               Uebersicht ueber Deine Daemonen               |"
-   send_to="12"
-   sequence="100"
-  >
-  <send>dk_reset()</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
-   match="Im Moment kennst Du folgende Daemonen"
+   match="\|?\s?Uebersicht ueber Deine Daemonen\s*\|?"
    regexp="y"
    send_to="12"
    sequence="100"
@@ -1823,7 +1812,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du versuchst Dich darauf zu konzentrieren, versagst jedoch klaeglich."
+   match="Du versuchst Dich darauf zu konzentrieren, * versagst Du jedoch klaeglich."
    sequence="100"
    send_to="12"
   >
@@ -2167,7 +2156,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein letzter pruefender Blick und Du erkennst, dass sich bereits Wasser *"
+   match="Ein pruefender Blick und Du erkennst, dass sich bereits Wasser *"
    sequence="100"
    send_to="12"
   >
@@ -2631,9 +2620,9 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gerade als Du fertig bist den Rand zu befestigen rutscht alles zurueck *"
-   sequence="100"
+   match="Gerade als Du fertig bist, den Rand zu befestigen, rutscht *"
    send_to="12"
+   sequence="100"
   >
   <send>psnd("WateringPlace/Colapse.ogg")</send>
   </trigger>
@@ -2696,7 +2685,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du schneidest Dir ein Stueck zur Bearbeitung aus Deiner Tierhaut."
+   match="Du schneidest ein Stueck zur Bearbeitung aus Deiner Tierhaut."
    sequence="100"
    omit_from_output="y"
    send_to="12"
@@ -4119,10 +4108,11 @@ plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
-plugintbl[8]="avalon/speedwalk-mapper.xml"
+plugintbl[8]="avalon/speedwalk_mapper.xml"
 plugintbl[9]="avalon/healthbar.xml"
 plugintbl[10]="avalon/message_window.xml"
 plugintbl[11]="avalon/kompass.xml"
+plugintbl[12]="avalon/updater.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4145,6 +4135,7 @@ configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.NumpadWalk=1
 configtbl.settings.RepeatCommand=0
 configtbl.settings.MXP=0
+configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
 world.Accelerator("ctrl+D", "speedwalk_break")
@@ -4171,24 +4162,29 @@ Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
 Tablex = require("pl.tablex")
-spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\.","Dein Sternenstaub loest sich auf\.")
-spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\.","Deine Energien fliessen wieder normal\.")
-spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\.","Dein Staubschleier loest sich auf\.")
-spells_register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\.","Deine Watteflocken loesen sich auf\.")
-spells_register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\.")
-spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\.","Deine Todesaura loest sich auf\.")
-spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\.","Deine Feueraura loest sich auf\.")
-spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\.","Deine heilige Aura loest sich auf\.")
-spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\.","Dein Kernschild loest sich auf\.")
-spells_register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\.")
-spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\.")
-spells_register("Schild","Du wirst von einem magischen Schild umgeben\.","Dein magischer Schild loest sich auf\.")
-spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\.|Du erzeugst Dir eine kleine Feuerkugel\.|Du erzeugst Dir eine kleine Leuchtflamme\.","Dein Lichtbogen verschwindet\.|Deine Feuerkugel erlischt\.|Deine Leuchtflamme erlischt\.")
-spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\.","Dein Arkanschild loest sich auf\.")
-spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\.","Dein Manarausch laesst wieder nach\.")
-spells_register("Magiertrance","Du sinkst in tiefe Trance\.","Du erwachst aus Deiner Trance\.")
-spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\.","Deine Windhaut loest sich auf\.")
-spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\.","Deine Daemonenhaut loest sich auf\.")
+spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.")
+spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
+spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
+spells_register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\\.","Deine Watteflocken loesen sich auf\\.")
+spells_register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\\.")
+spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\\.","Deine Todesaura loest sich auf\\.")
+spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\\.","Deine Feueraura loest sich auf\\.")
+spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\\.","Deine heilige Aura loest sich auf\\.")
+spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\\.","Dein Kernschild loest sich auf\\.")
+spells_register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\\.")
+spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\\.")
+spells_register("Schild","Du wirst von einem magischen Schild umgeben\\.","Dein magischer Schild loest sich auf\\.")
+spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\\.|Du erzeugst Dir eine kleine Feuerkugel\\.|Du erzeugst Dir eine kleine Leuchtflamme\\.","Dein Lichtbogen verschwindet\\.|Deine Feuerkugel erlischt\\.|Deine Leuchtflamme erlischt\\.")
+spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\\.","Dein Arkanschild loest sich auf\\.")
+spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\\.","Dein Manarausch laesst wieder nach\\.")
+spells_register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
+spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
+spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
+spells_register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.")
+spells_register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
+spells_register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
+spells_register("Friedfertigkeit", "Du fuehlst Dich nun ein bisschen friedfertig\\.|Du fuehlst Dich nun sehr friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
+spells_register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
@@ -4226,6 +4222,11 @@ function OnAvalonLogin()
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
   psnd("Player/Login.ogg")
+  if callbacktbl.LOGIN ~=nil then
+    for ci,cf in pairs(callbacktbl.LOGIN) do
+      cf()
+    end
+  end
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -4470,13 +4471,14 @@ function OnPluginInstall()
   if not Audio then
     error("Audio-Ausgabe konnte nicht initialisiert werden.")
   end
-  if not Path.exists("config.dat") then
+  if configtbl.settings.FirstRun == 1 then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
     if (res == "yes") then
       os.execute("notepad.exe readme_soundpack.txt")
     end
   end
-  newfiles=Dir.getfiles(world.GetInfo(66),"*\.new")
+  configtbl.settings.FirstRun = 0
+  newfiles=Dir.getfiles(world.GetInfo(66),"*\\.new")
   if #newfiles>0 then
     for _, dfile in pairs(newfiles) do
       File.delete(string.sub(dfile,1,-5))
@@ -4542,6 +4544,8 @@ function OnPluginInstall()
     function(event,callback)
       return hook_callback(event,callback)
     end)
+  PPI.Expose('PSND',
+    psnd)
   if Path.exists(world.GetInfo(60).."avalon/user.xml") then
     world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
   end
@@ -4797,6 +4801,11 @@ function OnPluginDisconnect()
   RoomName = ""
   stopifplaying(hmusic)
   hmusic = nil
+  if callbacktbl.LOGOUT ~=nil then
+    for ci,cf in pairs(callbacktbl.LOGOUT) do
+      cf()
+    end
+  end
 end
 
 function switch_mute()
