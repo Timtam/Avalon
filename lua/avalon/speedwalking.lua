@@ -132,6 +132,8 @@ function speedwalk_process()
     if not spdtbl[spdind[1]+1] then
       speedwalk_deinit()
       spdind = {0,0}
+      spdstationstbl={}
+      spdtbl={}
       return
     else
       spdind = {spdind[1] + 1,1}
