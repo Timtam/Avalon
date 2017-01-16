@@ -226,9 +226,9 @@ function printUpdateMessage(commits, current)
     end
     if currentIndex > #commits then
       message = message.."Weitere Aenderungen koennten vorgenommen worden sein.\n"
-      message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen.\n"
+      message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen."
     end
-    Avalon.NoteColour(message, 0, 204, 102) -- light green
+    avalon.NoteColour(string.sub(message, 1, -2), 0, 204, 102) -- light green
     message = ""
   end
   message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafuer muss der MUSHclient geschlossen\n"
