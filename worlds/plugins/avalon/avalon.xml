@@ -4553,6 +4553,8 @@ function OnPluginInstall()
     end)
   PPI.Expose('PSND',
     psnd)
+  PPI.Expose("NoteColour",
+    NoteColour)
   if Path.exists(world.GetInfo(60).."avalon/user.xml") then
     world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
   end

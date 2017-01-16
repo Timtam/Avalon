@@ -22,8 +22,7 @@
 
 <aliases>
   <alias
-   regexp="y"
-   match="^(aktualisiere|update)$"
+   match="update"
    enabled="y"
    send_to="12"
    sequence="100"
@@ -31,8 +30,7 @@
   <send>updateCheckForce()</send>
   </alias>
   <alias
-   regexp="y"
-   match="^(aktualisiere|update) har(d|t)$"
+   match="update hard"
    enabled="y"
    send_to="12"
    sequence="100"
@@ -40,13 +38,20 @@
   <send>updateReset()</send>
   </alias>
   <alias
-   regexp="y"
-   match="^(aktualisiere|update) vcs$"
+   match="update vcs"
    enabled="y"
    send_to="12"
    sequence="100"
   >
   <send>updateVCS()</send>
+  </alias>
+  <alias
+   match="update info"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>updateInfo()</send>
   </alias>
 </aliases>
 
@@ -96,7 +101,7 @@ function updateCheck()
       if path.isdir(world.GetInfo(66)..vcsFolders[vcs]) == true then
         if verbose == true then
           world.Note("Soundpack laeuft via VCS, Updates werden nicht geprueft.")
-          world.Note("Dieses Verhalten kann mittels update/aktualisiere vcs geaendert werden.")
+          world.Note("Dieses Verhalten kann mittels update vcs geaendert werden.")
           world.Note("Vorsicht: Dies kann zu fehlerhaft gemeldeten Aktualisierungen fuehren.")
           verbose = false
         end
@@ -210,7 +215,9 @@ function printUpdateMessage(commits, current)
     -- the newest commit is ONLY a merge commit or a commit without a message
     message = message.."Es sind allerdings keine Informationen ueber den Inhalt bekannt.\n"
   else
-    message = message.."Die neuesten Aenderungen auf einen Blick:\n"
+    message = message.."Die neuesten Aenderungen auf einen Blick:"
+    world.Note(message)
+    message = ""
 
     while i >= 1 do
       message = message.. tostring(currentIndex - i)..".\n"
@@ -221,18 +228,12 @@ function printUpdateMessage(commits, current)
       message = message.."Weitere Aenderungen koennten vorgenommen worden sein.\n"
       message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen.\n"
     end
+    Avalon.NoteColour(message, 0, 204, 102) -- light green
+    message = ""
   end
   message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafuer muss der MUSHclient geschlossen\n"
   message = message.."und die update.exe im Soundpack ausgefuehrt werden.\n"
-  message = message.."Es wird nur eine Information pro Sitzung angezeigt.\n"
-  message = message.."Um spaeter erneut auf Aktualisierungen zu pruefen, muss das Soundpack\n"
-  message = message.."neu gestartet werden, oder der Befehl\n"
-  message = message.."update oder aktualisiere ausgefuehrt werden.\n"
-  message = message.."Sollte diese Meldung versehendlich angezeigt werden,\n"
-  message = message.."kann die aktuelle Version mittels\n"
-  message = message.."update hart, update hard,\n"
-  message = message.."aktualisiere hart oder aktualisiere hard auf die\n"
-  message = message.."derzeit neueste Version festgelegt werden."
+  message = message .. "Weitere Informationen mit update info."
   world.Note(message)
 end
 
@@ -309,6 +310,27 @@ function formatCommitMessage(msg)
   end
 
   return table.concat(tlines, "\n")
+end
+
+function updateInfo()
+  message = ""
+  if downloadThread:alive()==true then
+    message = message .. "Es wird gerade auf Aktualisierungen geprueft.\n"
+  else
+    message = message .. "Es wird gerade nicht auf Aktualisierungen geprueft.\n"
+  end
+  if informed == true then
+    message = message .. "Es wurde bereits eine Information in dieser Sitzung angezeigt.\n"
+  else
+    message = message .. "Es wird eine Information pro Sitzung angezeigt.\n"
+  end
+  message = message.."Um spaeter erneut auf Aktualisierungen zu pruefen, muss das Soundpack\n"
+  message = message.."neu gestartet werden, oder der Befehl\n"
+  message = message.."update ausgefuehrt werden.\n"
+  message = message.."Sollte diese Meldung versehendlich angezeigt werden,\n"
+  message = message.."kann die aktuelle Version mittels\n"
+  message = message.."update hard auf die derzeit neueste Version festgelegt werden."
+  world.Note(message)
 end
 ]]>
 </script>
