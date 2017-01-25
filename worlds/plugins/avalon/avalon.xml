@@ -3640,6 +3640,42 @@
   <trigger
    enabled="n"
    group="Nekromanten"
+   match="Du ziehst Dir Deine Kutte tief ins Gesicht."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du sinkst, Beschwoerungen murmelnd, auf die Knie."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du ordnest einige Knochen auf dem Boden an und rammst Deinen Ritualdolch in"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Zusaetzliche Knochen schiessen aus dem Boden hervor und wirbeln um Dich"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
    match="Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich"
    send_to="12"
    sequence="100"
