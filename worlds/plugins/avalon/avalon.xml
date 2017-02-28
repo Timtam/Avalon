@@ -253,12 +253,12 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="\|?\s*(\w+)\s+\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+.*"
+   match="\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+\|?\s*(\w+)\s+.*"
    regexp="y"
    send_to="12"
    sequence="100"
   >
-  <send>dk_insertname("%1","%2")</send>
+  <send>dk_insertname("%2","%1")</send>
   </trigger>
   <trigger
    enabled="n"
