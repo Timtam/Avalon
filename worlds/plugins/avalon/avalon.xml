@@ -3644,7 +3644,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Necromancers/BoneShield1.ogg")</send>
+  <send>psnd("Necromancers/Cowl.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
