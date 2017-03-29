@@ -3715,6 +3715,177 @@
   psnd("Player/Statue.ogg")
   </send>
   </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du schliesst Deine Augen und atmest tief durch."
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/Meditation1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du ziehst die Kapuze Deiner Robe weit ueber den Kopf und faltest Deine"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="^Leise summst Du ein Mantra, das Dir zu neuer Kraft verhilft.$|^Du summst: Ooooohhhhhmmmmmm......$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Hum/"..math.random(1,4)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Deine Ordenskette leuchtet schwach auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du beginnst zu meditieren."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation5.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Langsam wachst Du wieder auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/MeditationOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du nimmst ein Stueck Kohle und beginnst, ein schwarzes Ankh auf Dein*"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/Armor1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Sorgfaeltig malst Du ein T-Kreuz auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Ueber der Gabelung malst Du einen Kreis."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Dabei murmelst Du einige heilige Worte."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Schliesslich streichst Du mit dem Ankh Deiner Kette ueber *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor5.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Das Ankh auf * beginnt, schwach zu leuchten."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/ArmorOn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Dein* verliert * magische Kraft."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/ArmorOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du wendest das Ankh Deiner Ordenskette auf Deinen Koerper."
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/CurePoison1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du legst eine Hand auf Deine Schlaefe und atmest tief durch."
+   send_to="12"
+   sequence="93"
+  >
+  <send>psnd("Clerics/CurePoison3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du hast es geschafft, das Gift in Deinem Koerper zu unterdruecken."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/CurePoison4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du faellst vor der Leiche auf die Knie, legst Dein Ankh auf den leblosen"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Start.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Deine Bemuehungen waren erfolgreich. * schlaegt*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schlaegst Deine Augen auf und versuchst etwas zu sagen."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
