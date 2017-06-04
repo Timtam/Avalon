@@ -47,6 +47,15 @@
   </trigger>
   <trigger
    enabled="n"
+   group="Golemkultisten"
+   match="Dein Energiekern blitzt kurz * auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
    group="Magier"
    match="Dein * flackert heftig auf, lange wird * Dich wohl nicht mehr"
    send_to="12"
