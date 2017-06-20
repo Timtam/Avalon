@@ -1803,7 +1803,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$"
+   match="^Du beginnst Dich zu konzentrieren.$|^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$|^Du konzentrierst Dich .*$|^.* konzentriert sich .*$"
    regexp="y"
    sequence="100"
    send_to="12"
