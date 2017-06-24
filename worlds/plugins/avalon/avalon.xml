@@ -3895,6 +3895,14 @@
   >
   <send>psnd("Clerics/Resurrect_Success.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Erledigt. Du hast nun diesen Gegner * mal hintereinander getoetet."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/TaskProgress.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
