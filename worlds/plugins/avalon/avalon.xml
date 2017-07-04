@@ -3903,6 +3903,14 @@
   >
   <send>psnd("Misc/TaskProgress.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Eine Langstreckenbrieftaube kommt angeflogen und laesst einen kleinen Brief"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/PostPigeon.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
