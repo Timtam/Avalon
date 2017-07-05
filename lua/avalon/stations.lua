@@ -1,4 +1,5 @@
 require('pairsbykeys')
+require('pairsbykeys')
 function stations_getspeedwalksbyroomid(roomid)
   rettbl = {}
   for name, id in pairsByKeys(stations) do
@@ -252,6 +253,7 @@ stations.druide_min="raum/c4186a47f2115139c6e7261f06277eac"
 stations.druide_sol="raum/98d2c77d43d9090528adb1d740d14349"
 stations.druide_tol="raum/858557b70ce054fc1fd3f8b5c08aff5e"
 stations.druide_zwerge="raum/516bd1b3cd28efc9ee950c20a7326faf"
+stations.dturm_yol="raum/dac9a18bd9e37da11bfdd83573dc5874"
 stations.farm_hol="raum/af886c0398c1a7633d67b25ecd21f315"
 stations.form_alo="raum/b21d34351bb7e15e2d892dc8655a079e"
 stations.form_ash="raum/c4494c4dca579cf62f6af1dcc6e0b65e"
@@ -666,6 +668,7 @@ stations.wlm3_min="raum/3b3ceb02144e5137b3916e4ff4bb1ef1"
 stations.wtoe_htoe="raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
 stations.wunsch_teich="raum/645a3ae8528a2332752d481891cb0f8e"
 stations.yol_bank=yol
+stations.yol_dturm="raum/89036876d7fc916f521e7e1f3d4dafd9"
 stations.yol_schmied=yol
 stations.yol_toe=yol
 stations.zwerge_abt=zwerge
