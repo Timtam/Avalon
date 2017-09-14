@@ -3911,6 +3911,14 @@
   >
   <send>psnd("Misc/PostPigeon.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="Der Kopf klatscht leblos herab und ruehrt sich zum Glueck nicht mehr."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Monsters/HydraBehead.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
