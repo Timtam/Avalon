@@ -36,6 +36,7 @@ The "key" command lets you adjust the keyboard shortcut to stop speech.
 "tts key": tells you the currently set key (esc is default)
 "Tts key pause": sets the key to the pause key on your keyboard.  To find out the name of a specific key or key combination to use here, use the "key name" dialog box under the input menu.
 the "help" command reads this information.
+The "Interrupt" command toggles whether new commands interrupt speech or not.
 
 The options you choose for rate, volume, voice and key are stored in properties within the plugin and are specific to each world in which you use this plugin.  This means you can have different voices in different worlds.
 
@@ -96,6 +97,7 @@ The plugin currently reads inbound text from your connected world, and tab-compl
 'setup some variables - the tts object, and the toggle for reading.
 dim TTSObject
 dim TTSReadNew
+dim TTSInterrupt
 'changevoice function
 'sets the ttsObject's voice to anything specified in search (will match on partial names),and returns the name of the new voice.
 Accelerator "ESC", "tts_stop"
@@ -186,6 +188,16 @@ if line(1) = "help" then
   world.Note world.GetPluginInfo (world.GetPluginID, 3)
 exit sub 
 end if
+if line(1) = "interrupt" then
+if TTSInterrupt = 1 then
+TTSInterrupt = 0
+TTSObject.Speak "Interrupt on enter off.", 1
+else
+TTSInterrupt = 1
+TTSObject.Speak "Interrupt on enter on.", 1
+end if
+exit sub
+end if
 exit sub
 end If
 if TTSReadNew = 1 then
@@ -201,13 +213,12 @@ sub OnPluginInstall
 set TTSObject = CreateObject("Sapi.SpVoice")
 'and set it up with the variables
 If world.GetVariable("tts_rate") <> "" then ttsObject.rate = world.getVariable("tts_rate")
-If world.GetVariable("tts_volume") <> "" then ttsObject.rate = world.getVariable("tts_volume")
+If world.GetVariable("tts_volume") <> "" then ttsObject.volume = world.getVariable("tts_volume")
 TTSReadNew = 1
+TTSInterrupt = 1
 end sub
 'this event fires when new text is drawn from the mud.
 sub OnPluginScreendraw (t, log, line)
-world.AppendToNotepad"output", line&vbcrlf
-
 if (t = 0 or t = 1)  and TTSReadNew = 1 then
 TTSObject.Speak line, 1
 end if
@@ -225,6 +236,11 @@ TTSObject.Speak s, 1
 end if
 end sub
 
+sub OnPluginCommandEntered(cmd)
+if TTSInterrupt = 1 then
+ttsObject.speak "", 3
+end if
+end sub
 ]]>
 </script>
 
