@@ -5000,11 +5000,15 @@ function speedwalk_list(spd)
       end
     end
     if (i == 0) then
-      msg = "Es sind keine Speedwalks vorhanden, die von "..spd.." starten."
+      msg = "Keine Speedwalks vorhanden, die von \""..spd.."\" starten."
     else
-      msg = "Speedwalks, die von "..spd.." starten "..tostring(i).."):\n"..msg
-      msg = string.sub(msg, 1, -2)
+      if (i > 1) then
+        msg = tostring(i).." Speedwalks, die von \""..spd.."\" starten:\n"..msg
+      else
+        msg = "Ein Speedwalk, der von \""..spd.."\" startet:\n"..msg
+      end
     end
+    msg = string.sub(msg, 1, -2)
   end
   world.Note(msg)
 end
