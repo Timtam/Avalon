@@ -3,10 +3,9 @@ Herzlich Willkommen zu unserem Soundpack für das MUD Avalon.
 Bereits seit 2011 entwickeln Dranor und Magician daran weiter, immer wieder unterstützt von anderen Leuten, die uns ihre Ideen zuleiten und das Soundpack somit indirekt weiterentwickeln.
 Seit 2014 ist auch Chiaray mit im Entwicklerteam.
 
-In diesem Dokument werdet ihr Informationen zur Anwendung des Soundpacks und zu allen Details der Features finden.
+In diesem Dokument findet ihr Informationen zur Anwendung des Soundpacks und zu allen Feature-Details.
 
 Viel Spaß beim Lesen und falls sonst noch Fragen bestehen, könnt ihr euch gerne Online an uns wenden.
-Für weitere Informationen empfehle ich euch ebenfalls, meinen Blog zu besuchen: http://toni.satoprogs.de/
 
 Generelle Informationen
 ------------
@@ -34,7 +33,7 @@ Muting
 
 Eingefleischte Zocker von euch wissen, dass man unter Muting das Stummschalten bezeichnet. Das Soundpack bietet die Möglichkeit, Sounds, Musik oder beides gleichzeitig stumm zu schalten. Dazu drückt man Strg+F11. Je nachdem, welche Lautstärkeregelung man mit F11 gerade eingestellt hat, wird dieses System stummgeschaltet. Mit Strg+Umschalt+F11 werden alle Systeme stummgeschaltet.
 
-ScreenReader-Unterstützung
+Screenreader-Unterstützung
 --------------------------
 
 Da einige Leute mit der Unterstützung von JAWS mit dem von uns verwendeten Ausgabe-Plugin Probleme hatten, haben wir eine Tastenkombination (Strg+F12) eingebaut, mit welcher es möglich ist, zwischen mehreren Ausgabe-Plugin hin- und her zu wechseln. Falls es also Probleme mit der Sprachausgabe unter Jaws gibt versucht bitte erst, via Strg+F12 die Ausgabe-Systeme zu wechseln, bevor ihr euch an uns wendet.
@@ -83,127 +82,60 @@ Für Blinde
 ------------
 
 Seit einiger Zeit gibt es die Möglichkeit, die letzten 10 Meldungen aller öffentlichen Kanäle auch Client-intern abzufragen. Dazu gibt es die folgenden Tastenkombinationen:
-Alt+Pfeilrechts/Pfeillinks - Kanäle durchschalten
-Alt+1-0 - Nachricht via Sprache ausgeben
-Alt+1-0 zwei mal schnell drücken - Text in die Zwischenablage kopieren
-Alt+1-0 drei mal schnell drücken - Text an dieser Stelle einfügen
+
+Alt+Pfeil rechts/links   - Kanäle durchschalten
+Alt+1 bis Alt+0          - Nachricht via Sprache ausgeben
+Alt+1 bis Alt+0          - Zwei mal schnell drücken - Text in die Zwischenablage kopieren
+Alt+1 bis Alt+0          - Drei mal schnell drücken - Text an dieser Stelle einfügen
 
 Für Sehende
 ------------
 
 Im Zuge einer Überarbeitung für Sehende wurde dem Soundpack auch ein Ausgabefenster für Kanal-Nachrichten hinzugefügt. Die Farben der Kanäle sind dabei frei wählbar, stimmen allerdings nicht mit den Farben überein, die ihr für das normale Verbindungsfenster in Avalon gewählt habt. Stattdessen müsst ihr unter Game -> Configure -> Custom Colours eure eigenen Farben definieren. Es folgt eine Liste von Kanälen mit den zugehörigen Zahlen der Custom Colours, damit ihr sie euch passend einfärben könnt:
-Sagen 1
-Reden 2
-Laber 3
-Gruppe 4
-Neuling 5
-Verkündungen 6
-Tod 7
-Schwafel 8
-Login, Logout, Statue 9
-Monster, Rufen 10
-Gilde 11
-Gilden, Rätsel, Spiele 12
-Zeitung 13
-Tafelrunde 14
-D-Chat 15
-Restliche 16
 
-Speedwalking
-------------
+ 1 - Sagen
+ 2 - Reden
+ 3 - Laber
+ 4 - Gruppe
+ 5 - Neuling
+ 6 - Verkündungen
+ 7 - Tod
+ 8 - Schwafel
+ 9 - Login, Logout, Statue
+10 - Monster, Rufen/Gebrüll
+11 - Gildenkanal
+12 - Gilden, Rätsel, Spiele
+13 - Zeitung
+14 - Tafelrunde
+15 - D-Chat
+16 - Restliche
 
-Die Speedwalks sind ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Dabei muss man keinen Finger krümmen, dass Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl listet alle vorhandenen Speedwalks auf. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen. Damit auch ihr durch unser System durchsteigt, findet ihr im Anschluss eine Liste aller bisherigen Abkürzungen inkl. detaillierter Erklärung. Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: / um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, _ um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels. Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor". Mit einem / und folgender Startposition, ohne dem _ und der Angabe einer Zielposition kann man sich alle Speedwalks filtern, welche von der Startposition starten.
+Speedwalks
+----------
+
+Die Speedwalks sind ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Das Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl gibt die Anzahl aller Speedwalks zurück. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen.
+
+Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: "/" um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, "_" um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels.
+
+Dabei werden in der Regel alle Ortsnamen mit den ersten drei Buchstaben abgekürzt, die Waffenlehrmeister werden mit "wlm" und die Zauberlehrmeister mit "zlm" bezeichnet.
+
+Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor".
+
+Mit einem "/" und folgender Startposition, ohne dem "_" und der Angabe einer Zielposition könnt ihr euch alle Speedwalks filtern, welche von der Startposition starten.
+
 Hinter dem Speedwalk findet ihr außerdem in Klammern stehend auch die Angabe "sicher" oder "unsicher". Dieser Wert gibt an, ob bei diesem Speedwalk ausschließlich auf sicheren Feldern, d. h. ohne Kampf oder Störung gelaufen wird, oder ob dieser Speedwalk auch durch gefährliches Gebiet führt.
+
 Mit Hilfe der Tastenkombination Strg+D wird der momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Es kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
 Außerdem haben wir die Möglichkeit eingebaut, eure Startposition abzusichern. Dadurch könnt ihr nicht mehr von einer falschen Position loslaufen und landet dadurch im Nirgendwo. Dieses Feature ist standardmäßig eingeschaltet. Falls ihr die Absicherung ausschalten wollt, drückt einfach F5. Diese Funktion kann nur effektiv genutzt werden, wenn es auf euren zuletzt besuchten Feld hell ist. Falls es gerade hell geworden ist, ihr trotzdem die Meldung erhaltet, dass es auf eurem Feld hell sein muss, dann wechselt bitte das Feld. Wenn ihr außerdem die Meldung erhalten solltet, dass es noch keine Startposition für dieses Speedwalk gibt und deshalb in das alte System zurückgefallen wird waren wir bisher noch faul und haben die Startposition noch nicht hinterlegt. In diesem Fall nehmt bitte brieflich oder via Rede oder natürlich via E-Mail Kontakt zu uns auf.
 
 Hinweis: Es sind längst noch nicht alle Wege im Soundpack vorhanden. Da das Integrieren dieser Wege recht zeitaufwändig ist bitten wir um Verständnis, dass wir bisher nicht alle Wege unterstützen. Ihr könnt uns jedoch unterstützen, indem ihr uns auf einen nicht vorhandenen Weg hinweist oder uns sogar einen von euch notierten Weg schickt, damit wir ihn mit in unser System aufnehmen.
+
 Um gerade diese eigene Notierung der Wege zu vereinfachen, ist in Avalon auch ein Speedwalk Mapper integriert, d. h. eine Möglichkeit, eure Wege aufzuzeichnen und anschließend den Entwicklern zukommen zu lassen, um sie fest zu integrieren. Dieser Mapper ist selbsterklären, sobald ein wichtiges Kommando bekannt ist: "spm start". Dieses Kommando startet die Aufzeichnung. Jedes Kommando, das anschließend getippt wird, wird aufgezeichnet. Alle fortlaufenden Aktionen erklärt der Speedwalk Mapper von selbst.
+
 Mit dem Kommando "spm z", wird der zuletzt eingegebene Befehl wieder gelöscht.
 Der Speedwalk Mapper lässt sich mit "spm stop" beenden.
 Anschließend werden die Namen für die Start- und die Endposition abgefragt. Ebenfalls wird abgefragt, ob der Speedwalk nur über sichere Wege verläuft.
 Danach stehen die Informationen in der Zwischenablage zur Verfügung.
-
-Nun noch die Liste der Abkürzungen in alphabetischer Reihenfolge:
-abt - Portal Abtei auf Nereid
-affe - Anleger Affenkopfinsel in der Unterwelt
-ale - Zugang Alemnja auf Losaria
-alo - Westtor von Alotria auf Nereid
-aloz : Auf der Strasse Al'Chwarismi in Alotria am Wegweiser, Nereid
-amp - Mondtor von Amphibos
-anl - Diverse Anlegestellen in der Unterwelt
-apf - Der absonderliche Apfel von Bauer Block auf Nereid
-arg - Meister aller Waffen auf Ruwenda
-ash - Feld nördlich vom Nordtor Ashar
-ashz - Platz der Helden in Ashar
-aug - Tor Augyra auf Amphibos
-bank - Bank (Diverse)
-barde - Barden (Diverse)
-camp - Zugang Camp Baralon in der Unterwelt
-cor - Vor der Höhle von Corona
-corz - Platz des Lebens in Corona
-dhun - Feld vor dem Transportkorb in Dhungar
-dichter - Feld vor dem Haus der Dichterzunft
-dk - Standort der Säule der Dämonenkriegergilde in der Unterwelt
-dol - Mondtor auf Dolphinia
-druide - Druide (diverse)
-farm - Eingang der Pfeifenkrautfarm auf Holbytla
-form - Formwandler (diverse)
-gol - Gilde der Golemkultisten in der Unterwelt
-gwen - Bettler in Gwendon auf Tintagel
-haendler - Gemischtwahrenlaeden (diverse)
-haf - Häfen diverser Inseln auf Elandor
-hain - Eingang Druidenhain auf Solgard
-her - Hermine Eisenbieger auf Holbytla
-hol - Mondtor auf Holbytla
-htoe - Feld vor der Höhle / dem Ausgang der Totenebene zurück in die Unterwelt
-ilme - Ilmelorn auf Tolsgal
-jagd - Jäger (diverse)
-jas - Stadttor von Jasthan in der Unterwelt
-jer - Feld vor dem ersten Feld Jeresa auf Losaria
-kap - Priester in der Kapelle, Zugang Rilauven in der Unterwelt
-ker - Vor dem Tor, Kergora auf Amphibos
-koch - Kochzunft auf Holbytla
-lim - Zugang Limarch auf Holbytla
-lor - Mondtor von Lorinant
-los - Mondtor von Losaria
-magier bzw. magier1 bis magierN - Magie-Lehrmeister (diverse)
-min - Marktplatz von Minias auf Nereid
-mine - Minenzugang (Gold, Silber, Mithril, Diamantmine und Golemmine)
-moor - Moor der Untoten, Unterwelt, Ankunft nach Aushebeln der Planken bei Anlegestelle 1 in Minias
-mos - Goblinburg Mossul auf Amphibos
-muehle - Mühle auf Holbytla
-orks - Orkjägerlager auf Nereid
-papierfalter - Feld vor dem Haus der Origamizunft auf Nereid
-por - Portal Rilauven in der Unterwelt
-post - Post (diverse)
-ril - Zentrum Rilauven in der Unterwelt
-run - Übergang zu den Runenschmieden auf Amphibos
-ruw - Hafen von Ruwenda auf Elandor
-san - Südtor von Sandutz auf Nereid
-schlucht - Zugang der Knochenschlucht auf Nereid
-schmied - Nebenstellen der Schmiedezunft (diverse)
-see - Quecksilbersee in der Unterwelt
-siedlung - Zugang Waldsiedlung auf Tintagel
-skal - Stadttor von Skalewar in der Unterwelt
-sol - Zentrum von Solgard
-teich - Teich westlich von Alotria (Zugang Walhalla) auf Nereid
-tempel - Febracim-Tempel in der Unterwelt
-tief - Zentrum Tiefebene in der Unterwelt
-tin - Mondtor von Tintagel
-toe - Absprungstelle Totenebene in der Unterwelt
-tol - Mondtor von Tolsgal
-tor - Jeweiliges Mondtor auf Nereid
-umi - Im Zentrum des Hauptplatzes von Uminotokai auf Amphibos
-uw - Von der Oberwelt aus der Standort des Unterwelt-Einganges in Dhungar, in der Unterwelt "Ein Weg in andere Gefilde"
-ver - Vern auf Losaria
-wahrsager - Feld vor dem Zelt der Wahrsagerzunft auf Nereid
-wal - Hütte in Walhalla
-wl - Waldläufer auf Tintagel
-wlm bzw. wlm1 bis wlmN - Waffenlehrmeister (diverse)
-wtoe - Wegweiser in der Totenebene, ein Feld östlich von der Absprungsstelle
-yol - Bis vor die Yoldatfest in der Unterwelt
-zwerge - Weggabelung im mördlichen Gebirge auf Nereid
 
 Unterstützte Spiele
 -------------------
