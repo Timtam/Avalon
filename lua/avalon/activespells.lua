@@ -120,7 +120,7 @@ end
 function spells_togglewarnings(cnt)
 cnt=tonumber(cnt)
 if cnt==nil then
-world.Note("Ihre Eingabe war nicht korrekt. Bitte geben sie die Nummer des Zaubers ein, für welchen sie Einstellungen vornehmen möchten.")
+world.Note("Die Eingabe war nicht korrekt. Bitte gib die Nummer des Zaubers ein, für welchen Du Einstellungen vornehmen möchtest.")
 return
 end
 i=0
