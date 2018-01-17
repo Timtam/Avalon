@@ -3919,6 +3919,33 @@
   >
   <send>psnd("Monsters/HydraBehead.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch der Stille, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/SilenceOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch der Traegheit, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/LethargyOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch des Schwarzen Kusses, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/KissOff.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
