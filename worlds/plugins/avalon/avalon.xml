@@ -304,7 +304,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>world.EnableGroup("Spiele_Hajo",0)</send>
+  <send>EnableGroup("Spiele_Hajo",0)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -410,7 +410,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>world.EnableGroup("Spiele_Hajo",1)</send>
+  <send>EnableGroup("Spiele_Hajo",1)</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3219,7 +3219,7 @@
    send_to="12"
   >
   <send>psnd("Monsters/Vortex/Disintegrate.ogg")
-  world.Execute("stecke streitaxt in meinen rucksack")</send>
+  Execute("stecke streitaxt in meinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -4082,7 +4082,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>world.Execute("rauslegen %1")</send>
+  <send>Execute("rauslegen %1")</send>
 </alias>
   <alias
    match="pos"
@@ -4411,19 +4411,19 @@ configtbl.settings.MXP=0
 configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
-world.Accelerator("ctrl+D", "speedwalk_break")
-world.Accelerator("ctrl+F12", "tts_switch")
-world.Accelerator("F2", "tpbar_switch")
-world.Accelerator("F3", "spbar_switch")
-world.Accelerator("F4", "apbar_switch")
-world.Accelerator("F5", "safespeedwalks_switch")
-world.Accelerator("F6", "repeatcommand_switch")
-world.Accelerator("F9", "volume_down")
-world.Accelerator("F10", "volume_up")
-world.Accelerator("F11", "volumetype_switch")
-world.Accelerator("ctrl+F11", "switch_mute")
-world.Accelerator("ctrl+shift+F11", "switch_fullmute")
-world.AcceleratorTo('Decimal','NumpadSwitch()',12)
+Accelerator("ctrl+D", "speedwalk_break")
+Accelerator("ctrl+F12", "tts_switch")
+Accelerator("F2", "tpbar_switch")
+Accelerator("F3", "spbar_switch")
+Accelerator("F4", "apbar_switch")
+Accelerator("F5", "safespeedwalks_switch")
+Accelerator("F6", "repeatcommand_switch")
+Accelerator("F9", "volume_down")
+Accelerator("F10", "volume_up")
+Accelerator("F11", "volumetype_switch")
+Accelerator("ctrl+F11", "switch_mute")
+Accelerator("ctrl+shift+F11", "switch_fullmute")
+AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
@@ -4474,13 +4474,13 @@ function OnAvalonGilde(type, message)
   for gilde, gtbl in pairs(gildentbl) do
     if gilde == message then
       if not gtbl[1] then
-        world.EnableGroup(gilde, 1)
+        EnableGroup(gilde, 1)
         gtbl[1] = true
         gtbl[2](true)
       end
     else
     if gtbl[1] then
-        world.EnableGroup(gilde, 0)
+        EnableGroup(gilde, 0)
         gtbl[1] = false
         gtbl[2](false)
       end
@@ -4531,7 +4531,7 @@ end
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
+  Execute(";history_add REDEN="..Replace(text,'\n',',',true))
   if callbacktbl.CHANNEL ~=nil then
     for ci,cf in pairs(callbacktbl.CHANNEL) do
       cf(channel,text)
@@ -4546,7 +4546,7 @@ OnAvalonSoul = function(type, message)
     text = string.sub(message, endpos+1, -1)
   end
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
+  Execute(";history_add SAGEN="..Replace(text, "\n", " ", true))
 end
 
 OnAvalonComm=function(type,message)
@@ -4556,7 +4556,7 @@ OnAvalonComm=function(type,message)
   if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
-  world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
+  Execute(";history_add "..channel.."="..Replace(text, "\n", " "))
   if callbacktbl.CHANNEL ~=nil then
     for ci,cf in pairs(callbacktbl.CHANNEL) do
       cf(channel,text)
@@ -4577,7 +4577,7 @@ OnAvalonChannel = function(type, message)
   if ((channel == "fehler") or (channel == "runtime")) then
     return
   end
-  world.Execute(";history_add "..channel.."="..text)
+  Execute(";history_add "..channel.."="..text)
   if callbacktbl.CHANNEL ~= nil then
     for ci,cf in pairs(callbacktbl.CHANNEL) do
       cf(channel,text)
@@ -4737,8 +4737,8 @@ function OnPluginInstall()
   end
   plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..".xml"
   for number, plugin in pairs(plugintbl) do
-    pluginpath = world.GetInfo(60).."/"..plugin
-    world.LoadPlugin(pluginpath)
+    pluginpath = GetInfo(60).."/"..plugin
+    LoadPlugin(pluginpath)
   end
   spells_parsewarnings(configtbl.settings.Warnings)
   NumpadInit()
@@ -4754,15 +4754,15 @@ function OnPluginInstall()
     end
   end
   configtbl.settings.FirstRun = 0
-  newfiles=Dir.getfiles(world.GetInfo(66),"*\\.new")
+  newfiles=Dir.getfiles(GetInfo(66),"*\\.new")
   if #newfiles>0 then
     for _, dfile in pairs(newfiles) do
       File.delete(string.sub(dfile,1,-5))
       File.move(dfile,string.sub(dfile,1,-5))
     end
-    world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
+    Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
-  world.SetOption ("omit_date_from_save_files", 1)
+  SetOption ("omit_date_from_save_files", 1)
   PPI.Expose('IID',
     function()
       if Dunkel==1 then
@@ -4824,8 +4824,8 @@ function OnPluginInstall()
     psnd)
   PPI.Expose("NoteColour",
     NoteColour)
-  if Path.exists(world.GetInfo(60).."avalon/user.xml") then
-    world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
+  if Path.exists(GetInfo(60).."avalon/user.xml") then
+    LoadPlugin(GetInfo(60).."avalon/user.xml")
   end
 end
 
@@ -4974,16 +4974,16 @@ function speedwalk_start(spd)
     return
   end
   if (speedwalklist[spd] == nil) then
-    world.Note("Es existiert kein Speedwalk mit diesem Namen.")
+    Note("Es existiert kein Speedwalk mit diesem Namen.")
     if (string.find(spd, "_us") ~= nil or string.find(spd, "us_") ~= nil) then
-      world.Note("Hinweis: Die Station \"us\" wurde in vielen Speedwalks nach \"zwerge\" umbenannt (zum Beispiel: min_zwerge statt min_us).")
-      world.Note("Die Station \"us\" bezieht sich ausschließlich auf Usagoor.")
+      Note("Hinweis: Die Station \"us\" wurde in vielen Speedwalks nach \"zwerge\" umbenannt (zum Beispiel: min_zwerge statt min_us).")
+      Note("Die Station \"us\" bezieht sich ausschließlich auf Usagoor.")
     end
     return
   end
   if (configtbl.settings.SafeSpeedwalks == 1) then
     if not stations[spd] then
-      world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
+      Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
       spdstationstbl[#spdstationstbl+1] = ""
       speedwalk_init(speedwalklist[spd])
       return
@@ -5010,7 +5010,7 @@ function speedwalk_list(spd)
       end
       msg = msg.."\n"
     end
-    msg = "Die Liste umfasst derzeit "..tostring(i).." Speedwalks."
+    msg = "Die Liste umfasst insgesamt "..tostring(i).." Speedwalks."
   else
     spd = string.lower(spd)
     msg = ""
@@ -5039,7 +5039,7 @@ function speedwalk_list(spd)
     end
     msg = string.sub(msg, 1, -2)
   end
-  world.Note(msg)
+  Note(msg)
 end
 
 function speedwalk_init(speedwalk)
@@ -5052,19 +5052,19 @@ function speedwalk_init(speedwalk)
     speedwalk_process()
   else
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
-    world.Note("Der neue Speedwalk wurde an den momentan laufenden angehängt.")
+    Note("Der neue Speedwalk wurde an den momentan Laufenden angehängt.")
   end
 end
 
 function speedwalk_process()
   if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= "") then
     if (Dunkel == 1) then
-      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
+      Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
       spdactive = false
       return
     end
     if (RoomID ~= spdstationstbl[spdind[1]]) and (spdstationstbl[spdind[1]] ~= "") then
-      world.Note("Der Speedwalk startet hier nicht.")
+      Note("Der Speedwalk startet hier nicht.")
       spdactive = false
       return
     end
@@ -5073,7 +5073,7 @@ function speedwalk_process()
     return
   end
   command = string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
-  world.Execute(command)
+  Execute(command)
   spdind = {spdind[1], spdind[2]+1}
   if (spdind[2] == #spdtbl[spdind[1]] + 1) then
     if not spdtbl[spdind[1]+1] then
@@ -5115,14 +5115,14 @@ function speedwalk_breaklegs()
 end
 
 function tts_switch()
-  world.UnloadPlugin(configtbl.settings.ScreenReader)
+  UnloadPlugin(configtbl.settings.ScreenReader)
   if (configtbl.settings.ScreenReader == "MushReader") then
     configtbl.settings.ScreenReader = "tts_jfw"
   else
     configtbl.settings.ScreenReader = "MushReader"
   end
-  world.LoadPlugin(world.GetInfo(60).."/"..configtbl.settings.ScreenReader..".xml")
-  world.Note("Ausgabesystem geändert.")
+  LoadPlugin(GetInfo(60).."/"..configtbl.settings.ScreenReader..".xml")
+  Note("Ausgabesystem geändert.")
   psnd("Misc/ConfigSwitch.ogg")
 end
 
@@ -5133,7 +5133,7 @@ function volume(value)
     end
     configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
     psnd("Misc/VolumeSwitch.ogg")
-    world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
+    Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
   elseif (volumetype == 2) then
     if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
       return
@@ -5143,7 +5143,7 @@ function volume(value)
     if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
       Audio.setVol(configtbl.settings.MusicVolume, hmusic)
     end
-    world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+    Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
   else
     if (configtbl.settings.CombatMusicVolume+value > 100) or (configtbl.settings.CombatMusicVolume + value < 0) then
       return
@@ -5153,20 +5153,20 @@ function volume(value)
     if (g_combat_music) and (Audio.isPlaying(g_combat_music) == 1) then
       Audio.setVol(configtbl.settings.CombatMusicVolume, g_combat_music)
     end
-    world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
+    Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
   end
 end
 
 function volumetype_switch()
   if (volumetype == 1) then
     volumetype = 2
-    world.Note("Lautstärkeregelung für Hintergrund-Musik.")
+    Note("Lautstärkeregelung für Hintergrund-Musik.")
   elseif (volumetype == 2) then
     volumetype = 3
-    world.Note("Lautstärkeregelung für Kampf-Musik.")
+    Note("Lautstärkeregelung für Kampf-Musik.")
   else    
     volumetype = 1
-    world.Note("Lautstärkeregelung für Sounds.")
+    Note("Lautstärkeregelung für Sounds.")
   end
   psnd('Misc/ConfigSwitch.ogg')
 end
@@ -5174,10 +5174,10 @@ end
 function tpbar_switch()
   if (configtbl.settings.TPBar == 1) then
     configtbl.settings.TPBar = 0
-    world.Note("TP-Ausgabe ausgeschaltet.")
+    Note("TP-Ausgabe ausgeschaltet.")
   else
     configtbl.settings.TPBar = 1
-    world.Note("TP-Ausgabe eingeschaltet.")
+    Note("TP-Ausgabe eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
@@ -5185,10 +5185,10 @@ end
 function apbar_switch()
   if (configtbl.settings.APBar == 1) then
     configtbl.settings.APBar = 0
-    world.Note("AP-Ausgabe ausgeschaltet.")
+    Note("AP-Ausgabe ausgeschaltet.")
   else
     configtbl.settings.APBar = 1
-    world.Note("AP-Ausgabe eingeschaltet.")
+    Note("AP-Ausgabe eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
@@ -5196,10 +5196,10 @@ end
 function spbar_switch()
   if (configtbl.settings.SPBar == 1) then
     configtbl.settings.SPBar = 0
-    world.Note("ZP-Ausgabe ausgeschaltet.")
+    Note("ZP-Ausgabe ausgeschaltet.")
   else
     configtbl.settings.SPBar = 1
-    world.Note("ZP-Ausgabe eingeschaltet.")
+    Note("ZP-Ausgabe eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
@@ -5236,30 +5236,30 @@ function switch_mute()
   if (volumetype == 1) then
     if (configtbl.settings.SoundsMuted == 0) then
       configtbl.settings.SoundsMuted = 1
-      world.Note("Sounds ausgeschaltet.")
+      Note("Sounds ausgeschaltet.")
     else
       configtbl.settings.SoundsMuted = 0
-      world.Note("Sounds eingeschaltet.")
+      Note("Sounds eingeschaltet.")
     end
   elseif (volumetype == 2) then
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
       stopifplaying(hmusic)
       RoomName = ""
-      world.Note("Hintergrund-Musik ausgeschaltet.")
+      Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
       atcp.Send('ava_req_mapper')
-      world.Note("Hintergrund-Musik eingeschaltet.")
+      Note("Hintergrund-Musik eingeschaltet.")
     end
   else
     if (configtbl.settings.CombatMusicMuted == 0) then
       configtbl.settings.CombatMusicMuted = 1
       stopifplaying(g_combat_music)
-      world.Note("Kampf-Musik ausgeschaltet.")
+      Note("Kampf-Musik ausgeschaltet.")
     else
       configtbl.settings.CombatMusicMuted = 0
-      world.Note("Kampf-Musik eingeschaltet.")
+      Note("Kampf-Musik eingeschaltet.")
     end
   end
   psnd('Misc/ConfigSwitch.ogg')
@@ -5268,28 +5268,28 @@ end
 function switch_fullmute()
   if (configtbl.settings.SoundsMuted == 0) then
     configtbl.settings.SoundsMuted = 1
-    world.Note("Sounds ausgeschaltet.")
+    Note("Sounds ausgeschaltet.")
   else
     configtbl.settings.SoundsMuted = 0
-    world.Note("Sounds eingeschaltet.")
+    Note("Sounds eingeschaltet.")
   end
   if (configtbl.settings.MusicMuted == 0) then
     configtbl.settings.MusicMuted = 1
     stopifplaying(hmusic)
     RoomName = ""
-    world.Note("Hintergrund-Musik ausgeschaltet.")
+    Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
     atcp.Send('ava_req_mapper')
-    world.Note("Hintergrund-Musik eingeschaltet.")
+    Note("Hintergrund-Musik eingeschaltet.")
   end
   if (configtbl.settings.CombatMusicMuted == 0) then
     configtbl.settings.CombatMusicMuted = 1
     stopifplaying(g_combat_music)
-    world.Note("Kampf-Musik ausgeschaltet.")
+    Note("Kampf-Musik ausgeschaltet.")
   else
     configtbl.settings.CombatMusicMuted = 0
-    world.Note("Kampf-Musik eingeschaltet.")
+    Note("Kampf-Musik eingeschaltet.")
   end
   psnd('Misc/ConfigSwitch.ogg')
 end
@@ -5313,22 +5313,22 @@ end
 function safespeedwalks_switch()
   if (configtbl.settings.SafeSpeedwalks == 1) then
     configtbl.settings.SafeSpeedwalks = 0
-    world.Note("Die Speedwalks werden nicht mehr abgesichert.")
+    Note("Die Speedwalks werden nicht mehr abgesichert.")
   else
     configtbl.settings.SafeSpeedwalks = 1
-    world.Note("Die Speedwalks werden nun abgesichert.")
+    Note("Die Speedwalks werden nun abgesichert.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end
 
 function print_position()
   if (Dunkel == 1) then
-    world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
+    Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
     return
   end
-  world.Note("Ort:\t"..RoomName)
+  Note("Ort:\t"..RoomName)
   if (X and Y) then
-    world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
+    Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end
   if (configtbl.settings.SafeSpeedwalks == 1) then
     list = stations_getspeedwalksbyroomid(RoomID)
@@ -5344,7 +5344,7 @@ function print_position()
         msg = msg.."\n"
       end
       msg = string.sub(msg, 1, -2)
-      world.Note(msg)
+      Note(msg)
     end
     if (#list > 1) then
       msg = "\nVon hier starten "..#list.." Speedwalks:\n"
@@ -5358,7 +5358,7 @@ function print_position()
         msg = msg.."\n"
       end
       msg = string.sub(msg, 1, -2)
-      world.Note(msg)
+      Note(msg)
     end
   end
 end
@@ -5386,15 +5386,15 @@ function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
   if not bb then
     bb = 0
   end
-  world.NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
+  NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
   if style then
-    world.NoteStyle(style)
+    NoteStyle(style)
   end
-  world.Note(text)
+  Note(text)
   if style then
-    world.NoteStyle(0)
+    NoteStyle(0)
   end
-  world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
+  NoteColourRGB(rgbtohex(255, 255, 255), 0)
 end
 
 function combat_music()
@@ -5447,87 +5447,87 @@ function gildendummy(start)
 return
 end
 function GetUnixTime()
-world.CallPlugin(timepluginid,"time","")
-rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
-rtime=world.Replace(rtime,',','.',false)
+CallPlugin(timepluginid,"time","")
+rtime=GetPluginVariable(timepluginid,"AvalonUnixTime")
+rtime=Replace(rtime,',','.',false)
 return tonumber(rtime)
 end
 function NumpadInit()
 if configtbl.settings.NumpadWalk==0 then
-world.Accelerator('Numpad1','sw')
-world.Accelerator('Numpad2','s')
-world.Accelerator('Numpad3','so')
-world.Accelerator('Numpad4','w')
-world.Accelerator('Numpad6','o')
-world.Accelerator('Numpad7','nw')
-world.Accelerator('Numpad8','n')
-world.Accelerator('Numpad9','no')
-world.Accelerator('Add','r')
-world.Accelerator('Subtract','h')
+Accelerator('Numpad1','sw')
+Accelerator('Numpad2','s')
+Accelerator('Numpad3','so')
+Accelerator('Numpad4','w')
+Accelerator('Numpad6','o')
+Accelerator('Numpad7','nw')
+Accelerator('Numpad8','n')
+Accelerator('Numpad9','no')
+Accelerator('Add','r')
+Accelerator('Subtract','h')
 elseif configtbl.settings.NumpadWalk==4 then
-world.Accelerator('Numpad1','schwimme sw')
-world.Accelerator('Numpad2','schwimme s')
-world.Accelerator('Numpad3','schwimme so')
-world.Accelerator('Numpad4','schwimme w')
-world.Accelerator('Numpad6','schwimme o')
-world.Accelerator('Numpad7','schwimme nw')
-world.Accelerator('Numpad8','schwimme n')
-world.Accelerator('Numpad9','schwimme no')
+Accelerator('Numpad1','schwimme sw')
+Accelerator('Numpad2','schwimme s')
+Accelerator('Numpad3','schwimme so')
+Accelerator('Numpad4','schwimme w')
+Accelerator('Numpad6','schwimme o')
+Accelerator('Numpad7','schwimme nw')
+Accelerator('Numpad8','schwimme n')
+Accelerator('Numpad9','schwimme no')
 elseif configtbl.settings.NumpadWalk==3 then
-world.Accelerator('Numpad1','kletter sw')
-world.Accelerator('Numpad2','kletter s')
-world.Accelerator('Numpad3','kletter so')
-world.Accelerator('Numpad4','kletter w')
-world.Accelerator('Numpad6','kletter o')
-world.Accelerator('Numpad7','kletter nw')
-world.Accelerator('Numpad8','kletter n')
-world.Accelerator('Numpad9','kletter no')
-world.Accelerator('Add','kletter hoch')
-world.Accelerator('Subtract','kletter runter')
+Accelerator('Numpad1','kletter sw')
+Accelerator('Numpad2','kletter s')
+Accelerator('Numpad3','kletter so')
+Accelerator('Numpad4','kletter w')
+Accelerator('Numpad6','kletter o')
+Accelerator('Numpad7','kletter nw')
+Accelerator('Numpad8','kletter n')
+Accelerator('Numpad9','kletter no')
+Accelerator('Add','kletter hoch')
+Accelerator('Subtract','kletter runter')
 elseif configtbl.settings.NumpadWalk==2 then
-world.Accelerator('Numpad1','spaehe kurz sw')
-world.Accelerator('Numpad2','spaehe kurz s')
-world.Accelerator('Numpad3','spaehe kurz so')
-world.Accelerator('Numpad4','spaehe kurz w')
-world.Accelerator('Numpad6','spaehe kurz o')
-world.Accelerator('Numpad7','spaehe kurz nw')
-world.Accelerator('Numpad8','spaehe kurz n')
-world.Accelerator('Numpad9','spaehe kurz no')
-world.Accelerator('Add','spaehe kurz h')
-world.Accelerator('Subtract','spaehe kurz r')
+Accelerator('Numpad1','spaehe kurz sw')
+Accelerator('Numpad2','spaehe kurz s')
+Accelerator('Numpad3','spaehe kurz so')
+Accelerator('Numpad4','spaehe kurz w')
+Accelerator('Numpad6','spaehe kurz o')
+Accelerator('Numpad7','spaehe kurz nw')
+Accelerator('Numpad8','spaehe kurz n')
+Accelerator('Numpad9','spaehe kurz no')
+Accelerator('Add','spaehe kurz h')
+Accelerator('Subtract','spaehe kurz r')
 elseif configtbl.settings.NumpadWalk==1 then
-world.Accelerator('Numpad1','spaehe sw')
-world.Accelerator('Numpad2','spaehe s')
-world.Accelerator('Numpad3','spaehe so')
-world.Accelerator('Numpad4','spaehe w')
-world.Accelerator('Numpad6','spaehe o')
-world.Accelerator('Numpad7','spaehe nw')
-world.Accelerator('Numpad8','spaehe n')
-world.Accelerator('Numpad9','spaehe no')
-world.Accelerator('Add','spaehe h')
-world.Accelerator('Subtract','spaehe r')
+Accelerator('Numpad1','spaehe sw')
+Accelerator('Numpad2','spaehe s')
+Accelerator('Numpad3','spaehe so')
+Accelerator('Numpad4','spaehe w')
+Accelerator('Numpad6','spaehe o')
+Accelerator('Numpad7','spaehe nw')
+Accelerator('Numpad8','spaehe n')
+Accelerator('Numpad9','spaehe no')
+Accelerator('Add','spaehe h')
+Accelerator('Subtract','spaehe r')
 end
 end
 function NumpadSwitch()
 if configtbl.settings.NumpadWalk==1 then
 configtbl.settings.NumpadWalk=2
-world.Note('Nummernblock auf kurzes Spähen konfiguriert')
+Note('Nummernblock auf kurzes Spähen konfiguriert')
 psnd("Misc/NumPadScoutShort.ogg")
 elseif configtbl.settings.NumpadWalk==2 then
 configtbl.settings.NumpadWalk=3
-world.Note('Nummernblock auf Klettern konfiguriert')
+Note('Nummernblock auf Klettern konfiguriert')
 psnd("Misc/NumPadClaim.ogg")
 elseif configtbl.settings.NumpadWalk==3 then
 configtbl.settings.NumpadWalk=4
-world.Note('Nummernblock auf Schwimmen konfiguriert')
+Note('Nummernblock auf Schwimmen konfiguriert')
 psnd("Misc/NumPadSwim.ogg")
 elseif configtbl.settings.NumpadWalk==4 then
 configtbl.settings.NumpadWalk=0
-world.Note('Nummernblock auf Laufen konfiguriert')
+Note('Nummernblock auf Laufen konfiguriert')
 psnd("Misc/NumPadWalk.ogg")
 elseif configtbl.settings.NumpadWalk==0 then
 configtbl.settings.NumpadWalk=1
-world.Note('Nummernblock auf langes Spähen konfiguriert')
+Note('Nummernblock auf langes Spähen konfiguriert')
 psnd("Misc/NumPadScoutLong.ogg")
 end
 NumpadInit()
@@ -5536,23 +5536,23 @@ end
 function config_graphics(enable,omit_output)
 omit_output=omit_output or false
 if enable then
-if tonumber(world.GetOption("use_mxp"))==2 then
+if tonumber(GetOption("use_mxp"))==2 then
 return
 end
-world.SetOption("use_mxp",2)
+SetOption("use_mxp",2)
 configtbl.settings.MXP=1
 if not omit_output and not mxp_output then
-world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
 mxp_output=true
 end
 else
-if tonumber(world.GetOption("use_mxp"))==3 then
+if tonumber(GetOption("use_mxp"))==3 then
 return
 end
-world.SetOption("use_mxp",3)
+SetOption("use_mxp",3)
 configtbl.settings.MXP=0
 if not omit_output and not mxp_output then
-world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
+Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
 mxp_output=true
 end
 end
@@ -5599,10 +5599,10 @@ function repeatcommand_switch()
   if (configtbl.settings.RepeatCommand == 1) then
     LastCommand=nil
     configtbl.settings.RepeatCommand = 0
-    world.Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
+    Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
   else
     configtbl.settings.RepeatCommand = 1
-    world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
+    Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end

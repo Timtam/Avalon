@@ -66,19 +66,19 @@
 <![CDATA[
 async = require("async")
 avalon = nil
-avalonId = world.GetPluginVariable("", "avalon")
+avalonId = GetPluginVariable("", "avalon")
 checkPeriod = 900 -- 15 minutes
-commitFetchUrl="https://api.github.com/repos/Timtam/Avalon/commits?sha=master"
+commitFetchUrl = "https://api.github.com/repos/Timtam/Avalon/commits?sha=master"
 downloadThread = nil
 informed = false
-json=require("json")
+json = require("json")
 loggedIn = false
 messageWidth = 80
 path = require("pl.path")
-ppi=require("ppi")
+ppi = require("ppi")
 stringx = require("pl.stringx")
-tabLength=4
-translationTable={}
+tabLength = 4
+translationTable = {}
 -- this is unbelievably ugly, but it works... as long as the encodings support doesn't get better
 translationTable["Ã¤"] = "ae"
 translationTable["Ã¼"] = "ue"
@@ -88,21 +88,21 @@ translationTable["Ã–"] = "Oe"
 translationTable["Ãœ"] = "Ue"
 translationTable["ÃŸ"] = "ss"
 -- uglyness ends here
-vcsFolders={".git",".svn"}
+vcsFolders = {".git",".svn"}
 verbose = false
 
-world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
+DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
   local vcs
-  if avalon.GetConfig("update","vcspassthrough") == 0 then
+  if avalon.GetConfig("update", "vcspassthrough") == nil then
     for vcs in pairs(vcsFolders) do
-      if path.isdir(world.GetInfo(66)..vcsFolders[vcs]) == true then
+      if path.isdir(GetInfo(66)..vcsFolders[vcs]) == true then
         if verbose == true then
-          world.Note("Soundpack laeuft via VCS, Updates werden nicht geprueft.")
-          world.Note("Dieses Verhalten kann mittels update vcs geaendert werden.")
-          world.Note("Vorsicht: Dies kann zu fehlerhaft gemeldeten Aktualisierungen fuehren.")
+          Note("Soundpack laeuft via VCS, Updates werden nicht geprüft.")
+          Note("Dieses Verhalten kann mittels \"update vcs\" geändert werden.")
+          Note("Vorsicht: Dies kann zu fehlerhaften Aktualisierungen führen.")
           verbose = false
         end
         return
@@ -116,11 +116,11 @@ function updateCheck()
   end
   if loggedIn == true then
     downloadThread = async.request(commitFetchUrl, "HTTPS")
-    world.DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
+    DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
   else
     if verbose == true then
-      world.Note("Damit eine Pruefung durchgefuehrt werden kann, muss ein")
-      world.Note("Charakter in Avalon eingeloggt sein.")
+      Note("Damit eine Prüfung durchgeführt werden kann, muss ein")
+      Note("Charakter in Avalon eingeloggt sein.")
       verbose = false
     end
   end
@@ -128,8 +128,8 @@ end
 
 function updateCheckFinished()
   local commits, current, hours, minutes, seconds
-  if downloadThread:alive()==true then
-    world.DoAfterSpecial(1, "updateCheckFinished()", sendto.script)
+  if downloadThread:alive() == true then
+    DoAfterSpecial(1, "updateCheckFinished()", sendto.script)
     return
   end
   local retval, page, status, headers, full_status = downloadThread:join()
@@ -140,11 +140,10 @@ function updateCheckFinished()
       -- no hash set yet, for example when downloading as zip file
       -- also the updater may have run recently, same procedure
       -- or the user forced to update the current hash value
-      avalon.SetConfig("update","hash",commits[1]["sha"])
+      avalon.SetConfig("update", "hash", commits[1]["sha"])
       avalon.SetConfig("update", "updated", 0)
       if verbose == true then
-        world.Note("Die derzeitige Version wurde auf folgenden Hash festgesetzt:")
-        world.Note(commits[1]["sha"])
+        Note("Die aktuelle Version wurde auf den Hash \""..commits[1]["sha"].."\" festgelegt.")
         verbose = false
       end
     else
@@ -156,24 +155,22 @@ function updateCheckFinished()
         avalon.PSND("misc/update.ogg")
       else
         if verbose == true then
-          world.Note("Das Soundpack ist aktuell.")
+          Note("Keine Updates verfügbar.")
           verbose = false
         end
       end
     end
   else
     if verbose == true then
-      world.Note("Es trat ein Fehler beim Download der Update-Informationen auf.")
-      world.Note("Eventuell ist der Server derzeit nicht erreichbar oder")
-      world.Note("der Zugriff wird durch eine Firewall oder einen")
-      world.Note("Proxy-Server eingeschraenkt.")
+      Note("Ein Fehler ist beim Download der Update-Informationen aufgetreten.")
+      Note("Eventuell ist der Server zur Zeit nicht erreichbar oder der Zugriff wird durch eine Firewall oder einen Proxy-Server eingeschränkt.")
       verbose = false
     end
   end
-  hours = math.floor(checkPeriod/3600)
-  minutes = math.floor((checkPeriod - hours*3600)/60)
-  seconds = checkPeriod - hours * 3600 - minutes*60
-  world.AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled+timer_flag.OneShot+timer_flag.Temporary, "updateCheck") 
+  hours = math.floor(checkPeriod / 3600)
+  minutes = math.floor((checkPeriod - hours * 3600) / 60)
+  seconds = math.floor(((checkPeriod - hours) * 3600) - (minutes * 60))
+  AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled + timer_flag.OneShot + timer_flag.Temporary, "updateCheck")
 end
 
 function PluginInstall()
@@ -183,40 +180,40 @@ function PluginInstall()
   end)
   avalon.HookCallback("LOGOUT", function()
     loggedIn = false
-    world.EnableTimer("updateCheckTimer", 0)
-    world.DeleteTimer("updateCheckTimer")
+    EnableTimer("updateCheckTimer", 0)
+    DeleteTimer("updateCheckTimer")
   end)
 end
 
 function printUpdateMessage(commits, current)
-  -- will print an update message, displaying new stuff for the user
+  -- Will print an update message, displaying new stuff for the user
   local char
   local currentIndex = 1
   local i
   local message
   while currentIndex <= #commits and commits[currentIndex]["sha"] ~= current do
-    -- we'll filter all merge commits right here
+    -- We'll filter all merge commits right here
     -- and also all commits with no message
-    if string.find(commits[currentIndex]["commit"]["message"], "Merge branch") == 1 or stringx.strip(commits[currentIndex]["commit"]["message"])=="" then
+    if string.find(commits[currentIndex]["commit"]["message"], "Merge branch") == 1 or stringx.strip(commits[currentIndex]["commit"]["message"]) == "" then
       table.remove(commits, currentIndex)
     else
       -- and we will replace all misformatted chars
       for char in pairs(translationTable) do
-        commits[currentIndex]["commit"]["message"]=string.gsub(commits[currentIndex]["commit"]["message"], char, translationTable[char])
+        commits[currentIndex]["commit"]["message"] = string.gsub(commits[currentIndex]["commit"]["message"], char, translationTable[char])
       end
       currentIndex = currentIndex + 1
     end
   end
   i = currentIndex - 1
 
-  -- formatting the message
-  message = "Es ist ein Update fuer das Soundpack verfuegbar!\n"
+  -- Formatting the message
+  message = "Ein Update für das Soundpack ist verfügbar!\n"
   if i == 0 then
-    -- the newest commit is ONLY a merge commit or a commit without a message
-    message = message.."Es sind allerdings keine Informationen ueber den Inhalt bekannt.\n"
+    -- The newest commit is ONLY a merge commit or a commit without a message
+    message = message.."Keine Informationen über den Inhalt sind bekannt.\n"
   else
-    message = message.."Die neuesten Aenderungen auf einen Blick:"
-    world.Note(message)
+    message = message.."Die neuesten Änderungen auf einen Blick:"
+    Note(message)
     message = ""
 
     while i >= 1 do
@@ -225,60 +222,59 @@ function printUpdateMessage(commits, current)
       i = i - 1
     end
     if currentIndex > #commits then
-      message = message.."Weitere Aenderungen koennten vorgenommen worden sein.\n"
-      message = message.."Das Soundpack prueft immer nur die neuesten Aktualisierungen."
+      message = message.."Weitere Änderungen könnten vorgenommen worden sein.\n"
+      message = message.."Das Soundpack prüft immer nur die neuesten Aktualisierungen."
     end
     avalon.NoteColour(string.sub(message, 1, -2), 0, 204, 102) -- light green
     message = ""
   end
-  message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafuer muss der MUSHclient geschlossen\n"
-  message = message.."und die update.exe im Soundpack ausgefuehrt werden.\n"
-  message = message .. "Weitere Informationen mit update info."
-  world.Note(message)
+  message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafür muss der Client geschlossen und die \"update.exe\" im Ordner des Soundpacks ausgeführt werden.\n"
+  message = message.."Weitere Informationen mit \"update info\".\n"
+  Note(message)
 end
 
 function updateCheckForce()
   if downloadThread ~=nil and downloadThread:alive() == true then
-    world.Note("Es ist bereits eine Pruefung in Gange.")
+    Note("Der Update-Vorgang läuft bereits.")
     return
   end
   informed = false
   verbose = true
-  world.Note("Es wird nach Aktualisierungen gesucht...")
+  Note("Nach Aktualisierungen suchen...")
   updateCheck()
 end
 
 function updateReset()
   if downloadThread ~= nil and downloadThread:alive() == true then
-    world.Note("Es laeuft derzeit eine Pruefung.")
+    Note("Eine Überprüfung läuft bereits.")
     return
   end
   verbose = true
   informed = false
   avalon.SetConfig("update", "updated", 1)
-  world.Note("Die aktuelle Soundpack-Version wird auf die derzeit neueste Version festgelegt.")
+  Note("Die aktuelle Soundpack-Version wurde auf die neueste Version festgelegt.")
   updateCheck()
 end
 
 function updateVCS()
   if downloadThread ~= nil and downloadThread:alive() == true then
-    world.Note("Es laeuft gerade eine Pruefung.")
+    Note("Eine Überprüfung läuft bereits.")
     return
   end
   if avalon.GetConfig("update", "vcspassthrough") == 0 then
-    world.Note("Updates werden nun trotz Verwendung von externen VCS geprueft.")
+    Note("Updates werden nun trotz Verwendung von externen VCS geprüft.")
     avalon.SetConfig("update", "vcspassthrough", 1)
     updateCheck()
   else
-    world.Note("Die Update-Pruefung wird wieder unterbunden.")
+    Note("Die Update-Prüfung wird wieder unterbunden.")
     avalon.SetConfig("update", "vcspassthrough", 0)
-    world.EnableTimer("updateCheckTimer", 0)
-    world.DeleteTimer("updateCheckTimer")
+    EnableTimer("updateCheckTimer", 0)
+    DeleteTimer("updateCheckTimer")
   end
 end
 
 function formatCommitMessage(msg)
-  -- copied and adapted from original source in message_window plugin
+  -- Copied and adapted from original source in message_window plugin
   -- will cut the messages into size and format them properly
   local words
   local wordindex
@@ -295,42 +291,37 @@ function formatCommitMessage(msg)
     while wordindex <= #words do
       line = words[wordindex]
       tlines[tlinesindex] = tlines[tlinesindex] or stringx.expandtabs("\t", tabLength)
-      if string.len(line)+string.len(tlines[tlinesindex])>messageWidth then
-        if tlines[tlinesindex]==stringx.expandtabs("\t", tabLength) then
-          tlines[tlinesindex]=tlines[tlinesindex]..line
+      if string.len(line)+string.len(tlines[tlinesindex]) > messageWidth then
+        if tlines[tlinesindex] == stringx.expandtabs("\t", tabLength) then
+          tlines[tlinesindex] = tlines[tlinesindex]..line
           wordindex = wordindex + 1
         end
-        tlinesindex=tlinesindex+1
+        tlinesindex = tlinesindex + 1
       else
-        tlines[tlinesindex]=tlines[tlinesindex]..line.." "
+        tlines[tlinesindex] = tlines[tlinesindex]..line.." "
         wordindex = wordindex + 1
       end
     end
     tlinesindex = tlinesindex + 1
   end
-
   return table.concat(tlines, "\n")
 end
 
 function updateInfo()
   message = ""
-  if downloadThread:alive()==true then
-    message = message .. "Es wird gerade auf Aktualisierungen geprueft.\n"
+  if downloadThread:alive() == true then
+    message = message.."Nach Aktualisierungen wird gerade gesucht.\n"
   else
-    message = message .. "Es wird gerade nicht auf Aktualisierungen geprueft.\n"
+    message = message.."Nach Aktualisierungen wird gerade nicht gesucht.\n"
   end
   if informed == true then
-    message = message .. "Es wurde bereits eine Information in dieser Sitzung angezeigt.\n"
+    message = message.."Eine Information wurde in dieser Sitzung bereits angezeigt.\n"
   else
-    message = message .. "Es wird eine Information pro Sitzung angezeigt.\n"
+    message = message.."Eine Information pro Sitzung wird angezeigt.\n"
   end
-  message = message.."Um spaeter erneut auf Aktualisierungen zu pruefen, muss das Soundpack\n"
-  message = message.."neu gestartet werden, oder der Befehl\n"
-  message = message.."update ausgefuehrt werden.\n"
-  message = message.."Sollte diese Meldung versehendlich angezeigt werden,\n"
-  message = message.."kann die aktuelle Version mittels\n"
-  message = message.."update hard auf die derzeit neueste Version festgelegt werden."
-  world.Note(message)
+  message = message.."Um spaeter erneut auf Aktualisierungen zu prüfen, muss das Soundpack neu gestartet werden oder der Befehl \"update\" ausgeführt werden.\n"
+  message = message.."Sollte diese Meldung versehendlich angezeigt werden, kann die aktuelle Version mittels \"update hard\" auf die neueste Version festgelegt werden."
+  Note(message)
 end
 ]]>
 </script>
