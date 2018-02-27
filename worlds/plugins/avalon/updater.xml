@@ -91,18 +91,18 @@ translationTable["ÃŸ"] = "ss"
 vcsFolders = {".git",".svn"}
 verbose = false
 
-DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
+world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
 avalon = ppi.Load(avalonId)
 
 function updateCheck()
   local vcs
   if avalon.GetConfig("update", "vcspassthrough") == nil then
     for vcs in pairs(vcsFolders) do
-      if path.isdir(GetInfo(66)..vcsFolders[vcs]) == true then
+      if path.isdir(world.GetInfo(66)..vcsFolders[vcs]) == true then
         if verbose == true then
-          Note("Soundpack laeuft via VCS, Updates werden nicht geprüft.")
-          Note("Dieses Verhalten kann mittels \"update vcs\" geändert werden.")
-          Note("Vorsicht: Dies kann zu fehlerhaften Aktualisierungen führen.")
+          world.Note("Soundpack läuft via VCS, Updates werden nicht geprüft.")
+          world.Note("Dieses Verhalten kann mittels \"update vcs\" geändert werden.")
+          world.Note("Vorsicht: Dies kann zu fehlerhaften Aktualisierungen führen.")
           verbose = false
         end
         return
@@ -116,11 +116,11 @@ function updateCheck()
   end
   if loggedIn == true then
     downloadThread = async.request(commitFetchUrl, "HTTPS")
-    DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
+    world.DoAfterSpecial(1, "updateCheckFinished()",sendto.script)
   else
     if verbose == true then
-      Note("Damit eine Prüfung durchgeführt werden kann, muss ein")
-      Note("Charakter in Avalon eingeloggt sein.")
+      world.Note("Damit eine Prüfung durchgeführt werden kann, muss ein")
+      world.Note("Charakter in Avalon eingeloggt sein.")
       verbose = false
     end
   end
@@ -129,7 +129,7 @@ end
 function updateCheckFinished()
   local commits, current, hours, minutes, seconds
   if downloadThread:alive() == true then
-    DoAfterSpecial(1, "updateCheckFinished()", sendto.script)
+    world.DoAfterSpecial(1, "updateCheckFinished()", sendto.script)
     return
   end
   local retval, page, status, headers, full_status = downloadThread:join()
@@ -143,7 +143,7 @@ function updateCheckFinished()
       avalon.SetConfig("update", "hash", commits[1]["sha"])
       avalon.SetConfig("update", "updated", 0)
       if verbose == true then
-        Note("Die aktuelle Version wurde auf den Hash \""..commits[1]["sha"].."\" festgelegt.")
+        world.Note("Die aktuelle Version wurde auf den Hash \""..commits[1]["sha"].."\" festgelegt.")
         verbose = false
       end
     else
@@ -155,22 +155,22 @@ function updateCheckFinished()
         avalon.PSND("misc/update.ogg")
       else
         if verbose == true then
-          Note("Keine Updates verfügbar.")
+          world.Note("Keine Updates verfügbar.")
           verbose = false
         end
       end
     end
   else
     if verbose == true then
-      Note("Ein Fehler ist beim Download der Update-Informationen aufgetreten.")
-      Note("Eventuell ist der Server zur Zeit nicht erreichbar oder der Zugriff wird durch eine Firewall oder einen Proxy-Server eingeschränkt.")
+      world.Note("Ein Fehler ist beim Download der Update-Informationen aufgetreten.")
+      world.Note("Eventuell ist der Server zur Zeit nicht erreichbar oder der Zugriff wird durch eine Firewall oder einen Proxy-Server eingeschränkt.")
       verbose = false
     end
   end
   hours = math.floor(checkPeriod / 3600)
   minutes = math.floor((checkPeriod - hours * 3600) / 60)
   seconds = math.floor(((checkPeriod - hours) * 3600) - (minutes * 60))
-  AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled + timer_flag.OneShot + timer_flag.Temporary, "updateCheck")
+  world.AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled + timer_flag.OneShot + timer_flag.Temporary, "updateCheck")
 end
 
 function PluginInstall()
@@ -180,8 +180,8 @@ function PluginInstall()
   end)
   avalon.HookCallback("LOGOUT", function()
     loggedIn = false
-    EnableTimer("updateCheckTimer", 0)
-    DeleteTimer("updateCheckTimer")
+    world.EnableTimer("updateCheckTimer", 0)
+    world.DeleteTimer("updateCheckTimer")
   end)
 end
 
@@ -213,7 +213,7 @@ function printUpdateMessage(commits, current)
     message = message.."Keine Informationen über den Inhalt sind bekannt.\n"
   else
     message = message.."Die neuesten Änderungen auf einen Blick:"
-    Note(message)
+    world.Note(message)
     message = ""
 
     while i >= 1 do
@@ -230,46 +230,46 @@ function printUpdateMessage(commits, current)
   end
   message = message.."Es wird empfohlen, das Soundpack zu aktualisieren. Dafür muss der Client geschlossen und die \"update.exe\" im Ordner des Soundpacks ausgeführt werden.\n"
   message = message.."Weitere Informationen mit \"update info\".\n"
-  Note(message)
+  world.Note(message)
 end
 
 function updateCheckForce()
   if downloadThread ~=nil and downloadThread:alive() == true then
-    Note("Der Update-Vorgang läuft bereits.")
+    world.Note("Der Update-Vorgang läuft bereits.")
     return
   end
   informed = false
   verbose = true
-  Note("Nach Aktualisierungen suchen...")
+  world.Note("Nach Aktualisierungen suchen...")
   updateCheck()
 end
 
 function updateReset()
   if downloadThread ~= nil and downloadThread:alive() == true then
-    Note("Eine Überprüfung läuft bereits.")
+    world.Note("Eine Überprüfung läuft bereits.")
     return
   end
   verbose = true
   informed = false
   avalon.SetConfig("update", "updated", 1)
-  Note("Die aktuelle Soundpack-Version wurde auf die neueste Version festgelegt.")
+  world.Note("Die aktuelle Soundpack-Version wird auf die neueste Version festgelegt...")
   updateCheck()
 end
 
 function updateVCS()
   if downloadThread ~= nil and downloadThread:alive() == true then
-    Note("Eine Überprüfung läuft bereits.")
+    world.Note("Eine Überprüfung läuft bereits.")
     return
   end
   if avalon.GetConfig("update", "vcspassthrough") == 0 then
-    Note("Updates werden nun trotz Verwendung von externen VCS geprüft.")
+    world.Note("Updates werden nun trotz Verwendung von externen VCS geprüft.")
     avalon.SetConfig("update", "vcspassthrough", 1)
     updateCheck()
   else
-    Note("Die Update-Prüfung wird wieder unterbunden.")
+    world.Note("Die Update-Prüfung wird wieder unterbunden.")
     avalon.SetConfig("update", "vcspassthrough", 0)
-    EnableTimer("updateCheckTimer", 0)
-    DeleteTimer("updateCheckTimer")
+    world.EnableTimer("updateCheckTimer", 0)
+    world.DeleteTimer("updateCheckTimer")
   end
 end
 
@@ -319,9 +319,9 @@ function updateInfo()
   else
     message = message.."Eine Information pro Sitzung wird angezeigt.\n"
   end
-  message = message.."Um spaeter erneut auf Aktualisierungen zu prüfen, muss das Soundpack neu gestartet werden oder der Befehl \"update\" ausgeführt werden.\n"
+  message = message.."Um später erneut auf Aktualisierungen zu prüfen, muss das Soundpack neu gestartet werden oder der Befehl \"update\" ausgeführt werden.\n"
   message = message.."Sollte diese Meldung versehendlich angezeigt werden, kann die aktuelle Version mittels \"update hard\" auf die neueste Version festgelegt werden."
-  Note(message)
+  world.Note(message)
 end
 ]]>
 </script>
