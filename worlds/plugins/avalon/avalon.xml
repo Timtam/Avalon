@@ -3946,6 +3946,14 @@
   >
   <send>psnd("Necromancers/KissOff.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="            Aufgabe fertig                                     "
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/NPCTaskComplete.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
