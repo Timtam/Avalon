@@ -338,7 +338,7 @@
   <trigger
    enabled="n"
    group="Spiele_Hajo"
-   match="Du setzt Deinen Joker\.|.* setzt seinen Joker\."
+   match="Du setzt Deinen Joker\.|.* setzt .* Joker\."
    regexp="y"
    send_to="12"
    sequence="95"
@@ -477,19 +477,17 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das muss ein .* Fisch sein, der da angebissen hat."
+   match="Das muss ein * Fisch sein, der da angebissen hat."
    send_to="12"
    sequence="100"
-   regexp="y"
   >
   <send>psnd("Fishing/Fish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Mist. Du stellst Dich viel zu ungeschickt an, .*"
+   match="Mist. Du stellst Dich viel zu ungeschickt an, *"
    send_to="12"
    sequence="100"
-   regexp="y"
   >
   <send>psnd("Fishing/FishEscape.ogg")</send>
   </trigger>
@@ -591,50 +589,45 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
+   match="* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/weak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert leuchtet auf."
+   match="* heiliges, gefuehrtes Schwert leuchtet auf."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert erstrahlt kurz."
+   match="* heiliges, gefuehrtes Schwert erstrahlt kurz."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert blitzt auf."
+   match="* heiliges, gefuehrtes Schwert blitzt auf."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/flash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
+   match="* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
@@ -1094,8 +1087,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentrierst|konzentrierst Dich auf .*"
-   regexp="y"
+   match="Du konzentrierst Dich auf *"
    sequence="100"
    send_to="12"
   >
@@ -1466,8 +1458,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine graue Schicht ueberzieht langsam Deine Haut, die .*"
-   regexp="y"
+   match="Eine graue Schicht ueberzieht langsam Deine Haut, die *"
    sequence="100"
    send_to="12"
   >
@@ -1475,8 +1466,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du bist nun vollkommen in eine Steinhaut eingehuellt, .*"
-   regexp="y"
+   match="Du bist nun vollkommen in eine Steinhaut eingehuellt, *"
    sequence="100"
    send_to="12"
   >
@@ -1494,7 +1484,6 @@
   <trigger
    enabled="y"
    match="Du wirst von einem magischen Schild umgeben*"
-   regexp="y"
    sequence="100"
    send_to="12"
   >
@@ -1511,8 +1500,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du hast erfolgreich .* in .*"
-   regexp="y"
+   match="Du hast erfolgreich * in *"
    sequence="100"
    send_to="12"
   >
@@ -1655,8 +1643,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du faengst an, .* auf .*"
-   regexp="y"
+   match="Du faengst an, * auf *"
    sequence="100"
    send_to="12"
   >
@@ -1673,8 +1660,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Auf den Tintagelschen Aeckern.|Ein kleines Huegelland."
-   regexp="y"
+   match="Auf den Tintagelschen Aeckern."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf einem kleinen Huegelland."
    send_to="12"
    sequence="100"
   >
@@ -1683,8 +1677,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du faengst an, .* in .*"
-   regexp="y"
+   match="Du faengst an, * in *"
    sequence="100"
    send_to="12"
   >
@@ -1701,8 +1694,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Auf einer Eisscholle,.*|In einer Eiswueste.*"
-   regexp="y"
+   match="Auf einer Eisscholle*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="In einer Eiswueste*"
    send_to="12"
    sequence="100"
   >
@@ -1890,8 +1890,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Der .* Luftvortex scheint sehr stark zu sein.|Der .* Luftvortex scheint wieder etwas schneller zu wirbeln."
-   regexp="y"
+   match="Der * Luftvortex scheint * zu *"
    sequence="100"
    send_to="12"
   >
@@ -1942,7 +1941,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Behutsam verteilst Du die Erde am Rand und klopfst sie fest*"
+   match="Du verteilst * die Erde am Rand und klopfst sie fest, *"
    sequence="100"
    send_to="12"
   >
@@ -2075,7 +2074,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
+   match="* verteil* daraufhin frustriert das ganze Holz in der Landschaft."
    sequence="100"
    send_to="12"
   >
@@ -2140,7 +2139,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Holz des Lagerfeuers knacken und einige Funken steigen auf."
+   match="Das Holz knackt im Lagerfeuer und einige Funken fliegen empor."
    sequence="100"
    send_to="12"
   >
@@ -2165,7 +2164,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein pruefender Blick und Du erkennst, dass sich bereits Wasser *"
+   match="Du erkennst, dass sich bereits Wasser in der Mulde sammelt."
    sequence="100"
    send_to="12"
   >
@@ -2205,7 +2204,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Lagerfeuer ist nun voellig niedergebrannt und erlischt.*"
+   match="Das Lagerfeuer ist nun voellig niedergebrannt *"
    sequence="100"
    send_to="12"
   >
@@ -2230,7 +2229,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
+   match="Am Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
    regexp="y"
    send_to="12"
    sequence="100"
@@ -2265,7 +2264,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du merkst, dass die Wasserstelle versiegt. *"
+   match="Die * Wasserstelle versiegt."
    sequence="100"
    send_to="12"
   >
@@ -2578,7 +2577,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst damit, ein Lagerfeuer zu erstellen."
+   match="Du beginnst damit, ein Lagerfeuer zu errichten."
    sequence="100"
    send_to="12"
   >
@@ -2629,7 +2628,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gerade als Du fertig bist, den Rand zu befestigen, rutscht *"
+   match="Du pruefst die Tiefe und beschliesst noch * nachzugraben."
    send_to="12"
    sequence="100"
   >
@@ -2754,7 +2753,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach Silbererz."
+   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach .*erz."
    omit_from_output="y"
    regexp="y"
    sequence="100"
@@ -2780,8 +2779,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Suche nach Mithrilerz.|Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz zu"
-   regexp="y"
+   match="Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz *"
    sequence="100"
    send_to="12"
   >
@@ -2838,7 +2836,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* geht in dem Lagerfeuer in * auf."
+   match="* in dem Lagerfeuer in * auf."
    sequence="100"
    send_to="12"
   >
@@ -2933,8 +2931,7 @@
   <trigger
    enabled="n"
    group="Barden"
-   match="Du spielst .* auf Deine.*"
-   regexp="y"
+   match="Du spielst * auf Dein*"
    sequence="100"
    send_to="12"
   >
@@ -3018,7 +3015,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* knistert in dem Lagerfeuer."
+   match="* in dem Lagerfeuer."
    sequence="100"
    send_to="12"
   >
@@ -3026,8 +3023,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Deiner.*"
-   regexp="y"
+   match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Dein*"
    sequence="100"
    send_to="12"
   >
@@ -3307,8 +3303,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus .*"
-   regexp="y"
+   match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus *"
    sequence="100"
    send_to="12"
   >
@@ -3349,8 +3344,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren.*"
-   regexp="y"
+   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren*"
    sequence="100"
    send_to="12"
   >
@@ -3443,8 +3437,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
-   regexp="y"
+   match="* ist Dir entkommen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/HuntAbort.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du brichst die Verfolgung ab."
    sequence="100"
    send_to="12"
   >
@@ -3461,7 +3462,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* ist fertig.|.* sind fertig."
+   match="(Der|Die|Das) .* ist fertig.|(Der|Die|Das) .* sind fertig."
    regexp="y"
    sequence="100"
    send_to="12"
@@ -3479,8 +3480,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".*Du hast Braunkohle gefunden."
-   regexp="y"
+   match="*Du hast Braunkohle gefunden."
    sequence="100"
    send_to="12"
   >
@@ -3513,8 +3513,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in|Waldtraene zu sammeln.*"
-   regexp="y"
+   match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in*"
    sequence="100"
    send_to="12"
   >
@@ -3530,7 +3529,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Traenen gleich fliessen Tropfen goldenen Lichtes ueber die Blaetter von der Waldtraene auf * zu.|Sie scheinen ihm fuerchterliche Schmerzen zu bereiten."
+   match="Traenen gleich fliessen Tropfen goldenen Lichtes ueber die Blaetter .* auf .* zu\.|Sie scheinen .* fuerchterliche Schmerzen zu bereiten\."
    regexp="y"
    omit_from_output="y"
    sequence="100"
@@ -3615,8 +3614,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Vergiss Deine Kriegsbeute nicht|Kriegsbeute fuer Deine bisherigen Bemuehungen"
-   regexp="y"
+   match="Vergiss Deine Kriegsbeute nicht"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Loot.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Kriegsbeute fuer Deine bisherigen Bemuehungen"
    sequence="100"
    send_to="12"
   >
