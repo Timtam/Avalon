@@ -2164,7 +2164,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du erkennst, dass sich bereits Wasser in der Mulde sammelt."
+   match="*, dass sich bereits Wasser in der Mulde sammelt."
    sequence="100"
    send_to="12"
   >
@@ -2510,7 +2510,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du pruefst fachmaennisch die Tiefe und beschliesst *"
+   match="Du pruefst die Tiefe und beschliesst noch * nachzugraben."
    sequence="100"
    send_to="12"
   >
@@ -2628,7 +2628,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du pruefst die Tiefe und beschliesst noch * nachzugraben."
+   match="Du bist gerade fertig, den Rand zu befestigen, da rutscht auch alles *"
    send_to="12"
    sequence="100"
   >
@@ -2779,7 +2779,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz *"
+   match="Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier *erz *"
    sequence="100"
    send_to="12"
   >
