@@ -1941,7 +1941,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du verteilst * die Erde am Rand und klopfst sie fest, *"
+   match="Du verteilst * Erde am Rand und klopfst sie fest, *"
    sequence="100"
    send_to="12"
   >
@@ -2164,7 +2164,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="*, dass sich bereits Wasser in der Mulde sammelt."
+   match="* dass sich bereits Wasser im Loch sammelt."
    sequence="100"
    send_to="12"
   >
@@ -2628,7 +2628,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du bist gerade fertig, den Rand zu befestigen, da rutscht auch alles *"
+   match="Du bist gerade fertig, den Rand zu befestigen, da rutscht auch wieder alles"
    send_to="12"
    sequence="100"
   >
@@ -2913,7 +2913,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spaltest Dein Brennholz in kleinere Scheite."
+   match="Du spaltest das Brennholz in kleinere Scheite."
    sequence="100"
    send_to="12"
   >
@@ -3090,7 +3090,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du stellst die Holzstuecke zu einer kleinen Pyramide auf *"
+   match="Du stellst die Holzstuecke zu einer kleinen Holzpyramide auf und *"
    sequence="100"
    send_to="12"
   >
@@ -3311,7 +3311,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du graebst eine tiefe Mulde mit Deinem Hirschfaenger in den Boden."
+   match="Du graebst eine tiefe Mulde mit dem Hirschfaenger in den Boden."
    sequence="100"
    send_to="12"
   >
