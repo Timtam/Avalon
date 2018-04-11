@@ -47,6 +47,15 @@
   </trigger>
   <trigger
    enabled="n"
+   group="Golemkultisten"
+   match="Dein Energiekern blitzt kurz * auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
    group="Magier"
    match="Dein * flackert heftig auf, lange wird * Dich wohl nicht mehr"
    send_to="12"
@@ -253,12 +262,12 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="\|?\s*(\w+)\s+\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+.*"
+   match="\|?\s*(Krasit|Sensal|Bullrik|Azmarog)\s+\|?\s*(\w+)\s+.*"
    regexp="y"
    send_to="12"
    sequence="100"
   >
-  <send>dk_insertname("%1","%2")</send>
+  <send>dk_insertname("%2","%1")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -329,7 +338,7 @@
   <trigger
    enabled="n"
    group="Spiele_Hajo"
-   match="Du setzt Deinen Joker\.|.* setzt seinen Joker\."
+   match="Du setzt Deinen Joker\.|.* setzt .* Joker\."
    regexp="y"
    send_to="12"
    sequence="95"
@@ -468,19 +477,17 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das muss ein .* Fisch sein, der da angebissen hat."
+   match="Das muss ein * Fisch sein, der da angebissen hat."
    send_to="12"
    sequence="100"
-   regexp="y"
   >
   <send>psnd("Fishing/Fish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match="Mist. Du stellst Dich viel zu ungeschickt an, .*"
+   match="Mist. Du stellst Dich viel zu ungeschickt an, *"
    send_to="12"
    sequence="100"
-   regexp="y"
   >
   <send>psnd("Fishing/FishEscape.ogg")</send>
   </trigger>
@@ -582,50 +589,45 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
+   match="* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/weak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert leuchtet auf."
+   match="* heiliges, gefuehrtes Schwert leuchtet auf."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert erstrahlt kurz."
+   match="* heiliges, gefuehrtes Schwert erstrahlt kurz."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert blitzt auf."
+   match="* heiliges, gefuehrtes Schwert blitzt auf."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/flash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
-   match=".* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
+   match="* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
    send_to="12"
    sequence="100"
-   regexp="y"
    omit_from_output="y"
   >
   <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
@@ -1085,8 +1087,7 @@
   <trigger
    enabled="n"
    group="Golemkultisten"
-   match="Du konzentrierst|konzentrierst Dich auf .*"
-   regexp="y"
+   match="Du konzentrierst Dich auf *"
    sequence="100"
    send_to="12"
   >
@@ -1457,8 +1458,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Eine graue Schicht ueberzieht langsam Deine Haut, die .*"
-   regexp="y"
+   match="Eine graue Schicht ueberzieht langsam Deine Haut, die *"
    sequence="100"
    send_to="12"
   >
@@ -1466,8 +1466,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du bist nun vollkommen in eine Steinhaut eingehuellt, .*"
-   regexp="y"
+   match="Du bist nun vollkommen in eine Steinhaut eingehuellt, *"
    sequence="100"
    send_to="12"
   >
@@ -1485,7 +1484,6 @@
   <trigger
    enabled="y"
    match="Du wirst von einem magischen Schild umgeben*"
-   regexp="y"
    sequence="100"
    send_to="12"
   >
@@ -1502,8 +1500,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du hast erfolgreich .* in .*"
-   regexp="y"
+   match="Du hast erfolgreich * in *"
    sequence="100"
    send_to="12"
   >
@@ -1646,8 +1643,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du faengst an, .* auf .*"
-   regexp="y"
+   match="Du faengst an, * auf *"
    sequence="100"
    send_to="12"
   >
@@ -1664,8 +1660,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Auf den Tintagelschen Aeckern.|Ein kleines Huegelland."
-   regexp="y"
+   match="Auf den Tintagelschen Aeckern."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Auf einem kleinen Huegelland."
    send_to="12"
    sequence="100"
   >
@@ -1674,8 +1677,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du faengst an, .* in .*"
-   regexp="y"
+   match="Du faengst an, * in *"
    sequence="100"
    send_to="12"
   >
@@ -1692,8 +1694,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Auf einer Eisscholle,.*|In einer Eiswueste.*"
-   regexp="y"
+   match="Auf einer Eisscholle*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="In einer Eiswueste*"
    send_to="12"
    sequence="100"
   >
@@ -1794,7 +1803,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Du beginnst Dich zu konzentrieren.$|^^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$"
+   match="^Du beginnst Dich zu konzentrieren.$|^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$|^Du konzentrierst Dich .*$|^.* konzentriert sich .*$"
    regexp="y"
    sequence="100"
    send_to="12"
@@ -1881,8 +1890,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Der .* Luftvortex scheint sehr stark zu sein.|Der .* Luftvortex scheint wieder etwas schneller zu wirbeln."
-   regexp="y"
+   match="Der * Luftvortex scheint * zu *"
    sequence="100"
    send_to="12"
   >
@@ -1933,7 +1941,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Behutsam verteilst Du die Erde am Rand und klopfst sie fest*"
+   match="Du verteilst * Erde am Rand und klopfst sie fest, *"
    sequence="100"
    send_to="12"
   >
@@ -2066,7 +2074,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="aufgeschichtete Holzpyramide wieder in sich zusammenbricht. *"
+   match="* verteil* daraufhin frustriert das ganze Holz in der Landschaft."
    sequence="100"
    send_to="12"
   >
@@ -2131,7 +2139,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Holz des Lagerfeuers knacken und einige Funken steigen auf."
+   match="Das Holz knackt im Lagerfeuer und einige Funken fliegen empor."
    sequence="100"
    send_to="12"
   >
@@ -2156,7 +2164,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein pruefender Blick und Du erkennst, dass sich bereits Wasser *"
+   match="* dass sich bereits Wasser im Loch sammelt."
    sequence="100"
    send_to="12"
   >
@@ -2196,7 +2204,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Lagerfeuer ist nun voellig niedergebrannt und erlischt.*"
+   match="Das Lagerfeuer ist nun voellig niedergebrannt *"
    sequence="100"
    send_to="12"
   >
@@ -2221,7 +2229,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
+   match="Am Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
    regexp="y"
    send_to="12"
    sequence="100"
@@ -2256,7 +2264,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du merkst, dass die Wasserstelle versiegt. *"
+   match="Die * Wasserstelle versiegt."
    sequence="100"
    send_to="12"
   >
@@ -2502,7 +2510,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du pruefst fachmaennisch die Tiefe und beschliesst *"
+   match="Du pruefst die Tiefe und beschliesst noch * nachzugraben."
    sequence="100"
    send_to="12"
   >
@@ -2569,7 +2577,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst damit, ein Lagerfeuer zu erstellen."
+   match="Du beginnst damit, ein Lagerfeuer zu errichten."
    sequence="100"
    send_to="12"
   >
@@ -2620,7 +2628,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Gerade als Du fertig bist, den Rand zu befestigen, rutscht *"
+   match="Du bist gerade fertig, den Rand zu befestigen, da rutscht auch wieder alles"
    send_to="12"
    sequence="100"
   >
@@ -2745,7 +2753,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach Silbererz."
+   match="Du beginnst mit der Mineraliensuche.|Du beginnst mit der Suche nach .*erz."
    omit_from_output="y"
    regexp="y"
    sequence="100"
@@ -2771,8 +2779,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du beginnst mit der Suche nach Mithrilerz.|Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier Mithrilerz zu"
-   regexp="y"
+   match="Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier *erz *"
    sequence="100"
    send_to="12"
   >
@@ -2829,7 +2836,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* geht in dem Lagerfeuer in * auf."
+   match="* in dem Lagerfeuer in * auf."
    sequence="100"
    send_to="12"
   >
@@ -2906,7 +2913,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spaltest Dein Brennholz in kleinere Scheite."
+   match="Du spaltest das Brennholz in kleinere Scheite."
    sequence="100"
    send_to="12"
   >
@@ -2924,8 +2931,7 @@
   <trigger
    enabled="n"
    group="Barden"
-   match="Du spielst .* auf Deine.*"
-   regexp="y"
+   match="Du spielst * auf Dein*"
    sequence="100"
    send_to="12"
   >
@@ -3009,7 +3015,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* knistert in dem Lagerfeuer."
+   match="* in dem Lagerfeuer."
    sequence="100"
    send_to="12"
   >
@@ -3017,8 +3023,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Deiner.*"
-   regexp="y"
+   match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Dein*"
    sequence="100"
    send_to="12"
   >
@@ -3085,7 +3090,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du stellst die Holzstuecke zu einer kleinen Pyramide auf *"
+   match="Du stellst die Holzstuecke zu einer kleinen Holzpyramide auf und *"
    sequence="100"
    send_to="12"
   >
@@ -3298,8 +3303,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus .*"
-   regexp="y"
+   match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus *"
    sequence="100"
    send_to="12"
   >
@@ -3307,7 +3311,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du graebst eine tiefe Mulde mit Deinem Hirschfaenger in den Boden."
+   match="Du graebst eine tiefe Mulde mit dem Hirschfaenger in den Boden."
    sequence="100"
    send_to="12"
   >
@@ -3340,8 +3344,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren.*"
-   regexp="y"
+   match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren*"
    sequence="100"
    send_to="12"
   >
@@ -3434,8 +3437,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* ist Dir entkommen.|Du brichst die Verfolgung ab."
-   regexp="y"
+   match="* ist Dir entkommen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Player/HuntAbort.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du brichst die Verfolgung ab."
    sequence="100"
    send_to="12"
   >
@@ -3452,7 +3462,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".* ist fertig.|.* sind fertig."
+   match="(Der|Die|Das) .* ist fertig.|(Der|Die|Das) .* sind fertig."
    regexp="y"
    sequence="100"
    send_to="12"
@@ -3470,8 +3480,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match=".*Du hast Braunkohle gefunden."
-   regexp="y"
+   match="*Du hast Braunkohle gefunden."
    sequence="100"
    send_to="12"
   >
@@ -3504,8 +3513,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in|Waldtraene zu sammeln.*"
-   regexp="y"
+   match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in*"
    sequence="100"
    send_to="12"
   >
@@ -3521,7 +3529,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Traenen gleich fliessen Tropfen goldenen Lichtes ueber die Blaetter von der Waldtraene auf * zu.|Sie scheinen ihm fuerchterliche Schmerzen zu bereiten."
+   match="Traenen gleich fliessen Tropfen goldenen Lichtes ueber die Blaetter .* auf .* zu\.|Sie scheinen .* fuerchterliche Schmerzen zu bereiten\."
    regexp="y"
    omit_from_output="y"
    sequence="100"
@@ -3606,8 +3614,15 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Vergiss Deine Kriegsbeute nicht|Kriegsbeute fuer Deine bisherigen Bemuehungen"
-   regexp="y"
+   match="Vergiss Deine Kriegsbeute nicht"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("WarEchoes/Loot.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Kriegsbeute fuer Deine bisherigen Bemuehungen"
    sequence="100"
    send_to="12"
   >
@@ -3636,6 +3651,42 @@
    sequence="100"
   >
   <send>psnd("Misc/Obelisk.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du ziehst Dir Deine Kutte tief ins Gesicht."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/Cowl.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du sinkst, Beschwoerungen murmelnd, auf die Knie."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Du ordnest einige Knochen auf dem Boden an und rammst Deinen Ritualdolch in"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Nekromanten"
+   match="Zusaetzliche Knochen schiessen aus dem Boden hervor und wirbeln um Dich"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/BoneShield4.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -3678,6 +3729,236 @@
   end
   psnd("Player/Statue.ogg")
   </send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du schliesst Deine Augen und atmest tief durch."
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/Meditation1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du ziehst die Kapuze Deiner Robe weit ueber den Kopf und faltest Deine"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="^Leise summst Du ein Mantra, das Dir zu neuer Kraft verhilft.$|^Du summst: Ooooohhhhhmmmmmm......$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Hum/"..math.random(1,4)..".ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Deine Ordenskette leuchtet schwach auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du beginnst zu meditieren."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Meditation5.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Langsam wachst Du wieder auf."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/MeditationOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du nimmst ein Stueck Kohle und beginnst, ein schwarzes Ankh auf Dein*"
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/Armor1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Sorgfaeltig malst Du ein T-Kreuz auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor2.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Ueber der Gabelung malst Du einen Kreis."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Dabei murmelst Du einige heilige Worte."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Schliesslich streichst Du mit dem Ankh Deiner Kette ueber *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Armor5.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Das Ankh auf * beginnt, schwach zu leuchten."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/ArmorOn.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Dein* verliert * magische Kraft."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/ArmorOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du wendest das Ankh Deiner Ordenskette auf Deinen Koerper."
+   send_to="12"
+   sequence="99"
+  >
+  <send>psnd("Clerics/CurePoison1.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du legst eine Hand auf Deine Schlaefe und atmest tief durch."
+   send_to="12"
+   sequence="93"
+  >
+  <send>psnd("Clerics/CurePoison3.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du hast es geschafft, das Gift in Deinem Koerper zu unterdruecken."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/CurePoison4.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Du faellst vor der Leiche auf die Knie, legst Dein Ankh auf den leblosen"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Start.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Kleriker"
+   match="Deine Bemuehungen waren erfolgreich. * schlaegt*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du schlaegst Deine Augen auf und versuchst etwas zu sagen."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Erledigt. Du hast nun diesen Gegner * mal hintereinander getoetet."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/TaskProgress.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Eine Langstreckenbrieftaube kommt angeflogen und laesst einen kleinen Brief"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Misc/PostPigeon.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Der Kopf klatscht leblos herab und ruehrt sich zum Glueck nicht mehr."
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Monsters/HydraBehead.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch der Stille, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/SilenceOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch der Traegheit, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/LethargyOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Nekromanten"
+   match="Der Fluch des Schwarzen Kusses, der auf *"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Necromancers/KissOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="            Aufgabe fertig                                     "
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/NPCTaskComplete.ogg")</send>
   </trigger>
 </triggers>
 
@@ -4132,7 +4413,7 @@ configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
 configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.NumpadWalk=1
+configtbl.settings.NumpadWalk=5
 configtbl.settings.RepeatCommand=0
 configtbl.settings.MXP=0
 configtbl.settings.FirstRun = 1
@@ -4180,6 +4461,8 @@ spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schu
 spells_register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
 spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
 spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
+spells_register("Lebensaura","Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich","Deine Lebensaura loest sich auf\\.")
+spells_register("Schwarzschild","Du wirst von einem magischen Schild umgeben, der Dich besser parieren","Dein Schwarzschild loest sich auf\\.")
 spells_register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.")
 spells_register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
 spells_register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
@@ -4546,6 +4829,8 @@ function OnPluginInstall()
     end)
   PPI.Expose('PSND',
     psnd)
+  PPI.Expose("NoteColour",
+    NoteColour)
   if Path.exists(world.GetInfo(60).."avalon/user.xml") then
     world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
   end
@@ -5001,6 +5286,7 @@ function combat_music()
     g_combat_music = Audio.play(GetInfo(74).."Music/Combat/"..g_combat_music_name, 1, 0, configtbl.settings.CombatMusicVolume)
   end
 end
+
 function warnings_access(warn)
   if warn=='' then
     spells_printwarnings()
@@ -5008,140 +5294,146 @@ function warnings_access(warn)
     spells_togglewarnings(warn)
   end
 end
+
 function gildendummy(start)
-return
+  return
 end
+
 function GetUnixTime()
-world.CallPlugin(timepluginid,"time","")
-rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
-rtime=world.Replace(rtime,',','.',false)
-return tonumber(rtime)
+  world.CallPlugin(timepluginid,"time","")
+  rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
+  rtime=world.Replace(rtime,',','.',false)
+  return tonumber(rtime)
 end
+
 function NumpadInit()
-if configtbl.settings.NumpadWalk==0 then
-world.Accelerator('Numpad1','sw')
-world.Accelerator('Numpad2','s')
-world.Accelerator('Numpad3','so')
-world.Accelerator('Numpad4','w')
-world.Accelerator('Numpad6','o')
-world.Accelerator('Numpad7','nw')
-world.Accelerator('Numpad8','n')
-world.Accelerator('Numpad9','no')
-world.Accelerator('Add','r')
-world.Accelerator('Subtract','h')
-elseif configtbl.settings.NumpadWalk==4 then
-world.Accelerator('Numpad1','schwimme sw')
-world.Accelerator('Numpad2','schwimme s')
-world.Accelerator('Numpad3','schwimme so')
-world.Accelerator('Numpad4','schwimme w')
-world.Accelerator('Numpad6','schwimme o')
-world.Accelerator('Numpad7','schwimme nw')
-world.Accelerator('Numpad8','schwimme n')
-world.Accelerator('Numpad9','schwimme no')
-elseif configtbl.settings.NumpadWalk==3 then
-world.Accelerator('Numpad1','kletter sw')
-world.Accelerator('Numpad2','kletter s')
-world.Accelerator('Numpad3','kletter so')
-world.Accelerator('Numpad4','kletter w')
-world.Accelerator('Numpad6','kletter o')
-world.Accelerator('Numpad7','kletter nw')
-world.Accelerator('Numpad8','kletter n')
-world.Accelerator('Numpad9','kletter no')
-world.Accelerator('Add','kletter hoch')
-world.Accelerator('Subtract','kletter runter')
-elseif configtbl.settings.NumpadWalk==2 then
-world.Accelerator('Numpad1','spaehe kurz sw')
-world.Accelerator('Numpad2','spaehe kurz s')
-world.Accelerator('Numpad3','spaehe kurz so')
-world.Accelerator('Numpad4','spaehe kurz w')
-world.Accelerator('Numpad6','spaehe kurz o')
-world.Accelerator('Numpad7','spaehe kurz nw')
-world.Accelerator('Numpad8','spaehe kurz n')
-world.Accelerator('Numpad9','spaehe kurz no')
-world.Accelerator('Add','spaehe kurz h')
-world.Accelerator('Subtract','spaehe kurz r')
-elseif configtbl.settings.NumpadWalk==1 then
-world.Accelerator('Numpad1','spaehe sw')
-world.Accelerator('Numpad2','spaehe s')
-world.Accelerator('Numpad3','spaehe so')
-world.Accelerator('Numpad4','spaehe w')
-world.Accelerator('Numpad6','spaehe o')
-world.Accelerator('Numpad7','spaehe nw')
-world.Accelerator('Numpad8','spaehe n')
-world.Accelerator('Numpad9','spaehe no')
-world.Accelerator('Add','spaehe h')
-world.Accelerator('Subtract','spaehe r')
+  if configtbl.settings.NumpadWalk==0 then
+    world.Accelerator('Numpad1','sw')
+    world.Accelerator('Numpad2','s')
+    world.Accelerator('Numpad3','so')
+    world.Accelerator('Numpad4','w')
+    world.Accelerator('Numpad6','o')
+    world.Accelerator('Numpad7','nw')
+    world.Accelerator('Numpad8','n')
+    world.Accelerator('Numpad9','no')
+    world.Accelerator('Add','r')
+    world.Accelerator('Subtract','h')
+  elseif configtbl.settings.NumpadWalk==4 then
+    world.Accelerator('Numpad1','schwimme sw')
+    world.Accelerator('Numpad2','schwimme s')
+    world.Accelerator('Numpad3','schwimme so')
+    world.Accelerator('Numpad4','schwimme w')
+    world.Accelerator('Numpad6','schwimme o')
+    world.Accelerator('Numpad7','schwimme nw')
+    world.Accelerator('Numpad8','schwimme n')
+    world.Accelerator('Numpad9','schwimme no')
+  elseif configtbl.settings.NumpadWalk==3 then
+    world.Accelerator('Numpad1','kletter sw')
+    world.Accelerator('Numpad2','kletter s')
+    world.Accelerator('Numpad3','kletter so')
+    world.Accelerator('Numpad4','kletter w')
+    world.Accelerator('Numpad6','kletter o')
+    world.Accelerator('Numpad7','kletter nw')
+    world.Accelerator('Numpad8','kletter n')
+    world.Accelerator('Numpad9','kletter no')
+    world.Accelerator('Add','kletter hoch')
+    world.Accelerator('Subtract','kletter runter')
+  elseif configtbl.settings.NumpadWalk==2 then
+    world.Accelerator('Numpad1','spaehe kurz sw')
+    world.Accelerator('Numpad2','spaehe kurz s')
+    world.Accelerator('Numpad3','spaehe kurz so')
+    world.Accelerator('Numpad4','spaehe kurz w')
+    world.Accelerator('Numpad6','spaehe kurz o')
+    world.Accelerator('Numpad7','spaehe kurz nw')
+    world.Accelerator('Numpad8','spaehe kurz n')
+    world.Accelerator('Numpad9','spaehe kurz no')
+    world.Accelerator('Add','spaehe kurz h')
+    world.Accelerator('Subtract','spaehe kurz r')
+  elseif configtbl.settings.NumpadWalk==1 then
+    world.Accelerator('Numpad1','spaehe sw')
+    world.Accelerator('Numpad2','spaehe s')
+    world.Accelerator('Numpad3','spaehe so')
+    world.Accelerator('Numpad4','spaehe w')
+    world.Accelerator('Numpad6','spaehe o')
+    world.Accelerator('Numpad7','spaehe nw')
+    world.Accelerator('Numpad8','spaehe n')
+    world.Accelerator('Numpad9','spaehe no')
+    world.Accelerator('Add','spaehe h')
+    world.Accelerator('Subtract','spaehe r')
+  end
 end
-end
+
 function NumpadSwitch()
-if configtbl.settings.NumpadWalk==1 then
-configtbl.settings.NumpadWalk=2
-world.Note('Nummernblock auf kurzes Spähen konfiguriert')
-psnd("Misc/NumPadScoutShort.ogg")
-elseif configtbl.settings.NumpadWalk==2 then
-configtbl.settings.NumpadWalk=3
-world.Note('Nummernblock auf Klettern konfiguriert')
-psnd("Misc/NumPadClaim.ogg")
-elseif configtbl.settings.NumpadWalk==3 then
-configtbl.settings.NumpadWalk=4
-world.Note('Nummernblock auf Schwimmen konfiguriert')
-psnd("Misc/NumPadSwim.ogg")
-elseif configtbl.settings.NumpadWalk==4 then
-configtbl.settings.NumpadWalk=0
-world.Note('Nummernblock auf Laufen konfiguriert')
-psnd("Misc/NumPadWalk.ogg")
-elseif configtbl.settings.NumpadWalk==0 then
-configtbl.settings.NumpadWalk=1
-world.Note('Nummernblock auf langes Spähen konfiguriert')
-psnd("Misc/NumPadScoutLong.ogg")
-end
-NumpadInit()
+  if configtbl.settings.NumpadWalk==1 then
+    configtbl.settings.NumpadWalk=2
+    world.Note('Nummernblock auf kurzes Spähen konfiguriert')
+    psnd("Misc/NumPadScoutShort.ogg")
+  elseif configtbl.settings.NumpadWalk==2 then
+    configtbl.settings.NumpadWalk=3
+    world.Note('Nummernblock auf Klettern konfiguriert')
+    psnd("Misc/NumPadClaim.ogg")
+  elseif configtbl.settings.NumpadWalk==3 then
+    configtbl.settings.NumpadWalk=4
+    world.Note('Nummernblock auf Schwimmen konfiguriert')
+    psnd("Misc/NumPadSwim.ogg")
+  elseif configtbl.settings.NumpadWalk==4 then
+    configtbl.settings.NumpadWalk=0
+    world.Note('Nummernblock auf Laufen konfiguriert')
+    psnd("Misc/NumPadWalk.ogg")
+  elseif configtbl.settings.NumpadWalk==0 then
+    configtbl.settings.NumpadWalk=1
+    world.Note('Nummernblock auf langes Spähen konfiguriert')
+    psnd("Misc/NumPadScoutLong.ogg")
+  end
+  NumpadInit()
 end
 
 function config_graphics(enable,omit_output)
-omit_output=omit_output or false
-if enable then
-if tonumber(world.GetOption("use_mxp"))==2 then
-return
-end
-world.SetOption("use_mxp",2)
-configtbl.settings.MXP=1
-if not omit_output and not mxp_output then
-world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+  omit_output=omit_output or false
+  if enable then
+    if tonumber(world.GetOption("use_mxp"))==2 then
+      return
+    end
+    world.SetOption("use_mxp",2)
+    configtbl.settings.MXP=1
+    if not omit_output and not mxp_output then
+      world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+      mxp_output=true
+    end
+  else
+    if tonumber(world.GetOption("use_mxp"))==3 then
+      return
+    end
+    world.SetOption("use_mxp",3)
+    configtbl.settings.MXP=0
+    if not omit_output and not mxp_output then
+      world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
 mxp_output=true
+    end
+  end
 end
-else
-if tonumber(world.GetOption("use_mxp"))==3 then
-return
-end
-world.SetOption("use_mxp",3)
-configtbl.settings.MXP=0
-if not omit_output and not mxp_output then
-world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
-mxp_output=true
-end
-end
-end
+
 function hook_callback(event,callback)
-if not callbacktbl[event] then
-callbacktbl[event]={}
+  if not callbacktbl[event] then
+    callbacktbl[event]={}
+  end
+  if Tablex.find(callbacktbl[event],callback) ~=nil then
+    return false
+  end
+  callbacktbl[event][#(callbacktbl[event])]=callback
+  return true
 end
-if Tablex.find(callbacktbl[event],callback) ~=nil then
-return false
-end
-callbacktbl[event][#(callbacktbl[event])]=callback
-return true
-end
+
 function unhook_callback(event,callback)
-if callbacktbl[event]==nil then
-return false
-end
-index=Tablex.find(callbacktbl[event],callback)
-if index ~=nil then
-callbacktbl[event]=Tablex.removevalues(callbacktbl[event],index,index)
-return true
-end
-return false
+  if callbacktbl[event]==nil then
+    return false
+  end
+  index=Tablex.find(callbacktbl[event],callback)
+  if index ~=nil then
+    callbacktbl[event]=Tablex.removevalues(callbacktbl[event],index,index)
+    return true
+  end
+  return false
 end
 
 function OnPluginCommandEntered(text)

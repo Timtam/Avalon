@@ -110,7 +110,7 @@ tts_enabled=false
 end
 function OnPluginGetFocus()
 if focusnote then
-DoAfterSpecial(5,'Note("You can type ftts to control whether mush-z speech should be silenced when switching windows on your computer.")',12)
+--DoAfterSpecial(5,'Note("You can type ftts to control whether mush-z speech should be silenced when switching windows on your computer.")',12)
 focusnote=false
 end
 if (etts==false) then
@@ -210,7 +210,7 @@ end
 function OnPluginInstall ()
 assert(package.loadlib("MushReader.dll", "luaopen_audio"))()
 stop()
-say("mush reader initialized")
+say("MushReader initialized.")
 end
 function say(str)
 nvda.say(str)
@@ -254,12 +254,12 @@ if tts_enabled then
 tts_enabled = false
 etts=false
 stop()
-say("speech off")
+say("Speech off.")
 else
 tts_enabled = true
 etts=true
 stop()
-say("speech on")
+say("Speech on.")
 end
 end
 function OnPluginTabComplete(word)

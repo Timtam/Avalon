@@ -61,178 +61,196 @@
 
 <script>
 <![CDATA[
-require('tprint')
-Active=false
-CmdStack={}
-EndID=''
-EndName=''
-StartID=''
-StartName=''
-Warned=false
-PPI=require("ppi")
-Avalon=PPI.Load("02dade4f6131c8d67e85c7ee")
-Shorters={}
-Shorters.osten='o'
-Shorters.westen='w'
-Shorters.suedwesten='sw'
-Shorters.sueden='s'
-Shorters.norden='n'
-Shorters.suedosten='so'
-Shorters.nordosten='no'
-Shorters.nordwesten='nw'
-Shorters.e='o'
-Shorters.se='so'
-Shorters.ne='no'
-Directives={}
-Directives.o='w'
-Directives.so='nw'
-Directives.s='n'
-Directives.sw='no'
-Directives.w='o'
-Directives.nw='so'
-Directives.n='s'
-Directives.no='sw'
-Directives.hoch='runter'
-Directives.runter='hoch'
+
+require("tprint")
+
+Active = false
+CmdStack = {}
+EndID = ""
+EndName = ""
+StartID = ""
+StartName = ""
+Warned = false
+
+PPI = require("ppi")
+
+Avalon = PPI.Load("02dade4f6131c8d67e85c7ee")
+
+Shorters = {}
+Shorters.osten = "o"
+Shorters.westen = "w"
+Shorters.suedwesten = "sw"
+Shorters.sueden = "s"
+Shorters.norden = "n"
+Shorters.suedosten = "so"
+Shorters.nordosten = "no"
+Shorters.nordwesten = "nw"
+Shorters.e = "o"
+Shorters.se = "so"
+Shorters.ne = "no"
+
+Directives = {}
+Directives.o = "w"
+Directives.so = "nw"
+Directives.s = "n"
+Directives.sw = "no"
+Directives.w = "o"
+Directives.nw = "so"
+Directives.n = "s"
+Directives.no = "sw"
+Directives.hoch = "runter"
+Directives.runter = "hoch"
+
 function OnPluginSend(text)
-if Active then
-text=_spm_processcommand(text)
+  if Active then
+    text = _spm_processcommand(text)
+  end
+  return true
 end
-return true
-end
+
 function spm_start()
-id=Avalon.IID()
-if not id then
-world.Note('Bitte sorg dafür, dass es während der Aufzeichnung hell ist.')
-return
+  id = Avalon.IID()
+  if not id then
+    Note("Die Aufzeichnung kann nur im Hellen erfolgen.")
+    return
+  end
+  StartName = Avalon.Location()
+  StartID = id
+  Active = true
+  Note("Der Avalon-Speedwalk-Mapper zeichnet nun einen Speedwalk auf.")
+  Note("Bitte bis zum Ende der Aufnahme nur Kommandos verwenden, die im eigentlichen Speedwalk auch auftauchen sollen.")
+  Note("Es dürfen dabei keine selbst definierten Aliase verwendet werden.")
+  Note("Zum Beenden das Kommando \"spm stop\" benutzen.")
 end
-StartName=Avalon.Location()
-StartID=id
-Active=true
-world.Note('Der Avalon Speedwalk Mapper zeichnet nun einen Speedwalk auf. Bitte bis zum Ende der Aufnahme nur Kommandos verwenden, die im eigentlichen Speedwalk auch auftauchen sollen. Es dürfen dabei keine selbst definierten Aliase verwendet werden. Zum Beenden das Kommando \"spm stop\" benutzen')
-end
+
 function spm_stop()
-if not Active then
-return
+  if not Active then
+    return
+  end
+  if #CmdStack > 0 and Avalon.IID() ~= StartID then
+    id = Avalon.IID()
+    if not id then
+      Note("Beim Abschluss des Speedwalks muss es ebenfalls hell sein.")
+      Note("Dafür wird eine Lichtquelle benoetigt, bevor der Speedwalk beendet werden kann.")
+      return
+    end
+    EndID = id
+    EndName = Avalon.Location()
+    Note("Die Aufzeichnung ist abgeschlossen.")
+    Note("Anschließend werden noch folgende Informationen benoetigt:")
+    StartName = utils.inputbox("Bitte den Namen der Startposition des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartName)
+    if StartName == nil then
+      Note("Der Name der Startposition darf nicht leer sein. Beispiel: min (für Minias)")
+      return
+    end
+    EndName = utils.inputbox("Bitte den Namen der Endposition des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndName)
+    if EndName == nil then
+      Note("Der Name der Endposition darf nicht leer sein. Beispiel: haf (für Hafen)")
+      return
+    end
+    if StartName == EndName then
+      Note("Die Start- und Endpositionen dürfen nicht identisch sein.")
+      return
+    end
+    safety = utils.msgbox("Führt der Speedwalk über einen ungefährlichen Pfad? (Ja, für sicher, der nur über einen Pfad verläuft, auf dem sich keine Gegner befinden)", "Avalon-Speedwalk-Mapper", "yesno", "?", 1)
+    local speedwalk = _spm_getspeedwalk()
+    local reversespeedwalk = _spm_getspeedwalkreverse()
+    output = "stations."..StartName.."_"..EndName.." = \""..StartID.."\"\r\n"
+    output = output.."stations."..EndName.."_"..StartName.." = \""..EndID.."\"\r\n"
+    output = output.."speedwalklist."..StartName.."_"..EndName.." = \""..speedwalk.."\"\r\n"
+    output = output.."speedwalklist."..EndName.."_"..StartName.." = \""..reversespeedwalk.."\""
+    if safety == "yes" then
+      output = output.."\r\nspeedwalksafety[\""..StartName.."_"..EndName.."\"] = true\r\n"
+      output = output.."speedwalksafety[\""..EndName.."_"..StartName.."\"] = true"
+    end
+    output = output.."\r\n"
+    SetClipboard(output)
+    Note("Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.")
+  else
+    if StartID == Avalon.IID() then
+      Note("Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.")
+    else
+      Note("Für diesen Speedwalk wurden keine Eingaben registriert.")
+    end
+  end
+  CmdStack = {}
+  EndName = ""
+  EndID = ""
+  StartName = ""
+  StartID = ""
+  Active = false
+  Warned = false
 end
-if #CmdStack>0 and Avalon.IID()~=StartID then
-id=Avalon.IID()
-if not id then
-world.Note('Beim Abschluss des Speedwalks muss es ebenfalls hell sein. Dafuer wird eine Lichtquelle benoetigt, bevor der Speedwalk beendet werden kann.')
-return
-end
-EndID=id
-EndName=Avalon.Location()
-world.Note('Die Aufzeichnung ist abgeschlossen. Anschliessend werden noch folgende Informationen benoetigt:')
-StartName=utils.inputbox('Bitte den Namen der Startposition des Speedwalks eingeben:','Avalon Speedwalk Mapper',StartName)
-if StartName==nil then
-world.Note('Der Name der Startposition darf nicht leer sein. - Beispiel: min (fuer Minias)')
-return
-end
-EndName=utils.inputbox('Bitte den Namen der Endposition des Speedwalks eingeben:','Avalon Speedwalk Mapper',EndName)
-if EndName==nil then
-world.Note('Der Name der Endposition darf nicht leer sein. - Beispiel: haf (fuer Hafen)')
-return
-end
-if StartName==EndName then
-world.Note('Die Start- und Endpositionen dürfen nicht den identischen Namen haben.')
-return
-end
-safety=utils.msgbox('Führt der Speedwalk über einen ungefährlichen Pfad? (Anmerkung: Ja, für sichere Speedwalks, der nur über einen Pfad verläuft, auf dem sich keine Monster befinden)','Avalon Speedwalk Mapper','yesno','?',1)
-local speedwalk=_spm_getspeedwalk()
-local reversespeedwalk=_spm_getspeedwalkreverse()
-output='stations.'..StartName..'_'..EndName..'="'..StartID..'"\r\n'
-output=output..'stations.'..EndName..'_'..StartName..'="'..EndID..'"\r\n'
-output=output..'speedwalklist.'..StartName..'_'..EndName..'="'..speedwalk..'"\r\n'
-output=output..'speedwalklist.'..EndName..'_'..StartName..'="'..reversespeedwalk..'"'
-if safety=='yes' then
-output=output..'\r\nspeedwalksafety[\''..StartName..'_'..EndName..'\']=true\r\n'
-output=output..'speedwalksafety[\''..EndName..'_'..StartName..'\']=true'
-end
-output=output..'\r\n'
-world.SetClipboard(output)
-world.Note('Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.')
-else
-if StartID==Avalon.IID() then
-world.Note('Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.')
-else
-world.Note('Für diesen Speedwalk wurden keine Kommandos registriert.')
-end
-end
-CmdStack={}
-EndName=''
-EndID=''
-StartName=''
-StartID=''
-Active=false
-Warned=false
-end
+
 function spm_removelast()
-world.Note('Kommando \"'..CmdStack[#CmdStack]..'\" wird gelöscht.')
-CmdStack[#CmdStack]=nil
+  Note("Eingabe \""..CmdStack[#CmdStack].."\" gelöscht.")
+  CmdStack[#CmdStack] = nil
 end
+
 function _spm_getspeedwalk()
-speedwalk=''
-for index,cmd in pairs(CmdStack) do
-speedwalk=speedwalk..cmd..' '
+  speedwalk = ""
+  for index, cmd in pairs(CmdStack) do
+    speedwalk = speedwalk..cmd.." "
+  end
+  return string.sub(speedwalk, 1, -2)
 end
-return string.sub(speedwalk,1,-2)
-end
+
 function _spm_processcommand(text)
-text=string.lower(text)
-if Shorters[text] then
-text=Shorters[text]
+  text = string.lower(text)
+  if Shorters[text] then
+    text = Shorters[text]
+  end
+  if string.find(text, " ", 1, true) then
+    text = Replace(text, " ", "_", true)
+  end
+  if (not Directives[text]) and not (string.find(text, "kletter", 1, true) == 1) and not (string.find(text, "schwimm", 1, true) == 1) and (not Warned) then
+    Note("Diese Eingabe ist dem Speedwalk-Mapper nicht bekannt. Falls diese Eingabe für die Aufnahme nicht vorgesehen war, kannst Du es mit \"spm z\" wieder entfernen.")
+    Warned = true
+  end
+  if #CmdStack == 0 then
+    CmdStack[#CmdStack+1] = text
+    return
+  end
+  split = utils.split(text, "_")
+  lastsplit = utils.split(CmdStack[#CmdStack], "_")
+  if Directives[text] and CmdStack[#CmdStack] == Directives[text] then
+    CmdStack[#CmdStack] = nil
+    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
+  elseif (string.find(text, "kletter", 1, true) == 1) and (Directives[split[2]]) and (lastsplit[2] == Directives[split[2]]) then
+    CmdStack[#CmdStack] = nil
+    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
+  elseif (string.find(text, "schwimm", 1, true) == 1) and (Directives[split[2]]) and (lastsplit[2] == Directives[split[2]]) then
+    CmdStack[#CmdStack] = nil
+    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
+  else
+    CmdStack[#CmdStack+1] = text
+  end
 end
-if string.find(text,' ',1,true) then
-text=world.Replace(text,' ','_',true)
-end
-if (not Directives[text]) and not (string.find(text,'kletter',1,true)==1) and not (string.find(text,'schwimm',1,true)==1) and (not Warned) then
-world.Note('Dieses Kommando ist dem Speedwalk Mapper unbekannt. Falls dieses Kommando für die Aufnahme nicht vorgesehen war, können Sie es jetzt mit Hilfe des Kommandos \"spm z\" entfernen.')
-Warned=true
-end
-if #CmdStack==0 then
-CmdStack[#CmdStack+1]=text
-return
-end
-split=utils.split(text,'_')
-lastsplit=utils.split(CmdStack[#CmdStack],'_')
-if Directives[text] and CmdStack[#CmdStack]==Directives[text] then
-CmdStack[#CmdStack]=nil
-world.Note('Dieses und vorheriges Kommando gelöscht, da die beiden sich gegenseitig aufheben.')
-elseif (string.find(text,'kletter',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
-CmdStack[#CmdStack]=nil
-world.Note('Dieses und vorheriges Kommando gelöscht, da die Kommandos sich gegenseitig aufheben.')
-elseif (string.find(text,'schwimm',1,true)==1) and (Directives[split[2]]) and (lastsplit[2]==Directives[split[2]]) then
-CmdStack[#CmdStack]=nil
-world.Note('Dieses und vorheriges Kommando gelöscht, da die beiden sich gegenseitig aufheben.')
-else
-CmdStack[#CmdStack+1]=text
-end
-end
+
 function _spm_getspeedwalkreverse()
-speedwalk=''
-for i = #CmdStack, 1, -1 do
-cmd=CmdStack[i]
-split=utils.split(cmd,'_')
-if Directives[cmd] then
-cmd=Directives[cmd]
-elseif string.find(cmd,'kletter',1,true)==1 and Directives[split[2]] then
-cmd=split[1]..'_'..Directives[split[2]]
-elseif string.find(cmd,'schwimm',1,true)==1 and Directives[split[2]] then
-cmd=split[1]..'_'..Directives[split[2]]
-else
-cmd=utils.inputbox('Das eingegebene Kommando \"'..cmd..'\" konnte nicht automatisch umgekehrt werden. Bitte die umgekehrte Variante dieses Kommandos eingeben, dass dieser bei der Umkehrung verwendet werden kann: ','Avalon Speedwalk Mapper',cmd)
-if cmd==nil then
-world.Note('Es muss ein umgekehrtes Kommando angegeben werden.')
-return
+  speedwalk = ""
+  for i = #CmdStack, 1, -1 do
+    cmd = CmdStack[i]
+    split = utils.split(cmd, "_")
+    if Directives[cmd] then
+      cmd = Directives[cmd]
+    elseif string.find(cmd, "kletter", 1, true) == 1 and Directives[split[2]] then
+      cmd = split[1].."_"..Directives[split[2]]
+    elseif string.find(cmd, "schwimm", 1, true) == 1 and Directives[split[2]] then
+      cmd = split[1].."_"..Directives[split[2]]
+    else
+      cmd = utils.inputbox("Die Eingabe \""..cmd.."\" konnte nicht automatisch umgekehrt werden. Bitte die umgekehrte Variante eingeben, dass dieser bei der Umkehrung verwendet werden kann: ", "Avalon-Speedwalk-Mapper", cmd)
+      if cmd == nil then
+        Note("Es muss eine umgekehrte Eingabe verwendet werden.")
+        return
+      end
+    end
+    speedwalk = speedwalk..cmd.." "
+  end
+  return string.sub(speedwalk, 1, -2)
 end
-end
-speedwalk=speedwalk..cmd..' '
-end
-return string.sub(speedwalk,1,-2)
-end
+
 ]]>
 </script>
-
 
 </muclient>
