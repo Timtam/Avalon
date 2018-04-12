@@ -7,6 +7,7 @@ spdstationstbl={}
 spdspeed=0.3
 spdextraspeed=0.7
 spdstep=0
+spdtext = false
 
 function speedwalk_start(spd)
   if (spd == '') or (string.find(spd, '_') == nil) then
@@ -77,38 +78,38 @@ function speedwalk_list(spd)
   world.Note(msg)
 end
 
-function speedwalk_init(speedwalk, walk_on)
-  walk_on = walk_on or false
-  if walk_on == true then
-    spdstep = GetUnixTime()
-  end
+function speedwalk_init(speedwalk)
   if spdstep==0 then
     spdtbl = {}
-    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
+    spdtbl[1] = utils.split(speedwalk, " ")
     spdind = {1,1}
-    spdstep = GetUnixTime()
-    speedwalk_process()
+    spdstep = GetUnixTime() - 1000
+    speedwalk_process(true)
   else
     spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
     world.Note("Der neue Speedwalk wurde an den momentan laufenden angehängt.")
   end
 end
 
-function speedwalk_process()
-  if spdstep > 0 then
-    current_time=GetUnixTime()
-    continue_time=spdstep
-    if spdind[2]>1 then
-      if string.len(spdtbl[spdind[1]][spdind[2]]) <= 2 then
-        continue_time = continue_time + spdspeed
-      else
-        continue_time = continue_time + spdextraspeed
-      end
+function speedwalk_process(text_incoming)
+  text_incoming = text_incoming or false
+  if spdstep == 0 then
+    return
+  end
+  current_time = GetUnixTime()
+  continue_time = spdstep
+  if spdind[2]>1 then
+    if string.len(spdtbl[spdind[1]][spdind[2]]) <= 2 then
+      continue_time = continue_time + spdspeed
+    else
+      continue_time = continue_time + spdextraspeed
     end
-    if continue_time > current_time then
-      world.DoAfterSpecial(continue_time - current_time, "speedwalk_process()", sendto.script)
-      return
-    end
+  end
+  if text_incoming == true then
+    spdtext = true
+  end
+  if continue_time > current_time or spdtext == false then
+    return
   end
   if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
     if (Dunkel == 1) then
@@ -121,9 +122,6 @@ function speedwalk_process()
       speedwalk_deinit()
       return
     end
-  end
-  if spdstep == 0 then
-    return
   end
   command = string.gsub(spdtbl[spdind[1]][spdind[2]], '_', ' ')
   world.Execute(command)
@@ -152,8 +150,8 @@ function speedwalk_break()
     if not spdtbl[spdind[1]][spdind[2]] then
       return
     end
-    speedwalk_init(nil, true)
-    speedwalk_process()
+    spdstep = GetUnixTime() - 1000
+    speedwalk_process(true)
   end
 end
 
@@ -170,4 +168,5 @@ end
 
 function speedwalk_deinit()
   spdstep = 0
+  spdtext = false
 end

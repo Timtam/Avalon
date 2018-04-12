@@ -5466,8 +5466,12 @@ end
 
 function OnPluginScreendraw(type, log, line)
   if type == 0 then
-    speedwalk_process()
+    speedwalk_process(true)
   end
+end
+
+function OnPluginTick()
+  speedwalk_process()
 end
 
 ]]>
