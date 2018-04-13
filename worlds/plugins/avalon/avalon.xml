@@ -4533,6 +4533,11 @@ end
 
 OnAvalonDunkel = function(type, message)
   Dunkel = tonumber(message)
+  if callbacktbl.DUNKEL then
+    for ci,cf in pairs(callbacktbl.DUNKEL) do
+      cf(Dunkel)
+    end
+  end
 end
 
 OnAvalonRSoul = function(type, message)
@@ -4605,6 +4610,11 @@ OnAvalonRoomID = function(type, message)
     Y = tonumber(utils.split(tmessage[4],"=")[2])
   else
     Y = nil
+  end
+  if callbacktbl.ROOMID then
+    for ci,cf in pairs(callbacktbl.ROOMID) do
+      cf(id, name, X, Y)
+    end
   end
   if id ~= RoomID then
     station_name = stations_getnamebyroomid(id)
