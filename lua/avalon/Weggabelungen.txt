@@ -1,0 +1,19 @@
+Station;Beschreibung
+Gabelung1;Minias
+gabelung2;Bauernhof
+gabelung3;U-Turm
+gabelung4;Wegweiser nahe Abtei
+gabelung5;Zwergental Süd
+gabelung6;Zwergental Nord
+gabelung7;Dhungar
+gabelung8;Corona
+gabelung9;UW-Eingang
+gabelung10;Camp Baralon (Schwefelwüste Nord)
+gabelung11;Skalewar
+gabelung12;Schwefelwüste Süd
+gabelung13;Tiefebene
+gabelung14;Kapelle (Rilauven)
+gabelung15;Febracim-Tempel
+gabelung16;Moor der Untoten Nord
+gabelung17;Nekromantengilde
+gabelung18;Jasthan (Moor der Untoten Süd)
