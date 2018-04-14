@@ -4505,11 +4505,7 @@ function OnAvalonLogin()
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
   psnd("Player/Login.ogg")
-  if callbacktbl.LOGIN ~=nil then
-    for ci,cf in pairs(callbacktbl.LOGIN) do
-      cf()
-    end
-  end
+  call_callback('LOGIN')
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -4533,22 +4529,14 @@ end
 
 OnAvalonDunkel = function(type, message)
   Dunkel = tonumber(message)
-  if callbacktbl.DUNKEL then
-    for ci,cf in pairs(callbacktbl.DUNKEL) do
-      cf(Dunkel)
-    end
-  end
+  call_callback('DUNKEL', Dunkel)
 end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  if callbacktbl.CHANNEL ~=nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonSoul = function(type, message)
@@ -4569,11 +4557,7 @@ OnAvalonComm=function(type,message)
     psnd("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
-  if callbacktbl.CHANNEL ~=nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonChannel = function(type, message)
@@ -4590,11 +4574,7 @@ OnAvalonChannel = function(type, message)
     return
   end
   world.Execute(";history_add "..channel.."="..text)
-  if callbacktbl.CHANNEL ~= nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonRoomID = function(type, message)
@@ -4611,11 +4591,7 @@ OnAvalonRoomID = function(type, message)
   else
     Y = nil
   end
-  if callbacktbl.ROOMID then
-    for ci,cf in pairs(callbacktbl.ROOMID) do
-      cf(id, name, X, Y)
-    end
-  end
+  call_callback('ROOMID', id, name, X, Y)
   if id ~= RoomID then
     station_name = stations_getnamebyroomid(id)
     if station_name ~= nil then
@@ -4665,42 +4641,26 @@ OnAvalonTP = function(message, ntp)
   play_tp(ntp)
   g_tp=ntp
   combat_music()
-  if callbacktbl.TP then
-    for ci,cf in pairs(callbacktbl.TP) do
-      cf(g_tp)
-    end
-  end
+  call_callback('TP', g_tp)
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
   play_sp(nsp)
   g_sp=nsp
-  if callbacktbl.SP then
-    for ci,cf in pairs(callbacktbl.SP) do
-      cf(g_sp)
-    end
-  end
+  call_callback('SP', g_sp)
 end
 
 OnAvalonMP=function(message,nmp)
   g_mp=tonumber(nmp)
-  if callbacktbl.MP then
-    for ci,cf in pairs(callbacktbl.MP) do
-      cf(g_mp)
-    end
-  end
+  call_callback('MP', g_mp)
 end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
   g_ap = nap
-  if callbacktbl.AP then
-    for ci,cf in pairs(callbacktbl.AP) do
-      cf(g_ap)
-    end
-  end
+  call_callback('AP', g_ap)
 end
 
 OnAvalonMaxTP=function(message,value)
@@ -4724,11 +4684,10 @@ end
 
 -- Magician: nur noch als Uebergangsloesung, muss mal in die einzelnen Handler zerlegt werden
 OnAvalonMax = function()
-  if callbacktbl.MAX and (g_max_tp ~=nil and g_max_sp ~=nil and g_max_ap ~=nil) then
-    for ci,cf in pairs(callbacktbl.MAX) do
-      cf(g_max_tp,g_max_sp,g_max_ap)
-    end
+  if g_max_tp == nil or g_max_sp == nil or g_max_ap == nil then
+    return
   end
+  call_callback('MAX', g_max_tp, g_max_sp, g_max_ap)
 end
 
 function OnPluginInstall()
@@ -4847,11 +4806,7 @@ function OnPluginInstall()
 end
 
 function OnPluginClose()
-  if callbacktbl.CLOSE then
-    for ci,cf in pairs(callbacktbl.CLOSE) do
-      cf()
-    end
-  end
+  call_callback('CLOSE')
   configtbl.settings.Warnings=spells_retrievewarnings()
   Ini.write('config.dat', configtbl)
 end
@@ -5096,11 +5051,7 @@ function OnPluginDisconnect()
   RoomName = ""
   stopifplaying(hmusic)
   hmusic = nil
-  if callbacktbl.LOGOUT ~=nil then
-    for ci,cf in pairs(callbacktbl.LOGOUT) do
-      cf()
-    end
-  end
+  call_callback('LOGOUT')
 end
 
 function switch_mute()
@@ -5482,6 +5433,14 @@ end
 
 function OnPluginTick()
   speedwalk_process()
+end
+
+function call_callback(handle, ...)
+  if callbacktbl[handle] ~= nil then
+    for ci,cf in pairs(callbacktbl[handle]) do
+      cf(unpack({select(1, ...)}))
+    end
+  end
 end
 
 ]]>
