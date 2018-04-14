@@ -66,6 +66,7 @@
 <script>
 <![CDATA[
 require("avalon.speedwalking.speedwalking")
+Path = require("pl.path")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
@@ -87,6 +88,17 @@ function OnAvalonDunkel(dunkel)
 end
 
 function OnAvalonRoomID(id, name, x, y)
+  if id ~= RoomID then
+    station_name = stations_getnamebyroomid(id)
+    if station_name ~= nil then
+      if (Path.exists(GetInfo(74).."Stations/"..station_name..".ogg")) then
+        stationsnd = GetInfo(74).."Stations/"..station_name..".ogg"
+      else
+        stationsnd = GetInfo(74).."Stations/Misc.ogg"
+      end
+      Avalon.PSND(stationsnd)
+    end
+  end
   RoomID = id
 end
 
