@@ -79,7 +79,7 @@ function PluginInstall()
   Avalon.HookCallback('DUNKEL', OnAvalonDunkel)
   Avalon.HookCallback('ROOMID', OnAvalonRoomID)
   Avalon.HookCallback('CLOSE', OnAvalonClose)
-  SafeSpeedwalks = Avalon.GetConfig('speedwalking', 'safe') or 1
+  SafeSpeedwalks = Avalon.GetConfig('settings', 'SafeSpeedwalks') or 1
 end
 
 function OnAvalonDunkel(dunkel)

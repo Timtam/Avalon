@@ -212,20 +212,20 @@ function PluginInstall()
     avalon.HookCallback("CHANNEL",chats)
     for cn,cc in pairs(channelcolours) do
       ctext=avalon.GetConfig("messagebox","custom"..tostring(cc).."text")
-      if ctext ~= 0 then
+      if ctext ~= nil then
         world.SetCustomColourText(cc,ctext)
       end
       cback=avalon.GetConfig("messagebox","custom"..tostring(cc).."back")
-      if cback ~= 0 then
+      if cback ~= nil then
         world.SetCustomColourBackground(cc,cback)
       end
     end
-    timestamp = not (avalon.GetConfig("messagebox","timestamp") == "false")
-    echo = not (avalon.GetConfig("messagebox","echo") == "false")
+    timestamp = not (avalon.GetConfig("messagebox","timestamp") or "false" == "false")
+    echo = not (avalon.GetConfig("messagebox","echo") or "false" == "false")
 
     date_format = avalon.GetConfig("messagebox","date_format")
-    WINDOW_WIDTH = tonumber(avalon.GetConfig("messagebox","WINDOW_WIDTH"))
-    WINDOW_HEIGHT = tonumber(avalon.GetConfig("messagebox","WINDOW_HEIGHT"))
+    WINDOW_WIDTH = tonumber(avalon.GetConfig("messagebox","WINDOW_WIDTH") or 0)
+    WINDOW_HEIGHT = tonumber(avalon.GetConfig("messagebox","WINDOW_HEIGHT") or 0)
     -- Dummy window to get font characteristics
     check (WindowCreate (Win, 0, 0, 1, 1, 0, 0, theme.WINDOW_BACKGROUND) )
     check (WindowFont(Win, "bodyfont"..Win, BODY_FONT_NAME, BODY_FONT_SIZE))

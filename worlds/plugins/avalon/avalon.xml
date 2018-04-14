@@ -4722,9 +4722,9 @@ function OnPluginInstall()
   PPI.Expose('GetConfig',
     function(table,key)
       if configtbl[table]==nil then
-        return 0
+        return nil
       end
-      return configtbl[table][key] or 0
+      return configtbl[table][key]
     end)
   PPI.Expose('SetConfig',
     function(table,key,value)
