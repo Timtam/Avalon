@@ -9,6 +9,13 @@ spdextraspeed=0.7
 spdstep=0
 spdtext = false
 
+function GetUnixTime()
+  world.CallPlugin(world.GetPluginVariable("", "time"), "time", "")
+  rtime = world.GetPluginVariable(world.GetPluginVariable("", "time"), "UnixTime")
+  rtime = world.Replace(rtime, ",", ".", false)
+  return tonumber(rtime)
+end
+
 function speedwalk_start(spd)
   if (spd == '') or (string.find(spd, '_') == nil) then
     speedwalk_list(spd)
@@ -22,7 +29,7 @@ function speedwalk_start(spd)
     end
     return
   end
-  if (configtbl.settings.SafeSpeedwalks == 1) then
+  if (SafeSpeedwalks == 1) then
     if not stations[spd] then
       world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
       spdstationstbl[#spdstationstbl+1] = ''
@@ -111,7 +118,7 @@ function speedwalk_process(text_incoming)
   if continue_time > current_time or spdtext == false then
     return
   end
-  if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
+  if (SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= '') then
     if (Dunkel == 1) then
       world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
       speedwalk_deinit()

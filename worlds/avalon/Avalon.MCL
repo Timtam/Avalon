@@ -229,6 +229,7 @@
    date_saved="2013-10-23 09:29:43"
   >
   <variable name="avalon">02dade4f6131c8d67e85c7ee</variable>
+  <variable name="time">1cb498c9a895e1f5af23cbc8</variable>
   <variable name="mxp_ap">30</variable>
   <variable name="mxp_max_ap">96</variable>
   <variable name="mxp_max_sp">157</variable>

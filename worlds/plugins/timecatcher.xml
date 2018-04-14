@@ -32,7 +32,7 @@
 <![CDATA[
 function time()
 {
-world.SetVariable('AvalonUnixTime',new Date().getTime()/1000.0)
+  world.SetVariable('UnixTime',new Date().getTime()/1000.0)
 }
 ]]>
 </script>

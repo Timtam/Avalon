@@ -4324,7 +4324,6 @@ hmusic=nil
 LastCommand=nil
 mxp_output=false
 PlayerLevel=nil
-timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
 plugintbl[2]="LuaAudio.xml"
@@ -5172,9 +5171,9 @@ function gildendummy(start)
 end
 
 function GetUnixTime()
-  world.CallPlugin(timepluginid,"time","")
-  rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
-  rtime=world.Replace(rtime,',','.',false)
+  world.CallPlugin(world.GetPluginVariable("", "time"), "time", "")
+  rtime = world.GetPluginVariable(world.GetPluginVariable("", "time"), "UnixTime")
+  rtime = world.Replace(rtime, ",", ".", false)
   return tonumber(rtime)
 end
 
