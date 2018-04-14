@@ -1,5 +1,4 @@
 require("pairsbykeys")
-require("pairsbykeys")
 
 function stations_getspeedwalksbyroomid(roomid)
   rettbl = {}

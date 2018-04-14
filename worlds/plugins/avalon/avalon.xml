@@ -1062,22 +1062,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="In einem unkonzentrierten Moment kommst Du ins Trudeln *"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_breaklegs()</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Du kannst Deine Beine wieder bewegen."
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_break()</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ploetzlich erscheint eine grosse Welle, und Du verschluckst Wasser. *"
    sequence="100"
    send_to="12"
@@ -3538,22 +3522,6 @@
   <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
   <trigger
-   match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
-   enabled="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_breaklegs()</send>
-  </trigger>
-  <trigger
-   match="Du findest wieder festen Halt."
-   enabled="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_break()</send>
-  </trigger>
-  <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
    enabled="y"
    sequence="100"
@@ -4103,16 +4071,9 @@
    enabled="y"
    send_to="12"
    sequence="100"
+   keep_evaluating="y"
   >
   <send>print_position()</send>
-</alias>
-  <alias
-   match="safespeedwalks_switch"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>safespeedwalks_switch()</send>
 </alias>
   <alias
    match="switch_mute"
@@ -4187,29 +4148,12 @@
   <send>tts_switch()</send>
 </alias>
   <alias
-   match="speedwalk_break"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_break()</send>
-</alias>
-  <alias
    match="az"
    enabled="y"
    send_to="12"
    sequence="100"
   >
   <send>spells_status()</send>
-</alias>
-  <alias
-   match="^/(.*?)$"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   regexp="y"
-  >
-  <send>speedwalk_start("%1")</send>
 </alias>
   <alias
    match="^!(.*?)$"
@@ -4389,11 +4333,12 @@ plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
-plugintbl[8]="avalon/speedwalk_mapper.xml"
-plugintbl[9]="avalon/healthbar.xml"
-plugintbl[10]="avalon/message_window.xml"
-plugintbl[11]="avalon/kompass.xml"
-plugintbl[12]="avalon/updater.xml"
+plugintbl[8]="avalon/speedwalking.xml"
+plugintbl[9]="avalon/speedwalk_mapper.xml"
+plugintbl[10]="avalon/healthbar.xml"
+plugintbl[11]="avalon/message_window.xml"
+plugintbl[12]="avalon/kompass.xml"
+plugintbl[13]="avalon/updater.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4412,19 +4357,16 @@ configtbl.settings.APBar=1
 configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
-configtbl.settings.SafeSpeedwalks=1
 configtbl.settings.NumpadWalk=5
 configtbl.settings.RepeatCommand=0
 configtbl.settings.MXP=0
 configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
-world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
 world.Accelerator("F3", "spbar_switch")
 world.Accelerator("F4", "apbar_switch")
-world.Accelerator("F5", "safespeedwalks_switch")
 world.Accelerator("F6", "repeatcommand_switch")
 world.Accelerator("F9", "volume_down")
 world.Accelerator("F10", "volume_up")
@@ -4435,7 +4377,7 @@ world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
-require("avalon.speedwalking")
+require("avalon.stations")
 require("pairsbykeys")
 Dir = require('pl.dir')
 File = require('pl.file')
@@ -5141,37 +5083,6 @@ function print_position()
   if (X and Y) then
     world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end
-  if (configtbl.settings.SafeSpeedwalks == 1) then
-    list = stations_getspeedwalksbyroomid(RoomID)
-    if (#list == 1) then
-      msg = "\nVon hier startet ein Speedwalk:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg..' (sicher)'
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
-    end
-    if (#list > 1) then
-      msg = "\nVon hier starten "..#list.." Speedwalks:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg.." (sicher)"
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
-    end
-  end
 end
 
 function rgbtohex(r, g, b)
@@ -5381,7 +5292,7 @@ function hook_callback(event,callback)
   if Tablex.find(callbacktbl[event],callback) ~=nil then
     return false
   end
-  callbacktbl[event][#(callbacktbl[event])]=callback
+  callbacktbl[event][#(callbacktbl[event])+1]=callback
   return true
 end
 
@@ -5425,16 +5336,6 @@ function repeatcommand_switch()
   psnd("Misc/ConfigSwitch.ogg")
 end
 
-function OnPluginScreendraw(type, log, line)
-  if type == 0 then
-    speedwalk_process(true)
-  end
-end
-
-function OnPluginTick()
-  speedwalk_process()
-end
-
 function call_callback(handle, ...)
   if callbacktbl[handle] ~= nil then
     for ci,cf in pairs(callbacktbl[handle]) do
@@ -5442,7 +5343,6 @@ function call_callback(handle, ...)
     end
   end
 end
-
 ]]>
 </script>
 

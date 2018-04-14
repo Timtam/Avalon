@@ -155,17 +155,6 @@ function speedwalk_break()
   end
 end
 
-function safespeedwalks_switch()
-  if (configtbl.settings.SafeSpeedwalks == 1) then
-    configtbl.settings.SafeSpeedwalks = 0
-    world.Note("Die Speedwalks werden nicht mehr abgesichert.")
-  else
-    configtbl.settings.SafeSpeedwalks = 1
-    world.Note("Die Speedwalks werden nun abgesichert.")
-  end
-  psnd("Misc/ConfigSwitch.ogg")
-end
-
 function speedwalk_deinit()
   spdstep = 0
   spdtext = false
