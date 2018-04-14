@@ -103,7 +103,7 @@ function OnAvalonRoomID(id, name, x, y)
 end
 
 function OnAvalonClose()
-  Avalon.SetConfig('speedwalking', 'safe', SafeSpeedwalks)
+  Avalon.SetConfig('settings', 'SafeSpeedwalks', SafeSpeedwalks)
 end
 
 function OnPluginScreendraw(type, log, line)
