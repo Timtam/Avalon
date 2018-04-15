@@ -24,6 +24,36 @@ function stations_getnamebyroomid(roomid)
   return nil
 end
 
+stations = require("avalon.speedwalking.station_handler")()
+
+stations:add(
+             "alo",
+             "zentrum",
+             "raum/097f6fb19bff88530b738f2bfe0bbca2",
+             "Das Stadtzentrum von Alotria."
+            )
+
+stations:add(
+             "los",
+             "ale",
+             "raum/3ad9d9e430091b746159a1f2f9b0a85a",
+             "Burg Alemnia auf Losaria."
+            )
+
+stations:add(
+             "ner",
+             "abt",
+             "raum/b3870144ea3bbbe607804126f3b9c39e",
+             "Die Abtei der Klerikergilde auf Nereid."
+            )
+
+stations:add(
+             "nereid",
+             "alo",
+             "raum/e4fdca13e0ce2426c14221923d632606",
+             "Das Westtor der Stadt Alotria."
+            )
+
 abt = "raum/b3870144ea3bbbe607804126f3b9c39e"
 ale = "raum/3ad9d9e430091b746159a1f2f9b0a85a"
 alo = "raum/e4fdca13e0ce2426c14221923d632606"
@@ -770,3 +800,5 @@ stations.zlm2_aloz = "raum/5a763dd5120b0c73bd1f37a35ec10ad4"
 stations.zlm2_ilme = "raum/00981bf47fa9ab872770071450b168e5"
 stations.zlm2_mio = "raum/2b3183b7d87c288e131177d2489b2744"
 stations.zlm2_tol = "raum/00981bf47fa9ab872770071450b168e5"
+
+return stationhandler
