@@ -1,205 +1,609 @@
-require("pairsbykeys")
-
-function stations_getspeedwalksbyroomid(roomid)
-  rettbl = {}
-  for name, id in pairsByKeys(stations) do
-    if id == roomid then
-      rettbl[#rettbl+1] = name
-    end
-  end
-  return rettbl
-end
-
-function stations_getnamebyroomid(roomid)
-  for name, id in pairsByKeys(stations) do
-    if id == roomid then
-      split_name = utils.split(name, "_")
-      if split_name ~= nil then
-        return split_name[1]
-      else
-        return nil
-      end
-    end
-  end
-  return nil
-end
-
 stations = require("avalon.speedwalking.station_handler")()
 
 stations:add(
-             "alo",
+             "affenkopfinsel",
+             "hafen",
+             "raum/692ec42948d7aad6c261e86fe1234164",
+             "Hafen der Affenkopfinsel."
+            )
+
+stations:add(
+             "alotria",
+             "baecker",
+             "raum/f8f9e9059a7816fe410b03e1e29e2b9f",
+             "Der Baecker in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "bank",
+             "raum/1d69ce4b15bd02f4b94d8259c20ac567",
+             "Die Bank in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "wlm",
+             "raum/e4fdca13e0ce2426c14221923d632606",
+             "Der Grossschild-Lehrmeister etwas ausserhalb von Alotria."
+            )
+
+stations:add(
+             "alotria",
              "zentrum",
              "raum/097f6fb19bff88530b738f2bfe0bbca2",
              "Das Stadtzentrum von Alotria."
             )
 
 stations:add(
-             "los",
-             "ale",
+             "amphibos",
+             "augyra",
+             "raum/5c4729dd518971211d80e300b3cad21c",
+             "Das Tor der Stadt Augyra."
+            )
+
+stations:add(
+             "amphibos",
+             "hafen",
+             "raum/33629ffcefb2c08a5300379e03ca1d78",
+             "Der Hafen auf Amphibos."
+            )
+
+stations:add(
+             "amphibos",
+             "kergora",
+             "raum/cd559901a2abd4bb5abf4b94e03caf52",
+             "Eingang der Stadt Kergora."
+            )
+
+stations:add(
+             "amphibos",
+             "mossul",
+             "raum/a1ce5765b0568f98dde987fdf9749ca4",
+             "Eingang der Goblinburg Mossul."
+            )
+
+stations:add(
+             "amphibos",
+             "tor",
+             "raum/e75e105053625dce0f77ce56e879f25c",
+             "Das Mondtor auf Amphibos."
+            )
+
+stations:add(
+             "amphibos",
+             "uminotokai",
+             "raum/3f269e1432e735846f68838e82cc3f8f",
+             "Eingang der Unterwasserstadt Uminotokai."
+            )
+
+stations:add(
+             "ashar",
+             "bank",
+             "raum/b2b59cdcef2d62792c6b8224f161403d",
+             "Die Bankfilliale in Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "zentrum",
+             "raum/02ce2ff2b6aeb3cedb12fe94f460375c",
+             "Der Platz der Helden in Ashar."
+            )
+
+stations:add(
+             "augyra",
+             "bank",
+             "raum/80623eb8d90046ad2a76a39714d7493e",
+             "Die Bank in Augyra."
+            )
+
+stations:add(
+             "corona",
+             "bank",
+             "raum/04b7d55df416e3dbd5276b14d4276f1a",
+             "Die Bank in Corona."
+            )
+
+stations:add(
+             "corona",
+             "zentrum",
+             "raum/e43e39a401794260080bd8750d5a0618",
+             "Der Platz des Lebens in Corona."
+            )
+
+stations:add(
+             "dhungar",
+             "dhungar",
+             "raum/e004dda09968e9a63464ea2191c6cede",
+             "Der Einstieg des Transportkorbes auf Ebene 1."
+            )
+
+stations:add(
+             "dhungar",
+             "dhungar3",
+             "raum/62733b0fc85683d590345e3ba8fe9bcc",
+             "Der Einstieg des Transportkorbes auf Ebene 3."
+            )
+
+stations:add(
+             "dhungar",
+             "uw",
+             "raum/ea6e4bf47829217cddc775896ba171d0",
+             "Unterwelteingang in Dhungar."
+            )
+
+stations:add(
+             "flotsam",
+             "solgard",
+             "raum/4dcd12d34937f70e6663c3c08fc270d1",
+             "Das Zentrum des Marktplatzes der Stadt Solgard."
+            )
+
+stations:add(
+             "holbytla",
+             "limarch",
+             "raum/8b1b11b86e425b2d294c51cf4fa9fb26",
+             "Der Eingang zur Hobbitstadt Limarch."
+            )
+
+stations:add(
+             "holbytla",
+             "tor",
+             "raum/c565529eba8cd3d895f8b655c9887f39",
+             "Das Mondtor auf Holbytla."
+            )
+
+stations:add(
+             "jasthan",
+             "alchemisten",
+             "raum/fc7483910cff1ce37edd9c5e86941407",
+             "Die Alchemistenzunft in Jasthan."
+            )
+
+stations:add(
+             "lorinand",
+             "tor",
+             "raum/74688eb5925421882cdac14816da908b",
+             "Das Mondtor auf Lorinand."
+            )
+
+stations:add(
+             "losaria",
+             "alemnia",
              "raum/3ad9d9e430091b746159a1f2f9b0a85a",
              "Burg Alemnia auf Losaria."
             )
 
 stations:add(
-             "ner",
-             "abt",
+             "losaria",
+             "hafen",
+             "raum/5b6339ba77f2a76b4abe286c940c78fb",
+             "Der Hafen auf Losaria."
+            )
+
+stations:add(
+             "losaria",
+             "jeresa",
+             "raum/e688785d8598c6d3111e8b59d1262dc2",
+             "Eingang der Stadt Jeresa."
+            )
+
+stations:add(
+             "losaria",
+             "tor",
+             "raum/337aa69225378494ce4dc7fb0c9ea90c",
+             "Das Mondtor auf Losaria."
+            )
+
+stations:add(
+             "losaria",
+             "vern",
+             "raum/3e3b7d45fe19f21941cbb708faf3da20",
+             "Eingang des kleinen Fischerdorfes Vern."
+            )
+
+stations:add(
+             "nereid",
+             "abtei",
              "raum/b3870144ea3bbbe607804126f3b9c39e",
              "Die Abtei der Klerikergilde auf Nereid."
             )
 
 stations:add(
              "nereid",
-             "alo",
+             "alotria",
              "raum/e4fdca13e0ce2426c14221923d632606",
              "Das Westtor der Stadt Alotria."
             )
 
-abt = "raum/b3870144ea3bbbe607804126f3b9c39e"
-ale = "raum/3ad9d9e430091b746159a1f2f9b0a85a"
-alo = "raum/e4fdca13e0ce2426c14221923d632606"
-aloz = "raum/097f6fb19bff88530b738f2bfe0bbca2"
-amp = "raum/e75e105053625dce0f77ce56e879f25c"
-amphaf = "raum/33629ffcefb2c08a5300379e03ca1d78"
-apf = "raum/516ceebb2bd54e59eb3bddd6b4519da0"
-ash = "raum/0e88b5bc7e8fb99c9ad6648af2cc6bbb"
-ashz = "raum/02ce2ff2b6aeb3cedb12fe94f460375c"
-aug = "raum/5c4729dd518971211d80e300b3cad21c"
-camp = "raum/8cc3a00b4e5e23c0eb37c3651b305ad4"
-cor = "raum/d40620bc448ec9ef50da45c8669d08a3"
-corz = "raum/e43e39a401794260080bd8750d5a0618"
-dhun = "raum/e004dda09968e9a63464ea2191c6cede"
-dhun3 = "raum/62733b0fc85683d590345e3ba8fe9bcc"
-gabelung1 = "raum/1b27bbf379e847119dbc3c057cf27e07"
-gabelung2 = "raum/7315d5cbc6df1f3580f67fdc33a4a645"
-gabelung3 = "raum/10a926a03ae8ee865a1f8e0f53659bdf"
-gabelung4 = "raum/45f11d257a10e71abe4b76b14103407f"
-gabelung5 = "raum/856a70c0c6dceece9bd5d555311469a4"
-gabelung6 = "raum/db9501a54afc76b2046acd9b74264e9a"
-gabelung7 = "raum/ee6bb675eb95fc6e7e59ae0305c44181"
-gabelung8 = "raum/002443868e33182304c6e636e63f99f5"
-gabelung9 = "raum/bb5041343e73db33909730a29a9e4a02"
-gabelung10 = "raum/0051204b8540a7ae269189be08e2fad8"
-gabelung11 = "raum/72542524d6201680601b88baa68b3ab3"
-gabelung12 = "raum/1a872d736adcf89acf72723e335d4954"
-gabelung13 = "raum/3b9843eaba4a9021990cdf4e6ffa87c5"
-gabelung14 = "raum/4a1a0cacb794f1729e691923fbe0ca73"
-gabelung15 = "raum/a9085ca05de303523ee2d6e2495bebc6"
-gabelung16 = "raum/58b87fc2e0ec6a3e7f1196e0ec4de97e"
-gabelung17 = "raum/71c52b203b8b0722914f5d07a397eb3c"
-gabelung18 = "raum/41f8abea25ad9f275bbfc7aa5d76589f"
-gwen = "raum/5c8450f4ee0ad1e55a0f44f8c78a2a68"
-hol = "raum/c565529eba8cd3d895f8b655c9887f39"
-ilme = "raum/fc982966d5469bea1cd5fe8266997d58"
-jas = "raum/828ebb06d8a937078d9e60d12833e3d0"
-jer = "raum/e688785d8598c6d3111e8b59d1262dc2"
-kap = "raum/1ba559412b6b5fbd0c3eb0c0eb36a1ba"
-ker = "raum/cd559901a2abd4bb5abf4b94e03caf52"
-lim = "raum/8b1b11b86e425b2d294c51cf4fa9fb26"
-lor = "raum/74688eb5925421882cdac14816da908b"
-los = "raum/337aa69225378494ce4dc7fb0c9ea90c"
-loshaf = "raum/5b6339ba77f2a76b4abe286c940c78fb"
-min = "raum/1363d90eb536ec54b8e893d46d73a598"
-mio = "raum/acc6e519aac3febde7f3e636f480f6fd"
-mos = "raum/a1ce5765b0568f98dde987fdf9749ca4"
-nekro = "raum/56fa846ef63ed7a117850e41fa09ebb5"
-nuel = "raum/dcf94ff3e035aa03992c851656e958c4"
-quelle = "raum/7091aabf721fbd5946bdd405d995fb0c"
-ril = "raum/2759daa74ac2124b61ca8ce2fc8fe5a6"
-san = "raum/9677492e37dc76e4b21b25510f9945f1"
-see = "raum/51023cd5e5ae352dd197ca431a276f4f"
-siedlung = "raum/f34ca159045f297cd45d667e1852d5ab"
-skal = "raum/0f0102c1b06ce6279e809d5da3af02f5"
-sol = "raum/4dcd12d34937f70e6663c3c08fc270d1"
-teich = "raum/42b0bf70c4cc2757c0f43a24eb522944"
-tempel = "raum/4fd73582eb0349d5e216b35044bc5490"
-tief = "raum/3b9843eaba4a9021990cdf4e6ffa87c5"
-tin = "raum/70f3d751ed30fc18d5657849bbf8e931"
-tinschmied = "raum/47acbba45a73652cab06466ec20686dc"
-toe = "raum/488b2fbd12ae3419d9c7cb392a3f779d"
-tol = "raum/0e15167756cacc054c033751d387272b"
-tolhaf = "raum/c4f3980a3bb496da0d4646f4195625d6"
-umi = "raum/3f269e1432e735846f68838e82cc3f8f"
-us = "raum/2cdee587999e673b852cc1475accce37"
-uw_oben = "raum/ea6e4bf47829217cddc775896ba171d0"
-uw = "raum/3399a4ad659c3e478a13ab13c10c3a03"
-ver = "raum/3e3b7d45fe19f21941cbb708faf3da20"
-wal = "raum/d51b6dc32c681867d4168ceb5408f8ce"
-yol = "raum/89036876d7fc916f521e7e1f3d4dafd9"
+stations:add(
+             "nereid",
+             "apfel",
+             "raum/516ceebb2bd54e59eb3bddd6b4519da0",
+             "Ein Gasthof in einem ueberdimensionalen Apfel."
+            )
 
-stations = {}
-stations.abt_gabelung4 = abt
-stations.abt_tor = abt
-stations.affe_gol = "raum/692ec42948d7aad6c261e86fe1234164"
-stations.alch_jas = "raum/fc7483910cff1ce37edd9c5e86941407"
-stations.ale_haf = ale
-stations.ale_jer = ale
-stations.ale_los = ale
-stations.ale_schmied = ale
-stations.alo_barde = alo
-stations.alo_form = alo
-stations.alo_gabelung3 = alo
-stations.alo_orks = alo
-stations.alo_papierfalter = alo
-stations.alo_tor = alo
-stations.alo_wahrsager = alo
-stations.alo_wlm = "raum/e4fdca13e0ce2426c14221923d632606"
-stations.aloz_baecker = aloz
-stations.aloz_bank = aloz
-stations.aloz_gast1 = aloz
-stations.aloz_gast2 = aloz
-stations.aloz_haendler = aloz
-stations.aloz_haf = aloz
-stations.aloz_leder = aloz
-stations.aloz_makler = aloz
-stations.aloz_post = aloz
-stations.aloz_werkzeug = aloz
-stations.aloz_zlm1 = aloz
-stations.aloz_zlm2 = aloz
-stations.amp_aug = amp
-stations.amp_haf = amp
-stations.amp_ker = amp
-stations.amp_umi = amp
-stations.amp_wl = amp
-stations.anl_gabelung10 = "raum/94c562aea6a4c8dbfa806a300e606a67"
-stations.anl_jas = "raum/ee3c3c1c0253411c59d08f840b03bfa5"
+stations:add(
+             "nereid",
+             "ashar",
+             "raum/0e88b5bc7e8fb99c9ad6648af2cc6bbb",
+             "Das Nordtor der Stadt Ashaar."
+            )
+
+stations:add(
+             "nereid",
+             "corona",
+             "raum/d40620bc448ec9ef50da45c8669d08a3",
+             "Der Eingang der Dunkelelfenstadt Corona."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung1",
+             "raum/1b27bbf379e847119dbc3c057cf27e07",
+             "Die Weggabelung nordoestlich von Minias."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung2",
+             "raum/7315d5cbc6df1f3580f67fdc33a4a645",
+             "Weggabelung bei einem Bauernhof und einem ueberdimensionalen Apfel."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung3",
+             "raum/10a926a03ae8ee865a1f8e0f53659bdf",
+             "Weggabelung bei einem umgedrehten Turm."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung4",
+             "raum/45f11d257a10e71abe4b76b14103407f",
+             "Weggabelung naehe der Abtei der Klerikergilde."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung5",
+             "raum/856a70c0c6dceece9bd5d555311469a4",
+             "Weggabelung im Sueden des Zwergentals."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung6",
+             "raum/db9501a54afc76b2046acd9b74264e9a",
+             "Weggabelung im Norden des Zwergentals."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung7",
+             "raum/ee6bb675eb95fc6e7e59ae0305c44181",
+             "Weggabelung bei der Zwergenburg Dhungar."
+            )
+
+stations:add(
+             "nereid",
+             "gabelung8",
+             "raum/002443868e33182304c6e636e63f99f5",
+             "Weggabelung nahe der Dunkelelfenstadt Corona."
+            )
+
+stations:add(
+             "nereid",
+             "minias",
+             "raum/1363d90eb536ec54b8e893d46d73a598",
+             "Der Marktplatz der Stadt Minias."
+            )
+
+stations:add(
+             "nereid",
+             "miobaas",
+             "raum/acc6e519aac3febde7f3e636f480f6fd",
+             "Der Fischmarkt in Miobaas."
+            )
+
+stations:add(
+             "nereid",
+             "nuel",
+             "raum/dcf94ff3e035aa03992c851656e958c4",
+             "Zugang zur Zwergenkapelle."
+            )
+
+stations:add(
+             "nereid",
+             "quelle",
+             "raum/7091aabf721fbd5946bdd405d995fb0c",
+             "Eine heilende Quelle auf Nereid."
+            )
+
+stations:add(
+             "nereid",
+             "sanduz",
+             "raum/9677492e37dc76e4b21b25510f9945f1",
+             "Suedtor der Stadt Sanduz."
+            )
+
+stations:add(
+             "nereid",
+             "teich",
+             "raum/42b0bf70c4cc2757c0f43a24eb522944",
+             "Der Teich und Zugang zur Stadt Walhalla."
+            )
+
+stations:add(
+             "nereid",
+             "usagoor",
+             "raum/2cdee587999e673b852cc1475accce37",
+             "Eingang zur Zwergenstadt Usagoor."
+            )
+
+stations:add(
+             "ruwenda",
+             "argan",
+             "raum/d6fa8bda433d41d3bb6ea24d52d0351d",
+             "Der Meister aller Waffen, Argan Foryr."
+            )
+
+stations:add(
+             "tintagel",
+             "gwendon",
+             "raum/5c8450f4ee0ad1e55a0f44f8c78a2a68",
+             "Eingang der Stadt Gwendon."
+            )
+
+stations:add(
+             "tintagel",
+             "schmiede",
+             "raum/47acbba45a73652cab06466ec20686dc",
+             "Zweigstelle der Schmiedezunft auf Tintagel."
+            )
+
+stations:add(
+             "tintagel",
+             "siedlung",
+             "raum/f34ca159045f297cd45d667e1852d5ab",
+             "Eingang der Elfensiedlung auf Tintagel."
+            )
+
+stations:add(
+             "tintagel",
+             "tor",
+             "raum/70f3d751ed30fc18d5657849bbf8e931",
+             "Das Mondtor auf Tintagel."
+            )
+
+stations:add(
+             "tolsgal",
+             "hafen",
+             "raum/c4f3980a3bb496da0d4646f4195625d6",
+             "Der Hafen der Insel Tolsgal."
+            )
+
+stations:add(
+             "tolsgal",
+             "ilmelorn",
+             "raum/fc982966d5469bea1cd5fe8266997d58",
+             "Der Eingang der Baumstadt der Elfen Ilmelorn."
+            )
+
+stations:add(
+             "tolsgal",
+             "tor",
+             "raum/0e15167756cacc054c033751d387272b",
+             "Das Mondtor der Insel Tolsgal."
+            )
+
+stations:add(
+             "uw",
+             "anleger1",
+             "raum/94c562aea6a4c8dbfa806a300e606a67",
+             "Der Schiffsanleger naehe des Camps Baralon."
+            )
+
+stations:add(
+             "uw",
+             "anleger2",
+             "raum/ee3c3c1c0253411c59d08f840b03bfa5",
+             "Der Schiffsanleger naehe Jasthan."
+            )
+
+stations:add(
+             "uw",
+             "anleger3",
+             "raum/99400fa30f84fbef5e0ae22073d3103c",
+             "Der Schiffsanleger naehe Skalewar."
+            )
+
+stations:add(
+             "uw",
+             "anleger4",
+             "raum/9707dcb670ff8099379ba47d070cec66",
+             "Der Schiffsanleger naehe dem Tempel der Febracim."
+            )
+
+stations:add(
+             "uw",
+             "anleger5",
+             "raum/4a57118ca30109b0f8c302b90f042ee2",
+             "Der Schiffsanleger naehe der Tiefebene."
+            )
+
+stations:add(
+             "uw",
+             "anleger6",
+             "raum/dbdd3fa4c2e44faedb10b180a535d955",
+             "Der Schiffsanleger naehe der Totenebene."
+            )
+
+stations:add(
+             "uw",
+             "camp",
+             "raum/8cc3a00b4e5e23c0eb37c3651b305ad4",
+             "Eingang des Camps Baralon."
+            )
+
+stations:add(
+             "uw",
+             "gabelung1",
+             "raum/bb5041343e73db33909730a29a9e4a02",
+             "Weggabelung suedwestlich des Unterwelteinganges bei Dhungar."
+            )
+
+stations:add(
+             "uw",
+             "gabelung2",
+             "raum/0051204b8540a7ae269189be08e2fad8",
+             "Weggabelung beim Unterweltcamp Baralon."
+            )
+
+stations:add(
+             "uw",
+             "gabelung3",
+             "raum/72542524d6201680601b88baa68b3ab3",
+             "Weggabelung naehe der Stadt Skalewar."
+            )
+
+stations:add(
+             "uw",
+             "gabelung4",
+             "raum/1a872d736adcf89acf72723e335d4954",
+             "Weggabelung in der suedlichen Schwefelwueste."
+            )
+
+stations:add(
+             "uw",
+             "gabelung5",
+             "raum/3b9843eaba4a9021990cdf4e6ffa87c5",
+             "Weggabelung in der Tiefebene."
+            )
+
+stations:add(
+             "uw",
+             "gabelung6",
+             "raum/4a1a0cacb794f1729e691923fbe0ca73",
+             "Weggabelung bei der Kapelle im Sumpf bei Rilauven."
+            )
+
+stations:add(
+             "uw",
+             "gabelung7",
+             "raum/a9085ca05de303523ee2d6e2495bebc6",
+             "Weggabelung bei dem Tempel der Febracim."
+            )
+
+stations:add(
+             "uw",
+             "gabelung8",
+             "raum/58b87fc2e0ec6a3e7f1196e0ec4de97e",
+             "Weggabelung im noerdlichen Moor der Untoten."
+            )
+
+stations:add(
+             "uw",
+             "gabelung9",
+             "raum/71c52b203b8b0722914f5d07a397eb3c",
+             "Weggabelung bei der Enklave der Nekromantengilde."
+            )
+
+stations:add(
+             "uw",
+             "gabelung10",
+             "raum/41f8abea25ad9f275bbfc7aa5d76589f",
+             "Weggabelung bei Jasthan."
+            )
+
+stations:add(
+             "uw",
+             "jasthan",
+             "raum/828ebb06d8a937078d9e60d12833e3d0",
+             "Der Eingang der Stadt Jasthan."
+            )
+
+stations:add(
+             "uw",
+             "kapelle",
+             "raum/1ba559412b6b5fbd0c3eb0c0eb36a1ba",
+             "Die Kapelle im Sumpf bei Rilauven."
+            )
+
+stations:add(
+             "uw",
+             "nekromanten",
+             "raum/56fa846ef63ed7a117850e41fa09ebb5",
+             "Eingang zur Enklave der Nekromanten."
+            )
+
+stations:add(
+             "uw",
+             "rilauven",
+             "raum/2759daa74ac2124b61ca8ce2fc8fe5a6",
+             "Marktplatz der Stadt Rilauven."
+            )
+
+stations:add(
+             "uw",
+             "see",
+             "raum/51023cd5e5ae352dd197ca431a276f4f",
+             "Ein Quecksilbersee in der Unterwelt."
+            )
+
+stations:add(
+             "uw",
+             "skalewar",
+             "raum/0f0102c1b06ce6279e809d5da3af02f5",
+             "Vor den Toren der Stadt Skalewar."
+            )
+
+stations:add(
+             "uw",
+             "tempel",
+             "raum/4fd73582eb0349d5e216b35044bc5490",
+             "Der uralte Tempel der Febracim."
+            )
+
+stations:add(
+             "uw",
+             "tiefebene",
+             "raum/3b9843eaba4a9021990cdf4e6ffa87c5",
+             "Die Tiefebene in der Unterwelt."
+            )
+
+stations:add(
+             "uw",
+             "toe",
+             "raum/488b2fbd12ae3419d9c7cb392a3f779d",
+             "Zugang zur Totenebene in der Unterwelt."
+            )
+
+stations:add(
+             "uw",
+             "uw",
+             "raum/3399a4ad659c3e478a13ab13c10c3a03",
+             "Der beliebteste Zugang zur Unterwelt naehe Dhungar."
+            )
+
+stations:add(
+             "uw",
+             "yoldatfeste",
+             "raum/89036876d7fc916f521e7e1f3d4dafd9",
+             "Eingang der Yoldatfeste."
+            )
+
+stations:add(
+             "walhalla",
+             "walhalla",
+             "raum/d51b6dc32c681867d4168ceb5408f8ce",
+             "Der Eingang zur Stadt Walhalla."
+            )
+
+-- muessen noch oben eingepflegt werden
 stations.anl_run = "raum/418d074076dd1044b3d7e112409e1ebc"
-stations.anl_skal = "raum/99400fa30f84fbef5e0ae22073d3103c"
-stations.anl_tempel = "raum/9707dcb670ff8099379ba47d070cec66"
-stations.anl_tief = "raum/4a57118ca30109b0f8c302b90f042ee2"
-stations.anl_toe = "raum/dbdd3fa4c2e44faedb10b180a535d955"
-stations.apf_gabelung2 = apf
-stations.arg_ruw = "raum/d6fa8bda433d41d3bb6ea24d52d0351d"
-stations.ash_barde = ash
-stations.ash_dichter = ash
-stations.ash_druide = ash
-stations.ash_form = ash
-stations.ash_gabelung2 = ash
-stations.ash_san = ash
-stations.ash_tor = ash
-stations.ash_wlm = ash
-stations.ashz_bank = ashz
-stations.ashz_gast = ashz
-stations.ashz_haendler = ashz
-stations.ashz_lotterie = ashz
-stations.ashz_makler = ashz
-stations.ashz_post = ashz
-stations.ashz_therme = ashz
-stations.ashz_wlm = ashz
-stations.ashz_zlm = ashz
-stations.aug_amp = aug
-stations.aug_bank = aug
-stations.aug_haendler = aug
-stations.aug_haf = aug
-stations.aug_ker = aug
-stations.aug_makler = aug
-stations.aug_mos = aug
-stations.aug_troph = aug
-stations.aug_winsel = aug
-stations.baecker_aloz = "raum/f8f9e9059a7816fe410b03e1e29e2b9f"
-stations.bank_aloz = "raum/1d69ce4b15bd02f4b94d8259c20ac567"
-stations.bank_aug = "raum/80623eb8d90046ad2a76a39714d7493e"
-stations.bank_ashz = "raum/b2b59cdcef2d62792c6b8224f161403d"
-stations.bank_corz = "raum/04b7d55df416e3dbd5276b14d4276f1a"
 stations.bank_dhun2 = "raum/10c05c2717a68aad52dbca1ea23197d5"
 stations.bank_haendler = "raum/b2b59cdcef2d62792c6b8224f161403d"
 stations.bank_ilme = "raum/44f0bc731a6c345759b1859f1f12d666"
@@ -231,32 +635,8 @@ stations.barde_tol = "raum/350250fc59347acbda9b914b82fbe134"
 stations.bote_mio = "raum/f47930938fc00693093fcf024719e252"
 stations.bruecke_muw = "raum/2f355ff38379d6d36adecb498d95f930"
 stations.bruecke_muw2 = "raum/2f355ff38379d6d36adecb498d95f930"
-stations.camp_druide = camp
-stations.camp_gabelung10 = camp
-stations.camp_kap = camp
-stations.camp_mine = camp
-stations.camp_see = camp
-stations.camp_skal = camp
-stations.camp_stangenschloss = camp
-stations.camp_tempel = camp
-stations.camp_tief = camp
-stations.camp_ts = camp
-stations.camp_uw = camp
 stations.cinnog_tol = "raum/f4e20ad706907d4ba3fd1eec4ae799b1"
-stations.cor_druide = cor
-stations.cor_form = cor
-stations.cor_gabelung8 = cor
-stations.cor_tor = cor
-stations.corz_bank = corz
-stations.corz_haendler = corz
 stations.corz_haf = "raum/e43e39a401794260080bd8750d5a0618"
-stations.corz_makler = corz
-stations.corz_post = corz
-stations.corz_wlm = corz
-stations.corz_zlm = corz
-stations.dhun_gabelung7 = dhun
-stations.dhun_haf = dhun
-stations.dhun_uw = dhun
 stations.dhun_wlm1 = "raum/e004dda09968e9a63464ea2191c6cede"
 stations.dhun_wlm2 = "raum/e004dda09968e9a63464ea2191c6cede"
 stations.dhun0_haendler = "raum/5dfe55b0c8d769e865fd85ba63127fbc"
@@ -268,7 +648,6 @@ stations.dhun2_makler = "raum/7380c211fa363daa4ea79a849a74027a"
 stations.dhun2_post = "raum/7380c211fa363daa4ea79a849a74027a"
 stations.dhun3_wlm1 = "raum/62733b0fc85683d590345e3ba8fe9bcc"
 stations.dhun3_wlm2 = "raum/62733b0fc85683d590345e3ba8fe9bcc"
-stations.dhun3_zlm = dhun3
 stations.dichter_ash = "raum/07e730bb54564fd4c15a3e4e7d8e325d"
 stations.dinsel_hoehle = "raum/f0b13f44c08fb2291f8ccddb81588a94"
 stations.dinsel_jas = "raum/4405d3cc8b5a9de94d8683b2e7fa38b6"
@@ -296,79 +675,15 @@ stations.form_gabelung7 = "raum/9c68db550b53110505961914c47c4df5"
 stations.form_min = "raum/fec14a5d61754d7d899ec62d15527aa2"
 stations.form_sol = "raum/a070d55ba96aa72706f9369a7d44bd6c"
 stations.form_tol = "raum/caa9d6a78d7f9c7fd34774cc9b4e049a"
-stations.gabelung1_gabelung2 = gabelung1
-stations.gabelung1_gabelung8 = gabelung1
-stations.gabelung1_min = gabelung1
-stations.gabelung1_mio = gabelung1
-stations.gabelung1_san = gabelung1
-stations.gabelung2_apf = gabelung2
-stations.gabelung2_ash = gabelung2
-stations.gabelung2_gabelung1 = gabelung2
-stations.gabelung2_gabelung3 = gabelung2
-stations.gabelung3_alo = gabelung3
-stations.gabelung3_gabelung2 = gabelung3
-stations.gabelung3_gabelung4 = gabelung3
-stations.gabelung3_teich = gabelung3
-stations.gabelung4_abt = gabelung4
-stations.gabelung4_gabelung3 = gabelung4
-stations.gabelung4_gabelung5 = gabelung4
-stations.gabelung5_gabelung4 = gabelung5
-stations.gabelung5_gabelung6 = gabelung5
-stations.gabelung5_gabelung8 = gabelung5
-stations.gabelung5_imker = gabelung5
-stations.gabelung6_barde = gabelung6
-stations.gabelung6_druide = gabelung6
-stations.gabelung6_gabelung5 = gabelung6
-stations.gabelung6_gabelung7 = gabelung6
-stations.gabelung6_tor = gabelung6
-stations.gabelung6_us = gabelung6
-stations.gabelung7_dhun = gabelung7
-stations.gabelung7_form = gabelung7
-stations.gabelung7_gabelung6 = gabelung7
-stations.gabelung7_nuel = gabelung7
-stations.gabelung7_uw = gabelung7
-stations.gabelung8_cor = gabelung8
-stations.gabelung8_gabelung1 = gabelung8
-stations.gabelung8_gabelung5 = gabelung8
-stations.gabelung9_gabelung10 = gabelung9
-stations.gabelung9_gabelung14 = gabelung9
-stations.gabelung9_uw = gabelung9
-stations.gabelung10_anl = gabelung10
-stations.gabelung10_camp = gabelung10
-stations.gabelung10_dk = gabelung10
-stations.gabelung10_gabelung9 = gabelung10
-stations.gabelung10_gabelung11 = gabelung10
-stations.gabelung11_gabelung10 = gabelung11
-stations.gabelung11_gabelung12 = gabelung11
-stations.gabelung12_gabelung11 = gabelung12
-stations.gabelung12_gabelung13 = gabelung12
-stations.gabelung13_gabelung12 = gabelung13
-stations.gabelung14_gabelung9 = gabelung14
-stations.gabelung14_gabelung15 = gabelung14
-stations.gabelung15_gabelung14 = gabelung15
-stations.gabelung15_gabelung16 = gabelung15
-stations.gabelung16_gabelung15 = gabelung16
-stations.gabelung16_gabelung17 = gabelung16
-stations.gabelung17_gabelung16 = gabelung17
-stations.gabelung17_gabelung18 = gabelung17
-stations.gabelung18_gabelung17 = gabelung18
 stations.gast_ashz = "raum/107e0608db24dee1136396c8ef609310"
 stations.gast_dhun2 = "raum/f19e3c04c2c88c7ab61ce5e3aee6893c"
 stations.gast_haf = "raum/6a2bcbe17f0443c9203c184034235e60"
 stations.gast_min = "raum/1aa8679dae51c2b17b6b9c1883c9ef0a"
 stations.gast1_aloz = "raum/b3e12f5b9b9e4330fee7a36526cc1377"
 stations.gast2_aloz = "raum/3db33705db9d88784566b273dd29936e"
-
 stations.gol_affe = "raum/015ca4c68d90adbf6cd212253cd1706a"
 stations.gol_mio = "raum/f89471a84624f8248c978a8b8b8ceb9b"
 stations.gol_mine = "raum/015ca4c68d90adbf6cd212253cd1706a"
-stations.gwen_haendler = gwen
-stations.gwen_haf = gwen
-stations.gwen_jagd = gwen
-stations.gwen_schmied = gwen
-stations.gwen_siedlung = gwen
-stations.gwen_tin = gwen
-stations.gwen_zlm = gwen
 stations.haendler_aloz = "raum/7a71c11e797bc94301b6ba15ee48124d"
 stations.haendler_ashz = "raum/ccb82ff23c8a469373789a071b80149c"
 stations.haendler_aug = "raum/a1c751fce83838d83bcd5e0bbf72a5a5"
@@ -390,95 +705,32 @@ stations.haendler_skal = "raum/96bdfcdf4a7e0b169800ec3d4504ac39"
 stations.haendler_umi = "raum/bbbd297364e5f9a402e52af576ca5afa"
 stations.haendler_us = "raum/4ef6d4918856d027cf1d728aacc432c4"
 stations.haendler_wal = "raum/14d8914348ed7beb7294706b3c260bae"
-stations.haf_ale = loshaf
 stations.haf_aloz = "raum/e28caa04f27498834d00756f2eccd2f6"
-stations.haf_amp = amphaf
-stations.haf_aug = amphaf
-stations.haf_corz = "raum/ad9e6d2c51cc4878dfdad2e664c3cf02"
 stations.haf_dhun = "raum/e9345a4265fbf3cb3576edeb2bd9250a"
 stations.haf_dol = "raum/93804619cea283877cde3fd8a8581333"
 stations.haf_dun = "raum/c4f3980a3bb496da0d4646f4195625d6"
 stations.haf_gast = "raum/63ab4d672c1bb5fbac5bc23f3b31396b"
 stations.haf_gwen = "raum/10881e7e62b006afee9816649642327f"
 stations.haf_hol = "raum/63ab4d672c1bb5fbac5bc23f3b31396b"
-stations.haf_ilme = tolhaf
 stations.haf_jas = "raum/b303671ed42d6fc79297397fb8171c71"
-stations.haf_jer = loshaf
-stations.haf_ker = amphaf
 stations.haf_koch = "raum/63ab4d672c1bb5fbac5bc23f3b31396b"
 stations.haf_lim = "raum/63ab4d672c1bb5fbac5bc23f3b31396b"
 stations.haf_lor = "raum/51c6d00a73fae493f310ba99895a8f1e"
 stations.haf_min = "raum/a8fecc7971c9e7ec1f27e22cc0009152"
 stations.haf_sol = "raum/2bb629d877a810d8746ce7fc51884fee"
-stations.haf_tol = tolhaf
-stations.haf_umi = amphaf
-stations.haf_ver = loshaf
 stations.haf_vul = "raum/f35d335387b00ddca20c8572aef1a126"
 stations.haf2_umi = "raum/6c8a85b417c97e660fc1ca0c05986364"
 stations.hain_sol = "raum/45f6cb3c6a8b3a90ab146ec7c8c2a985"
 stations.her_hol = "raum/fbb85ec48b6ccccbdc957882e1436a2c"
 stations.her_lim = "raum/fbb85ec48b6ccccbdc957882e1436a2c"
 stations.hoehle_dinsel = "raum/e6a28e48857a6b28dd983d92de8cdd16"
-stations.hol_barde = hol
-stations.hol_farm = hol
-stations.hol_haf = hol
-stations.hol_her = hol
-stations.hol_jagd = hol
-stations.hol_koch = hol
-stations.hol_lim = hol
-stations.hol_mine = hol
 stations.htoe_wtoe = "raum/37238d5027e07dd53dff22692785455e"
-stations.ilme_bank = ilme
-stations.ilme_haendler = ilme
-stations.ilme_haf = ilme
-stations.ilme_makler = ilme
-stations.ilme_post = ilme
 stations.ilme_tol = "raum/fc982966d5469bea1cd5fe8266997d58"
-stations.ilme_uw = ilme
-stations.ilme_wlm1 = ilme
-stations.ilme_wlm2 = ilme
-stations.ilme_zlm1 = ilme
-stations.ilme_zlm2 = ilme
 stations.imker_gabelung5 = "raum/4306f333c6a0c4cdc26472e8eed13235"
 stations.jagd_gwen = "raum/6913ea429bac1520415ae076e4dc85a8"
 stations.jagd_hol = "raum/04fb02fd8d0e5212bc144eda154b05fd"
 stations.jagd_tin = "raum/6913ea429bac1520415ae076e4dc85a8"
-stations.jas_alch = jas
-stations.jas_anl = jas
-stations.jas_bank = jas
-stations.jas_dinsel = jas
-stations.jas_haendler = jas
-stations.jas_haf = jas
-stations.jas_moor = jas
-stations.jas_nekro = jas
-stations.jas_post = jas
-stations.jas_schmied = jas
-stations.jas_tempel = jas
-stations.jas_toe = jas
-stations.jas_uw = jas
-stations.jas_zlm = jas
-stations.jer_ale = jer
-stations.jer_bank = jer
-stations.jer_haendler = jer
-stations.jer_haf = jer
-stations.jer_los = jer
-stations.jer_schmied = jer
-stations.jer_ver = jer
-stations.jer_zlm = jer
-stations.kap_camp = kap
 stations.kap_ril = "raum/b266f07355fd3005a181a08a58409649"
-stations.kap_tempel = kap
-stations.kap_uw = kap
-stations.ker_amp = ker
-stations.ker_aug = ker
-stations.ker_barde = ker
-stations.ker_haendler = ker
-stations.ker_haf = ker
-stations.ker_mos = ker
-stations.ker_run = ker
-stations.ker_troph = ker
-stations.ker_wlm = ker
-stations.ker_zlm = ker
 stations.koch_haf = "raum/6675b678e153063003c188f8c021b05a"
 stations.koch_hol = "raum/6675b678e153063003c188f8c021b05a"
 stations.leder_aloz = "raum/05f376d741238d1ba03483b425d29076"
@@ -488,21 +740,6 @@ stations.lim_druide = "raum/8b1b11b86e425b2d294c51cf4fa9fb26"
 stations.lim_haf = "raum/8b1b11b86e425b2d294c51cf4fa9fb26"
 stations.lim_her = "raum/8b1b11b86e425b2d294c51cf4fa9fb26"
 stations.lim_hol = "raum/8b1b11b86e425b2d294c51cf4fa9fb26"
-stations.lim_makler = lim
-stations.lim_muehle = lim
-stations.lim_schmied = lim
-stations.lor_bank = lor
-stations.lor_barde = lor
-stations.lor_druide = lor
-stations.lor_haendler = lor
-stations.lor_haf = lor
-stations.lor_mine = lor
-stations.lor_zlm = lor
-stations.los_ale = los
-stations.los_druide = los
-stations.los_jer = los
-stations.los_ver = los
-stations.los_zlm = los
 stations.lotterie_ashz = "raum/9d818b7c3500cbbb7d0c572544616161"
 stations.makler_aloz = "raum/de69b783f8ea3872c43931a6e973ae0e"
 stations.makler_ashz = "raum/c0088c7d8ce11eaaeb3bd73bce338702"
@@ -518,38 +755,6 @@ stations.makler_skal = "raum/8a4b2dd0f70842bb825f952f949c2a27"
 stations.makler_sol = "raum/348814c0cbdcdd113b9df64c5b303025"
 stations.makler_us = "raum/d621c8b0d35ef13274b707de37c0b81f"
 stations.makler_wal = "raum/fd07ef8308a282150ab2b4dac708f092"
-stations.min_bank = min
-stations.min_druide = min
-stations.min_form = min
-stations.min_gabelung1 = min
-stations.min_gast = min
-stations.min_haf = min
-stations.min_haendler = min
-stations.min_zlm = min
-stations.min_makler = min
-stations.min_mio = min
-stations.min_post = min
-stations.min_quelle = min
-stations.min_san = min
-stations.min_schlucht = min
-stations.min_tor = min
-stations.min_uturm = min
-stations.min_wlm = min
-stations.mio_bank = mio
-stations.mio_barde = mio
-stations.mio_bote = mio
-stations.mio_gabelung1 = mio
-stations.mio_gol = mio
-stations.mio_haendler = mio
-stations.mio_lederer = mio
-stations.mio_makler = mio
-stations.mio_min = mio
-stations.mio_schmied = mio
-stations.mio_stadtwache = mio
-stations.mio_wlm1 = mio
-stations.mio_wlm2 = mio
-stations.mio_zlm1 = mio
-stations.mio_zlm2 = mio
 stations.mine_camp = "raum/eb3dde366ada7897e1103a7801c96aac"
 stations.mine_gol = "raum/87008bdc3ba56efa1ca520b015701dcf"
 stations.mine_hol = "raum/9ed8f65d6b60683ef545cc85b3818e41"
@@ -561,19 +766,12 @@ stations.mine_us = "raum/57fb1988f4257901d9c8fbf15be170b8"
 stations.mine_uw = "raum/1fb0b2b48e96335ca5d09ab2137315f3"
 stations.moor_jas = "raum/a80d2d97e77a5d6f7f2bf9c2d2d19364"
 stations.moor_nekro = "raum/a80d2d97e77a5d6f7f2bf9c2d2d19364"
-stations.mos_aug = mos
-stations.mos_haendler = mos
-stations.mos_ker = mos
 stations.muehle_lim = "raum/82dfb814ead873764262de7e97b1c39d"
 stations.muw_bruecke = "raum/cc1dab284a9b7f636cc0132d7809f14a"
 stations.muw_muw2 = "raum/cc1dab284a9b7f636cc0132d7809f14a"
 stations.muw_spalt = "raum/cc1dab284a9b7f636cc0132d7809f14a"
 stations.muw2_bruecke = "raum/fa2f28795adbaec8c3e9696b4eed49ea"
 stations.muw2_muw = "raum/fa2f28795adbaec8c3e9696b4eed49ea"
-stations.nekro_jas = nekro
-stations.nekro_moor = nekro
-stations.nekro_uw = nekro
-stations.nuel_gabelung7 = nuel
 stations.orks_alo = "raum/5bc897b006a7f64bd8ac5606382df2b6"
 stations.papierfalter_alo = "raum/c2b98600fcedfc6d50dac98f665c47f9"
 stations.por_mine = "raum/d54cd830e2e89f97d28ed47e89e46995"
@@ -590,110 +788,33 @@ stations.post_ril = "raum/22913a107af377e7d8693810175444b7"
 stations.post_skal = "raum/85cf388c659b5a0f7e50bdd840f6837f"
 stations.post_umi = "raum/fce83aab0989212dde965098d8928c90"
 stations.post_wal = "raum/a0081825fc22e3f5b5df95ad167b21e9"
-stations.quelle_min = quelle
-stations.quelle_san = quelle
-stations.ril_bank = ril
-stations.ril_barde = ril
-stations.ril_haendler = ril
-stations.ril_kap = ril
-stations.ril_zlm = ril
-stations.ril_por = ril
-stations.ril_post = ril
-stations.ril_wlm = ril
 stations.run_anl = "raum/b2023aafb9649be63f90005ff426b6ae"
 stations.run_ker = "raum/6a54972b10db962348fc83844408ab3d"
 stations.ruw_arg = "raum/85371d2ae3f3317b3a55ba03192c9eaa"
 stations.ruw_barde = "raum/85371d2ae3f3317b3a55ba03192c9eaa"
 stations.ruw_mine = "raum/85371d2ae3f3317b3a55ba03192c9eaa"
 stations.ruw_scheidung = "raum/85371d2ae3f3317b3a55ba03192c9eaa"
-stations.san_ash = san
-stations.san_barde = san
 stations.san_gabelung1 = "raum/9677492e37dc76e4b21b25510f9945f1"
-stations.san_min = san
-stations.san_quelle = san
-stations.san_tor = san
 stations.scheidung_ruw = "raum/cc17c2ed10db4a59cd6ad058e642ea4c"
 stations.schlucht_min = "raum/fa398dc34af4fa62e711156aeb872a9d"
 stations.schmied_ale = "raum/6329f60dfefc8695b7059262f8622be4"
 stations.schmied_dhun0 = "raum/927255e39142c68b0ebd8b58203aef0b"
-stations.schmied_gwen = tinschmied
 stations.schmied_jas = "raum/1a82ead269b2721ac31eb904da6bdfd8"
 stations.schmied_jer = "raum/6329f60dfefc8695b7059262f8622be4"
 stations.schmied_lim = "raum/2a76d2fbc07a9652d09bd5a82d81b0fc"
 stations.schmied_mio = "raum/789d26f599d0a4a067868c775fd5c930"
-stations.schmied_siedlung = tinschmied
 stations.schmied_skal = "raum/5ad5d019caf27facca08754f01b9ed9b"
 stations.schmied_sol = "raum/7dbdb1b5fd8ce7253812bd195c424fa3"
 stations.schmied_tol = "raum/68c6eaf2f63c009c0fe0fe7714c74154"
 stations.schmied_ver = "raum/6329f60dfefc8695b7059262f8622be4"
 stations.schmied_wal = "raum/b717b0217faaa6a1e4c85256df3fbcb5"
 stations.schmied_yol = "raum/a2fa00bb6ef4b2a4e696a6d6c0375d54"
-stations.see_camp = see
-stations.see_tief = see
-stations.siedlung_gwen = siedlung
-stations.siedlung_makler = siedlung
-stations.siedlung_schmied = siedlung
-stations.siedlung_tin = siedlung
-stations.skal_anl = skal
-stations.skal_bank = skal
-stations.skal_barde = skal
-stations.skal_camp = skal
-stations.skal_haendler = skal
-stations.skal_zlm = skal
-stations.skal_makler = skal
-stations.skal_post = skal
-stations.skal_schmied = skal
-stations.skal_tief = skal
-stations.skal_troph = skal
-stations.skal_uw = skal
-stations.skal_wlm1 = skal
-stations.skal_wlm2 = skal
 stations.slm_us = "raum/a15f8fde34f5facc75282a8b6f180e8c"
-stations.sol_barde = sol
-stations.sol_druide = sol
-stations.sol_form = sol
-stations.sol_haf = sol
-stations.sol_hain = sol
-stations.sol_makler = sol
-stations.sol_schmied = sol
 stations.spalt_muw = "raum/affa52b16202badbcc39569dcdcca1db"
 stations.stadtwache_mio = "raum/284936d58da548de2d3ede75dd9b1958"
 stations.stangenschloss_camp = "raum/b98595f9a188b3407975e41160f65ea5"
 stations.tee_tol = "raum/b7999d53f30564e073f3f72e18fd5bcd"
-stations.teich_gabelung3 = teich
-stations.teich_tor = teich
-stations.teich_wunsch = teich
-stations.tempel_anl = tempel
-stations.tempel_camp = tempel
-stations.tempel_jas = tempel
-stations.tempel_kap = tempel
-stations.tempel_uw = tempel
 stations.therme_ashz = "raum/254aea651ae9a8784604c1215f58bf95"
-stations.tief_anl = tief
-stations.tief_camp = tief
-stations.tief_see = tief
-stations.tief_skal = tief
-stations.tin_barde = tin
-stations.tin_gwen = tin
-stations.tin_jagd = tin
-stations.tin_mine = tin
-stations.tin_siedlung = tin
-stations.tin_wl = tin
-stations.toe_anl = toe
-stations.toe_jas = toe
-stations.toe_uw = toe
-stations.toe_yol = toe
-stations.tol_barde = tol
-stations.tol_cinnog = tol
-stations.tol_druide = tol
-stations.tol_form = tol
-stations.tol_haf = tol
-stations.tol_ilme = tol
-stations.tol_leder = tol
-stations.tol_tee = tol
-stations.tol_zlm1 = tol
-stations.tol_zlm2 = tol
-stations.tol_schmied = tol
 stations.tor_abt = "raum/25f532c1edc30a82cd8fd82977f853ba"
 stations.tor_alo = "raum/2bcb8b05509ef84ce6bb36dd50729e2c"
 stations.tor_ash = "raum/bbf61be3631c2f5f9402bce3ffd9a795"
@@ -707,48 +828,11 @@ stations.troph_ker = "raum/f6bb25e56443f99ee2cf5f356181e0b9"
 stations.troph_skal = "raum/b8e61ebe866ff63145f17072c0fa7ba5"
 stations.troph_us = "raum/52d9081687d2baae6b2b58eeee1127e8"
 stations.ts_camp = "raum/8505084c87b434c16ba439f047abaab3"
-stations.umi_amp = umi
-stations.umi_bank = umi
-stations.umi_haendler = umi
-stations.umi_haf = umi
-stations.umi_haf2 = umi
-stations.umi_post = umi
-stations.umi_zlm = umi
-stations.umi_wlm = umi
-stations.us_bank = us
-stations.us_gabelung6 = us
-stations.us_haendler = us
-stations.us_makler = us
-stations.us_mine = us
-stations.us_slm = us
-stations.us_troph = us
 stations.uturm_min = "raum/d3b273a63b2841bc3c5fcc81bf0a31a3"
-stations.uw_camp = uw
-stations.uw_dhun = uw_oben
-stations.uw_gabelung7 = uw_oben
-stations.uw_gabelung9 = uw
 stations.uw_ilme = "raum/f0edb0c34886662762d179996fa6f634"
-stations.uw_jas = uw
-stations.uw_kap = uw
-stations.uw_mine = uw
-stations.uw_nekro = uw
-stations.uw_por = uw
-stations.uw_skal = uw
-stations.uw_tempel = uw
-stations.uw_toe = uw
 stations.uw_wal = "raum/e59ff1b5893d131413aa6d385a9a4a29"
-stations.ver_haf = ver
-stations.ver_jer = ver
-stations.ver_los = ver
-stations.ver_schmied = ver
 stations.vul_haf = "raum/1bfb2548b8f2f988985d0e5a2cae3339"
 stations.wahrsager_alo = "raum/4823cf696d43a9df30d39500380e4278"
-stations.wal_bank = wal
-stations.wal_haendler = wal
-stations.wal_makler = wal
-stations.wal_post = wal
-stations.wal_schmied = wal
-stations.wal_uw = wal
 stations.werkzeug_aloz = "raum/6dbbd82c7075a19a116cdd56a1190397"
 stations.winsel_aug = "raum/c327fd2104050cd7cfe9f08d218df252"
 stations.wl_amp = "raum/feb6b971c32946a68ab49068fd5c5042"
@@ -773,10 +857,7 @@ stations.wlm2_mio = "raum/91eee8bab920472f7e9ffbc50983c796"
 stations.wlm2_skal = "raum/52f11a8f9bbf4c407f195c4c2369d9da"
 stations.wtoe_htoe = "raum/ef85b0602a670ba70d0c4df3b4ecbdfe"
 stations.wunsch_teich = "raum/645a3ae8528a2332752d481891cb0f8e"
-stations.yol_bank = yol
 stations.yol_dturm = "raum/89036876d7fc916f521e7e1f3d4dafd9"
-stations.yol_schmied = yol
-stations.yol_toe = yol
 stations.zlm_ashz = "raum/c754fa94bc237ff74bd32e2782b40e4f"
 stations.zlm_corz = "raum/635097e0d11f371677321c8d28563c7d"
 stations.zlm_dhun3 = "raum/964aba9a128fd841514481eaba87be7e"
@@ -799,4 +880,4 @@ stations.zlm2_ilme = "raum/00981bf47fa9ab872770071450b168e5"
 stations.zlm2_mio = "raum/2b3183b7d87c288e131177d2489b2744"
 stations.zlm2_tol = "raum/00981bf47fa9ab872770071450b168e5"
 
-return stationhandler
+return stations

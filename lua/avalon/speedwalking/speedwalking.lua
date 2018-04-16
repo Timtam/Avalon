@@ -1,5 +1,5 @@
-require("avalon.speedwalks")
-require("avalon.stations")
+stations = require("avalon.stations")
+stations:parse_speedwalks(require("avalon.speedwalks"))
 
 spdtbl={}
 spdind={0,0}
