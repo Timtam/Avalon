@@ -25,6 +25,12 @@ function StationHandler:find(identifier)
   res = self.stations:filter(function(s)
     return s:matches(identifier)
   end)
+  exact_matches = res:filter(function(s)
+    return s:matches(identifier, true)
+  end)
+  if exact_matches:len() == 1 then
+    return exact_matches
+  end
   return res
 end
 
@@ -65,9 +71,10 @@ function StationHandler:find_path(source, target, path)
     return path
   end
   local shortest = nil
-  for _, t in pairs(source.paths) do
+  local _, t
+  for _, t in ipairs(source.paths) do
     if not path:contains(t.target) then
-      newpath = self:find_path(t.target, target, path, iteration)
+      newpath = self:find_path(t.target, target, path)
       if newpath then
         if not shortest or Utils.path_length(newpath) < Utils.path_length(shortest) then
           shortest = newpath
