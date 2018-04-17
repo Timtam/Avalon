@@ -11,6 +11,11 @@ function Station:_init(domain, name, id, description)
   self.id = id:lower()
   self.description = description
   self.paths = List.new()
+  mt = getmetatable(self)
+  mt.__eq = function(self, s)
+    return s.domain == self.domain and s.name == self.name and s.id == self.id and s.description == self.description
+  end
+  setmetatable(self, mt)
 end
 
 function Station:matches(identifier)
@@ -35,6 +40,15 @@ end
 
 function Station:add_path(target, path)
   self.paths:append(Path(path, target))
+end
+
+function Station:find_path(target)
+  for _, p in pairs(self.paths) do
+    if p.target == target then
+      return p
+    end
+  end
+  return nil
 end
 
 return Station
