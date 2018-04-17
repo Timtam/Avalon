@@ -81,7 +81,7 @@ stations:add(
              "amphibos",
              "uminotokai",
              "raum/3f269e1432e735846f68838e82cc3f8f",
-             "Eingang der Unterwasserstadt Uminotokai."
+             "Hauptplatz der Unterwasserstadt Uminotokai."
             )
 
 stations:add(
@@ -571,7 +571,7 @@ stations:add(
              "uw",
              "gabelung6",
              "raum/4a1a0cacb794f1729e691923fbe0ca73",
-             "Weggabelung bei der Kapelle im Sumpf bei Rilauven."
+             "Weggabelung bei der Kapelle (Eingang Rilauven)."
             )
 
 stations:add(
@@ -613,7 +613,7 @@ stations:add(
              "uw",
              "kapelle",
              "raum/1ba559412b6b5fbd0c3eb0c0eb36a1ba",
-             "Die Kapelle im Sumpf bei Rilauven."
+             "Altar in der Kapelle, Zugang Rilauven."
             )
 
 stations:add(
