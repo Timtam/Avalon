@@ -4,7 +4,7 @@ List = require("pl.list")
 Class.Path()
 
 function Path:_init(path, target)
-  self.path = List.new(utils.split(path, " "))
+  self.path = List.split(path, " ")
   self.target = target
 end
 

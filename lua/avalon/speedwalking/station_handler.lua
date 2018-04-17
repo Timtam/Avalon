@@ -21,8 +21,10 @@ function StationHandler:find(identifier)
 end
 
 function StationHandler:parse_speedwalks(speedwalks)
+  failure = 0
   parsed = 0
   for name, path in pairs(speedwalks) do
+    failure = failure + 1
     source, target = string.match(name, Const.SPEEDWALK_REGEX)
     possible_sources = self:find(source)
     if possible_sources:len() > 1 then
@@ -41,9 +43,11 @@ function StationHandler:parse_speedwalks(speedwalks)
     if possible_sources:len() == 1 and possible_targets:len() == 1 then
       possible_sources[1]:add_path(possible_targets[1], path)
       parsed = parsed + 1
+      failure = failure - 1
     end
   end
-  world.Note(tostring(parsed).." Speedwalks geladen.")
+  world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
+  world.Note(tostring(failure).." fehlerhafte Speedwalks.")
 end
 
 return StationHandler

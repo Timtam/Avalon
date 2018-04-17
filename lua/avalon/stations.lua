@@ -23,6 +23,13 @@ stations:add(
 
 stations:add(
              "alotria",
+             "barde",
+             "raum/1c302a5cf22d90bb22637ce51586eadc",
+             "Aufenthaltsort des Barden Fabian."
+            )
+
+stations:add(
+             "alotria",
              "wlm",
              "raum/e4fdca13e0ce2426c14221923d632606",
              "Der Grossschild-Lehrmeister etwas ausserhalb von Alotria."
@@ -114,6 +121,13 @@ stations:add(
 
 stations:add(
              "dhungar",
+             "bank",
+             "raum/10c05c2717a68aad52dbca1ea23197d5",
+             "Die Bank auf der zweiten Ebene von Dhungar."
+            )
+
+stations:add(
+             "dhungar",
              "dhungar",
              "raum/e004dda09968e9a63464ea2191c6cede",
              "Der Einstieg des Transportkorbes auf Ebene 1."
@@ -162,6 +176,20 @@ stations:add(
             )
 
 stations:add(
+             "jasthan",
+             "bank",
+             "raum/2073e999bab9bfd03ac0284d4bb5874d",
+             "Die Bank in Jasthan."
+            )
+
+stations:add(
+             "lorinand",
+             "bank",
+             "raum/75fa398fa51deb97a85019b70ce16b2c",
+             "Die Bank in Lorinand."
+            )
+
+stations:add(
              "lorinand",
              "tor",
              "raum/74688eb5925421882cdac14816da908b",
@@ -173,6 +201,13 @@ stations:add(
              "alemnia",
              "raum/3ad9d9e430091b746159a1f2f9b0a85a",
              "Burg Alemnia auf Losaria."
+            )
+
+stations:add(
+             "losaria",
+             "bank",
+             "raum/e60306e79b263b6b12bf1ca6bd6ad296",
+             "Die Bank in Jeresa."
             )
 
 stations:add(
@@ -201,6 +236,20 @@ stations:add(
              "vern",
              "raum/3e3b7d45fe19f21941cbb708faf3da20",
              "Eingang des kleinen Fischerdorfes Vern."
+            )
+
+stations:add(
+             "minias",
+             "bank",
+             "raum/a4f92dfb105aa948520c4ce4c7fc9883",
+             "Die Bank in Minias."
+            )
+
+stations:add(
+             "miobaas",
+             "bank",
+             "raum/f8323d89d79431f63832b6b106a515d8",
+             "Die Bank in Miobaas."
             )
 
 stations:add(
@@ -344,10 +393,24 @@ stations:add(
             )
 
 stations:add(
+             "rilauven",
+             "bank",
+             "raum/ff3e85689bd616e338062cdb65705fb4",
+             "Die Bank in Rilauven."
+            )
+
+stations:add(
              "ruwenda",
              "argan",
              "raum/d6fa8bda433d41d3bb6ea24d52d0351d",
              "Der Meister aller Waffen, Argan Foryr."
+            )
+
+stations:add(
+             "skalewar",
+             "bank",
+             "raum/f9f98ba451a4136698628df6ed6725d2",
+             "Die Bank in Skalewar."
             )
 
 stations:add(
@@ -380,6 +443,13 @@ stations:add(
 
 stations:add(
              "tolsgal",
+             "bank",
+             "raum/44f0bc731a6c345759b1859f1f12d666",
+             "Die Bank in der Elfenstadt Ilmelorn."
+            )
+
+stations:add(
+             "tolsgal",
              "hafen",
              "raum/c4f3980a3bb496da0d4646f4195625d6",
              "Der Hafen der Insel Tolsgal."
@@ -397,6 +467,20 @@ stations:add(
              "tor",
              "raum/0e15167756cacc054c033751d387272b",
              "Das Mondtor der Insel Tolsgal."
+            )
+
+stations:add(
+             "usagoor",
+             "bank",
+             "raum/e0d6ffaac273fafd37ff5d939e5d3162",
+             "Die Bank in Usagoor."
+            )
+
+stations:add(
+             "uminotokai",
+             "bank",
+             "raum/cca4c7c3175c047fc666cd5d622c465b",
+             "Die Bank der Unterwasserstadt Uminotokai."
             )
 
 stations:add(
@@ -597,28 +681,27 @@ stations:add(
 
 stations:add(
              "walhalla",
+             "bank",
+             "raum/d2107ba67442f336ed8fe2c2ae57b0eb",
+             "Die Bank in Walhalla."
+            )
+
+stations:add(
+             "walhalla",
              "walhalla",
              "raum/d51b6dc32c681867d4168ceb5408f8ce",
              "Der Eingang zur Stadt Walhalla."
             )
 
+stations:add(
+             "yoldatfeste",
+             "bank",
+             "raum/088a96fa5238fba6e9b5dfb6454e94f3",
+             "Die Bank in der Yoldatfeste."
+            )
+
 -- muessen noch oben eingepflegt werden
 stations.anl_run = "raum/418d074076dd1044b3d7e112409e1ebc"
-stations.bank_dhun2 = "raum/10c05c2717a68aad52dbca1ea23197d5"
-stations.bank_haendler = "raum/b2b59cdcef2d62792c6b8224f161403d"
-stations.bank_ilme = "raum/44f0bc731a6c345759b1859f1f12d666"
-stations.bank_jas = "raum/2073e999bab9bfd03ac0284d4bb5874d"
-stations.bank_jer = "raum/e60306e79b263b6b12bf1ca6bd6ad296"
-stations.bank_lor = "raum/75fa398fa51deb97a85019b70ce16b2c"
-stations.bank_min = "raum/a4f92dfb105aa948520c4ce4c7fc9883"
-stations.bank_mio = "raum/f8323d89d79431f63832b6b106a515d8"
-stations.bank_ril = "raum/ff3e85689bd616e338062cdb65705fb4"
-stations.bank_skal = "raum/f9f98ba451a4136698628df6ed6725d2"
-stations.bank_umi = "raum/cca4c7c3175c047fc666cd5d622c465b"
-stations.bank_us = "raum/e0d6ffaac273fafd37ff5d939e5d3162"
-stations.bank_wal = "raum/d2107ba67442f336ed8fe2c2ae57b0eb"
-stations.bank_yol = "raum/088a96fa5238fba6e9b5dfb6454e94f3"
-stations.barde_alo = "raum/1c302a5cf22d90bb22637ce51586eadc"
 stations.barde_ash = "raum/6da4291daf02cede2e6b4bf77e121003"
 stations.barde_gabelung6 = "raum/454500e19bdf9c2c9a53d26dee5339e2"
 stations.barde_hol = "raum/aa55145c1921ad6b5fe2c507df329180"
