@@ -38,13 +38,22 @@
   <send>speedwalk_break()</send>
 </alias>
   <alias
-   match="^/(.*?)$"
+   match="^/([a-zA-Z0-9]*:?[a-zA-Z0-9]*)_?([a-zA-Z0-9]*:?[a-zA-Z0-9]*)$"
    enabled="y"
    send_to="12"
    sequence="100"
    regexp="y"
   >
-  <send>speedwalk_start("%1")</send>
+  <send>speedwalk_start("%1", "%2")</send>
+</alias>
+  <alias
+   match="^/_([a-zA-Z0-9]*:?[a-zA-Z0-9]*)$"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>speedwalk_start("", "%1")</send>
 </alias>
   <alias
    match="pos"
@@ -89,10 +98,10 @@ end
 
 function OnAvalonRoomID(id, name, x, y)
   if id ~= RoomID then
-    station_name = stations_getnamebyroomid(id)
-    if station_name ~= nil then
-      if (Path.exists(GetInfo(74).."Stations/"..station_name..".ogg")) then
-        stationsnd = GetInfo(74).."Stations/"..station_name..".ogg"
+    stations = Stations:find(id)
+    if stations:len() == 1 then
+      if (Path.exists(GetInfo(74).."Stations/"..stations[1].name..".ogg")) then
+        stationsnd = GetInfo(74).."Stations/"..stations[1].name..".ogg"
       else
         stationsnd = GetInfo(74).."Stations/Misc.ogg"
       end
@@ -159,6 +168,74 @@ function safespeedwalks_switch()
     world.Note("Die Speedwalks werden nun abgesichert.")
   end
   Avalon.PSND("Misc/ConfigSwitch.ogg")
+end
+
+function speedwalk_start(from, to)
+  -- die verschiedenen faelle
+  -- es wird weder von, noch nach angegeben -> ein paar informationen
+  if from == "" and to == "" then
+    local msg = "Das Speedwalking in Avalon\n"
+    msg = msg.."In Avalon kann man von Ort zu Ort laufen, indem man den Befehl /, gefolgt von\n"
+    msg = msg.."den Start- und Zielpositionen angibt.\n"
+    msg = msg.."Die Positionen werden dabei in zwei Teile geteilt: die Domaene und den Ort.\n"
+    msg = msg.."Die Domaene gibt den uebergeordneten Bereich an, waehrend der Ort sehr\n"
+    msg = msg.."spezifisch ist. Moechte man beispielsweise von Alotria aus in die Bank in\n"
+    msg = msg.."Minias laufen, so kann man /nereid:alotria_minias:bank verwenden.\n"
+    msg = msg.."Hinweis: Die Domaene und der Ort koennen so weit wie moeglich abgekuerzt werden,\n"
+    msg = msg.."solange sie eindeutig bleiben. /ne:alo_min:bank funktioniert also auch.\n"
+    msg = msg.."Sollte es einen Ort mit einem bestimmten Namen nur ein einziges Mal geben,\n"
+    msg = msg.."koennt ihr die Domaene auch entfallen lassen."
+    msg = msg.."Eine Information zu jedem bekannten Ort bekommt ihr mittels /domaene:ort\n"
+    msg = msg.."Wenn ihr euch bereits an einem bekannten Ort befindet, reicht es auch, wenn\n"
+    msg = msg.."ihr nur die Zielposition angebt. Es reicht dann /_min:bank"
+    world.Note(msg)
+    return
+  end
+  -- es wird nur von angegeben -> wir geben ein paar informationen fuer diese location aus
+  if from ~= "" and to == "" then
+    stations = Stations:find(from)
+    if stations:len() == 0 then
+      world.Note("Es gibt keinen Ort mit diesem Namen.")
+    elseif stations:len() > 1 then
+      world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+    else
+      msg = "Name: "..stations[1].name.."\n"
+      msg = msg.."Domaene: "..stations[1].domain.."\n"
+      msg = msg.."Beschreibung: "..stations[1].description
+      world.Note(msg)
+    end
+    return
+  end
+  -- es wird nur to angegeben, wir laufen also von hier los, falls moeglich
+  if from == "" then
+    if SafeSpeedwalks == 1 and Dunkel == 1 then
+      world.Note("Um Speedwalks abzusichern, muss es auf Deinem Feld hell sein. Umschalten kannst Du die Absicherung mit der F5-Taste.")
+      return
+    end
+    stations = Stations:find(RoomID)
+  else
+    stations = Stations:find(from)
+  end
+  if stations:len() == 0 then
+    world.Note("Dieser Startpunkt ist derzeit nicht bekannt.")
+    return
+  end
+  if stations:len() > 1 then
+    world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+    return
+  end
+  from = stations[1]
+  stations = Stations:find(to)
+  if stations:len() == 0 then
+    world.Note("Dieser Zielpunkt ist derzeit nicht bekannt.")
+    return
+  end
+  if stations:len() > 1 then
+    world.Note("Dieser Zielpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+    return
+  end
+  to = stations[1]
+  speedwalk_init(from, to)
 end
 ]]>
 </script>

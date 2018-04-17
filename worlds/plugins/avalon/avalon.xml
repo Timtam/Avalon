@@ -4375,7 +4375,6 @@ world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
-require("avalon.stations")
 require("pairsbykeys")
 Dir = require('pl.dir')
 File = require('pl.file')
@@ -4673,21 +4672,6 @@ function OnPluginInstall()
         return nil
       else
         return RoomID
-      end
-    end)
-  PPI.Expose('Location',
-    function()
-      res=nil
-      for key,value in pairs(stations) do
-        if value==RoomID then
-          res=key
-          break
-        end
-      end
-      if res ~= nil then
-        return utils.split(res,'_')[1]
-      else
-        return nil
       end
     end)
   PPI.Expose('AP',

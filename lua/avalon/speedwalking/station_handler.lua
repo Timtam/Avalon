@@ -58,34 +58,8 @@ function StationHandler:parse_speedwalks(speedwalks)
   world.Note(tostring(failure).." fehlerhafte Speedwalks.")
 end
 
-function StationHandler:find_path(source, target, path, iteration)
-  iteration = iteration or 0
-  iteration = iteration + 1
+function StationHandler:find_path(source, target, path)
   path = path or List.new()
-  if Types.type(source) == 'string' then
-    possible_sources = self:find(source)
-    if possible_sources:len() > 1 then
-      world.Note("Die Startangabe ist nicht eindeutig. Mehrere Orte treffen auf diese Angabe zu.")
-      return nil
-    end
-    if possible_sources:len() == 0 then
-      world.Note("Fuer die Startangabe wurde keine Position gefunden.")
-      return nil
-    end
-    source = possible_sources[1]
-  end
-  if Types.type(target) == 'string' then
-    possible_targets = self:find(target)
-    if possible_targets:len() > 1 then
-      world.Note("Die Zielangabe ist nicht eindeutig. Mehrere Orte treffen auf diese Angabe zu.")
-      return nil
-    end
-    if possible_targets:len() == 0 then
-      world.Note("Fuer die Zielangabe wurde keine Position gefunden.")
-      return nil
-    end
-    target = possible_targets[1]
-  end
   path = path:clone():append(source)
   if source == target then
     return path
