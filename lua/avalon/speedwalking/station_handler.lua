@@ -2,7 +2,6 @@ Class = require("pl.class")
 Const = require("avalon.speedwalking.constants")
 List = require("pl.list")
 Station = require("avalon.speedwalking.station")
-Types = require("pl.types")
 Utils = require("avalon.speedwalking.utils")
 
 Class.StationHandler()
@@ -12,12 +11,6 @@ function StationHandler:_init()
 end
 
 function StationHandler:add(domain, name, id, description)
-  -- we can push a formatted station already as well
-  if Types.type(domain) == 'Station' then
-    self.stations:push(domain)
-    return
-  end
-  -- otherwise we push an entirely new one
   self.stations:push(Station(domain, name, id, description))
 end
 

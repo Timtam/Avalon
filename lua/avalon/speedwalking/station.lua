@@ -33,7 +33,7 @@ function Station:matches(identifier, exact)
     name = domain
     domain = ""
   end
-  if (domain == "" or (exact == false and String.startswith(self.domain, domain) == true) or (exact == true and self.domain == domain)) and ((exact == false and String.startswith(self.name, name)) or (exact == true and self.name == name)) then
+  if (domain == "" or String.startswith(self.domain, domain) == true) and ((exact == false and String.startswith(self.name, name)) or (exact == true and self.name == name)) then
     return true
   end
   return false
