@@ -82,6 +82,7 @@
 
 <script>
 <![CDATA[
+require("natsort")
 require("speedwalking.speedwalking")
 List = require("pl.list")
 Path = require("pl.path")
@@ -265,7 +266,7 @@ function speedwalk_list()
   end)
   for k,v in Tablex.sort(domains) do
     msg = msg..String.title(k)..":\n"
-    for _, v2 in ipairs(v:sorted()) do
+    for _, v2 in ipairs(natsort(v)) do
       msg = msg.."\t"..String.title(v2).."\n"
     end
   end

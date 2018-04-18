@@ -47,4 +47,9 @@ function Script:inverts(s)
   return false
 end
 
+function Script:destroy()
+  self.status = Const.SCRIPT_UNINITIALIZED
+  self:teardown()
+end
+
 return Script

@@ -69,7 +69,7 @@ function speedwalk_process(text_incoming)
     command = spdtbl[spdind]:pop_command()
     if Types.is_empty(command) then
       if spdtbl[spdind]:get_status() == Const.SCRIPT_SUCCESS then
-        spdtbl[spdind]:teardown()
+        spdtbl[spdind]:destroy()
         spdind = spdind + 1
         speedwalk_process(true)
       elseif spdtbl[spdind]:get_status() == Const.SCRIPT_FAILURE then
@@ -100,6 +100,9 @@ end
 function speedwalk_deinit()
   spdstep = 0
   spdtext = false
+  if spdtbl and spdind <= spdtbl:len() and Types.type(spdtbl[spdind]) ~= 'string' then
+    spdtbl[spdind]:destroy()
+  end
 end
 
 function speedwalk_running()
