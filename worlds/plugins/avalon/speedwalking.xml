@@ -38,7 +38,7 @@
   <send>speedwalk_break()</send>
 </alias>
   <alias
-   match="^/([a-zA-Z0-9]*:?[a-zA-Z0-9]*)_?([a-zA-Z0-9]*:?[a-zA-Z0-9]*)$"
+   match="^/([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)_?([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)$"
    enabled="y"
    send_to="12"
    sequence="100"
@@ -47,7 +47,7 @@
   <send>speedwalk_start("%1", "%2")</send>
 </alias>
   <alias
-   match="^/_([a-zA-Z0-9]*:?[a-zA-Z0-9]*)$"
+   match="^/_([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)$"
    enabled="y"
    send_to="12"
    sequence="100"
@@ -180,14 +180,14 @@ function speedwalk_start(from, to)
     msg = msg.."Die Positionen werden dabei in zwei Teile geteilt: die Domaene und den Ort.\n"
     msg = msg.."Die Domaene gibt den uebergeordneten Bereich an, waehrend der Ort sehr\n"
     msg = msg.."spezifisch ist. Moechte man beispielsweise von Alotria aus in die Bank in\n"
-    msg = msg.."Minias laufen, so kann man /nereid:alotria_minias:bank verwenden.\n"
+    msg = msg.."Minias laufen, so kann man /nereid.alotria_minias.bank verwenden.\n"
     msg = msg.."Hinweis: Die Domaene und der Ort koennen so weit wie moeglich abgekuerzt werden,\n"
-    msg = msg.."solange sie eindeutig bleiben. /ne:alo_min:bank funktioniert also auch.\n"
+    msg = msg.."solange sie eindeutig bleiben. /ne.alo_min.bank funktioniert also auch.\n"
     msg = msg.."Sollte es einen Ort mit einem bestimmten Namen nur ein einziges Mal geben,\n"
-    msg = msg.."koennt ihr die Domaene auch entfallen lassen."
-    msg = msg.."Eine Information zu jedem bekannten Ort bekommt ihr mittels /domaene:ort\n"
+    msg = msg.."koennt ihr die Domaene auch entfallen lassen.\n"
+    msg = msg.."Eine Information zu jedem bekannten Ort bekommt ihr mittels /domaene.ort\n"
     msg = msg.."Wenn ihr euch bereits an einem bekannten Ort befindet, reicht es auch, wenn\n"
-    msg = msg.."ihr nur die Zielposition angebt. Es reicht dann /_min:bank"
+    msg = msg.."ihr nur die Zielposition angebt. Es reicht dann /_min.bank"
     world.Note(msg)
     return
   end
@@ -197,7 +197,7 @@ function speedwalk_start(from, to)
     if stations:len() == 0 then
       world.Note("Es gibt keinen Ort mit diesem Namen.")
     elseif stations:len() > 1 then
-      world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+      world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
     else
       msg = "Name: "..stations[1].name.."\n"
       msg = msg.."Domaene: "..stations[1].domain.."\n"
@@ -221,7 +221,7 @@ function speedwalk_start(from, to)
     return
   end
   if stations:len() > 1 then
-    world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+    world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
     return
   end
   from = stations[1]
@@ -231,7 +231,7 @@ function speedwalk_start(from, to)
     return
   end
   if stations:len() > 1 then
-    world.Note("Dieser Zielpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain..":"..s.name end):join(", "))
+    world.Note("Dieser Zielpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
     return
   end
   to = stations[1]
