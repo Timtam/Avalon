@@ -35,10 +35,18 @@ function speedwalk_process(text_incoming)
   if spdstep == 0 then
     return
   end
+  if (spdind == spdtbl:len() + 1) then
+    speedwalk_deinit()
+    spdind = 0
+    spdtbl = nil
+    return
+  end
   current_time = get_unix_time()
   continue_time = spdstep
   if spdind>1 then
-    if string.len(spdtbl[spdind]) <= 2 then
+    if Types.type(spdtbl[spdind]) ~= 'string' then
+      continue_time = continue_time + Const.WALK_SPEED_EXTRA
+    elseif string.len(spdtbl[spdind]) <= 2 then
       continue_time = continue_time + Const.WALK_SPEED
     else
       continue_time = continue_time + Const.WALK_SPEED_EXTRA
@@ -54,12 +62,6 @@ function speedwalk_process(text_incoming)
     command = string.gsub(spdtbl[spdind], '_', ' ')
     world.Execute(command)
     spdind = spdind + 1
-    if (spdind == spdtbl:len() + 1) then
-      speedwalk_deinit()
-      spdind = 0
-      spdtbl = nil
-      return
-    end
   else
     if spdtbl[spdind]:get_status() == Const.SCRIPT_UNINITIALIZED then
       spdtbl[spdind]:initialize()
@@ -70,15 +72,16 @@ function speedwalk_process(text_incoming)
         spdtbl[spdind]:teardown()
         spdind = spdind + 1
         speedwalk_process(true)
-        return
       elseif spdtbl[spdind]:get_status() == Const.SCRIPT_FAILURE then
         world.Note("Ein Skript des Speedwalks hat einen Fehler festgestellt und wurde beendet.")
         world.Note("Der Speedwalk wird an dieser Stelle abgebrochen.")
         spdtbl = nil
         spdind = 0
         speedwalk_deinit()
-        return
+      else
+        spdstep = get_unix_time()
       end
+      return
     end
     world.Execute(command)
   end
