@@ -34,17 +34,17 @@ function StationHandler:parse_speedwalks(speedwalks)
     source, target = string.match(name, Const.SPEEDWALK_REGEX)
     possible_sources = self:find(source)
     if possible_sources:len() > 1 then
-      world.Note("Error parsing speedwalk "..name..": found multiple possibilities for source "..source)
+      --world.Note("Error parsing speedwalk "..name..": found multiple possibilities for source "..source)
     end
     if possible_sources:len() == 0 then
-      world.Note("Error parsing speedwalk "..name..": no possible source found for "..source)
+      --world.Note("Error parsing speedwalk "..name..": no possible source found for "..source)
     end
     possible_targets = self:find(target)
     if possible_targets:len() > 1 then
-      world.Note("Error parsing speedwalk "..name..": found multiple possibilities for target "..target)
+      --world.Note("Error parsing speedwalk "..name..": found multiple possibilities for target "..target)
     end
     if possible_targets:len() == 0 then
-      world.Note("Error parsing speedwalk "..name..": no possible target found for "..target)
+      --world.Note("Error parsing speedwalk "..name..": no possible target found for "..target)
     end
     if possible_sources:len() == 1 and possible_targets:len() == 1 then
       possible_sources[1]:add_way(possible_targets[1], path)

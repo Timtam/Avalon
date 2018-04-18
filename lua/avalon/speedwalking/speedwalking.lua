@@ -1,4 +1,5 @@
 Const = require("avalon.speedwalking.constants")
+Types = require("pl.types")
 Utils = require("avalon.speedwalking.utils")
 
 spdtbl = nil
@@ -49,14 +50,37 @@ function speedwalk_process(text_incoming)
   if continue_time > current_time or spdtext == false then
     return
   end
-  command = string.gsub(spdtbl[spdind], '_', ' ')
-  world.Execute(command)
-  spdind = spdind + 1
-  if (spdind == spdtbl:len() + 1) then
-    speedwalk_deinit()
-    spdind = 0
-    spdtbl = nil
-    return
+  if Types.type(spdtbl[spdind]) == 'string' then
+    command = string.gsub(spdtbl[spdind], '_', ' ')
+    world.Execute(command)
+    spdind = spdind + 1
+    if (spdind == spdtbl:len() + 1) then
+      speedwalk_deinit()
+      spdind = 0
+      spdtbl = nil
+      return
+    end
+  else
+    if spdtbl[spdind]:get_status() == Const.SCRIPT_UNINITIALIZED then
+      spdtbl[spdind]:initialize()
+    end
+    command = spdtbl[spdind]:pop_command()
+    if Types.is_empty(command) then
+      if spdtbl[spdind]:get_status() == Const.SCRIPT_SUCCESS then
+        spdtbl[spdind]:teardown()
+        spdind = spdind + 1
+        speedwalk_process(true)
+        return
+      elseif spdtbl[spdind]:get_status() == Const.SCRIPT_FAILURE then
+        world.Note("Ein Skript des Speedwalks hat einen Fehler festgestellt und wurde beendet.")
+        world.Note("Der Speedwalk wird an dieser Stelle abgebrochen.")
+        spdtbl = nil
+        spdind = 0
+        speedwalk_deinit()
+        return
+      end
+    end
+    world.Execute(command)
   end
   spdstep = get_unix_time()
 end
@@ -81,4 +105,14 @@ end
 
 function speedwalk_paused()
   return spdind > 0 and spdstep == 0
+end
+
+function speedwalk_active_script()
+  if spdind == 0 or Types.is_empty(spdtbl) then
+    return nil
+  end
+  if Types.type(spdtbl[spdind]) == 'string' then
+    return nil
+  end
+  return spdtbl[spdind]
 end
