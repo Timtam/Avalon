@@ -14,11 +14,11 @@ function Script:get_status()
 end
 
 function Script:success()
-  self.status = SCRIPT_SUCCESS
+  self.status = Const.SCRIPT_SUCCESS
 end
 
 function Script:failure()
-  self.status = SCRIPT_FAILURE
+  self.status = Const.SCRIPT_FAILURE
 end
 
 function Script:initialize()
