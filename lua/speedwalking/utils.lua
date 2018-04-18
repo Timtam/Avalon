@@ -13,22 +13,27 @@ Utils.is_inverse = function(dir1, dir2)
   end
   dir1 = dir1:lower()
   dir2 = dir2:lower()
-  if dir1:len() ~= dir2:len() then
+  if string.len(dir1) ~= string.len(dir2) then
     return false
   end
-  -- we separate everything identical from those two directions
-  -- e.g. kletter_, schwimm_
-  local i
-  local ident = ""
-  for i = 1, String.len(dir1) do
-    if String.at(dir1, i) == String.at(dir2, i) then
-      ident = ident + String.at(dir1, i)
-    else
-      break
+  if string.len(dir1) > 2 then
+    -- we separate everything identical from those two directions
+    -- e.g. kletter_, schwimm_
+    local i
+    local ident = ""
+    for i = 1, string.len(dir1) do
+      if not Types.is_empty(Const.DIRECTIONS[dir1:sub(string.len(ident)+1)]) or not Types.is_empty(Const.DIRECTIONS[dir2:sub(string.len(ident)+1)]) then
+        break
+      end
+      if String.at(dir1, i) == String.at(dir2, i) then
+        ident = ident..String.at(dir1, i)
+      else
+        break
+      end
     end
+    dir1 = dir1:sub(string.len(ident)+1)
+    dir2 = dir2:sub(string.len(ident)+1)
   end
-  dir1 = dir1:sub(ident:len()+1)
-  dir2 = dir2:sub(ident:len()+1)
   if Const.DIRECTIONS[dir1] == dir2 then
     return true
   end
