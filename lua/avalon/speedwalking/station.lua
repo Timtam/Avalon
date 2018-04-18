@@ -2,6 +2,7 @@ Class = require("pl.class")
 Const = require("avalon.speedwalking.constants")
 List = require("pl.list")
 String = require("pl.stringx")
+Types = require("pl.types")
 Utils = require("avalon.speedwalking.utils")
 Way = require("avalon.speedwalking.way")
 
@@ -30,11 +31,14 @@ function Station:matches(identifier, exact)
     end
   end
   domain, name = string.match(identifier, Const.STATION_REGEX)
-  if domain ~= "" and name == "" then
+  if Types.is_empty(domain) and Types.is_empty(name) then
+    return false
+  end
+  if not Types.is_empty(domain) and Types.is_empty(name) then
     name = domain
     domain = ""
   end
-  if (domain == "" or String.startswith(self.domain, domain) == true) and ((exact == false and String.startswith(self.name, name)) or (exact == true and self.name == name)) then
+  if (Types.is_empty(domain) or String.startswith(self.domain, domain) == true) and ((exact == false and String.startswith(self.name, name)) or (exact == true and self.name == name)) then
     return true
   end
   return false
