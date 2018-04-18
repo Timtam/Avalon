@@ -1,5 +1,6 @@
 Class = require("pl.class")
 Script = require("speedwalking.script")
+Types = require("pl.types")
 
 Class.Avalon_Alotria_Tor_Aussen(Script)
 
@@ -32,6 +33,10 @@ end
 function Avalon_Alotria_Tor_Aussen:teardown()
   world.DeleteTrigger("avalon_alotria_tor_aussen_offen")
   world.DeleteTrigger("avalon_alotria_tor_aussen_geschlossen")
+end
+
+function Avalon_Alotria_Tor_Aussen:inverts(s)
+  return Types.type(s) == 'Avalon_Alotria_Tor_Innen'
 end
 
 return Avalon_Alotria_Tor_Aussen
