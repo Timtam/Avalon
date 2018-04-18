@@ -21,6 +21,18 @@ function Station:_init(domain, name, id, description)
 end
 
 function Station:matches(identifier, exact)
+  local function inexact_match(full, short)
+    local regex = "^([a-zA-Z]*)(%d*)$"
+    local letters, numbers = string.match(short, regex)
+    local combined = "^"..letters.."([a-zA-Z]*)"
+    if Types.is_empty(numbers) then
+      combined = combined.."(%d*)"
+    else
+      combined = combined..numbers
+    end
+    combined = combined.."$"
+    return #{string.match(full, combined)} > 0
+  end
   exact = exact or false
   identifier = identifier:lower()
   if String.startswith(identifier, "raum/") then
@@ -38,10 +50,15 @@ function Station:matches(identifier, exact)
     name = domain
     domain = ""
   end
-  if (Types.is_empty(domain) or String.startswith(self.domain, domain) == true) and ((exact == false and String.startswith(self.name, name)) or (exact == true and self.name == name)) then
-    return true
+  if not Types.is_empty(domain) and not inexact_match(self.domain, domain) then
+    return false
   end
-  return false
+  if exact and not name == self.name then
+    return false
+  elseif not exact and not inexact_match(self.name, name) then
+    return false
+  end
+  return true
 end
 
 function Station:add_way(target, way)
