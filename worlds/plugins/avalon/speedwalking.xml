@@ -76,6 +76,7 @@
 <![CDATA[
 require("avalon.speedwalking.speedwalking")
 Path = require("pl.path")
+String = require("pl.stringx")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
@@ -199,8 +200,8 @@ function speedwalk_start(from, to)
     elseif stations:len() > 1 then
       world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
     else
-      msg = "Name: "..stations[1].name.."\n"
-      msg = msg.."Domaene: "..stations[1].domain.."\n"
+      msg = "Name: "..String.title(stations[1].name).."\n"
+      msg = msg.."Domaene: "..String.title(stations[1].domain).."\n"
       msg = msg.."Beschreibung: "..stations[1].description
       world.Note(msg)
     end
