@@ -56,6 +56,14 @@
   <send>speedwalk_start("", "%1")</send>
 </alias>
   <alias
+   match="//"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_list()</send>
+</alias>
+  <alias
    match="pos"
    enabled="y"
    send_to="12"
@@ -75,8 +83,10 @@
 <script>
 <![CDATA[
 require("avalon.speedwalking.speedwalking")
+List = require("pl.list")
 Path = require("pl.path")
 String = require("pl.stringx")
+Tablex = require("pl.tablex")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
@@ -187,6 +197,7 @@ function speedwalk_start(from, to)
     msg = msg.."Sollte es einen Ort mit einem bestimmten Namen nur ein einziges Mal geben,\n"
     msg = msg.."koennt ihr die Domaene auch entfallen lassen.\n"
     msg = msg.."Eine Information zu jedem bekannten Ort bekommt ihr mittels /domaene.ort\n"
+    msg = msg.."Und eine Liste aller Domaenen und Orte erhaltet ihr mittels //.\n"
     msg = msg.."Wenn ihr euch bereits an einem bekannten Ort befindet, reicht es auch, wenn\n"
     msg = msg.."ihr nur die Zielposition angebt. Es reicht dann /_min.bank"
     world.Note(msg)
@@ -237,6 +248,27 @@ function speedwalk_start(from, to)
   end
   to = stations[1]
   speedwalk_init(from, to)
+end
+
+function speedwalk_list()
+  local msg = ""
+  msg = msg..tostring(Stations.stations:len()).." Orte bekannt:\n"
+  -- die Liste aller Domaenen mit orten bauen
+  domains = {}
+  Stations.stations:foreach(function(s)
+    if domains[s.domain] == nil then
+      domains[s.domain] = List.new()
+    end
+    domains[s.domain]:append(s.name)
+  end)
+  for k,v in Tablex.sort(domains) do
+    msg = msg..String.title(k)..":\n"
+    for _, v2 in ipairs(v:sorted()) do
+      msg = msg.."\t"..String.title(v2).."\n"
+    end
+  end
+  msg = msg:sub(1, -2)
+  world.Note(msg)
 end
 ]]>
 </script>
