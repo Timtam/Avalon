@@ -1859,7 +1859,7 @@ stations:add(
              "flotsam",
              "formkipod",
              "raum/a070d55ba96aa72706f9369a7d44bd6c",
-             "Aufenthaltsort des Formwandlers Kipod (Igel-Form).""
+             "Aufenthaltsort des Formwandlers Kipod (Igel-Form)."
             )
 
 stations:add(
