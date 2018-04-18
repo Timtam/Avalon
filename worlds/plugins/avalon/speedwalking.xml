@@ -85,6 +85,7 @@
 require("avalon.speedwalking.speedwalking")
 List = require("pl.list")
 Path = require("pl.path")
+Stations = require("avalon.stations")
 String = require("pl.stringx")
 Tablex = require("pl.tablex")
 PPI = require("ppi")
@@ -92,6 +93,7 @@ Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
 RoomID = nil
 SafeSpeedwalks = 1
+Stations:parse_speedwalks(require("avalon.speedwalks"))
 world.DoAfterSpecial(0.5, "PluginInstall()", 12)
 
 function PluginInstall()

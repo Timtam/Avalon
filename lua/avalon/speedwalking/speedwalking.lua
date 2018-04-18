@@ -1,7 +1,5 @@
 Const = require("avalon.speedwalking.constants")
-Stations = require("avalon.stations")
 Utils = require("avalon.speedwalking.utils")
-Stations:parse_speedwalks(require("avalon.speedwalks"))
 
 spdtbl = nil
 spdind = 0
@@ -20,13 +18,12 @@ function speedwalk_init(from, to)
     world.Note("Bitte warte, bis der derzeitige Speedwalk beendet ist.")
     return
   end
-  spdtbl = Stations:find_path(from, to)
-  --world.Note(spdtbl:map(function(s) return s.domain..":"..s.name end):join(", "))
+  spdtbl = from:find_path(to)
   if not spdtbl then
-    world.Note("Zwischen diesen beiden Orten ist keine Verbindung bekannt.")
+    world.Note("Zwischen diesen beiden Orten ist kein Weg bekannt.")
     return
   end
-  spdtbl = Utils.resolve_path(spdtbl)
+  spdtbl = Utils.resolve_way(spdtbl)
   spdind = 1
   spdstep = get_unix_time() - 1000
   speedwalk_process(true)

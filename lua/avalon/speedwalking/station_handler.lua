@@ -2,7 +2,6 @@ Class = require("pl.class")
 Const = require("avalon.speedwalking.constants")
 List = require("pl.list")
 Station = require("avalon.speedwalking.station")
-Utils = require("avalon.speedwalking.utils")
 
 Class.StationHandler()
 
@@ -48,34 +47,13 @@ function StationHandler:parse_speedwalks(speedwalks)
       world.Note("Error parsing speedwalk "..name..": no possible target found for "..target)
     end
     if possible_sources:len() == 1 and possible_targets:len() == 1 then
-      possible_sources[1]:add_path(possible_targets[1], path)
+      possible_sources[1]:add_way(possible_targets[1], path)
       parsed = parsed + 1
       failure = failure - 1
     end
   end
   world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
   world.Note(tostring(failure).." fehlerhafte Speedwalks.")
-end
-
-function StationHandler:find_path(source, target, path)
-  path = path or List.new()
-  path = path:clone():append(source)
-  if source == target then
-    return path
-  end
-  local shortest = nil
-  local _, t
-  for _, t in ipairs(source.paths) do
-    if not path:contains(t.target) then
-      newpath = self:find_path(t.target, target, path)
-      if newpath then
-        if not shortest or Utils.path_length(newpath) < Utils.path_length(shortest) then
-          shortest = newpath
-        end
-      end
-    end
-  end
-  return shortest
 end
 
 return StationHandler

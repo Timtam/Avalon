@@ -28,19 +28,19 @@ Utils.is_inverse = function(dir1, dir2)
   return false
 end
 
-Utils.path_length = function(l)
+Utils.way_length = function(l)
   len = 0
   for i = 1, l:len() - 1 do
-    len = len + l[i]:find_path(l[i+1]):get_length()
+    len = len + l[i]:find_way(l[i+1]):get_length()
   end
   return len
 end
 
-Utils.resolve_path = function(l)
+Utils.resolve_way = function(l)
   p = List.new()
   local i
   for i = 1, l:len() - 1 do
-    p:extend(l[i]:find_path(l[i+1]).path)
+    p:extend(l[i]:find_way(l[i+1]).way)
   end
   i = 1
   repeat
