@@ -1,4 +1,4 @@
-stations = require("avalon.speedwalking.station_handler")()
+stations = require("speedwalking.station_handler")()
 
 stations:add(
              "affenkopfinsel",

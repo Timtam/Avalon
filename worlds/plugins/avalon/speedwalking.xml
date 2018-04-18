@@ -82,7 +82,7 @@
 
 <script>
 <![CDATA[
-require("avalon.speedwalking.speedwalking")
+require("speedwalking.speedwalking")
 List = require("pl.list")
 Path = require("pl.path")
 Stations = require("avalon.stations")

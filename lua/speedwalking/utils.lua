@@ -1,4 +1,4 @@
-Const = require("avalon.speedwalking.constants")
+Const = require("speedwalking.constants")
 List = require("pl.list")
 String = require("pl.stringx")
 Types = require("pl.types")

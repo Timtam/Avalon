@@ -1,6 +1,6 @@
-Const = require("avalon.speedwalking.constants")
+Const = require("speedwalking.constants")
 Types = require("pl.types")
-Utils = require("avalon.speedwalking.utils")
+Utils = require("speedwalking.utils")
 
 spdtbl = nil
 spdind = 0

@@ -1,5 +1,5 @@
 Class = require("pl.class")
-Const = require("avalon.speedwalking.constants")
+Const = require("speedwalking.constants")
 List = require("pl.list")
 
 Class.Script()

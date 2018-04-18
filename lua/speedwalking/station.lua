@@ -1,10 +1,10 @@
 Class = require("pl.class")
-Const = require("avalon.speedwalking.constants")
+Const = require("speedwalking.constants")
 List = require("pl.list")
 String = require("pl.stringx")
 Types = require("pl.types")
-Utils = require("avalon.speedwalking.utils")
-Way = require("avalon.speedwalking.way")
+Utils = require("speedwalking.utils")
+Way = require("speedwalking.way")
 
 Class.Station()
 function Station:_init(domain, name, id, description)
