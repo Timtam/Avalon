@@ -31,7 +31,7 @@ stations:add(
 stations:add(
              "alotria",
              "wlm",
-             "raum/e4fdca13e0ce2426c14221923d632606",
+             "raum/13ee806b29dd72de040a7b498613660b",
              "Der Grossschild-Lehrmeister etwas ausserhalb von Alotria."
             )
 
