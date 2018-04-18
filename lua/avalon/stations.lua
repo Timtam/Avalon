@@ -1820,14 +1820,56 @@ stations:add(
              "Wunschring-Tempel"
             )
 
+stations:add(
+             "nereid",
+             "formchulda",
+             "raum/b21d34351bb7e15e2d892dc8655a079e",
+             "Aufenthaltsort der Formwandlerin Chulda (Opossum-Form)"
+            )
+
+stations:add(
+             "nereid",
+             "formtigrys",
+             "raum/c4494c4dca579cf62f6af1dcc6e0b65e",
+             "Aufenthaltsort des Formwandlers Tigrys (Tiger-Form)."
+            )
+
+stations:add(
+             "nereid",
+             "formnachasch",
+             "raum/59af42e64f5e09afa77d670147430c3b",
+             "Aufenthaltsort der Formwandlerin Nachasch (Schlangen-Form)."
+            )
+
+stations:add(
+             "nereid",
+             "formchatull",
+             "raum/9c68db550b53110505961914c47c4df5",
+             "Aufenthaltsort des Formwandlers Chatull (Luchs-Form)."
+            )
+
+stations:add(
+             "nereid",
+             "formkof",
+             "raum/fec14a5d61754d7d899ec62d15527aa2",
+             "Aufenthaltsort des Formwandlers Aro Kof (Gorilla-Form)."
+            )
+
+stations:add(
+             "flotsam",
+             "formkipod",
+             "raum/a070d55ba96aa72706f9369a7d44bd6c",
+             "Aufenthaltsort des Formwandlers Kipod (Igel-Form)."
+            )
+
+stations:add(
+             "tolsgal",
+             "formcherek",
+             "raum/caa9d6a78d7f9c7fd34774cc9b4e049a",
+             "Eingang der Hoehle von Formwandler Cherek (Libellen-Form)."
+            )
+
 -- muessen noch oben eingepflegt werden
-stations.form_alo = "raum/b21d34351bb7e15e2d892dc8655a079e"
-stations.form_ash = "raum/c4494c4dca579cf62f6af1dcc6e0b65e"
-stations.form_cor = "raum/59af42e64f5e09afa77d670147430c3b"
-stations.form_gabelung7 = "raum/9c68db550b53110505961914c47c4df5"
-stations.form_min = "raum/fec14a5d61754d7d899ec62d15527aa2"
-stations.form_sol = "raum/a070d55ba96aa72706f9369a7d44bd6c"
-stations.form_tol = "raum/caa9d6a78d7f9c7fd34774cc9b4e049a"
 stations.gast1_aloz = "raum/b3e12f5b9b9e4330fee7a36526cc1377"
 stations.gast2_aloz = "raum/3db33705db9d88784566b273dd29936e"
 stations.mine_camp = "raum/eb3dde366ada7897e1103a7801c96aac"
