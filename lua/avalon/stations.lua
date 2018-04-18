@@ -232,8 +232,8 @@ stations:add(
             )
 
 stations:add(
+             "losaria",
              "vern",
-             "zentrum",
              "raum/3e3b7d45fe19f21941cbb708faf3da20",
              "Eingang des kleinen Fischerdorfes Vern."
             )
@@ -841,7 +841,7 @@ stations:add(
             )
 
 stations:add(
-             "muw",
+             "miniuw",
              "bruecke",
              "raum/2f355ff38379d6d36adecb498d95f930",
              "Bruecke in der Mini-Unterwelt von Corona."
@@ -982,7 +982,7 @@ stations:add(
 
 stations:add(
              "tolsgal",
-             "dun",
+             "drachenberg",
              "raum/791ee7725e5ef47ee76e62cd108c7721",
              "Eingang des Drachenberg auf Tolsgal."
             )
@@ -1044,15 +1044,15 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
-             "haendler0",
+             "dhungar0",
+             "haendler",
              "raum/047d287961f1b75b23edcaa09f876f8f",
              "Gemischtwarenhaendler in Dhungar auf Ebene 0."
             )
 
 stations:add(
-             "dhungar",
-             "haendler2",
+             "dhungar2",
+             "haendler",
              "raum/bda960c71429a15fb529c130459aeab5",
              "Gemischtwarenhaendler in Dhungar auf Ebene 2."
             )
@@ -1174,13 +1174,6 @@ stations:add(
              "hafen",
              "raum/93804619cea283877cde3fd8a8581333",
              "Hafen von Dolphinia (Skilletan)."
-            )
-
-stations:add(
-             "tolsgal",
-             "hafen",
-             "raum/c4f3980a3bb496da0d4646f4195625d6",
-             "Hafen von Tolsgal."
             )
 
 stations:add(
@@ -1478,15 +1471,15 @@ stations:add(
             )
 
 stations:add(
-             "muw",
+             "miniuw",
              "eingang",
              "raum/cc1dab284a9b7f636cc0132d7809f14a",
              "Eingang der Mini-Unterwelt von Corona."
             )
 
 stations:add(
-             "muw",
-             "muw2",
+             "miniuw",
+             "miniuw2",
              "raum/fa2f28795adbaec8c3e9696b4eed49ea",
              "Zugang zur zweiten Ebene der Mini-Unterwelt."
             )
@@ -1625,7 +1618,7 @@ stations:add(
             )
 
 stations:add(
-             "minias",
+             "nereid",
              "knochenschlucht",
              "raum/fa398dc34af4fa62e711156aeb872a9d",
              "Die Knochenschlucht."
@@ -1793,8 +1786,8 @@ stations:add(
             )
 
 stations:add(
-             "winsel",
-             "zugang",
+             "amphibos",
+             "waldinsel",
              "raum/c327fd2104050cd7cfe9f08d218df252",
              "Bewaldete Insel westlich von Amphibos."
             )
