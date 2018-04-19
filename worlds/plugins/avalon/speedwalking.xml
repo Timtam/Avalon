@@ -149,7 +149,7 @@ function print_position()
       if stations:len() == 0 then
         world.Note("Fuer diesen Ort existiert kein Speedwalk.")
       else
-        world.Note("Dieser Ort ist an das Speedwalk-System angebunden.")
+        world.Note("Dieser Ort ist als "..String.title(stations[1].domain).."."..String.title(stations[1].name).." an das Speedwalk-System angebunden.")
       end
     end
   end
@@ -193,7 +193,7 @@ function speedwalk_start(from, to)
     if stations:len() == 0 then
       world.Note("Es gibt keinen Ort mit diesem Namen.")
     elseif stations:len() > 1 then
-      world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
+      world.Note("Dieser Name trifft auf die folgenden Orte zu:\n"..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     else
       msg = "Name: "..String.title(stations[1].name).."\n"
       msg = msg.."Domaene: "..String.title(stations[1].domain).."\n"
@@ -217,7 +217,7 @@ function speedwalk_start(from, to)
     return
   end
   if stations:len() > 1 then
-    world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
+    world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     return
   end
   from = stations[1]
@@ -227,7 +227,7 @@ function speedwalk_start(from, to)
     return
   end
   if stations:len() > 1 then
-    world.Note("Dieser Zielpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return s.domain.."."..s.name end):join(", "))
+    world.Note("Dieser Zielpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     return
   end
   to = stations[1]
