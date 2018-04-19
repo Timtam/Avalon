@@ -1,4 +1,5 @@
 Const = require("speedwalking.constants")
+Date = require("pl.date")
 Types = require("pl.types")
 Utils = require("speedwalking.utils")
 
@@ -24,6 +25,8 @@ function speedwalk_init(from, to)
     world.Note("Zwischen diesen beiden Orten ist kein Weg bekannt.")
     return
   end
+  date = Date(os.time()+Utils.way_duration(spdtbl))
+  world.Note("Voraussichtliche Ankunft: "..string.format("%02d:%02d:%02d Uhr", date:hour(), date:min(), date:sec()))
   spdtbl = Utils.resolve_way(spdtbl)
   spdind = 1
   spdstep = get_unix_time() - 1000
