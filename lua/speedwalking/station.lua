@@ -86,7 +86,7 @@ function Station:find_path(target, path)
     if not path:contains(t.target) then
       newpath = t.target:find_path(target, path)
       if newpath then
-        if not shortest or Utils.way_length(newpath) < Utils.way_length(shortest) then
+        if not shortest or Utils.way_duration(newpath) < Utils.way_duration(shortest) then
           shortest = newpath
         end
       end

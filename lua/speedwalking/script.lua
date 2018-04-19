@@ -52,4 +52,8 @@ function Script:destroy()
   self:teardown()
 end
 
+function Script:get_duration()
+  return 0.0
+end
+
 return Script

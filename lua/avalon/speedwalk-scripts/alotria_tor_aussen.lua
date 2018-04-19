@@ -39,4 +39,8 @@ function Avalon_Alotria_Tor_Aussen:inverts(s)
   return Types.type(s) == 'Avalon_Alotria_Tor_Innen'
 end
 
+function Avalon_Alotria_Tor_Aussen:get_duration()
+  return 3.0
+end
+
 return Avalon_Alotria_Tor_Aussen

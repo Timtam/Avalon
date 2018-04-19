@@ -48,6 +48,25 @@ Utils.way_length = function(l)
   return len
 end
 
+Utils.way_duration = function(l)
+  -- we first need to resolve the path and load all scripts
+  -- thats not quite the nicest way right now, but lets see  if we can improve it further later on
+  dur = 0
+  p = Utils.resolve_way(l)
+  p:foreach(function(d)
+    if Types.type(d) == 'string' then
+      if string.len(d) <= 2 then
+        dur = dur + Const.WALK_SPEED
+      else
+        dur = dur + Const.WALK_SPEED_EXTRA
+      end
+    else
+      dur = dur + d:get_duration()
+    end
+  end)
+  return dur
+end
+
 Utils.resolve_way = function(l)
   p = List.new()
   local i

@@ -68,4 +68,8 @@ function Avalon_Alotria_Tor_Innen:pop_command()
   end
 end
 
+function Avalon_Alotria_Tor_Innen:get_duration()
+  return 3.0
+end
+
 return Avalon_Alotria_Tor_Innen
