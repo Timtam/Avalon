@@ -142,34 +142,15 @@ end
 -- falls von hier aus speedwalks starten, werden diese ausgegeben
 function print_position()
   if (SafeSpeedwalks == 1) then
-    list = stations_getspeedwalksbyroomid(RoomID)
-    if (#list == 1) then
-      msg = "\nVon hier startet ein Speedwalk:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg..' (sicher)'
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
+    if Dunkel == 1 then
+      world.Note("Ohne Licht sind keine weiteren Informationen verfuegbar.")
+    else
+      stations = Stations:find(RoomID)
+      if stations:len() == 0 then
+        world.Note("Fuer diesen Ort existiert kein Speedwalk.")
+      else
+        world.Note("Dieser Ort ist an das Speedwalk-System angebunden.")
       end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
-    end
-    if (#list > 1) then
-      msg = "\nVon hier starten "..#list.." Speedwalks:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg.." (sicher)"
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
     end
   end
 end
