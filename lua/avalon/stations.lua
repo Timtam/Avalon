@@ -29,8 +29,8 @@ stations:add(
             )
 
 stations:add(
-             "alotria",
-             "wlm",
+             "nereid",
+             "wlmgrossschild",
              "raum/13ee806b29dd72de040a7b498613660b",
              "Der Grossschild-Lehrmeister etwas ausserhalb von Alotria."
             )
@@ -226,7 +226,7 @@ stations:add(
 
 stations:add(
              "losaria",
-             "tor",
+             "torw",
              "raum/337aa69225378494ce4dc7fb0c9ea90c",
              "Das Mondtor auf Losaria."
             )
