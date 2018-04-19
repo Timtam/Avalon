@@ -2,6 +2,7 @@ Class = require("pl.class")
 Const = require("speedwalking.constants")
 List = require("pl.list")
 Station = require("speedwalking.station")
+Types = require("pl.types")
 
 Class.StationHandler()
 
@@ -52,8 +53,24 @@ function StationHandler:parse_speedwalks(speedwalks)
       failure = failure - 1
     end
   end
+  self:validate()
   world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
   world.Note(tostring(failure).." fehlerhafte Speedwalks.")
+end
+
+function StationHandler:validate()
+  tbl = {}
+  self.stations:foreach(function(s)
+    if Types.is_empty(tbl[s.id]) then
+      tbl[s.id] = List.new()
+    end
+    tbl[s.id]:append(s)
+  end)
+  for _, l in ipairs(tbl) do
+    if l:len() > 1 then
+      error("Mehrere Stationen mit der selben ID gefunden: "..l:map(function(s) return s.domain.."."..s.name end):join(", "))
+    end
+  end
 end
 
 return StationHandler
