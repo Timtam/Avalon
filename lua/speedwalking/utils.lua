@@ -49,8 +49,6 @@ Utils.way_length = function(l)
 end
 
 Utils.way_duration = function(l)
-  -- we first need to resolve the path and load all scripts
-  -- thats not quite the nicest way right now, but lets see  if we can improve it further later on
   dur = 0
   p = Utils.resolve_way(l)
   p:foreach(function(d)
@@ -71,15 +69,7 @@ Utils.resolve_way = function(l)
   p = List.new()
   local i
   for i = 1, l:len() - 1 do
-    w = l[i]:find_way(l[i+1]).way
-    w = w:map(function(d)
-      s = string.match(d, Const.SCRIPT_REGEX)
-      if not Types.is_empty(s) then
-        d = require(s)()
-      end
-      return d
-    end)
-    p:extend(w)
+    p:extend(l[i]:find_way(l[i+1]).way)
   end
   i = 1
   repeat

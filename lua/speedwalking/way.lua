@@ -1,12 +1,21 @@
 Class = require("pl.class")
+Const = require("speedwalking.constants")
 List = require("pl.list")
 Tablex = require("pl.tablex")
+Types = require("pl.types")
 
 Class.Way()
 
 function Way:_init(way, target)
   self.way = List.split(way, " ")
   self.target = target
+  self.way = self.way:map(function(d)
+    s = string.match(d, Const.SCRIPT_REGEX)
+    if not Types.is_empty(s) then
+      d = require(s)()
+    end
+    return d
+  end)
   Tablex.readonly(self)
 end
 
