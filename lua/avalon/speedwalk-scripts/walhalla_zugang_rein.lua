@@ -47,4 +47,10 @@ function Avalon_Walhalla_Zugang_Rein:inverts(s)
   return Types.type(s) == 'Avalon_Walhalla_Zugang_Raus'
 end
 
+function Avalon_Walhalla_Zugang_Rein:prevent_path()
+  if not Types.is_empty(Avalon.Level()) and Avalon.Level() < 35 then
+    return "Dein Level ist nicht hoch genug, um diesen Weg gehen zu koennen."
+  end
+end
+
 return Avalon_Walhalla_Zugang_Rein

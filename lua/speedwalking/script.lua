@@ -63,4 +63,7 @@ function Script:set_parameters(from, to)
   self.to = to
 end
 
+function Script:prevent_path()
+end
+
 return Script

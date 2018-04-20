@@ -32,6 +32,11 @@ function speedwalk_init(from, to)
     w.way:foreach(function(d)
       if Types.type(d) ~= 'string' then
         d:set_parameters(w.source, w.target)
+        prevent = d:prevent_path()
+        if not Types.is_empty(prevent) then
+          world.Note(prevent)
+          return
+        end
       end
     end)
   end
