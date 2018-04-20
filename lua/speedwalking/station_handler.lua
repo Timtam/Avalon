@@ -2,6 +2,7 @@ Class = require("pl.class")
 Const = require("speedwalking.constants")
 List = require("pl.list")
 Station = require("speedwalking.station")
+String = require("pl.stringx")
 Types = require("pl.types")
 
 Class.StationHandler()
@@ -68,9 +69,16 @@ function StationHandler:validate()
   end)
   for _, l in ipairs(tbl) do
     if l:len() > 1 then
-      error("Mehrere Stationen mit der selben ID gefunden: "..l:map(function(s) return s.domain.."."..s.name end):join(", "))
+      world.Note("Warnung: Mehrere Stationen mit der selben ID gefunden: "..l:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     end
   end
+  self.stations:foreach(function(s)
+    s.ways:foreach(function(w)
+      if Types.is_empty(w.target:find_way(s)) then
+        world.Note("Warnung: Es existiert ein Weg von "..String.title(s.domain).."."..String.title(s.name).." nach "..String.title(w.target.domain).."."..String.title(w.target.name)..", aber nicht umgekehrt.")
+      end
+    end)
+  end)
 end
 
 return StationHandler
