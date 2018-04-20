@@ -72,7 +72,7 @@ stations:add(
 
 stations:add(
              "amphibos",
-             "tor",
+             "torsw",
              "raum/e75e105053625dce0f77ce56e879f25c",
              "Das Mondtor auf Amphibos."
             )
@@ -723,9 +723,9 @@ stations:add(
 
 stations:add(
              "ashar",
-             "gaststaette",
+             "gasthaus",
              "raum/107e0608db24dee1136396c8ef609310",
-             "Gaststaette zum blutigen Warga in Ashar."
+             "Gasthaus zum blutigen Warga in Ashar."
             )
 
 stations:add(
@@ -1794,7 +1794,7 @@ stations:add(
 
 stations:add(
              "amphibos",
-             "waldlaeufer",
+             "waldlaeuferzunft",
              "raum/feb6b971c32946a68ab49068fd5c5042",
              "Waldlaeuferin auf Amphibos."
             )
