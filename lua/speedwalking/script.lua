@@ -21,9 +21,7 @@ function Script:failure()
   self.status = Const.SCRIPT_FAILURE
 end
 
-function Script:initialize(from, to)
-  self.from = from
-  self.to = to
+function Script:initialize()
   self.status = Const.SCRIPT_RUNNING
   self:setup()
 end
@@ -58,6 +56,11 @@ end
 
 function Script:get_duration()
   return 0.0
+end
+
+function Script:set_parameters(from, to)
+  self.from = from
+  self.to = to
 end
 
 return Script
