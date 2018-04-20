@@ -72,7 +72,7 @@ stations:add(
 
 stations:add(
              "amphibos",
-             "torsw",
+             "torno",
              "raum/e75e105053625dce0f77ce56e879f25c",
              "Das Mondtor auf Amphibos."
             )
@@ -422,7 +422,7 @@ stations:add(
 
 stations:add(
              "tintagel",
-             "schmiede",
+             "schmiedezunft",
              "raum/47acbba45a73652cab06466ec20686dc",
              "Zweigstelle der Schmiedezunft auf Tintagel."
             )
@@ -870,7 +870,7 @@ stations:add(
 
 stations:add(
              "dinsel",
-             "zentrum",
+             "eingang",
              "raum/f0b13f44c08fb2291f8ccddb81588a94",
              "Bei der Obsidian-Saeule auf der Drachenwald-Insel"
             )
@@ -1241,7 +1241,7 @@ stations:add(
 
 stations:add(
              "holbytla",
-             "hermine",
+             "schmied",
              "raum/fbb85ec48b6ccccbdc957882e1436a2c",
              "Eingang der Hoehle von Schmiedin Hermine Eisenbieger."
             )
@@ -1869,63 +1869,389 @@ stations:add(
              "Eingang der Hoehle von Formwandler Cherek (Libellen-Form)."
             )
 
--- muessen noch oben eingepflegt werden
-stations.gast1_aloz = "raum/b3e12f5b9b9e4330fee7a36526cc1377"
-stations.gast2_aloz = "raum/3db33705db9d88784566b273dd29936e"
-stations.mine_camp = "raum/eb3dde366ada7897e1103a7801c96aac"
-stations.mine_hol = "raum/9ed8f65d6b60683ef545cc85b3818e41"
-stations.mine_por = "raum/2fbea3e0f79a113840639a20196730e0"
-stations.mine_uw = "raum/1fb0b2b48e96335ca5d09ab2137315f3"
-stations.schmied_ale = "raum/6329f60dfefc8695b7059262f8622be4"
-stations.schmied_dhun0 = "raum/927255e39142c68b0ebd8b58203aef0b"
-stations.schmied_jas = "raum/1a82ead269b2721ac31eb904da6bdfd8"
-stations.schmied_jer = "raum/6329f60dfefc8695b7059262f8622be4"
-stations.schmied_lim = "raum/2a76d2fbc07a9652d09bd5a82d81b0fc"
-stations.schmied_mio = "raum/789d26f599d0a4a067868c775fd5c930"
-stations.schmied_skal = "raum/5ad5d019caf27facca08754f01b9ed9b"
-stations.schmied_sol = "raum/7dbdb1b5fd8ce7253812bd195c424fa3"
-stations.schmied_tol = "raum/68c6eaf2f63c009c0fe0fe7714c74154"
-stations.schmied_ver = "raum/6329f60dfefc8695b7059262f8622be4"
-stations.schmied_wal = "raum/b717b0217faaa6a1e4c85256df3fbcb5"
-stations.schmied_yol = "raum/a2fa00bb6ef4b2a4e696a6d6c0375d54"
-stations.wlm_alo = "raum/13ee806b29dd72de040a7b498613660b"
-stations.wlm_ash = "raum/bf04da5e1cd00894c8cdafdc56d7e1ca"
-stations.wlm_ashz = "raum/5aa3c1d71a430965e5529529bd433642"
-stations.wlm_corz = "raum/8c28ed588888da3e2c17a550091005c0"
-stations.wlm_ker = "raum/32f38c702c8dc32f97670d4a3486f8b2"
-stations.wlm_min = "raum/ffcc1e26e2e43dc91037175ff3a1496c"
-stations.wlm_ril = "raum/38817e644427f72b51bfd5fef18e433f"
-stations.wlm_umi = "raum/81f260813111d0a73649a8b8bb76027b"
-stations.wlm1_dhun = "raum/f2012cc76a4d46cc4ab79e590282e57a"
-stations.wlm1_dhun3 = "raum/7364c0f8179b00902e87697844e173cb"
-stations.wlm1_ilme = "raum/0be6ca4adefc8353bd2100fb34f1094f"
-stations.wlm1_mio = "raum/90c08c9ebfa173ef4c0073c0968f7c2c"
-stations.wlm1_skal = "raum/b34f804be668123f2900886af4c885e3"
-stations.wlm2_dhun = "raum/b6b1146538147dd0090124ad4017eb6d"
-stations.wlm2_dhun3 = "raum/0bde5beaba17beeb0c2af2bceb91de5f"
-stations.wlm2_ilme = "raum/ddbb89202f537ceb15dfdef783d75969"
-stations.wlm2_mio = "raum/91eee8bab920472f7e9ffbc50983c796"
-stations.wlm2_skal = "raum/52f11a8f9bbf4c407f195c4c2369d9da"
-stations.zlm_ashz = "raum/c754fa94bc237ff74bd32e2782b40e4f"
-stations.zlm_corz = "raum/635097e0d11f371677321c8d28563c7d"
-stations.zlm_dhun3 = "raum/964aba9a128fd841514481eaba87be7e"
-stations.zlm_gwen = "raum/3a49f9dde3a766f8114413854705fb4e"
-stations.zlm_jas = "raum/eb5b201b8862e37dbb802285a0905501"
-stations.zlm_jer = "raum/d616460ea86fcaf9fa4a5eea80850029"
-stations.zlm_ker = "raum/2ab3287b5ad6181cbf56aa14cd4c7151"
-stations.zlm_lor = "raum/59a3a571aa59ab91a917ee0dbb88747e"
-stations.zlm_los = "raum/d616460ea86fcaf9fa4a5eea80850029"
-stations.zlm_min = "raum/7219693e9924b6396a7416a5d6efb6b5"
-stations.zlm_ril = "raum/312f337dfbb1c03b2ca6bb88357dae93"
-stations.zlm_skal = "raum/2490c20f06708ed4addb4fc51ca816dd"
-stations.zlm_umi = "raum/35a74d1c95eecadbaec816059407ca74"
-stations.zlm1_aloz = "raum/73228bc5fb6f8dc01692a0179ff64685"
-stations.zlm1_ilme = "raum/3bdfb9b7a849acade8dfbe95094cef8f"
-stations.zlm1_mio = "raum/8a27d49f514fc549ebcf06678b82f64c"
-stations.zlm1_tol = "raum/3bdfb9b7a849acade8dfbe95094cef8f"
-stations.zlm2_aloz = "raum/5a763dd5120b0c73bd1f37a35ec10ad4"
-stations.zlm2_ilme = "raum/00981bf47fa9ab872770071450b168e5"
-stations.zlm2_mio = "raum/2b3183b7d87c288e131177d2489b2744"
-stations.zlm2_tol = "raum/00981bf47fa9ab872770071450b168e5"
+stations:add(
+             "alotria",
+             "gasthausveilchen",
+             "raum/b3e12f5b9b9e4330fee7a36526cc1377",
+             "Gasthaus zum lustigen Veilchen in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "gasthausorkentod",
+             "raum/3db33705db9d88784566b273dd29936e",
+             "Gasthaus Orkentod in Alotria."
+            )
+
+stations:add(
+             "holbytla",
+             "mine",
+             "raum/9ed8f65d6b60683ef545cc85b3818e41",
+             "Die Funkelmine auf Holbytla."
+            )
+
+stations:add(
+             "uw",
+             "mineeant",
+             "raum/1fb0b2b48e96335ca5d09ab2137315f3",
+             "Eingang der Mine Eant Anenth."
+            )
+
+stations:add(
+             "uw",
+             "mineewath",
+             "raum/eb3dde366ada7897e1103a7801c96aac",
+             "Eingang der Minen von Ewath'Lurish."
+            )
+
+stations:add(
+             "rilauven",
+             "mine",
+             "raum/2fbea3e0f79a113840639a20196730e0",
+             "Eingang der Mine von Rilauven."
+            )
+
+stations:add(
+             "yoldatfeste",
+             "schmied",
+             "raum/a2fa00bb6ef4b2a4e696a6d6c0375d54",
+             "Der Schmied in der Yoldatfeste."
+            )
+
+stations:add(
+             "skalewar",
+             "schmiedezunft",
+             "raum/5ad5d019caf27facca08754f01b9ed9b",
+             "Nebenstelle der Schmiedezunft in Skalewar."
+            )
+
+stations:add(
+             "jasthan",
+             "schmiedezunft",
+             "raum/1a82ead269b2721ac31eb904da6bdfd8",
+             "Nebenstelle der Schmiedezunft in Jasthan."
+            )
+
+stations:add(
+             "skalewar",
+             "wlmpeitsche",
+             "raum/b34f804be668123f2900886af4c885e3",
+             "Der Peitschenlehrmeister in Skalewar."
+            )
+
+stations:add(
+             "skalewar",
+             "wlmmorgenstern",
+             "raum/52f11a8f9bbf4c407f195c4c2369d9da",
+             "Morgenstern-Lehrmeister in Skalewar."
+            )
+
+stations:add(
+             "rilauven",
+             "wlmlanze",
+             "raum/38817e644427f72b51bfd5fef18e433f",
+             "Der Meister der Lanze in Rilauven."
+            )
+
+stations:add(
+             "jasthan",
+             "zlmtod",
+             "raum/eb5b201b8862e37dbb802285a0905501",
+             "Todesmagier in Jasthan."
+            )
+
+stations:add(
+             "rilauven",
+             "zlmtod",
+             "raum/312f337dfbb1c03b2ca6bb88357dae93",
+             "Adun, der Lehrmeister des Todes in Rilauven."
+            )
+
+stations:add(
+             "skalewar",
+             "zlmfeuer",
+             "raum/2490c20f06708ed4addb4fc51ca816dd",
+             "Wren Bararn, Beschwoererin von Feuer und Tod in Skalewar."
+            )
+
+stations:add(
+             "skalewar",
+             "zlmtod",
+             "raum/2490c20f06708ed4addb4fc51ca816dd",
+             "Wren Bararn, Beschwoererin von Feuer und Tod in Skalewar."
+            )
+
+stations:add(
+             "dhungar0",
+             "schmiedezunft",
+             "raum/927255e39142c68b0ebd8b58203aef0b",
+             "Nebenstelle der Schmiedezunft in Dhungar auf Ebene 0."
+            )
+
+stations:add(
+             "dhungar1",
+             "wlmhaende",
+             "raum/f2012cc76a4d46cc4ab79e590282e57a",
+             "Der Lehrmeister des Faustkampfes auf der Burgmauer von Dhungar."
+            )
+
+stations:add(
+             "dhungar1",
+             "wlmeinhandaxt",
+             "raum/b6b1146538147dd0090124ad4017eb6d",
+             "Der Grossmeister der Einhandaxt und des Kleinschildes in Dhungar auf Ebene 1."
+            )
+
+stations:add(
+             "dhungar1",
+             "wlmkleinschild",
+             "raum/b6b1146538147dd0090124ad4017eb6d",
+             "Der Grossmeister der Einhandaxt und des Kleinschildes in Dhungar auf Ebene 1."
+            )
+
+stations:add(
+             "dhungar3",
+             "wlmhammer",
+             "raum/7364c0f8179b00902e87697844e173cb",
+             "Die Meisterin des Hammers in Dhungar auf Ebene 3."
+            )
+
+stations:add(
+             "dhungar3",
+             "wlmzweihandaxt",
+             "raum/0bde5beaba17beeb0c2af2bceb91de5f",
+             "Der Meister der Zweihandaxt in Dhungar auf Ebene 3."
+            )
+
+stations:add(
+             "dhungar3",
+             "zlmerde",
+             "raum/964aba9a128fd841514481eaba87be7e",
+             "Der Geode der Erde in Dhungar auf Ebene3."
+            )
+
+stations:add(
+             "minias",
+             "wlmsaebel",
+             "raum/ffcc1e26e2e43dc91037175ff3a1496c",
+             "Der Saebellehrmeister in Minias."
+            )
+
+stations:add(
+             "minias",
+             "zlmsonstiges",
+             "raum/7219693e9924b6396a7416a5d6efb6b5",
+             "Lina Rauhbart in Minias (Anfaenger-Zaubersprueche)."
+            )
+
+stations:add(
+             "miobaas",
+             "wlmdegen",
+             "raum/90c08c9ebfa173ef4c0073c0968f7c2c",
+             "Der Degenlehrmeister in Miobaas."
+            )
+
+stations:add(
+             "miobaas",
+             "wlmbreitschwert",
+             "raum/91eee8bab920472f7e9ffbc50983c796",
+             "Breitschwertlehrmeister in Miobas."
+            )
+
+stations:add(
+             "miobaas",
+             "zlmwasser",
+             "raum/8a27d49f514fc549ebcf06678b82f64c",
+             "Wasserlehrmeister in Miobaas."
+            )
+
+stations:add(
+             "miobaas",
+             "zlmleben",
+             "raum/2b3183b7d87c288e131177d2489b2744",
+             "Lehrmeisterin des Lebens in Miobaas."
+            )
+
+stations:add(
+             "miobaas",
+             "schmiedezunft",
+             "raum/789d26f599d0a4a067868c775fd5c930",
+             "Nebenstelle der Schmiedezunft in Miobaas."
+            )
+
+stations:add(
+             "nereid",
+             "wlmzweihaender",
+             "raum/bf04da5e1cd00894c8cdafdc56d7e1ca",
+             "Der Zweihandschwertlehrmeister etwas nordoestlich von Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "wlmkurzschwert",
+             "raum/5aa3c1d71a430965e5529529bd433642",
+             "Meisterin des Schwertkampfes (Langschwert und Kurzschwert) in Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "wlmlangschwert",
+             "raum/5aa3c1d71a430965e5529529bd433642",
+             "Meisterin des Schwertkampfes (Langschwert und Kurzschwert) in Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "zlmfeuer",
+             "raum/c754fa94bc237ff74bd32e2782b40e4f",
+             "Die Feuermagierin in Ashar."
+            )
+
+stations:add(
+             "alotria",
+             "zlmsonstiges",
+             "raum/73228bc5fb6f8dc01692a0179ff64685",
+             "Der Elfenmagier in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "zlmluft",
+             "raum/5a763dd5120b0c73bd1f37a35ec10ad4",
+             "Der weise Meister der Luefte in Alotria."
+            )
+
+stations:add(
+             "corona",
+             "wlmlangschwert",
+             "raum/8c28ed588888da3e2c17a550091005c0",
+             "Der Lehrmeister fuer Langschwert und Peitsche in Corona."
+            )
+
+stations:add(
+             "corona",
+             "wlmpeitsche",
+             "raum/8c28ed588888da3e2c17a550091005c0",
+             "Der Lehrmeister fuer Langschwert und Peitsche in Corona."
+            )
+
+stations:add(
+             "corona",
+             "zlmerde",
+             "raum/635097e0d11f371677321c8d28563c7d",
+             "Herrscherin ueber die Magie der Erde in Corona."
+            )
+
+stations:add(
+             "walhalla",
+             "schmiedezunft",
+             "raum/b717b0217faaa6a1e4c85256df3fbcb5",
+             "Nebenstelle der Schmiedezunft in Walhalla."
+            )
+
+stations:add(
+             "losaria",
+             "schmiedezunft",
+             "raum/c50d0a13f4d745f37bce9e914624b86e",
+             "Nebenstelle der Schmiedezunft auf Losaria."
+            )
+
+stations:add(
+             "jeresa",
+             "zlmleben",
+             "raum/d616460ea86fcaf9fa4a5eea80850029",
+             "Der Lehrmeister des Lebens in Jeresa."
+            )
+
+stations:add(
+             "holbytla",
+             "schmiedezunft",
+             "raum/2a76d2fbc07a9652d09bd5a82d81b0fc",
+             "Nebenstelle der Schmiedezunft auf Holbytla."
+            )
+
+stations:add(
+             "tolsgal",
+             "schmied",
+             "raum/68c6eaf2f63c009c0fe0fe7714c74154",
+             "Der Ruestungsschmied auf Tolsgal."
+            )
+
+stations:add(
+             "tolsgal",
+             "wlmstab",
+             "raum/0be6ca4adefc8353bd2100fb34f1094f",
+             "Der Meister des Stabes auf Tolsgal."
+            )
+
+stations:add(
+             "ilmelorn",
+             "wlmspeer",
+             "raum/ddbb89202f537ceb15dfdef783d75969",
+             "Die Meisterin des Speers in Ilmelorn."
+            )
+
+stations:add(
+             "tolsgal",
+             "zlmluftplateau",
+             "raum/3bdfb9b7a849acade8dfbe95094cef8f",
+             "Der Meister der luftigen Luefte auf einem windigen Plateau auf Tolsgal."
+            )
+
+stations:add(
+             "tolsgal",
+             "zlmlufteisdom",
+             "raum/00981bf47fa9ab872770071450b168e5",
+             "Herrscher des Sturmes auf der Spitze des Eisdomes auf Tolsgal."
+            )
+
+stations:add(
+             "lorinand",
+             "zlmelementare",
+             "raum/59a3a571aa59ab91a917ee0dbb88747e",
+             "Der Meister der Elementarwesen auf Lorinand."
+            )
+
+stations:add(
+             "flotsam",
+             "schmiedezunft",
+             "raum/7dbdb1b5fd8ce7253812bd195c424fa3",
+             "Hauptstelle der Schmiedezunft auf Flotsam."
+            )
+
+stations:add(
+             "uminotokai",
+             "wlmdreizack",
+             "raum/81f260813111d0a73649a8b8bb76027b",
+             "Die Dreizacklehrmeisterin in Uminotokai."
+            )
+
+stations:add(
+             "uminotokai",
+             "zlmwasser",
+             "raum/35a74d1c95eecadbaec816059407ca74",
+             "Der Baendiger des Wassers in Uminotokai."
+            )
+
+stations:add(
+             "amphibos",
+             "zlmfeuer",
+             "raum/2ab3287b5ad6181cbf56aa14cd4c7151",
+             "Der Lehrmeister der Feuerzauber im Vulkan auf Amphibos."
+            )
+
+stations:add(
+             "kergora",
+             "wlmpike",
+             "raum/32f38c702c8dc32f97670d4a3486f8b2",
+             "Lehrmeister der Pike in Kergora."
+            )
+
+stations:add(
+             "gwendon",
+             "zlmwasser",
+             "raum/3a49f9dde3a766f8114413854705fb4e",
+             "Der Meister des Wassers in Gwendon."
+            )
 
 return stations
