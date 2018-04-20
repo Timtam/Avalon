@@ -75,6 +75,9 @@ Utils.resolve_way = function(l)
   repeat
     if Utils.is_inverse(p[i], p[i+1]) then
       p:chop(i,i+1)
+      if i > 1 then
+        i = i - 1
+      end
     else
       i = i + 1
     end
