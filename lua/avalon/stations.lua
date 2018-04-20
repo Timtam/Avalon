@@ -120,28 +120,28 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
+             "dhungar2",
              "bank",
              "raum/10c05c2717a68aad52dbca1ea23197d5",
              "Die Bank auf der zweiten Ebene von Dhungar."
             )
 
 stations:add(
-             "dhungar",
-             "zentrum",
+             "dhungar1",
+             "transportkorb",
              "raum/e004dda09968e9a63464ea2191c6cede",
              "Der Einstieg des Transportkorbes auf Ebene 1."
             )
 
 stations:add(
-             "dhungar",
              "dhungar3",
+             "transportkorb",
              "raum/62733b0fc85683d590345e3ba8fe9bcc",
              "Der Einstieg des Transportkorbes auf Ebene 3."
             )
 
 stations:add(
-             "dhungar",
+             "dhungar1",
              "uw",
              "raum/ea6e4bf47829217cddc775896ba171d0",
              "Unterwelteingang in Dhungar."
@@ -708,15 +708,15 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
              "dhungar0",
+             "transportkorb",
              "raum/5dfe55b0c8d769e865fd85ba63127fbc",
              "Der Einstieg des Transportkorbes auf Ebene 0."
             )
 
 stations:add(
-             "dhungar",
              "dhungar2",
+             "transportkorb",
              "raum/7380c211fa363daa4ea79a849a74027a",
              "Der Einstieg des Transportkorbes auf Ebene 2."
             )
@@ -729,7 +729,7 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
+             "dhungar2",
              "gasthaus",
              "raum/f19e3c04c2c88c7ab61ce5e3aee6893c",
              "gasthaus zum schaeumenden Bierkrug in Dhungar auf Ebene 2."
@@ -1163,7 +1163,7 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
+             "dhungar1",
              "hafen",
              "raum/e9345a4265fbf3cb3576edeb2bd9250a",
              "Hafen von Dhungar."
@@ -1352,7 +1352,7 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
+             "dhungar2",
              "makler",
              "raum/7c9a3f9da5cdaa524a67a0c937d1a9c5",
              "Makler von Dhungar auf Ebene 2."
@@ -1534,7 +1534,7 @@ stations:add(
             )
 
 stations:add(
-             "dhungar",
+             "dhungar2",
              "post",
              "raum/80503ae07f9214b2404a67438c91bb76",
              "Post in Dhungar auf Ebene 2."
