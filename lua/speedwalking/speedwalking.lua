@@ -131,5 +131,5 @@ function speedwalk_active_script()
   if Types.type(spdtbl[spdind]) == 'string' then
     return nil
   end
-  return spdtbl[spdind[1]].way[spdind[2]]
+  return spdtbl[spdind]
 end
