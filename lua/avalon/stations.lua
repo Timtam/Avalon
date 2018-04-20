@@ -64,8 +64,8 @@ stations:add(
             )
 
 stations:add(
-             "amphibos",
              "mossul",
+             "eingang",
              "raum/a1ce5765b0568f98dde987fdf9749ca4",
              "Eingang der Goblinburg Mossul."
             )
@@ -156,14 +156,14 @@ stations:add(
 
 stations:add(
              "limarch",
-             "zentrum",
+             "eingang",
              "raum/8b1b11b86e425b2d294c51cf4fa9fb26",
              "Der Eingang zur Hobbitstadt Limarch."
             )
 
 stations:add(
              "holbytla",
-             "tor",
+             "tornw",
              "raum/c565529eba8cd3d895f8b655c9887f39",
              "Das Mondtor auf Holbytla."
             )
@@ -191,7 +191,7 @@ stations:add(
 
 stations:add(
              "lorinand",
-             "tor",
+             "torso",
              "raum/74688eb5925421882cdac14816da908b",
              "Das Mondtor auf Lorinand."
             )
@@ -281,8 +281,8 @@ stations:add(
             )
 
 stations:add(
-             "nereid",
              "corona",
+             "eingang",
              "raum/d40620bc448ec9ef50da45c8669d08a3",
              "Der Eingang der Dunkelelfenstadt Corona."
             )
@@ -387,7 +387,7 @@ stations:add(
 
 stations:add(
              "usagoor",
-             "zentrum",
+             "eingang",
              "raum/2cdee587999e673b852cc1475accce37",
              "Eingang zur Zwergenstadt Usagoor."
             )
@@ -415,7 +415,7 @@ stations:add(
 
 stations:add(
              "gwendon",
-             "zentrum",
+             "eingang",
              "raum/5c8450f4ee0ad1e55a0f44f8c78a2a68",
              "Eingang der Stadt Gwendon."
             )
@@ -429,14 +429,14 @@ stations:add(
 
 stations:add(
              "siedlung",
-             "zentrum",
+             "eingang",
              "raum/f34ca159045f297cd45d667e1852d5ab",
              "Eingang der Elfensiedlung auf Tintagel."
             )
 
 stations:add(
              "tintagel",
-             "tor",
+             "toro",
              "raum/70f3d751ed30fc18d5657849bbf8e931",
              "Das Mondtor auf Tintagel."
             )
@@ -457,14 +457,14 @@ stations:add(
 
 stations:add(
              "ilmelorn",
-             "zentrum",
+             "eingang",
              "raum/fc982966d5469bea1cd5fe8266997d58",
              "Der Eingang der Baumstadt der Elfen Ilmelorn."
             )
 
 stations:add(
              "tolsgal",
-             "tor",
+             "torsw",
              "raum/0e15167756cacc054c033751d387272b",
              "Das Mondtor der Insel Tolsgal."
             )
@@ -526,8 +526,8 @@ stations:add(
             )
 
 stations:add(
-             "uw",
              "camp",
+             "eingang",
              "raum/8cc3a00b4e5e23c0eb37c3651b305ad4",
              "Eingang des Camps Baralon."
             )
@@ -639,7 +639,7 @@ stations:add(
 
 stations:add(
              "skalewar",
-             "zentrum",
+             "eingang",
              "raum/0f0102c1b06ce6279e809d5da3af02f5",
              "Vor den Toren der Stadt Skalewar."
             )
@@ -730,16 +730,16 @@ stations:add(
 
 stations:add(
              "dhungar",
-             "gaststaette",
+             "gasthaus",
              "raum/f19e3c04c2c88c7ab61ce5e3aee6893c",
-             "Gaststaette zum schaeumenden Bierkrug in Dhungar auf Ebene 2."
+             "gasthaus zum schaeumenden Bierkrug in Dhungar auf Ebene 2."
             )
 
 stations:add(
              "minias",
-             "gaststaette",
+             "gasthaus",
              "raum/1aa8679dae51c2b17b6b9c1883c9ef0a",
-             "Gaststaette zum Pottwal in Minias."
+             "gasthaus zum Pottwal in Minias."
             )
 
 stations:add(
@@ -891,7 +891,7 @@ stations:add(
 
 stations:add(
              "dolphinia",
-             "tor",
+             "tors",
              "raum/e706292e95fc6035903700e9e032ef05",
              "Das Mondtor auf Dolphinia."
             )
@@ -996,7 +996,7 @@ stations:add(
 
 stations:add(
              "holbytla",
-             "gaststaette",
+             "gasthaus",
              "raum/6a2bcbe17f0443c9203c184034235e60",
              "Hobbitgasthaus auf Holbytla."
             )
@@ -1801,7 +1801,7 @@ stations:add(
 
 stations:add(
              "tintagel",
-             "waldlaeufer",
+             "waldlaeuferzunft",
              "raum/42f62fdfb745f33115afd6e4bb5309e6",
              "Waldlaeufer auf Tintagel."
             )
