@@ -526,8 +526,8 @@ stations:add(
             )
 
 stations:add(
+             "uw",
              "camp",
-             "zentrum",
              "raum/8cc3a00b4e5e23c0eb37c3651b305ad4",
              "Eingang des Camps Baralon."
             )
@@ -603,8 +603,8 @@ stations:add(
             )
 
 stations:add(
+             "uw",
              "jasthan",
-             "zentrum",
              "raum/828ebb06d8a937078d9e60d12833e3d0",
              "Der Eingang der Stadt Jasthan."
             )
