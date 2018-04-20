@@ -53,7 +53,7 @@ function Station:matches(identifier, exact)
   if not Types.is_empty(domain) and not inexact_match(self.domain, domain) then
     return false
   end
-  if exact and not name == self.name then
+  if exact and name ~= self.name then
     return false
   elseif not exact and not inexact_match(self.name, name) then
     return false

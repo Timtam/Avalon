@@ -60,18 +60,18 @@ function StationHandler:parse_speedwalks(speedwalks)
 end
 
 function StationHandler:validate()
-  tbl = {}
-  self.stations:foreach(function(s)
-    if Types.is_empty(tbl[s.id]) then
-      tbl[s.id] = List.new()
-    end
-    tbl[s.id]:append(s)
-  end)
-  for _, l in ipairs(tbl) do
-    if l:len() > 1 then
-      world.Note("Warnung: Mehrere Stationen mit der selben ID gefunden: "..l:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
-    end
-  end
+  --tbl = {}
+  --self.stations:foreach(function(s)
+  --  if Types.is_empty(tbl[s.id]) then
+  --    tbl[s.id] = List.new()
+  --  end
+  --  tbl[s.id]:append(s)
+  --end)
+  --for _, l in ipairs(tbl) do
+  --  if l:len() > 1 then
+  --    world.Note("Warnung: Mehrere Stationen mit der selben ID gefunden: "..l:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
+  --  end
+  --end
   self.stations:foreach(function(s)
     s.ways:foreach(function(w)
       if Types.is_empty(w.target:find_way(s)) then

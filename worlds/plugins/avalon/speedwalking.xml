@@ -113,7 +113,7 @@ end
 function OnAvalonRoomID(id, name, x, y)
   if id ~= RoomID then
     stations = Stations:find(id)
-    if stations:len() == 1 then
+    if stations:len() >= 1 then
       if (Path.exists(GetInfo(74).."Stations/"..stations[1].name..".ogg")) then
         stationsnd = GetInfo(74).."Stations/"..stations[1].name..".ogg"
       else
@@ -149,7 +149,7 @@ function print_position()
       if stations:len() == 0 then
         world.Note("Fuer diesen Ort existiert kein Speedwalk.")
       else
-        world.Note("Dieser Ort ist als "..String.title(stations[1].domain).."."..String.title(stations[1].name).." an das Speedwalk-System angebunden.")
+        world.Note("Dieser Ort ist als "..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(" und ").." an das Speedwalk-System angebunden.")
       end
     end
   end

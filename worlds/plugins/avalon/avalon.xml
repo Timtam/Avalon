@@ -4674,6 +4674,10 @@ function OnPluginInstall()
         return RoomID
       end
     end)
+  PPI.Expose('Level',
+    function()
+      return PlayerLevel
+    end)
   PPI.Expose('AP',
     function()
       return g_ap, g_max_ap
