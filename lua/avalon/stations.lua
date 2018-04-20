@@ -44,7 +44,7 @@ stations:add(
 
 stations:add(
              "augyra",
-             "zentrum",
+             "eingang",
              "raum/5c4729dd518971211d80e300b3cad21c",
              "Das Tor der Stadt Augyra."
             )
@@ -58,7 +58,7 @@ stations:add(
 
 stations:add(
              "kergora",
-             "zentrum",
+             "eingang",
              "raum/cd559901a2abd4bb5abf4b94e03caf52",
              "Eingang der Stadt Kergora."
             )
@@ -219,7 +219,7 @@ stations:add(
 
 stations:add(
              "jeresa",
-             "zentrum",
+             "eingang",
              "raum/e688785d8598c6d3111e8b59d1262dc2",
              "Eingang der Stadt Jeresa."
             )
@@ -260,8 +260,8 @@ stations:add(
             )
 
 stations:add(
-             "nereid",
              "alotria",
+             "eingang",
              "raum/e4fdca13e0ce2426c14221923d632606",
              "Das Westtor der Stadt Alotria."
             )
@@ -274,8 +274,8 @@ stations:add(
             )
 
 stations:add(
-             "nereid",
              "ashar",
+             "eingang",
              "raum/0e88b5bc7e8fb99c9ad6648af2cc6bbb",
              "Das Nordtor der Stadt Ashaar."
             )
@@ -603,8 +603,8 @@ stations:add(
             )
 
 stations:add(
-             "uw",
              "jasthan",
+             "eingang",
              "raum/828ebb06d8a937078d9e60d12833e3d0",
              "Der Eingang der Stadt Jasthan."
             )
@@ -659,8 +659,8 @@ stations:add(
             )
 
 stations:add(
-             "uw",
              "toe",
+             "eingang",
              "raum/488b2fbd12ae3419d9c7cb392a3f779d",
              "Zugang zur Totenebene in der Unterwelt."
             )
@@ -674,7 +674,7 @@ stations:add(
 
 stations:add(
              "yoldatfeste",
-             "zentrum",
+             "eingang",
              "raum/89036876d7fc916f521e7e1f3d4dafd9",
              "Eingang der Yoldatfeste."
             )
@@ -1632,7 +1632,7 @@ stations:add(
             )
 
 stations:add(
-             "muw",
+             "miniuw",
              "spalt",
              "raum/affa52b16202badbcc39569dcdcca1db",
              "Eingang zur Hoehle mit Dunkelelfenhaustier (vorsicht Lavagolem!)"
