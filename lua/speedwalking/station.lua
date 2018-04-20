@@ -62,7 +62,7 @@ function Station:matches(identifier, exact)
 end
 
 function Station:add_way(target, way)
-  self.ways:append(Way(way, target))
+  self.ways:append(Way(self, way, target))
 end
 
 function Station:find_way(target)

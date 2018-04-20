@@ -4,7 +4,7 @@ Types = require("pl.types")
 Utils = require("speedwalking.utils")
 
 spdtbl = nil
-spdind = 0
+spdind = {0, 0}
 spdstep = 0
 spdtext = false
 
@@ -25,10 +25,14 @@ function speedwalk_init(from, to)
     world.Note("Zwischen diesen beiden Orten ist kein Weg bekannt.")
     return
   end
-  date = Date(os.time()+Utils.way_duration(spdtbl))
+  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal()
   world.Note("Voraussichtliche Ankunft: "..string.format("%02d:%02d:%02d Uhr", date:hour(), date:min(), date:sec()))
-  spdtbl = Utils.resolve_way(spdtbl)
-  spdind = 1
+  local i
+  for i = 1, spdtbl:len() - 1 do
+    spdtbl[i] = spdtbl[i]:find_way(spdtbl[i+1])
+  end
+  spdtbl:pop()
+  spdind = {1, 1}
   spdstep = get_unix_time() - 1000
   speedwalk_process(true)
 end
@@ -38,18 +42,22 @@ function speedwalk_process(text_incoming)
   if spdstep == 0 then
     return
   end
-  if (spdind == spdtbl:len() + 1) then
-    speedwalk_deinit()
-    spdind = 0
-    spdtbl = nil
-    return
+  if (spdind[2] == spdtbl[spdind[1]].way:len() + 1) then
+    spdind[1] = spdind[1] + 1
+    spdind[2] = 1
+    if spdind[1] == spdtbl:len() + 1 then
+      speedwalk_deinit()
+      spdind = {0, 0}
+      spdtbl = nil
+      return
+    end
   end
   current_time = get_unix_time()
   continue_time = spdstep
-  if spdind>1 then
-    if Types.type(spdtbl[spdind]) ~= 'string' then
+  if spdind[2] > 1 then
+    if Types.type(spdtbl[spdind[1]].way[spdind[2]]) ~= 'string' then
       continue_time = continue_time + Const.WALK_SPEED_EXTRA
-    elseif string.len(spdtbl[spdind]) <= 2 then
+    elseif string.len(spdtbl[spdind[1]].way[spdind[2]]) <= 2 then
       continue_time = continue_time + Const.WALK_SPEED
     else
       continue_time = continue_time + Const.WALK_SPEED_EXTRA
@@ -61,25 +69,25 @@ function speedwalk_process(text_incoming)
   if continue_time > current_time or spdtext == false then
     return
   end
-  if Types.type(spdtbl[spdind]) == 'string' then
-    command = string.gsub(spdtbl[spdind], '_', ' ')
+  if Types.type(spdtbl[spdind[1]].way[spdind[2]]) == 'string' then
+    command = string.gsub(spdtbl[spdind[1]].way[spdind[2]], '_', ' ')
     world.Execute(command)
-    spdind = spdind + 1
+    spdind[2] = spdind[2] + 1
   else
-    if spdtbl[spdind]:get_status() == Const.SCRIPT_UNINITIALIZED then
-      spdtbl[spdind]:initialize()
+    if spdtbl[spdind[1]].way[spdind[2]]:get_status() == Const.SCRIPT_UNINITIALIZED then
+      spdtbl[spdind[1]].way[spdind[2]]:initialize(spdtbl[spdind[1]].source, spdtbl[spdind[1]].target)
     end
-    command = spdtbl[spdind]:pop_command()
+    command = spdtbl[spdind[1]].way[spdind[2]]:pop_command()
     if Types.is_empty(command) then
-      if spdtbl[spdind]:get_status() == Const.SCRIPT_SUCCESS then
-        spdtbl[spdind]:destroy()
-        spdind = spdind + 1
+      if spdtbl[spdind[1]].way[spdind[2]]:get_status() == Const.SCRIPT_SUCCESS then
+        spdtbl[spdind[1]].way[spdind[2]]:destroy()
+        spdind[2] = spdind[2] + 1
         speedwalk_process(true)
-      elseif spdtbl[spdind]:get_status() == Const.SCRIPT_FAILURE then
+      elseif spdtbl[spdind[1]].way[spdind[2]]:get_status() == Const.SCRIPT_FAILURE then
         world.Note("Ein Skript des Speedwalks hat einen Fehler festgestellt und wurde beendet.")
         world.Note("Der Speedwalk wird an dieser Stelle abgebrochen.")
         spdtbl = nil
-        spdind = 0
+        spdind = {0, 0}
         speedwalk_deinit()
       else
         spdstep = get_unix_time()
@@ -103,8 +111,8 @@ end
 function speedwalk_deinit()
   spdstep = 0
   spdtext = false
-  if spdtbl and spdind <= spdtbl:len() and Types.type(spdtbl[spdind]) ~= 'string' then
-    spdtbl[spdind]:destroy()
+  if spdtbl and spdind[1] <= spdtbl:len() and spdind[2] <= spdtbl[spdind[1]].way:len() and Types.type(spdtbl[spdind[1]].way[spdind[2]]) ~= 'string' then
+    spdtbl[spdind[1]].way[spdind[2]]:destroy()
   end
 end
 
@@ -113,15 +121,18 @@ function speedwalk_running()
 end
 
 function speedwalk_paused()
-  return spdind > 0 and spdstep == 0
+  return spdind[1] > 0 and spdstep == 0
 end
 
 function speedwalk_active_script()
-  if spdind == 0 or Types.is_empty(spdtbl) then
+  if Types.is_empty(spdtbl) or spdind[1] == 0 or spdind[2] == 0 then
     return nil
   end
-  if Types.type(spdtbl[spdind]) == 'string' then
+  if spdind[1] > spdtbl:len() or spdind[2] > spdtbl[spdind[1]].way:len() then
     return nil
   end
-  return spdtbl[spdind]
+  if Types.type(spdtbl[spdind[1]].way[spdind[2]]) == 'string' then
+    return nil
+  end
+  return spdtbl[spdind[1]].way[spdind[2]]
 end

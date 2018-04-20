@@ -6,8 +6,9 @@ Types = require("pl.types")
 
 Class.Way()
 
-function Way:_init(way, target)
+function Way:_init(source, way, target)
   self.way = List.split(way, " ")
+  self.source = source
   self.target = target
   self.way = self.way:map(function(d)
     s = string.match(d, Const.SCRIPT_REGEX)

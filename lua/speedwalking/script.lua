@@ -21,7 +21,9 @@ function Script:failure()
   self.status = Const.SCRIPT_FAILURE
 end
 
-function Script:initialize()
+function Script:initialize(from, to)
+  self.from = from
+  self.to = to
   self.status = Const.SCRIPT_RUNNING
   self:setup()
 end
@@ -49,6 +51,8 @@ end
 
 function Script:destroy()
   self.status = Const.SCRIPT_UNINITIALIZED
+  self.from = nil
+  self.to = nil
   self:teardown()
 end
 
