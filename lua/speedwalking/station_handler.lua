@@ -28,25 +28,26 @@ function StationHandler:find(identifier)
   return res
 end
 
-function StationHandler:parse_speedwalks(speedwalks)
+function StationHandler:parse_speedwalks(speedwalks, silent)
+  silent = silent or false
   failure = 0
   parsed = 0
   for name, path in pairs(speedwalks) do
     failure = failure + 1
     source, target = string.match(name, Const.SPEEDWALK_REGEX)
     possible_sources = self:find(source)
-    if possible_sources:len() > 1 then
-      --world.Note("Error parsing speedwalk "..name..": found multiple possibilities for source "..source)
+    if possible_sources:len() > 1 and silent == false then
+      world.Note("Fehlerhafter Speedwalk "..name..": mehrere Startorte fuer "..source.." moeglich")
     end
-    if possible_sources:len() == 0 then
-      --world.Note("Error parsing speedwalk "..name..": no possible source found for "..source)
+    if possible_sources:len() == 0 and silent == false then
+      world.Note("Fehlerhafter Speedwalk "..name..": kein Startort fuer "..source.." gefunden")
     end
     possible_targets = self:find(target)
-    if possible_targets:len() > 1 then
-      --world.Note("Error parsing speedwalk "..name..": found multiple possibilities for target "..target)
+    if possible_targets:len() > 1 and silent == false then
+      world.Note("Fehlerhafter Speedwalk "..name..": mehrere Zielorte fuer "..target.." moeglich")
     end
-    if possible_targets:len() == 0 then
-      --world.Note("Error parsing speedwalk "..name..": no possible target found for "..target)
+    if possible_targets:len() == 0 and silent == false then
+      world.Note("Fehlerhafter Speedwalk "..name..": kein Zielort fuer "..target.." gefunden")
     end
     if possible_sources:len() == 1 and possible_targets:len() == 1 then
       possible_sources[1]:add_way(possible_targets[1], path)
@@ -54,9 +55,11 @@ function StationHandler:parse_speedwalks(speedwalks)
       failure = failure - 1
     end
   end
-  self:validate()
-  world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
-  world.Note(tostring(failure).." fehlerhafte Speedwalks.")
+  if silent == false then
+    self:validate()
+    world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
+    world.Note(tostring(failure).." fehlerhafte Speedwalks.")
+  end
 end
 
 function StationHandler:validate()

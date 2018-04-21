@@ -89,6 +89,7 @@ Path = require("pl.path")
 Stations = require("avalon.stations")
 String = require("pl.stringx")
 Tablex = require("pl.tablex")
+Types = require("pl.types")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
@@ -104,6 +105,40 @@ function PluginInstall()
   Avalon.HookCallback('ROOMID', OnAvalonRoomID)
   Avalon.HookCallback('CLOSE', OnAvalonClose)
   SafeSpeedwalks = Avalon.GetConfig('settings', 'SafeSpeedwalks') or 1
+end
+
+function OnPluginInstall()
+  PPI.Expose('AddStation', function(domain, name, id, description)
+    domain = domain:lower()
+    name = name:lower()
+    id = id:lower()
+    possible_stations = Stations:find(id)
+    local i
+    for i = 1, possible_stations:len() do
+      if possible_stations[i].name == name and possible_stations[i].domain == domain then
+        return
+      end
+    end
+    Stations:add(domain, name, id, description)
+  end)
+  PPI.Expose('AddSpeedwalk', function(source, target, path)
+    possible_sources = Stations:find(source)
+    if possible_sources:len() == 0 then
+      return false
+    end
+    possible_targets = Stations:find(target)
+    if possible_targets:len() == 0 then
+      return false
+    end
+    speedwalks = {}
+    possible_sources:foreach(function(s)
+      possible_targets:foreach(function(t)
+        speedwalks[s.domain.."."..s.name.."_"..t.domain.."."..t.name] = path
+      end)
+    end)
+    Stations:parse_speedwalks(speedwalks, true)
+    return true
+  end)
 end
 
 function OnAvalonDunkel(dunkel)
@@ -216,7 +251,7 @@ function speedwalk_start(from, to)
     world.Note("Dieser Startpunkt ist derzeit nicht bekannt.")
     return
   end
-  if stations:len() > 1 then
+  if stations:len() > 1 and not Types.is_empty(from) then
     world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     return
   end
