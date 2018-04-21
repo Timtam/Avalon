@@ -84,6 +84,7 @@
 <![CDATA[
 require("natsort")
 require("speedwalking.speedwalking")
+JSON = require("json")
 List = require("pl.list")
 Path = require("pl.path")
 Stations = require("avalon.stations")
@@ -96,6 +97,8 @@ Dunkel = 0
 RoomID = nil
 SafeSpeedwalks = 1
 Stations:parse_speedwalks(require("avalon.speedwalks"))
+User_Speedwalks = {}
+User_Stations = List.new()
 world.DoAfterSpecial(0.5, "PluginInstall()", 12)
 
 function PluginInstall()
@@ -105,38 +108,77 @@ function PluginInstall()
   Avalon.HookCallback('ROOMID', OnAvalonRoomID)
   Avalon.HookCallback('CLOSE', OnAvalonClose)
   SafeSpeedwalks = Avalon.GetConfig('settings', 'SafeSpeedwalks') or 1
+  local u_stations, u_speedwalks
+  u_stations = Avalon.GetConfig("speedwalking", "stations")
+  if not Types.is_empty(u_stations) then
+    User_Stations = JSON.decode(world.Base64Decode(u_stations))
+    User_Stations = List.new(User_Stations)
+    User_Stations:foreach(function(s)
+      speedwalk_add_station(s.domain, s.name, s.id, s.description)
+    end)
+  end
+  u_speedwalks = Avalon.GetConfig("speedwalking", "speedwalks")
+  if not Types.is_empty(u_speedwalks) then
+    User_Speedwalks = JSON.decode(world.Base64Decode(u_speedwalks))
+    local name, path
+    for name, path in pairs(User_Speedwalks) do
+      names = utils.split(name, "_")
+      speedwalk_add_speedwalk(names[1], names[2], path)
+    end
+  end
+end
+
+function speedwalk_add_station(domain, name, id, description)
+  domain = domain:lower()
+  name = name:lower()
+  id = id:lower()
+  possible_stations = Stations:find(id)
+  local i
+  for i = 1, possible_stations:len() do
+    if possible_stations[i].name == name and possible_stations[i].domain == domain then
+      return
+    end
+  end
+  Stations:add(domain, name, id, description)
+end
+
+function speedwalk_add_speedwalk(source, target, path)
+  possible_sources = Stations:find(source)
+  if possible_sources:len() == 0 then
+    return false
+  end
+  possible_targets = Stations:find(target)
+  if possible_targets:len() == 0 then
+    return false
+  end
+  speedwalks = {}
+  possible_sources:foreach(function(s)
+    possible_targets:foreach(function(t)
+      speedwalks[s.domain.."."..s.name.."_"..t.domain.."."..t.name] = path
+    end)
+  end)
+  Stations:parse_speedwalks(speedwalks, true)
+  return true
 end
 
 function OnPluginInstall()
   PPI.Expose('AddStation', function(domain, name, id, description)
-    domain = domain:lower()
-    name = name:lower()
-    id = id:lower()
-    possible_stations = Stations:find(id)
-    local i
-    for i = 1, possible_stations:len() do
-      if possible_stations[i].name == name and possible_stations[i].domain == domain then
+    speedwalk_add_station(domain, name, id, description)
+    User_Stations:foreach(function(s)
+      if s.id == id and s.name == name and s.domain == domain then
         return
       end
-    end
-    Stations:add(domain, name, id, description)
+    end)
+    User_Stations:append({name = name, domain = domain, id = id, description = description})
+    Avalon.SetConfig("speedwalking", "stations", world.Base64Encode(JSON.encode(User_Stations)))
   end)
   PPI.Expose('AddSpeedwalk', function(source, target, path)
-    possible_sources = Stations:find(source)
-    if possible_sources:len() == 0 then
-      return false
+    local success = speedwalk_add_speedwalk(source, target, path)
+    if success == false then
+      return success
     end
-    possible_targets = Stations:find(target)
-    if possible_targets:len() == 0 then
-      return false
-    end
-    speedwalks = {}
-    possible_sources:foreach(function(s)
-      possible_targets:foreach(function(t)
-        speedwalks[s.domain.."."..s.name.."_"..t.domain.."."..t.name] = path
-      end)
-    end)
-    Stations:parse_speedwalks(speedwalks, true)
+    User_Speedwalks[source.."_"..target] = path
+    Avalon.SetConfig("speedwalking", "speedwalks", world.Base64Encode(JSON.encode(User_Speedwalks)))
     return true
   end)
 end
