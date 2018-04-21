@@ -48,6 +48,15 @@
   </alias>
   <alias
    regexp="y"
+   match="^spm sp.*$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>spm_save()</send>
+  </alias>
+  <alias
+   regexp="y"
    match="^spm z$"
    enabled="y"
    sequence="100"
@@ -94,6 +103,7 @@ Warned = false
 PPI = require("ppi")
 
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+Speedwalking = PPI.Load(world.GetPluginVariable("", "speedwalking"))
 
 Shorters = {}
 Shorters.osten = "o"
@@ -220,7 +230,7 @@ function spm_stop()
       world.Note("Die Beschreibung des Zielortes darf nicht leer sein.")
       return
     end
-    if StartName == EndName then
+    if StartName == EndName and StartDomain == EndDomain then
       world.Note("Die Start- und Endpositionen dürfen nicht identisch sein.")
       return
     end
@@ -228,6 +238,8 @@ function spm_stop()
     ReversedSpeedwalk = _spm_getspeedwalkreverse()
     world.Note("Die Aufzeichnung des Speedwalks wurde abgeschlossen.")
     world.Note("Mit spm k[opieren] kannst Du ihn in die Zwischenablage kopieren.")
+    world.Note("Mit spm sp[eichern] kannst Du ihn als Deinen eigenen Speedwalk abspeichern")
+    world.Note("und wie gewohnt anlaufen.")
   else
     if StartID == RoomID then
       world.Note("Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.")
@@ -341,6 +353,30 @@ function spm_reset()
   StartDescription = ""
   StartName = ""
   Warned = false
+end
+
+function spm_save()
+  if Active then
+    world.Note()
+    world.Note("Das geht nur, solange nicht aufgezeichnet wird.")
+    return
+  end
+  if StartID == "" or StartName == "" or StartDomain == "" or StartDescription == "" or EndDomain == "" or EndID == "" or EndName == "" or EndDescription == "" then
+    world.Note("Es befindet sich derzeit kein Speedwalk in Bearbeitung.")
+    return
+  end
+  Speedwalking.AddStation(StartDomain, StartName, StartID, StartDescription)
+  Speedwalking.AddStation(EndDomain, EndName, EndID, EndDescription)
+  success = Speedwalking.AddSpeedwalk(StartID, EndID, Speedwalk)
+  if not success then
+    world.Note("Es ist ein Fehler beim Eintragen des Speedwalks aufgetreten.")
+    return
+  end
+  success = Speedwalking.AddSpeedwalk(EndID, StartID, ReversedSpeedwalk)
+  if not success then
+    world.Note("Es ist ein Fehler beim Eintragen des umgekehrten Speedwalks aufgetreten.")
+  end
+  world.Note("Die Speedwalks wurden erfolgreich gespeichert.")
 end
 ]]>
 </script>
