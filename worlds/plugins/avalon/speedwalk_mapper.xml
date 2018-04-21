@@ -62,19 +62,27 @@
 <script>
 <![CDATA[
 
-require("tprint")
-
 Active = false
 CmdStack = {}
+Const = require("speedwalking.constants")
+Dunkel = 0
 EndID = ""
+EndDescription = ""
+EndDomain = ""
 EndName = ""
+RoomID = nil
 StartID = ""
+StartDomain = ""
+StartDescription = ""
 StartName = ""
+Stations = require("avalon.stations")
+Templates = require("pl.template")
+Utils = require("speedwalking.utils")
 Warned = false
 
 PPI = require("ppi")
 
-Avalon = PPI.Load("02dade4f6131c8d67e85c7ee")
+Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
 Shorters = {}
 Shorters.osten = "o"
@@ -89,17 +97,39 @@ Shorters.e = "o"
 Shorters.se = "so"
 Shorters.ne = "no"
 
-Directives = {}
-Directives.o = "w"
-Directives.so = "nw"
-Directives.s = "n"
-Directives.sw = "no"
-Directives.w = "o"
-Directives.nw = "so"
-Directives.n = "s"
-Directives.no = "sw"
-Directives.hoch = "runter"
-Directives.runter = "hoch"
+Template = [[# _ = nil
+stations:add(
+             "$(StartDomain)",
+             "$(StartName)",
+             "$(StartID)",
+             "$(StartDescription)"
+            )
+
+stations:add(
+             "$(EndDomain)",
+             "$(EndName)",
+             "$(EndID)",
+             "$(EndDescription)"
+            )
+
+speedwalklist['$(StartDomain).$(StartName)_$(EndDomain).$(EndName)'] = "$(Speedwalk)"
+speedwalklist['$(EndDomain).$(EndName)_$(StartDomain).$(StartName)'] = "$(ReversedSpeedwalk)"
+]]
+
+world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
+
+function PluginInstall()
+  Avalon.HookCallback("ROOMID", OnAvalonRoomID)
+  Avalon.HookCallback("DUNKEL", OnAvalonDunkel)
+end
+
+function OnAvalonRoomID(id)
+  RoomID = id
+end
+
+function OnAvalonDunkel(dunkel)
+  Dunkel = dunkel
+end
 
 function OnPluginSend(text)
   if Active then
@@ -109,73 +139,118 @@ function OnPluginSend(text)
 end
 
 function spm_start()
-  id = Avalon.IID()
-  if not id then
-    Note("Die Aufzeichnung kann nur im Hellen erfolgen.")
+  if Dunkel == 1 then
+    world.Note("Die Aufzeichnung kann nur im Hellen erfolgen.")
     return
   end
-  StartName = Avalon.Location()
+  id = RoomID
+  s = Stations:find(id)
+  if s:len() > 0 then
+    StartDomain = s[1].domain
+    StartDescription = s[1].description
+    StartName = s[1].name
+  else
+    StartDomain = ""
+    StartDescription = ""
+    StartName = ""
+  end
   StartID = id
   Active = true
-  Note("Der Avalon-Speedwalk-Mapper zeichnet nun einen Speedwalk auf.")
-  Note("Bitte bis zum Ende der Aufnahme nur Kommandos verwenden, die im eigentlichen Speedwalk auch auftauchen sollen.")
-  Note("Es dürfen dabei keine selbst definierten Aliase verwendet werden.")
-  Note("Zum Beenden das Kommando \"spm stop\" benutzen.")
+  world.Note("Der Avalon-Speedwalk-Mapper zeichnet nun einen Speedwalk auf.")
+  world.Note("Bitte bis zum Ende der Aufnahme nur Kommandos verwenden, die im eigentlichen Speedwalk auch auftauchen sollen.")
+  world.Note("Es dürfen dabei keine selbst definierten Aliase verwendet werden.")
+  world.Note("Zum Beenden das Kommando \"spm stop\" benutzen.")
 end
 
 function spm_stop()
   if not Active then
     return
   end
-  if #CmdStack > 0 and Avalon.IID() ~= StartID then
-    id = Avalon.IID()
-    if not id then
-      Note("Beim Abschluss des Speedwalks muss es ebenfalls hell sein.")
-      Note("Dafür wird eine Lichtquelle benoetigt, bevor der Speedwalk beendet werden kann.")
+  if #CmdStack > 0 and RoomID ~= StartID then
+    id = RoomID
+    if Dunkel == 1 then
+      world.Note("Beim Abschluss des Speedwalks muss es ebenfalls hell sein.")
+      world.Note("Dafür wird eine Lichtquelle benoetigt, bevor der Speedwalk beendet werden kann.")
       return
     end
     EndID = id
-    EndName = Avalon.Location()
-    Note("Die Aufzeichnung ist abgeschlossen.")
-    Note("Anschließend werden noch folgende Informationen benoetigt:")
-    StartName = utils.inputbox("Bitte den Namen der Startposition des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartName)
-    if StartName == nil then
-      Note("Der Name der Startposition darf nicht leer sein. Beispiel: min (für Minias)")
+    s = Stations:find(id)
+    if s:len() > 0 then
+      EndDomain = s[1].domain
+      EndDescription = s[1].description
+      EndName = s[1].name
+    else
+      EndDomain = ""
+      EndDescription = ""
+      EndName = ""
+    end
+    world.Note("Die Aufzeichnung ist abgeschlossen.")
+    world.Note("Anschließend werden noch folgende Informationen benoetigt:")
+    StartDomain = utils.inputbox("Bitte den Namen der Startdomäne des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartDomain)
+    if StartDomain == nil then
+      world.Note("Der Name der Startdomaene darf nicht leer sein. Beispiel: minias")
       return
     end
-    EndName = utils.inputbox("Bitte den Namen der Endposition des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndName)
+    StartName = utils.inputbox("Bitte den Namen des Startortes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartName)
+    if StartName == nil then
+      world.Note("Der Name der Startposition darf nicht leer sein. Beispiel: eingang")
+      return
+    end
+    StartDescription = utils.inputbox("Bitte eine nützliche Beschreibung für den Startort eingeben:", "Avalon-Speedwalk-Mapper", StartDescription)
+    if StartDescription == nil then
+      world.Note("Die Beschreibung für den Startort darf nicht leer sein.")
+      return
+    end
+    EndDomain = utils.inputbox("Bitte den Namen der Enddomäne des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndDomain)
+    if EndDomain == nil then
+      world.Note("Der Name der Enddomäne darf nicht leer sein. Beispiel: alotria")
+      return
+    end
+    EndName = utils.inputbox("Bitte den Namen des Zielortes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndName)
     if EndName == nil then
-      Note("Der Name der Endposition darf nicht leer sein. Beispiel: haf (für Hafen)")
+      world.Note("Der Name des Zielortes darf nicht leer sein. Beispiel: haendler")
+      return
+    end
+    EndDescription = utils.inputbox("Bitte eine Beschreibung für den Zielort des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndDescription)
+    if EndDescription == nil then
+      world.Note("Die Beschreibung des Zielortes darf nicht leer sein.")
       return
     end
     if StartName == EndName then
-      Note("Die Start- und Endpositionen dürfen nicht identisch sein.")
+      world.Note("Die Start- und Endpositionen dürfen nicht identisch sein.")
       return
     end
-    safety = utils.msgbox("Führt der Speedwalk über einen ungefährlichen Pfad? (Ja, für sicher, der nur über einen Pfad verläuft, auf dem sich keine Gegner befinden)", "Avalon-Speedwalk-Mapper", "yesno", "?", 1)
     local speedwalk = _spm_getspeedwalk()
     local reversespeedwalk = _spm_getspeedwalkreverse()
-    output = "stations."..StartName.."_"..EndName.." = \""..StartID.."\"\r\n"
-    output = output.."stations."..EndName.."_"..StartName.." = \""..EndID.."\"\r\n"
-    output = output.."speedwalklist."..StartName.."_"..EndName.." = \""..speedwalk.."\"\r\n"
-    output = output.."speedwalklist."..EndName.."_"..StartName.." = \""..reversespeedwalk.."\""
-    if safety == "yes" then
-      output = output.."\r\nspeedwalksafety[\""..StartName.."_"..EndName.."\"] = true\r\n"
-      output = output.."speedwalksafety[\""..EndName.."_"..StartName.."\"] = true"
-    end
-    output = output.."\r\n"
+    output = Templates.substitute(Template, {
+      StartDescription = StartDescription,
+      StartDomain = StartDomain,
+      StartID = StartID,
+      StartName = StartName,
+      EndDescription = EndDescription,
+      EndDomain = EndDomain,
+      EndID = EndID,
+      EndName = EndName,
+      Speedwalk = speedwalk,
+      ReversedSpeedwalk = reversespeedwalk
+    })
+    output = world.Replace(output, "\n", "\r\n", true)
     SetClipboard(output)
-    Note("Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.")
+    world.Note("Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.")
   else
-    if StartID == Avalon.IID() then
-      Note("Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.")
+    if StartID == RoomID then
+      world.Note("Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.")
     else
-      Note("Für diesen Speedwalk wurden keine Eingaben registriert.")
+      world.Note("Für diesen Speedwalk wurden keine Eingaben registriert.")
     end
   end
   CmdStack = {}
+  EndDescription = ""
+  EndDomain = ""
   EndName = ""
   EndID = ""
+  StartDescription = ""
+  StartDomain = ""
   StartName = ""
   StartID = ""
   Active = false
@@ -183,7 +258,7 @@ function spm_stop()
 end
 
 function spm_removelast()
-  Note("Eingabe \""..CmdStack[#CmdStack].."\" gelöscht.")
+  world.Note("Eingabe \""..CmdStack[#CmdStack].."\" gelöscht.")
   CmdStack[#CmdStack] = nil
 end
 
@@ -201,10 +276,10 @@ function _spm_processcommand(text)
     text = Shorters[text]
   end
   if string.find(text, " ", 1, true) then
-    text = Replace(text, " ", "_", true)
+    text = world.Replace(text, " ", "_", true)
   end
-  if (not Directives[text]) and not (string.find(text, "kletter", 1, true) == 1) and not (string.find(text, "schwimm", 1, true) == 1) and (not Warned) then
-    Note("Diese Eingabe ist dem Speedwalk-Mapper nicht bekannt. Falls diese Eingabe für die Aufnahme nicht vorgesehen war, kannst Du es mit \"spm z\" wieder entfernen.")
+  if (not Const.DIRECTIONS[text]) and not (string.find(text, "kletter", 1, true) == 1) and not (string.find(text, "schwimm", 1, true) == 1) and (not Warned) then
+    world.Note("Diese Eingabe ist dem Speedwalk-Mapper nicht bekannt. Falls diese Eingabe für die Aufnahme nicht vorgesehen war, kannst Du sie mit \"spm z\" wieder entfernen.")
     Warned = true
   end
   if #CmdStack == 0 then
@@ -213,15 +288,9 @@ function _spm_processcommand(text)
   end
   split = utils.split(text, "_")
   lastsplit = utils.split(CmdStack[#CmdStack], "_")
-  if Directives[text] and CmdStack[#CmdStack] == Directives[text] then
+  if Utils.is_inverse(text, CmdStack[#CmdStack]) then
     CmdStack[#CmdStack] = nil
-    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
-  elseif (string.find(text, "kletter", 1, true) == 1) and (Directives[split[2]]) and (lastsplit[2] == Directives[split[2]]) then
-    CmdStack[#CmdStack] = nil
-    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
-  elseif (string.find(text, "schwimm", 1, true) == 1) and (Directives[split[2]]) and (lastsplit[2] == Directives[split[2]]) then
-    CmdStack[#CmdStack] = nil
-    Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
+    world.Note("Da die beiden letzten Eingaben sich gegenseitig aufheben, wurden sie automatisch entfernt.")
   else
     CmdStack[#CmdStack+1] = text
   end
@@ -232,16 +301,16 @@ function _spm_getspeedwalkreverse()
   for i = #CmdStack, 1, -1 do
     cmd = CmdStack[i]
     split = utils.split(cmd, "_")
-    if Directives[cmd] then
-      cmd = Directives[cmd]
-    elseif string.find(cmd, "kletter", 1, true) == 1 and Directives[split[2]] then
-      cmd = split[1].."_"..Directives[split[2]]
-    elseif string.find(cmd, "schwimm", 1, true) == 1 and Directives[split[2]] then
-      cmd = split[1].."_"..Directives[split[2]]
+    if Const.DIRECTIONS[cmd] then
+      cmd = Const.DIRECTIONS[cmd]
+    elseif string.find(cmd, "kletter", 1, true) == 1 and Const.DIRECTIONS[split[2]] then
+      cmd = split[1].."_"..Const.DIRECTIONS[split[2]]
+    elseif string.find(cmd, "schwimm", 1, true) == 1 and Const.DIRECTIONS[split[2]] then
+      cmd = split[1].."_"..Const.DIRECTIONS[split[2]]
     else
       cmd = utils.inputbox("Die Eingabe \""..cmd.."\" konnte nicht automatisch umgekehrt werden. Bitte die umgekehrte Variante eingeben, dass dieser bei der Umkehrung verwendet werden kann: ", "Avalon-Speedwalk-Mapper", cmd)
       if cmd == nil then
-        Note("Es muss eine umgekehrte Eingabe verwendet werden.")
+        world.Note("Es muss eine umgekehrte Eingabe eingegeben werden.")
         return
       end
     end
