@@ -857,7 +857,7 @@ stations:add(
 stations:add(
              "corona",
              "hafen",
-             "raum/e43e39a401794260080bd8750d5a0618",
+             "raum/ad9e6d2c51cc4878dfdad2e664c3cf02",
              "Der Hafen von Corona."
             )
 
