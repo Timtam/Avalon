@@ -401,7 +401,7 @@ stations:add(
 
 stations:add(
              "ruwenda",
-             "argan",
+             "arganforyr",
              "raum/d6fa8bda433d41d3bb6ea24d52d0351d",
              "Der Meister aller Waffen, Argan Foryr."
             )
