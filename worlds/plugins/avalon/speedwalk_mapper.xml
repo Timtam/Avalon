@@ -39,6 +39,15 @@
   </alias>
   <alias
    regexp="y"
+   match="^spm k.*$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>spm_copy()</send>
+  </alias>
+  <alias
+   regexp="y"
    match="^spm z$"
    enabled="y"
    sequence="100"
@@ -71,6 +80,8 @@ EndDescription = ""
 EndDomain = ""
 EndName = ""
 RoomID = nil
+Speedwalk = ""
+ReverseSpeedwalk = ""
 StartID = ""
 StartDomain = ""
 StartDescription = ""
@@ -143,16 +154,13 @@ function spm_start()
     world.Note("Die Aufzeichnung kann nur im Hellen erfolgen.")
     return
   end
+  spm_reset()
   id = RoomID
   s = Stations:find(id)
   if s:len() > 0 then
     StartDomain = s[1].domain
     StartDescription = s[1].description
     StartName = s[1].name
-  else
-    StartDomain = ""
-    StartDescription = ""
-    StartName = ""
   end
   StartID = id
   Active = true
@@ -179,10 +187,6 @@ function spm_stop()
       EndDomain = s[1].domain
       EndDescription = s[1].description
       EndName = s[1].name
-    else
-      EndDomain = ""
-      EndDescription = ""
-      EndName = ""
     end
     world.Note("Die Aufzeichnung ist abgeschlossen.")
     world.Note("Anschließend werden noch folgende Informationen benoetigt:")
@@ -220,41 +224,19 @@ function spm_stop()
       world.Note("Die Start- und Endpositionen dürfen nicht identisch sein.")
       return
     end
-    local speedwalk = _spm_getspeedwalk()
-    local reversespeedwalk = _spm_getspeedwalkreverse()
-    output = Templates.substitute(Template, {
-      StartDescription = StartDescription,
-      StartDomain = StartDomain,
-      StartID = StartID,
-      StartName = StartName,
-      EndDescription = EndDescription,
-      EndDomain = EndDomain,
-      EndID = EndID,
-      EndName = EndName,
-      Speedwalk = speedwalk,
-      ReversedSpeedwalk = reversespeedwalk
-    })
-    output = world.Replace(output, "\n", "\r\n", true)
-    SetClipboard(output)
-    world.Note("Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.")
+    Speedwalk = _spm_getspeedwalk()
+    ReversedSpeedwalk = _spm_getspeedwalkreverse()
+    world.Note("Die Aufzeichnung des Speedwalks wurde abgeschlossen.")
+    world.Note("Mit spm k[opieren] kannst Du ihn in die Zwischenablage kopieren.")
   else
     if StartID == RoomID then
       world.Note("Die Verarbeitung wurde abgebrochen, da die Start- und Endposition identisch sind.")
     else
       world.Note("Für diesen Speedwalk wurden keine Eingaben registriert.")
     end
+    spm_reset()
   end
-  CmdStack = {}
-  EndDescription = ""
-  EndDomain = ""
-  EndName = ""
-  EndID = ""
-  StartDescription = ""
-  StartDomain = ""
-  StartName = ""
-  StartID = ""
   Active = false
-  Warned = false
 end
 
 function spm_removelast()
@@ -319,6 +301,47 @@ function _spm_getspeedwalkreverse()
   return string.sub(speedwalk, 1, -2)
 end
 
+function spm_copy()
+  if Active then
+    world.Note("Das geht nur, solange nicht aufgezeichnet wird.")
+    return
+  end
+  if StartID == "" or StartName == "" or StartDomain == "" or StartDescription == "" or EndDomain == "" or EndID == "" or EndName == "" or EndDescription == "" then
+    world.Note("Es befindet sich derzeit kein Speedwalk in Bearbeitung.")
+    return
+  end
+  output = Templates.substitute(Template, {
+    StartDescription = StartDescription,
+    StartDomain = StartDomain,
+    StartID = StartID,
+    StartName = StartName,
+    EndDescription = EndDescription,
+    EndDomain = EndDomain,
+    EndID = EndID,
+    EndName = EndName,
+    Speedwalk = Speedwalk,
+    ReversedSpeedwalk = ReverseSpeedwalk
+  })
+  output = world.Replace(output, "\n", "\r\n", true)
+  SetClipboard(output)
+  world.Note("Die gesammelten Informationen zum Speedwalk befinden sich nun in der Zwischenablage.")
+end
+
+function spm_reset()
+  Active = false
+  CmdStack = {}
+  EndID = ""
+  EndDescription = ""
+  EndDomain = ""
+  EndName = ""
+  Speedwalk = ""
+  ReverseSpeedwalk = ""
+  StartID = ""
+  StartDomain = ""
+  StartDescription = ""
+  StartName = ""
+  Warned = false
+end
 ]]>
 </script>
 
