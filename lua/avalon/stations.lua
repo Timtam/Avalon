@@ -1786,8 +1786,8 @@ stations:add(
             )
 
 stations:add(
-             "amphibos",
              "waldinsel",
+             "eingang",
              "raum/c327fd2104050cd7cfe9f08d218df252",
              "Bewaldete Insel westlich von Amphibos."
             )
