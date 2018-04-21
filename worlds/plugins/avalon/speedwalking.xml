@@ -89,6 +89,7 @@ Path = require("pl.path")
 Stations = require("avalon.stations")
 String = require("pl.stringx")
 Tablex = require("pl.tablex")
+Types = require("pl.types")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
@@ -250,7 +251,7 @@ function speedwalk_start(from, to)
     world.Note("Dieser Startpunkt ist derzeit nicht bekannt.")
     return
   end
-  if stations:len() > 1 then
+  if stations:len() > 1 and not Types.is_empty(from) then
     world.Note("Dieser Startpunkt trifft auf mehrere Orte zu:\n"..stations:map(function(s) return String.title(s.domain).."."..String.title(s.name) end):join(", "))
     return
   end
