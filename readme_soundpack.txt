@@ -113,29 +113,36 @@ Im Zuge einer Überarbeitung für Sehende wurde dem Soundpack auch ein Ausgabefens
 Speedwalks
 ----------
 
-Die Speedwalks sind ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Das Programm läuft ganz von allein. Das Basiskommando dafür ist "/". Dieser Befehl gibt die Anzahl aller Speedwalks zurück. Dabei haben wir auf kurze und effiziente Abkürzungen zurückgegriffen.
+Die Speedwalks sind ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Das Programm läuft ganz von allein.
 
-Prinzipiell ist das Kommando für einen Weg wie folgt aufgebaut: "/" um zu bedeutet, dass es sich hierbei um ein Speedwalk handelt, Abkürzung der Startposition, "_" um zu signalisieren, dass nun die Zielposition folgen wird und schließlich die Abkürzung des Ziels.
+Der wichtigste Teil eines Speedwalks ist der / (Schrägstrich). Mit ihm weiß das Soundpack, dass nun ein Speedwalk folgt.
+Der Befehl // zeigt eine Liste aller Speedwalks an. Ein Speedwalk besteht dabei aus zwei Komponenten: einer Domäne und einem Zielort.
+Die Domäne ist meist die Stadt oder die Insel, auf welchem der Zielort liegt. Der Ort selber ist dann ein bestimmter Anlaufpunkt in dieser Stadt oder auf dieser Insel.
+In diesem Speedwalk-System wird eine Ortsangabe also in zwei Teile geteilt, welche mit . voneinander getrennt werden. Der Marktplatz in Minias kann somit beispielsweise mit Minias.Zentrum beschrieben werden.
+Der Befehl // kann nun die anzuzeigenden Orte filtern. Führt man //minias aus, bekommt man nur die Orte angezeigt, welche in Minias liegen. Mit //.zentrum dagegen alle Zentrum-Orte, die das Speedwalksystem kennt.
 
-Dabei werden in der Regel alle Ortsnamen mit den ersten drei Buchstaben abgekürzt, die Waffenlehrmeister werden mit "wlm" und die Zauberlehrmeister mit "zlm" bezeichnet.
-
-Ein Beispielkommando, um von Minias nach Corona zu laufen wäre also: "/min_cor".
-
-Mit einem "/" und folgender Startposition, ohne dem "_" und der Angabe einer Zielposition könnt ihr euch alle Speedwalks filtern, welche von der Startposition starten.
-
-Hinter dem Speedwalk findet ihr außerdem in Klammern stehend auch die Angabe "sicher" oder "unsicher". Dieser Wert gibt an, ob bei diesem Speedwalk ausschließlich auf sicheren Feldern, d. h. ohne Kampf oder Störung gelaufen wird, oder ob dieser Speedwalk auch durch gefährliches Gebiet führt.
+Einen bestimmten Ort anlaufen kann man nun, indem man /start_ziel eintippt. Beispielsweise /minias.zentrum_alotria.zentrum. Man kann allerdings auch die Startangabe entfallen lassen, wenn man von genau dem Ort starten möchte, an dem man sich gerade befindet. In dem Fall würde /_alotria.zentrum ausreichen.
+Sofern der Name immernoch eindeutig ist, könnt ihr die Bezeichnung der Domäne und des Ortes auch abkürzen, soweit ihr wollt. /_alo.z wäre immer noch eindeutig genug, um das Zentrum von Alotria als euren Zielort ausmachen zu können.
+Wenn ihr nur einen Startpunkt angebt, aber keinen Zielpunkt, werden euch Informationen über diesen Ort angezeigt, beispielsweise, wo ungefähr sich die Gabelung1 auf Nereid befindet.
 
 Mit Hilfe der Tastenkombination Strg+D wird der momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Es kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
-Außerdem haben wir die Möglichkeit eingebaut, eure Startposition abzusichern. Dadurch könnt ihr nicht mehr von einer falschen Position loslaufen und landet dadurch im Nirgendwo. Dieses Feature ist standardmäßig eingeschaltet. Falls ihr die Absicherung ausschalten wollt, drückt einfach F5. Diese Funktion kann nur effektiv genutzt werden, wenn es auf euren zuletzt besuchten Feld hell ist. Falls es gerade hell geworden ist, ihr trotzdem die Meldung erhaltet, dass es auf eurem Feld hell sein muss, dann wechselt bitte das Feld. Wenn ihr außerdem die Meldung erhalten solltet, dass es noch keine Startposition für dieses Speedwalk gibt und deshalb in das alte System zurückgefallen wird waren wir bisher noch faul und haben die Startposition noch nicht hinterlegt. In diesem Fall nehmt bitte brieflich oder via Rede oder natürlich via E-Mail Kontakt zu uns auf.
+Außerdem haben wir die Möglichkeit eingebaut, eure Startposition abzusichern. Dadurch könnt ihr nicht mehr von einer falschen Position loslaufen und landet dadurch im Nirgendwo. Dieses Feature ist standardmäßig eingeschaltet. Falls ihr die Absicherung ausschalten wollt, drückt einfach F5. Diese Funktion kann nur effektiv genutzt werden, wenn es auf euren zuletzt besuchten Feld hell ist. Falls es gerade hell geworden ist, ihr trotzdem die Meldung erhaltet, dass es auf eurem Feld hell sein muss, dann wechselt bitte das Feld.
+
+Beachtet, dass ihr euch über die Speedwalks nahezu frei bewegen könnt (auf Nereid könnt ihr beispielsweise von jedem bekannten Ort an nahezu jeden anderen Ort laufen). Jedoch kann es bei wenigen Orten zu Einschränkungen kommen, weil Speedwalks dort nicht eingesetzt werden können, oder es dort hin einfach noch keinen Speedwalk gibt. In dem Fall kontaktiert uns einfach per Ingame-Brief oder E-Mail.
 
 Hinweis: Es sind längst noch nicht alle Wege im Soundpack vorhanden. Da das Integrieren dieser Wege recht zeitaufwändig ist bitten wir um Verständnis, dass wir bisher nicht alle Wege unterstützen. Ihr könnt uns jedoch unterstützen, indem ihr uns auf einen nicht vorhandenen Weg hinweist oder uns sogar einen von euch notierten Weg schickt, damit wir ihn mit in unser System aufnehmen.
 
 Um gerade diese eigene Notierung der Wege zu vereinfachen, ist in Avalon auch ein Speedwalk Mapper integriert, d. h. eine Möglichkeit, eure Wege aufzuzeichnen und anschließend den Entwicklern zukommen zu lassen, um sie fest zu integrieren. Dieser Mapper ist selbsterklären, sobald ein wichtiges Kommando bekannt ist: "spm start". Dieses Kommando startet die Aufzeichnung. Jedes Kommando, das anschließend getippt wird, wird aufgezeichnet. Alle fortlaufenden Aktionen erklärt der Speedwalk Mapper von selbst.
 
 Mit dem Kommando "spm z", wird der zuletzt eingegebene Befehl wieder gelöscht.
+
 Der Speedwalk Mapper lässt sich mit "spm stop" beenden.
-Anschließend werden die Namen für die Start- und die Endposition abgefragt. Ebenfalls wird abgefragt, ob der Speedwalk nur über sichere Wege verläuft.
-Danach stehen die Informationen in der Zwischenablage zur Verfügung.
+
+Anschließend werden die Domänen, die Namen und die Beschreibungen für die Start- und die Endposition abgefragt.
+
+Danach kann entweder das spm k Kommando genutzt werden, um den Speedwalk in die Zwischenablage zu kopieren und uns zukommen zu lassen, oder spm sp, um den Speedwalk abzuspeichern und in das Speedwalk-System zu integrieren. Dann findet ihr ihn auch mittels der // Auflistung.
+Zum Löschen dieser Speedwalks gibt es das Kommando spm l, gefolgt von start_ziel.
+In der Auflistung mit // werden selbst definierte Stationen mit (*) gekennzeichnet. Lasst ihr euch die Informationen zu so einem Ort mit /ort anzeigen, so werden euch außerdem die Speedwalks aufgelistet, die ihr manuell gespeichert habt.
 
 Unterstützte Spiele
 -------------------
