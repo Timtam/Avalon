@@ -320,7 +320,23 @@ function speedwalk_start(from, to)
     else
       msg = "Name: "..String.title(stations[1].name).."\n"
       msg = msg.."Domaene: "..String.title(stations[1].domain).."\n"
-      msg = msg.."Beschreibung: "..stations[1].description
+      msg = msg.."Beschreibung: "..stations[1].description.."\n"
+      for _, s in pairs(User_Stations) do
+        if s.domain == stations[1].domain and s.name == stations[1].name then
+          msg = msg.."Von hier aus verlaufen benutzerdefinierte Speedwalks nach:\n"
+          for w, _ in pairs(User_Speedwalks) do
+            if String.startswith(w, s.id) then
+              for _, s2 in pairs(User_Stations) do
+                if s2.id == w:sub(string.len(s.id)+2) then
+                  msg = msg.."\t"..String.title(s2.domain).."."..String.title(s2.name).."\n"
+                end
+              end
+            end
+          end
+          break
+        end
+      end
+      msg = msg:sub(1, -2)
       world.Note(msg)
     end
     return
@@ -362,6 +378,7 @@ function speedwalk_start(from, to)
 end
 
 function speedwalk_list()
+  local custom = false
   local msg = ""
   msg = msg..tostring(Stations.stations:len()).." Orte bekannt:\n"
   -- die Liste aller Domaenen mit orten bauen
@@ -375,8 +392,19 @@ function speedwalk_list()
   for k,v in Tablex.sort(domains) do
     msg = msg..String.title(k)..":\n"
     for _, v2 in ipairs(natsort(v)) do
-      msg = msg.."\t"..String.title(v2).."\n"
+      msg = msg.."\t"..String.title(v2)
+      for _, s in pairs(User_Stations) do
+        if s.domain == k and s.name == v2 then
+          msg = msg .. " (*)"
+          custom = true
+          break
+        end
+      end
+      msg = msg.."\n"
     end
+  end
+  if custom == true then
+    msg = msg.."(*) = Mit benutzerdefiniertem Speedwalk verbunden\n"
   end
   msg = msg:sub(1, -2)
   world.Note(msg)
