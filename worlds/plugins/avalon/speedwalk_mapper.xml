@@ -349,7 +349,7 @@ function spm_copy()
     EndID = EndID,
     EndName = EndName,
     Speedwalk = Speedwalk,
-    ReversedSpeedwalk = ReverseSpeedwalk
+    ReversedSpeedwalk = ReversedSpeedwalk
   })
   output = world.Replace(output, "\n", "\r\n", true)
   SetClipboard(output)
