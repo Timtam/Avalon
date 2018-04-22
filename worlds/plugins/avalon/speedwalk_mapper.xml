@@ -97,6 +97,7 @@ EndID = ""
 EndDescription = ""
 EndDomain = ""
 EndName = ""
+List = require("pl.list")
 RoomID = nil
 Speedwalk = ""
 ReverseSpeedwalk = ""
@@ -104,7 +105,6 @@ StartID = ""
 StartDomain = ""
 StartDescription = ""
 StartName = ""
-Stations = require("avalon.stations")
 Templates = require("pl.template")
 Utils = require("speedwalking.utils")
 Warned = false
@@ -175,7 +175,7 @@ function spm_start()
   end
   spm_reset()
   id = RoomID
-  s = Stations:find(id)
+  s = List.new(Speedwalking.FindStations(id))
   if s:len() > 0 then
     StartDomain = s[1].domain
     StartDescription = s[1].description
@@ -201,7 +201,7 @@ function spm_stop()
       return
     end
     EndID = id
-    s = Stations:find(id)
+    s = List.new(Speedwalking.FindStations(id))
     if s:len() > 0 then
       EndDomain = s[1].domain
       EndDescription = s[1].description
