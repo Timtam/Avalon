@@ -355,13 +355,16 @@ function speedwalk_start(from, to)
     return
   end
   -- es wird nur to angegeben, wir laufen also von hier los, falls moeglich
-  if from == "" then
+  if Types.is_empty(from) then
     if SafeSpeedwalks == 1 and Dunkel == 1 then
       world.Note("Um Speedwalks abzusichern, muss es auf Deinem Feld hell sein. Umschalten kannst Du die Absicherung mit der F5-Taste.")
       return
     end
     stations = Stations:find(RoomID)
   else
+    if not from:find(".", 1, true) then
+      from = "."..from
+    end
     stations = Stations:find(from)
   end
   if stations:len() == 0 then
@@ -373,6 +376,9 @@ function speedwalk_start(from, to)
     return
   end
   from = stations[1]
+  if not to:find(".", 1, true) then
+    to = "."..to
+  end
   stations = Stations:find(to)
   if stations:len() == 0 then
     world.Note("Dieser Zielpunkt ist derzeit nicht bekannt.")
@@ -383,7 +389,7 @@ function speedwalk_start(from, to)
     return
   end
   to = stations[1]
-  if from == to then
+  if from.id == to.id then
     world.Note("Du bist doch schon hier.")
     return
   end
