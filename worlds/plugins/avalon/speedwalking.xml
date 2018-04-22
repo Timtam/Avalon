@@ -200,14 +200,18 @@ function OnPluginInstall()
     if Types.is_empty(target) then
       return false
     end
-    local source_station = Stations:find(source.domain.."."..source.name)[1]
-    local target_station = Stations:find(target.domain.."."..target.name)[1]
-    local source_way = Way(source_station, User_Speedwalks[source.id.."_"..target.id], target_station)
-    local target_way = Way(target_station, User_Speedwalks[target.id.."_"..source.id], source_station)
-    source_station:delete_way(source_way)
-    target_station:delete_way(target_way)
-    Stations:delete(source_station)
-    Stations:delete(target_station)
+    local source_stations = Stations:find(source.id)
+    local target_stations = Stations:find(target.id)
+    source_stations:foreach(function(s)
+      target_stations:foreach(function(t)
+        local source_way = Way(s, User_Speedwalks[source.id.."_"..target.id], t)
+        local target_way = Way(t, User_Speedwalks[target.id.."_"..source.id], s)
+        s:delete_way(source_way)
+        t:delete_way(target_way)
+        Stations:delete(s)
+        Stations:delete(t)
+      end)
+    end)
     User_Stations:remove_value(source)
     User_Stations:remove_value(target)
     User_Speedwalks[source.id.."_"..target.id] = nil
