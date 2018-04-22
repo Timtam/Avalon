@@ -629,5 +629,7 @@ speedwalklist['dhungar2.transportkorb_dhungar3.transportkorb'] = "{avalon.speedw
 speedwalklist['dhungar3.transportkorb_dhungar2.transportkorb'] = "{avalon.speedwalk-scripts.dhungar_transportkorb_warten} {avalon.speedwalk-scripts.dhungar_transportkorb_aussteigen}"
 speedwalklist['nereid.teich_walhalla.zentrum'] = "tauche_in_teich {avalon.speedwalk-scripts.walhalla_zugang_rein}"
 speedwalklist['walhalla.zentrum_nereid.teich'] = "{avalon.speedwalk-scripts.walhalla_zugang_raus} tauche_auf"
+speedwalklist['corona.eingang_corona.zentrum'] = "betrete_hoehle {avalon.speedwalk-scripts.corona_tuer_aussen} s s s"
+speedwalklist['corona.zentrum_corona.eingang'] = "n n n {avalon.speedwalk-scripts.corona_tuer_innen} raus"
 
 return speedwalklist
