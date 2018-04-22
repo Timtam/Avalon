@@ -157,6 +157,11 @@ function speedwalk_add_speedwalk(source, target, path)
 end
 
 function OnPluginInstall()
+  PPI.Expose('FindStations', function(identifier)
+    return Stations:find(identifier):map(function(s)
+      return {domain = s.domain, name = s.name, id = s.id, description = s.description}
+    end)
+  end)
   PPI.Expose('AddStation', function(domain, name, id, description)
     speedwalk_add_station(domain, name, id, description)
     User_Stations:foreach(function(s)
