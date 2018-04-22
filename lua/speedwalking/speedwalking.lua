@@ -41,6 +41,8 @@ function speedwalk_init(from, to)
     end)
   end
   world.Note("Voraussichtliche Ankunft: "..string.format("%02d:%02d:%02d Uhr", date:hour(), date:min(), date:sec()))
+  --world.Note("Wir gehen ueber:")
+  --world.Note(spdtbl:map(function(s) return s.domain.."."..s.name end):join(", "))
   spdtbl = Utils.resolve_way(spdtbl)
   spdind = 1
   spdstep = get_unix_time() - 1000
