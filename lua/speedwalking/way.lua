@@ -1,7 +1,6 @@
 Class = require("pl.class")
 Const = require("speedwalking.constants")
 List = require("pl.list")
-Tablex = require("pl.tablex")
 Types = require("pl.types")
 
 Class.Way()
@@ -17,7 +16,11 @@ function Way:_init(source, way, target)
     end
     return d
   end)
-  Tablex.readonly(self)
+  mt = getmetatable(self)
+  mt.__eq = function(self, w)
+    return self.way == w.way and self.source == w.source and self.target == w.target
+  end
+  setmetatable(self, mt)
 end
 
 function Way:get_length()
