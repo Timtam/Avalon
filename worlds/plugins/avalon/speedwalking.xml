@@ -56,12 +56,13 @@
   <send>speedwalk_start("", "%1")</send>
 </alias>
   <alias
-   match="//"
+   match="^//([a-zA-Z0-9.]*)$"
    enabled="y"
+   regexp="y"
    send_to="12"
    sequence="100"
   >
-  <send>speedwalk_list()</send>
+  <send>speedwalk_list("%1")</send>
 </alias>
   <alias
    match="pos"
@@ -311,7 +312,10 @@ function speedwalk_start(from, to)
     return
   end
   -- es wird nur von angegeben -> wir geben ein paar informationen fuer diese location aus
-  if from ~= "" and to == "" then
+  if not Types.is_empty(from) and Types.is_empty(to) then
+    if not from:find(".", 1, true) then
+      from = "."..from
+    end
     stations = Stations:find(from)
     if stations:len() == 0 then
       world.Note("Es gibt keinen Ort mit diesem Namen.")
@@ -377,13 +381,14 @@ function speedwalk_start(from, to)
   speedwalk_init(from, to)
 end
 
-function speedwalk_list()
+function speedwalk_list(filter)
   local custom = false
   local msg = ""
-  msg = msg..tostring(Stations.stations:len()).." Orte bekannt:\n"
+  stations = Stations:find(filter)
+  msg = msg..tostring(stations:len()).." Orte gefunden:\n"
   -- die Liste aller Domaenen mit orten bauen
   domains = {}
-  Stations.stations:foreach(function(s)
+  stations:foreach(function(s)
     if domains[s.domain] == nil then
       domains[s.domain] = List.new()
     end

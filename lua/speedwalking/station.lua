@@ -43,20 +43,22 @@ function Station:matches(identifier, exact)
     end
   end
   domain, name = string.match(identifier, Const.STATION_REGEX)
-  if Types.is_empty(domain) and Types.is_empty(name) then
-    return false
-  end
-  if not Types.is_empty(domain) and Types.is_empty(name) then
-    name = domain
-    domain = ""
+  if not Types.is_empty(identifier) then
+    if Types.is_empty(domain) and Types.is_empty(name) then
+      return false
+    end
+  else
+    return true
   end
   if not Types.is_empty(domain) and not inexact_match(self.domain, domain) then
     return false
   end
-  if exact and name ~= self.name then
-    return false
-  elseif not exact and not inexact_match(self.name, name) then
-    return false
+  if not Types.is_empty(name) then
+    if exact and name ~= self.name then
+      return false
+    elseif not exact and not inexact_match(self.name, name) then
+      return false
+    end
   end
   return true
 end
