@@ -84,4 +84,8 @@ function StationHandler:validate()
   end)
 end
 
+function StationHandler:delete(station)
+  self.stations:remove_value(station)
+end
+
 return StationHandler

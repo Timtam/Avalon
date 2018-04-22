@@ -74,6 +74,10 @@ function Station:find_way(target)
   return nil
 end
 
+function Station:delete_way(way)
+  self.ways:remove_value(way)
+end
+
 function Station:find_path(target, path)
   path = path or List.new()
   path = path:clone():append(self)

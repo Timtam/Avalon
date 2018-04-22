@@ -84,6 +84,7 @@
 <![CDATA[
 require("natsort")
 require("speedwalking.speedwalking")
+Const = require("speedwalking.constants")
 JSON = require("json")
 List = require("pl.list")
 Path = require("pl.path")
@@ -91,12 +92,12 @@ Stations = require("avalon.stations")
 String = require("pl.stringx")
 Tablex = require("pl.tablex")
 Types = require("pl.types")
+Way = require("speedwalking.way")
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Dunkel = 0
 RoomID = nil
 SafeSpeedwalks = 1
-Stations:parse_speedwalks(require("avalon.speedwalks"))
 User_Speedwalks = {}
 User_Stations = List.new()
 world.DoAfterSpecial(0.5, "PluginInstall()", 12)
@@ -113,19 +114,12 @@ function PluginInstall()
   if not Types.is_empty(u_stations) then
     User_Stations = JSON.decode(world.Base64Decode(u_stations))
     User_Stations = List.new(User_Stations)
-    User_Stations:foreach(function(s)
-      speedwalk_add_station(s.domain, s.name, s.id, s.description)
-    end)
   end
   u_speedwalks = Avalon.GetConfig("speedwalking", "speedwalks")
   if not Types.is_empty(u_speedwalks) then
     User_Speedwalks = JSON.decode(world.Base64Decode(u_speedwalks))
-    local name, path
-    for name, path in pairs(User_Speedwalks) do
-      names = utils.split(name, "_")
-      speedwalk_add_speedwalk(names[1], names[2], path)
-    end
   end
+  speedwalk_load()
 end
 
 function speedwalk_add_station(domain, name, id, description)
@@ -181,6 +175,58 @@ function OnPluginInstall()
     Avalon.SetConfig("speedwalking", "speedwalks", world.Base64Encode(JSON.encode(User_Speedwalks)))
     return true
   end)
+  PPI.Expose('DeleteSpeedwalk', function(from, to)
+    local from_domain, from_name = string.match(from, Const.STATION_REGEX)
+    local to_domain, to_name = string.match(to, Const.STATION_REGEX)
+    local i
+    local source
+    for i = 1, User_Stations:len() do
+      if User_Stations[i].domain == from_domain and User_Stations[i].name == from_name then
+        source = User_Stations[i]
+        break
+      end
+    end
+    if Types.is_empty(source) then
+      return false
+    end
+    local target
+    for i = 1, User_Stations:len() do
+      if User_Stations[i].domain == to_domain and User_Stations[i].name == to_name then
+        target = User_Stations[i]
+        break
+      end
+    end
+    if Types.is_empty(target) then
+      return false
+    end
+    local source_station = Stations:find(source.domain.."."..source.name)[1]
+    local target_station = Stations:find(target.domain.."."..target.name)[1]
+    local source_way = Way(source_station, User_Speedwalks[source.id.."_"..target.id], target_station)
+    local target_way = Way(target_station, User_Speedwalks[target.id.."_"..source.id], source_station)
+    source_station:delete_way(source_way)
+    target_station:delete_way(target_way)
+    Stations:delete(source_station)
+    Stations:delete(target_station)
+    User_Stations:remove_value(source)
+    User_Stations:remove_value(target)
+    User_Speedwalks[source.id.."_"..target.id] = nil
+    User_Speedwalks[target.id.."_"..source.id] = nil
+    Avalon.SetConfig("speedwalking", "stations", world.Base64Encode(JSON.encode(User_Stations)))
+    Avalon.SetConfig("speedwalking", "speedwalks", world.Base64Encode(JSON.encode(User_Speedwalks)))
+    return true
+  end)
+end
+
+function speedwalk_load(silent)
+  Stations:parse_speedwalks(require("avalon.speedwalks"), silent)
+  User_Stations:foreach(function(s)
+    speedwalk_add_station(s.domain, s.name, s.id, s.description)
+  end)
+  local name, path
+  for name, path in pairs(User_Speedwalks) do
+    names = utils.split(name, "_")
+    speedwalk_add_speedwalk(names[1], names[2], path)
+  end
 end
 
 function OnAvalonDunkel(dunkel)

@@ -57,6 +57,15 @@
   </alias>
   <alias
    regexp="y"
+   match="^spm l.* ([a-zA-Z0-9\.]+)_([a-zA-Z0-9\.]+)$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>spm_delete("%1", "%2")</send>
+  </alias>
+  <alias
+   regexp="y"
    match="^spm z$"
    enabled="y"
    sequence="100"
@@ -377,6 +386,17 @@ function spm_save()
     world.Note("Es ist ein Fehler beim Eintragen des umgekehrten Speedwalks aufgetreten.")
   end
   world.Note("Die Speedwalks wurden erfolgreich gespeichert.")
+  world.Note("Du kannst von Dir erstellte Speedwalks jeder Zeit mit spm l[oeschen]")
+  world.Note("wieder entfernen.")
+end
+
+function spm_delete(from, to)
+  success = Speedwalking.DeleteSpeedwalk(from, to)
+  if success == false then
+    world.Note("Ein Fehler ist beim Loeschen des Speedwalks aufgetreten. Vielleicht hast Du dich vertippt?")
+    return
+  end
+  world.Note("Der Speedwalk und auch der umgekehrte Speedwalk wurden geloescht.")
 end
 ]]>
 </script>
