@@ -66,7 +66,7 @@
   </alias>
   <alias
    regexp="y"
-   match="^spm z$"
+   match="^spm z"
    enabled="y"
    sequence="100"
    send_to="12"
@@ -261,8 +261,16 @@ function spm_stop()
 end
 
 function spm_removelast()
-  world.Note("Eingabe \""..CmdStack[#CmdStack].."\" gelöscht.")
-  CmdStack[#CmdStack] = nil
+  if not Active then
+    world.Note("Es wird derzeit kein Speedwalk aufgezeichnet.")
+    return
+  end
+  if #CmdStack > 0 then
+    world.Note("Eingabe \""..CmdStack[#CmdStack].."\" gelöscht.")
+    CmdStack[#CmdStack] = nil
+    return
+  end
+  world.Note("Kein Kommando aufgezeichnet.")
 end
 
 function _spm_getspeedwalk()
