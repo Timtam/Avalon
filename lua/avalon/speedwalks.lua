@@ -585,8 +585,8 @@ speedwalklist['tolsgal.wlmstab_ilmelorn.eingang'] = "sw nw nw w sw sw sw so so s
 speedwalklist['dhungar3.wlmhammer_dhungar3.transportkorb'] = "nw n w w w w w"
 speedwalklist['miobaas.wlmdegen_miobaas.zentrum'] = "raus s o n n n n o o o o o o o o o nw sw o o o o o"
 speedwalklist.wlm1_skal = "oeffne_tuer o s s o o o n n n n n n o o o n n n n n oeffne_tor n"
-speedwalklist['dhungar1.wlmeinhandaxt_dhungar3.transportkorb'] = "n nw w w w sw s"
-speedwalklist['dhungar1.wlmkleinschild_dhungar3.transportkorb'] = speedwalklist['dhungar1.wlmeinhandaxt_dhungar3.transportkorb']
+speedwalklist['dhungar1.wlmeinhandaxt_dhungar1.transportkorb'] = "n nw w w w sw s"
+speedwalklist['dhungar1.wlmkleinschild_dhungar1.transportkorb'] = speedwalklist['dhungar1.wlmeinhandaxt_dhungar3.transportkorb']
 speedwalklist['dhungar3.wlmzweihandaxt_dhungar3.transportkorb'] = "so o no o"
 speedwalklist['ilmelorn.wlmspeer_ilmelorn.eingang'] = "o o r r r"
 speedwalklist['miobaas.wlmbreitschwert_miobaas.zentrum'] = "s o o n nw n n n n w w w w w w"
@@ -631,5 +631,7 @@ speedwalklist['dhungar2.transportkorb_dhungar3.transportkorb'] = "{avalon.speedw
 speedwalklist['dhungar3.transportkorb_dhungar2.transportkorb'] = "{avalon.speedwalk-scripts.dhungar_transportkorb_warten} {avalon.speedwalk-scripts.dhungar_transportkorb_aussteigen}"
 speedwalklist['nereid.teich_walhalla.zentrum'] = "tauche_in_teich {avalon.speedwalk-scripts.walhalla_zugang_rein}"
 speedwalklist['walhalla.zentrum_nereid.teich'] = "{avalon.speedwalk-scripts.walhalla_zugang_raus} tauche_auf"
+speedwalklist['corona.eingang_corona.zentrum'] = "betrete_hoehle {avalon.speedwalk-scripts.corona_tuer_aussen} s s s"
+speedwalklist['corona.zentrum_corona.eingang'] = "n n n {avalon.speedwalk-scripts.corona_tuer_innen} raus"
 
 return speedwalklist
