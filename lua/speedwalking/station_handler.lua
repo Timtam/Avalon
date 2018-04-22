@@ -85,7 +85,11 @@ function StationHandler:validate()
 end
 
 function StationHandler:delete(station)
+  if station.ways:len() > 0 then
+    return false
+  end
   self.stations:remove_value(station)
+  return true
 end
 
 return StationHandler
