@@ -20,6 +20,20 @@
 
 </plugin>
 
+<!--  Triggers  -->
+
+<triggers>
+  <trigger
+   enabled="y"
+   match="*"
+   send_to="12"
+   sequence="1"
+   keep_evaluating="y"
+  >
+  <send>speedwalk_process(true)</send>
+  </trigger>
+</triggers>
+
 <aliases>
   <alias
    match="safespeedwalks_switch"
@@ -260,12 +274,6 @@ end
 
 function OnAvalonClose()
   Avalon.SetConfig('settings', 'SafeSpeedwalks', SafeSpeedwalks)
-end
-
-function OnPluginScreendraw(type, log, line)
-  if type == 0 then
-    speedwalk_process(true)
-  end
 end
 
 function OnPluginTick()

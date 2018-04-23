@@ -103,6 +103,7 @@ function speedwalk_process(text_incoming)
     end
   end
   world.Execute(command)
+  spdtext = false
   spdstep = get_unix_time()
 end
 
