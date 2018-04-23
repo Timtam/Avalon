@@ -563,41 +563,34 @@ stations:add(
 stations:add(
              "uw",
              "gabelung5",
-             "raum/3b9843eaba4a9021990cdf4e6ffa87c5",
-             "Weggabelung in der Tiefebene."
-            )
-
-stations:add(
-             "uw",
-             "gabelung6",
              "raum/4a1a0cacb794f1729e691923fbe0ca73",
              "Weggabelung bei der Kapelle (Eingang Rilauven)."
             )
 
 stations:add(
              "uw",
-             "gabelung7",
+             "gabelung6",
              "raum/a9085ca05de303523ee2d6e2495bebc6",
              "Weggabelung bei dem Tempel der Febracim."
             )
 
 stations:add(
              "uw",
-             "gabelung8",
+             "gabelung7",
              "raum/58b87fc2e0ec6a3e7f1196e0ec4de97e",
              "Weggabelung im noerdlichen Moor der Untoten."
             )
 
 stations:add(
              "uw",
-             "gabelung9",
+             "gabelung8",
              "raum/71c52b203b8b0722914f5d07a397eb3c",
              "Weggabelung bei der Enklave der Nekromantengilde."
             )
 
 stations:add(
              "uw",
-             "gabelung10",
+             "gabelung9",
              "raum/41f8abea25ad9f275bbfc7aa5d76589f",
              "Weggabelung bei Jasthan."
             )
