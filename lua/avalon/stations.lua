@@ -906,7 +906,7 @@ stations:add(
 stations:add(
              "camp",
              "druidemoldgar",
-             "raum/6fa2a223044358a4ef98d146d4622182",
+             "raum/3ecf21487a37ef254abbe947fc866c81",
              "Aufenthaltsort des Druiden Moldgar."
             )
 
