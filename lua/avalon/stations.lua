@@ -864,15 +864,15 @@ stations:add(
 stations:add(
              "dinsel",
              "eingang",
-             "raum/f0b13f44c08fb2291f8ccddb81588a94",
-             "Bei der Obsidian-Saeule auf der Drachenwald-Insel"
+             "raum/6f809944d4ca80deb93d5bbba9ad0cbc",
+             "Auf der Obsidian-Saeule auf der Drachenwald-Insel"
             )
 
 stations:add(
              "uw",
              "dinsel",
-             "raum/4405d3cc8b5a9de94d8683b2e7fa38b6",
-             "Bei der Obsidian-Saeule im Lavameer (Zugang Drachenwald-Insel)"
+             "raum/f8fbab163a86b694c68a92d0f3585bef",
+             "Auf der Obsidian-Saeule im Lavameer (Zugang Drachenwald-Insel)"
             )
 
 stations:add(
@@ -968,7 +968,7 @@ stations:add(
 
 stations:add(
              "uw",
-             "dturm",
+             "daemonenturm",
              "raum/dac9a18bd9e37da11bfdd83573dc5874",
              "Eingang des Daemonen-Turms."
             )
@@ -1209,6 +1209,13 @@ stations:add(
              "hafen",
              "raum/2bb629d877a810d8746ce7fc51884fee",
              "Der Anleger von Solgard."
+            )
+
+stations:add(
+             "vulkania",
+             "eingang",
+             "raum/1bfb2548b8f2f988985d0e5a2cae3339",
+             "Eingang von Vulkania."
             )
 
 stations:add(
