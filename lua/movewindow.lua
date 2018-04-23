@@ -306,10 +306,10 @@ function movewindow.install (win, default_position, default_flags, nocheck, frie
      win = win,   -- save window ID
      
      -- save current position in table (obtained from state file)
-     window_left  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowx")) or (start_position and start_position.x) or 0,
-     window_top   = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowy")) or (start_position and start_position.y) or 0,     
-     window_mode  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowmode")) or default_position,
-     window_flags = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowflags")) or default_flags,
+     window_left  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowx") or 0) or (start_position and start_position.x) or 0,
+     window_top   = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowy") or 0) or (start_position and start_position.y) or 0,     
+     window_mode  = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowmode") or 0) or default_position,
+     window_flags = tonumber (avalon.GetConfig (config,"mw_" .. win .. "_windowflags") or 0) or default_flags,
      window_friends = friends or {},
      window_friend_deltas = {},
      margin = 20,  -- how close we can put to the edge of the window
