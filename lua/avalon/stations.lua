@@ -1717,30 +1717,30 @@ stations:add(
 
 stations:add(
              "augyra",
-             "trophaehenhaendler",
+             "trophaeenhaendler",
              "raum/fd8ae8d465b02f081e3f5b06402d1b57",
-             "Trophaehenhaendler in Augyra."
+             "Trophaeenhaendler in Augyra."
             )
 
 stations:add(
              "kergora",
-             "trophaehenhaendler",
+             "trophaeenhaendler",
              "raum/f6bb25e56443f99ee2cf5f356181e0b9",
-             "Trophaehenhaendler in Kergora."
+             "Trophaeenhaendler in Kergora."
             )
 
 stations:add(
              "skalewar",
-             "trophaehenhaendler",
+             "trophaeenhaendler",
              "raum/b8e61ebe866ff63145f17072c0fa7ba5",
-             "Trophaehenhaendler in Skalewar mit Spezial-Angebot."
+             "Trophaeenhaendler in Skalewar mit Spezial-Angebot."
             )
 
 stations:add(
              "usagoor",
-             "trophaehenhaendler",
+             "trophaeenhaendler",
              "raum/52d9081687d2baae6b2b58eeee1127e8",
-             "Trophaehenhaendler in Usagoor."
+             "Trophaeenhaendler in Usagoor."
             )
 
 stations:add(
@@ -2252,6 +2252,13 @@ stations:add(
              "zlmwasser",
              "raum/3a49f9dde3a766f8114413854705fb4e",
              "Der Meister des Wassers in Gwendon."
+            )
+
+stations:add(
+             "skalewar",
+             "zentrum",
+             "raum/258a146de0a5e1774cd95830136ffeab",
+             "Bei der gewaltigen Kralle eines Vogels in Skalewar"
             )
 
 return stations
