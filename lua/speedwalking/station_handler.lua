@@ -58,7 +58,9 @@ function StationHandler:parse_speedwalks(speedwalks, silent)
   if silent == false then
     self:validate()
     world.Note(tostring(parsed).." Speedwalks fuer "..tostring(self.stations:len()).." Stationen geladen.")
-    world.Note(tostring(failure).." fehlerhafte Speedwalks.")
+    if failure > 0 then
+      world.Note(tostring(failure).." fehlerhafte Speedwalks.")
+    end
   end
 end
 
