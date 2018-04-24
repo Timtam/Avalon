@@ -80,25 +80,21 @@ function Station:delete_way(way)
   self.ways:remove_value(way)
 end
 
-function Station:find_path(target, path)
+function Station:find_paths(target, path)
   path = path or List.new()
   path = path:clone():append(self)
   if self == target then
-    return path
+    return List.new():append(path)
   end
-  local shortest = nil
+  local paths = List.new()
   local _, t
   for _, t in ipairs(self.ways) do
     if not path:contains(t.target) then
-      newpath = t.target:find_path(target, path)
-      if newpath then
-        if not shortest or Utils.way_duration(newpath) < Utils.way_duration(shortest) then
-          shortest = newpath
-        end
-      end
+      newpaths = t.target:find_paths(target, path)
+      paths:extend(newpaths)
     end
   end
-  return shortest
+  return paths
 end
 
 return Station

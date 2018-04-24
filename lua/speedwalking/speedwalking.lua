@@ -20,26 +20,37 @@ function speedwalk_init(from, to)
     world.Note("Bitte warte, bis der derzeitige Speedwalk beendet ist.")
     return
   end
-  spdtbl = from:find_path(to)
+  paths = from:find_paths(to)
+  paths:sort(function(a, b)
+    return Utils.way_duration(a) < Utils.way_duration(b)
+  end)
+  spdtbl = nil
+  local _, p, prevent
+  for _, p in pairs(paths) do
+    prevent = Utils.way_prevention_reason(p)
+    if Types.is_empty(prevent) then
+      spdtbl = p
+      break
+    end
+  end
   if not spdtbl then
-    world.Note("Zwischen diesen beiden Orten ist kein Weg bekannt.")
+    if paths:len() > 0 then
+      world.Note(Utils.way_prevention_reason(paths[paths:len() - 1]))
+    else
+      world.Note("Zwischen diesen zwei Orten ist kein Weg bekannt.")
+    end
     return
   end
-  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal()
   local i, w
   for i = 1, spdtbl:len() - 1 do
     w = spdtbl[i]:find_way(spdtbl[i + 1])
     w.way:foreach(function(d)
       if Types.type(d) ~= 'string' then
         d:set_parameters(w.source, w.target)
-        prevent = d:prevent_path()
-        if not Types.is_empty(prevent) then
-          world.Note(prevent)
-          return
-        end
       end
     end)
   end
+  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal()
   world.Note("Voraussichtliche Ankunft: "..string.format("%02d:%02d:%02d Uhr", date:hour(), date:min(), date:sec()))
   --world.Note("Wir gehen ueber:")
   --world.Note(spdtbl:map(function(s) return s.domain.."."..s.name end):join(", "))

@@ -85,4 +85,19 @@ Utils.resolve_way = function(l)
   return p
 end
 
+Utils.way_prevention_reason = function(p)
+  local i, w
+  for i = 1, p:len() - 1 do
+    w = p[i]:find_way(p[i + 1])
+    w.way:foreach(function(d)
+      if Types.type(d) ~= 'string' then
+        prevent = d:prevent_path()
+        if not Types.is_empty(prevent) then
+          return prevent
+        end
+      end
+    end)
+  end
+end
+
 return Utils
