@@ -1240,13 +1240,6 @@ stations:add(
             )
 
 stations:add(
-             "holbytla",
-             "schmied",
-             "raum/fbb85ec48b6ccccbdc957882e1436a2c",
-             "Eingang der Hoehle von Schmiedin Hermine Eisenbieger."
-            )
-
-stations:add(
              "dinsel",
              "hoehle",
              "raum/e6a28e48857a6b28dd983d92de8cdd16",
@@ -1461,13 +1454,6 @@ stations:add(
              "moor",
              "raum/a80d2d97e77a5d6f7f2bf9c2d2d19364",
              "Moor der Untoten (Ziel des Unterwelteingangs von Minias)"
-            )
-
-stations:add(
-             "holbytla",
-             "muehle",
-             "raum/82dfb814ead873764262de7e97b1c39d",
-             "Muehle auf Holbytla."
             )
 
 stations:add(
@@ -2164,13 +2150,6 @@ stations:add(
             )
 
 stations:add(
-             "holbytla",
-             "schmiedezunft",
-             "raum/2a76d2fbc07a9652d09bd5a82d81b0fc",
-             "Nebenstelle der Schmiedezunft auf Holbytla."
-            )
-
-stations:add(
              "tolsgal",
              "schmied",
              "raum/68c6eaf2f63c009c0fe0fe7714c74154",
@@ -2259,6 +2238,90 @@ stations:add(
              "zentrum",
              "raum/258a146de0a5e1774cd95830136ffeab",
              "Bei der gewaltigen Kralle eines Vogels in Skalewar"
+            )
+
+stations:add(
+             "holbytla",
+             "gabelung1",
+             "raum/96566e5f2116ee1c9b32033f568c29b6",
+             "Weggabelung in der Naehe des Hafens."
+            )
+
+stations:add(
+             "holbytla",
+             "gabelung2",
+             "raum/87a026b18aafae970fa9c0b682b977ee",
+             "Weggabelung nahe des Gasthauses."
+            )
+
+stations:add(
+             "holbytla",
+             "gabelung3",
+             "raum/8315bcc87bbf9b2d05493f67fb547743",
+             "Weggabelung nahe Limarch."
+            )
+
+stations:add(
+             "holbytla",
+             "anfaengerpark",
+             "raum/d2f8b94b70a5849feac51d7ad0f8b5f5",
+             "Eingang des Anfaengerparks von Holbytla."
+            )
+
+stations:add(
+             "holbytla",
+             "wlmeinhandaxt",
+             "raum/273cbe03c8848913d3b622cd3db37632",
+             "Der Axtlehrmeister auf Holbytla."
+            )
+
+stations:add(
+             "holbytla",
+             "schmied",
+             "raum/e20e6eb16910de08ca527451e8545731",
+             "Die Hoehle der Schmiedin Hermine Eisenbieger."
+            )
+
+stations:add(
+             "holbytla",
+             "muehle",
+             "raum/3ed860b8d7aaef2001f00f0d775e55df",
+             "Muehle auf Holbytla."
+            )
+
+stations:add(
+             "holbytla",
+             "schmiedezunft",
+             "raum/3ec3ee5ab5699d237409ee35fd85f67d",
+             "Zweigstelle der Schmiedezunft auf Holbytla."
+            )
+
+stations:add(
+             "holbytla",
+             "wlmflegel",
+             "raum/286e7aaca449839ad953d21a41a3dc13",
+             "Der Meister des Flegels auf Holbytla."
+            )
+
+stations:add(
+             "limarch",
+             "bank",
+             "raum/6954fff348793647a5fdddff02458899",
+             "Postbank in Limarch."
+            )
+
+stations:add(
+             "limarch",
+             "haendler",
+             "raum/b581b156f26d1351977a78e36746a06f",
+             "Gemischtwarenladen in Limarch."
+            )
+
+stations:add(
+             "limarch",
+             "wlmkurzschwert",
+             "raum/433b9594175d62d49350aff1791925fc",
+             "Der Lehrmeister fuer Kurzschwert in Limarch."
             )
 
 return stations
