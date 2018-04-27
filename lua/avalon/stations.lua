@@ -2324,4 +2324,25 @@ stations:add(
              "Der Lehrmeister fuer Kurzschwert in Limarch."
             )
 
+stations:add(
+             "amphibos",
+             "gabelung1",
+             "raum/16a1d75b893ad8c6d925a5026905dac1",
+             "Weggabelung in der Naehe des Hafens."
+            )
+
+stations:add(
+             "amphibos",
+             "gabelung2",
+             "raum/29d2dc50ab4dd70c86e5223da3d3e70f",
+             "Weggabelung nahe des Obsidian-Plateaus."
+            )
+
+stations:add(
+             "amphibos",
+             "gabelung3",
+             "raum/d9754528645cec764c9518601ea71675",
+             "Weggabelung nahe der Oase."
+            )
+
 return stations
