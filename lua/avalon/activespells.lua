@@ -29,12 +29,13 @@ function spells_stop(name)
   mins = math.floor((time_diff - hours * 3600) / 60)
   secs = round(((time_diff - hours * 3600) - mins * 60), 0)
   if hours > 0 then
-    msg = msg..tostring(hours).." Stunden, "
+    msg = msg..tostring(hours).." Stunden und "
   end
   if mins > 0 then
-    msg = msg..tostring(mins).." Minuten, "
+    msg = msg..tostring(mins).." Minuten und "
   end
   msg = msg..tostring(secs).." Sekunden"
+  msg = msg..".\n"
   NoteColour(msg, 150, 0, 0, 255, 255, 0)
   spells[name] = 0
   if warnings[name] ~= nil then
@@ -46,24 +47,37 @@ end
 function spells_status()
   msg = ""
   ltime = GetUnixTime()
-  for spell, time in pairsByKeys(spells) do
+  for spell,time in pairsByKeys(spells) do
     if time > 0 then
       msg = msg..spell..": "
-      time_diff = ltime - time
-      hours = math.floor(time_diff / 3600)
-      mins = math.floor((time_diff - hours * 3600) / 60)
-      secs = round((time_diff - hours * 3600) - mins * 60, 0)
-      if hours > 0 then
-        msg = msg..tostring(hours).." Stunde(n), "
+      timediff = ltime - time
+      hours = math.floor(timediff / 3600)
+      mins = math.floor((timediff - hours * 3600) / 60)
+      secs = round((timediff - hours * 3600) - mins * 60,0)
+      if hours > 0 and hours < 60 then
+        if hours > 1 then
+          msg = msg..tostring(hours).." Stunden und "
+        else
+          msg = msg..tostring(hours).." Stunde und "
+        end
       end
-      if mins > 0 then
-        msg = msg..tostring(mins).." Minute(n), "
+      if mins > 0 and mins < 60 then
+        if mins > 1 then
+          msg = msg..tostring(mins).." Minuten und "
+        else
+          msg = msg..tostring(mins).." Minute und "
+        end
       end
-      msg = msg..tostring(secs).." Sekunden"
+      if secs == 1 then
+        msg = msg..tostring(secs).." Sekunde"
+      else
+        msg = msg..tostring(secs).." Sekunden"
+      end
+      msg = msg..".\n"
     end
   end
   if msg == "" then
-    msg = "Zur Zeit sind keine Zauber aktiv."
+    msg = "Momentan sind keine Zauber aktiv."
   else
     msg = string.sub(msg, 1, -2)
   end

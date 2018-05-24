@@ -111,7 +111,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du nimmst Deinen Fokuskristall zur Hand und beginnst Dich zu konzentrieren."
+   match="Du nimmst Deinen Fokuskristall *"
    send_to="12"
    sequence="100"
   >
@@ -148,7 +148,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Erfolgreich hast Du Deinen Daemon in *"
+   match="Erfolgreich hast Du Deinen Daemon in * "
    send_to="12"
    sequence="100"
   >
@@ -177,7 +177,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Dein Fokuskristall leuchtet auf und ein Portal zu einer anderen*"
+   match="Dein Fokuskristall leuchtet auf und ein Portal *"
    send_to="12"
    sequence="100"
   >
@@ -186,7 +186,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du starrst den * mit festem Blick an."
+   match="Du starrst * mit festem Blick an."
    send_to="12"
    sequence="100"
   >
@@ -195,7 +195,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du nimmst Deinen Fokuskristall fest in Deine freie Hand, deutest*"
+   match="Du nimmst Deinen Fokuskristall fest in Deine freie Hand, *"
    send_to="12"
    sequence="100"
   >
@@ -204,7 +204,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du schlaegst ruckartig Deinen Fokuskristall *"
+   match="Du schlaegst ruckartig Deinen Fokuskristall auf den Boden, *"
    send_to="12"
    sequence="100"
   >
@@ -214,7 +214,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du schliesst kurz Deine Augen und konzentrierst Dich. Dann sendest Du einen *"
+   match="Du schliesst fuer einen Moment Deine Augen. *"
    send_to="12"
    sequence="100"
   >
@@ -223,7 +223,7 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du konzentrierst Dich auf ihn, woraufhin dieser *"
+   match="Du konzentrierst Dich auf * woraufhin dieser *"
    send_to="12"
    sequence="100"
   >
@@ -3221,6 +3221,14 @@
   <trigger
    enabled="y"
    match="* moechte sich Deiner Gruppe anschliessen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/group.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="* schliesst sich Deiner Gruppe an."
    sequence="100"
    send_to="12"
   >
