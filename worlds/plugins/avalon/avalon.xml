@@ -3968,6 +3968,14 @@
   >
   <send>psnd("Misc/NPCTaskComplete.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="*Du bist soeben eine Stufe aufgestiegen*"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Misc/SubLevelUp.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
