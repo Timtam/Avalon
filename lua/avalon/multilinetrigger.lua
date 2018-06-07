@@ -77,27 +77,6 @@ trigger:Line("Du ergreifst die Holzstange ganz am Ende, um einen moeglichst lang
 trigger:Line("zu haben, und ziehst sie kraftvoll nach unten.",false,true)
 trigger:Inject()
 
-trigger=MultilineTrigger('psnd("Misc/SubLevelUp.ogg")')
-trigger:Line("Stufe aufgestiegen")
-trigger:Line("Du bist soeben eine Stufe aufgestiegen.")
-trigger:Inject()trigger=MultilineTrigger('psnd("Misc/SubLevelUp.ogg")')
-trigger:Line("Ruhm!")
-trigger:Line("Du bist soeben eine Stufe aufgestiegen.")
-trigger:Inject()
-
-trigger=MultilineTrigger('psnd("Misc/SubLevelUp.ogg")')
-trigger:Line("Erfolg!")
-trigger:Line("Du bist soeben eine Stufe aufgestiegen.")
-trigger:Inject()
-
-trigger=MultilineTrigger('psnd("Misc/SubLevelUp.ogg")')
-trigger:Line("Stolz")
-trigger:Line("Du bist soeben eine Stufe aufgestiegen.")
-trigger:Inject()trigger=MultilineTrigger('psnd("Misc/SubLevelUp.ogg")')
-trigger:Line("Stufe aufgestiegen")
-trigger:Line("Du bist soeben eine Stufe aufgestiegen.")
-trigger:Inject()
-
 trigger=MultilineTrigger('psnd("Player/Voodoo.ogg")')
 trigger:Line("Du erschrickst plotzlich und reisst die Arme in die Hoehe. War das ein",false,false)
 trigger:Line("Voodoo-Fluch, der nach hinten los ging? Erst jetzt bemerkst Du, dass Du *",false,false)
