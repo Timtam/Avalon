@@ -50,8 +50,8 @@ function speedwalk_init(from, to)
       end
     end)
   end
-  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal()
-  world.Note("Voraussichtliche Ankunft: "..string.format("%02d:%02d:%02d Uhr", date:hour(), date:min(), date:sec()))
+  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal() - Date(os.time()):toLocal()
+  world.Note("Voraussichtliche Ankunft in "..string.format("%d Minuten und %d Sekunden.", date:min(), date:sec()))
   --world.Note("Wir gehen ueber:")
   --world.Note(spdtbl:map(function(s) return s.domain.."."..s.name end):join(", "))
   spdtbl = Utils.resolve_way(spdtbl)
