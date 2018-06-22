@@ -116,13 +116,13 @@ Speedwalks
 Die Speedwalks sind ebenfalls ein sehr gern genutztes Feature des Soundpacks. Dabei handelt es sich um die Möglichkeit, von einem Platz zu einem anderen zu kommen, indem man einfach angibt, dass man von hier nach dort laufen möchte. Das Programm läuft ganz von allein.
 
 Der wichtigste Teil eines Speedwalks ist der / (Schrägstrich). Mit ihm weiß das Soundpack, dass nun ein Speedwalk folgt.
-Der Befehl // zeigt eine Liste aller Speedwalks an. Ein Speedwalk besteht dabei aus zwei Komponenten: einer Domäne und einem Zielort.
-Die Domäne ist meist die Stadt oder die Insel, auf welchem der Zielort liegt. Der Ort selber ist dann ein bestimmter Anlaufpunkt in dieser Stadt oder auf dieser Insel.
+Der Befehl // zeigt eine Liste aller Speedwalks an. Ein Speedwalk besteht dabei aus zwei Komponenten: einem Gebiet und einem Zielort.
+Das Gebiet ist meist die Stadt oder die Insel, auf welchem der Zielort liegt. Der Ort selber ist dann ein bestimmter Anlaufpunkt in dieser Stadt oder auf dieser Insel.
 In diesem Speedwalk-System wird eine Ortsangabe also in zwei Teile geteilt, welche mit . voneinander getrennt werden. Der Marktplatz in Minias kann somit beispielsweise mit Minias.Zentrum beschrieben werden.
 Der Befehl // kann nun die anzuzeigenden Orte filtern. Führt man //minias aus, bekommt man nur die Orte angezeigt, welche in Minias liegen. Mit //.zentrum dagegen alle Zentrum-Orte, die das Speedwalksystem kennt.
 
 Einen bestimmten Ort anlaufen kann man nun, indem man /start_ziel eintippt. Beispielsweise /minias.zentrum_alotria.zentrum. Man kann allerdings auch die Startangabe entfallen lassen, wenn man von genau dem Ort starten möchte, an dem man sich gerade befindet. In dem Fall würde /_alotria.zentrum ausreichen.
-Sofern der Name immernoch eindeutig ist, könnt ihr die Bezeichnung der Domäne und des Ortes auch abkürzen, soweit ihr wollt. /_alo.ze wäre immer noch eindeutig genug, um das Zentrum von Alotria als euren Zielort ausmachen zu können.
+Sofern der Name immernoch eindeutig ist, könnt ihr die Bezeichnung des Gebietes und des Ortes auch abkürzen, soweit ihr wollt. /_alo.ze wäre immer noch eindeutig genug, um das Zentrum von Alotria als euren Zielort ausmachen zu können.
 Wenn ihr nur einen Startpunkt angebt, aber keinen Zielpunkt, werden euch Informationen über diesen Ort angezeigt, beispielsweise, wo ungefähr sich die Gabelung1 auf Nereid befindet.
 
 Mit Hilfe der Tastenkombination Strg+D wird der momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Er kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
@@ -138,7 +138,7 @@ Mit dem Kommando "spm z", wird der zuletzt eingegebene Befehl wieder gelöscht.
 
 Der Speedwalk Mapper lässt sich mit "spm stop" beenden.
 
-Anschließend werden die Domänen, die Namen und die Beschreibungen für die Start- und die Endposition abgefragt.
+Anschließend werden die Gebiete, die Namen und die Beschreibungen für die Start- und die Endposition abgefragt.
 
 Danach kann entweder das spm k Kommando genutzt werden, um den Speedwalk in die Zwischenablage zu kopieren und uns zukommen zu lassen, oder spm sp, um den Speedwalk abzuspeichern und in das Speedwalk-System zu integrieren. Dann findet ihr ihn auch mittels der // Auflistung.
 Zum Löschen dieser Speedwalks gibt es das Kommando spm l, gefolgt von start_ziel.

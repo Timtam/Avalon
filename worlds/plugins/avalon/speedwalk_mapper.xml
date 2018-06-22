@@ -209,9 +209,9 @@ function spm_stop()
     end
     world.Note("Die Aufzeichnung ist abgeschlossen.")
     world.Note("Anschließend werden noch folgende Informationen benoetigt:")
-    StartDomain = utils.inputbox("Bitte den Namen der Startdomäne des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartDomain)
+    StartDomain = utils.inputbox("Bitte den Namen des Startgebietes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartDomain)
     if StartDomain == nil then
-      world.Note("Der Name der Startdomaene darf nicht leer sein. Beispiel: minias")
+      world.Note("Der Name des Startgebietes darf nicht leer sein. Beispiel: minias")
       return
     end
     StartName = utils.inputbox("Bitte den Namen des Startortes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", StartName)
@@ -224,9 +224,9 @@ function spm_stop()
       world.Note("Die Beschreibung für den Startort darf nicht leer sein.")
       return
     end
-    EndDomain = utils.inputbox("Bitte den Namen der Enddomäne des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndDomain)
+    EndDomain = utils.inputbox("Bitte den Namen des Zielgebietes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndDomain)
     if EndDomain == nil then
-      world.Note("Der Name der Enddomäne darf nicht leer sein. Beispiel: alotria")
+      world.Note("Der Name des Zielgebietes darf nicht leer sein. Beispiel: alotria")
       return
     end
     EndName = utils.inputbox("Bitte den Namen des Zielortes des Speedwalks eingeben:", "Avalon-Speedwalk-Mapper", EndName)
