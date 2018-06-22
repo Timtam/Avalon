@@ -11,6 +11,7 @@ c = {
     hoch = "runter",
     runter = "hoch"
   },
+  RESPONSE_TIME = 0.05,
   SCRIPT_FAILURE = -1,
   SCRIPT_REGEX = "^%{([a-zA-z0-9%.-_]+)%}$",
   SCRIPT_RUNNING = 0,

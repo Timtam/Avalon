@@ -82,7 +82,7 @@ function speedwalk_process(text_incoming)
       continue_time = continue_time + Const.WALK_SPEED_EXTRA
     end
   end
-  if text_incoming == true then
+  if text_incoming == true and current_time - spdstep > Const.RESPONSE_TIME then
     spdtext = true
   end
   if continue_time > current_time or spdtext == false then
