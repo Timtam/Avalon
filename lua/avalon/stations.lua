@@ -2352,4 +2352,11 @@ stations:add(
              "Wurfstern-Lehrmeister in der Mini-Unterwelt"
             )
 
+stations:add(
+             "camp",
+             "haendler",
+             "raum/aec143c23d4c309bbf0a272e9e8fbe1a",
+             "Der Haendler im Camp Baralon"
+            )
+
 return stations

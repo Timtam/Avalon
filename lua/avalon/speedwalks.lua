@@ -647,5 +647,7 @@ speedwalklist['amphibos.waldlaeuferzunft_amphibos.gabelung2'] = "so so so o"
 speedwalklist['amphibos.gabelung2_amphibos.waldlaeuferzunft'] = "w nw nw nw"
 speedwalklist['miniuw.eingang_miniuw.wlmwurfstern'] = "w sw w sw w w w nw nw nw w nw w w betrete_huette"
 speedwalklist['miniuw.wlmwurfstern_miniuw.eingang'] = "ausgang o o so o so so so o o o no o no o"
+speedwalklist['camp.eingang_camp.haendler'] = "o o n"
+speedwalklist['camp.haendler_camp.eingang'] = "s w w"
 
 return speedwalklist
