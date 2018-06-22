@@ -372,8 +372,8 @@ stations:add(
             )
 
 stations:add(
-             "nereid",
              "sanduz",
+             "eingang",
              "raum/9677492e37dc76e4b21b25510f9945f1",
              "Suedtor der Stadt Sanduz."
             )
