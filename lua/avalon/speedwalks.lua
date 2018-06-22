@@ -645,5 +645,7 @@ speedwalklist['kergora.eingang_amphibos.flossanleger'] = "s sw sw sw sw so s"
 speedwalklist['amphibos.flossanleger_kergora.eingang'] = "n nw no no no no n"
 speedwalklist['amphibos.waldlaeuferzunft_amphibos.gabelung2'] = "so so so o"
 speedwalklist['amphibos.gabelung2_amphibos.waldlaeuferzunft'] = "w nw nw nw"
+speedwalklist['miniuw.eingang_miniuw.wlmwurfstern'] = "w sw w sw w w w nw nw nw w nw w w betrete_huette"
+speedwalklist['miniuw.wlmwurfstern_miniuw.eingang'] = "ausgang o o so o so so so o o o no o no o"
 
 return speedwalklist

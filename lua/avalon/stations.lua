@@ -2345,4 +2345,11 @@ stations:add(
              "Weggabelung nahe der Oase."
             )
 
+stations:add(
+             "miniuw",
+             "wlmwurfstern",
+             "raum/8eab5229e8459dbf8a81de84896032c2",
+             "Wurfstern-Lehrmeister in der Mini-Unterwelt"
+            )
+
 return stations
