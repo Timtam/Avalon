@@ -649,5 +649,11 @@ speedwalklist['miniuw.eingang_miniuw.wlmwurfstern'] = "w sw w sw w w w nw nw nw 
 speedwalklist['miniuw.wlmwurfstern_miniuw.eingang'] = "ausgang o o so o so so so o o o no o no o"
 speedwalklist['camp.eingang_camp.haendler'] = "o o n"
 speedwalklist['camp.haendler_camp.eingang'] = "s w w"
+speedwalklist['solgard.zentrum_solgard.haendler'] = "nw oeffne_tuer w"
+speedwalklist['solgard.haendler_solgard.zentrum'] = "o oeffne_tuer so"
+speedwalklist['skalewar.zentrum_skalewar.waffenschmied'] = "w w w s w"
+speedwalklist['skalewar.waffenschmied_skalewar.zentrum'] = "o n o o o"
+speedwalklist['ilmelorn.eingang_ilmelorn.wlmhiebdolch'] = "hoch s baumhaus durchgang"
+speedwalklist['ilmelorn.wlmhiebdolch_ilmelorn.eingang'] = "ausgang ausgang n runter"
 
 return speedwalklist

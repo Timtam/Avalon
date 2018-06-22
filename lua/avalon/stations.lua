@@ -2359,4 +2359,25 @@ stations:add(
              "Der Haendler im Camp Baralon"
             )
 
+stations:add(
+             "solgard",
+             "haendler",
+             "raum/5b519512fb1c08d1358c0d52975b24f1",
+             "Der Haendler in der Stadt Solgard."
+            )
+
+stations:add(
+             "skalewar",
+             "waffenschmied",
+             "raum/3f2cb659772f8b6ef0797b1c98a191b2",
+             "Der Waffenschmied der Stadt Skalewar."
+            )
+
+stations:add(
+             "ilmelorn",
+             "wlmhiebdolch",
+             "raum/625d8bfa385f81311184893a5a4596f3",
+             "Der Waffenlehrmeister fuer Hiebdolch in Ilmelorn."
+            )
+
 return stations
