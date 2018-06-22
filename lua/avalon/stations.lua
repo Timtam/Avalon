@@ -639,7 +639,7 @@ stations:add(
 
 stations:add(
              "uw",
-             "tempel",
+             "febracimtempel",
              "raum/4fd73582eb0349d5e216b35044bc5490",
              "Der uralte Tempel der Febracim."
             )
@@ -666,10 +666,10 @@ stations:add(
             )
 
 stations:add(
-             "yoldatfeste",
+             "yoldatfest",
              "eingang",
              "raum/89036876d7fc916f521e7e1f3d4dafd9",
-             "Eingang der Yoldatfeste."
+             "Eingang Yoldatfest."
             )
 
 stations:add(
@@ -687,10 +687,10 @@ stations:add(
             )
 
 stations:add(
-             "yoldatfeste",
+             "yoldatfest",
              "bank",
              "raum/088a96fa5238fba6e9b5dfb6454e94f3",
-             "Die Bank in der Yoldatfeste."
+             "Die Bank in Yoldatfest."
             )
 
 stations:add(
@@ -1898,10 +1898,10 @@ stations:add(
             )
 
 stations:add(
-             "yoldatfeste",
+             "yoldatfest",
              "schmied",
              "raum/a2fa00bb6ef4b2a4e696a6d6c0375d54",
-             "Der Schmied in der Yoldatfeste."
+             "Der Schmied in Yoldatfest."
             )
 
 stations:add(
