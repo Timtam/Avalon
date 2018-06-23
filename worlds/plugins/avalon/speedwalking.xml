@@ -366,11 +366,11 @@ function speedwalk_start(from, to)
     return
   end
   -- es wird nur to angegeben, wir laufen also von hier los, falls moeglich
+  if SafeSpeedwalks == 1 and Dunkel == 1 then
+    world.Note("Um Speedwalks abzusichern, muss es auf Deinem Feld hell sein. Umschalten kannst Du die Absicherung mit der F5-Taste.")
+    return
+  end
   if Types.is_empty(from) then
-    if SafeSpeedwalks == 1 and Dunkel == 1 then
-      world.Note("Um Speedwalks abzusichern, muss es auf Deinem Feld hell sein. Umschalten kannst Du die Absicherung mit der F5-Taste.")
-      return
-    end
     stations = Stations:find(RoomID)
   else
     if not from:find(".", 1, true) then
