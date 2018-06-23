@@ -275,9 +275,16 @@ stations:add(
 
 stations:add(
              "ashar",
-             "eingang",
+             "eingangnorden",
              "raum/0e88b5bc7e8fb99c9ad6648af2cc6bbb",
              "Das Nordtor der Stadt Ashaar."
+            )
+
+stations:add(
+             "ashar",
+             "eingangwesten",
+             "raum/73ac2a2750e36f05acc92bace3cd6eba",
+             "Das Westtor der Stadt Ashaar."
             )
 
 stations:add(
@@ -2406,6 +2413,20 @@ stations:add(
              "duestergarten",
              "raum/282245f993771aa5e77b8a211c3b4c7a",
              "Der Eingang zum Duestergarten auf Flotsam."
+            )
+
+stations:add(
+             "ashar",
+             "wlmkeule",
+             "raum/4abb03c428a0ddccf639fe930aac21cc",
+             "Der Waffenlehrmeister fuer Keule in den Slums von Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "wlmhaende",
+             "raum/4fe008a4c1986555b766838d19f069ca",
+             "Der Waffenlehrmeister fuer Faustkampf in den Slums von Ashar."
             )
 
 return stations

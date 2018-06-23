@@ -4728,6 +4728,10 @@ function OnPluginInstall()
     function(event,callback)
       return hook_callback(event,callback)
     end)
+  PPI.Expose('UnhookCallback',
+    function(event, callback)
+      return unhook_callback(event, callback)
+    end)
   PPI.Expose('PSND',
     psnd)
   PPI.Expose("NoteColour",
