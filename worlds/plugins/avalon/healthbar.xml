@@ -209,10 +209,10 @@ function PluginInstall ()
   font_name = "Fixedsys"    -- the actual font
 
   local x, y, mode, flags =
-      tonumber (avalon.GetConfig("healthbar","windowx")) or 0,
-      tonumber (avalon.GetConfig ("healthbar","windowy")) or 0,
-      tonumber (avalon.GetConfig("healthbar","windowmode")) or 8, -- bottom right
-      tonumber (avalon.GetConfig("healthbar","windowflags")) or 0
+      tonumber (avalon.GetConfig("healthbar","windowx") or 0),
+      tonumber (avalon.GetConfig ("healthbar","windowy") or 0),
+      tonumber (avalon.GetConfig("healthbar","windowmode") or 8), -- bottom right
+      tonumber (avalon.GetConfig("healthbar","windowflags") or 0)
 
   -- make miniwindow so I can grab the font info
   check (WindowCreate (win,
@@ -238,7 +238,7 @@ function PluginInstall ()
 
   font_height = WindowFontInfo (win, font_id, 1)  -- height
 
-  if avalon.GetConfig ("healthbar","enabled") == "false" then
+  if (avalon.GetConfig ("healthbar","enabled") or "false") == "false" then
     ColourNote ("yellow", "", "Warning: Plugin " .. GetPluginName ().. " is currently disabled.")
     check (EnablePlugin(GetPluginID (), false))
     return

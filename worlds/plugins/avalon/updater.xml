@@ -136,7 +136,7 @@ function updateCheckFinished()
   if page ~= nil then
     commits = json.decode(page)
     current = avalon.GetConfig("update", "hash")
-    if current == 0 or avalon.GetConfig("update", "updated") == 1 then
+    if current == nil or avalon.GetConfig("update", "updated") == 1 then
       -- no hash set yet, for example when downloading as zip file
       -- also the updater may have run recently, same procedure
       -- or the user forced to update the current hash value

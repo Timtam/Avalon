@@ -1062,22 +1062,6 @@
   </trigger>
   <trigger
    enabled="y"
-   match="In einem unkonzentrierten Moment kommst Du ins Trudeln *"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_breaklegs()</send>
-  </trigger>
-  <trigger
-   enabled="y"
-   match="Du kannst Deine Beine wieder bewegen."
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_break()</send>
-  </trigger>
-  <trigger
-   enabled="y"
    match="Ploetzlich erscheint eine grosse Welle, und Du verschluckst Wasser. *"
    sequence="100"
    send_to="12"
@@ -3546,22 +3530,6 @@
   <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
   <trigger
-   match="In einem unkonzentrierten Moment verlierst Du Deinen Halt und rutschst ab."
-   enabled="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_breaklegs()</send>
-  </trigger>
-  <trigger
-   match="Du findest wieder festen Halt."
-   enabled="y"
-   sequence="100"
-   send_to="12"
-  >
-  <send>speedwalk_break()</send>
-  </trigger>
-  <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
    enabled="y"
    sequence="100"
@@ -4119,16 +4087,9 @@
    enabled="y"
    send_to="12"
    sequence="100"
+   keep_evaluating="y"
   >
   <send>print_position()</send>
-</alias>
-  <alias
-   match="safespeedwalks_switch"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>safespeedwalks_switch()</send>
 </alias>
   <alias
    match="switch_mute"
@@ -4203,29 +4164,12 @@
   <send>tts_switch()</send>
 </alias>
   <alias
-   match="speedwalk_break"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-  >
-  <send>speedwalk_break()</send>
-</alias>
-  <alias
    match="az"
    enabled="y"
    send_to="12"
    sequence="100"
   >
   <send>spells_status()</send>
-</alias>
-  <alias
-   match="^/(.*?)$"
-   enabled="y"
-   send_to="12"
-   sequence="100"
-   regexp="y"
-  >
-  <send>speedwalk_start("%1")</send>
 </alias>
   <alias
    match="^!(.*?)$"
@@ -4390,13 +4334,11 @@ tpfullannounced=false
 hapsnd=nil
 hdksnd=nil
 hspnil=0
-hstationsnd=nil
 htpsnd=nil
 hmusic=nil
 LastCommand=nil
 mxp_output=false
 PlayerLevel=nil
-timepluginid="1cb498c9a895e1f5af23cbc8"
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
 plugintbl[2]="LuaAudio.xml"
@@ -4405,20 +4347,15 @@ plugintbl[4]="omit_blank_lines.xml"
 plugintbl[5]="channel_history.xml"
 plugintbl[6]="hyperlink_url2.xml"
 plugintbl[7]="timecatcher.xml"
-plugintbl[8]="avalon/speedwalk_mapper.xml"
-plugintbl[9]="avalon/healthbar.xml"
-plugintbl[10]="avalon/message_window.xml"
-plugintbl[11]="avalon/kompass.xml"
-plugintbl[12]="avalon/updater.xml"
+plugintbl[8]="avalon/speedwalking.xml"
+plugintbl[9]="avalon/speedwalk_mapper.xml"
+plugintbl[10]="avalon/healthbar.xml"
+plugintbl[11]="avalon/message_window.xml"
+plugintbl[12]="avalon/kompass.xml"
+plugintbl[13]="avalon/updater.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
-spdtbl={}
-spdind={0,0}
-spdstationstbl={}
-spdactive=false
-spdspeed=0.3
-spdextraspeed=0.7
 auratbl={}
 gildentbl={}
 callbacktbl={}
@@ -4434,19 +4371,16 @@ configtbl.settings.APBar=1
 configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
-configtbl.settings.SafeSpeedwalks=1
-configtbl.settings.NumpadWalk=5
+configtbl.settings.NumpadWalk=1
 configtbl.settings.RepeatCommand=0
 configtbl.settings.MXP=0
 configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
-world.Accelerator("ctrl+D", "speedwalk_break")
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
 world.Accelerator("F3", "spbar_switch")
 world.Accelerator("F4", "apbar_switch")
-world.Accelerator("F5", "safespeedwalks_switch")
 world.Accelerator("F6", "repeatcommand_switch")
 world.Accelerator("F9", "volume_down")
 world.Accelerator("F10", "volume_up")
@@ -4457,8 +4391,6 @@ world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
-require("avalon.speedwalks")
-require("avalon.stations")
 require("pairsbykeys")
 Dir = require('pl.dir')
 File = require('pl.file')
@@ -4528,11 +4460,7 @@ function OnAvalonLogin()
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
   psnd("Player/Login.ogg")
-  if callbacktbl.LOGIN ~=nil then
-    for ci,cf in pairs(callbacktbl.LOGIN) do
-      cf()
-    end
-  end
+  call_callback('LOGIN')
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -4556,17 +4484,14 @@ end
 
 OnAvalonDunkel = function(type, message)
   Dunkel = tonumber(message)
+  call_callback('DUNKEL', Dunkel)
 end
 
 OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  if callbacktbl.CHANNEL ~=nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonSoul = function(type, message)
@@ -4587,11 +4512,7 @@ OnAvalonComm=function(type,message)
     psnd("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
-  if callbacktbl.CHANNEL ~=nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonChannel = function(type, message)
@@ -4608,11 +4529,7 @@ OnAvalonChannel = function(type, message)
     return
   end
   world.Execute(";history_add "..channel.."="..text)
-  if callbacktbl.CHANNEL ~= nil then
-    for ci,cf in pairs(callbacktbl.CHANNEL) do
-      cf(channel,text)
-    end
-  end
+  call_callback('CHANNEL', channel, text)
 end
 
 OnAvalonRoomID = function(type, message)
@@ -4629,18 +4546,7 @@ OnAvalonRoomID = function(type, message)
   else
     Y = nil
   end
-  if id ~= RoomID then
-    station_name = stations_getnamebyroomid(id)
-    if station_name ~= nil then
-      if (Path.exists(GetInfo(74).."Stations/"..station_name..".ogg")) then
-        stationsnd = GetInfo(74).."Stations/"..station_name..".ogg"
-      else
-        stationsnd = GetInfo(74).."Stations/Misc.ogg"
-      end
-      stopifplaying(hstationsnd)
-      hstationsnd = Audio.play(stationsnd, 0, 0, configtbl.settings.SoundVolume)
-    end
-  end
+  call_callback('ROOMID', id, name, X, Y)
   RoomID = id
   if (not name) or (name == "Bitte") then
     return
@@ -4678,42 +4584,26 @@ OnAvalonTP = function(message, ntp)
   play_tp(ntp)
   g_tp=ntp
   combat_music()
-  if callbacktbl.TP then
-    for ci,cf in pairs(callbacktbl.TP) do
-      cf(g_tp)
-    end
-  end
+  call_callback('TP', g_tp)
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
   play_sp(nsp)
   g_sp=nsp
-  if callbacktbl.SP then
-    for ci,cf in pairs(callbacktbl.SP) do
-      cf(g_sp)
-    end
-  end
+  call_callback('SP', g_sp)
 end
 
 OnAvalonMP=function(message,nmp)
   g_mp=tonumber(nmp)
-  if callbacktbl.MP then
-    for ci,cf in pairs(callbacktbl.MP) do
-      cf(g_mp)
-    end
-  end
+  call_callback('MP', g_mp)
 end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
   g_ap = nap
-  if callbacktbl.AP then
-    for ci,cf in pairs(callbacktbl.AP) do
-      cf(g_ap)
-    end
-  end
+  call_callback('AP', g_ap)
 end
 
 OnAvalonMaxTP=function(message,value)
@@ -4737,11 +4627,10 @@ end
 
 -- Magician: nur noch als Uebergangsloesung, muss mal in die einzelnen Handler zerlegt werden
 OnAvalonMax = function()
-  if callbacktbl.MAX and (g_max_tp ~=nil and g_max_sp ~=nil and g_max_ap ~=nil) then
-    for ci,cf in pairs(callbacktbl.MAX) do
-      cf(g_max_tp,g_max_sp,g_max_ap)
-    end
+  if g_max_tp == nil or g_max_sp == nil or g_max_ap == nil then
+    return
   end
+  call_callback('MAX', g_max_tp, g_max_sp, g_max_ap)
 end
 
 function OnPluginInstall()
@@ -4801,20 +4690,9 @@ function OnPluginInstall()
         return RoomID
       end
     end)
-  PPI.Expose('Location',
+  PPI.Expose('Level',
     function()
-      res=nil
-      for key,value in pairs(stations) do
-        if value==RoomID then
-          res=key
-          break
-        end
-      end
-      if res ~= nil then
-        return utils.split(res,'_')[1]
-      else
-        return nil
-      end
+      return PlayerLevel
     end)
   PPI.Expose('AP',
     function()
@@ -4835,9 +4713,9 @@ function OnPluginInstall()
   PPI.Expose('GetConfig',
     function(table,key)
       if configtbl[table]==nil then
-        return 0
+        return nil
       end
-      return configtbl[table][key] or 0
+      return configtbl[table][key]
     end)
   PPI.Expose('SetConfig',
     function(table,key,value)
@@ -4850,6 +4728,10 @@ function OnPluginInstall()
     function(event,callback)
       return hook_callback(event,callback)
     end)
+  PPI.Expose('UnhookCallback',
+    function(event, callback)
+      return unhook_callback(event, callback)
+    end)
   PPI.Expose('PSND',
     psnd)
   PPI.Expose("NoteColour",
@@ -4860,11 +4742,7 @@ function OnPluginInstall()
 end
 
 function OnPluginClose()
-  if callbacktbl.CLOSE then
-    for ci,cf in pairs(callbacktbl.CLOSE) do
-      cf()
-    end
-  end
+  call_callback('CLOSE')
   configtbl.settings.Warnings=spells_retrievewarnings()
   Ini.write('config.dat', configtbl)
 end
@@ -4998,152 +4876,6 @@ function pmusic(file)
   hmusic = Audio.play(file, 1, 0, configtbl.settings.MusicVolume)
 end
 
-function speedwalk_start(spd)
-  if (spd == "") or (string.find(spd, "_") == nil) then
-    speedwalk_list(spd)
-    return
-  end
-  if (speedwalklist[spd] == nil) then
-    world.Note("Es existiert kein Speedwalk mit diesem Namen.")
-    if (string.find(spd, "_us") ~= nil or string.find(spd, "us_") ~= nil) then
-      world.Note("Hinweis: Die Station \"us\" wurde in vielen Speedwalks nach \"zwerge\" umbenannt (zum Beispiel: min_zwerge statt min_us).")
-      world.Note("Die Station \"us\" bezieht sich ausschließlich auf Usagoor.")
-    end
-    return
-  end
-  if (configtbl.settings.SafeSpeedwalks == 1) then
-    if not stations[spd] then
-      world.Note("Dieser Speedwalk muss nach dem alten System umgesetzt werden.")
-      spdstationstbl[#spdstationstbl+1] = ""
-      speedwalk_init(speedwalklist[spd])
-      return
-    end
-    spdstationstbl[#spdstationstbl+1] = stations[spd]
-    speedwalk_init(speedwalklist[spd])
-  else
-    spdstationstbl[#spdstationstbl+1] = nil
-    speedwalk_init(speedwalklist[spd])
-  end
-end
-
-function speedwalk_list(spd)
-  if (spd == "") then
-    msg = ""
-    i = 0
-    for name, way in pairsByKeys(speedwalklist) do
-      i = i + 1
-      msg = msg.."\t"..name
-      if (speedwalksafety[name]) then
-        msg = msg.." (sicher)"
-      else
-        msg = msg.." (unsicher)"
-      end
-      msg = msg.."\n"
-    end
-    msg = "Die Liste umfasst insgesamt "..tostring(i).." Speedwalks."
-  else
-    spd = string.lower(spd)
-    msg = ""
-    i = 0
-    for name, way in pairsByKeys(speedwalklist) do
-      sname = utils.split(name, "_")
-      if (string.lower(sname[1]) == spd) then
-        i = i + 1
-        msg = msg.."\t"..name
-        if (speedwalksafety[name]) then
-          msg = msg.." (sicher)"
-        else
-          msg=msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-    end
-    if (i == 0) then
-      msg = "Keine Speedwalks vorhanden, die von \""..spd.."\" starten."
-    else
-      if (i > 1) then
-        msg = tostring(i).." Speedwalks, die von \""..spd.."\" starten:\n"..msg
-      else
-        msg = "Ein Speedwalk, der von \""..spd.."\" startet:\n"..msg
-      end
-    end
-    msg = string.sub(msg, 1, -2)
-  end
-  world.Note(msg)
-end
-
-function speedwalk_init(speedwalk)
-  if not spdactive then
-    spdtbl = {}
-    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
-    spdstationstbl = {spdstationstbl[#spdstationstbl]}
-    spdind = {1,1}
-    spdactive = true
-    speedwalk_process()
-  else
-    spdtbl[#spdtbl+1] = utils.split(speedwalk, " ")
-    world.Note("Der neue Speedwalk wurde an den momentan laufenden angehängt.")
-  end
-end
-
-function speedwalk_process()
-  if (configtbl.settings.SafeSpeedwalks == 1) and (spdind[2] == 1) and (spdstationstbl[spdind[1]] ~= "") then
-    if (Dunkel == 1) then
-      world.Note("Um sichere Speedwalks nutzen zu können, muss es auf dem Feld hell sein. Umschalten kannst Du das immer mit der F5-Taste.")
-      spdactive = false
-      return
-    end
-    if (RoomID ~= spdstationstbl[spdind[1]]) and (spdstationstbl[spdind[1]] ~= "") then
-      world.Note("Der Speedwalk startet hier nicht.")
-      spdactive = false
-      return
-    end
-  end
-  if not spdactive then
-    return
-  end
-  command = string.gsub(spdtbl[spdind[1]][spdind[2]], "_", " ")
-  world.Execute(command)
-  spdind = {spdind[1], spdind[2]+1}
-  if (spdind[2] == #spdtbl[spdind[1]] + 1) then
-    if not spdtbl[spdind[1]+1] then
-      spdactive = false
-      spdind = {0,0}
-      return
-    else
-      spdind = {spdind[1] + 1,1}
-    end
-  end
-  if (string.len(spdtbl[spdind[1]][spdind[2]]) <= 2) then
-    DoAfterSpecial(spdspeed, "speedwalk_process()", 12)
-  else
-    DoAfterSpecial(spdextraspeed, "speedwalk_process()", 12)
-  end
-end
-
-function speedwalk_break()
-  if spdactive then
-    spdactive = false
-  else
-    if (spdind[1] == 0) and (spdind[2] == 0) then
-      return
-    end
-    if not spdtbl[spdind[1]][spdind[2]] then
-      return
-    end
-    spdactive = true
-    speedwalk_process()
-  end
-end
-
-function speedwalk_breaklegs()
-  if (spdind[1] == 0) and (spdind[2] == 0) then
-    return
-  end
-  spdactive = false
-  spdind = {spdind[1],spdind[2]-2}
-end
-
 function tts_switch()
   world.UnloadPlugin(configtbl.settings.ScreenReader)
   if (configtbl.settings.ScreenReader == "MushReader") then
@@ -5255,11 +4987,7 @@ function OnPluginDisconnect()
   RoomName = ""
   stopifplaying(hmusic)
   hmusic = nil
-  if callbacktbl.LOGOUT ~=nil then
-    for ci,cf in pairs(callbacktbl.LOGOUT) do
-      cf()
-    end
-  end
+  call_callback('LOGOUT')
 end
 
 function switch_mute()
@@ -5340,17 +5068,6 @@ function array_concat(...)
   return t
 end
 
-function safespeedwalks_switch()
-  if (configtbl.settings.SafeSpeedwalks == 1) then
-    configtbl.settings.SafeSpeedwalks = 0
-    world.Note("Die Speedwalks werden nicht mehr abgesichert.")
-  else
-    configtbl.settings.SafeSpeedwalks = 1
-    world.Note("Die Speedwalks werden nun abgesichert.")
-  end
-  psnd("Misc/ConfigSwitch.ogg")
-end
-
 function print_position()
   if (Dunkel == 1) then
     world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
@@ -5359,37 +5076,6 @@ function print_position()
   world.Note("Ort:\t"..RoomName)
   if (X and Y) then
     world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
-  end
-  if (configtbl.settings.SafeSpeedwalks == 1) then
-    list = stations_getspeedwalksbyroomid(RoomID)
-    if (#list == 1) then
-      msg = "\nVon hier startet ein Speedwalk:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg..' (sicher)'
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
-    end
-    if (#list > 1) then
-      msg = "\nVon hier starten "..#list.." Speedwalks:\n"
-      for number, walk in pairs(list) do
-        msg = msg.."\t"..walk
-        if (speedwalksafety[walk]) then
-          msg = msg.." (sicher)"
-        else
-          msg = msg.." (unsicher)"
-        end
-        msg = msg.."\n"
-      end
-      msg = string.sub(msg, 1, -2)
-      world.Note(msg)
-    end
   end
 end
 
@@ -5480,9 +5166,9 @@ function gildendummy(start)
 end
 
 function GetUnixTime()
-  world.CallPlugin(timepluginid,"time","")
-  rtime=world.GetPluginVariable(timepluginid,"AvalonUnixTime")
-  rtime=world.Replace(rtime,',','.',false)
+  world.CallPlugin(world.GetPluginVariable("", "time"), "time", "")
+  rtime = world.GetPluginVariable(world.GetPluginVariable("", "time"), "UnixTime")
+  rtime = world.Replace(rtime, ",", ".", false)
   return tonumber(rtime)
 end
 
@@ -5600,7 +5286,7 @@ function hook_callback(event,callback)
   if Tablex.find(callbacktbl[event],callback) ~=nil then
     return false
   end
-  callbacktbl[event][#(callbacktbl[event])]=callback
+  callbacktbl[event][#(callbacktbl[event])+1]=callback
   return true
 end
 
@@ -5644,6 +5330,13 @@ function repeatcommand_switch()
   psnd("Misc/ConfigSwitch.ogg")
 end
 
+function call_callback(handle, ...)
+  if callbacktbl[handle] ~= nil then
+    for ci,cf in pairs(callbacktbl[handle]) do
+      cf(unpack({select(1, ...)}))
+    end
+  end
+end
 ]]>
 </script>
 
