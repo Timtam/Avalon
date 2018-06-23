@@ -30,7 +30,7 @@
    sequence="1"
    keep_evaluating="y"
   >
-  <send>speedwalk_process(true)</send>
+  <send>speedwalk_text_received()</send>
   </trigger>
 </triggers>
 
@@ -255,6 +255,9 @@ end
 
 function OnAvalonDunkel(dunkel)
   Dunkel = dunkel
+  if speedwalk_running() == true and Const.DIRECTIONS[speedwalk_last_command()] ~= nil then
+    speedwalk_process(true)
+  end
 end
 
 function OnAvalonRoomID(id, name, x, y)
@@ -437,6 +440,15 @@ function speedwalk_list(filter)
   msg = msg:sub(1, -2)
   world.Note(msg)
 end
+
+-- text is only relevant if the last command was no direction
+function speedwalk_text_received()
+  if speedwalk_running() == false or Const.DIRECTIONS[speedwalk_last_command()] ~= nil then
+    return
+  end
+  speedwalk_process(true)
+end
+
 ]]>
 </script>
 

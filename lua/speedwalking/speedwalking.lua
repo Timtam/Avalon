@@ -82,7 +82,7 @@ function speedwalk_process(text_incoming)
       continue_time = continue_time + Const.WALK_SPEED_EXTRA
     end
   end
-  if text_incoming == true and current_time - spdstep > Const.RESPONSE_TIME then
+  if text_incoming == true then
     spdtext = true
   end
   if continue_time > current_time or spdtext == false then
@@ -151,4 +151,11 @@ function speedwalk_active_script()
     return nil
   end
   return spdtbl[spdind]
+end
+
+function speedwalk_last_command()
+  if speedwalk_running() == false or spdind == 0 or speedwalk_active_script() or Types.type(spdtbl[spdind - 1]) ~= 'string' then
+    return ''
+  end
+  return spdtbl[spdind - 1]
 end
