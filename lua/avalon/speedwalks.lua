@@ -655,5 +655,13 @@ speedwalklist['skalewar.zentrum_skalewar.schmiedwaffen'] = "w w w s w"
 speedwalklist['skalewar.schmiedwaffen_skalewar.zentrum'] = "o n o o o"
 speedwalklist['ilmelorn.eingang_ilmelorn.wlmhiebmesser'] = "hoch s baumhaus durchgang"
 speedwalklist['ilmelorn.wlmhiebmesser_ilmelorn.eingang'] = "ausgang ausgang n runter"
+speedwalklist['solgard.zentrum_solgard.wlmsichel'] = "w w w w w n"
+speedwalklist['solgard.wlmsichel_solgard.zentrum'] = "s o o o o o"
+speedwalklist['solgard.zentrum_solgard.zlmleben'] = "n n n"
+speedwalklist['solgard.zlmleben_solgard.zentrum'] = "s s s"
+speedwalklist['solgard.zlmleben_solgard.wlmarmbrust'] = "o n"
+speedwalklist['solgard.wlmarmbrust_solgard.zlmleben'] = "s w"
+speedwalklist['flotsam.schmiedezunft_flotsam.duestergarten'] = "nw nw nw nw w w w w w"
+speedwalklist['flotsam.duestergarten_flotsam.schmiedezunft'] = "o o o o o so so so so"
 
 return speedwalklist

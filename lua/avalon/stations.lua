@@ -2380,4 +2380,32 @@ stations:add(
              "Der Waffenlehrmeister fuer Hiebmesser in Ilmelorn."
             )
 
+stations:add(
+             "solgard",
+             "wlmsichel",
+             "raum/da4bce869f2737c69059457779715c34",
+             "Der Waffenlehrmeister fuer Sicheln in Solgard."
+            )
+
+stations:add(
+             "solgard",
+             "zlmleben",
+             "raum/7314c0d9717f1aca2a90c5291713cc12",
+             "Der Zauberlehrmeister fuer Lebenszauber in Solgard."
+            )
+
+stations:add(
+             "solgard",
+             "wlmarmbrust",
+             "raum/f4814e1db89da3721080c82db09faea3",
+             "Der Waffenlehrmeister fuer Armbrust in Solgard."
+            )
+
+stations:add(
+             "flotsam",
+             "duestergarten",
+             "raum/282245f993771aa5e77b8a211c3b4c7a",
+             "Der Eingang zum Duestergarten auf Flotsam."
+            )
+
 return stations
