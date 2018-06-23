@@ -651,9 +651,9 @@ speedwalklist['camp.eingang_camp.haendler'] = "o o n"
 speedwalklist['camp.haendler_camp.eingang'] = "s w w"
 speedwalklist['solgard.zentrum_solgard.haendler'] = "nw oeffne_tuer w"
 speedwalklist['solgard.haendler_solgard.zentrum'] = "o oeffne_tuer so"
-speedwalklist['skalewar.zentrum_skalewar.waffenschmied'] = "w w w s w"
-speedwalklist['skalewar.waffenschmied_skalewar.zentrum'] = "o n o o o"
-speedwalklist['ilmelorn.eingang_ilmelorn.wlmhiebdolch'] = "hoch s baumhaus durchgang"
-speedwalklist['ilmelorn.wlmhiebdolch_ilmelorn.eingang'] = "ausgang ausgang n runter"
+speedwalklist['skalewar.zentrum_skalewar.schmiedwaffen'] = "w w w s w"
+speedwalklist['skalewar.schmiedwaffen_skalewar.zentrum'] = "o n o o o"
+speedwalklist['ilmelorn.eingang_ilmelorn.wlmhiebmesser'] = "hoch s baumhaus durchgang"
+speedwalklist['ilmelorn.wlmhiebmesser_ilmelorn.eingang'] = "ausgang ausgang n runter"
 
 return speedwalklist

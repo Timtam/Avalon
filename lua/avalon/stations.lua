@@ -2368,16 +2368,16 @@ stations:add(
 
 stations:add(
              "skalewar",
-             "waffenschmied",
+             "schmiedwaffen",
              "raum/3f2cb659772f8b6ef0797b1c98a191b2",
              "Der Waffenschmied der Stadt Skalewar."
             )
 
 stations:add(
              "ilmelorn",
-             "wlmhiebdolch",
+             "wlmhiebmesser",
              "raum/625d8bfa385f81311184893a5a4596f3",
-             "Der Waffenlehrmeister fuer Hiebdolch in Ilmelorn."
+             "Der Waffenlehrmeister fuer Hiebmesser in Ilmelorn."
             )
 
 return stations
