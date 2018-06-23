@@ -2429,4 +2429,18 @@ stations:add(
              "Der Waffenlehrmeister fuer Faustkampf in den Slums von Ashar."
             )
 
+stations:add(
+             "ashar",
+             "schmiedezunft",
+             "raum/080c5ea915febcb56b84f2301263044d",
+             "Zweigstelle der Schmiedezunft in Ashar."
+            )
+
+stations:add(
+             "ashar",
+             "schmiedwaffen",
+             "raum/a20ae7274287b7b2b15f2d18e32cfff0",
+             "Der Waffenschmied in Ashar."
+            )
+
 return stations

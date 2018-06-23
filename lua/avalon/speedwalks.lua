@@ -673,5 +673,9 @@ speedwalklist['sanduz.eingang_ashar.eingangwesten'] = "s so so o o o so o o o o 
 speedwalklist['ashar.eingangwesten_sanduz.eingang'] = "w w w w w w w w w w w nw w w w nw nw n"
 speedwalklist['ashar.eingangwesten_ashar.eingangnorden'] = "w no no no no no so"
 speedwalklist['ashar.eingangnorden_ashar.eingangwesten'] = "nw sw sw sw sw sw o"
+speedwalklist['ashar.gasthaus_ashar.schmiedezunft'] = "no so no"
+speedwalklist['ashar.schmiedezunft_ashar.gasthaus'] = "sw nw sw"
+speedwalklist['ashar.schmiedezunft_ashar.schmiedwaffen'] = "sw n"
+speedwalklist['ashar.schmiedwaffen_ashar.schmiedezunft'] = "s no"
 
 return speedwalklist
