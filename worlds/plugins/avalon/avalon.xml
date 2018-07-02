@@ -1339,8 +1339,26 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Die Lichtwesen von .* scheinen Dein Mana etwas aufzufrischen\.$|^Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir\.$"
-   regexp="y"
+   group="Barden"
+   match="Die Lichtwesen von * scheinen Dein Mana etwas aufzufrischen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Sun_Regen.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Barden"
+   match="Deine Lichtwesen scheinen das Mana von * etwas aufzufrischen."
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Bard/Sun_Regen.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   group="Barden"
+   match="Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir. "
    sequence="100"
    send_to="12"
   >
@@ -1958,7 +1976,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Da gehts nicht weiter."
+   match="Da geht es nicht weiter."
    sequence="100"
    send_to="12"
   >
