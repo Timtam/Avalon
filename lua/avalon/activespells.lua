@@ -35,7 +35,7 @@ function spells_stop(name)
     msg = msg..tostring(mins).." Minuten und "
   end
   msg = msg..tostring(secs).." Sekunden"
-  msg = msg..".\n"
+  msg = msg.."."
   NoteColour(msg, 150, 0, 0, 255, 255, 0)
   spells[name] = 0
   if warnings[name] ~= nil then

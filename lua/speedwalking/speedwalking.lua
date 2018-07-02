@@ -69,6 +69,7 @@ function speedwalk_process(text_incoming)
     speedwalk_deinit()
     spdind = 0
     spdtbl = nil
+    Avalon.PSND(GetInfo(74).."Stations/End.ogg")
     return
   end
   current_time = get_unix_time()
