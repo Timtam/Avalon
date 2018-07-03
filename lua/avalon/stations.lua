@@ -2443,4 +2443,11 @@ stations:add(
              "Der Waffenschmied in Ashar."
             )
 
+stations:add(
+             "usagoor",
+             "schuerfhaendler",
+             "raum/4b6f35fd01dc96d4ab971a10282a6bfa",
+             "Haendler für Schuerfbedarf in der Zwergenstadt Usagoor."
+            )
+
 return stations

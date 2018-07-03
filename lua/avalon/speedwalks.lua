@@ -677,5 +677,7 @@ speedwalklist['ashar.gasthaus_ashar.schmiedezunft'] = "no so no"
 speedwalklist['ashar.schmiedezunft_ashar.gasthaus'] = "sw nw sw"
 speedwalklist['ashar.schmiedezunft_ashar.schmiedwaffen'] = "sw n"
 speedwalklist['ashar.schmiedwaffen_ashar.schmiedezunft'] = "s no"
+speedwalklist['usagoor.eingang_usagoor.schuerfhaendler'] = "sw s s sw w s s o"
+speedwalklist['usagoor.schuerfhaendler_usagoor.eingang'] = "w n n o no n n no"
 
 return speedwalklist
