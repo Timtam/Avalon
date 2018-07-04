@@ -238,7 +238,7 @@ function PluginInstall ()
 
   font_height = WindowFontInfo (win, font_id, 1)  -- height
 
-  if (avalon.GetConfig ("healthbar","enabled") or "false") == "false" then
+  if (avalon.GetConfig ("healthbar","enabled") or "true") == "false" then
     ColourNote ("yellow", "", "Warning: Plugin " .. GetPluginName ().. " is currently disabled.")
     check (EnablePlugin(GetPluginID (), false))
     return
