@@ -747,7 +747,6 @@ function right_click_menu ()
             BODY_FONT_SIZE = wanted_font.size
             avalon.SetConfig ("messagebox","bodyfont", BODY_FONT_NAME)
             avalon.SetConfig ("messagebox","font_size", BODY_FONT_SIZE)
-            OnPluginInstall()
         end
     elseif result == "Turn Echo Off" then
         echo = false
