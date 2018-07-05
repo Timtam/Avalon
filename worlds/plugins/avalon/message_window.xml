@@ -226,6 +226,9 @@ function PluginInstall()
     date_format = avalon.GetConfig("messagebox","date_format")
     WINDOW_WIDTH = tonumber(avalon.GetConfig("messagebox","WINDOW_WIDTH") or 0)
     WINDOW_HEIGHT = tonumber(avalon.GetConfig("messagebox","WINDOW_HEIGHT") or 0)
+    BODY_FONT_NAME = avalon.GetConfig("messagebox", "bodyfont") or "Dina"
+    BODY_FONT_SIZE = tonumber(avalon.GetConfig("messagebox", "font_size") or 12)
+
     -- Dummy window to get font characteristics
     check (WindowCreate (Win, 0, 0, 1, 1, 0, 0, theme.WINDOW_BACKGROUND) )
     check (WindowFont(Win, "bodyfont"..Win, BODY_FONT_NAME, BODY_FONT_SIZE))
@@ -747,6 +750,10 @@ function right_click_menu ()
             BODY_FONT_SIZE = wanted_font.size
             avalon.SetConfig ("messagebox","bodyfont", BODY_FONT_NAME)
             avalon.SetConfig ("messagebox","font_size", BODY_FONT_SIZE)
+            check (WindowFont(Win, "bodyfont"..Win, BODY_FONT_NAME, BODY_FONT_SIZE))
+            font_height = WindowFontInfo (Win, "bodyfont"..Win, 1) -  WindowFontInfo (Win, "bodyfont"..Win, 4) + 1
+            line_height = font_height+1
+            font_width = WindowTextWidth (Win, "bodyfont"..Win, "W")
         end
     elseif result == "Turn Echo Off" then
         echo = false
