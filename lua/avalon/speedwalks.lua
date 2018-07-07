@@ -679,5 +679,9 @@ speedwalklist['ashar.schmiedezunft_ashar.schmiedwaffen'] = "sw n"
 speedwalklist['ashar.schmiedwaffen_ashar.schmiedezunft'] = "s no"
 speedwalklist['usagoor.eingang_usagoor.schuerfhaendler'] = "sw s s sw w s s o"
 speedwalklist['usagoor.schuerfhaendler_usagoor.eingang'] = "w n n o no n n no"
+speedwalklist['solgard.zentrum_solgard.bank'] = "so oeffne_tuer s"
+speedwalklist['solgard.bank_solgard.zentrum'] = "oeffne_tuer n nw"
+speedwalklist['dhungar0.transportkorb_dhungar0.waffenschmied'] = "o o o o o"
+speedwalklist['dhungar0.waffenschmied_dhungar0.transportkorb'] = "w w w w w"
 
 return speedwalklist

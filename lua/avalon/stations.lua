@@ -2450,4 +2450,18 @@ stations:add(
              "Haendler für Schuerfbedarf in der Zwergenstadt Usagoor."
             )
 
+stations:add(
+             "solgard",
+             "bank",
+             "raum/1ef50bc1aaa3d9ed36c530b894828b20",
+             "Die Wechselstube in Solgard."
+            )
+
+stations:add(
+             "dhungar0",
+             "waffenschmied",
+             "raum/008a687c1d2045f058c2a0f8dfe586bd",
+             "Der Waffenschmied auf Ebene 0 in Dhungar."
+            )
+
 return stations
