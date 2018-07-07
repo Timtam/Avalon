@@ -387,6 +387,10 @@ function speedwalk_start(from, to)
     return
   end
   from = stations[1]
+  if SafeSpeedwalks == 1 and from.id ~= RoomID then
+    world.Note("Du befindest Dich derzeit nicht an dem fuer "..String.title(from.domain).."."..String.title(from.name).." registrierten Ort. Um die Absicherung abzuschalten, druecke die F5-Taste.")
+    return
+  end
   if not to:find(".", 1, true) then
     to = "."..to
   end
