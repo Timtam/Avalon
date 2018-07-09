@@ -1170,13 +1170,6 @@ stations:add(
             )
 
 stations:add(
-             "dolphinia",
-             "hafen",
-             "raum/93804619cea283877cde3fd8a8581333",
-             "Hafen von Dolphinia (Skilletan)."
-            )
-
-stations:add(
              "gwendon",
              "hafen",
              "raum/10881e7e62b006afee9816649642327f",
@@ -2462,6 +2455,55 @@ stations:add(
              "waffenschmied",
              "raum/008a687c1d2045f058c2a0f8dfe586bd",
              "Der Waffenschmied auf Ebene 0 in Dhungar."
+            )
+
+stations:add(
+             "skilletan",
+             "zentrum",
+             "raum/1093011a1bfa83423e53fef50c3ea242",
+             "Der Marktplatz der Stadt Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "haendler",
+             "raum/55364ce127e34a57f53c5aa229bcbd7e",
+             "Der Gemischtwarenhaendler in Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "hafen",
+             "raum/93804619cea283877cde3fd8a8581333",
+             "Der alte Hafen von Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "bank",
+             "raum/0aa3bf43f23cd90ae804635868f4c7ab",
+             "Die Bank in Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "post",
+             "raum/46ded2c3db1739526b22a722399e3037",
+             "Die Post in Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "schmiedwaffen",
+             "raum/c78f4cf9472051f24577f41eef57587d",
+             "Der Waffenschmied in Skilletan."
+            )
+
+stations:add(
+             "miobaas",
+             "gasthaus",
+             "raum/0a205320b39425738ca87108301e48bd",
+             "Gasthaus zum wilden Mann in Miobaas."
             )
 
 return stations
