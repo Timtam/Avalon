@@ -2452,7 +2452,7 @@ stations:add(
 
 stations:add(
              "dhungar0",
-             "waffenschmied",
+             "schmiedwaffen",
              "raum/008a687c1d2045f058c2a0f8dfe586bd",
              "Der Waffenschmied auf Ebene 0 in Dhungar."
             )
