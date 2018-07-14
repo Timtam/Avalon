@@ -2411,14 +2411,14 @@ stations:add(
 stations:add(
              "ashar",
              "wlmkeule",
-             "raum/4abb03c428a0ddccf639fe930aac21cc",
+             "raum/8d29bc2871919d67ebdf3777484e6ae8",
              "Der Waffenlehrmeister fuer Keule in den Slums von Ashar."
             )
 
 stations:add(
              "ashar",
              "wlmhaende",
-             "raum/4fe008a4c1986555b766838d19f069ca",
+             "raum/0b488ccd973eae8f7b5a8aed6c6590bc",
              "Der Waffenlehrmeister fuer Faustkampf in den Slums von Ashar."
             )
 
