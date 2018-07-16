@@ -1670,7 +1670,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Auf einem kleinen Huegelland."
+   match="Ein kleines Huegelland."
    send_to="12"
    sequence="100"
   >
@@ -3498,7 +3498,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* schiesst * auf *"
+   match="* schiess* auf *"
    sequence="100"
    send_to="12"
   >
