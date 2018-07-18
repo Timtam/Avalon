@@ -1668,9 +1668,9 @@ stations:add(
 
 stations:add(
              "nereid",
-             "tornw",
+             "torw",
              "raum/bbf61be3631c2f5f9402bce3ffd9a795",
-             "Mondtor nordoestlich von Ashar (Foie nordwesten)."
+             "Mondtor nordoestlich von Ashar (Foie westen)."
             )
 
 stations:add(
@@ -1696,9 +1696,9 @@ stations:add(
 
 stations:add(
              "nereid",
-             "torw",
+             "tornw",
              "raum/044e996d908244b0bbb62e018d47d610",
-             "Mondtor suedwestlich von Sanduz (Foie westen)."
+             "Mondtor suedwestlich von Sanduz (Foie nordwesten)."
             )
 
 stations:add(
