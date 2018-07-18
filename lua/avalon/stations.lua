@@ -2520,4 +2520,18 @@ stations:add(
              "Der Eingang des botanischen Gartens in Alotria."
             )
 
+stations:add(
+             "miobaas",
+             "schmiedwaffen",
+             "raum/cc19a99bc7172ec0ebcb8f18a20b7087",
+             "Der zwergische Waffenschmied in Miobaas."
+            )
+
+stations:add(
+             "miobaas",
+             "schmiedruestung",
+             "raum/5937823b0b6fc41645f78363ed2f85f0",
+             "Die zwergische Ruestungsschmiedin in Miobaas."
+            )
+
 return stations

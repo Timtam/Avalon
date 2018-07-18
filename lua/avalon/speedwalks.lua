@@ -699,5 +699,11 @@ speedwalklist['alotria.post_alotria.zoo'] = "n w w n n"
 speedwalklist['alotria.zoo_alotria.post'] = "s s o o s"
 speedwalklist['alotria.post_alotria.garten'] = "n w w w w n n"
 speedwalklist['alotria.garten_alotria.post'] = "s s o o o o s"
+speedwalklist['miobaas.zentrum_miobaas.schmiedwaffen'] = "o o o oeffne_tuer n"
+speedwalklist['miobaas.schmiedwaffen_miobaas.zentrum'] = "oeffne_tuer s w w w"
+speedwalklist['miobaas.zentrum_miobaas.schmiedruestung'] = "o o o o oeffne_tuer n"
+speedwalklist['miobaas.schmiedruestung_miobaas.zentrum'] = "oeffne_tuer s w w w w"
+speedwalklist['miobaas.schmiedruestung_miobaas.schmiedwaffen'] = "oeffne_tuer w"
+speedwalklist['miobaas.schmiedwaffen_miobaas.schmiedruestung'] = "oeffne_tuer o"
 
 return speedwalklist
