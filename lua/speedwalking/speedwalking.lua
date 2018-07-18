@@ -25,14 +25,14 @@ function speedwalk_init(from, to)
     return Utils.way_duration(a) < Utils.way_duration(b)
   end)
   spdtbl = nil
-  local _, p, prevent
-  for _, p in pairs(paths) do
+  local p
+  paths:foreach(function(p)
+    local prevent
     prevent = Utils.way_prevention_reason(p)
-    if Types.is_empty(prevent) then
+    if Types.is_empty(prevent) and spdtbl == nil then
       spdtbl = p
-      break
     end
-  end
+  end)
   if not spdtbl then
     if paths:len() > 0 then
       world.Note(Utils.way_prevention_reason(paths[paths:len() - 1]))
