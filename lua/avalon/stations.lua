@@ -2507,6 +2507,111 @@ stations:add(
             )
 
 stations:add(
+             "augyra",
+             "moebelhaendler",
+             "raum/9b92a2daf5b3c96f06b77aed569c97b9",
+             "Der Schreiner in der Stadt Augyra."
+            )
+
+stations:add(
+             "ilmelorn",
+             "moebelhaendler",
+             "raum/b620e7707afffab6d40b0a1a61220339",
+             "Der Moebelhaendler in Ilmelorn."
+            )
+
+stations:add(
+             "usagoor",
+             "moebelhaendler",
+             "raum/21dda73ba9e5b27bcd56bf5e39161cac",
+             "Der Moebelhaendler in Usagoor."
+            )
+
+stations:add(
+             "dhungar2",
+             "moebelhaendler",
+             "raum/1db5be87978d59589799023402471817",
+             "Der Moebelhaendler in Dhungar auf Ebene 2."
+            )
+
+stations:add(
+             "corona",
+             "moebelhaendler",
+             "raum/cd1ee43d572aae32f0055d9c34a9b96d",
+             "Der Moebelhaendler in Corona."
+            )
+
+stations:add(
+             "miobaas",
+             "moebelhaendler",
+             "raum/d44ba476fb45663ae408db81ec0f4f38",
+             "Der Moebelhaendler in Miobaas."
+            )
+
+stations:add(
+             "minias",
+             "moebelhaendler",
+             "raum/b0d9128d37267d9df258ae0ac4dc0780",
+             "Der Moebelhaendler in Minias."
+            )
+
+stations:add(
+             "ashar",
+             "moebelhaendler",
+             "raum/ccb82ff23c8a469373789a071b80149c",
+             "Der Moebelhaendler in Ashar."
+            )
+
+stations:add(
+             "walhalla",
+             "moebelhaendler",
+             "raum/2eadd0eff82ed086c2113b10980ae9ef",
+             "Der Moebelhaendler in Walhalla."
+            )
+
+stations:add(
+             "siedlung",
+             "moebelhaendler",
+             "raum/e35ff47bb1b9454e7af626e9d4c97b3a",
+             "Der Moebelhaendler in der Elfensiedlung auf Tintagel."
+            )
+
+stations:add(
+             "solgard",
+             "moebelhaendler2",
+             "raum/35363563cb25b891233fb307f4b9b8c5",
+             "Die Innenausstatterin in Solgard."
+            )
+
+stations:add(
+             "solgard",
+             "moebelhaendler1",
+             "raum/6b5cff967dc34e8c2ce277ce55daf836",
+             "Die Moebelmanufaktur in Solgard."
+            )
+
+stations:add(
+             "limarch",
+             "moebelhaendler",
+             "raum/3ce868833d413967d95805a5931996ff",
+             "Der Moebelhaendler in Limarch."
+            )
+
+stations:add(
+             "skalewar",
+             "moebelhaendler2",
+             "raum/9fa8ba059656191a125cd2a4495ad482",
+             "Der Steinmetz in Skalewar."
+            )
+
+stations:add(
+             "skalewar",
+             "moebelhaendler1",
+             "raum/f70e3cb5360ceba2669425924a29ccb6",
+             "Die Schreinerei in Skalewar."
+            )
+
+stations:add(
              "alotria",
              "zoo",
              "raum/ec4db03b874778022b865a0d8db6fcff",
