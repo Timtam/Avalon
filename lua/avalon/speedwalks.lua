@@ -695,5 +695,9 @@ speedwalklist['miobaas.makler_miobaas.gasthaus'] = "o o no no no no w w w w w n 
 speedwalklist['miobaas.gasthaus_miobaas.makler'] = "o s o o o o o sw sw sw sw w w"
 speedwalklist['nereid.gabelung1_nereid.druidekarel'] = "so o o o o o o o o o so"
 speedwalklist['nereid.druidekarel_nereid.gabelung1'] = "nw w w w w w w w w w nw"
+speedwalklist['alotria.post_alotria.zoo'] = "n w w n n"
+speedwalklist['alotria.zoo_alotria.post'] = "s s o o s"
+speedwalklist['alotria.post_alotria.garten'] = "n w w w w n n"
+speedwalklist['alotria.garten_alotria.post'] = "s s o o o o s"
 
 return speedwalklist
