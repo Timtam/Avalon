@@ -2611,4 +2611,18 @@ stations:add(
              "Die Schreinerei in Skalewar."
             )
 
+stations:add(
+             "alotria",
+             "zoo",
+             "raum/ec4db03b874778022b865a0d8db6fcff",
+             "Der Eingang des alotrianischen Zoos."
+            )
+
+stations:add(
+             "alotria",
+             "garten",
+             "raum/5240f45e6af591b32e2ed91c48d0ceba",
+             "Der Eingang des botanischen Gartens in Alotria."
+            )
+
 return stations

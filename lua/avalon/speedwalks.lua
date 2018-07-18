@@ -725,5 +725,9 @@ speedwalklist['skalewar.zentrum_skalewar.moebelhaendler2'] = "o o o s s s w oeff
 speedwalklist['skalewar.moebelhaendler2_skalewar.zentrum'] = "oeffne_tuer s o n n n w w w"
 speedwalklist['skalewar.zentrum_skalewar.moebelhaendler1'] = "o o o s s s oeffne_oestliche_tuer o"
 speedwalklist['skalewar.moebelhaendler1_skalewar.zentrum'] = "oeffne_tuer w n n n w w w"
+speedwalklist['alotria.post_alotria.zoo'] = "n w w n n"
+speedwalklist['alotria.zoo_alotria.post'] = "s s o o s"
+speedwalklist['alotria.post_alotria.garten'] = "n w w w w n n"
+speedwalklist['alotria.garten_alotria.post'] = "s s o o o o s"
 
 return speedwalklist
