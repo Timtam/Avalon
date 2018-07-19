@@ -28,6 +28,9 @@ F11 - Wechsel zwischen der Sound-Lautstärkeregelung und Musiklautstärkeregelung
 F9 - Falls mit F11 auf Musik umgestellt wurde, regelt man hiermit die Lautstärke nach unten
 F10 - Falls mit F11 auf Musik umgestellt, wird hiermit die Lautstärke hochgedreht.
 
+Die Musik wurde unter Anderem bereitgestellt von:
+Dag Reinbott: https://www.terrasound.de/
+
 Muting
 ------
 
