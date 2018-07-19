@@ -5387,11 +5387,13 @@ function moon_ticker()
     g_moon.jani = moon.jani
     world.Note("Der Mond Jani wandert langsam nach "..d[moon.jani+1]..". Das Mondtor zeigt daher bald nach:")
     world.Execute("jani"..d_[moon.jani+1])
+    psnd("portal/jani.ogg")
   end
   if moon.foie ~= g_moon.foie then
     g_moon.foie = moon.foie
     world.Note("Der Mond Foie wandert langsam nach "..d[moon.foie+1]..". Das Mondtor zeigt daher bald nach:")
     world.Execute("foie"..d_[moon.foie+1])
+    psnd("portal/foie.ogg")
   end
 end
 ]]>
