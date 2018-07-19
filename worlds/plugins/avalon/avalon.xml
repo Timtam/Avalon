@@ -5385,13 +5385,13 @@ function moon_ticker()
   moon = Time.get_avalon_moon_positions(os.time())
   if moon.jani ~= g_moon.jani then
     g_moon.jani = moon.jani
-    world.Note("Der Mond Jani wandert nach "..d[moon.jani+1]..". Das Mondtor zeigt daher nun nach:")
-    world.Send("jani"..d_[moon.jani+1])
+    world.Note("Der Mond Jani wandert langsam nach "..d[moon.jani+1]..". Das Mondtor zeigt daher bald nach:")
+    world.Execute("jani"..d_[moon.jani+1])
   end
   if moon.foie ~= g_moon.foie then
     g_moon.foie = moon.foie
-    world.Note("Der Mond Foie wandert nach "..d[moon.foie+1]..". Das Mondtor zeigt daher nun nach:")
-    world.Send("foie"..d_[moon.foie+1])
+    world.Note("Der Mond Foie wandert langsam nach "..d[moon.foie+1]..". Das Mondtor zeigt daher bald nach:")
+    world.Execute("foie"..d_[moon.foie+1])
   end
 end
 ]]>
