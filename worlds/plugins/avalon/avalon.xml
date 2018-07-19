@@ -4416,6 +4416,7 @@ Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
 Tablex = require("pl.tablex")
+Time = require("avalon.time")
 spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.")
 spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
 spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
@@ -4441,6 +4442,8 @@ spells_register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die D
 spells_register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
 spells_register("Friedfertigkeit", "Du fuehlst Dich nun ein bisschen friedfertig\\.|Du fuehlst Dich nun sehr friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
 spells_register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
+
+g_moon = Time.get_avalon_moon_positions(os.time())
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
@@ -4469,6 +4472,8 @@ function OnAvalonGilde(type, message)
 end
 
 function OnAvalonLogin()
+  world.AddTimer("moon_ticker", 0, 0, 4.6, "moon_ticker()", timer_flag.Enabled, "")
+  world.SetTimerOption("moon_ticker", "send_to", sendto.script)
   atcp.Send("ava_set_soundpack")
   atcp.Send("ava_set_channel 1")
   atcp.Send("ava_set_rcomm 1")
@@ -5353,6 +5358,40 @@ function call_callback(handle, ...)
     for ci,cf in pairs(callbacktbl[handle]) do
       cf(unpack({select(1, ...)}))
     end
+  end
+end
+
+function moon_ticker()
+  d = {
+       "Nordwesten",
+       "Westen",
+       "Suedwesten",
+       "Sueden",
+       "Suedosten",
+       "Osten",
+       "Nordosten",
+       "Norden"
+      }
+  d_ = {
+        "nw",
+        "w",
+        "sw",
+        "s",
+        "so",
+        "o",
+        "no",
+        "n"
+       }
+  moon = Time.get_avalon_moon_positions(os.time())
+  if moon.jani ~= g_moon.jani then
+    g_moon.jani = moon.jani
+    world.Note("Der Mond Jani wandert nach "..d[moon.jani+1]..". Das Mondtor zeigt daher nun nach:")
+    world.Send("jani"..d_[moon.jani+1])
+  end
+  if moon.foie ~= g_moon.foie then
+    g_moon.foie = moon.foie
+    world.Note("Der Mond Foie wandert nach "..d[moon.foie+1]..". Das Mondtor zeigt daher nun nach:")
+    world.Send("foie"..d_[moon.foie+1])
   end
 end
 ]]>
