@@ -2639,4 +2639,18 @@ stations:add(
              "Die zwergische Ruestungsschmiedin in Miobaas."
             )
 
+stations:add(
+             "miobaas",
+             "abenteuerladen",
+             "raum/c4bd6a62e5fd7732c283c7440eefff39",
+             "Der Abenteuerladen in Miobaas."
+            )
+
+stations:add(
+             "tolsgal",
+             "gabelung1",
+             "raum/d33c3d5a3affde21b219f48dd3e33233",
+             "Weggabelung im Gebirge von Tolsgal."
+            )
+
 return stations
