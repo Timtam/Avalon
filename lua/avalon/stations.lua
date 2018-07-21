@@ -492,42 +492,42 @@ stations:add(
 
 stations:add(
              "uw",
-             "anleger1",
+             "anlegercamp",
              "raum/94c562aea6a4c8dbfa806a300e606a67",
              "Der Schiffsanleger naehe des Camps Baralon."
             )
 
 stations:add(
              "uw",
-             "anleger2",
+             "anlegerjasthan",
              "raum/ee3c3c1c0253411c59d08f840b03bfa5",
              "Der Schiffsanleger naehe Jasthan."
             )
 
 stations:add(
              "uw",
-             "anleger3",
+             "anlegerskalewar",
              "raum/99400fa30f84fbef5e0ae22073d3103c",
              "Der Schiffsanleger naehe Skalewar."
             )
 
 stations:add(
              "uw",
-             "anleger4",
+             "anlegertempel",
              "raum/9707dcb670ff8099379ba47d070cec66",
              "Der Schiffsanleger naehe dem Tempel der Febracim."
             )
 
 stations:add(
              "uw",
-             "anleger5",
+             "anlegertiefebene",
              "raum/4a57118ca30109b0f8c302b90f042ee2",
              "Der Schiffsanleger naehe der Tiefebene."
             )
 
 stations:add(
              "uw",
-             "anleger6",
+             "anlegertotenebene",
              "raum/dbdd3fa4c2e44faedb10b180a535d955",
              "Der Schiffsanleger naehe der Totenebene."
             )
