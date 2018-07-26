@@ -739,5 +739,11 @@ speedwalklist['ilmelorn.eingang_tolsgal.gabelung1'] = "no n nw nw nw no no no nw
 speedwalklist['tolsgal.gabelung1_ilmelorn.eingang'] = "no so so so so sw sw sw so so so s sw"
 speedwalklist['tolsgal.bardenynaeve_tolsgal.teeladen'] = "nw n n kletter_n kletter_n kletter_n n n w w hoch"
 speedwalklist['tolsgal.teeladen_tolsgal.bardenynaeve'] = "runter o o s s kletter_s kletter_s kletter_s s s so"
+speedwalklist['alotria.zoo_alotria.wurfwaffenladen'] = "s s s w"
+speedwalklist['alotria.wurfwaffenladen_alotria.zoo'] = "o n n n"
+speedwalklist['alotria.garten_alotria.waffenladen'] = "s s w n"
+speedwalklist['alotria.waffenladen_alotria.garten'] = "s o n n"
+speedwalklist['alotria.werkzeugladen_alotria.mineralienhaendler'] = "w w"
+speedwalklist['alotria.mineralienhaendler_alotria.werkzeugladen'] = "o o"
 
 return speedwalklist

@@ -2653,4 +2653,25 @@ stations:add(
              "Weggabelung im Gebirge von Tolsgal."
             )
 
+stations:add(
+             "alotria",
+             "wurfwaffenladen",
+             "raum/66ce05c8bc7e0c4169e28bcbfc8ad452",
+             "Der Wurfwaffenladen in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "waffenladen",
+             "raum/ea909a7440fab6b132660ed7372fa2d7",
+             "Der Waffenladen in alotria."
+            )
+
+stations:add(
+             "alotria",
+             "mineralienhaendler",
+             "raum/9d8d0741051d79f763ac577f52c6ea98",
+             "Der Mineralienhaendler in Alotria."
+            )
+
 return stations
