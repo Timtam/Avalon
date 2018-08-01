@@ -230,7 +230,7 @@ SetClipboard(line)
 Execute("tts_interrupt copied.")
 end
 if modes[wc][2] == 1 then
-Execute("tts_interrupt "..line)
+Execute("tts_interrupt " .. world.Replace(line, ";", " ", true))
 end
 end
 function OnPluginCommandEntered(s)
