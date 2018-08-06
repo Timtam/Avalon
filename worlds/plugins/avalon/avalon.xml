@@ -1976,7 +1976,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Da gehts nicht weiter."
+   match="Da geht es nicht weiter."
    sequence="100"
    send_to="12"
   >
