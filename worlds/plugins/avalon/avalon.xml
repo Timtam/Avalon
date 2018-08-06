@@ -2034,7 +2034,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du loeschst.*|.*loescht.*|.*erlischt.|.*erloeschen."
+   match="Du loeschst.*|.* loescht .*|.*erlischt.|.*erloeschen."
    regexp="y"
    sequence="100"
    send_to="12"

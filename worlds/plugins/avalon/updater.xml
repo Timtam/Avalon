@@ -169,7 +169,7 @@ function updateCheckFinished()
   end
   hours = math.floor(checkPeriod / 3600)
   minutes = math.floor((checkPeriod - hours * 3600) / 60)
-  seconds = math.floor(((checkPeriod - hours) * 3600) - (minutes * 60))
+  seconds = math.floor((checkPeriod - hours * 3600) - (minutes * 60))
   world.AddTimer("updateCheckTimer", hours, minutes, seconds, "", timer_flag.Enabled + timer_flag.OneShot + timer_flag.Temporary, "updateCheck")
 end
 

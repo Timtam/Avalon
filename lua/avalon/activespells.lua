@@ -93,7 +93,16 @@ function spells_warn(spell, guid)
   seconds = math.floor(round(diff, 0) % 60)
   minutes = math.floor((round(diff, 0) - seconds) / 60)
   if seconds == 0 then
-    msg = spell.." bereits "..tostring(minutes).." Minute(n) aktiv."
+    msg = spell
+    if minutes > 0 then
+      msg = msg .." bereits "
+      if minutes == 1 then
+        msg = msg .. "eine Minute"
+      else
+        msg = msg .. tostring(minutes) .. " Minuten"
+      end
+    end
+    msg = msg .. " aktiv."
     Note(msg)
   end
   DoAfterSpecial((60 - (time - spells[spell])%60),"spells_warn('"..spell.."', '"..guid.."')", 12)
