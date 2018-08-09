@@ -1519,7 +1519,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Na bitte, das sieht doch schon fast wie ein fertiges Lederstueck aus."
+   match="Das sieht doch schon fast wie ein fertiges Lederstueck aus."
    sequence="100"
    omit_from_output="y"
    send_to="12"
