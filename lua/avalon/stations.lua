@@ -1,4 +1,4 @@
-stations = require("speedwalking.station_handler")()
+﻿stations = require("speedwalking.station_handler")()
 
 stations:add(
              "affenkopfinsel",
@@ -2672,6 +2672,27 @@ stations:add(
              "mineralienhaendler",
              "raum/9d8d0741051d79f763ac577f52c6ea98",
              "Der Mineralienhaendler in Alotria."
+            )
+
+stations:add(
+             "augyra",
+             "zentrum",
+             "raum/afd618f40bf93d8603b880b8b6b1ea8f",
+             "Das Zentrum des Marktplatzes von Augyra."
+            )
+
+stations:add(
+             "augyra",
+             "schmied",
+             "raum/b22de0b07f0536148f6b4101fbe221ff",
+             "Der Meisterschmied in Augyra."
+            )
+
+stations:add(
+             "augyra",
+             "gasthaus",
+             "raum/294f743bcb3024cf2dd8c44829f964e8",
+             "Das Gasthaus Zum durstigen Zentaur in Augyra."
             )
 
 return stations
