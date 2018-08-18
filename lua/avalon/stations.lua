@@ -451,7 +451,7 @@ stations:add(
 stations:add(
              "ilmelorn",
              "bank",
-             "raum/44f0bc731a6c345759b1859f1f12d666",
+             "raum/4515bd018d822c539c0f6721c1e50525",
              "Die Bank in der Elfenstadt Ilmelorn."
             )
 
@@ -1529,7 +1529,7 @@ stations:add(
 stations:add(
              "ilmelorn",
              "post",
-             "raum/80c9a7ae717170ecc9bbf36179c65d06",
+             "raum/d4b62efc15b49f097b9bc02f2f5cc137",
              "Post in Ilmelorn."
             )
 
@@ -2376,7 +2376,7 @@ stations:add(
 stations:add(
              "ilmelorn",
              "wlmhiebmesser",
-             "raum/625d8bfa385f81311184893a5a4596f3",
+             "raum/c09db0aa6a979d7d4dba765575a28dff",
              "Der Waffenlehrmeister fuer Hiebmesser in Ilmelorn."
             )
 
