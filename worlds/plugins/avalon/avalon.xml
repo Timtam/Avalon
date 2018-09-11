@@ -3640,7 +3640,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Ein riesiger, mit Runen ueberzogener Obelisk."
+   match="Ein riesiger Obelisk."
    send_to="12"
    sequence="100"
   >
