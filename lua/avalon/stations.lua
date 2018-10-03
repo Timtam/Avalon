@@ -1256,7 +1256,7 @@ stations:add(
 stations:add(
              "nereid",
              "imkerzunft",
-             "raum/4306f333c6a0c4cdc26472e8eed13235",
+             "raum/73649469aa2bd78430d07f3c6188b39d",
              "Die Imkerzunft."
             )
 
