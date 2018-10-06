@@ -115,7 +115,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
+  <send>hdksnd = psnd("demon_warriors/crystalfocus.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -142,8 +142,10 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demonexecute.ogg")
-        Audio.fadeout(hdksnd,1000)</send>
+  <send>
+    psnd("demon_warriors/demonexecute.ogg")
+    Audio.fadeout(hdksnd, 1000)
+  </send>
   </trigger>
   <trigger
    enabled="n"
@@ -152,7 +154,10 @@
    send_to="12"
    sequence="100"
   >
-  <send>Audio.fadeout(hdksnd,1000)</send>
+  <send>
+    psnd("demon_warriors/demonexecute.ogg")
+    Audio.fadeout(hdksnd, 1000)
+  </send>
   </trigger>
   <trigger
    enabled="n"
@@ -161,8 +166,10 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demoncounter.ogg")
-        Audio.fadeout(hdksnd,1000)</send>
+  <send>
+    psnd("demon_warriors/demoncounter.ogg")
+    Audio.fadeout(hdksnd, 1000)
+  </send>
   </trigger>
   <trigger
    enabled="n"
@@ -171,8 +178,10 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demondisappear.ogg")
-        Audio.fadeout(hdksnd,1000)</send>
+  <send>
+    psnd("demon_warriors/demondisappear.ogg")
+    Audio.fadeout(hdksnd, 1000)
+  </send>
   </trigger>
   <trigger
    enabled="n"
@@ -195,21 +204,14 @@
   <trigger
    enabled="n"
    group="Daemonenkrieger"
-   match="Du nimmst Deinen Fokuskristall fest in Deine freie Hand, *"
-   send_to="12"
-   sequence="100"
-  >
-  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
    match="Du schlaegst ruckartig Deinen Fokuskristall auf den Boden, *"
    send_to="12"
    sequence="100"
   >
-  <send>psnd("demon_warriors/demonappear.ogg")
-        Audio.fadeout(hdksnd,1000)</send>
+  <send>
+    psnd("demon_warriors/demonappear.ogg")
+    Audio.fadeout(hdksnd, 1000)
+  </send>
   </trigger>
   <trigger
    enabled="n"
@@ -228,15 +230,6 @@
    sequence="100"
   >
   <send>psnd("demon_warriors/crystallight.ogg")</send>
-  </trigger>
-  <trigger
-   enabled="n"
-   group="Daemonenkrieger"
-   match="Du nimmst Deinen Fokuskristall in beide Haende."
-   send_to="12"
-   sequence="100"
-  >
-  <send>hdksnd=psnd("demon_warriors/crystalfocus.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
