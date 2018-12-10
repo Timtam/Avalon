@@ -2695,4 +2695,32 @@ stations:add(
              "Das Gasthaus Zum durstigen Zentaur in Augyra."
             )
 
+stations:add(
+             "alotria",
+             "rathausplatz",
+             "raum/3399e7ba66644579e5e3a0db1265e3b2",
+             "Mitte des Rathausplatzes von Alotria beim Brunnen"
+            )
+
+stations:add(
+             "alotria",
+             "bibliothek",
+             "raum/1a126b03a72c5739c34bd3082b83cc8b",
+             "Die Bibliothek in Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "parkladen",
+             "raum/1b3ff7865746ac1d6380cc1bf9e50337",
+             "Pasteten- und Suessigkeitenladen im Park von Alotria."
+            )
+
+stations:add(
+             "alotria",
+             "bogenmacher",
+             "raum/570c5564c821f67d4d7c196a2d5ac130",
+             "Laden des Bogenmachers in Alotria."
+            )
+
 return stations
