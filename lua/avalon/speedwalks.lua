@@ -759,5 +759,7 @@ speedwalklist['alotria.rathausplatz_alotria.parkladen'] = "w w sw haus"
 speedwalklist['alotria.parkladen_alotria.rathausplatz'] = "raus no o o"
 speedwalklist['alotria.rathausplatz_alotria.bogenmacher'] = "s s s s s o s"
 speedwalklist['alotria.bogenmacher_alotria.rathausplatz'] = "n w n n n n n"
+speedwalklist['corona.zentrum_corona.miniuw'] = "n n o o so"
+speedwalklist['corona.miniuw_corona.zentrum'] = "nw w w s s"
 
 return speedwalklist

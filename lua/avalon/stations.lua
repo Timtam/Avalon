@@ -2723,4 +2723,11 @@ stations:add(
              "Laden des Bogenmachers in Alotria."
             )
 
+stations:add(
+             "corona",
+             "miniuw",
+             "raum/d8119ebab7f19311f926a000358c5da4",
+             "Zugang zur Miniuw in Corona."
+            )
+
 return stations
