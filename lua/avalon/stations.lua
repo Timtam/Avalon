@@ -2730,4 +2730,116 @@ stations:add(
              "Zugang zur Miniuw in Corona."
             )
 
+stations:add(
+             "dhungar1",
+             "bergeingang",
+             "raum/0084388ff42e5c30639a1fd8ffd9dad0",
+             "Bergreingang von Dhungar, Feld des Burgplatzes, von dem es in das Innere der Burg geht."
+            )
+
+stations:add(
+             "dhungar1",
+             "garten",
+             "raum/9ca685492b8b00d31d329d538cd295e1",
+             "Garten der Burg von Dhungar."
+            )
+
+stations:add(
+             "dhungar1",
+             "brunnen",
+             "raum/63e0b801d08d560d0ed150bc1744acd3",
+             "Am Brunnen des Burgplatzes von Dhungar."
+            )
+
+stations:add(
+             "dhungar0",
+             "mineralienhaendler",
+             "raum/0447dda8071a1a9ccc0a57d297ae85ff",
+             "Die Mineralienhaendlerin auf Ebene 0 in Dhungar."
+            )
+
+stations:add(
+             "dhungar0",
+             "schmiedruestungen",
+             "raum/c4d0090404e6d59e841a8c813b8b548c",
+             "Ruestungsschmied auf Ebene 0 in Dhungar."
+            )
+
+stations:add(
+             "dhungar0",
+             "schmelze",
+             "raum/4c772587e9ad063ad2bf2ba4aac736a6",
+             "Schmelze und Presse auf Ebene 0 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "liebesladen",
+             "raum/df0a94608d35951421f3771605a31967",
+             "Laden der liebenden auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "abenteuerladen",
+             "raum/e099db1ff9d38d3c55b89efef3e4384a",
+             "Der Abenteuerladen auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "fleischladen",
+             "raum/0ab4048292a863f25780a2d0336afce9",
+             "Der Fleischladen auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "juwelier",
+             "raum/7a651d1987df26d006e59867f5de6cee",
+             "Der Juwelier auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "baecker",
+             "raum/2c92509043d9d9ff9b23efa5d132c026",
+             "Die baeckerei auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "palast",
+             "raum/9ef02e6d7bd8bdcca60292ace918c2f8",
+             "Der Eingang des Palasts auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "raetselzauberer",
+             "raum/c5a163cbe5ced3a27138cc381b06f14b",
+             "Der Raetselzauberer auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "spielezauberer",
+             "raum/38f1e0a26d74fd77a1de6416c636babc",
+             "Der Spielezauberer auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar2",
+             "waffenladen",
+             "raum/f89e83ddcb85c2767733d97915916218",
+             "Der Waffenladen auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "dhungar1",
+             "eingang",
+             "raum/c2358c9dce3d10f05f06a9be2e378287",
+             "Vor den Toren der Zwergenburg Dhungar."
+            )
+
 return stations
