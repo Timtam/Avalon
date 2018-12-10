@@ -2856,4 +2856,11 @@ stations:add(
              "Zentrum/Marktplatz von Lorinand Stadt"
             )
 
+stations:add(
+             "usagoor",
+             "fellhaendler",
+             "raum/9d29efd15b60e159a60d26dacbde4216",
+             "Fellhaendler in Usagoor."
+            )
+
 return stations

@@ -795,5 +795,7 @@ speedwalklist['lorinand.zentrum_lorinand.haendler'] = "s oeffne_tuer w"
 speedwalklist['lorinand.haendler_lorinand.zentrum'] = "oeffne_tuer o n"
 speedwalklist['lorinand.torso_lorinand.eingang'] = "nw w w w w w w w w w"
 speedwalklist['lorinand.eingang_lorinand.torso'] = "o o o o o o o o o so"
+speedwalklist['usagoor.eingang_usagoor.fellhaendler'] = "nw w s"
+speedwalklist['usagoor.fellhaendler_usagoor.eingang'] = "n o so"
 
 return speedwalklist
