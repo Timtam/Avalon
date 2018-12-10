@@ -2842,4 +2842,18 @@ stations:add(
              "Vor den Toren der Zwergenburg Dhungar."
             )
 
+stations:add(
+             "lorinand",
+             "eingang",
+             "raum/6b0ddbc66ae783285a3d08265eb2aad5",
+             "Tor der gleichnamigen Stadt auf Lorinand"
+            )
+
+stations:add(
+             "lorinand",
+             "zentrum",
+             "raum/d9eaf1d96411a7bd864b198416fb268e",
+             "Zentrum/Marktplatz von Lorinand Stadt"
+            )
+
 return stations
