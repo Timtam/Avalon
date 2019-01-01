@@ -20,6 +20,19 @@
 
 </plugin>
 
+<!--  Aliases  -->
+
+<aliases>
+  <alias
+   regexp="y"
+   match="^timer$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>timers_print()</send>
+  </alias>
+</aliases>
 
 <!--  Get our standard constants -->
 
@@ -33,6 +46,10 @@
 PPI = require("ppi")
 timers = require("timers")
 TimerProcessor = timers.TimerProcessor()
+
+function timers_print()
+  TimerProcessor:Print()
+end
 
 function OnPluginTick()
   TimerProcessor:Tick()

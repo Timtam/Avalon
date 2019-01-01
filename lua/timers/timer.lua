@@ -1,4 +1,5 @@
 Class = require("pl.class")
+Types = require("pl.types")
 Utils = require("timers.utils")
 
 Class.Timer()
@@ -11,7 +12,7 @@ function Timer:_init(name, tick, duration, end_sound)
   self._end_sound = end_sound or ""
 
   -- internals
-  self.id = world.CreateGUID()
+  self.id = self.name:lower() .. "_" .. world.CreateGUID()
   self._time_fun = Utils.GetTimeFunction()
   self._creation_time = self._time_fun()
   if self._tick then
@@ -25,6 +26,18 @@ function Timer:_init(name, tick, duration, end_sound)
   else
     self._end_time = 0
   end
+
+  -- enhancing metatable for comparison
+  mt = getmetatable(self)
+  mt.__eq = function(self, s)
+    if Types.type(s) == "Timer" then
+      return s.id == self.id
+    else
+      return s == self.id
+    end
+  end
+  setmetatable(self, mt)
+
 end
 
 function Timer:_diff(_a, _b)
@@ -48,29 +61,8 @@ function Timer:_diff(_a, _b)
   return hours, mins, secs
 end
 
-function Timer:_print_tick_message(mins, secs)
-  msg = self.name .. " bereits "
-  if mins > 0 then
-    if mins == 1 then
-      msg = msg .. "eine Minute "
-    else
-      msg = msg .. tostring(mins) .. " Minuten "
-    end
-  end
-  
-  if secs > 0 then
-    if mins > 0 then
-      msg = msg .. "und "
-    end
-    msg = msg .. tostring(secs) .. " Sekunden "
-  end
-
-  msg = msg .. "aktiv"
-  world.Note(msg)
-end
-
-function Timer:_print_end_message(hours, mins, secs)
-  msg = self.name .. " beendet, Dauer: "
+function Timer:_print_formatted_message(message, hours, mins, secs)
+  msg = ""
   if hours > 0 then
     if hours == 1 then
       msg = msg .. "eine Stunde "
@@ -101,16 +93,15 @@ function Timer:_print_end_message(hours, mins, secs)
     msg = msg .. tostring(secs) .. " Sekunden"
   end
 
-  msg = msg .. "aktiv"
-  world.Note(msg)
+  message = string.format(message, msg)
+  world.Note(message)
 end
 
 function Timer:Tick()
   curr = self._time_fun()
 
   if self._tick_time > 0 and curr >= self._tick_time then
-    hours, mins, secs = self:_diff(curr, self._tick_time)
-    self:_print_tick_message(mins, secs)
+    self:Print()
     self._tick_time = curr + self._tick
   end
 
@@ -127,7 +118,14 @@ function Timer:End()
 
   hours, mins, secs = self:_diff(curr, self._creation_time)
 
-  self:_print_end_message(hours, mins, secs)
+  self:_print_formatted_message(self.name .. " beendet, Dauer: %s", hours, mins, secs)
+end
+
+function Timer:Print()
+  curr = self._time_fun()
+  
+  hours, mins, secs = self:_diff(curr, self._creation_time)
+  self:_print_formatted_message(self.name .. " bereits %s aktiv", hours, mins, secs)
 end
 
 return Timer

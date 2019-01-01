@@ -1,5 +1,6 @@
 Class = require("pl.class")
 List = require("pl.list")
+require("natsort")
 
 Timer = require("timers.timer")
 
@@ -25,6 +26,40 @@ function Processor:Tick()
       self._timers:remove(i)
     else
       i = i + 1
+    end
+  end
+end
+
+function Processor:EndTimer(id)
+  t = self._timers:find(id)
+
+  if t:len() == 0 then
+    world.Note("FEHLER: Kein Timer mit dieser ID gefunden.")
+  elseif t:len() > 1 then
+    world.Note("FEHLER: Mehr als ein Timer mit dieser ID gefunden. Dies sollte nicht passieren.")
+  else
+    t[1]:End()
+    self._timers:remove_value(t[1])
+  end
+end
+
+function Processor:Print()
+
+  if self._timers:len() == 0 then
+    world.Note("Derzeit werden keine Zeiten gestoppt.")
+    return
+  end
+
+  ids = List.new()
+
+  self._timers:foreach(function(t)
+    ids:append(t.id)
+  end)
+
+  for _, id in ipairs(natsort(ids)) do
+    t = self._timers:find(id)
+    if t:len() == 1 then
+      t[1]:Print()
     end
   end
 end
