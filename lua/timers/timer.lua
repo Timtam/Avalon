@@ -6,37 +6,27 @@ Class.Timer()
 
 function Timer:_init(name, tick, duration, end_sound)
   -- interpreting parameters
-  self.name = name
-  self._tick = tick or 0
-  self._duration = duration or 0
-  self._end_sound = end_sound or ""
+  self.name = tostring(name)
+  if Types.is_empty(tick) then self._tick = 0 else self._tick = tonumber(tick) end
+  if Types.is_empty(duration) then self._duration = 0 else self._duration = tonumber(duration) end
+  if Types.is_empty(end_sound) then self._end_sound = "" else self._end_sound = tostring(end_sound) end
 
   -- internals
   self.id = self.name:lower() .. "_" .. world.CreateGUID()
   self._time_fun = Utils.GetTimeFunction()
   self._creation_time = self._time_fun()
-  if self._tick then
+
+  if self._tick > 0 then
     self._tick_time = self._creation_time + self._tick
   else
     self._tick_time = 0
   end
 
-  if self._duration then
+  if self._duration > 0 then
     self._end_time = self._creation_time + self._duration
   else
     self._end_time = 0
   end
-
-  -- enhancing metatable for comparison
-  mt = getmetatable(self)
-  mt.__eq = function(self, s)
-    if Types.type(s) == "Timer" then
-      return s.id == self.id
-    else
-      return s == self.id
-    end
-  end
-  setmetatable(self, mt)
 
 end
 

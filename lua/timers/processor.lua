@@ -1,5 +1,6 @@
 Class = require("pl.class")
 List = require("pl.list")
+Types = require("pl.types")
 require("natsort")
 
 Timer = require("timers.timer")
@@ -17,9 +18,9 @@ function Processor:AddTimer(name, tick, duration, end_sound)
 end
 
 function Processor:Tick()
-  i = 0
+  i = 1
   
-  while i < self._timers:len() do
+  while i <= self._timers:len() do
     r = self._timers[i]:Tick()
     
     if r == true then
@@ -31,7 +32,13 @@ function Processor:Tick()
 end
 
 function Processor:EndTimer(id)
-  t = self._timers:find(id)
+  t = self._timers:filter(function(tt)
+    if Types.type(id) == "Timer" then
+      return tt.id == id.id
+    else
+      return tt.id == id
+    end
+  end)
 
   if t:len() == 0 then
     world.Note("FEHLER: Kein Timer mit dieser ID gefunden.")
@@ -57,7 +64,9 @@ function Processor:Print()
   end)
 
   for _, id in ipairs(natsort(ids)) do
-    t = self._timers:find(id)
+    t = self._timers:filter(function(tt)
+      return tt.id == id
+    end)
     if t:len() == 1 then
       t[1]:Print()
     end

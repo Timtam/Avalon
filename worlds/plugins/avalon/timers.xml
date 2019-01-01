@@ -27,10 +27,21 @@
    regexp="y"
    match="^timer$"
    enabled="y"
-   sequence="100"
+   sequence="99"
    send_to="12"
   >
   <send>timers_print()</send>
+  </alias>
+  <alias
+   regexp="y"
+   match="^timer ([a-zA-Z0-9]+) *([0-9]*) *([0-9]*)$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>timers_add("%1", "%3", "%2")
+        world.Note("Der Timer wurde erstellt.")
+  </send>
   </alias>
 </aliases>
 
@@ -49,6 +60,10 @@ TimerProcessor = timers.TimerProcessor()
 
 function timers_print()
   TimerProcessor:Print()
+end
+
+function timers_add(name, tick, duration, end_sound)
+  TimerProcessor:AddTimer(name, tick, duration, end_sound)
 end
 
 function OnPluginTick()
