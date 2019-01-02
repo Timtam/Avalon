@@ -113,9 +113,9 @@ function spells_togglewarnings(cnt)
 end
 
 return {
-  spells_parsewarnings = spells_parsewarnings,
-  spells_printwarnings = spells_printwarnings,
-  spells_register = spells_register,
-  spells_retrievewarnings = spells_retrievewarnings,
-  spells_togglewarnings = spells_togglewarnings
+  ParseWarnings = spells_parsewarnings,
+  PrintWarnings = spells_printwarnings,
+  Register = spells_register,
+  RetrieveWarnings = spells_retrievewarnings,
+  ToggleWarning = spells_togglewarnings
 }
