@@ -80,7 +80,11 @@ function Timer:_print_formatted_message(message, hours, mins, secs)
     if mins > 0 or hours > 0 then
       msg = msg .. "und "
     end
-    msg = msg .. tostring(secs) .. " Sekunden"
+    if secs == 1 then
+      msg = msg .. "eine Sekunde"
+    else
+      msg = msg .. tostring(secs) .. " Sekunden"
+    end
   end
 
   message = string.format(message, msg)
