@@ -65,7 +65,7 @@ function Timer:_print_formatted_message(message, hours, mins, secs)
     if hours > 0 and secs > 0 then
       msg = msg:sub(1, -2)
       msg = msg .. ", "
-    elseif mins > 0 and secs == 0 then
+    elseif hours > 0 and secs == 0 then
       msg = msg .. "und "
     end
 
@@ -108,14 +108,14 @@ function Timer:End()
 
   hours, mins, secs = self:_diff(curr, self._creation_time)
 
-  self:_print_formatted_message(self.name .. " beendet, Dauer: %s", hours, mins, secs)
+  self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs)
 end
 
 function Timer:Print()
   curr = self._time_fun()
   
   hours, mins, secs = self:_diff(curr, self._creation_time)
-  self:_print_formatted_message(self.name .. " bereits %s aktiv", hours, mins, secs)
+  self:_print_formatted_message(self.name .. " ist bereits %s aktiv", hours, mins, secs)
 end
 
 return Timer

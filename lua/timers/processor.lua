@@ -64,6 +64,8 @@ function Processor:Print()
     ids:append(t.id)
   end)
 
+  world.Note("Aktuell gestoppte Zeiten:")
+
   for _, id in ipairs(natsort(ids)) do
     t = self._timers:filter(function(tt)
       return tt.id == id

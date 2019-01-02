@@ -41,6 +41,15 @@
   >
   <send>timers_add("%1", "%3", "%2")</send>
   </alias>
+  <alias
+   regexp="y"
+   match="^timer beende *([a-zA-Z0-9]*)$"
+   enabled="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>timers_end("%1")</send>
+  </alias>
 </aliases>
 
 <!--  Get our standard constants -->
@@ -52,44 +61,74 @@
 <script>
 <![CDATA[
 PPI = require("ppi")
-timers = require("timers")
-TimerProcessor = timers.TimerProcessor()
+Timers = require("timers")
 Types = require("pl.types")
 
+timer_processor = Timers.TimerProcessor()
+timers = {}
+
 function timers_print()
-  TimerProcessor:Print()
+  timer_processor:Print()
 end
 
 function timers_add(name, tick, duration, end_sound)
 
   if Types.is_empty(name) then
-    world.Note("timer neu <name> <warnzeit> <laenge>")
+    world.Note("timer neu <name> <laenge> <warnzeit>")
     world.Note("Legt einen neuen Timer an. Dabei werden die folgenden Argumente beruecksichtigt:")
     world.Note("\tname: Der Name des Timers in der Liste")
-    world.Note("\twarnzeit: immer nach den hier angegebenen Sekunden wird ein Hinweis ausgegeben")
-    world.Note("\t\twird 0 angegeben, wird keine Warnung ausgegeben")
     world.Note("\tlaenge: Laenge des Timers (er wird danach automatisch beendet)")
     world.Note("\t\twird 0 angegeben, laeuft er solange, bis er manuell beendet wird")
     world.Note("\t\toder der Client neu gestartet wird")
+    world.Note("\twarnzeit: immer nach der hier angegebenen Zeit wird ein Hinweis ausgegeben")
+    world.Note("\t\twird 0 angegeben, wird keine Warnung ausgegeben")
+    world.Note("Saemtliche Zeit muss in Sekunden angegeben werden.")
     return
   end
 
-  TimerProcessor:AddTimer(name, tick, duration, end_sound)
+  id = timer_processor:AddTimer(name, tick, duration, end_sound)
+  timers[name:lower()] = id
   world.Note("Der Timer wurde erstellt.")
+end
+
+function timers_end(name)
+  if Types.is_empty(name) then
+    world.Note("timer beende <name>")
+    world.Note("Beendet einen laufenden Timer manuell. Folgende Argumente werden benoetigt:")
+    world.Note("\tname: Name des Timers")
+    return
+  end
+
+  t = timers[name:lower()]
+
+  if Types.is_empty(t) then
+    world.Note("Ein Timer mit diesem Namen wurde nicht gefunden.")
+    return
+  end
+
+  res = timer_processor:EndTimer(t)
+
+  if res == Timers.NOT_FOUND then
+    world.Note("Ein Timer mit diesem Namen wurde nicht gefunden.")
+  elseif res == Timers.MULTIPLE_RESULTS then
+    world.Note("Es gibt mehrere Timer, auf welche dieser Name zutrifft. Dieser Fehler duerfte nie auftreten.")
+  end
+
+  timers[name:lower()] = nil
 end
 
 function OnPluginInstall()
   PPI.Expose('AddTimer', function(name, tick, duration, end_sound)
-    return TimerProcessor:AddTimer(name, tick, duration, end_sound)
+    return timer_processor:AddTimer(name, tick, duration, end_sound)
   end)
 
   PPI.Expose('EndTimer', function(id)
-    return TimerProcessor:EndTimer(id)
+    return timer_processor:EndTimer(id)
   end)
 end
 
 function OnPluginTick()
-  TimerProcessor:Tick()
+  timer_processor:Tick()
 end
 ]]>
 </script>
