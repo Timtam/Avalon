@@ -1,4 +1,5 @@
 Class = require("pl.class")
+PPI = require("ppi")
 Types = require("pl.types")
 Utils = require("timers.utils")
 
@@ -15,6 +16,7 @@ function Timer:_init(name, tick, duration, end_sound)
   self.id = self.name:lower() .. "_" .. world.CreateGUID()
   self._time_fun = Utils.GetTimeFunction()
   self._creation_time = self._time_fun()
+  self._avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
   if self._tick > 0 then
     self._tick_time = self._creation_time + self._tick
@@ -118,6 +120,10 @@ function Timer:End()
   hours, mins, secs = self:_diff(curr, self._creation_time)
 
   self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs)
+
+  if Types.is_empty(self._end_sound) == false then
+    self._avalon.PSND(self._end_sound)
+  end
 end
 
 function Timer:Print()

@@ -25,12 +25,14 @@ function spells_start(name)
   end
 
   tick = 0
+  snd = ""
 
   if warnings:index(name) ~= nil then
     tick = 60
+    snd = "spells/warn.ogg"
   end
 
-  spells[name] = Timers.AddTimer(name, tick, 0, "", true)
+  spells[name] = Timers.AddTimer(name, tick, 0, snd, true)
 end
 
 function spells_stop(name)
