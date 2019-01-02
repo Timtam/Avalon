@@ -34,14 +34,12 @@
   </alias>
   <alias
    regexp="y"
-   match="^timer ([a-zA-Z0-9]+) *([0-9]*) *([0-9]*)$"
+   match="^timer neu *([a-zA-Z0-9]*) *([0-9]*) *([0-9]*)$"
    enabled="y"
    sequence="100"
    send_to="12"
   >
-  <send>timers_add("%1", "%3", "%2")
-        world.Note("Der Timer wurde erstellt.")
-  </send>
+  <send>timers_add("%1", "%3", "%2")</send>
   </alias>
 </aliases>
 
@@ -51,19 +49,43 @@
 
 <!--  Script  -->
 
-
 <script>
 <![CDATA[
 PPI = require("ppi")
 timers = require("timers")
 TimerProcessor = timers.TimerProcessor()
+Types = require("pl.types")
 
 function timers_print()
   TimerProcessor:Print()
 end
 
 function timers_add(name, tick, duration, end_sound)
+
+  if Types.is_empty(name) then
+    world.Note("timer neu <name> <warnzeit> <laenge>")
+    world.Note("Legt einen neuen Timer an. Dabei werden die folgenden Argumente beruecksichtigt:")
+    world.Note("\tname: Der Name des Timers in der Liste")
+    world.Note("\twarnzeit: immer nach den hier angegebenen Sekunden wird ein Hinweis ausgegeben")
+    world.Note("\t\twird 0 angegeben, wird keine Warnung ausgegeben")
+    world.Note("\tlaenge: Laenge des Timers (er wird danach automatisch beendet)")
+    world.Note("\t\twird 0 angegeben, laeuft er solange, bis er manuell beendet wird")
+    world.Note("\t\toder der Client neu gestartet wird")
+    return
+  end
+
   TimerProcessor:AddTimer(name, tick, duration, end_sound)
+  world.Note("Der Timer wurde erstellt.")
+end
+
+function OnPluginInstall()
+  PPI.Expose('AddTimer', function(name, tick, duration, end_sound)
+    return TimerProcessor:AddTimer(name, tick, duration, end_sound)
+  end)
+
+  PPI.Expose('EndTimer', function(id)
+    return TimerProcessor:EndTimer(id)
+  end)
 end
 
 function OnPluginTick()

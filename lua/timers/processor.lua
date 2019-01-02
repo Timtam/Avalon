@@ -1,4 +1,5 @@
 Class = require("pl.class")
+Const = require("timers.constants")
 List = require("pl.list")
 Types = require("pl.types")
 require("natsort")
@@ -41,9 +42,9 @@ function Processor:EndTimer(id)
   end)
 
   if t:len() == 0 then
-    world.Note("FEHLER: Kein Timer mit dieser ID gefunden.")
+    return Const.NOT_FOUND
   elseif t:len() > 1 then
-    world.Note("FEHLER: Mehr als ein Timer mit dieser ID gefunden. Dies sollte nicht passieren.")
+    return Const.MULTIPLE_RESULTS
   else
     t[1]:End()
     self._timers:remove_value(t[1])
