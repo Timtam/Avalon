@@ -18,6 +18,7 @@ function Timer:_init(name, tick, duration, end_sound)
 
   if self._tick > 0 then
     self._tick_time = self._creation_time + self._tick
+    self:Print()
   else
     self._tick_time = 0
   end
@@ -85,6 +86,10 @@ function Timer:_print_formatted_message(message, hours, mins, secs)
     else
       msg = msg .. tostring(secs) .. " Sekunden"
     end
+  end
+
+  if hours == 0 and mins == 0 and secs == 0 then
+    msg = "0 Sekunden"
   end
 
   message = string.format(message, msg)
