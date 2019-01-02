@@ -54,7 +54,10 @@ function Timer:_diff(_a, _b)
   return hours, mins, secs
 end
 
-function Timer:_print_formatted_message(message, hours, mins, secs)
+function Timer:_print_formatted_message(message, hours, mins, secs, colored)
+
+  colored = Types.to_bool(colored)
+
   msg = ""
   if hours > 0 then
     if hours == 1 then
@@ -95,7 +98,12 @@ function Timer:_print_formatted_message(message, hours, mins, secs)
   end
 
   message = string.format(message, msg)
-  world.Note(message)
+
+  if colored == true then
+    self._avalon.NoteColour(message, 150, 0, 0, 255, 255, 0)
+  else
+    world.Note(message)
+  end
 end
 
 function Timer:Tick()
@@ -119,7 +127,7 @@ function Timer:End()
 
   hours, mins, secs = self:_diff(curr, self._creation_time)
 
-  self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs)
+  self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs, true)
 
   if Types.is_empty(self._end_sound) == false then
     self._avalon.PSND(self._end_sound)
