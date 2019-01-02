@@ -30,7 +30,7 @@ function spells_start(name)
     tick = 60
   end
 
-  spells[name] = Timers.AddTimer(name, tick, 0)
+  spells[name] = Timers.AddTimer(name, tick, 0, "", true)
 end
 
 function spells_stop(name)

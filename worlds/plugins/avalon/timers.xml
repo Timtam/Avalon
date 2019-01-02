@@ -86,7 +86,7 @@ function timers_add(name, tick, duration, end_sound)
     return
   end
 
-  id = timer_processor:AddTimer(name, tick, duration, end_sound)
+  id = timer_processor:AddTimer(name, tick, duration, end_sound, true)
   timers[name:lower()] = id
   world.Note("Der Timer wurde erstellt.")
 end

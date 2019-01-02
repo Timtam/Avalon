@@ -12,10 +12,29 @@ function Processor:_init()
   self._timers = List.new()
 end
 
-function Processor:AddTimer(name, tick, duration, end_sound)
-  t = Timer(name, tick, duration, end_sound)
-  self._timers:append(t)
-  return t.id
+function Processor:AddTimer(name, tick, duration, end_sound, override)
+  override = Types.to_bool(override)
+  t = nil
+
+  self._timers:foreach(function(tt)
+    if tt.name == name then
+      t = tt
+    end
+  end)
+
+  if t ~= nil and override == false then
+    return Const.ALREADY_EXISTS
+  end
+
+  nt = Timer(name, tick, duration, end_sound)
+
+  if t ~= nil then
+    self._timers[self._timers:index(t)] = nt
+  else
+    self._timers:append(nt)
+  end
+
+  return nt.id
 end
 
 function Processor:Tick()
