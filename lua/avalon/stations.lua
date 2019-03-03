@@ -2440,7 +2440,7 @@ stations:add(
              "usagoor",
              "schuerfhaendler",
              "raum/4b6f35fd01dc96d4ab971a10282a6bfa",
-             "Haendler für Schuerfbedarf in der Zwergenstadt Usagoor."
+             "Haendler fuer Schuerfbedarf in der Zwergenstadt Usagoor."
             )
 
 stations:add(

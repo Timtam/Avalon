@@ -1568,7 +1568,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Vorsichtig polierst Du * noch etwas..."
+   match="Vorsichtig polierst Du * noch etwas."
    omit_from_output="y"
    sequence="100"
    send_to="12"
@@ -2250,12 +2250,12 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Endlich bist Du mit dem Vorzeichnen fertig."
+   match="Vorsichtig glaettest Du die Raender der neuen Rune auf *"
    omit_from_output="y"
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Rune/ChartEnd.ogg")</send>
+  <send>psnd("Rune/Smooth.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
