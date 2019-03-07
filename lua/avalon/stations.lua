@@ -2432,7 +2432,7 @@ stations:add(
 stations:add(
              "ashar",
              "schmiedwaffen",
-             "raum/a20ae7274287b7b2b15f2d18e32cfff0",
+             "raum/f2b9b6e9ad7c4b92ce48232c50658629",
              "Der Waffenschmied in Ashar."
             )
 
