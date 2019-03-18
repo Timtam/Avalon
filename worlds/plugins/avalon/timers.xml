@@ -125,6 +125,8 @@ function OnPluginInstall()
     if id ~= Timers.ALREADY_EXISTS then
       timers[name:lower()] = id
     end
+
+    return id
   end)
 
   PPI.Expose('EndTimer', function(id)
