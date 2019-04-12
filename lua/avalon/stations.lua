@@ -2634,7 +2634,7 @@ stations:add(
 
 stations:add(
              "miobaas",
-             "schmiedruestung",
+             "schmiedruestungen",
              "raum/5937823b0b6fc41645f78363ed2f85f0",
              "Die zwergische Ruestungsschmiedin in Miobaas."
             )
@@ -2861,6 +2861,27 @@ stations:add(
              "fellhaendler",
              "raum/9d29efd15b60e159a60d26dacbde4216",
              "Fellhaendler in Usagoor."
+            )
+
+stations:add(
+             "minias",
+             "schmied",
+             "raum/45377374935fbebf43945432f4216c76",
+             "Der Schmied fuer Waffen und Ruestungen in Avalon."
+            )
+
+stations:add(
+             "corona",
+             "schmied",
+             "raum/8b83d0ebbdff7910f3d617c998c802f7",
+             "Der Schmied fuer Waffen und Ruestungen in Corona."
+            )
+
+stations:add(
+             "skalewar",
+             "schmiedruestungen",
+             "raum/7f043a5527349fc6b784a56e4421b1af",
+             "Der Ruestungsschmied in Skalewar."
             )
 
 return stations
