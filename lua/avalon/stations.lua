@@ -1730,8 +1730,8 @@ stations:add(
             )
 
 stations:add(
-             "uw",
              "totenschiff",
+             "eingang",
              "raum/8505084c87b434c16ba439f047abaab3",
              "Eingang des Totenschiffs."
             )
@@ -2882,6 +2882,62 @@ stations:add(
              "schmiedruestungen",
              "raum/7f043a5527349fc6b784a56e4421b1af",
              "Der Ruestungsschmied in Skalewar."
+            )
+
+stations:add(
+             "usagoor",
+             "schmied",
+             "raum/893f92a1dba7fc5f20aca83b1e8aa088",
+             "Der zwergische Meisterschmied in Usagoor."
+            )
+
+stations:add(
+             "dhungar2",
+             "lederladen",
+             "raum/c4ef5b60e6af057638eb235ec920462f",
+             "Der Lederwarenhaendler auf Ebene 2 in Dhungar."
+            )
+
+stations:add(
+             "corona",
+             "lederladen",
+             "raum/b9a4ae25deacc9ca28f8016ad2922c44",
+             "Si'linas Lederladen in Corona."
+            )
+
+stations:add(
+             "rilauven",
+             "schmiedwaffen",
+             "raum/8c8e5cfbe4792d875b76410fa1270b43",
+             "Der Waffenschmied in Rilauven."
+            )
+
+stations:add(
+             "rilauven",
+             "schmiedruestungen",
+             "raum/a2951cef07882b6823183c7fd4338e2a",
+             "Die Ruestungsschmiedin in Rilauven."
+            )
+
+stations:add(
+             "rilauven",
+             "schmiedklingen",
+             "raum/9b73a77072ad44bd72bed0d4bb24caa9",
+             "Der Klingenschmied in Rilauven."
+            )
+
+stations:add(
+             "rilauven",
+             "nebeldungeon",
+             "raum/20f8b1ae64ffdc5bd271a31a0830784c",
+             "Der Zugang zum Nebeldungeon in Rilauven."
+            )
+
+stations:add(
+             "totenschiff",
+             "ausgang",
+             "raum/03f67f2bd6708e7619ed4b92fe4f0fb1",
+             "Der Ausgang aus dem Totenschiff"
             )
 
 return stations
