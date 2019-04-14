@@ -34,7 +34,7 @@
   </alias>
   <alias
    regexp="y"
-   match="^timer neu *([a-zA-Z0-9]*) *([0-9]*) *([0-9]*)$"
+   match="^timer (?:neu|erstell\w*) *([a-zA-Z0-9]*) *([0-9]*) *([0-9]*)$"
    enabled="y"
    sequence="100"
    send_to="12"
@@ -43,7 +43,7 @@
   </alias>
   <alias
    regexp="y"
-   match="^timer beende *([a-zA-Z0-9]*)$"
+   match="^timer (?:beend\w*|stop\w*|loesch\w*) *([a-zA-Z0-9]*)$"
    enabled="y"
    sequence="100"
    send_to="12"
