@@ -12,7 +12,7 @@ function Processor:_init()
   self._timers = List.new()
 end
 
-function Processor:AddTimer(name, tick, duration, end_sound, override)
+function Processor:AddTimer(name, tick, duration, end_sound, override, print_function)
   override = Types.to_bool(override)
   t = nil
 
@@ -26,7 +26,7 @@ function Processor:AddTimer(name, tick, duration, end_sound, override)
     return Const.ALREADY_EXISTS
   end
 
-  nt = Timer(name, tick, duration, end_sound)
+  nt = Timer(name, tick, duration, end_sound, print_function)
 
   if t ~= nil then
     self._timers[self._timers:index(t)] = nt

@@ -6,11 +6,12 @@ Zeit = require("zeit")
 
 Class.Timer()
 
-function Timer:_init(name, tick, duration, end_sound)
+function Timer:_init(name, tick, duration, end_sound, print_function)
   -- interpreting parameters
   self.name = tostring(name)
   if Types.is_empty(duration) then self._duration = 0 else self._duration = tonumber(duration) end
   if Types.is_empty(end_sound) then self._end_sound = "" else self._end_sound = tostring(end_sound) end
+  if Types.is_callable(print_function) then self._print_function = print_function else self._print_function = nil end
 
   -- internals
   self.id = self.name:lower() .. "_" .. world.CreateGUID()
@@ -33,6 +34,10 @@ function Timer:_print_formatted_message(message, hours, mins, secs, colored)
   colored = Types.to_bool(colored)
 
   message = string.format(message, Zeit.format_time(hours, mins, secs))
+
+  if self._print_function ~= nil then
+    message = self._print_function(message)
+  end
 
   if colored == true then
     self._avalon.NoteColour(message, 150, 0, 0, 255, 255, 0)
@@ -66,10 +71,16 @@ end
 
 function Timer:End()
   local curr = self._time_fun()
+  local print_function
 
   local hours, mins, secs = self:_diff(curr, self._creation_time)
 
+  print_function = self._print_function
+  self._print_function = nil
+
   self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs, true)
+
+  self._print_function = print_function
 
   if Types.is_empty(self._end_sound) == false then
     self._avalon.PSND(self._end_sound)

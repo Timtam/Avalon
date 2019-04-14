@@ -165,6 +165,7 @@ function OnPluginInstall()
   PPI.Expose('AddTimer', function(name, tick, duration, end_sound, override, disable_heuristics)
 
     local dur
+    local heuristical_print
 
     disable_heuristics = Types.to_bool(disable_heuristics)
 
@@ -172,7 +173,19 @@ function OnPluginInstall()
       disable_heuristics = true
     end
 
-    id = timer_processor:AddTimer(name, tick, duration, end_sound, override)
+    if disable_heuristics == false then
+
+      dur = heuristics_get_duration(name)
+
+    end
+
+    if disable_heuristics == false  and dur > 0 then
+      heuristical_print = function(msg)
+        return heuristics_print(name, msg)
+      end
+    end
+
+    id = timer_processor:AddTimer(name, tick, duration, end_sound, override, heuristical_print)
 
     if id ~= Timers.ALREADY_EXISTS then
       timers[name:lower()] = {
@@ -180,15 +193,9 @@ function OnPluginInstall()
         no_heuristics = disable_heuristics
       }
 
-      if disable_heuristics == false then
+      if dur ~= 0 then
 
-        dur = heuristics_get_duration(name)
-
-        if dur ~= 0 then
-
-          world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
-
-        end
+        world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
 
       end
 
@@ -261,6 +268,28 @@ function heuristics_get_duration(name)
   end
 
   return Zeit.round(sum / heuristics[name]:len(), 0)
+end
+
+function heuristics_print(name, msg)
+
+  name = name:lower()
+
+  if timers[name] == nil then
+    return msg
+  end
+
+  -- remaining duration
+  local add_msg
+  local current_dur = timer_processor:GetDuration(timers[name].id)
+  local estimated_dur = heuristics_get_duration(name)
+
+  if estimated_dur <= current_dur then
+    add_msg = " und muesste bereits abgelaufen sein"
+  else
+    add_msg = ", voraussichtlich noch " .. Zeit.format_time(Zeit.split_time(estimated_dur - current_dur)) .. " verbleibend"
+  end
+
+  return msg .. add_msg
 end
 ]]>
 </script>
