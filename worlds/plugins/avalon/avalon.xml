@@ -29,6 +29,24 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du musst hier schon schwimmen, um weiterzukommen!"
+   send_to="12"
+   sequence="95"
+   omit_from_output="y"
+  >
+  <send>world.Send("schwimme " ..world.GetCommandList(1)[1])</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Du musst hier schon klettern, um weiterzukommen!"
+   send_to="12"
+   sequence="95"
+   omit_from_output="y"
+  >
+  <send>world.Execute("klettere " ..world.GetCommandList(1)[1])</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="^Dort versperrt Dir ein (Tor) den Weg\.$|^Da ist Dir doch das (Tor) im Weg\.$|^Dort versperrt Dir eine (Pforte|Tuer) den Weg\.$|^Die (Zaunpforte) ist geschlossen und versperrt Dir folglich den Weg\.$|^Solange das (Hafengatter) geschlossen ist\, kommst Du nicht durch\.$|^Da ist Dir doch das (Tor) im Weg\.$|^Du moechtest aber nicht durch die geschlossene (Tuer) laufen\?$"
    regexp="y"
    script="open_door"
@@ -5228,37 +5246,24 @@ function GetUnixTime()
 end
 
 function NumpadInit()
+
+  if configtbl.settings.NumpadWalk > 2 then
+    -- frueher gab es mal noch Klettern und Schwimmen
+    -- wird inzwischen automatisch vom Soundpack gemacht
+    configtbl.settings.NumpadWalk = 0
+  end
+
   if configtbl.settings.NumpadWalk==0 then
-    world.Accelerator('Numpad1','sw')
-    world.Accelerator('Numpad2','s')
-    world.Accelerator('Numpad3','so')
-    world.Accelerator('Numpad4','w')
-    world.Accelerator('Numpad6','o')
-    world.Accelerator('Numpad7','nw')
-    world.Accelerator('Numpad8','n')
-    world.Accelerator('Numpad9','no')
-    world.Accelerator('Add','r')
-    world.Accelerator('Subtract','h')
-  elseif configtbl.settings.NumpadWalk==4 then
-    world.Accelerator('Numpad1','schwimme sw')
-    world.Accelerator('Numpad2','schwimme s')
-    world.Accelerator('Numpad3','schwimme so')
-    world.Accelerator('Numpad4','schwimme w')
-    world.Accelerator('Numpad6','schwimme o')
-    world.Accelerator('Numpad7','schwimme nw')
-    world.Accelerator('Numpad8','schwimme n')
-    world.Accelerator('Numpad9','schwimme no')
-  elseif configtbl.settings.NumpadWalk==3 then
-    world.Accelerator('Numpad1','kletter sw')
-    world.Accelerator('Numpad2','kletter s')
-    world.Accelerator('Numpad3','kletter so')
-    world.Accelerator('Numpad4','kletter w')
-    world.Accelerator('Numpad6','kletter o')
-    world.Accelerator('Numpad7','kletter nw')
-    world.Accelerator('Numpad8','kletter n')
-    world.Accelerator('Numpad9','kletter no')
-    world.Accelerator('Add','kletter hoch')
-    world.Accelerator('Subtract','kletter runter')
+    world.AcceleratorTo('Numpad1','send_command("sw")', sendto.script)
+    world.AcceleratorTo('Numpad2','send_command("s")', sendto.script)
+    world.AcceleratorTo('Numpad3','send_command("so")', sendto.script)
+    world.AcceleratorTo('Numpad4','send_command("w")', sendto.script)
+    world.AcceleratorTo('Numpad6','send_command("o")', sendto.script)
+    world.AcceleratorTo('Numpad7','send_command("nw")', sendto.script)
+    world.AcceleratorTo('Numpad8','send_command("n")', sendto.script)
+    world.AcceleratorTo('Numpad9','send_command("no")', sendto.script)
+    world.AcceleratorTo('Add','send_command("r")', sendto.script)
+    world.AcceleratorTo('Subtract','send_command("h")', sendto.script)
   elseif configtbl.settings.NumpadWalk==2 then
     world.Accelerator('Numpad1','spaehe kurz sw')
     world.Accelerator('Numpad2','spaehe kurz s')
@@ -5290,14 +5295,6 @@ function NumpadSwitch()
     world.Note('Nummernblock auf kurzes Spähen konfiguriert')
     psnd("Misc/NumPadScoutShort.ogg")
   elseif configtbl.settings.NumpadWalk==2 then
-    configtbl.settings.NumpadWalk=3
-    world.Note('Nummernblock auf Klettern konfiguriert')
-    psnd("Misc/NumPadClaim.ogg")
-  elseif configtbl.settings.NumpadWalk==3 then
-    configtbl.settings.NumpadWalk=4
-    world.Note('Nummernblock auf Schwimmen konfiguriert')
-    psnd("Misc/NumPadSwim.ogg")
-  elseif configtbl.settings.NumpadWalk==4 then
     configtbl.settings.NumpadWalk=0
     world.Note('Nummernblock auf Laufen konfiguriert')
     psnd("Misc/NumPadWalk.ogg")
@@ -5361,7 +5358,8 @@ function OnPluginCommandEntered(text)
   if (configtbl.settings.RepeatCommand == 0) then
     return text
   end
-  if (text == "") and (LastCommand ~= nil) then
+
+   if (text == "") and (LastCommand ~= nil) then
     return LastCommand
   else
     if (text ==" ") then
@@ -5416,13 +5414,29 @@ end
 
 function open_door(name, line, wildcards)
   local i,text 
-  world.Note(#wildcards)
-    for i=1, #wildcards do
-      if wildcards[i] ~= "" then
-      text = wildcards[i]
-      end
+
+  for i=1, #wildcards do
+    if wildcards[i] ~= "" then
+    text = wildcards[i]
     end
+  end
   world.Execute("oeffne "..text)
+end
+
+-- sends a command and stores it within the command window
+function send_command(cmd)
+
+  local current = world.GetCommand()
+
+  if current ~= "" then
+    world.PushCommand()
+  end
+
+  world.SendPush(cmd)
+
+  if current ~= "" then
+    world.SetCommand(current)
+  end  
 end
 ]]>
 </script>
