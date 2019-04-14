@@ -130,7 +130,7 @@ function timers_add(name, tick, duration, end_sound)
   id = timer_processor:AddTimer(name, tick, duration, end_sound, true)
   timers[name:lower()] = {
     id = id,
-    direct = true
+    no_heuristics = true
   }
   world.Note("Der Timer wurde erstellt.")
 end
@@ -162,25 +162,36 @@ function timers_end(name)
 end
 
 function OnPluginInstall()
-  PPI.Expose('AddTimer', function(name, tick, duration, end_sound)
+  PPI.Expose('AddTimer', function(name, tick, duration, end_sound, override, disable_heuristics)
 
     local dur
 
-    id = timer_processor:AddTimer(name, tick, duration, end_sound)
+    disable_heuristics = Types.to_bool(disable_heuristics)
+
+    if tonumber(duration) > 0 then
+      disable_heuristics = true
+    end
+
+    id = timer_processor:AddTimer(name, tick, duration, end_sound, override)
 
     if id ~= Timers.ALREADY_EXISTS then
       timers[name:lower()] = {
         id = id,
-        direct = false
+        no_heuristics = disable_heuristics
       }
 
-      dur = heuristics_get_duration(name)
+      if disable_heuristics == false then
 
-      if dur ~= 0 then
+        dur = heuristics_get_duration(name)
 
-        world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
+        if dur ~= 0 then
+
+          world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
+
+        end
 
       end
+
     end
 
     return id
@@ -200,7 +211,7 @@ function OnPluginInstall()
     for tkey, tval in pairs(timers) do
       if tval ~= nil and tval.id == id then
 
-        if tval.direct == false then
+        if tval.no_heuristics == false then
           heuristics_add(tkey, dur)
         end
         timers[tkey] = nil

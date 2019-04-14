@@ -58,6 +58,16 @@ function spells_stop(name)
     return
   end
 
+  -- loading connection to avalon plugin
+  if Avalon == nil then
+    Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+  end
+
+  -- loading connection to timers plugin
+  if Timers == nil then
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
+  end
+
   Timers.EndTimer(spells[name]["id"])
 
   spells[name]["id"] = ""
