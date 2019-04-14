@@ -58,7 +58,7 @@ function spells_stop(name)
     return
   end
 
-  Timers.EndTimer(spells[name])
+  Timers.EndTimer(spells[name]["id"])
 
   spells[name]["id"] = ""
 

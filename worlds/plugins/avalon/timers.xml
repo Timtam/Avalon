@@ -61,18 +61,55 @@
 <script>
 <![CDATA[
 PPI = require("ppi")
+Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
 Timers = require("timers")
 Types = require("pl.types")
 
+Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+Heuristics = {}
 timer_processor = Timers.TimerProcessor()
 timers = {}
+
+world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
+
+function PluginInstall()
+
+  Avalon.HookCallback("CLOSE", OnAvalonClose)
+
+  local heuristics = Avalon.GetConfig("timers", "heuristics") or ""
+
+  if heuristics ~= "" then
+    local i
+    local theuristics = utils.split(heuristics, ",")
+    local th
+
+    for i = 1, #theuristics do
+      th = Avalon.GetConfig("timers", theuristics[i])
+      Heuristics[theuristics[i]] = utils.split(th, ",")
+    end
+  end
+end
+
+function OnAvalonClose()
+  local tkey, tval
+
+  Avalon.SetConfig("timers", "heuristics", Stringx.join(",", Tablex.keys(Heuristics)))
+
+  for tkey, tval in pairs(Heuristics) do
+    if tval ~= nil then
+      Avalon.SetConfig("timers", tkey, Stringx.join(",", tval))
+    end
+  end
+end
 
 function timers_print()
   timer_processor:Print()
 end
 
-function timers_add(name, tick, duration, end_sound)
+function timers_add(name, tick, duration, end_sound, direct)
+
+  direct = to_bool(direct)
 
   if Types.is_empty(name) then
     world.Note("timer neu <name> <laenge> <warnzeit>")
@@ -88,7 +125,10 @@ function timers_add(name, tick, duration, end_sound)
   end
 
   id = timer_processor:AddTimer(name, tick, duration, end_sound, true)
-  timers[name:lower()] = id
+  timers[name:lower()] = {
+    id = id,
+    direct = direct
+  }
   world.Note("Der Timer wurde erstellt.")
 end
 
@@ -107,7 +147,7 @@ function timers_end(name)
     return
   end
 
-  res = timer_processor:EndTimer(t)
+  res = timer_processor:EndTimer(t.id)
 
   if res == Timers.NOT_FOUND then
     world.Note("Ein Timer mit diesem Namen wurde nicht gefunden.")
@@ -123,20 +163,27 @@ function OnPluginInstall()
     id = timer_processor:AddTimer(name, tick, duration, end_sound)
 
     if id ~= Timers.ALREADY_EXISTS then
-      timers[name:lower()] = id
+      timers[name:lower()] = {
+        id = id,
+        direct = false
+      }
     end
 
     return id
   end)
 
   PPI.Expose('EndTimer', function(id)
+    local tkey, tval
+
     res = timer_processor:EndTimer(id)
 
     if res == nil then
-      name = Tablex.find(timers, id)
 
-      if name ~= nil then
-        timers[name] = nil
+      for tkey, tval in pairs(timers) do
+        if tval ~= nil and tval.id == id then
+          timers[tkey] = nil
+          break
+        end
       end
     end
 
