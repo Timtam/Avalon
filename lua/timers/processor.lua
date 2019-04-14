@@ -52,22 +52,14 @@ function Processor:Tick()
 end
 
 function Processor:EndTimer(id)
-  t = self._timers:filter(function(tt)
-    if Types.type(id) == "Timer" then
-      return tt.id == id.id
-    else
-      return tt.id == id
-    end
-  end)
 
-  if t:len() == 0 then
-    return Const.NOT_FOUND
-  elseif t:len() > 1 then
-    return Const.MULTIPLE_RESULTS
-  else
-    t[1]:End()
-    self._timers:remove_value(t[1])
+  local t, err = self:Find(id)
+
+  if err ~= 0 then
+    return err
   end
+
+  t:End()
 end
 
 function Processor:Print()
@@ -97,6 +89,16 @@ end
 
 function Processor:SetTick(id, tick)
 
+  local t, err = self:Find(id)
+
+  if err ~= nil then
+    return err
+  end
+
+  t:SetTick(tick)
+end
+
+function Processor:Find(id)
   t = self._timers:filter(function(tt)
     if Types.type(id) == "Timer" then
       return tt.id == id.id
@@ -106,12 +108,23 @@ function Processor:SetTick(id, tick)
   end)
 
   if t:len() == 0 then
-    return Const.NOT_FOUND
+    return nil, Const.NOT_FOUND
   elseif t:len() > 1 then
-    return Const.MULTIPLE_RESULTS
+    return nil, Const.MULTIPLE_RESULTS
   else
-    t[1]:SetTick(tick)
+    return t[1], 0
   end
+end
+
+function Processor:GetDuration(id)
+
+  local t, err = self:Find(id)
+
+  if err ~= 0 then
+    return err
+  end
+
+  return t:GetDuration()
 end
 
 return Processor

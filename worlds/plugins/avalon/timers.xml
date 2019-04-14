@@ -60,12 +60,17 @@
 
 <script>
 <![CDATA[
+
+HEURISTICS_STORED = 20
+
 PPI = require("ppi")
 Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+List = require("pl.list")
 Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
 Timers = require("timers")
 Types = require("pl.types")
+Zeit = require("zeit")
 
 heuristics = {}
 timer_processor = Timers.TimerProcessor()
@@ -81,12 +86,12 @@ function PluginInstall()
 
   if h ~= "" then
     local i
-    local theuristics = utils.split(h, ",")
+    local theuristics = Stringx.split(h, ",")
     local th
 
     for i = 1, #theuristics do
       th = Avalon.GetConfig("timers", theuristics[i])
-      heuristics[theuristics[i]] = utils.split(th, ",")
+      heuristics[theuristics[i]] = Stringx.split(tostring(th), ",")
     end
   end
 end
@@ -158,6 +163,9 @@ end
 
 function OnPluginInstall()
   PPI.Expose('AddTimer', function(name, tick, duration, end_sound)
+
+    local dur
+
     id = timer_processor:AddTimer(name, tick, duration, end_sound)
 
     if id ~= Timers.ALREADY_EXISTS then
@@ -165,6 +173,14 @@ function OnPluginInstall()
         id = id,
         direct = false
       }
+
+      dur = heuristics_get_duration(name)
+
+      if dur ~= 0 then
+
+        world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
+
+      end
     end
 
     return id
@@ -173,19 +189,24 @@ function OnPluginInstall()
   PPI.Expose('EndTimer', function(id)
     local tkey, tval
 
-    res = timer_processor:EndTimer(id)
+    local dur = timer_processor:GetDuration(id)
 
-    if res == nil then
-
-      for tkey, tval in pairs(timers) do
-        if tval ~= nil and tval.id == id then
-          timers[tkey] = nil
-          break
-        end
-      end
+    if dur < 0 then
+      return dur
     end
 
-    return res
+    timer_processor:EndTimer(id)
+
+    for tkey, tval in pairs(timers) do
+      if tval ~= nil and tval.id == id then
+
+        if tval.direct == false then
+          heuristics_add(tkey, dur)
+        end
+        timers[tkey] = nil
+        break
+      end
+    end
   end)
 
   PPI.Expose('SetTick', function(id, tick)
@@ -196,6 +217,39 @@ end
 
 function OnPluginTick()
   timer_processor:Tick()
+end
+
+function heuristics_add(name, heu)
+
+  name = name:lower()
+
+  if heuristics[name] == nil then
+    heuristics[name] = List.new()
+  end
+
+  heuristics[name]:append(heu)
+
+  if heuristics[name]:len() > HEURISTICS_STORED then
+    heuristics[name] = heuristics[name]:remove(1)
+  end
+end
+
+function heuristics_get_duration(name)
+
+  local sum = 0
+  local i
+
+  name = name:lower()
+
+  if heuristics[name] == nil then
+    return 0
+  end
+
+  for i = 1, heuristics[name]:len() do
+    sum = sum + tonumber(heuristics[name][i])
+  end
+
+  return Zeit.round(sum / heuristics[name]:len(), 0)
 end
 ]]>
 </script>
