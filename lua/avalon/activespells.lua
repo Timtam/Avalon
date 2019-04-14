@@ -107,11 +107,22 @@ function spells_togglewarnings(cnt)
   if warnings:index(stbl[cnt]) == nil then
     world.Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
     warnings:append(stbl[cnt])
+
+    if spells[stbl[cnt]] ~= "" then
+      
+      Timers.SetTick(spells[stbl[cnt]], 60)
+
+    end
   else
     world.Note("Warnungen für "..stbl[cnt].." ausgeschaltet.")
     warnings:remove_value(stbl[cnt])
+
+    if spells[stbl[cnt]] ~= "" then
+      
+      Timers.SetTick(spells[stbl[cnt]], 0)
+
+    end
   end
-  world.Note("Die Aenderung wirkt sich erst auf alle neuen Zauber aus.")
 end
 
 return {

@@ -95,4 +95,23 @@ function Processor:Print()
   end
 end
 
+function Processor:SetTick(id, tick)
+
+  t = self._timers:filter(function(tt)
+    if Types.type(id) == "Timer" then
+      return tt.id == id.id
+    else
+      return tt.id == id
+    end
+  end)
+
+  if t:len() == 0 then
+    return Const.NOT_FOUND
+  elseif t:len() > 1 then
+    return Const.MULTIPLE_RESULTS
+  else
+    t[1]:SetTick(tick)
+  end
+end
+
 return Processor

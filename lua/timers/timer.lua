@@ -8,7 +8,6 @@ Class.Timer()
 function Timer:_init(name, tick, duration, end_sound)
   -- interpreting parameters
   self.name = tostring(name)
-  if Types.is_empty(tick) then self._tick = 0 else self._tick = tonumber(tick) end
   if Types.is_empty(duration) then self._duration = 0 else self._duration = tonumber(duration) end
   if Types.is_empty(end_sound) then self._end_sound = "" else self._end_sound = tostring(end_sound) end
 
@@ -18,18 +17,13 @@ function Timer:_init(name, tick, duration, end_sound)
   self._creation_time = self._time_fun()
   self._avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
-  if self._tick > 0 then
-    self._tick_time = self._creation_time + self._tick
-    self:Print()
-  else
-    self._tick_time = 0
-  end
-
   if self._duration > 0 then
     self._end_time = self._creation_time + self._duration
   else
     self._end_time = 0
   end
+
+  self:SetTick(tick)
 
 end
 
@@ -139,6 +133,22 @@ function Timer:Print()
   
   hours, mins, secs = self:_diff(curr, self._creation_time)
   self:_print_formatted_message(self.name .. " ist bereits %s aktiv", hours, mins, secs)
+end
+
+function Timer:SetTick(tick)
+
+  if Types.is_empty(tick) then self._tick = 0 else self._tick = tonumber(tick) end
+
+  if self._tick > 0 then
+
+    local diff = self._time_fun() - self._creation_time
+
+    self._tick_time = self._time_fun() + (self._tick - (diff % self._tick))
+    self:Print()
+  else
+    self._tick_time = 0
+  end
+
 end
 
 return Timer
