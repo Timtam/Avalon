@@ -4381,6 +4381,7 @@ htpsnd=nil
 hmusic=nil
 LastCommand=nil
 mxp_output=false
+PlayerEP = nil
 PlayerLevel=nil
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
@@ -4627,6 +4628,14 @@ OnAvalonLevel = function(type, message)
   PlayerLevel = level
 end
 
+OnAvalonEP = function(type, message)
+  local ep = string.match(message, "^(%d+)")
+  if not ep then
+    return
+  end
+  PlayerEP = tonumber(ep)
+end
+
 OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
   play_tp(ntp)
@@ -4809,6 +4818,7 @@ OnPluginListChanged = function()
     atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
     atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
     atcp.Listen('Avalon.Level', OnAvalonLevel)
+    atcp.Listen("Avalon.EP", OnAvalonEP)
     atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
     atcp.Listen('Avalon.Channel', OnAvalonChannel)
     atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
