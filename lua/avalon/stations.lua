@@ -1248,7 +1248,7 @@ stations:add(
 
 stations:add(
              "toe",
-             "ausgang",
+             "ausgangunten",
              "raum/37238d5027e07dd53dff22692785455e",
              "Hoehle mit Ausgang aus der Totenebene."
             )
@@ -2938,6 +2938,13 @@ stations:add(
              "ausgang",
              "raum/03f67f2bd6708e7619ed4b92fe4f0fb1",
              "Der Ausgang aus dem Totenschiff"
+            )
+
+stations:add(
+             "toe",
+             "ausgangoben",
+             "raum/1ced13f9710315cbe8448747a01438c8",
+             "Der Ausgang aus der Totenebene"
             )
 
 return stations
