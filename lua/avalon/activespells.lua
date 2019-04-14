@@ -1,23 +1,37 @@
 require("pairsbykeys")
 require("string_indexing")
 
+Avalon = nil
 List = require("pl.list")
 PPI = require("ppi")
 Tablex = require("pl.tablex")
 Timers = nil
+Types = require("pl.types")
 
 spells = {}
 warnings = List.new()
 
-function spells_register(name, starttext, endtext)
+function spells_register(name, starttext, endtext, report_ep)
+
+  report_ep = Types.to_bool(report_ep)
+
   world.AddTriggerEx(name.."_start", starttext, 'spells_start("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
 
   world.AddTriggerEx(name.."_stop", endtext, 'spells_stop("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
 
-  spells[name] = ""
+  spells[name] = {
+    id = nil,
+    ep = 0,
+    report_ep = report_ep
+  }
 end
 
 function spells_start(name)
+
+  -- loading connection to avalon plugin
+  if Avalon == nil then
+    Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+  end
 
   -- loading connection to timers plugin
   if Timers == nil then
@@ -32,17 +46,29 @@ function spells_start(name)
     snd = "spells/warn.ogg"
   end
 
-  spells[name] = Timers.AddTimer(name, tick, 0, snd, true)
+  spells[name]["id"] = Timers.AddTimer(name, tick, 0, snd, true)
+
+  if spells[name]["report_ep"] ~= false then
+    spells[name]["ep"] = Avalon.EP()
+  end
 end
 
 function spells_stop(name)
-  if spells[name] == "" then
+  if spells[name]["id"] == "" then
     return
   end
 
   Timers.EndTimer(spells[name])
 
-  spells[name] = ""
+  spells[name]["id"] = ""
+
+  if spells[name]["report_ep"] ~= false then
+    local diff = Avalon.EP() - spells[name]["ep"]
+    
+    world.Note("Waehrend dieses Zaubers wurden " .. tostring(diff) .. " EP verdient.")
+
+    spells[name]["ep"] = 0
+  end
 end
 
 function spells_parsewarnings(warns)
@@ -108,18 +134,18 @@ function spells_togglewarnings(cnt)
     world.Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
     warnings:append(stbl[cnt])
 
-    if spells[stbl[cnt]] ~= "" then
+    if spells[stbl[cnt]]["id"] ~= "" then
       
-      Timers.SetTick(spells[stbl[cnt]], 60)
+      Timers.SetTick(spells[stbl[cnt]]["id"], 60)
 
     end
   else
     world.Note("Warnungen für "..stbl[cnt].." ausgeschaltet.")
     warnings:remove_value(stbl[cnt])
 
-    if spells[stbl[cnt]] ~= "" then
+    if spells[stbl[cnt]]["id"] ~= "" then
       
-      Timers.SetTick(spells[stbl[cnt]], 0)
+      Timers.SetTick(spells[stbl[cnt]]["id"], 0)
 
     end
   end
