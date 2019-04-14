@@ -61,12 +61,47 @@
 <script>
 <![CDATA[
 PPI = require("ppi")
+Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
 Timers = require("timers")
 Types = require("pl.types")
 
+Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+Heuristics = {}
 timer_processor = Timers.TimerProcessor()
 timers = {}
+
+world.DoAfterSpecial(0.5, "PluginInstall()", sendto.script)
+
+function PluginInstall()
+
+  Avalon.HookCallback("CLOSE", OnAvalonClose)
+
+  local heuristics = Avalon.GetConfig("timers", "heuristics") or ""
+
+  if heuristics ~= "" then
+    local i
+    local theuristics = utils.split(heuristics, ",")
+    local th
+
+    for i = 1, #theuristics do
+      th = Avalon.GetConfig("timers", theuristics[i])
+      Heuristics[theuristics[i]] = utils.split(th, ",")
+    end
+  end
+end
+
+function OnAvalonClose()
+  local tkey, tval
+
+  Avalon.SetConfig("timers", "heuristics", Stringx.join(",", Tablex.keys(Heuristics)))
+
+  for tkey, tval in pairs(Heuristics) do
+    if tval ~= nil then
+      Avalon.SetConfig("timers", tkey, Stringx.join(",", tval))
+    end
+  end
+end
 
 function timers_print()
   timer_processor:Print()
