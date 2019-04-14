@@ -61,13 +61,13 @@
 <script>
 <![CDATA[
 PPI = require("ppi")
+Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
 Timers = require("timers")
 Types = require("pl.types")
 
-Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
-Heuristics = {}
+heuristics = {}
 timer_processor = Timers.TimerProcessor()
 timers = {}
 
@@ -77,16 +77,16 @@ function PluginInstall()
 
   Avalon.HookCallback("CLOSE", OnAvalonClose)
 
-  local heuristics = Avalon.GetConfig("timers", "heuristics") or ""
+  local h = Avalon.GetConfig("timers", "heuristics") or ""
 
-  if heuristics ~= "" then
+  if h ~= "" then
     local i
-    local theuristics = utils.split(heuristics, ",")
+    local theuristics = utils.split(h, ",")
     local th
 
     for i = 1, #theuristics do
       th = Avalon.GetConfig("timers", theuristics[i])
-      Heuristics[theuristics[i]] = utils.split(th, ",")
+      heuristics[theuristics[i]] = utils.split(th, ",")
     end
   end
 end
@@ -94,9 +94,9 @@ end
 function OnAvalonClose()
   local tkey, tval
 
-  Avalon.SetConfig("timers", "heuristics", Stringx.join(",", Tablex.keys(Heuristics)))
+  Avalon.SetConfig("timers", "heuristics", Stringx.join(",", Tablex.keys(heuristics)))
 
-  for tkey, tval in pairs(Heuristics) do
+  for tkey, tval in pairs(heuristics) do
     if tval ~= nil then
       Avalon.SetConfig("timers", tkey, Stringx.join(",", tval))
     end
@@ -107,9 +107,7 @@ function timers_print()
   timer_processor:Print()
 end
 
-function timers_add(name, tick, duration, end_sound, direct)
-
-  direct = to_bool(direct)
+function timers_add(name, tick, duration, end_sound)
 
   if Types.is_empty(name) then
     world.Note("timer neu <name> <laenge> <warnzeit>")
@@ -127,7 +125,7 @@ function timers_add(name, tick, duration, end_sound, direct)
   id = timer_processor:AddTimer(name, tick, duration, end_sound, true)
   timers[name:lower()] = {
     id = id,
-    direct = direct
+    direct = true
   }
   world.Note("Der Timer wurde erstellt.")
 end
