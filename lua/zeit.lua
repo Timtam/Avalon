@@ -1,6 +1,8 @@
 -- nützliche Zeitfunktionen, auf Deutsch
 -- auch ein wenig mathematisches dabei
 
+Stringx = require("pl.stringx")
+
 -- rundet auf eine bestimmte Nachkommastelle
 function round(num, idp)
   return tonumber(string.format(" %." .. (idp or 0) .. "f", num))
@@ -70,7 +72,7 @@ function format_time(hours, mins, secs)
     msg = "0 Sekunden"
   end
 
-  return msg
+  return Stringx.strip(msg)
 end
 
 return {
