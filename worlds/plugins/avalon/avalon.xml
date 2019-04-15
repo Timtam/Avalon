@@ -30,7 +30,7 @@
   <trigger
    enabled="y"
    match="Du musst hier schon schwimmen, um weiterzukommen!"
-   send_to="12"
+   send_to="14"
    sequence="95"
    omit_from_output="y"
   >
@@ -39,7 +39,7 @@
   <trigger
    enabled="y"
    match="Du musst hier schon klettern, um weiterzukommen!"
-   send_to="12"
+   send_to="14"
    sequence="95"
    omit_from_output="y"
   >
