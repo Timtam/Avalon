@@ -60,6 +60,8 @@ function Processor:EndTimer(id)
   end
 
   t:End()
+
+  self._timers:remove_value(t)
 end
 
 function Processor:Print()
