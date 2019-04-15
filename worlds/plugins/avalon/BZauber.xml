@@ -390,7 +390,7 @@
    </send></trigger>
   <trigger match="^Deine Steinhaut loest sich auf\.$"
    name="BZauber_steinhaut_a41" group="BZauber_stop_steinhaut" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
-   print(os.time()-ZAUBER_STEINHAUT_START)
+   --print(os.time()-ZAUBER_STEINHAUT_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_STEINHAUT_RANG ~= nil then
     if value == "steinhaut"..ZAUBER_STEINHAUT_RANG then
@@ -431,7 +431,7 @@
    </send></trigger>
   <trigger match="^wirst von den Partikeln umgeben\.$"
    name="BZauber_erdaura_a42" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send> 
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_ERDAURA_START = os.time()
    EnableTriggerGroup("BZauber_start_erdaura", false)
@@ -454,11 +454,11 @@
        table.insert(Z_AKT, "erdaura"..ZAUBER_ERDAURA_RANG)
      end
    end	 
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    </send></trigger>
   <trigger match="^Dein Staubschleier loest sich auf\.$"
    name="BZauber_erdaura_a51" group="BZauber_stop_erdaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
-   print(os.time()-ZAUBER_ERDAURA_START)
+   --print(os.time()-ZAUBER_ERDAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_ERDAURA_RANG ~= nil then
     if value == "erdaura"..ZAUBER_ERDAURA_RANG then
@@ -497,7 +497,7 @@
    </send></trigger> 
   <trigger match="^(.*) in den Watteflocken kaum noch auszumachen\.$"
    name="BZauber_luftaura_a42" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    AURA_COUNT = AURA_COUNT + 1
    if AURA_COUNT == ANWESENDE_SPIELER and (ZAUBER_LUFTAURA_RANG == 3) then
      print("Alle Spieler erwischt!")
@@ -521,7 +521,7 @@
    </send></trigger> 
   <trigger match="^Deine Watteflocken loesen sich auf\.$"
    name="BZauber_luftaura_a51" group="BZauber_stop_luftaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
-   print(os.time()-ZAUBER_LUFTAURA_START)
+   --print(os.time()-ZAUBER_LUFTAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_LUFTAURA_RANG ~= nil then
     if value == "luftaura"..ZAUBER_LUFTAURA_RANG then
@@ -560,7 +560,7 @@
    </send></trigger>
   <trigger match="^weiterhin\.$"
    name="BZauber_feueraura_a42" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_FEUERAURA_START = os.time()
    EnableTriggerGroup("BZauber_start_feueraura", false)
@@ -586,11 +586,11 @@
        table.insert(Z_AKT, "feueraura"..ZAUBER_FEUERAURA_RANG)
      end
    end	 
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    </send></trigger>
   <trigger match="^Deine Feueraura loest sich auf\.$"
    name="BZauber_feueraura_a51" group="BZauber_stop_feueraura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
-   print(os.time()-ZAUBER_FEUERAURA_START)
+   --print(os.time()-ZAUBER_FEUERAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_FEUERAURA_RANG ~= nil then
     if value == "feueraura"..ZAUBER_FEUERAURA_RANG then
@@ -632,7 +632,7 @@
    </send></trigger>
   <trigger match="^weiterhin\.$"
    name="BZauber_lebensaura_a42" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_LEBENSAURA_START = os.time()
    EnableTriggerGroup("BZauber_start_lebensaura", false)
@@ -643,7 +643,7 @@
    </send></trigger>
   <trigger match="^Deine Lebensaura loest sich auf\.$"
    name="BZauber_lebensaura_a51" group="BZauber_stop_lebensaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
-   print(os.time()-ZAUBER_LEBENSAURA_START)
+   --print(os.time()-ZAUBER_LEBENSAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_LEBENSAURA_RANG ~= nil then
     if value == "lebensaura"..ZAUBER_LEBENSAURA_RANG then
@@ -682,7 +682,7 @@
    </send></trigger>
   <trigger match="^weiterhin\.$"
    name="BZauber_todesaura_a42" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_TODESAURA_START = os.time()
    EnableTriggerGroup("BZauber_start_todesaura", false)
@@ -708,11 +708,11 @@
        table.insert(Z_AKT, "todesaura"..ZAUBER_TODESAURA_RANG)
      end
    end	 
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    </send></trigger>  
   <trigger match="^Deine Todesaura loest sich auf\.$"
    name="BZauber_todesaura_a51" group="BZauber_stop_todesaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
-   print(os.time()-ZAUBER_TODESAURA_START)
+   --print(os.time()-ZAUBER_TODESAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_TODESAURA_RANG ~= nil then
     if value == "todesaura"..ZAUBER_TODESAURA_RANG then
@@ -750,7 +750,7 @@
    </send></trigger>
   <trigger match="^(.*)jedoch nicht, sondern bilden (.*)\.$"
    name="BZauber_wasseraura_a42" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>  
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    AURA_COUNT = AURA_COUNT + 1
    if AURA_COUNT == ANWESENDE_SPIELER and (ZAUBER_WASSERAURA_RANG == 3) then
      print("Alle Spieler erwischt!")
@@ -775,7 +775,7 @@
    
   <trigger match="^Dein Wasserschleier loest sich auf\.$"
    name="BZauber_wasseraura_a51" group="BZauber_stop_wasseraura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
-   print(os.time()-ZAUBER_WASSERAURA_START)
+   --print(os.time()-ZAUBER_WASSERAURA_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_WASSERAURA_RANG ~= nil then
     if value == "wasseraura"..ZAUBER_WASSERAURA_RANG then
@@ -825,7 +825,7 @@
   <trigger match="^Das Donnergrollen laesst nach und allmaehlich zieht der Himmel wieder auf\.$"
    name="BZauber_blitz_a19" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_blitz", false)
    </send></trigger>
    
@@ -887,7 +887,7 @@
   <trigger match="^erhaertet\.$"
    name="BZauber_lavastoss_a16" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_lavastoss", false)
    </send></trigger>
    
@@ -917,7 +917,7 @@
   <trigger match="^Der Wirbelsturm verschwindet wieder\.$"
    name="BZauber_wirbelsturm_a05" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>  
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_wirbelsturm", false)
    </send></trigger>
    
@@ -961,7 +961,7 @@
   <trigger match="^Das Erdbeben klingt wieder ab\.$"
    name="BZauber_erdbeben_a10" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_erdbeben", false)
    </send></trigger>
 
@@ -1015,7 +1015,7 @@
   <trigger match="^bedeutend waermer\. Friedvoll singen die Voegel im Himmel\.$"   
    name="BZauber_eissturm_a13" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_eissturm", false)
    </send></trigger>
    
@@ -1045,13 +1045,13 @@
   <trigger match="^Du entspannst Dich wieder\.$"
    name="BZauber_vergessen_a15" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_vergessen", false)
    </send></trigger>
   <trigger match="^Du brichst deinen Zauber ab, (.*)"
    name="BZauber_vergessen_a16" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
    CHAR_STUN = false
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_vergessen", false)
    </send></trigger>
    
@@ -1075,12 +1075,12 @@
    name="BZauber_verwirrung_a13" group="BZauber_start_verwirrung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
    CHAR_STUN = false
    ZAUBER_VERWIRRUNG_START = os.time()
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    EnableTriggerGroup("BZauber_start_verwirrung", false)
    </send></trigger>
   <trigger match="^Bei (.*) laesst die Verwirrung nach\.$"
    name="BZauber_verwirrung_a14" group="BZauber_stop_verwirrung" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
-   print(os.time()-ZAUBER_VERWIRRUNG_START)
+   --print(os.time()-ZAUBER_VERWIRRUNG_START)
    </send></trigger>
    
 --AKTIONEN ZUGELASSEN
@@ -1331,7 +1331,7 @@
    </send></trigger>
   <trigger match="^Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\.$"
    name="BZauber_magieaufladung_a03" group="BZauber_start_magieaufladung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_MAGIEAUFLADUNG_START = os.time()
    EnableTriggerGroup("BZauber_start_magieaufladung", false)
@@ -1342,7 +1342,7 @@
    </send></trigger>
   <trigger match="^Deine Energien fliessen wieder normal\.$"
    name="BZauber_magieaufladung_a04" group="BZauber_stop_magieaufladung" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>
-   print(os.time()-ZAUBER_MAGIEAUFLADUNG_START)
+   --print(os.time()-ZAUBER_MAGIEAUFLADUNG_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_MAGIEAUFLADUNG_RANG ~= nil then
     if value == "magieaufladung"..ZAUBER_MAGIEAUFLADUNG_RANG then
@@ -1368,7 +1368,7 @@
    </send></trigger>
   <trigger match="^wichtig\.$"
    name="BZauber_magiertrance_a04" group="BZauber_start_magiertrance" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
-   print(os.time()-CHAR_STUN_START)
+   --print(os.time()-CHAR_STUN_START)
    CHAR_STUN = false
    ZAUBER_MAGIERTRANCE_START = os.time()
    EnableTriggerGroup("BZauber_start_magiertrance", false)
@@ -1380,7 +1380,7 @@
    
   <trigger match="^Du erwachst aus Deiner Trance\.$"
    name="BZauber_magiertrance_a05" group="BZauber_stop_magiertrance" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
-   print(os.time()-ZAUBER_MAGIERTRANCE_START)
+   --print(os.time()-ZAUBER_MAGIERTRANCE_START)
    for index, value in ipairs(Z_AKT) do
     if ZAUBER_MAGIERTRANCE_RANG ~= nil then
     if value == "magiertrance"..ZAUBER_MAGIERTRANCE_RANG then
@@ -1514,39 +1514,39 @@ function spreche_zauber(text)
   if string.match(text, "^%s*") then
     text = string.gsub(text, "^%s*", "") 
   end
-  print("Gesamter Text: "..text)  
+  --print("Gesamter Text: "..text)  
   --fragezeichen 
   if string.match(text, "^%?") then
     print("fragezeichen")
   --beginnt mit einem echten wort dann separiere
   elseif string.match(text, "^%a+") then
     if string.match(text, "^%a+") == "stop" then 
-	  print("zauberabbruch")
+	  --print("zauberabbruch")
 	  
 	  if string.match(text, "^stop%s*$") then
-	    print("unspezifischer Abbruch")
+	    --print("unspezifischer Abbruch")
 		CHAR_STUN = false
 	    EnableTriggerGroup("BZauber_start_"..CHAR_STUN_ZAUBER, false)
 	  elseif string.match(text, "^stop%s+%a+") then
 	    text = string.gsub(text, "^stop%s+", "")
-	    print("spezifischer Abbruch von "..string.match(text, "%a+"))
+	    --print("spezifischer Abbruch von "..string.match(text, "%a+"))
 		EnableTriggerGroup("BZauber_start_"..string.match(text, "^%a+"), false)
 	  else
-        print("falsche eingabe")
+        --print("falsche eingabe")
       end		
-	elseif string.match(text, "^%a+") == "trank" then print("trankzauber")
-    elseif string.match(text, "^%a+") == "rolle" then print("rollenzauber")
-	elseif string.match(text, "^%a+") == "z" or string.match(text, "^%a+") == "zauberstab" then print("zauberstabzauber")
-	elseif string.match(text, "^%a+") == "v" or string.match(text, "^%a+") == "vorbereitung" then print("vorbereitungszauber")
+	elseif string.match(text, "^%a+") == "trank" then --print("trankzauber")
+    elseif string.match(text, "^%a+") == "rolle" then --print("rollenzauber")
+	elseif string.match(text, "^%a+") == "z" or string.match(text, "^%a+") == "zauberstab" then --print("zauberstabzauber")
+	elseif string.match(text, "^%a+") == "v" or string.match(text, "^%a+") == "vorbereitung" then --print("vorbereitungszauber")
 	elseif has_tab_value(ZAUBER_LISTE, string.match(text, "^%a+"), 1) then 
-	  print("zauber")
+	  --print("zauber")
 	  for i = 1, #ZAUBER_LISTE do
 	    if string.match(text, "^%a+") == ZAUBER_LISTE[i][1] then
 		  ZAUBER_GESCHW = string.gsub(text, "^%a+%s*", "")
 		  ZAUBER_RANG = string.gsub(ZAUBER_GESCHW, "[+-]%s*", "")
 		  ZAUBER_WOERTER = ZAUBER_RANG
 		  ZAUBER_ZIEL = string.match(ZAUBER_RANG, "%a+$") 
-		  print(ZAUBER_GESCHW)
+		  --print(ZAUBER_GESCHW)
 		  if string.match(ZAUBER_GESCHW, ".[^-]%-%s+") or string.match(ZAUBER_GESCHW, ".[^-]%-$") or string.match(ZAUBER_GESCHW, "^%-$") or string.match(ZAUBER_GESCHW, "^%-%s+") then
             ZAUBER_GESCHW = -1
 	      elseif string.match(ZAUBER_GESCHW, "%-%- ") or string.match(ZAUBER_GESCHW, "%-%-$") then
@@ -1556,7 +1556,7 @@ function spreche_zauber(text)
 		  else
             ZAUBER_GESCHW = 0		  
 	      end          
-          print(ZAUBER_GESCHW)		  
+          --print(ZAUBER_GESCHW)		  
           if string.match(ZAUBER_RANG, "^ii%s*$") or string.match(ZAUBER_RANG, "^ii%s+") or string.match(ZAUBER_RANG, "^2%s*$") or string.match(ZAUBER_RANG, "^2%s+") then
 		    ZAUBER_RANG = 2
           elseif string.match(ZAUBER_RANG, "^iii%s*$") or string.match(ZAUBER_RANG, "^iii%s+") or string.match(ZAUBER_RANG, "^3%s*$") or string.match(ZAUBER_RANG, "^3%s+")then
@@ -1569,39 +1569,39 @@ function spreche_zauber(text)
 		    ZAUBER_RANG = 1
 	      end
 		  if not has_value(RANG_LISTE, ZAUBER_ZIEL) then
-            print("Ziel:", ZAUBER_ZIEL)
+            --print("Ziel:", ZAUBER_ZIEL)
           end			
 		  if check_zauber_rang(ZAUBER_LISTE[i][1], ZAUBER_RANG) then 
 		    if string.match(ZAUBER_WOERTER, "^%w*%s*%w*%s*%w*$") then
 		    if not has_value(Z_AKT, ZAUBER_LISTE[i][1]..ZAUBER_RANG) then
               if (ZAUBER_GESCHW == 0 and ZAUBER_LISTE[i][3] == 0) or ZAUBER_LISTE[i][3] == 1 then 			
-		        print("valider zauber", ZAUBER_LISTE[i][1], ZAUBER_RANG, ZAUBER_GESCHW)
+		        --print("valider zauber", ZAUBER_LISTE[i][1], ZAUBER_RANG, ZAUBER_GESCHW)
 			    EnableTriggerGroup("BZauber_start_"..ZAUBER_LISTE[i][1], true)
 				EnableTriggerGroup("BZauber_abbruch", true)
 			    ZAUBER_VALID = ZAUBER_LISTE[i][1]
 			  else
-                print("geschwindigkeit falsch")
+                --print("geschwindigkeit falsch")
 				ZAUBER_VALID = ""
               end				
 			else
 			  ZAUBER_VALID = ""
-			  print("bereits aktiv")
+			  --print("bereits aktiv")
 			end
             else
-			  print("zuviele woerter")
+			  --print("zuviele woerter")
 			  ZAUBER_VALID = ""
  			end
 		  else
-		    print("zauber existiert nicht")
+		    --print("zauber existiert nicht")
 			ZAUBER_VALID = ""
 		  end
 		  if string.match(text, "zauberstab$") then
-		    print("zauberstab ladung")
+		    --print("zauberstab ladung")
 		  end	
 	    end
 	  end
 	else 
-	print("invalide eingabe")
+	--print("invalide eingabe")
 	ZAUBER_VALID = ""
 	end
   end	
