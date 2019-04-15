@@ -4434,6 +4434,7 @@ plugintbl[11]="avalon/message_window.xml"
 plugintbl[12]="avalon/kompass.xml"
 plugintbl[13]="avalon/updater.xml"
 plugintbl[14] = "avalon/timers.xml"
+plugintbl[15] = "avalon/BZauber.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
