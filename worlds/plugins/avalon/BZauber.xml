@@ -1441,7 +1441,8 @@
 
 ATCP = nil
 PPI = require("ppi")
-
+avalon=PPI.Load(world.GetPluginVariable("","avalon"))
+world.DoAfterSpecial(0.5, "PluginInstall()",12)
 function mousedown(flags, hotspot_id)
 
   -- find where mouse is so we can adjust window relative to mouse
@@ -1467,7 +1468,6 @@ function dragmove(flags, hotspot_id)
   else
     check (SetCursor ( 1))   -- hand cursor
   end -- if
-
 end -- dragmove
 
 function dragrelease(flags, hotspot_id)
@@ -1479,7 +1479,6 @@ function dragrelease(flags, hotspot_id)
      -- put it back
     WindowPosition("Zauber", origx, origy, 0, 2);
   end -- if out of bounds
-
 end -- dragrelease
 
 function has_value (tab, val)
@@ -1621,6 +1620,8 @@ function check_zauber_rang (zaubername, rang)
 end	
 
 -- VARIABLEN
+  WINDOW_WIDTH = 200
+  WINDOW_HEIGHT = 300
   FONT_NAME = "FixedSys"
   FONT_SIZE = "9"
   FONT_NAME_2 = "Lucida Console"
@@ -1726,7 +1727,7 @@ function OnAvalonContainer(type, text)
   end  
 end
 
-function OnPluginInstall()
+function PluginInstall()
   --Berechnung der Fenstergröße
   startsize() 
   --Fenster erstellen
@@ -1741,6 +1742,9 @@ function OnPluginInstall()
   ATCP.Listen("Avalon.Schutz", OnAvalonSchutz)
   ATCP.Listen("Avalon.MP", OnAvalonMP)
   ATCP.Listen("Avalon.Container", OnAvalonContainer)
+  
+  avalon.HookCallback("CLOSE",PluginClose)
+
 end
 
 function startsize()
@@ -1751,27 +1755,34 @@ function startsize()
 end
 
 function win_create()
-  WindowCreate("Zauber",0,0,200,300,6,4,GetNormalColour(5))  
+    local x, y, mode, flags =
+      tonumber (avalon.GetConfig("Zauber","windowx") or 0),
+      tonumber (avalon.GetConfig ("Zauber","windowy") or 0),
+      tonumber (avalon.GetConfig("Zauber","windowmode") or 8), -- bottom right
+      tonumber (avalon.GetConfig("Zauber","windowflags") or 0)
+  WindowCreate("Zauber",x,y,WINDOW_WIDTH,WINDOW_HEIGHT,mode,flags,GetNormalColour(5))  
   WindowFont("Zauber", "bodyfont", FONT_NAME, FONT_SIZE)
   WindowFont("Zauber", "bodyfont_2", FONT_NAME_2, FONT_SIZE_2)
-  WindowShow("Zauber",true)  
   WindowLoadImage("Zauber", "zborder", GetInfo(66).."images\\zborder.png") 
   WindowLoadImage("Zauber", "zborder_l", GetInfo(66).."images\\zborder_links.png") 
   for i = 1, #ZAUBER_LISTE do
     for j = 1, ZAUBER_LISTE[i][2] do
       WindowLoadImage("Zauber", ZAUBER_LISTE[i][1]..j, GetInfo(66).."images\\zicons\\"..ZAUBER_LISTE[i][1]..j..".png")
-	end  
-  end	
-  WindowAddHotspot("Zauber", "hs1",
-                 0, 0, 0, 0,   -- whole window
-                 "",   -- MouseOver
-                 "",   -- CancelMouseOver
-                 "mousedown",
-                 "",   -- CancelMouseDown
-                 "",   -- MouseUp
-                 "Drag to move",  -- tooltip text
-                 1, 0)  -- hand cursor
-  WindowDragHandler("Zauber", "hs1", "dragmove", "dragrelease", 0)
+    end  
+  end  
+      
+  WindowAddHotspot("Zauber", "sh1",
+               0, 0, 0, 0,   -- whole window
+               "",   -- MouseOver
+               "",   -- CancelMouseOver
+               "mousedown",
+               "",   -- CancelMouseDown
+               "",   -- MouseUp
+               "Drag to move",  -- tooltip text
+               1, 0)  -- hand cursor
+  
+  WindowDragHandler("Zauber", "sh1", "dragmove", "dragrelease", 0)
+  WindowShow("Zauber",true)  
   win_update()
 end 
 
@@ -1788,7 +1799,7 @@ end
 
 function win_update()
   --Fenstergröße vermessen
-  checksize()
+  --checksize()
   --Hintergrund
   --for index, value in ipairs(WindowFontList("Zauber")) do print(index, value) end
   WindowCircleOp ("Zauber", 2, 0,0,200,300, ColourNameToRGB ("black"), 0, 2, GetNormalColour(1), 0, 10, 10)
@@ -1803,7 +1814,7 @@ function win_update()
     --WindowText ("Zauber", "bodyfont", Z_SCHUTZ, 10, 40, 0, 0, ColourNameToRGB ("white"), false)
   end	
   for i = 1, #Z_AKT do
-    --WindowText ("Zauber", "bodyfont", Z_AKT[i], 10, 40+(i-1)*15, 0, 0, ColourNameToRGB ("white"), false)
+  --WindowText ("Zauber", "bodyfont", Z_AKT[i], 10, 40+(i-1)*15, 0, 0, ColourNameToRGB ("white"), false)
 	--Balken
 	WindowCircleOp("Zauber", 2, 165-(((os.time()-_G["ZAUBER_"..string.upper(string.match(Z_AKT[i], "%a+")).."_START"])/ZAUBER_DAUER[Z_AKT[i]])*115), 29+(i-1)*50, 50, 8+29+(i-1)*50, ColourNameToRGB ("yellow"), 0, 1, ColourNameToRGB ("yellow"), 0)	
 	--Border
@@ -1829,8 +1840,8 @@ function win_update()
 	WinTextMitRand ("Zauber", "bodyfont", firstToUpper(NAME_GEZAUBERT).." ".._G["ZAUBER_"..string.upper(NAME_GEZAUBERT).."_RANG"], 30, 260, 0, 0, ColourNameToRGB ("white"), false, ColourNameToRGB ("black"), 1)
     --ZIcon
 	WindowDrawImageAlpha("Zauber", tostring(NAME_GEZAUBERT.._G["ZAUBER_"..string.upper(NAME_GEZAUBERT).."_RANG"]),155, 257, 0, 0, 1)
-	--WindowText ("Zauber", "bodyfont", os.time()-CHAR_STUN_START-(ZAUBER_STUNDAUER[CHAR_STUN_ZAUBER]), 70, 90, 0, 0, ColourNameToRGB ("white"), false) 
-  end	
+	--WindowText ("Zauber", "bodyfont", os.time()-CHAR_STUN_START-(ZAUBER_STUNDAUER[CHAR_STUN_ZAUBER]), 70, 90, 0, 0, ColourNameToRGB ("white"), false)
+  end
 end  
 
 function firstToUpper(str)
@@ -1850,6 +1861,14 @@ function WinTextMitRand(wo,wie,text,wo_text_x,wo_text_y,wo_text_x2,wo_text_y2,te
   WindowText (wo, wie, text, wo_text_x, wo_text_y-rand_staerke,  wo_text_x2, wo_text_y2, rand_farbe, unicode)
   WindowText (wo, wie, text, wo_text_x, wo_text_y,  wo_text_x2, wo_text_y2, text_farbe, unicode)
 end
+
+function PluginClose ()
+  avalon.SetConfig("Zauber","enabled", tostring (GetPluginInfo (GetPluginID (), 17)))
+  avalon.SetConfig("Zauber","windowx", tostring (WindowInfo ("Zauber", 10)))
+  avalon.SetConfig("Zauber","windowy", tostring (WindowInfo ("Zauber", 11)))
+  avalon.SetConfig("Zauber","windowmode", tostring (WindowInfo ("Zauber", 7)))
+  avalon.SetConfig("Zauber","windowflags", tostring (WindowInfo ("Zauber", 8)))
+end -- PluginClose
 
 ]]>
 </script>

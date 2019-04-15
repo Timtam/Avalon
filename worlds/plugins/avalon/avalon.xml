@@ -4776,6 +4776,10 @@ function OnPluginInstall()
     world.Note("Das letzte Update wurde nun erfolgreich abgeschlossen.")
   end
   world.SetOption ("omit_date_from_save_files", 1)
+
+  -- redraw all miniwindows (important for visual sub-plugins)
+  world.AddTimer("RedrawWindows", 0, 0, 0.5, "", timer_flag.Enabled, "world.Redraw")
+
   PPI.Expose('IID',
     function()
       if Dunkel==1 then
