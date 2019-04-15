@@ -1,111 +1,96 @@
 require("pairsbykeys")
 require("string_indexing")
 
-spells = {}
-warnings = {}
+Avalon = nil
+List = require("pl.list")
+PPI = require("ppi")
+Tablex = require("pl.tablex")
+Timers = nil
+Types = require("pl.types")
 
-function spells_register(name, starttext, endtext)
-  AddTriggerEx(name.."_start", starttext, 'spells_start("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
-  AddTriggerEx(name.."_stop", endtext, 'spells_stop("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
-  spells[name] = 0
+earlycancel = 0
+spells = {}
+warnings = List.new()
+
+function spells_register(name, starttext, endtext, report_ep)
+
+  report_ep = Types.to_bool(report_ep)
+
+  world.AddTriggerEx(name.."_start", starttext, 'spells_start("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
+
+  world.AddTriggerEx(name.."_stop", endtext, 'spells_stop("'..name..'")', trigger_flag.RegularExpression + trigger_flag.KeepEvaluating + trigger_flag.Enabled, NOCHANGE, 0, "", "", sendto.script, 50)
+
+  spells[name] = {
+    id = nil,
+    ep = 0,
+    report_ep = report_ep
+  }
 end
 
 function spells_start(name)
-  spells[name] = GetUnixTime()
-  if warnings[name] ~= nil then
-    spells_warn(name, warnings[name])
+
+  -- loading connection to avalon plugin
+  if Avalon == nil then
+    Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+  end
+
+  -- loading connection to timers plugin
+  if Timers == nil then
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
+  end
+
+  tick = 0
+  snd = ""
+
+  if warnings:index(name) ~= nil then
+    tick = 60
+    snd = "spells/warn.ogg"
+  end
+
+  spells[name].id = Timers.AddTimer(name, tick, 0, snd, true)
+
+  if spells[name].report_ep == true then
+    spells[name].ep = Avalon.EP()
   end
 end
 
 function spells_stop(name)
-  if spells[name] == nil or spells[name] == 0 then
+  if spells[name].id == "" then
     return
   end
-  time = spells[name]
-  msg = name.." beendet, Dauer: "
-  ltime = GetUnixTime()
-  time_diff = ltime - time
-  hours = math.floor(time_diff / 3600)
-  mins = math.floor((time_diff - hours * 3600) / 60)
-  secs = round(((time_diff - hours * 3600) - mins * 60), 0)
-  if hours > 0 then
-    msg = msg..tostring(hours).." Stunden und "
+
+  -- loading connection to avalon plugin
+  if Avalon == nil then
+    Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
   end
-  if mins > 0 then
-    msg = msg..tostring(mins).." Minuten und "
+
+  -- loading connection to timers plugin
+  if Timers == nil then
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
   end
-  msg = msg..tostring(secs).." Sekunden"
-  msg = msg.."."
-  NoteColour(msg, 150, 0, 0, 255, 255, 0)
-  spells[name] = 0
-  if warnings[name] ~= nil then
-    warnings[name] = CreateGUID()
-    psnd("spells/warn.ogg")
+
+  if os.time() - earlycancel <= 2 then
+
+    Timers.DisableHeuristics(spells[name].id)
+    earlycancel = 0
+
+  end
+
+  Timers.EndTimer(spells[name].id)
+
+  spells[name].id = ""
+
+  if spells[name].report_ep == true then
+    local diff = Avalon.EP() - spells[name].ep
+    
+    world.Note("Waehrend dieses Zaubers wurden " .. tostring(diff) .. " EP verdient.")
+
+    spells[name].ep = 0
   end
 end
 
-function spells_status()
-  msg = ""
-  ltime = GetUnixTime()
-  for spell,time in pairsByKeys(spells) do
-    if time > 0 then
-      msg = msg..spell..": "
-      timediff = ltime - time
-      hours = math.floor(timediff / 3600)
-      mins = math.floor((timediff - hours * 3600) / 60)
-      secs = round((timediff - hours * 3600) - mins * 60,0)
-      if hours > 0 and hours < 60 then
-        if hours > 1 then
-          msg = msg..tostring(hours).." Stunden und "
-        else
-          msg = msg..tostring(hours).." Stunde und "
-        end
-      end
-      if mins > 0 and mins < 60 then
-        if mins > 1 then
-          msg = msg..tostring(mins).." Minuten und "
-        else
-          msg = msg..tostring(mins).." Minute und "
-        end
-      end
-      if secs == 1 then
-        msg = msg..tostring(secs).." Sekunde"
-      else
-        msg = msg..tostring(secs).." Sekunden"
-      end
-      msg = msg..".\n"
-    end
-  end
-  if msg == "" then
-    msg = "Momentan sind keine Zauber aktiv."
-  else
-    msg = string.sub(msg, 1, -2)
-  end
-  Note(msg)
-end
-
-function spells_warn(spell, guid)
-  if spells[spell] == 0 or warnings[spell] ~= guid then
-    return
-  end
-  time = GetUnixTime()
-  diff = time - spells[spell]
-  seconds = math.floor(round(diff, 0) % 60)
-  minutes = math.floor((round(diff, 0) - seconds) / 60)
-  if seconds == 0 then
-    msg = spell
-    if minutes > 0 then
-      msg = msg .." bereits "
-      if minutes == 1 then
-        msg = msg .. "eine Minute"
-      else
-        msg = msg .. tostring(minutes) .. " Minuten"
-      end
-    end
-    msg = msg .. " aktiv."
-    Note(msg)
-  end
-  DoAfterSpecial((60 - (time - spells[spell])%60),"spells_warn('"..spell.."', '"..guid.."')", 12)
+function spells_announceearlycancel()
+  earlycancel = os.time()
 end
 
 function spells_parsewarnings(warns)
@@ -115,23 +100,24 @@ function spells_parsewarnings(warns)
   awarns = utils.split(warns, ",")
   for key, value in pairs(awarns) do
     if spells[value] == nil then
-      Note("Die Warnung für den Zauber \""..value.."\" konnte nicht eingerichtet werden: Dieser Zauber wird vom Soundpack nicht unterstützt.")
+      world.Note("Die Warnung für den Zauber \""..value.."\" konnte nicht eingerichtet werden: Dieser Zauber wird vom Soundpack nicht unterstützt.")
     else
-      warnings[value] = CreateGUID()
+      warnings:append(value)
     end
   end
 end
 
 function spells_retrievewarnings()
   swarns = ""
-  for key, value in pairs(warnings) do
-    swarns = swarns..key..","
-  end
+  warnings:foreach(function(w)
+    swarns = swarns .. w .. ","
+  end)
   if swarns[1] == "," then
     startind = 2
   else
     startind = 1
   end
+
   return string.sub(swarns, startind, -2)
 end
 
@@ -141,19 +127,19 @@ function spells_printwarnings()
   for key, value in pairsByKeys(spells) do
     i = i + 1
     msg = msg..tostring(i)..".\t"..key
-    if warnings[key] == nil then
+    if warnings:index(key) == nil then
       msg = msg.."\n" -- Keine aktiven Warnungen
     else
       msg = msg..", Warnungen aktiv\n"
     end
   end
-  Note(string.sub(msg, 1, -2))
+  world.Note(string.sub(msg, 1, -2))
 end
 
 function spells_togglewarnings(cnt)
   cnt = tonumber(cnt)
   if cnt == nil then
-    Note("Die Eingabe war nicht korrekt. Bitte die Nummer des Zaubers eingeben, für die Du Einstellungen vornehmen möchtest.")
+    world.Note("Die Eingabe war nicht korrekt. Bitte die Nummer des Zaubers eingeben, für die Du Einstellungen vornehmen möchtest.")
     return
   end
   i = 0
@@ -163,15 +149,35 @@ function spells_togglewarnings(cnt)
     stbl[i] = key
   end
   if stbl[cnt] == nil then
-    Note("Kein Zauber mit dieser Nummer gefunden.")
+    world.Note("Kein Zauber mit dieser Nummer gefunden.")
     return
   end
-  if warnings[stbl[cnt]] == nil then
-    Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
-    warnings[stbl[cnt]] = CreateGUID()
-    spells_warn(stbl[cnt], warnings[stbl[cnt]])
+  if warnings:index(stbl[cnt]) == nil then
+    world.Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
+    warnings:append(stbl[cnt])
+
+    if spells[stbl[cnt]].id ~= "" then
+      
+      Timers.SetTick(spells[stbl[cnt]].id, 60)
+
+    end
   else
-    Note("Warnungen für "..stbl[cnt].." ausgeschaltet.")
-    warnings[stbl[cnt]] = nil
+    world.Note("Warnungen für "..stbl[cnt].." ausgeschaltet.")
+    warnings:remove_value(stbl[cnt])
+
+    if spells[stbl[cnt]].id ~= "" then
+      
+      Timers.SetTick(spells[stbl[cnt]].id, 0)
+
+    end
   end
 end
+
+return {
+  AnnounceEarlyCancel = spells_announceearlycancel,
+  ParseWarnings = spells_parsewarnings,
+  PrintWarnings = spells_printwarnings,
+  Register = spells_register,
+  RetrieveWarnings = spells_retrievewarnings,
+  ToggleWarning = spells_togglewarnings
+}

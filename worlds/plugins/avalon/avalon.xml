@@ -29,6 +29,14 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du bekommst nun eine Zeit lang erhoehte Erfahrung."
+   send_to="12"
+   sequence="100"
+  >
+  <send>Timers.AddTimer("Bonuserfahrung", 60 * 10, 60 * 60, "", true, true)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du musst hier schon schwimmen, um weiterzukommen!"
    send_to="14"
    sequence="95"
@@ -2004,10 +2012,12 @@
   <trigger
    enabled="y"
    match="Du konzentrierst Dich auf das vorzeitige Ende des Zaubers."
-   sequence="100"
+   sequence="95"
    send_to="12"
   >
-  <send>psnd("Spells/Stop.ogg")</send>
+  <send>psnd("Spells/Stop.ogg")
+        Spells.AnnounceEarlyCancel()
+  </send>
   </trigger>
   <trigger
    enabled="y"
@@ -4203,10 +4213,10 @@
   <alias
    match="az"
    enabled="y"
-   send_to="12"
+   send_to="10"
    sequence="100"
   >
-  <send>spells_status()</send>
+  <send>timer</send>
 </alias>
   <alias
    match="^!(.*?)$"
@@ -4407,6 +4417,7 @@ htpsnd=nil
 hmusic=nil
 LastCommand=nil
 mxp_output=false
+PlayerEP = nil
 PlayerLevel=nil
 plugintbl={}
 plugintbl[1]='ATCP.plugin/plugin.xml'
@@ -4422,10 +4433,10 @@ plugintbl[10]="avalon/healthbar.xml"
 plugintbl[11]="avalon/message_window.xml"
 plugintbl[12]="avalon/kompass.xml"
 plugintbl[13]="avalon/updater.xml"
+plugintbl[14] = "avalon/timers.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
-auratbl={}
 gildentbl={}
 callbacktbl={}
 configtbl={}
@@ -4461,7 +4472,7 @@ world.Accelerator("alt+m", "say_mp")
 world.Accelerator("alt+t", "say_tp")
 world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
-require("avalon.activespells")
+Spells = require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
 require("pairsbykeys")
@@ -4471,31 +4482,32 @@ Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
 Tablex = require("pl.tablex")
-spells_register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.")
-spells_register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
-spells_register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
-spells_register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\\.","Deine Watteflocken loesen sich auf\\.")
-spells_register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\\.")
-spells_register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\\.","Deine Todesaura loest sich auf\\.")
-spells_register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\\.","Deine Feueraura loest sich auf\\.")
-spells_register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\\.","Deine heilige Aura loest sich auf\\.")
-spells_register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\\.","Dein Kernschild loest sich auf\\.")
-spells_register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\\.")
-spells_register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\\.")
-spells_register("Schild","Du wirst von einem magischen Schild umgeben\\.","Dein magischer Schild loest sich auf\\.")
-spells_register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\\.|Du erzeugst Dir eine kleine Feuerkugel\\.|Du erzeugst Dir eine kleine Leuchtflamme\\.","Dein Lichtbogen verschwindet\\.|Deine Feuerkugel erlischt\\.|Deine Leuchtflamme erlischt\\.")
-spells_register("Arkanschild","Du wirst von einem Arkanschild umgeben\\.","Dein Arkanschild loest sich auf\\.")
-spells_register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\\.","Dein Manarausch laesst wieder nach\\.")
-spells_register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
-spells_register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
-spells_register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
-spells_register("Lebensaura","Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich","Deine Lebensaura loest sich auf\\.")
-spells_register("Schwarzschild","Du wirst von einem magischen Schild umgeben, der Dich besser parieren","Dein Schwarzschild loest sich auf\\.")
-spells_register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.")
-spells_register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
-spells_register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
-spells_register("Friedfertigkeit", "Du fuehlst Dich nun ein bisschen friedfertig\\.|Du fuehlst Dich nun sehr friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
-spells_register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
+Timers = nil
+Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
+Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
+Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
+Spells.Register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\\.","Deine Watteflocken loesen sich auf\\.")
+Spells.Register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\\.")
+Spells.Register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\\.","Deine Todesaura loest sich auf\\.")
+Spells.Register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\\.","Deine Feueraura loest sich auf\\.")
+Spells.Register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\\.","Deine heilige Aura loest sich auf\\.", true)
+Spells.Register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\\.","Dein Kernschild loest sich auf\\.", true)
+Spells.Register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\\.", true)
+Spells.Register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\\.", true)
+Spells.Register("Schild","Du wirst von einem magischen Schild umgeben\\.","Dein magischer Schild loest sich auf\\.", true)
+Spells.Register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\\.|Du erzeugst Dir eine kleine Feuerkugel\\.|Du erzeugst Dir eine kleine Leuchtflamme\\.","Dein Lichtbogen verschwindet\\.|Deine Feuerkugel erlischt\\.|Deine Leuchtflamme erlischt\\.")
+Spells.Register("Arkanschild","Du wirst von einem Arkanschild umgeben\\.","Dein Arkanschild loest sich auf\\.", true)
+Spells.Register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\\.","Dein Manarausch laesst wieder nach\\.")
+Spells.Register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
+Spells.Register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
+Spells.Register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
+Spells.Register("Lebensaura","Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich","Deine Lebensaura loest sich auf\\.")
+Spells.Register("Schwarzschild","Du wirst von einem magischen Schild umgeben, der Dich besser parieren","Dein Schwarzschild loest sich auf\\.", true)
+Spells.Register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.", true)
+Spells.Register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
+Spells.Register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
+Spells.Register("Friedfertigkeit", "Du fuehlst Dich nun ein bisschen friedfertig\\.|Du fuehlst Dich nun sehr friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
+Spells.Register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
@@ -4652,6 +4664,14 @@ OnAvalonLevel = function(type, message)
   PlayerLevel = level
 end
 
+OnAvalonEP = function(type, message)
+  local ep = string.match(message, "^(%d+)")
+  if not ep then
+    return
+  end
+  PlayerEP = tonumber(ep)
+end
+
 OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
   play_tp(ntp)
@@ -4732,7 +4752,7 @@ function OnPluginInstall()
     pluginpath = world.GetInfo(60).."/"..plugin
     world.LoadPlugin(pluginpath)
   end
-  spells_parsewarnings(configtbl.settings.Warnings)
+  Spells.ParseWarnings(configtbl.settings.Warnings)
   NumpadInit()
   gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,gildendummy},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy},['Nekromanten']={false,gildendummy}}
   Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
@@ -4767,6 +4787,11 @@ function OnPluginInstall()
     function()
       return PlayerLevel
     end)
+
+  PPI.Expose('EP', function()
+    return PlayerEP
+  end)
+
   PPI.Expose('AP',
     function()
       return g_ap, g_max_ap
@@ -4816,37 +4841,45 @@ end
 
 function OnPluginClose()
   call_callback('CLOSE')
-  configtbl.settings.Warnings=spells_retrievewarnings()
+  configtbl.settings.Warnings=Spells.RetrieveWarnings()
   Ini.write('config.dat', configtbl)
 end
 
 OnPluginListChanged = function()
+
   if (atcp == nil) then
-  atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
-  if not atcp then
-    Note("ATCP funktioniert nicht!")
-  elseif reloaded then
-    atcp.Listen("Avalon.TP", OnAvalonTP)
-    atcp.Listen("Avalon.SP", OnAvalonSP)
-    atcp.Listen("Avalon.AP", OnAvalonAP)
-    atcp.Listen("Avalon.MP", OnAvalonMP)
-    atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
-    atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
-    atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
-    atcp.Listen('Avalon.Level', OnAvalonLevel)
-    atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
-    atcp.Listen('Avalon.Channel', OnAvalonChannel)
-    atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
-    atcp.Listen('Avalon.Kampf', OnAvalonKampf)
-    atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
-    atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
-    atcp.Listen('Avalon.Gilde',OnAvalonGilde)
-    atcp.Listen('Avalon.RComm',OnAvalonChannel)
-    atcp.Listen('Avalon.Comm',OnAvalonComm)
-    atcp.Listen('Avalon.Soul',OnAvalonSoul)
-    atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
-    atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
+
+    atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+
+    if atcp then
+      atcp.Listen("Avalon.TP", OnAvalonTP)
+      atcp.Listen("Avalon.SP", OnAvalonSP)
+      atcp.Listen("Avalon.AP", OnAvalonAP)
+      atcp.Listen("Avalon.MP", OnAvalonMP)
+      atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
+      atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
+      atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
+      atcp.Listen('Avalon.Level', OnAvalonLevel)
+      atcp.Listen("Avalon.EP", OnAvalonEP)
+      atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
+      atcp.Listen('Avalon.Channel', OnAvalonChannel)
+      atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
+      atcp.Listen('Avalon.Kampf', OnAvalonKampf)
+      atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
+      atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
+      atcp.Listen('Avalon.Gilde',OnAvalonGilde)
+      atcp.Listen('Avalon.RComm',OnAvalonChannel)
+      atcp.Listen('Avalon.Comm',OnAvalonComm)
+      atcp.Listen('Avalon.Soul',OnAvalonSoul)
+      atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
+      atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
+    end
   end
+
+  if Timers == nil then
+
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
+
   end
 end
 
@@ -5228,9 +5261,9 @@ end
 
 function warnings_access(warn)
   if warn=='' then
-    spells_printwarnings()
+    Spells.PrintWarnings()
   else
-    spells_togglewarnings(warn)
+    Spells.ToggleWarning(warn)
   end
 end
 
