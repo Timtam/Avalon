@@ -8,6 +8,7 @@ Tablex = require("pl.tablex")
 Timers = nil
 Types = require("pl.types")
 
+earlycancel = 0
 spells = {}
 warnings = List.new()
 
@@ -46,15 +47,15 @@ function spells_start(name)
     snd = "spells/warn.ogg"
   end
 
-  spells[name]["id"] = Timers.AddTimer(name, tick, 0, snd, true)
+  spells[name].id = Timers.AddTimer(name, tick, 0, snd, true)
 
-  if spells[name]["report_ep"] ~= false then
-    spells[name]["ep"] = Avalon.EP()
+  if spells[name].report_ep == true then
+    spells[name].ep = Avalon.EP()
   end
 end
 
 function spells_stop(name)
-  if spells[name]["id"] == "" then
+  if spells[name].id == "" then
     return
   end
 
@@ -68,17 +69,28 @@ function spells_stop(name)
     Timers = PPI.Load(world.GetPluginVariable("", "timers"))
   end
 
-  Timers.EndTimer(spells[name]["id"])
+  if os.time() - earlycancel <= 2 then
 
-  spells[name]["id"] = ""
+    Timers.DisableHeuristics(spells[name].id)
+    earlycancel = 0
 
-  if spells[name]["report_ep"] ~= false then
-    local diff = Avalon.EP() - spells[name]["ep"]
+  end
+
+  Timers.EndTimer(spells[name].id)
+
+  spells[name].id = ""
+
+  if spells[name].report_ep == true then
+    local diff = Avalon.EP() - spells[name].ep
     
     world.Note("Waehrend dieses Zaubers wurden " .. tostring(diff) .. " EP verdient.")
 
-    spells[name]["ep"] = 0
+    spells[name].ep = 0
   end
+end
+
+function spells_announceearlycancel()
+  earlycancel = os.time()
 end
 
 function spells_parsewarnings(warns)
@@ -144,24 +156,25 @@ function spells_togglewarnings(cnt)
     world.Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
     warnings:append(stbl[cnt])
 
-    if spells[stbl[cnt]]["id"] ~= "" then
+    if spells[stbl[cnt]].id ~= "" then
       
-      Timers.SetTick(spells[stbl[cnt]]["id"], 60)
+      Timers.SetTick(spells[stbl[cnt]].id, 60)
 
     end
   else
     world.Note("Warnungen für "..stbl[cnt].." ausgeschaltet.")
     warnings:remove_value(stbl[cnt])
 
-    if spells[stbl[cnt]]["id"] ~= "" then
+    if spells[stbl[cnt]].id ~= "" then
       
-      Timers.SetTick(spells[stbl[cnt]]["id"], 0)
+      Timers.SetTick(spells[stbl[cnt]].id, 0)
 
     end
   end
 end
 
 return {
+  AnnounceEarlyCancel = spells_announceearlycancel,
   ParseWarnings = spells_parsewarnings,
   PrintWarnings = spells_printwarnings,
   Register = spells_register,

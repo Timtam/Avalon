@@ -2004,10 +2004,12 @@
   <trigger
    enabled="y"
    match="Du konzentrierst Dich auf das vorzeitige Ende des Zaubers."
-   sequence="100"
+   sequence="95"
    send_to="12"
   >
-  <send>psnd("Spells/Stop.ogg")</send>
+  <send>psnd("Spells/Stop.ogg")
+        Spells.AnnounceEarlyCancel()
+  </send>
   </trigger>
   <trigger
    enabled="y"

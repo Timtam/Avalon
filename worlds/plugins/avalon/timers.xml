@@ -231,6 +231,20 @@ function OnPluginInstall()
     return timer_processor:SetTick(id, tick)
   end)
 
+  PPI.Expose('DisableHeuristics', function(id)
+    local _, tval
+
+    for _, tval in pairs(timers) do
+
+      if tval.id == id then
+        tval.no_heuristics = true
+        return true
+      end
+    end
+
+    return false
+  end)
+
 end
 
 function OnPluginTick()
@@ -274,7 +288,7 @@ function heuristics_print(name, msg)
 
   name = name:lower()
 
-  if timers[name] == nil then
+  if timers[name] == nil or timers[name].no_heuristics == true then
     return msg
   end
 
