@@ -1,0 +1,1876 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE muclient>
+
+<muclient>
+<plugin
+   name="BZauber"
+   author="Ban"
+   id="f17e40644c4a183f9ac8e8c1"
+   language="Lua"
+   purpose="Aktive Zauber im Blick"
+   save_state="y"
+   date_written="2018-10-01 12:04:03"
+   requires="4.94"
+   version="1.0"
+   >
+</plugin>
+
+<aliases>
+  <alias match="^(z|zauber|zaubere) (.*)$"
+   enabled="y" send_to="12" sequence="100" regexp="y"
+   group="BZauber" name="BZauber_finder" 
+  >
+  <send>
+  command = string.lower("%1").." "..string.lower("%2")
+  zauberspruch = string.lower("%2")
+  spreche_zauber(zauberspruch)
+  Send(command)
+  </send>
+  </alias>
+</aliases>
+
+<triggers>
+ <trigger match="^Korrigiere: (zaubere|zauber)(.*)$" 
+  name="BZauber_Korrektur" group="BZauber" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="gray" regexp="y"><send>
+  spreche_zauber("%2")
+  </send></trigger> 
+ <trigger match="^(zaubere|zauber)(.*)$" 
+  name="BZauber_auf_alias" group="BZauber" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="gray" regexp="y"><send>
+  spreche_zauber("%2")
+  </send></trigger> 
+ 
+ --Licht
+ <trigger match="^Du beginnst Dich zu konzentrieren\.$" 
+  name="BZauber_licht_a1" group="BZauber_start_licht" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indianred" regexp="y"><send>
+  CHAR_STUN = true
+  CHAR_STUN_ZAUBER = "licht"
+  CHAR_STUN_START = os.time()
+  ZAUBER_LICHT_RANG = ZAUBER_RANG
+  </send></trigger> 
+ <trigger match="^(Du spuckst Dir in die Haende|Du bewegst Deine Haende auf mystische Weise|Du breitest Deine Arme aus)\.$"
+  name="BZauber_licht_a2" group="BZauber_start_licht" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indianred" regexp="y"><send>
+  </send></trigger>  
+ <trigger match="^(Du erzeugst Dir eine kleine Feuerkugel|Du erzeugst Dir eine kleine Leuchtflamme|Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus)\.$"
+  name="BZauber_licht_a3" group="BZauber_start_licht" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indianred" regexp="y"><send>
+  ZAUBER_LICHT_START = os.time()
+  EnableTriggerGroup("BZauber_start_licht", false)
+  CHAR_STUN = false
+  if ZAUBER_LICHT_RANG ~= nil then
+  table.insert(Z_AKT, "licht"..ZAUBER_LICHT_RANG)
+  end
+  win_update()
+  </send></trigger>    
+ <trigger match="^(Deine Feuerkugel erlischt|Deine Leuchtflamme erlischt|Dein Lichtbogen verschwindet)\.$"
+  name="BZauber_stop_licht" group="BZauber_stop_licht" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="indianred" regexp="y"><send> 
+  zauber_licht_stop = os.time()
+  for index, value in ipairs(Z_AKT) do
+    if ZAUBER_LICHT_RANG ~= nil then
+    if value == "licht"..ZAUBER_LICHT_RANG then
+      table.remove(Z_AKT, index)
+    end end
+  end	
+  win_update()
+  </send></trigger>
+  
+  --Durstloescher
+  <trigger match="^Du schliesst Deine Augen, streckst Deine Handflaechen aus und fuehrst diese$"
+   name="BZauber_durstloescher_a11" group="BZauber_start_durstloescher" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="turquoise" regexp="y"><send>
+   CHAR_STUN = true
+   CHAR_STUN_ZAUBER = "durstloescher"
+   CHAR_STUN_START = os.time()   
+   ZAUBER_DURSTLOESCHER_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^zum Erdboden\.$"
+   name="BZauber_durstloescher_a12" group="BZauber_start_durstloescher" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="turquoise" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Du murmelst einige Woerter und drehst Deine Haende herum, so dass Deine$"
+   name="BZauber_durstloescher_a21" group="BZauber_start_durstloescher" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="turquoise" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Handflaechen kleine Mulden bilden\.$"
+   name="BZauber_durstloescher_a22" group="BZauber_start_durstloescher" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="turquoise" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Du trinkst mit einem erleichterten Laecheln Wasser aus Deinen Handflaechen\.$"
+   name="BZauber_durstloescher_a31" group="BZauber_start_durstloescher" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="turquoise" regexp="y"><send> 
+   EnableTriggerGroup("BZauber_start_durstloescher", false)
+   CHAR_STUN = false
+   </send></trigger>
+  
+  
+  --Speise
+  <trigger match="^Du konzentrierst Dich und beginnst Dich zu entspannen\.$"
+   name="BZauber_speise_a11" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   CHAR_STUN = true
+   CHAR_STUN_ZAUBER = "speise"
+   CHAR_STUN_START = os.time() 
+   ZAUBER_SPEISE_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Du reibst Dir genuesslich ueber den Bauch, waehrend Dein Blick nach Innen$"
+   name="BZauber_speise_a21" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^gerichtet ist\.$"
+   name="BZauber_speise_a22" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Funkelnde Manawoelkchen schwirren um Dich herum und verdichten sich immer$"
+   name="BZauber_speise_a31" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^mehr und mehr auf einen Punkt vor Dir\."
+   name="BZauber_speise_a32" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Ploetzlich verwandelt sich die komprimierte Manawolke mit einem lauten$"
+   name="BZauber_speise_a41" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Plopp und Du erkennst:$"
+   name="BZauber_speise_a42" group="BZauber_start_speise" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="chocolate" regexp="y"><send> 
+   CHAR_STUN = false
+   EnableTriggerGroup("BZauber_start_speise", false)
+   </send></trigger>
+
+  --Arkanschild
+  <trigger match="^Du beginnst, Deine Haende auf mystische Art und Weise zu bewegen\.$"
+   name="BZauber_aschild_a11" group="BZauber_start_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time() 
+   ZAUBER_ARKANSCHILD_RANG = ZAUBER_RANG
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "arkanschild"..prefix
+   </send></trigger>
+  <trigger match="^Zwischen Deinen Haenden entsteht eine leuchtende Wolke, die sich immer mehr$"
+   name="BZauber_aschild_a21" group="BZauber_start_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^verdichtet\.$"
+   name="BZauber_aschild_a22" group="BZauber_start_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Die Wolke verteilt sich auf Deinen gesamten Koerper\.$"
+   name="BZauber_aschild_a31" group="BZauber_start_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Du wirst von einem Arkanschild umgeben\.$"
+   name="BZauber_aschild_a41" group="BZauber_start_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   EnableTriggerGroup("BZauber_start_arkanschild", false)
+   ZAUBER_ARKANSCHILD_START = os.time()
+   CHAR_STUN = false
+   if ZAUBER_ARKANSCHILD_RANG ~= nil then
+     table.insert(Z_AKT, "arkanschild"..ZAUBER_ARKANSCHILD_RANG)
+   end
+   win_update()
+   </send></trigger>  
+  <trigger match="^Dein Arkanschild loest sich auf\.$"
+   name="BZauber_stop_aschild" group="BZauber_stop_arkanschild" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   for index, value in ipairs(Z_AKT) do
+     if ZAUBER_ARKANSCHILD_RANG ~= nil then
+       if value == "arkanschild"..ZAUBER_ARKANSCHILD_RANG then
+         table.remove(Z_AKT, index)
+     end end
+   end	
+   win_update()
+   </send></trigger> 
+  <trigger match="^Dein Arkanschild flackert heftig auf, lange wird er Dich wohl nicht mehr$"
+   name="BZauber_aschild_01" group="BZauber_arkanschild" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   EnableTrigger("BZauber_aschild_02", true)
+   </send></trigger>
+  <trigger match="^schuetzen\.$"
+   name="BZauber_aschild_02" group="BZauber_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   EnableTrigger("BZauber_aschild_02", false)
+   </send></trigger>
+  <trigger match="^Kleine Wolkenfetzen dringen in Dich ein. Du fuehlst Dich sofort etwas$"
+   name="BZauber_aschild_11" group="BZauber_arkanschild" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   EnableTrigger("BZauber_aschild_12", true)
+   </send></trigger>
+  <trigger match="^erholter\.$"
+   name="BZauber_aschild_12" group="BZauber_arkanschild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="gold" regexp="y"><send> 
+   EnableTrigger("BZauber_aschild_12", false)
+   </send></trigger>
+  
+  
+  --Blink
+  <trigger match="^Du verschwindest urploetzlich und tauchst sofort an einer anderen Stelle$"
+   name="BZauber_blink_a11" group="BZauber_start_blink" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="palegreen" regexp="y"><send>
+   ZAUBER_BLINK_START = os.time()
+   table.insert(Z_AKT, "blink1")
+   win_update()
+   </send></trigger>
+  <trigger match="^wieder auf!$"
+   name="BZauber_blink_a12" group="BZauber_start_blink" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="palegreen" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(Der|Die|Das)\s*(.*)hat Dich gefunden und wirbelt zu Dir herum\.$"
+   name="BZauber_blink_a21" group="BZauber_start_blink" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="palegreen" regexp="y"><send>
+   EnableTriggerGroup("BZauber_start_blink", false)
+   for index, value in ipairs(Z_AKT) do
+       if value == "blink1" then
+         table.remove(Z_AKT, index)
+     end
+   end	
+   win_update()
+   </send></trigger>
+  
+  --Blutrausch
+  <trigger match="^Du beginnst, Deinen Zauberspruch vorzubereiten\.$"
+   name="BZauber_blutrausch_a11" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "blutrausch"
+   ZAUBER_BLUTRAUSCH_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Du gibst ploetzlich seltsame Grunzlaute von Dir\.$"
+   name="BZauber_blutrausch_a21" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du kannst Dich nicht mehr ruhig halten. Dein Blutdruck steigt und Du$"
+   name="BZauber_blutrausch_a31" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^bekommst einen hochroten Kopf\.$"
+   name="BZauber_blutrausch_a32" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Langsam huellen roetliche Manawolken Deinen Koerper ein\.$"
+   name="BZauber_blutrausch_a41" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du laesst einen fuerchterlichen Urschrei von Dir. Es scheint so, als koenne$"
+   name="BZauber_blutrausch_a51" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Dich nun niemand mehr halten\.$"
+   name="BZauber_blutrausch_a52" group="BZauber_start_blutrausch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>
+   CHAR_STUN = false
+   ZAUBER_BLUTRAUSCH_START = os.time()
+   EnableTriggerGroup("BZauber_start_blutrausch", false)
+   if ZAUBER_BLUTRAUSCH_RANG ~= nil then
+     table.insert(Z_AKT, "blutrausch"..ZAUBER_BLUTRAUSCH_RANG)
+   end
+   win_update()
+   </send></trigger>
+  <trigger match="^Die roetlichen Manawolken loesen sich auf\.$"
+   name="BZauber_blutrausch_a61" group="BZauber_stop_blutrausch" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkred" regexp="y"><send>  
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_BLUTRAUSCH_RANG ~= nil then
+    if value == "blutrausch"..ZAUBER_BLUTRAUSCH_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+  --Daemonenhaut
+  <trigger match="^Du murmelst daemonische Beschwoerungsformeln\.$"
+   name="BZauber_daemonenhaut_a11" group="BZauber_start_daemonenhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="slateblue" regexp="y"><send> 
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "daemonenhaut"..prefix
+   ZAUBER_DAEMONENHAUT_RANG = ZAUBER_RANG   
+   </send></trigger>
+  <trigger match="^Visionen von Tod und Verderben spiegeln sich zwischen Deinen Haenden\.$"
+   name="BZauber_daemonenhaut_a21" group="BZauber_start_daemonenhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="slateblue" regexp="y"><send> 
+   </send></trigger>   
+  <trigger match="^Langsam ueberzieht eine duestere Schicht Deine Haut\.$"
+   name="BZauber_daemonenhaut_a31" group="BZauber_start_daemonenhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="slateblue" regexp="y"><send> 
+   </send></trigger>  
+  <trigger match="^Du bist nun vollkommen in eine Daemonenhaut eingehuellt\.$"
+   name="BZauber_daemonenhaut_a41" group="BZauber_start_daemonenhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="slateblue" regexp="y"><send> 
+   CHAR_STUN = false
+   ZAUBER_DAEMONENHAUT_START = os.time()
+   EnableTriggerGroup("BZauber_start_daemonenhaut", false)
+   if ZAUBER_DAEMONENHAUT_RANG ~= nil then
+     table.insert(Z_AKT, "daemonenhaut"..ZAUBER_DAEMONENHAUT_RANG)
+   end
+   win_update()
+   </send></trigger>  
+
+  <trigger match="^Deine Daemonenhaut loest sich auf\.$"
+   name="BZauber_daemonenhaut_a51" group="BZauber_stop_daemonenhaut" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="slateblue" regexp="y"><send> 
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_DAEMONENHAUT_RANG ~= nil then
+    if value == "daemonenhaut"..ZAUBER_DAEMONENHAUT_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>  
+
+   --Windhaut
+  <trigger match="^Du murmelst Beschwoerungsformeln\.$"
+   name="BZauber_windhaut_a11" group="BZauber_start_windhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightcyan" regexp="y"><send> 
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "windhaut"
+   ZAUBER_WINDHAUT_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Feine Luftstroeme bilden sich zwischen Deinen Haenden\.$"
+   name="BZauber_windhaut_a21" group="BZauber_start_windhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightcyan" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Langsam ueberziehen die Luftstroeme Deine Haut\.$"
+   name="BZauber_windhaut_a31" group="BZauber_start_windhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightcyan" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Du bist nun vollkommen in eine Windhaut eingehuellt\.$"
+   name="BZauber_windhaut_a41" group="BZauber_start_windhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightcyan" regexp="y"><send> 
+   CHAR_STUN = false
+   ZAUBER_WINDHAUT_START = os.time()
+   EnableTriggerGroup("BZauber_start_windhaut", false)
+   if ZAUBER_WINDHAUT_RANG ~= nil then
+     table.insert(Z_AKT, "windhaut"..ZAUBER_WINDHAUT_RANG)
+   end
+   win_update()
+   </send></trigger>  
+  <trigger match="^Du befreist Dich von Deiner Windhaut\.$"
+   name="BZauber_windhaut_a51" group="BZauber_stop_windhaut" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightcyan" regexp="y"><send> 
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_WINDHAUT_RANG ~= nil then
+    if value == "windhaut"..ZAUBER_WINDHAUT_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+  
+  --schild
+  <trigger match="^Du beginnst magische Rituale auszufuehren\.$"
+   name="BZauber_schild_a11" group="BZauber_start_schild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="wheat" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "schild"
+   ZAUBER_SCHILD_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Du verdrehst die Augen\.$"
+   name="BZauber_schild_a21" group="BZauber_start_schild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="wheat" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du wirst von einem magischen Schild umgeben\.$"
+   name="BZauber_schild_a31" group="BZauber_start_schild" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="wheat" regexp="y"><send>
+   CHAR_STUN = false
+   ZAUBER_SCHILD_START = os.time()
+   EnableTriggerGroup("BZauber_start_schild", false)
+   if ZAUBER_SCHILD_RANG ~= nil then
+     table.insert(Z_AKT, "schild"..ZAUBER_SCHILD_RANG)
+   end
+   win_update()
+   </send></trigger>
+  <trigger match="^Dein magischer Schild loest sich auf\.$" 
+   name="BZauber_schild_a41" group="BZauber_stop_schild" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="wheat" regexp="y"><send>
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_SCHILD_RANG ~= nil then
+    if value == "schild"..ZAUBER_SCHILD_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+  --Steinhaut
+  <trigger match="^Du murmelst Beschwoerungsformeln\. Staub und kleine Steinchen erheben sich$"
+   name="BZauber_steinhaut_a11" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "steinhaut"
+   ZAUBER_STEINHAUT_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^vom Boden und fliegen auf Dich zu\.$"
+   name="BZauber_steinhaut_a12" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   </send></trigger>   
+  <trigger match="^Eine graue Schicht ueberzieht langsam Deine Haut, die nach und nach immer$"
+   name="BZauber_steinhaut_a21" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^haerter wird\.$"
+   name="BZauber_steinhaut_a22" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^Du bist nun vollkommen in eine Steinhaut eingehuellt, die aber Deine$"
+   name="BZauber_steinhaut_a31" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^Bewegungsfreiheit in keinster Weise einschraenkt\.$"
+   name="BZauber_steinhaut_a32" group="BZauber_start_steinhaut" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send> 
+   CHAR_STUN = false
+   ZAUBER_STEINHAUT_START = os.time()
+   EnableTriggerGroup("BZauber_start_steinhaut", false)
+   if ZAUBER_STEINHAUT_RANG ~= nil then
+     table.insert(Z_AKT, "steinhaut"..ZAUBER_STEINHAUT_RANG)
+   end
+   win_update()
+   </send></trigger>
+  <trigger match="^Deine Steinhaut loest sich auf\.$"
+   name="BZauber_steinhaut_a41" group="BZauber_stop_steinhaut" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="dimgray" regexp="y"><send>  
+   --print(os.time()-ZAUBER_STEINHAUT_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_STEINHAUT_RANG ~= nil then
+    if value == "steinhaut"..ZAUBER_STEINHAUT_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+---AUREN   
+   
+   --Erdaura
+  <trigger match="^Du beginnst Dich zu konzentrieren\.$"
+   name="BZauber_erdaura_a11" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send> 
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_ERDAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_ERDAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "erdaura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>
+  <trigger match="^Du hebst beide Arme, drehst die Handflaechen gen Boden und beginnst die$"
+   name="BZauber_erdaura_a21" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Maechte der Erde zu besingen\.$"
+   name="BZauber_erdaura_a22" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Aus der Erde loesen sich kleine Partikel und bilden einen Schleier zwischen$"
+   name="BZauber_erdaura_a31" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^dem Boden und Deinen Handflaechen\.$"
+   name="BZauber_erdaura_a32" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du hebst Deine Haende, beschreibst einen Halbkreis ueber Deinem Kopf und$"
+   name="BZauber_erdaura_a41" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^wirst von den Partikeln umgeben\.$"
+   name="BZauber_erdaura_a42" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send> 
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_ERDAURA_START = os.time()
+   EnableTriggerGroup("BZauber_start_erdaura", false)
+   if ZAUBER_ERDAURA_RANG ~= nil then
+     table.insert(Z_AKT, "erdaura"..ZAUBER_ERDAURA_RANG)
+   end
+   win_update()   
+   </send></trigger>
+  <trigger match="^Die Partikel verdichten sich um (.*)\.$"
+   name="BZauber_erdaura_a43" group="BZauber_start_erdaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>
+   AURA_COUNT = AURA_COUNT + 1
+   if AURA_COUNT == ANWESENDE_SPIELER then
+     print("Alle Spieler erwischt!")
+	 CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_erdaura", false)
+   end	 
+   if "%1" == "Dich" then
+     ZAUBER_ERDAURA_START = os.time()
+	 if ZAUBER_ERDAURA_RANG ~= nil then
+       table.insert(Z_AKT, "erdaura"..ZAUBER_ERDAURA_RANG)
+     end
+   end	 
+   --print(os.time()-CHAR_STUN_START)
+   </send></trigger>
+  <trigger match="^Dein Staubschleier loest sich auf\.$"
+   name="BZauber_erdaura_a51" group="BZauber_stop_erdaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="sienna" regexp="y"><send>   
+   --print(os.time()-ZAUBER_ERDAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_ERDAURA_RANG ~= nil then
+    if value == "erdaura"..ZAUBER_ERDAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+
+   --Luftaura
+  <trigger match="^Du ziehst einen Wattebausch aus Deinem Gepaeck, starrst diesen an und$"
+   name="BZauber_luftaura_a11" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send> 
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_LUFTAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_LUFTAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "luftaura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>
+  <trigger match="^murmelst einige magische Woerter\.$"
+   name="BZauber_luftaura_a12" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du beginnst, aus dem Wattebausch kleine Flocken herauszureissen und diese$"
+   name="BZauber_luftaura_a22" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^in der Luft um sich herum zu verteilen\. Kleine Manawolken umspielen die$"
+   name="BZauber_luftaura_a31" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^schwebenden Flocken, kleine Blitze schwirren von Zeit zu Zeit zwischen$"
+   name="BZauber_luftaura_a32" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^ihnen hin und her\.$"
+   name="BZauber_luftaura_a41" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   </send></trigger> 
+  <trigger match="^(.*) in den Watteflocken kaum noch auszumachen\.$"
+   name="BZauber_luftaura_a42" group="BZauber_start_luftaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>
+   --print(os.time()-CHAR_STUN_START)
+   AURA_COUNT = AURA_COUNT + 1
+   if AURA_COUNT == ANWESENDE_SPIELER and (ZAUBER_LUFTAURA_RANG == 3) then
+     print("Alle Spieler erwischt!")
+	 CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_luftaura", false)
+   end
+   if AURA_COUNT &lt; ANWESENDE_SPIELER then
+     CHAR_STUN_START = CHAR_STUN_START + 8
+   end	 
+   if (ZAUBER_LUFTAURA_RANG == 1) or (ZAUBER_LUFTAURA_RANG == 2) then
+     CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_luftaura", false)
+   end
+   if "%1" == "Du bist" then
+     ZAUBER_LUFTAURA_START = os.time()
+	 if ZAUBER_LUFTAURA_RANG ~= nil then
+       table.insert(Z_AKT, "luftaura"..ZAUBER_LUFTAURA_RANG)
+     end
+   end	
+   win_update()
+   </send></trigger> 
+  <trigger match="^Deine Watteflocken loesen sich auf\.$"
+   name="BZauber_luftaura_a51" group="BZauber_stop_luftaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="paleturquoise" regexp="y"><send>   
+   --print(os.time()-ZAUBER_LUFTAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_LUFTAURA_RANG ~= nil then
+    if value == "luftaura"..ZAUBER_LUFTAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+  --feueraura
+  <trigger match="^Du beginnst Deinen Zauberspruch vorzubereiten\.$"
+   name="BZauber_feueraura_a11" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_FEUERAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_FEUERAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "feueraura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>
+  <trigger match="^Du streckst beide Handflaechen von Dir und beginnst, mysterioese Woerter zu$"
+   name="BZauber_feueraura_a21" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^murmeln\.$"
+   name="BZauber_feueraura_a22" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Zwischen Deinen Handflaechen bilden sich Manawolken, die wie ein Schleier$"
+   name="BZauber_feueraura_a31" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^dort zu schweben scheinen\.$"
+   name="BZauber_feueraura_a32" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du senkst Deine Haende, aber der Schutz der Manawolken umgibt Dich$"
+   name="BZauber_feueraura_a41" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^weiterhin\.$"
+   name="BZauber_feueraura_a42" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_FEUERAURA_START = os.time()
+   EnableTriggerGroup("BZauber_start_feueraura", false)
+   if ZAUBER_FEUERAURA_RANG ~= nil then
+     table.insert(Z_AKT, "feueraura"..ZAUBER_FEUERAURA_RANG)
+   end
+   win_update() 
+   </send></trigger>
+  <trigger match="^Die Manawolken verdichten sich um (.*)\.$"
+   name="BZauber_feueraura_a43" group="BZauber_start_feueraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   AURA_COUNT = AURA_COUNT + 1
+   if AURA_COUNT == ANWESENDE_SPIELER then
+     print("Alle Spieler erwischt!")
+	 CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_feueraura", false)
+   end	 
+   if AURA_COUNT &lt; ANWESENDE_SPIELER then
+     CHAR_STUN_START = CHAR_STUN_START + 8
+   end	
+   if "%1" == "Dich" then
+     ZAUBER_FEUERAURA_START = os.time()
+	 if ZAUBER_FEUERAURA_RANG ~= nil then
+       table.insert(Z_AKT, "feueraura"..ZAUBER_FEUERAURA_RANG)
+     end
+   end	 
+   --print(os.time()-CHAR_STUN_START)
+   </send></trigger>
+  <trigger match="^Deine Feueraura loest sich auf\.$"
+   name="BZauber_feueraura_a51" group="BZauber_stop_feueraura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="firebrick" regexp="y"><send>
+   --print(os.time()-ZAUBER_FEUERAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_FEUERAURA_RANG ~= nil then
+    if value == "feueraura"..ZAUBER_FEUERAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+  
+  --Lebensaura
+  <trigger match="^Du schliesst die Augen, summst eine Melodie und wiegst Dich sanft hin und$"
+   name="BZauber_lebensaura_a11" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_LEBENSAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_LEBENSAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "lebensaura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>
+  <trigger match="^her\.$"
+   name="BZauber_lebensaura_a12" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Um Dich herum wachsen kleine Blumen, deren Bluetenblaetter sich in die Luft$"
+   name="BZauber_lebensaura_a21" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^erheben\.$"
+   name="BZauber_lebensaura_a22" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Die Blumen verschwinden wieder, die Blaetter kreisen aber weiterhin um Dich$"
+   name="BZauber_lebensaura_a31" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^herum\.$"
+   name="BZauber_lebensaura_a32" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich$"
+   name="BZauber_lebensaura_a41" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^weiterhin\.$"
+   name="BZauber_lebensaura_a42" group="BZauber_start_lebensaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_LEBENSAURA_START = os.time()
+   EnableTriggerGroup("BZauber_start_lebensaura", false)
+   if ZAUBER_LEBENSAURA_RANG ~= nil then
+     table.insert(Z_AKT, "lebensaura"..ZAUBER_LEBENSAURA_RANG)
+   end
+   win_update() 
+   </send></trigger>
+  <trigger match="^Deine Lebensaura loest sich auf\.$"
+   name="BZauber_lebensaura_a51" group="BZauber_stop_lebensaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightgreen" regexp="y"><send>   
+   --print(os.time()-ZAUBER_LEBENSAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_LEBENSAURA_RANG ~= nil then
+    if value == "lebensaura"..ZAUBER_LEBENSAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+   --Todesaura
+  <trigger match="^Du beginnst Deinen Zauberspruch vorzubereiten\.$"
+   name="BZauber_todesaura_a11" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send>   
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_TODESAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_TODESAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "todesaura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>
+  <trigger match="^Du streckst beide Handflaechen von Dir und beginnst, mysterioese Woerter zu$"
+   name="BZauber_todesaura_a21" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^murmeln\.$"
+   name="BZauber_todesaura_a22" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   </send></trigger>
+   <trigger match="^Zwischen Deinen Handflaechen bilden sich schwarze Schleier, die dort zu$"
+   name="BZauber_todesaura_a31" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send>
+   </send></trigger>   
+  <trigger match="^schweben scheinen\.$"
+   name="BZauber_todesaura_a32" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^Du senkst Deine Haende, aber der Schutz der schwarzen Schleier umgibt Dich$"
+   name="BZauber_todesaura_a41" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^weiterhin\.$"
+   name="BZauber_todesaura_a42" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_TODESAURA_START = os.time()
+   EnableTriggerGroup("BZauber_start_todesaura", false)
+   if ZAUBER_TODESAURA_RANG ~= nil then
+     table.insert(Z_AKT, "todesaura"..ZAUBER_TODESAURA_RANG)
+   end
+   win_update() 
+   </send></trigger>
+  <trigger match="^Die schwarzen Schleier verdichten sich um (.*)\.$"
+   name="BZauber_todesaura_a43" group="BZauber_start_todesaura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   AURA_COUNT = AURA_COUNT + 1
+   if AURA_COUNT == ANWESENDE_SPIELER then
+     print("Alle Spieler erwischt!")
+	 CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_todesaura", false)
+   end	 
+   if AURA_COUNT &lt; ANWESENDE_SPIELER then
+     CHAR_STUN_START = CHAR_STUN_START + 8
+   end	
+   if "%1" == "Dich" then
+     ZAUBER_TODESAURA_START = os.time()
+	 if ZAUBER_TODESAURA_RANG ~= nil then
+       table.insert(Z_AKT, "todesaura"..ZAUBER_TODESAURA_RANG)
+     end
+   end	 
+   --print(os.time()-CHAR_STUN_START)
+   </send></trigger>  
+  <trigger match="^Deine Todesaura loest sich auf\.$"
+   name="BZauber_todesaura_a51" group="BZauber_stop_todesaura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="indigo" regexp="y"><send> 
+   --print(os.time()-ZAUBER_TODESAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_TODESAURA_RANG ~= nil then
+    if value == "todesaura"..ZAUBER_TODESAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+   
+  --Wasseraura
+  <trigger match="^Du beginnst Dich zu konzentrieren\.$"
+   name="BZauber_wasseraura_a11" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_WASSERAURA_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_WASSERAURA_RANG == 3 then prefix = "_3" end
+   CHAR_STUN_ZAUBER = "wasseraura"..prefix
+   AURA_COUNT = 0
+   ATCP.Send("ava_req_container hier")
+   </send></trigger>   
+  <trigger match="^Du beschreibst mit Deinen Haenden mystische Zeichen\.$"
+   name="BZauber_wasseraura_a21" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
+   </send></trigger> 
+  <trigger match="^Ploetzlich bildet sich eine dicke Wolke ueber Deinem Kopf\.$"
+   name="BZauber_wasseraura_a31" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
+   </send></trigger> 
+  <trigger match="^Es regnet aus der Wolke auf (.*) (.*)$"
+   name="BZauber_wasseraura_a41" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
+   WASSERAURA_ZIEL = "%1"
+   </send></trigger> 
+  <trigger match="^Du sendest die Wolken zu (.*)\.$"
+   name="BZauber_wasseraura_a43" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send> 
+   </send></trigger>
+  <trigger match="^(.*)jedoch nicht, sondern bilden (.*)\.$"
+   name="BZauber_wasseraura_a42" group="BZauber_start_wasseraura" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>  
+   --print(os.time()-CHAR_STUN_START)
+   AURA_COUNT = AURA_COUNT + 1
+   if AURA_COUNT == ANWESENDE_SPIELER and (ZAUBER_WASSERAURA_RANG == 3) then
+     print("Alle Spieler erwischt!")
+	 CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_wasseraura", false)
+   end
+   if AURA_COUNT &lt; ANWESENDE_SPIELER then
+     CHAR_STUN_START = CHAR_STUN_START + 12
+   end	 
+   if (ZAUBER_WASSERAURA_RANG == 1) or (ZAUBER_WASSERAURA_RANG == 2) then
+     CHAR_STUN = false
+	 EnableTriggerGroup("BZauber_start_wasseraura", false)
+   end
+   if WASSERAURA_ZIEL == "Dich" then
+     ZAUBER_WASSERAURA_START = os.time()
+	 if ZAUBER_WASSERAURA_RANG ~= nil then
+       table.insert(Z_AKT, "wasseraura"..ZAUBER_WASSERAURA_RANG)
+     end
+   end	
+   win_update()
+   </send></trigger> 
+   
+  <trigger match="^Dein Wasserschleier loest sich auf\.$"
+   name="BZauber_wasseraura_a51" group="BZauber_stop_wasseraura" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="cornflowerblue" regexp="y"><send>
+   --print(os.time()-ZAUBER_WASSERAURA_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_WASSERAURA_RANG ~= nil then
+    if value == "wasseraura"..ZAUBER_WASSERAURA_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger> 
+   
+   
+   --KAMPFZAUBER
+   
+   --Blitz
+  <trigger match="^Du beginnst Dich zu konzentrieren\.$"
+   name="BZauber_blitz_a11" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_BLITZ_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "blitz"..prefix   
+   </send></trigger>
+  <trigger match="^Du reckst Dich, streckst den Zeigefinger Deiner rechten Hand aus und$"
+   name="BZauber_blitz_a12" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^deutest in den Himmel\. Dabei singst Du ein Lied, dessen Text aus einer$"
+   name="BZauber_blitz_a13" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Aneinanderreihung uralter Woerter zu bestehen scheint\.$"
+   name="BZauber_blitz_a14" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Ruckartig zuckt Deine Hand vom Himmel herunter und deutet auf (.*)$"
+   name="BZauber_blitz_a15" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)Gesang endet mit (.*)$"
+   name="BZauber_blitz_a16" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*) aus den Wolken (.*)$"
+   name="BZauber_blitz_a17" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)herab\.$"
+   name="BZauber_blitz_a18" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Das Donnergrollen laesst nach und allmaehlich zieht der Himmel wieder auf\.$"
+   name="BZauber_blitz_a19" group="BZauber_start_blitz" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="khaki" regexp="y"><send>
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_blitz", false)
+   </send></trigger>
+   
+ -- LAVASTOSS
+  <trigger match="^Du hebst einen kleinen Stein vom Boden auf, haelst ihn zwischen Deinen$"
+   name="BZauber_lavastoss_a01" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_LAVASTOSS_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "lavastoss"..prefix   
+   </send></trigger>
+  <trigger match="^Haenden und sprichst einige Worte\. Ploetzlich glueht der Stein in einem$"
+   name="BZauber_lavastoss_a02" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^tiefen, feurigen Rot-Orange auf\.$"
+   name="BZauber_lavastoss_a03" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Begleitet von einem wahren Wortsturm, der aus Deinem Mund quillt, wirfst Du$"
+   name="BZauber_lavastoss_a04" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^den nun rotgluehenden Stein zu Boden\. Der Stein schmilzt foermlich in den$"
+   name="BZauber_lavastoss_a05" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Boden, bis auf einmal ein immer lauter werdendes Zischen hoerbar wird\. Mit$"
+   name="BZauber_lavastoss_a06" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^einem lauten >Plopp< schiesst der rotgluehende Stein aus dem Boden in den$"
+   name="BZauber_lavastoss_a07" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Himmel und verschwindet dort\.$"
+   name="BZauber_lavastoss_a08" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Immer mehr Qualm dringt aus dem Loch, auf einmal spritzt rotgluehende Lava$"
+   name="BZauber_lavastoss_a09" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^hervor und trifft (.*)$"
+   name="BZauber_lavastoss_a10" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)sehr heiss zu(.*)$"
+   name="BZauber_lavastoss_a11" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)springt mit(.*)$"
+   name="BZauber_lavastoss_a12" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)Meter nach hinten\.$"
+   name="BZauber_lavastoss_a13" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Aber schon ist der Spuk vorbei, bis auf ein kleines, schmales Loch im Boden$"
+   name="BZauber_lavastoss_a14" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^ist nichts mehr sichtbar\. Auch die hervorgespritzte Lava ist schon wieder$"
+   name="BZauber_lavastoss_a15" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^erhaertet\.$"
+   name="BZauber_lavastoss_a16" group="BZauber_start_lavastoss" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="crimson" regexp="y"><send>
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_lavastoss", false)
+   </send></trigger>
+   
+   -- Wirbelsturm
+
+  <trigger match="^Du beginnst Dich zu konzentrieren\.$"
+   name="BZauber_wirbelsturm_a01" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_WIRBELSTURM_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "wirbelsturm"..prefix   
+   </send></trigger>
+  <trigger match="^Du murmelst einige magische Worte\.$"
+   name="BZauber_wirbelsturm_a02" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^Ein laut zischender Wirbelsturm naehert sich\.$"
+   name="BZauber_wirbelsturm_a03" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^(.*) von dem Wirbelsturm erfasst\.$"
+   name="BZauber_wirbelsturm_a04" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>  
+   </send></trigger>
+  <trigger match="^Der Wirbelsturm verschwindet wieder\.$"
+   name="BZauber_wirbelsturm_a05" group="BZauber_start_wirbelsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="royalblue" regexp="y"><send>  
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_wirbelsturm", false)
+   </send></trigger>
+   
+   --ERdbeben
+  <trigger match="^Du sammelst Dich\.$"
+   name="BZauber_erdbeben_a01" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_ERDBEBEN_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "erdbeben"..prefix   
+   </send></trigger>
+  <trigger match="^Du springst in die Hoehe und kommst mit einem lauten RUMS wieder auf den$"
+   name="BZauber_erdbeben_a02" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Boden auf\. Leichte Risse bilden sich unter Deinen Fuessen\.$"
+   name="BZauber_erdbeben_a03" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du sammelst Dich erneut, springst, kommst wieder auf\. Die Risse im Boden$"
+   name="BZauber_erdbeben_a04" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^werden immer gefaehrlicher\.$"
+   name="BZauber_erdbeben_a05" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du schliesst Deine Augen und murmelst einige Worte\. Die Risse im Boden$"
+   name="BZauber_erdbeben_a06" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^werden immer bedrohlicher, alle schwanken wie Grashalme im Winde\.$"
+   name="BZauber_erdbeben_a07" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^(.*) faellt der Laenge nach hin (.*)"
+   name="BZauber_erdbeben_a08" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^(.*) im Boden retten\.$"
+   name="BZauber_erdbeben_a09" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Das Erdbeben klingt wieder ab\.$"
+   name="BZauber_erdbeben_a10" group="BZauber_start_erdbeben" enabled="n" send_to="12" sequence="100" custom_colour="10" regexp="y"><send>   
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_erdbeben", false)
+   </send></trigger>
+
+  
+  --Eissturm
+  <trigger match="^Du deutest mit einer Hand auf den Boden zu Deinen Fuessen und reckst die$"
+   name="BZauber_eissturm_a01" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_EISSTURM_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "eissturm"..prefix   
+   </send></trigger>
+  <trigger match="^Zweite gespreizt in den Himmel\. Dazu beginnst Du Dich stark zu$"
+   name="BZauber_eissturm_a02" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^konzentrieren\.$"
+   name="BZauber_eissturm_a03" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Nach und nach bedecken dunkle Wolken den Himmel und es scheint kuehler zu$"
+   name="BZauber_eissturm_a04" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^werden\.$"
+   name="BZauber_eissturm_a05" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Mit einem Ruck schliesst Du die Augen, senkst Deinen Kopf und ballst Deine$"
+   name="BZauber_eissturm_a06" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Faust\. Sehr eindrucksvoll bildet sich ueber Dir eine sehr dunkle schwarze$"
+   name="BZauber_eissturm_a07" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Wolke\. Es wird bitterkalt\.$"
+   name="BZauber_eissturm_a08" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Ein wahrer Eissturm bricht auf (.*)"
+   name="BZauber_eissturm_a09" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)prasseln herab(.*)"
+   name="BZauber_eissturm_a10" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)Flecken!$"
+   name="BZauber_eissturm_a11" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Doch mit einem Schlag ist alles vorbei: der Himmel klaert sich auf, es wird$"
+   name="BZauber_eissturm_a12" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^bedeutend waermer\. Friedvoll singen die Voegel im Himmel\.$"   
+   name="BZauber_eissturm_a13" group="BZauber_start_eissturm" enabled="n" send_to="12" sequence="100" custom_colour="4" regexp="y"><send>
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_eissturm", false)
+   </send></trigger>
+   
+   
+   --Vergessen
+  <trigger match="^Du faengst an zu brummen\.$"
+   name="BZauber_vergessen_a11" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_VERGESSEN_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "vergessen"..prefix  
+   </send></trigger>
+  <trigger match="^Du schaust (.*) direkt in (.*)"
+   name="BZauber_vergessen_a12" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du verstaerkst Deinen Einfluss noch mehr und laesst (.*)"
+   name="BZauber_vergessen_a13" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*)vergessen\.$"
+   name="BZauber_vergessen_a14" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du entspannst Dich wieder\.$"
+   name="BZauber_vergessen_a15" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_vergessen", false)
+   </send></trigger>
+  <trigger match="^Du brichst deinen Zauber ab, (.*)"
+   name="BZauber_vergessen_a16" group="BZauber_start_vergessen" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="darkviolet" regexp="y"><send>
+   CHAR_STUN = false
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_vergessen", false)
+   </send></trigger>
+   
+   --Verwirrung
+  <trigger match="^Du konzentrierst Dich aufs Aeusserste\.$"
+   name="BZauber_verwirrung_a11" group="BZauber_start_verwirrung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()      
+   ZAUBER_VERWIRRUNG_RANG = ZAUBER_RANG   
+   prefix = ""
+   if ZAUBER_GESCHW == 1 then prefix = "_p" 
+   elseif ZAUBER_GESCHW == -1 then prefix = "_m"
+   elseif ZAUBER_GESCHW == -2 then prefix = "_mm"
+   end
+   CHAR_STUN_ZAUBER = "vergessen"..prefix  
+   </send></trigger>
+  <trigger match="^Du streckst Deine Haende empor\.$"
+   name="BZauber_verwirrung_a12" group="BZauber_start_verwirrung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^(.*) (erscheint|erscheinen) sichtlich verwirrt\.$"
+   name="BZauber_verwirrung_a13" group="BZauber_start_verwirrung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
+   CHAR_STUN = false
+   ZAUBER_VERWIRRUNG_START = os.time()
+   --print(os.time()-CHAR_STUN_START)
+   EnableTriggerGroup("BZauber_start_verwirrung", false)
+   </send></trigger>
+  <trigger match="^Bei (.*) laesst die Verwirrung nach\.$"
+   name="BZauber_verwirrung_a14" group="BZauber_stop_verwirrung" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="violet" regexp="y"><send>
+   --print(os.time()-ZAUBER_VERWIRRUNG_START)
+   </send></trigger>
+   
+--AKTIONEN ZUGELASSEN
+   --Feuerstrahl
+  <trigger match="^Du streckst Deine Hand nach vorn\.$"
+   name="BZauber_feuerstrahl_a01" group="BZauber_feuerstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="tomato" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Ein Feuerstrahl schiesst auf (.*)$"
+   name="BZauber_feuerstrahl_a02" group="BZauber_feuerstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="tomato" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du haeltst den Feuerstrahl weiterhin aufrecht\.$"
+   name="BZauber_feuerstrahl_a03" group="BZauber_feuerstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="tomato" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Der Feuerstrahl nimmt noch etwas zu, bricht dann ab und Du senkst Deine$"
+   name="BZauber_feuerstrahl_a04" group="BZauber_feuerstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="tomato" regexp="y"><send>
+   EnableTrigger("BZauber_feuerstrahl_a05", true)
+   </send></trigger>
+  <trigger match="^Hand wieder\.$"
+   name="BZauber_feuerstrahl_a05" group="BZauber_feuerstrahl" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="tomato" regexp="y"><send>
+   EnableTrigger("BZauber_feuerstrahl_a05", false)
+   </send></trigger>
+   
+   -- Wasserstrahl
+  <trigger match="^Du streckst Deine Hand nach vorn und etwas Nebel bildet sich um sie\.$"
+   name="BZauber_wasserstrahl_a01" group="BZauber_wasserstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="deepskyblue" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Ein Wasserstrahl schiesst auf (.*)"
+   name="BZauber_wasserstrahl_a02" group="BZauber_wasserstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="deepskyblue" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du haeltst den Wasserstrahl weiterhin aufrecht\.$"
+   name="BZauber_wasserstrahl_a03" group="BZauber_wasserstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="deepskyblue" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Der Wasserstrahl nimmt noch etwas zu, bricht dann ab und Du senkst Deine$"
+   name="BZauber_wasserstrahl_a04" group="BZauber_wasserstrahl" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="deepskyblue" regexp="y"><send>
+   EnableTrigger("BZauber_wasserstrahl_a05", true)
+   </send></trigger>
+  <trigger match="^Hand wieder\.$"
+   name="BZauber_wasserstrahl_a05" group="BZauber_wasserstrahl" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="deepskyblue" regexp="y"><send>
+   EnableTrigger("BZauber_wasserstrahl_a05", false)
+   </send></trigger>
+  
+--Erdpfeile
+  <trigger match="^Du konzentrierst Dich und es sammelt sich Staub in Deinen Haenden\.$"
+   name="BZauber_erdpfeile_a01" group="BZauber_erdpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du schmeisst den Staub in die Luft und murmelst dazu einige mystische$"
+   name="BZauber_erdpfeile_a02" group="BZauber_erdpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   EnableTrigger("BZauber_erdpfeile_a03", true)
+   </send></trigger>
+  <trigger match="^Worte\.$"
+   name="BZauber_erdpfeile_a03" group="BZauber_erdpfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   EnableTrigger("BZauber_erdpfeile_a03", false)
+   </send></trigger>
+  <trigger match="^Aus dem Staub bilden sich kleine Pfeile, die sich an Deiner Hand ausrichten$"
+   name="BZauber_erdpfeile_a04" group="BZauber_erdpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   EnableTrigger("BZauber_erdpfeile_a05", true)
+   </send></trigger>
+  <trigger match="^und zu gefaehrlichen Geschossen werden\.$"
+   name="BZauber_erdpfeile_a05" group="BZauber_erdpfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   EnableTrigger("BZauber_erdpfeile_a05", false)
+   </send></trigger>
+  <trigger match="^Der Schwarm Erdpfeile schiesst in Richtung (.*)"
+   name="BZauber_erdpfeile_a06" group="BZauber_erdpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="peru" regexp="y"><send>
+   </send></trigger>
+
+--Dornenpfeile
+  <trigger match="^Du konzentrierst Dich und in Deinen Haenden beginnt eine kleine Pflanze zu$"
+   name="BZauber_dornenpfeile_a01" group="BZauber_dornenpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   EnableTrigger("BZauber_dornenpfeile_a02", true)
+   </send></trigger>
+  <trigger match="^wachsen\.$"
+   name="BZauber_dornenpfeile_a02" group="BZauber_dornenpfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   EnableTrigger("BZauber_dornenpfeile_a02", false)
+   </send></trigger>
+  <trigger match="^An der Pflanze in Deinen Haenden bilden sich maechtige Dornen\.$"
+   name="BZauber_dornenpfeile_a03" group="BZauber_dornenpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Die Pflanze faellt in sich zusammen, die Dornen aber richten sich an Deiner$"
+   name="BZauber_dornenpfeile_a04" group="BZauber_dornenpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   EnableTrigger("BZauber_dornenpfeile_a05", true)
+   </send></trigger>
+  <trigger match="^Hand aus und werden zu gefaehrlichen Geschossen\.$"
+   name="BZauber_dornenpfeile_a05" group="BZauber_dornenpfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   EnableTrigger("BZauber_dornenpfeile_a05", false)
+   </send></trigger>
+  <trigger match="^Die Dornen schiessen in Richtung (.*)"
+   name="BZauber_dornenpfeile_a06" group="BZauber_dornenpfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lime" regexp="y"><send>
+   </send></trigger>
+
+--Eispfeile
+  <trigger match="^Du deutest mit Deinem linken Arm auf (.*)"
+   name="BZauber_eispfeile_a01" group="BZauber_eispfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a02", true)
+   </send></trigger> 
+  <trigger match="^(.*)nach oben\.$"
+   name="BZauber_eispfeile_a02" group="BZauber_eispfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a02", false)
+   </send></trigger> 
+  <trigger match="^Waehrend Du Deine Beschwoerungen murmelst, bilden sich ueber Deiner$"
+   name="BZauber_eispfeile_a03" group="BZauber_eispfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a04", true)
+   </send></trigger> 
+  <trigger match="^Handflaeche kleine, glitzernde Eiszapfen\.$"
+   name="BZauber_eispfeile_a04" group="BZauber_eispfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a04", false)
+   </send></trigger> 
+  <trigger match="^Langsam richten sich die Eiszapfen an Deiner Hand aus und werden so zu$"
+   name="BZauber_eispfeile_a05" group="BZauber_eispfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a06", true)
+   </send></trigger>
+  <trigger match="^gefaehrlichen Geschossen\.$"
+   name="BZauber_eispfeile_a06" group="BZauber_eispfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a06", false)
+   </send></trigger>
+  <trigger match="^Der Schwarm glitzernder Eiszapfen schiesst in Richtung (.*)"
+   name="BZauber_eispfeile_a07" group="BZauber_eispfeile" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   if not string.match("%1", "%.") then
+     EnableTrigger("BZauber_eispfeile_a08", true)
+   end
+   </send></trigger>   
+  <trigger match="^(.*)davon\.$"
+   name="BZauber_eispfeile_a08" group="BZauber_eispfeile" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="steelblue" regexp="y"><send>
+   EnableTrigger("BZauber_eispfeile_a08", false)
+   </send></trigger>  
+   
+--Sandsturm
+  <trigger match="^Du nimmst einen kleinen Felsbrocken in die Hand und starrst diesen tief$"
+   name="BZauber_sandsturm_a01" group="BZauber_sandsturm" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a02", true)
+   </send></trigger> 
+  <trigger match="^konzentriert an\. Kleine Manawoelkchen bilden sich und umkreisen den$"
+   name="BZauber_sandsturm_a02" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a03", true)   
+   EnableTrigger("BZauber_sandsturm_a02", false)
+   </send></trigger> 
+  <trigger match="^Felsbrocken, vereinzelt loesen sich Sandkoerner von diesem\.$"
+   name="BZauber_sandsturm_a03" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send> 
+   EnableTrigger("BZauber_sandsturm_a03", false)
+   </send></trigger> 
+  <trigger match="^Immer mehr Sandkoerner loesen sich von dem Felsbrocken in Deinen Haenden,$"
+   name="BZauber_sandsturm_a04" group="BZauber_sandsturm" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a05", true)
+   </send></trigger> 
+  <trigger match="^dabei wird der Felsbrocken selbst aber nicht kleiner\. Inzwischen tost und$"
+   name="BZauber_sandsturm_a05" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a06", true)   
+   EnableTrigger("BZauber_sandsturm_a05", false)
+   </send></trigger> 
+  <trigger match="^braust dort ein wahrer Sandsturm\.$"
+   name="BZauber_sandsturm_a06" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a06", false)
+   </send></trigger> 
+  <trigger match="^Von einigen mysterioesen Woertern begleitet streckst Du Deine Haende aus\.$"
+   name="BZauber_sandsturm_a07" group="BZauber_sandsturm" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a08", true)
+   </send></trigger> 
+  <trigger match="^Der erzeugte Sandsturm nimmt noch einen kurzen Anlauf und braust mit vollem$"
+   name="BZauber_sandsturm_a08" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a09", true)
+   EnableTrigger("BZauber_sandsturm_a08", false)
+   </send></trigger> 
+  <trigger match="^Schwung auf (.*), die (.*)"
+   name="BZauber_sandsturm_a09" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a10", true)
+   EnableTrigger("BZauber_sandsturm_a09", false)
+   </send></trigger> 
+  <trigger match="^(.*) sie nicht die volle Wucht (.*)"
+   name="BZauber_sandsturm_a10" group="BZauber_sandsturm" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="sandybrown" regexp="y"><send>
+   EnableTrigger("BZauber_sandsturm_a10", false)
+   </send></trigger> 
+
+--Feuerball
+  <trigger match="^Du konzentrierst Dich und ballst Deine rechte Hand\.$"
+   name="BZauber_feuerball_a01" group="BZauber_feuerball" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   </send></trigger> 
+  <trigger match="^Du streckst Deine Hand ruckartig nach vorn, gruene Manawolken umspielen sie$"
+   name="BZauber_feuerball_a02" group="BZauber_feuerball" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   EnableTrigger("BZauber_feuerball_a03", true)
+   </send></trigger> 
+  <trigger match="^wie Elms-Feuer\.$"
+   name="BZauber_feuerball_a03" group="BZauber_feuerball" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   EnableTrigger("BZauber_feuerball_a03", false)
+   </send></trigger> 
+  <trigger match="^Ein leuchtender Feuerball, umhuellt von gruenen Manawolken, schiesst direkt$"
+   name="BZauber_feuerball_a04" group="BZauber_feuerball" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   EnableTrigger("BZauber_feuerball_a05", true)
+   </send></trigger> 
+  <trigger match="^auf (.*)"
+   name="BZauber_feuerball_a05" group="BZauber_feuerball" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   EnableTrigger("BZauber_feuerball_a05", false)
+   </send></trigger>
+   
+   
+   --MANA
+  
+  <trigger match="^Du gehst in die Knie und beruehrst mit beiden Haenden den Boden\.$"
+   name="BZauber_mana_a01" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   CHAR_STUN = true
+   CHAR_STUN_ZAUBER = "mana"
+   CHAR_STUN_START = os.time() 
+   ZAUBER_MANA_RANG = ZAUBER_RANG
+   --for k, v in ipairs(ZAUBER_STUNDAUER) do 
+   --if k == "mana" then print(index, value) end
+   ZAUBER_STUNDAUER["mana"] = 1000000
+   </send></trigger>
+  <trigger match="^Manawolken steigen langsam aus dem Boden auf und umgeben Dich\.$"
+   name="BZauber_mana_a02" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du neigst Deinen Kopf etwas, das Atmen faellt Dir immer schwerer\.$"
+   name="BZauber_mana_a03" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du faengst an, in den Manawolken zu schweben\.$"
+   name="BZauber_mana_a04" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   MANA_TIC = 0  
+   CHAR_MP_START = CHAR_MP
+   </send></trigger>
+  <trigger match="^Kleine Blitze zucken aus den Manawolken auf Dich herab\.$"
+   name="BZauber_mana_a05" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   MANA_TIC = MANA_TIC + 1
+   CHAR_MP_TIC = CHAR_MP
+   if ZAUBER_STUNDAUER["mana"] == 1000000 then
+     ZAUBER_STUNDAUER["mana"] = math.ceil((9999-CHAR_MP)/((CHAR_MP_TIC-CHAR_MP_START)/MANA_TIC))*20
+	 CHAR_STUN_START = os.time()
+   end	 
+   </send></trigger>
+  <trigger match="^Du fuehlst Dich wieder kraeftiger\.$"
+   name="BZauber_mana_a06" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du spuerst wieder Boden unter den Fuessen\.$"
+   name="BZauber_mana_a07" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Du wachst langsam wieder auf\.$"
+   name="BZauber_mana_a08" group="BZauber_start_mana" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="honeydew" regexp="y"><send>
+   CHAR_STUN = false
+   EnableTriggerGroup("BZauber_start_mana", false)
+   </send></trigger>
+  
+  --magieaufladung
+  <trigger match="^Du beginnst Deine regenerativen Energien anzuzapfen\.$"
+   name="BZauber_magieaufladung_a01" group="BZauber_start_magieaufladung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "magieaufladung"
+   ZAUBER_MAGIEAUFLADUNG_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Du spuerst, wie die Energien Dir zur Verfuegung stehen\.$"
+   name="BZauber_magieaufladung_a02" group="BZauber_start_magieaufladung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>   
+   </send></trigger>
+  <trigger match="^Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\.$"
+   name="BZauber_magieaufladung_a03" group="BZauber_start_magieaufladung" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_MAGIEAUFLADUNG_START = os.time()
+   EnableTriggerGroup("BZauber_start_magieaufladung", false)
+   if ZAUBER_MAGIEAUFLADUNG_RANG ~= nil then
+     table.insert(Z_AKT, "magieaufladung"..ZAUBER_MAGIEAUFLADUNG_RANG)
+   end
+   win_update()  
+   </send></trigger>
+  <trigger match="^Deine Energien fliessen wieder normal\.$"
+   name="BZauber_magieaufladung_a04" group="BZauber_stop_magieaufladung" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="lightsalmon" regexp="y"><send>
+   --print(os.time()-ZAUBER_MAGIEAUFLADUNG_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_MAGIEAUFLADUNG_RANG ~= nil then
+    if value == "magieaufladung"..ZAUBER_MAGIEAUFLADUNG_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>
+   
+  --magiertrance
+  <trigger match="^Du beginnst Deinen Zauberspruch vorzubereiten\.$"
+   name="BZauber_magiertrance_a01" group="BZauber_start_magiertrance" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   CHAR_STUN = true  
+   CHAR_STUN_START = os.time()   
+   CHAR_STUN_ZAUBER = "magiertrance"
+   ZAUBER_MAGIERTRANCE_RANG = ZAUBER_RANG
+   </send></trigger>
+  <trigger match="^Du sinkst in tiefe Trance\.$"
+   name="BZauber_magiertrance_a02" group="BZauber_start_magiertrance" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^Die Welt um Dich herum verliert an Bedeutung\. Nur noch Deine Zauber sind$"
+   name="BZauber_magiertrance_a03" group="BZauber_start_magiertrance" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   </send></trigger>
+  <trigger match="^wichtig\.$"
+   name="BZauber_magiertrance_a04" group="BZauber_start_magiertrance" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   --print(os.time()-CHAR_STUN_START)
+   CHAR_STUN = false
+   ZAUBER_MAGIERTRANCE_START = os.time()
+   EnableTriggerGroup("BZauber_start_magiertrance", false)
+   if ZAUBER_MAGIERTRANCE_RANG ~= nil then
+     table.insert(Z_AKT, "magiertrance"..ZAUBER_MAGIERTRANCE_RANG)
+   end
+   win_update() 
+   </send></trigger>
+   
+  <trigger match="^Du erwachst aus Deiner Trance\.$"
+   name="BZauber_magiertrance_a05" group="BZauber_stop_magiertrance" enabled="y" send_to="12" sequence="100" custom_colour="17" other_text_colour="salmon" regexp="y"><send>
+   --print(os.time()-ZAUBER_MAGIERTRANCE_START)
+   for index, value in ipairs(Z_AKT) do
+    if ZAUBER_MAGIERTRANCE_RANG ~= nil then
+    if value == "magiertrance"..ZAUBER_MAGIERTRANCE_RANG then
+      table.remove(Z_AKT, index)
+    end end
+   end	
+   win_update()
+   </send></trigger>   
+
+  --Abbruchtrigger
+ <trigger match="^Du bist bereits in Trance(.*)\.$"
+  name="BZauber_Trance_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered" regexp="y"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="Du wirst bereits von einer magischen Aura umhuellt."
+  name="BZauber_Aura_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="Du bist doch bereits von einer Schadensreflexion umgeben."
+  name="BZauber_Daemonenhaut_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="Du hast Dir doch schon ein Licht gezaubert."
+  name="BZauber_Licht_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="Du bist doch schon im Blutrausch."
+  name="BZauber_Blutrausch_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="Diesen Zauber kennst Du nicht."
+  name="BZauber_Allgemein_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="^(.*) nicht gefunden.$"
+  name="BZauber_Ziel_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered" regexp="y"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+ <trigger match="^Du bist bereits von einem magischen Schild umgeben\.$"
+  name="BZauber_Schild_Abbruch" group="BZauber_abbruch" enabled="n" send_to="12" sequence="100" custom_colour="17" other_text_colour="orangered" regexp="y"><send>
+  EnableTriggerGroup("BZauber_start_"..ZAUBER_VALID, false)
+  EnableTriggerGroup("BZauber_abbruch", false)
+  </send></trigger>
+  
+</triggers>
+
+<include name="constants.lua"/>
+
+<script>
+<![CDATA[
+
+ATCP = nil
+PPI = require("ppi")
+avalon=PPI.Load(world.GetPluginVariable("","avalon"))
+world.DoAfterSpecial(0.5, "PluginInstall()",12)
+function mousedown(flags, hotspot_id)
+
+  -- find where mouse is so we can adjust window relative to mouse
+  startx, starty = WindowInfo ("Zauber", 14), WindowInfo ("Zauber", 15)
+
+  -- find where window is in case we drag it offscreen
+  origx, origy = WindowInfo ("Zauber", 10), WindowInfo ("Zauber", 11)
+end -- mousedown
+
+function dragmove(flags, hotspot_id)
+
+  -- find where it is now
+  local posx, posy = WindowInfo ("Zauber", 17),
+                     WindowInfo ("Zauber", 18)
+
+  -- move the window to the new location
+  WindowPosition("Zauber", posx - startx, posy - starty, 0, 2);
+
+  -- change the mouse cursor shape appropriately
+  if posx < 0 or posx > GetInfo (281) or
+     posy < 0 or posy > GetInfo (280) then
+    check (SetCursor ( 11))   -- X cursor
+  else
+    check (SetCursor ( 1))   -- hand cursor
+  end -- if
+end -- dragmove
+
+function dragrelease(flags, hotspot_id)
+  local newx, newy = WindowInfo ("Zauber", 17), WindowInfo ("Zauber", 18)
+
+  -- don't let them drag it out of view
+  if newx < 0 or newx > GetInfo (281) or
+     newy < 0 or newy > GetInfo (280) then
+     -- put it back
+    WindowPosition("Zauber", origx, origy, 0, 2);
+  end -- if out of bounds
+end -- dragrelease
+
+function has_value (tab, val)
+  for index, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+  return false
+end	
+
+--table in table, val = gesuchte value, pos = stelle in table,table
+function has_tab_value (tab, val, pos)
+  for index, value in ipairs(tab) do
+    if value[pos] == val then
+      return true
+    end
+  end
+  return false
+end	
+
+function has_key (tab, key)
+  for index, value in pairs(tab) do
+    if tostring(index) == tostring(key) then
+      return true
+    end
+  end
+  return false
+end	
+
+function spreche_zauber(text)
+  --Leerzeilen vorne weg
+  if string.match(text, "^%s*") then
+    text = string.gsub(text, "^%s*", "") 
+  end
+  --print("Gesamter Text: "..text)  
+  --fragezeichen 
+  if string.match(text, "^%?") then
+    print("fragezeichen")
+  --beginnt mit einem echten wort dann separiere
+  elseif string.match(text, "^%a+") then
+    if string.match(text, "^%a+") == "stop" then 
+	  --print("zauberabbruch")
+	  
+	  if string.match(text, "^stop%s*$") then
+	    --print("unspezifischer Abbruch")
+		CHAR_STUN = false
+	    EnableTriggerGroup("BZauber_start_"..CHAR_STUN_ZAUBER, false)
+	  elseif string.match(text, "^stop%s+%a+") then
+	    text = string.gsub(text, "^stop%s+", "")
+	    --print("spezifischer Abbruch von "..string.match(text, "%a+"))
+		EnableTriggerGroup("BZauber_start_"..string.match(text, "^%a+"), false)
+	  else
+        --print("falsche eingabe")
+      end		
+	elseif string.match(text, "^%a+") == "trank" then --print("trankzauber")
+    elseif string.match(text, "^%a+") == "rolle" then --print("rollenzauber")
+	elseif string.match(text, "^%a+") == "z" or string.match(text, "^%a+") == "zauberstab" then --print("zauberstabzauber")
+	elseif string.match(text, "^%a+") == "v" or string.match(text, "^%a+") == "vorbereitung" then --print("vorbereitungszauber")
+	elseif has_tab_value(ZAUBER_LISTE, string.match(text, "^%a+"), 1) then 
+	  --print("zauber")
+	  for i = 1, #ZAUBER_LISTE do
+	    if string.match(text, "^%a+") == ZAUBER_LISTE[i][1] then
+		  ZAUBER_GESCHW = string.gsub(text, "^%a+%s*", "")
+		  ZAUBER_RANG = string.gsub(ZAUBER_GESCHW, "[+-]%s*", "")
+		  ZAUBER_WOERTER = ZAUBER_RANG
+		  ZAUBER_ZIEL = string.match(ZAUBER_RANG, "%a+$") 
+		  --print(ZAUBER_GESCHW)
+		  if string.match(ZAUBER_GESCHW, ".[^-]%-%s+") or string.match(ZAUBER_GESCHW, ".[^-]%-$") or string.match(ZAUBER_GESCHW, "^%-$") or string.match(ZAUBER_GESCHW, "^%-%s+") then
+            ZAUBER_GESCHW = -1
+	      elseif string.match(ZAUBER_GESCHW, "%-%- ") or string.match(ZAUBER_GESCHW, "%-%-$") then
+		    ZAUBER_GESCHW = -2
+		  elseif string.match(ZAUBER_GESCHW, "%+ ") or string.match(ZAUBER_GESCHW, "%+$") then
+            ZAUBER_GESCHW = 1
+		  else
+            ZAUBER_GESCHW = 0		  
+	      end          
+          --print(ZAUBER_GESCHW)		  
+          if string.match(ZAUBER_RANG, "^ii%s*$") or string.match(ZAUBER_RANG, "^ii%s+") or string.match(ZAUBER_RANG, "^2%s*$") or string.match(ZAUBER_RANG, "^2%s+") then
+		    ZAUBER_RANG = 2
+          elseif string.match(ZAUBER_RANG, "^iii%s*$") or string.match(ZAUBER_RANG, "^iii%s+") or string.match(ZAUBER_RANG, "^3%s*$") or string.match(ZAUBER_RANG, "^3%s+")then
+		    ZAUBER_RANG = 3
+		  elseif string.match(ZAUBER_RANG, "^iv%s*$") or string.match(ZAUBER_RANG, "^iv%s+") or string.match(ZAUBER_RANG, "^iiii%s*$") or string.match(ZAUBER_RANG, "^iiii%s+") or string.match(ZAUBER_RANG, "^4%s*$") or string.match(ZAUBER_RANG, "^4%s+")then
+		    ZAUBER_RANG = 4
+		  elseif string.match(ZAUBER_RANG, "^v%s*$") or string.match(ZAUBER_RANG, "^v%s+") or string.match(ZAUBER_RANG, "^iiiii%s*$") or string.match(ZAUBER_RANG, "^iiiii%s+") or string.match(ZAUBER_RANG, "^5%s*$") or string.match(ZAUBER_RANG, "^5%s+")then
+		    ZAUBER_RANG = 5
+		  else
+		    ZAUBER_RANG = 1
+	      end
+		  if not has_value(RANG_LISTE, ZAUBER_ZIEL) then
+            --print("Ziel:", ZAUBER_ZIEL)
+          end			
+		  if check_zauber_rang(ZAUBER_LISTE[i][1], ZAUBER_RANG) then 
+		    if string.match(ZAUBER_WOERTER, "^%w*%s*%w*%s*%w*$") then
+		    if not has_value(Z_AKT, ZAUBER_LISTE[i][1]..ZAUBER_RANG) then
+              if (ZAUBER_GESCHW == 0 and ZAUBER_LISTE[i][3] == 0) or ZAUBER_LISTE[i][3] == 1 then 			
+		        --print("valider zauber", ZAUBER_LISTE[i][1], ZAUBER_RANG, ZAUBER_GESCHW)
+			    EnableTriggerGroup("BZauber_start_"..ZAUBER_LISTE[i][1], true)
+				EnableTriggerGroup("BZauber_abbruch", true)
+			    ZAUBER_VALID = ZAUBER_LISTE[i][1]
+			  else
+                --print("geschwindigkeit falsch")
+				ZAUBER_VALID = ""
+              end				
+			else
+			  ZAUBER_VALID = ""
+			  --print("bereits aktiv")
+			end
+            else
+			  --print("zuviele woerter")
+			  ZAUBER_VALID = ""
+ 			end
+		  else
+		    --print("zauber existiert nicht")
+			ZAUBER_VALID = ""
+		  end
+		  if string.match(text, "zauberstab$") then
+		    --print("zauberstab ladung")
+		  end	
+	    end
+	  end
+	else 
+	--print("invalide eingabe")
+	ZAUBER_VALID = ""
+	end
+  end	
+  
+end
+
+function check_zauber_rang (zaubername, rang)
+  for i = 1,#ZAUBER_LISTE do
+    if ZAUBER_LISTE[i][1] == zaubername then
+	  if ZAUBER_LISTE[i][2] >= rang then
+        return true
+      end
+	end
+  end
+  return false
+end	
+
+-- VARIABLEN
+  WINDOW_WIDTH = 200
+  WINDOW_HEIGHT = 300
+  FONT_NAME = "FixedSys"
+  FONT_SIZE = "9"
+  FONT_NAME_2 = "Lucida Console"
+  FONT_SIZE_2 = "8"
+  ANWESENDE_SPIELER = 1
+  ZAUBER_X = 1300
+  Z_ALL = 0
+  Z_SCHUTZ = ""
+  Z_AKT = {} -- alle aktiven zauber
+  ZAUBER_RANG = 6
+  ZAUBER_VALID = false
+  ZAUBER_SLOW = ""
+  ZAUBER_FAST = ""
+  ZAUBER_GESCHW = ""
+    
+  CHAR_STUN = false
+  CHAR_STUN_START = 0
+  CHAR_STUN_ZAUBER = ""
+  
+  RANG_LISTE = {"1", "2", "3", "4", "5", "i", "ii", "iii", "iiii", "iiiii", "iv", "v"}
+  
+  --{"name", maxrang, beschl}
+  ZAUBER_LISTE = {{"arkanschild", 1, 1}, 
+                  {"blink", 1, 0}, {"blitz", 5, 1}, {"blutrausch", 2, 0},
+				  {"daemonenhaut", 2, 1}, {"daemonenschwert", 2, 0}, {"dornenpfeile", 2, 1}, {"durstloescher", 3, 0}, 
+				  {"eiskeule", 2, 0}, {"eispfeile", 2, 1}, {"eissturm", 3, 1}, {"entgiften", 1, 0}, {"entladung", 1, 0}, {"entseuchen", 2, 0}, {"entzuenden", 2, 1}, {"erdaura", 3, 0}, {"erdbeben", 2, 1}, {"erdelementar", 2, 1}, {"erdpfeile", 2, 1}, {"erschrecken", 1, 0},
+				  {"felsensaxt", 2, 0}, {"feueraura", 3, 0}, {"feuerball", 2, 1}, {"feuerelementar", 2, 1}, {"feuerstrahl", 5, 0}, {"finsternis", 1, 0}, {"flammenspeer", 2, 0}, {"funkenentladung", 5, 1},
+				  {"gruppenheilen", 2, 0},  
+				  {"heilen", 5, 0}, {"hypnose", 2, 0}, 
+				  {"illusion", 5, 0},
+				  {"karte", 3, 0}, {"knacken", 2, 0}, 
+				  {"lavastoss", 5, 1}, {"lebensaugen", 2, 1}, {"lebensaura", 3, 0}, {"licht", 3, 0}, {"luftaura", 3, 0}, {"luftelementar", 2, 1},
+				  {"magieaufladung", 1, 0}, {"magiertrance", 1, 0}, {"mana", 4, 0}, {"manarausch", 3, 0}, {"mondtor", 1, 0},
+				  {"saettigung", 1, 0}, {"sandsturm", 2, 1}, {"schattensphaere", 3, 0}, {"schild", 5, 0}, {"schlaf", 1, 0}, {"selbstbild", 1, 0}, {"selbstheilung", 3, 0}, {"speise", 3, 0}, {"statue", 2, 0}, {"steinhaut", 2, 0},
+				  {"television", 3, 0}, {"todesaura", 3, 0}, 
+				  {"unterstuetzung", 1, 0}, {"untersuchen", 1, 0}, 
+				  {"vergessen", 2, 1}, {"verwirrung", 2, 1}, {"vortex", 2, 1}, {"vovin", 1, 0},
+                  {"wasseraura", 3, 0}, {"wasserelementar", 2, 1}, {"wasserschwall", 2, 1}, {"wasserstrahl", 5, 0}, {"windbogen", 2, 0}, {"windhaut", 2, 0}, {"wirbelsturm", 3, 1}
+                 }				  
+  
+    for i = 1, #ZAUBER_LISTE do
+    _G["ZAUBER_"..string.upper(ZAUBER_LISTE[i][1]).."_RANG"] = ""
+	_G["ZAUBER_"..string.upper(ZAUBER_LISTE[i][1]).."_START"] = 0
+  end
+   
+
+  ZAUBER_DAUER = {arkanschild1 = 600, blink1 = 5, blutrausch1 = 240, blutrausch2 = 600, daemonenhaut1 = 600, daemonenhaut2 = 600, 
+                  erdaura1 = 600, erdaura2 = 600, erdaura3 = 1200,
+				  luftaura1 = 600, luftaura2 = 600, luftaura3 = 1200,
+				  feueraura1 = 600, feueraura2 = 600, feueraura3 = 1200,
+				  wasseraura1 = 600, wasseraura2 = 600, wasseraura3 = 1200,
+				  lebensaura1 = 600, lebensaura2 = 600, lebensaura3 = 1200,
+				  todesaura1 = 600, todesaura2 = 600, todesaura3 = 1200,
+                  licht1 = 240, licht2 = 600, licht3 = 1200, 
+				  schild1 = 180, schild2 = 600, schild3 = 600, schild4 = 600, schild5 = 600, 
+				  windhaut1 = 600, windhaut2 = 600,
+				  steinhaut1 = 1800, steinhaut2 = 1800,
+				  magieaufladung1 = 600, magiertrance1 = 600}		
+
+				  
+  ZAUBER_STUNDAUER = {arkanschild_p = 6, arkanschild = 12, arkanschild_m = 18, arkanschild_mm = 24, 
+                      erdaura = 12, erdaura_3 = 10,
+					  luftaura = 12, luftaura_3 = 8,
+					  feueraura = 12, feueraura_3 = 11,
+					  wasseraura = 12, wasseraura_3 = 12,
+					  lebensaura = 11, lebensaura_3 = 20,
+					  todesaura = 11, todesaura_3 = 10,
+                      licht = 8, durstloescher = 8, speise = 18, blutrausch = 15, 
+					  daemonenhaut_p = 6, daemonenhaut = 11, daemonenhaut_m = 18, daemonenhaut_mm = 22,
+					  schild = 12,
+					  steinhaut = 8,
+					  windhaut = 12,
+				      blitz_p = 6, blitz = 12, blitz_m = 18, blitz_mm = 24,
+					  lavastoss_p = 6, lavastoss = 12, lavastoss_m = 18, lavastoss_mm = 24,
+					  wirbelsturm_p = 6, wirbelsturm = 12, wirbelsturm_m = 18, wirbelsturm_mm = 24,
+					  erdbeben_p = 10, erdbeben = 20, erdbeben_m = 30, erdbeben_mm = 40,
+					  eissturm_p = 6, eissturm = 12, eissturm_m = 18, eissturm_mm = 24,
+					  verwirrung_p = 4, verwirrung = 8, verwirrung_m = 12, verwirrung_mm = 16,
+					  vergessen_p = 6, vergessen = 12, vergessen_m = 18, vergessen_mm = 24,
+					  mana = 1000000, magieaufladung = 8, magiertrance = 8}					 
+				 
+				 
+				 
+
+function OnAvalonZaubern(type, text)
+  Z_ALL = string.match(text, "%d+")
+end
+
+function OnAvalonSchutz(type, text)
+  Z_SCHUTZ = text
+end
+
+function OnAvalonMP(type, text)
+  CHAR_MP = string.match(text, "%d+")
+end
+
+function OnAvalonContainer(type, text)
+  if string.match(text, "hier .-$") then 
+    ANWESENDE_SPIELER = 0
+    for spieler in string.gmatch(text, "avalon/spieler/") do
+      ANWESENDE_SPIELER = ANWESENDE_SPIELER + 1
+    end 
+  end  
+end
+
+function PluginInstall()
+  --Berechnung der Fenstergröße
+  startsize() 
+  --Fenster erstellen
+  win_create()
+  --Timer erstellen für den Refresh des Fensters
+  AddTimer ("One_Sec_Update", 0, 0, 0.5, "", timer_flag.Enabled, "One_Sec_Update")
+
+  --mit ATCP Plugin linken
+  ATCP = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+
+  ATCP.Listen("Avalon.Zaubern", OnAvalonZaubern)
+  ATCP.Listen("Avalon.Schutz", OnAvalonSchutz)
+  ATCP.Listen("Avalon.MP", OnAvalonMP)
+  ATCP.Listen("Avalon.Container", OnAvalonContainer)
+  
+  avalon.HookCallback("CLOSE",PluginClose)
+
+end
+
+function startsize()
+  ZAUBER_X = GetInfo(281)-GetInfo(274)
+  if IsPluginInstalled("f23b9119b2009a4a1817d254") then  
+   ZAUBER_X = ZAUBER_X - 150
+  end
+end
+
+function win_create()
+    local x, y, mode, flags =
+      tonumber (avalon.GetConfig("Zauber","windowx") or 0),
+      tonumber (avalon.GetConfig ("Zauber","windowy") or 0),
+      tonumber (avalon.GetConfig("Zauber","windowmode") or 8), -- bottom right
+      tonumber (avalon.GetConfig("Zauber","windowflags") or 0)
+  WindowCreate("Zauber",x,y,WINDOW_WIDTH,WINDOW_HEIGHT,mode,flags,GetNormalColour(5))  
+  WindowFont("Zauber", "bodyfont", FONT_NAME, FONT_SIZE)
+  WindowFont("Zauber", "bodyfont_2", FONT_NAME_2, FONT_SIZE_2)
+  WindowLoadImage("Zauber", "zborder", GetInfo(66).."images\\zborder.png") 
+  WindowLoadImage("Zauber", "zborder_l", GetInfo(66).."images\\zborder_links.png") 
+  for i = 1, #ZAUBER_LISTE do
+    for j = 1, ZAUBER_LISTE[i][2] do
+      WindowLoadImage("Zauber", ZAUBER_LISTE[i][1]..j, GetInfo(66).."images\\zicons\\"..ZAUBER_LISTE[i][1]..j..".png")
+    end  
+  end  
+      
+  WindowAddHotspot("Zauber", "sh1",
+               0, 0, 0, 0,   -- whole window
+               "",   -- MouseOver
+               "",   -- CancelMouseOver
+               "mousedown",
+               "",   -- CancelMouseDown
+               "",   -- MouseUp
+               "Drag to move",  -- tooltip text
+               1, 0)  -- hand cursor
+  
+  WindowDragHandler("Zauber", "sh1", "dragmove", "dragrelease", 0)
+  WindowShow("Zauber",true)  
+  win_update()
+end 
+
+function checksize()
+  if (IsPluginInstalled("f23b9119b2009a4a1817d254") and (ZAUBER_X ~= GetInfo(281)-GetInfo(274)-150)) or
+     ((not IsPluginInstalled("f23b9119b2009a4a1817d254")) and (ZAUBER_X ~= GetInfo(281)-GetInfo(274))) then
+    startsize()	
+    WindowCreate("Zauber",0,0,200,300,6,4,GetNormalColour(5))  
+    check (WindowFont("Zauber", "bodyfont", FONT_NAME, FONT_SIZE))
+    check (WindowFont("Zauber", "bodyfont_2", FONT_NAME_2, FONT_SIZE_2))
+    WindowShow("Zauber",true) 
+  end
+end
+
+function win_update()
+  --Fenstergröße vermessen
+  --checksize()
+  --Hintergrund
+  --for index, value in ipairs(WindowFontList("Zauber")) do print(index, value) end
+  WindowCircleOp ("Zauber", 2, 0,0,200,300, ColourNameToRGB ("black"), 0, 2, GetNormalColour(1), 0, 10, 10)
+  --Überschrift
+  --WindowText ("Zauber", "bodyfont", "Zauber:", 10, 2, 0, 0, ColourNameToRGB ("white"), false)
+  --Line linker Rand
+  WindowLine("Zauber", 0, 0, 0, 300, ColourNameToRGB ("white"), 0, 2)
+  WindowLine("Zauber", 200, 0, 200, 300, ColourNameToRGB ("white"), 0, 2)
+  WindowLine("Zauber", 0, 0, 200, 0, ColourNameToRGB ("white"), 0, 2)
+  WindowLine("Zauber", 0, 300, 200, 300, ColourNameToRGB ("white"), 0, 2)
+  if Z_SCHUTZ == "ungeschuetzt" then
+    --WindowText ("Zauber", "bodyfont", Z_SCHUTZ, 10, 40, 0, 0, ColourNameToRGB ("white"), false)
+  end	
+  for i = 1, #Z_AKT do
+  --WindowText ("Zauber", "bodyfont", Z_AKT[i], 10, 40+(i-1)*15, 0, 0, ColourNameToRGB ("white"), false)
+	--Balken
+	WindowCircleOp("Zauber", 2, 165-(((os.time()-_G["ZAUBER_"..string.upper(string.match(Z_AKT[i], "%a+")).."_START"])/ZAUBER_DAUER[Z_AKT[i]])*115), 29+(i-1)*50, 50, 8+29+(i-1)*50, ColourNameToRGB ("yellow"), 0, 1, ColourNameToRGB ("yellow"), 0)	
+	--Border
+	WindowDrawImageAlpha("Zauber", "zborder_l", 0, (i-1)*50, 0, 0, 1)
+	--Titel
+	WinTextMitRand ("Zauber", "bodyfont", firstToUpper(string.match(Z_AKT[i], "%a+")).." "..string.match(Z_AKT[i], "%d"), 63, 10+(i-1)*50, 0, 0, ColourNameToRGB ("white"), false, ColourNameToRGB ("black"), 1)
+	WinTextMitRand ("Zauber", "bodyfont_2", ZAUBER_DAUER[Z_AKT[i]]-(os.time()-_G["ZAUBER_"..string.upper(string.match(Z_AKT[i], "%a+")).."_START"]).." / "..ZAUBER_DAUER[Z_AKT[i]], 70, 28+(i-1)*50, 0, 0, ColourNameToRGB ("white"), false, ColourNameToRGB ("black"), 1)
+    --ZIcon
+	WindowDrawImageAlpha("Zauber", tostring(string.match(Z_AKT[i], "%a+")..string.match(Z_AKT[i], "%d")),11, 7+(i-1)*50, 0, 0, 1)
+	--WindowText ("Zauber", "bodyfont", ZAUBER_DAUER[Z_AKT[i]]-(os.time()-_G["ZAUBER_"..string.upper(string.match(Z_AKT[i], "%a+")).."_START"]), 50, 29+i*(29+50), 0, 0, ColourNameToRGB ("white"), false)
+  end	
+  if CHAR_STUN == true then
+	NAME_GEZAUBERT = "licht"
+	NAME_GEZAUBERT = CHAR_STUN_ZAUBER
+	if string.match(NAME_GEZAUBERT, "%a+_") then
+	  NAME_GEZAUBERT = string.sub(string.match(CHAR_STUN_ZAUBER, "%a+_"), 1, #string.match(CHAR_STUN_ZAUBER, "%a+_")-1)
+	end
+    --Balken
+	WindowCircleOp("Zauber", 2, 36-(((CHAR_STUN_START-os.time())/ZAUBER_STUNDAUER[CHAR_STUN_ZAUBER])*115), 29+250, 36+115, 29+8+250, ColourNameToRGB ("yellow"), 0, 1, ColourNameToRGB ("yellow"), 0)	
+	--Border
+	WindowDrawImageAlpha("Zauber", "zborder", 0, 250, 0, 0, 1)
+	--Titel
+	WinTextMitRand ("Zauber", "bodyfont", firstToUpper(NAME_GEZAUBERT).." ".._G["ZAUBER_"..string.upper(NAME_GEZAUBERT).."_RANG"], 30, 260, 0, 0, ColourNameToRGB ("white"), false, ColourNameToRGB ("black"), 1)
+    --ZIcon
+	WindowDrawImageAlpha("Zauber", tostring(NAME_GEZAUBERT.._G["ZAUBER_"..string.upper(NAME_GEZAUBERT).."_RANG"]),155, 257, 0, 0, 1)
+	--WindowText ("Zauber", "bodyfont", os.time()-CHAR_STUN_START-(ZAUBER_STUNDAUER[CHAR_STUN_ZAUBER]), 70, 90, 0, 0, ColourNameToRGB ("white"), false)
+  end
+end  
+
+function firstToUpper(str)
+    return (str:gsub("^%l", string.upper))
+end
+
+--Update des Chatfensters alle 1 Sekunde
+function One_Sec_Update()
+  win_update()
+end 
+
+--Erstellt einen schwarzen Rand um den Text
+function WinTextMitRand(wo,wie,text,wo_text_x,wo_text_y,wo_text_x2,wo_text_y2,text_farbe,unicode,rand_farbe,rand_staerke)
+  WindowText (wo, wie, text, wo_text_x+rand_staerke, wo_text_y,  wo_text_x2, wo_text_y2, rand_farbe, unicode)
+  WindowText (wo, wie, text, wo_text_x-rand_staerke, wo_text_y,  wo_text_x2, wo_text_y2, rand_farbe, unicode)
+  WindowText (wo, wie, text, wo_text_x, wo_text_y+rand_staerke,  wo_text_x2, wo_text_y2, rand_farbe, unicode)
+  WindowText (wo, wie, text, wo_text_x, wo_text_y-rand_staerke,  wo_text_x2, wo_text_y2, rand_farbe, unicode)
+  WindowText (wo, wie, text, wo_text_x, wo_text_y,  wo_text_x2, wo_text_y2, text_farbe, unicode)
+end
+
+function PluginClose ()
+  avalon.SetConfig("Zauber","enabled", tostring (GetPluginInfo (GetPluginID (), 17)))
+  avalon.SetConfig("Zauber","windowx", tostring (WindowInfo ("Zauber", 10)))
+  avalon.SetConfig("Zauber","windowy", tostring (WindowInfo ("Zauber", 11)))
+  avalon.SetConfig("Zauber","windowmode", tostring (WindowInfo ("Zauber", 7)))
+  avalon.SetConfig("Zauber","windowflags", tostring (WindowInfo ("Zauber", 8)))
+end -- PluginClose
+
+]]>
+</script>
+
+</muclient>
