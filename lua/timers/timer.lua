@@ -29,11 +29,9 @@ function Timer:_init(name, tick, duration, end_sound, print_function)
 
 end
 
-function Timer:_print_formatted_message(message, hours, mins, secs, colored)
+function Timer:_print_formatted_message(message, colored)
 
   colored = Types.to_bool(colored)
-
-  message = string.format(message, Zeit.format_time(hours, mins, secs))
 
   if self._print_function ~= nil then
     message = self._print_function(message)
@@ -78,7 +76,7 @@ function Timer:End()
   print_function = self._print_function
   self._print_function = nil
 
-  self:_print_formatted_message(self.name .. " wurde beendet, Dauer: %s", hours, mins, secs, true)
+  self:_print_formatted_message(string.format(self.name .. " wurde beendet, Dauer: %s", Zeit.format_time(hours, mins, secs)), true)
 
   self._print_function = print_function
 
@@ -91,7 +89,12 @@ function Timer:Print()
   local curr = self._time_fun()
   
   local hours, mins, secs = self:_diff(curr, self._creation_time)
-  self:_print_formatted_message(self.name .. " ist bereits %s aktiv", hours, mins, secs)
+
+  if self._end_time == 0 then
+    self:_print_formatted_message(string.format(self.name .. " ist bereits %s aktiv", Zeit.format_time(hours, mins, secs)))
+  else
+    self:_print_formatted_message(string.format(self.name .. " ist bereits %s aktiv und wird noch %s laufen", Zeit.format_time(hours, mins, secs), Zeit.format_time(Zeit.split_time(self._end_time - curr))))
+  end
 end
 
 function Timer:SetTick(tick)

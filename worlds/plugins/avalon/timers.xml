@@ -164,7 +164,7 @@ end
 function OnPluginInstall()
   PPI.Expose('AddTimer', function(name, tick, duration, end_sound, override, disable_heuristics)
 
-    local dur
+    local dur = 0
     local heuristical_print
 
     disable_heuristics = Types.to_bool(disable_heuristics)
@@ -179,7 +179,7 @@ function OnPluginInstall()
 
     end
 
-    if disable_heuristics == false  and dur > 0 then
+    if disable_heuristics == false and dur > 0 then
       heuristical_print = function(msg)
         return heuristics_print(name, msg)
       end
@@ -193,7 +193,7 @@ function OnPluginInstall()
         no_heuristics = disable_heuristics
       }
 
-      if dur ~= 0 then
+      if dur > 0 then
 
         world.Note("Voraussichtliche Laufzeit: " .. Zeit.format_time(Zeit.split_time(dur)))
 

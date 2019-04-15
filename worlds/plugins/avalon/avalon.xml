@@ -29,6 +29,14 @@
 <triggers>
   <trigger
    enabled="y"
+   match="Du bekommst nun eine Zeit lang erhoehte Erfahrung."
+   send_to="12"
+   sequence="100"
+  >
+  <send>Timers.AddTimer("Bonuserfahrung", 60 * 10, 60 * 60, "", true, true)</send>
+  </trigger>
+  <trigger
+   enabled="y"
    match="Du musst hier schon schwimmen, um weiterzukommen!"
    send_to="14"
    sequence="95"
@@ -4429,7 +4437,6 @@ plugintbl[14] = "avalon/timers.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
-auratbl={}
 gildentbl={}
 callbacktbl={}
 configtbl={}
@@ -4475,6 +4482,7 @@ Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
 Tablex = require("pl.tablex")
+Timers = nil
 Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
 Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
 Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
@@ -4838,33 +4846,40 @@ function OnPluginClose()
 end
 
 OnPluginListChanged = function()
+
   if (atcp == nil) then
-  atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
-  if not atcp then
-    Note("ATCP funktioniert nicht!")
-  elseif reloaded then
-    atcp.Listen("Avalon.TP", OnAvalonTP)
-    atcp.Listen("Avalon.SP", OnAvalonSP)
-    atcp.Listen("Avalon.AP", OnAvalonAP)
-    atcp.Listen("Avalon.MP", OnAvalonMP)
-    atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
-    atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
-    atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
-    atcp.Listen('Avalon.Level', OnAvalonLevel)
-    atcp.Listen("Avalon.EP", OnAvalonEP)
-    atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
-    atcp.Listen('Avalon.Channel', OnAvalonChannel)
-    atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
-    atcp.Listen('Avalon.Kampf', OnAvalonKampf)
-    atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
-    atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
-    atcp.Listen('Avalon.Gilde',OnAvalonGilde)
-    atcp.Listen('Avalon.RComm',OnAvalonChannel)
-    atcp.Listen('Avalon.Comm',OnAvalonComm)
-    atcp.Listen('Avalon.Soul',OnAvalonSoul)
-    atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
-    atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
+
+    atcp, reloaded = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
+
+    if atcp then
+      atcp.Listen("Avalon.TP", OnAvalonTP)
+      atcp.Listen("Avalon.SP", OnAvalonSP)
+      atcp.Listen("Avalon.AP", OnAvalonAP)
+      atcp.Listen("Avalon.MP", OnAvalonMP)
+      atcp.Listen("Avalon.MAXTP",OnAvalonMaxTP)
+      atcp.Listen("Avalon.MAXSP",OnAvalonMaxSP)
+      atcp.Listen("Avalon.MAXAP",OnAvalonMaxAP)
+      atcp.Listen('Avalon.Level', OnAvalonLevel)
+      atcp.Listen("Avalon.EP", OnAvalonEP)
+      atcp.Listen('Avalon.RoomID', OnAvalonRoomID)
+      atcp.Listen('Avalon.Channel', OnAvalonChannel)
+      atcp.Listen('Avalon.Dunkel', OnAvalonDunkel)
+      atcp.Listen('Avalon.Kampf', OnAvalonKampf)
+      atcp.Listen('Avalon.Getoetet', OnAvalonGetoetet)
+      atcp.Listen('Avalon.GruppeGetoetet', OnAvalonGetoetet)
+      atcp.Listen('Avalon.Gilde',OnAvalonGilde)
+      atcp.Listen('Avalon.RComm',OnAvalonChannel)
+      atcp.Listen('Avalon.Comm',OnAvalonComm)
+      atcp.Listen('Avalon.Soul',OnAvalonSoul)
+      atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
+      atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
+    end
   end
+
+  if Timers == nil then
+
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
+
   end
 end
 
