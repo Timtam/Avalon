@@ -1727,7 +1727,23 @@ function OnAvalonContainer(type, text)
   end  
 end
 
+function OnPluginDisable ()
+  WindowShow ("Zauber", false)
+  avalon.SetConfig("Zauber","enabled", tostring (false))
+end -- OnPluginDisable
+
+function OnPluginEnable()
+  avalon.SetConfig("Zauber","enabled", tostring (true))
+
+end
+
 function PluginInstall()
+
+  if (avalon.GetConfig ("Zauber","enabled") or "true") == "false" then
+    ColourNote ("yellow", "", "Warnung: Die Zauberanzeige ist derzeit deaktiviert.")
+    check (EnablePlugin(GetPluginID (), false))
+    return
+  end -- they didn't enable us last time
   --Berechnung der Fenstergröße
   startsize() 
   --Fenster erstellen
@@ -1863,7 +1879,6 @@ function WinTextMitRand(wo,wie,text,wo_text_x,wo_text_y,wo_text_x2,wo_text_y2,te
 end
 
 function PluginClose ()
-  avalon.SetConfig("Zauber","enabled", tostring (GetPluginInfo (GetPluginID (), 17)))
   avalon.SetConfig("Zauber","windowx", tostring (WindowInfo ("Zauber", 10)))
   avalon.SetConfig("Zauber","windowy", tostring (WindowInfo ("Zauber", 11)))
   avalon.SetConfig("Zauber","windowmode", tostring (WindowInfo ("Zauber", 7)))

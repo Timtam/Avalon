@@ -239,7 +239,7 @@ function PluginInstall ()
   font_height = WindowFontInfo (win, font_id, 1)  -- height
 
   if (avalon.GetConfig ("healthbar","enabled") or "true") == "false" then
-    ColourNote ("yellow", "", "Warning: Plugin " .. GetPluginName ().. " is currently disabled.")
+    ColourNote ("yellow", "", "Warnung: Die Healthbar ist derzeit deaktiviert.")
     check (EnablePlugin(GetPluginID (), false))
     return
   end -- they didn't enable us last time
@@ -255,10 +255,14 @@ end -- PluginInstall
 
 function OnPluginDisable ()
   WindowShow (win, false)
+  avalon.SetConfig("healthbar","enabled", tostring (false))
 end -- OnPluginDisable
 
+function OnPluginEnable()
+  avalon.SetConfig("healthbar","enabled", tostring (true))
+end
+
 function PluginClose ()
-  avalon.SetConfig("healthbar","enabled", tostring (GetPluginInfo (GetPluginID (), 17)))
   avalon.SetConfig("healthbar","windowx", tostring (WindowInfo (win, 10)))
   avalon.SetConfig("healthbar","windowy", tostring (WindowInfo (win, 11)))
   avalon.SetConfig("healthbar","windowmode", tostring (WindowInfo (win, 7)))
