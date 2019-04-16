@@ -308,6 +308,102 @@
   </trigger>
   <trigger
    enabled="n"
+   group="Hyraskrieger"
+   match="\|\s(\w*)(\s)*\|\s(.*)geladen\s\(\s([0-9]*)\s\%\)(\s)*\|(.*)(\s)*\|"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>get_febname("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="^(\w*)\s*(.*)geladen\s\(\s([0-9]*)\s\%\)\s*(.*)"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>get_febname("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="^(\s)*FEBRON\s\-\sUEBERSICHT"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>clear_feblist()</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="^Febron(\s*)Ladungszustand(\s*)Evolierung"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>clear_feblist()</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="*Etwas erschoepft ist er aber... Dein armer Febron!*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>world.Execute("febron")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="Du nimmst traurig Dein Febron * aus Deinem Febronenbeutel und wirfst*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>forget_feb("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="Du nimmst * aus Deinem Febronenbeutel und legst ihn vorsichtig in Dein*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>forget_feb("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="Du nimmst * aus Deinem Febronenlager heraus und legst ihn vorsichtig*"
+   send_to="12"
+   sequence="100"
+  >
+  <send>add_feb("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="^Versan murmelt leise einen Namen zu dem Febron, er hoert sich an wie (\w*)\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>get_febname("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Hyraskrieger"
+   match="^Schweren Herzens verschenkst Du Dein Febron &quot;(\w*)&quot; an (\w*)\."
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>forget_feb("%1")</send>
+  </trigger>
+  <trigger
+   enabled="n"
    group="Spiele_Hajo"
    match="* hat damit * Punkte erreicht und gewonnen!"
    send_to="12"
@@ -4121,6 +4217,16 @@
   <send>dk_zh("%1")</send>
 </alias>
   <alias
+   match="ef([1-5]) (an\w*|st\w*|de\w*|of\w*|fu\w*|sc\w*|au\w*)"
+   group="Hyraskrieger"
+   enabled="n"
+   send_to="12"
+   sequence="100"
+   regexp="y"
+  >
+  <send>hyras_evo("%1","%2")</send>
+</alias>  
+  <alias
    match="rausl *"
    group="Spiele_Hajo"
    enabled="n"
@@ -4482,8 +4588,11 @@ File = require('pl.file')
 Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
+Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
+List = require("pl.list")
 Timers = nil
+febnames = List.new()
 Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
 Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
 Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
@@ -4755,7 +4864,7 @@ function OnPluginInstall()
   end
   Spells.ParseWarnings(configtbl.settings.Warnings)
   NumpadInit()
-  gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,gildendummy},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy},['Nekromanten']={false,gildendummy}}
+  gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,hyras_init},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy},['Nekromanten']={false,gildendummy}}
   Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
   if not Audio then
     error("Audio-Ausgabe konnte nicht initialisiert werden.")
@@ -5475,6 +5584,38 @@ function send_command(cmd)
   if current ~= "" then
     world.SetCommand(current)
   end  
+end
+
+function get_febname(name)
+  febnames:append(name)
+end
+
+function hyras_evo(wer, was)
+  if Stringx.startswith(was,"an") then was = "angriff" end
+  if Stringx.startswith(was,"sc") then was = "schutz" end
+  if Stringx.startswith(was,"of") then was = "offensiv" end
+  if Stringx.startswith(was,"de") then was = "defensiv" end
+  if Stringx.startswith(was,"st") then was = "stress" end
+  if Stringx.startswith(was,"fu") then was = "fuehrung" end
+  if Stringx.startswith(was,"au") then was = "aufladung" end
+  wer = febnames[tonumber(wer)]
+  world.Execute("evoliere "..wer.." "..was)
+end
+
+function clear_feblist()
+  febnames:clear()
+end
+
+function forget_feb(wer)
+  febnames:remove_value(wer)
+end
+
+function add_feb(wer)
+  febnames:put(wer)
+end
+
+function hyras_init()
+  world.Execute("febron")
 end
 ]]>
 </script>
