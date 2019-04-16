@@ -52,13 +52,13 @@
   <send>speedwalk_break()</send>
 </alias>
   <alias
-   match="^/([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)_?([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)$"
+   match="^/([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)_?([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)(\??)$"
    enabled="y"
    send_to="12"
    sequence="100"
    regexp="y"
   >
-  <send>speedwalk_start("%1", "%2")</send>
+  <send>speedwalk_start("%1", "%2", ("%3" == "?"))</send>
 </alias>
   <alias
    match="^/_([a-zA-Z0-9]*\.?[a-zA-Z0-9]*)$"
@@ -309,7 +309,7 @@ function safespeedwalks_switch()
   Avalon.PSND("Misc/ConfigSwitch.ogg")
 end
 
-function speedwalk_start(from, to)
+function speedwalk_start(from, to, group)
   -- die verschiedenen faelle
   -- es wird weder von, noch nach angegeben -> ein paar informationen
   if from == "" and to == "" then
@@ -408,7 +408,7 @@ function speedwalk_start(from, to)
     world.Note("Du bist doch schon hier.")
     return
   end
-  speedwalk_init(from, to)
+  speedwalk_init(from, to, group)
 end
 
 function speedwalk_list(filter)

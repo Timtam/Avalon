@@ -7,6 +7,7 @@ spdtbl = nil
 spdind = 0
 spdstep = 0
 spdtext = false
+spdgroup = false
 
 function get_unix_time()
   world.CallPlugin(world.GetPluginVariable("", "time"), "time", "")
@@ -15,14 +16,15 @@ function get_unix_time()
   return tonumber(rtime)
 end
 
-function speedwalk_init(from, to)
+function speedwalk_init(from, to, group)
   if speedwalk_running() then
     world.Note("Bitte warte, bis der derzeitige Speedwalk beendet ist.")
     return
   end
+  spdgroup = group
   paths = from:find_paths(to)
   paths:sort(function(a, b)
-    return Utils.way_duration(a) < Utils.way_duration(b)
+    return Utils.way_duration(a, group) < Utils.way_duration(b, group)
   end)
   spdtbl = nil
   local p
@@ -50,7 +52,7 @@ function speedwalk_init(from, to)
       end
     end)
   end
-  date = Date(os.time()+Utils.way_duration(spdtbl)):toLocal() - Date(os.time()):toLocal()
+  date = Date(os.time()+Utils.way_duration(spdtbl, group)):toLocal() - Date(os.time()):toLocal()
   world.Note("Voraussichtliche Ankunft in "..string.format("%d Minuten und %d Sekunden.", date:min(), date:sec()))
   --world.Note("Wir gehen ueber:")
   --world.Note(spdtbl:map(function(s) return s.domain.."."..s.name end):join(", "))
@@ -76,11 +78,23 @@ function speedwalk_process(text_incoming)
   continue_time = spdstep
   if spdind > 1 then
     if Types.type(spdtbl[spdind]) ~= 'string' then
-      continue_time = continue_time + Const.WALK_SPEED_EXTRA
+      if spdgroup == true then
+        continue_time = continue_time + Const.WALK_SPEED_EXTRA * Const.WALK_SPEED_EXTRA_GROUP_FACTOR
+      else
+        continue_time = continue_time + Const.WALK_SPEED_EXTRA
+      end
     elseif string.len(spdtbl[spdind]) <= 2 then
-      continue_time = continue_time + Const.WALK_SPEED
+      if spdgroup == true then
+        continue_time = continue_time + Const.WALK_SPEED * Const.WALK_SPEED_GROUP_FACTOR
+      else
+        continue_time = continue_time + Const.WALK_SPEED
+      end
     else
-      continue_time = continue_time + Const.WALK_SPEED_EXTRA
+      if spdgroup == true then
+        continue_time = continue_time + Const.WALK_SPEED_EXTRA * WALK_SPEED_EXTRA_GROUP_FACTOR
+      else
+        continue_time = continue_time + Const.WALK_SPEED_EXTRA
+      end
     end
   end
   if text_incoming == true then
@@ -131,6 +145,7 @@ end
 function speedwalk_deinit()
   spdstep = 0
   spdtext = false
+  spdgroup = false
   if spdind <= spdtbl:len() and Types.type(spdtbl[spdind]) ~= 'string' then
     spdtbl[spdind]:destroy()
   end

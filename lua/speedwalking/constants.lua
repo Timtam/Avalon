@@ -28,6 +28,8 @@ c = {
   SCRIPT_UNINITIALIZED = -2,
   SPEEDWALK_REGEX = "^([a-zA-Z0-9%.]+)_([a-zA-Z0-9%.]+)$",
   STATION_REGEX = "^([a-zA-Z0-9]*)%.?([a-zA-Z0-9]*)$",
+  WALK_SPEED_GROUP_FACTOR = 7,
+  WALK_SPEED_EXTRA_GROUP_FACTOR = 5,
   WALK_SPEED = 0.3,
   WALK_SPEED_EXTRA = 0.7
 }

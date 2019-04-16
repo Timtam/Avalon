@@ -48,15 +48,23 @@ Utils.way_length = function(l)
   return len
 end
 
-Utils.way_duration = function(l)
+Utils.way_duration = function(l, g)
   dur = 0
   p = Utils.resolve_way(l)
   p:foreach(function(d)
     if Types.type(d) == 'string' then
       if string.len(d) <= 2 then
-        dur = dur + Const.WALK_SPEED
+        if g == true then
+          dur = dur + Const.WALK_SPEED * Const.WALK_SPEED_GROUP_FACTOR
+        else
+          dur = dur + Const.WALK_SPEED
+        end
       else
-        dur = dur + Const.WALK_SPEED_EXTRA
+        if g == true then
+          dur = dur + Const.WALK_SPEED_EXTRA * Const.WALK_SPEED_EXTRA_GROUP_FACTOR
+        else
+          dur = dur + Const.WALK_SPEED_EXTRA
+        end
       end
     else
       dur = dur + d:get_duration()
