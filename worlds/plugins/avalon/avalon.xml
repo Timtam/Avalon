@@ -55,7 +55,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Dort versperrt Dir ein (Tor) den Weg\.$|^Da ist Dir doch das (Tor) im Weg\.$|^Dort versperrt Dir eine (Pforte|Tuer) den Weg\.$|^Die (Zaunpforte) ist geschlossen und versperrt Dir folglich den Weg\.$|^Solange das (Hafengatter) geschlossen ist\, kommst Du nicht durch\.$|^Da ist Dir doch das (Tor) im Weg\.$|^Du moechtest aber nicht durch die geschlossene (Tuer) laufen\?$"
+   match="^Dort versperrt Dir ein (Tor) den Weg\.$|^Da ist Dir doch das (Tor) im Weg[\.|\!]$|^Dort versperrt Dir eine (Pforte|Tuer) den Weg\.$|^Die (Zaunpforte) ist geschlossen und versperrt Dir folglich den Weg\.$|^Solange das (Hafengatter) geschlossen ist\, kommst Du nicht durch\.$|^Du moechtest aber nicht durch die geschlossene (Tuer) laufen\?$"
    regexp="y"
    script="open_door"
    sequence="95"
