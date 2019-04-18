@@ -4534,22 +4534,6 @@ LastCommand=nil
 mxp_output=false
 PlayerEP = nil
 PlayerLevel=nil
-plugintbl={}
-plugintbl[1]='ATCP.plugin/plugin.xml'
-plugintbl[2]="LuaAudio.xml"
-plugintbl[3]="output_functions.xml"
-plugintbl[4]="omit_blank_lines.xml"
-plugintbl[5]="channel_history.xml"
-plugintbl[6]="hyperlink_url2.xml"
-plugintbl[7]="timecatcher.xml"
-plugintbl[8]="avalon/speedwalking.xml"
-plugintbl[9]="avalon/speedwalk_mapper.xml"
-plugintbl[10]="avalon/healthbar.xml"
-plugintbl[11]="avalon/message_window.xml"
-plugintbl[12]="avalon/kompass.xml"
-plugintbl[13]="avalon/updater.xml"
-plugintbl[14] = "avalon/timers.xml"
-plugintbl[15] = "avalon/BZauber.xml"
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4557,7 +4541,6 @@ gildentbl={}
 callbacktbl={}
 configtbl={}
 configtbl.settings={}
-configtbl.settings.ScreenReader='MushReader'
 configtbl.settings.SoundVolume=100
 configtbl.settings.MusicVolume=10
 configtbl.settings.CombatMusicVolume=10
@@ -4573,7 +4556,6 @@ configtbl.settings.MXP=0
 configtbl.settings.FirstRun = 1
 configtbl.messagebox={}
 configtbl.messagebox.echo="false"
-world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
 world.Accelerator("F3", "spbar_switch")
 world.Accelerator("F4", "apbar_switch")
@@ -4873,11 +4855,6 @@ function OnPluginInstall()
   else
     config_graphics(false,true)
   end
-  plugintbl[#plugintbl+1] = configtbl.settings.ScreenReader..".xml"
-  for number, plugin in pairs(plugintbl) do
-    pluginpath = world.GetInfo(60).."/"..plugin
-    world.LoadPlugin(pluginpath)
-  end
   Spells.ParseWarnings(configtbl.settings.Warnings)
   NumpadInit()
   gildentbl={['Barden']={false,gildendummy},['Hyraskrieger']={false,hyras_init},['Runenschmiede']={false,gildendummy},['Golemkultisten']={false,gildendummy},['Formwandler']={false,gildendummy},['Magier']={false,gildendummy},['Kleriker']={false,gildendummy},['Daemonenkrieger']={false,dk_init},['Druiden']={false,gildendummy},['Nekromanten']={false,gildendummy}}
@@ -4964,9 +4941,6 @@ function OnPluginInstall()
     psnd)
   PPI.Expose("NoteColour",
     NoteColour)
-  if Path.exists(world.GetInfo(60).."avalon/user.xml") then
-    world.LoadPlugin(world.GetInfo(60).."avalon/user.xml")
-  end
 end
 
 function OnPluginClose()
@@ -5110,18 +5084,6 @@ function pmusic(file)
   end
   stopifplaying(hmusic)
   hmusic = Audio.play(file, 1, 0, configtbl.settings.MusicVolume)
-end
-
-function tts_switch()
-  world.UnloadPlugin(configtbl.settings.ScreenReader)
-  if (configtbl.settings.ScreenReader == "MushReader") then
-    configtbl.settings.ScreenReader = "tts_jfw"
-  else
-    configtbl.settings.ScreenReader = "MushReader"
-  end
-  world.LoadPlugin(world.GetInfo(60).."/"..configtbl.settings.ScreenReader..".xml")
-  world.Note("Ausgabesystem geändert.")
-  psnd("Misc/ConfigSwitch.ogg")
 end
 
 function volume(value)

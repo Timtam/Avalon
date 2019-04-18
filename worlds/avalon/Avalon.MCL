@@ -402,5 +402,21 @@
 </printing>
 
 <!-- plugins -->
+<include name="ATCP.plugin\plugin.xml" plugin="y" />
+<include name="LuaAudio.xml" plugin="y" />
+<include name="MushReader.xml" plugin="y" />
+<include name="output_functions.xml" plugin="y" />
+<include name="omit_blank_lines.xml" plugin="y" />
+<include name="channel_history.xml" plugin="y" />
+<include name="hyperlink_url2.xml" plugin="y" />
+<include name="timecatcher.xml" plugin="y" />
 <include name="avalon\avalon.xml" plugin="y" />
+<include name="avalon\speedwalking.xml" plugin="y" />
+<include name="avalon\speedwalk_mapper.xml" plugin="y" />
+<include name="avalon\healthbar.xml" plugin="y" />
+<include name="avalon\message_window.xml" plugin="y" />
+<include name="avalon\kompass.xml" plugin="y" />
+<include name="avalon\updater.xml" plugin="y" />
+<include name="avalon\timers.xml" plugin="y" />
+<include name="avalon\BZauber.xml" plugin="y" />
 </muclient>
