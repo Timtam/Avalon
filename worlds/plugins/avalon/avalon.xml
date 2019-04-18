@@ -1759,7 +1759,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Auf * lodert eine kleine Flamme kurz auf.|Das Feuer hinterlaesst tiefe, gluehende Spuren auf *"
+   match="Auf * lodert eine kleine Flamme kurz auf."
    sequence="100"
    send_to="12"
   >
@@ -2492,8 +2492,17 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
+   match="Die Illusion einer steinernen Faust schiesst aus *"
+   sequence="99"
+   send_to="12"
+  >
+  <send>psnd("Rune/Stone.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="n"
+   group="Runenschmiede"
    match="Die Illusion einer Granitfaust schiesst aus *"
-   sequence="100"
+   sequence="99"
    send_to="12"
   >
   <send>psnd("Rune/Granite.ogg")</send>
@@ -3085,7 +3094,7 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Du spuerst, wie die Magie Deiner Waffe Dir die Kraft Deines Feindes"
+   match="Du spuerst, wie die Magie von Deinem * Dir die *"
    sequence="100"
    send_to="12"
   >
