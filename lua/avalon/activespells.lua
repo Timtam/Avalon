@@ -1,16 +1,16 @@
 require("pairsbykeys")
-require("string_indexing")
 
-Avalon = nil
-List = require("pl.list")
-PPI = require("ppi")
-Tablex = require("pl.tablex")
-Timers = nil
-Types = require("pl.types")
+local Avalon = nil
+local List = require("pl.list")
+local PPI = require("ppi")
+local Stringx = require("pl.stringx")
+local Tablex = require("pl.tablex")
+local Timers = nil
+local Types = require("pl.types")
 
-earlycancel = 0
-spells = {}
-warnings = List.new()
+local earlycancel = 0
+local spells = {}
+local warnings = List.new()
 
 function spells_register(name, starttext, endtext, report_ep)
 
@@ -39,8 +39,8 @@ function spells_start(name)
     Timers = PPI.Load(world.GetPluginVariable("", "timers"))
   end
 
-  tick = 0
-  snd = ""
+  local tick = 0
+  local snd = ""
 
   if warnings:index(name) ~= nil then
     tick = 60
@@ -97,7 +97,7 @@ function spells_parsewarnings(warns)
   if warns == nil or warns == "" then
     return
   end
-  awarns = utils.split(warns, ",")
+  awarns = Stringx.split(warns, ",")
   for key, value in pairs(awarns) do
     if spells[value] == nil then
       world.Note("Die Warnung für den Zauber \""..value.."\" konnte nicht eingerichtet werden: Dieser Zauber wird vom Soundpack nicht unterstützt.")
@@ -108,22 +108,15 @@ function spells_parsewarnings(warns)
 end
 
 function spells_retrievewarnings()
-  swarns = ""
-  warnings:foreach(function(w)
-    swarns = swarns .. w .. ","
-  end)
-  if swarns[1] == "," then
-    startind = 2
-  else
-    startind = 1
-  end
-
-  return string.sub(swarns, startind, -2)
+  return Stringx.join(",", warnings)
 end
 
 function spells_printwarnings()
-  i = 0
-  msg = "Verfügbare Zauber:\n"
+
+  local i = 0
+  local msg = "Verfügbare Zauber:\n"
+  local key, value
+
   for key, value in pairsByKeys(spells) do
     i = i + 1
     msg = msg..tostring(i)..".\t"..key
@@ -137,21 +130,33 @@ function spells_printwarnings()
 end
 
 function spells_togglewarnings(cnt)
-  cnt = tonumber(cnt)
+
+  -- loading connection to timers plugin
+  if Timers == nil then
+    Timers = PPI.Load(world.GetPluginVariable("", "timers"))
+  end
+
+  local cnt = tonumber(cnt)
+
   if cnt == nil then
     world.Note("Die Eingabe war nicht korrekt. Bitte die Nummer des Zaubers eingeben, für die Du Einstellungen vornehmen möchtest.")
     return
   end
-  i = 0
-  stbl = {}
+
+  local i = 0
+  local stbl = {}
+  local key, value
+
   for key, value in pairsByKeys(spells) do
     i = i + 1
     stbl[i] = key
   end
+
   if stbl[cnt] == nil then
     world.Note("Kein Zauber mit dieser Nummer gefunden.")
     return
   end
+
   if warnings:index(stbl[cnt]) == nil then
     world.Note("Warnungen für "..stbl[cnt].." eingeschaltet.")
     warnings:append(stbl[cnt])

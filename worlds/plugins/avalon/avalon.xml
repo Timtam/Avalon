@@ -3849,12 +3849,6 @@
    sequence="100"
   >
   <send>
-  for name, value in pairsByKeys(spells) do
-    spells[name] = 0
-  end
-  for name, value in pairsByKeys(warnings) do
-    warnings[name] = 0
-  end
   psnd("Player/Statue.ogg")
   </send>
   </trigger>
