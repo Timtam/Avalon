@@ -5,6 +5,20 @@ require("string_indexing")
 
 demons = {}
 
+-- internals
+
+function dk_reset()
+  demons = {}
+  demons["azmarog"] = {}
+  demons["bullrik"] = {}
+  demons["krasit"] = {}
+  demons["sensal"] = {}
+end
+
+function dk_get_short_dtype(dtype)
+  return string.lower(dtype[1])
+end
+
 function dk_get_fullname(str)
   dtype = nil
   sregexp = "(%D*)(%d*)"
@@ -50,6 +64,23 @@ function dk_get_fullname(str)
   end
 end
 
+function dk_getdtype(short_dtype)
+  short_dtype = string.lower(short_dtype)
+  if short_dtype == "a" then
+    return "azmarog"
+  elseif short_dtype == "b" then
+    return "bullrik"
+  elseif short_dtype == "k" then
+    return "krasit"
+  elseif short_dtype == "s" then
+    return "sensal"
+  else
+    return nil
+  end
+end
+
+-- externals
+
 function dk_getname(dname)
   dname = dk_get_fullname(dname)
   if types.is_type(dname, "table") then
@@ -62,6 +93,15 @@ function dk_getname(dname)
     Note("Es passt kein Daemonenname auf Deine Eingabe.")
   else
     return dname
+  end
+end
+
+function dk_printlist()
+  for dtype, dlist in pairsByKeys(demons) do
+    short_dtype = dk_get_short_dtype(dtype)
+    for dnumber, dname in pairs(dlist) do
+      Note(short_dtype..tostring(dnumber)..": "..dname)
+    end
   end
 end
 
@@ -158,45 +198,28 @@ function dk_zvs(dname)
   Execute("zauber verschmelzung "..dname)
 end
 
-function dk_init(start)
-  if start then
-    dk_reset()
-    Execute("daemonenliste")
-  end
+function dk_init()
+  dk_reset()
+  Execute("daemonenliste")
 end
 
-function dk_getdtype(short_dtype)
-  short_dtype = string.lower(short_dtype)
-  if short_dtype == "a" then
-    return "azmarog"
-  elseif short_dtype == "b" then
-    return "bullrik"
-  elseif short_dtype == "k" then
-    return "krasit"
-  elseif short_dtype == "s" then
-    return "sensal"
-  else
-    return nil
-  end
-end
-
-function dk_get_short_dtype(dtype)
-  return string.lower(dtype[1])
-end
-
-function dk_printlist()
-  for dtype, dlist in pairsByKeys(demons) do
-    short_dtype = dk_get_short_dtype(dtype)
-    for dnumber, dname in pairs(dlist) do
-      Note(short_dtype..tostring(dnumber)..": "..dname)
-    end
-  end
-end
-
-function dk_reset()
-  demons = {}
-  demons["azmarog"] = {}
-  demons["bullrik"] = {}
-  demons["krasit"] = {}
-  demons["sensal"] = {}
-end
+return {
+  DeInit = dk_reset,
+  Init = dk_init,
+  -- Eintragen von neuen Namen
+  Add = dk_insertname,
+  PrintList = dk_printlist,
+  Reset = dk_reset,
+  -- die einzelnen Befehle/Zauber
+  Beschuetze = dk_bbs,
+  Bewerte = dk_dbw,
+  Erloese = dk_el,
+  Gedankenpeitsche = dk_zgp,
+  Hervorrufen = dk_zh,
+  Name = dk_bnm,
+  Ruestungsverstaerkung = dk_brv,
+  Vergesse = dk_vg,
+  Verschmelzung = dk_zvs,
+  Waffenverstaerkung = dk_bwv,
+  Wegschicken = dk_zw
+}
