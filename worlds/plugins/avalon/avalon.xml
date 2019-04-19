@@ -4670,7 +4670,6 @@ end
 OnAvalonComm=function(type,message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
   if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
     psnd("Channels/"..channel..".ogg")
   end
@@ -4681,8 +4680,7 @@ end
 OnAvalonChannel = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  fchannel=string.upper(channel[1])..string.sub(channel,2,-1)
-  if Gilden.Exists(fchannel) then
+  if Gilden.Exists(channel) then
     channel="gilde"
   end
   if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
