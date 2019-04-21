@@ -4494,8 +4494,9 @@
 
 <script>
 <![CDATA[
-Audio=nil
 atcp=nil
+Audio = require("audio")
+BASS = Audio.BASS()
 Dunkel=0
 g_tp=nil
 g_max_tp=nil
@@ -4712,7 +4713,7 @@ OnAvalonRoomID = function(type, message)
   if (not name) or (name == "Bitte") then
     return
   end
-  if (name == RoomName) and (hmusic ~= nil) and (Audio.isPlaying(hmusic) == 1) then
+  if (name == RoomName) and (hmusic ~= nil) and (hmusic:IsActive() == Audio.CONST.active.playing) then
     return
   end
   RoomName = name
@@ -4803,6 +4804,7 @@ OnAvalonMax = function()
 end
 
 function OnPluginInstall()
+  BASS:Init()
   local ctbl = Ini.read('config.dat')
   if ctbl then
     for name, section in pairs(ctbl) do
@@ -4825,10 +4827,6 @@ function OnPluginInstall()
   end
   Spells.ParseWarnings(configtbl.settings.Warnings)
   NumpadInit()
-  Audio = PPI.Load("aedf0cb0be5bf045860d54b7")
-  if not Audio then
-    error("Audio-Ausgabe konnte nicht initialisiert werden.")
-  end
 
   atcp = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
 
@@ -4966,10 +4964,10 @@ function play_tp(ntp)
   stopifplaying(htpsnd)
   percent = tonumber(ntp) / (tonumber(g_max_tp) / 100)
   if (ntp > g_tp) then
-    htpsnd = psnd("Player/tpUp.ogg", 2 * math.floor(percent) - 100)
+    htpsnd = psnd("Player/tpUp.ogg", (2 * math.floor(percent) - 100) / 100)
     tpfullannounced = false
   elseif (ntp < g_tp) then
-    htpsnd = psnd("Player/tpDown.ogg", 2 * math.floor(percent) - 100)
+    htpsnd = psnd("Player/tpDown.ogg", (2 * math.floor(percent) - 100) / 100)
     tpfullannounced = false
   end
   if (ntp == g_max_tp) and (tpfullannounced == false) then
@@ -4988,10 +4986,10 @@ function play_sp(nsp)
   stopifplaying(hspsnd)
   percent = tonumber(nsp) / (tonumber(g_max_sp) / 100)
   if (nsp > g_sp) then
-    hspsnd = psnd("Player/spUp.ogg", 2 * math.floor(percent) - 100)
+    hspsnd = psnd("Player/spUp.ogg", (2 * math.floor(percent) - 100) / 100)
     spfullannounced = false
   elseif (nsp < g_sp) then
-    hspsnd = psnd("Player/spDown.ogg", 2 * math.floor(percent) - 100)
+    hspsnd = psnd("Player/spDown.ogg", (2 * math.floor(percent) - 100) / 100)
     spfullannounced = false
   end
   if (nsp == g_max_sp) and (spfullannounced == false) then
@@ -5010,10 +5008,10 @@ function play_ap(nap)
   stopifplaying(hapsnd)
   percent = tonumber(nap) / (tonumber(g_max_ap) / 100)
   if (nap > g_ap) then
-    hapsnd = psnd("Player/apUp.ogg", 2 * math.floor(percent) - 100)
+    hapsnd = psnd("Player/apUp.ogg", (2 * math.floor(percent) - 100) / 100)
     apfullannounced = false
   elseif (nap < g_ap) then
-    hapsnd = psnd("Player/apDown.ogg", 2 * math.floor(percent) - 100)
+    hapsnd = psnd("Player/apDown.ogg", (2 * math.floor(percent) - 100) / 100)
     apfullannounced = false
   end
   if (nap == g_max_ap) and (apfullannounced == false) then
@@ -5022,13 +5020,12 @@ function play_ap(nap)
   end
 end
 
-function stopifplaying(id)
-  if (id == nil) then
+function stopifplaying(snd)
+  if (snd == nil) then
     return false
   end
-  res = Audio.isPlaying(id)
-  if (res == 1) then
-    Audio.stop(id)
+  if (snd:IsActive() == Audio.CONST.active.playing) then
+    snd:Stop()
     return true
   end
 end
@@ -5041,7 +5038,11 @@ function psnd(file, pan)
   if(not Path.isabs(file)) then
     file=GetInfo(74)..file
   end
-  return Audio.play(file, 0, pan, configtbl.settings.SoundVolume)
+  local snd = BASS:StreamCreateFile(false, file)
+  snd:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.SoundVolume/100)
+  snd:SetAttribute(Audio.CONST.attribute.pan, pan)
+  snd:Play()
+  return snd
 end
 
 function pmusic(file)
@@ -5052,7 +5053,10 @@ function pmusic(file)
     file=GetInfo(74).."Music/"..file
   end
   stopifplaying(hmusic)
-  hmusic = Audio.play(file, 1, 0, configtbl.settings.MusicVolume)
+  hmusic = BASS:StreamCreateFile(false, file, 0, 0, Audio.CONST.sample.loop)
+  hmusic:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.MusicVolume/100)
+  hmusic:Play()
+  return hmusic
 end
 
 function volume(value)
@@ -5069,8 +5073,8 @@ function volume(value)
     end
     configtbl.settings.MusicVolume = configtbl.settings.MusicVolume + value
     psnd("Misc/VolumeSwitch.ogg")
-    if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
-      Audio.setVol(configtbl.settings.MusicVolume, hmusic)
+    if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
+      hmusic:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.MusicVolume/100)
     end
     world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
   else
@@ -5079,8 +5083,8 @@ function volume(value)
     end
     configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
     psnd("Misc/VolumeSwitch.ogg")
-    if (g_combat_music) and (Audio.isPlaying(g_combat_music) == 1) then
-      Audio.setVol(configtbl.settings.CombatMusicVolume, g_combat_music)
+    if (g_combat_music) and (g_combat_music:IsActive() == Audio.CONST.active.playing) then
+      g_combat_music:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.CombatMusicVolume/100)
     end
     world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
   end
@@ -5283,8 +5287,8 @@ end
 function combat_music()
   if g_combat == nil or g_combat == false then
     if stopifplaying(g_combat_music) then
-      if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
-        Audio.setVol(configtbl.settings.MusicVolume, hmusic)
+      if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
+        hmusic:Play()
       end
     end
     return
@@ -5312,11 +5316,13 @@ function combat_music()
     g_combat_music_name = music
     stopifplaying(g_combat_music)
   end
-  if g_combat_music == nil or Audio.isPlaying(g_combat_music) == 0 then
-    if (hmusic) and (Audio.isPlaying(hmusic) == 1) then
-      Audio.setVol(0, hmusic)
+  if g_combat_music == nil or g_combat_music:IsActive() ~= Audio.CONST.active.playing then
+    if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
+      hmusic:Pause()
     end
-    g_combat_music = Audio.play(GetInfo(74).."Music/Combat/"..g_combat_music_name, 1, 0, configtbl.settings.CombatMusicVolume)
+    g_combat_music = BASS:StreamCreateFile(false, GetInfo(74) .. "Music/Combat/" .. g_combat_music_name, 0, 0, Audio.CONST.sample.loop)
+    g_combat_music:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.CombatMusicVolume/100)
+    g_combat_music:Play()
   end
 end
 
