@@ -3712,7 +3712,9 @@
    send_to="12"
   >
   <send>
-  Audio.setVol(0, hmusic)
+  if(hmusic ~= nil)
+    hmusic:Stop()
+  end
   psnd("Misc/out.ogg")
   </send>
   </trigger>
