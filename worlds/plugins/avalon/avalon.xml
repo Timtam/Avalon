@@ -5289,7 +5289,7 @@ end
 function combat_music()
   if g_combat == nil or g_combat == false then
     if stopifplaying(g_combat_music) then
-      if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
+      if (hmusic) and (hmusic:IsActive() ~= Audio.CONST.active.playing) then
         hmusic:Play()
       end
     end
