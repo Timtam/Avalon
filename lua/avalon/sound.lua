@@ -5,13 +5,13 @@ local Path = require("pl.path")
 local PPI = require("ppi")
 local Types = require("pl.types")
 
-function sound_init()
+local sound_init = function()
   Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
   BASS:Init()
 end
 
-function sound_play_sound(file, pan, vol)
+local sound_play_sound = function(file, pan, vol)
 
   pan = pan or 0
 
@@ -36,7 +36,7 @@ function sound_play_sound(file, pan, vol)
   return snd
 end
 
-function sound_play_music(file, vol, mute)
+local sound_play_music = function(file, vol, mute)
 
   vol = vol or Avalon.GetConfig("settings", "MusicVolume")
 

@@ -1,8 +1,8 @@
-Class = require("pl.class")
-PPI = require("ppi")
-Types = require("pl.types")
-Utils = require("timers.utils")
-Zeit = require("zeit")
+local Class = require("pl.class")
+local PPI = require("ppi")
+local Types = require("pl.types")
+local Utils = require("timers.utils")
+local Zeit = require("zeit")
 
 Class.Timer()
 
@@ -52,7 +52,7 @@ function Timer:_diff(_a, _b)
 end
 
 function Timer:Tick()
-  curr = self._time_fun()
+  local curr = self._time_fun()
 
   if self._tick_time > 0 and curr >= self._tick_time then
     self:Print()
@@ -73,7 +73,7 @@ function Timer:End()
 
   local hours, mins, secs = self:_diff(curr, self._creation_time)
 
-  print_function = self._print_function
+  local print_function = self._print_function
   self._print_function = nil
 
   self:_print_formatted_message(string.format(self.name .. " wurde beendet, Dauer: %s", Zeit.format_time(hours, mins, secs)), true)

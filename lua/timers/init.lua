@@ -1,13 +1,13 @@
 -- you should require this module for the whole timers function set
 
-Tablex = require("pl.tablex")
+local Tablex = require("pl.tablex")
 
-Const = require("timers.constants")
-Processor = require("timers.processor")
-Timer = require("timers.timer")
-Utils = require("timers.utils")
+local Const = require("timers.constants")
+local Processor = require("timers.processor")
+local Timer = require("timers.timer")
+local Utils = require("timers.utils")
 
-imported = {}
+local imported = {}
 
 imported.Timer = Timer
 imported.TimerProcessor = Processor

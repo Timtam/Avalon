@@ -1,6 +1,6 @@
 -- hier muessen alle Gilden zumindest namendlich hinterlegt werden
 
-GILDEN = {
+local GILDEN = {
   "barden",
   "daemonenkrieger",
   "druiden",
@@ -13,23 +13,14 @@ GILDEN = {
   "runenschmiede"
 }
 
-ActiveGuild = nil
-Avalon = nil
-PPI = require("ppi")
-Stringx = require("pl.stringx")
-Tablex = require("pl.tablex")
-Types = require("pl.types")
+local ActiveGuild = nil
+local Avalon = nil
+local PPI = require("ppi")
+local Stringx = require("pl.stringx")
+local Tablex = require("pl.tablex")
+local Types = require("pl.types")
 
-function gilden_init()
-
-  gilden_disable()
-
-  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
-
-  Avalon.HookCallback("GILDE", gilden_enable)
-end
-
-function gilden_disable()
+local gilden_disable = function()
 
   if ActiveGuild ~= nil and not Types.is_empty(ActiveGuild.package) then
     ActiveGuild.package.DeInit()
@@ -45,7 +36,16 @@ function gilden_disable()
   }
 end
 
-function gilden_enable(guild)
+local gilden_init = function()
+
+  gilden_disable()
+
+  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+
+  Avalon.HookCallback("GILDE", gilden_enable)
+end
+
+local gilden_enable = function(guild)
 
   guild = guild:lower()
 
@@ -78,13 +78,13 @@ function gilden_enable(guild)
 
 end
 
-function gilden_exists(guild)
+local gilden_exists = function(guild)
   guild = guild:lower()
 
   return Tablex.find(GILDEN, guild) ~= nil
 end
 
-function gilden_call(fun, ...)
+local gilden_call = function(fun, ...)
   if ActiveGuild.package ~= nil and Types.is_callable(ActiveGuild.package[fun]) == true then
     ActiveGuild.package[fun](unpack({select(1, ...)}))
   end

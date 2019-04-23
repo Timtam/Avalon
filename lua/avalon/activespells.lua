@@ -12,7 +12,7 @@ local earlycancel = 0
 local spells = {}
 local warnings = List.new()
 
-function spells_register(name, starttext, endtext, report_ep)
+local spells_register = function(name, starttext, endtext, report_ep)
 
   report_ep = Types.to_bool(report_ep)
 
@@ -89,15 +89,19 @@ function spells_stop(name)
   end
 end
 
-function spells_announceearlycancel()
+local spells_announceearlycancel = function()
   earlycancel = os.time()
 end
 
-function spells_parsewarnings(warns)
+local spells_parsewarnings = function(warns)
   if warns == nil or warns == "" then
     return
   end
-  awarns = Stringx.split(warns, ",")
+
+  local awarns = Stringx.split(warns, ",")
+
+  local key, value
+
   for key, value in pairs(awarns) do
     if spells[value] == nil then
       world.Note("Die Warnung für den Zauber \""..value.."\" konnte nicht eingerichtet werden: Dieser Zauber wird vom Soundpack nicht unterstützt.")
@@ -107,11 +111,11 @@ function spells_parsewarnings(warns)
   end
 end
 
-function spells_retrievewarnings()
+local spells_retrievewarnings = function()
   return Stringx.join(",", warnings)
 end
 
-function spells_printwarnings()
+local spells_printwarnings = function()
 
   local i = 0
   local msg = "Verfügbare Zauber:\n"
@@ -129,7 +133,7 @@ function spells_printwarnings()
   world.Note(string.sub(msg, 1, -2))
 end
 
-function spells_togglewarnings(cnt)
+local spells_togglewarnings = function(cnt)
 
   -- loading connection to timers plugin
   if Timers == nil then

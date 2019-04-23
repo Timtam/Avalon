@@ -1,7 +1,7 @@
 -- used to retrieve current time
-time_fun = os.time
+local time_fun = os.time
 
-utils = {}
+local utils = {}
 
 utils.SetTimeFunction = function(fun)
   time_fun = fun

@@ -1,13 +1,13 @@
-types = require("pl.types")
+local types = require("pl.types")
 
 require("pairsbykeys")
 require("string_indexing")
 
-demons = {}
+local demons = {}
 
 -- internals
 
-function dk_reset()
+local dk_reset = function()
   demons = {}
   demons["azmarog"] = {}
   demons["bullrik"] = {}
@@ -15,21 +15,24 @@ function dk_reset()
   demons["sensal"] = {}
 end
 
-function dk_get_short_dtype(dtype)
+local dk_get_short_dtype = function(dtype)
   return string.lower(dtype[1])
 end
 
-function dk_get_fullname(str)
-  dtype = nil
-  sregexp = "(%D*)(%d*)"
-  short_dtype, dnumber = string.match(str, sregexp)
+local dk_get_fullname = function(str)
+  local dtype = nil
+  local sregexp = "(%D*)(%d*)"
+  local short_dtype, dnumber = string.match(str, sregexp)
+
   if short_dtype then
     dtype = dk_getdtype(short_dtype)
   end
-  dnumber = tonumber(dnumber)
+
+  local dnumber = tonumber(dnumber)
+
   if short_dtype and not dnumber then
     if not dtype then
-      possibletbl = {}
+      local possibletbl = {}
       for dtype, list in pairs(demons) do
         for dnumber, demon in pairs(list) do
           if string.find(string.lower(demon), short_dtype, 1, true) == 1 then
@@ -64,8 +67,10 @@ function dk_get_fullname(str)
   end
 end
 
-function dk_getdtype(short_dtype)
-  short_dtype = string.lower(short_dtype)
+local dk_getdtype = function(short_dtype)
+
+  local short_dtype = string.lower(short_dtype)
+
   if short_dtype == "a" then
     return "azmarog"
   elseif short_dtype == "b" then
@@ -81,126 +86,136 @@ end
 
 -- externals
 
-function dk_getname(dname)
-  dname = dk_get_fullname(dname)
+local dk_getname = function(dname)
+  local dname = dk_get_fullname(dname)
+
   if types.is_type(dname, "table") then
-    Note("Dieser Name passt auf mehrere Daemonen:")
-    for ddnumber,ddname in pairs(dname) do
-      Note("\t"..ddname)
+    world.Note("Dieser Name passt auf mehrere Daemonen:")
+
+    local ddnumber, ddname
+
+    for ddnumber, ddname in pairs(dname) do
+      world.Note("\t"..ddname)
     end
-    Note("Bitte den Namen genauer angeben.")
+    world.Note("Bitte den Namen genauer angeben.")
   elseif not dname then
-    Note("Es passt kein Daemonenname auf Deine Eingabe.")
+    world.Note("Es passt kein Daemonenname auf Deine Eingabe.")
   else
     return dname
   end
 end
 
-function dk_printlist()
+local dk_printlist = function()
+
+  local dtype, dlist
+
   for dtype, dlist in pairsByKeys(demons) do
-    short_dtype = dk_get_short_dtype(dtype)
+    local short_dtype = dk_get_short_dtype(dtype)
+
+    local dnumber, dname
+
     for dnumber, dname in pairs(dlist) do
-      Note(short_dtype..tostring(dnumber)..": "..dname)
+      world.Note(short_dtype..tostring(dnumber)..": "..dname)
     end
   end
 end
 
-function dk_zh(dname)
+local dk_zh = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("zauber hervorrufung "..dname)
+  world.Execute("zauber hervorrufung "..dname)
 end
 
-function dk_zw(dname)
+local dk_zw = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("zauber wegschicken "..dname)
+  world.Execute("zauber wegschicken "..dname)
 end
 
-function dk_bbs(dname, dtarget)
+local dk_bbs = function(dname, dtarget)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("befehle "..dname.." beschuetze "..dtarget)
+  world.Execute("befehle "..dname.." beschuetze "..dtarget)
 end
 
-function dk_brv(dname, dtarget)
+local dk_brv = function(dname, dtarget)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("befehle "..dname.." ruestungsverstaerkung "..dtarget)
+  world.Execute("befehle "..dname.." ruestungsverstaerkung "..dtarget)
 end
 
-function dk_bwv(dname, dtarget)
+local dk_bwv = function(dname, dtarget)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("befehle "..dname.." waffenverstaerkung "..dtarget)
+  world.Execute("befehle "..dname.." waffenverstaerkung "..dtarget)
 end
 
-function dk_bnm(dname, dtarget)
+local dk_bnm = function(dname, dtarget)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("befehle "..dname.." name von "..dtarget)
+  world.Execute("befehle "..dname.." name von "..dtarget)
 end
 
-function dk_insertname(dname, dtype)
+local dk_insertname = function(dname, dtype)
   dtype = string.lower(dtype)
   demons[dtype][#demons[dtype]+1] = dname
 end
 
-function dk_dbw(dname)
+local dk_dbw = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("bewerte "..dname)
+  world.Execute("bewerte "..dname)
 end
 
-function dk_zgp(dname)
+local dk_zgp = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("zauber gedankenpeitsche "..dname)
+  world.Execute("zauber gedankenpeitsche "..dname)
 end
 
-function dk_vg(dname)
+local dk_vg = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("vergesse "..dname)
+  world.Execute("vergesse "..dname)
 end
 
-function dk_el(dname)
+local dk_el = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("erloese "..dname)
+  world.Execute("erloese "..dname)
 end
 
-function dk_zvs(dname)
+local dk_zvs = function(dname)
   dname = dk_getname(dname)
   if not dname then
     return
   end
-  Execute("zauber verschmelzung "..dname)
+  world.Execute("zauber verschmelzung "..dname)
 end
 
-function dk_init()
+local dk_init = function()
   dk_reset()
-  Execute("daemonenliste")
+  world.Execute("daemonenliste")
 end
 
 return {

@@ -3,11 +3,11 @@ local Stringx = require("pl.stringx")
 
 local febnames = List.new()
 
-function get_febname(name)
+local get_febname = function(name)
   febnames:append(name)
 end
 
-function hyras_evo(wer, was)
+local hyras_evo = function(wer, was)
   if Stringx.startswith(was,"an") then was = "angriff" end
   if Stringx.startswith(was,"sc") then was = "schutz" end
   if Stringx.startswith(was,"of") then was = "offensiv" end
@@ -19,19 +19,19 @@ function hyras_evo(wer, was)
   world.Execute("evoliere "..wer.." "..was)
 end
 
-function clear_feblist()
+local clear_feblist = function()
   febnames:clear()
 end
 
-function forget_feb(wer)
+local forget_feb = function(wer)
   febnames:remove_value(wer)
 end
 
-function add_feb(wer)
+local add_feb = function(wer)
   febnames:put(wer)
 end
 
-function hyras_init()
+local hyras_init = function()
   world.Execute("febron")
 end
 

@@ -1,10 +1,10 @@
-Class = require("pl.class")
-Const = require("timers.constants")
-List = require("pl.list")
-Types = require("pl.types")
+local Class = require("pl.class")
+local Const = require("timers.constants")
+local List = require("pl.list")
+local Types = require("pl.types")
 require("natsort")
 
-Timer = require("timers.timer")
+local Timer = require("timers.timer")
 
 Class.Processor()
 
@@ -14,7 +14,7 @@ end
 
 function Processor:AddTimer(name, tick, duration, end_sound, override, print_function)
   override = Types.to_bool(override)
-  t = nil
+  local t = nil
 
   self._timers:foreach(function(tt)
     if tt.name == name then
@@ -26,7 +26,7 @@ function Processor:AddTimer(name, tick, duration, end_sound, override, print_fun
     return Const.ALREADY_EXISTS
   end
 
-  nt = Timer(name, tick, duration, end_sound, print_function)
+  local nt = Timer(name, tick, duration, end_sound, print_function)
 
   if t ~= nil then
     self._timers[self._timers:index(t)] = nt
@@ -38,7 +38,7 @@ function Processor:AddTimer(name, tick, duration, end_sound, override, print_fun
 end
 
 function Processor:Tick()
-  i = 1
+  local i = 1
   
   while i <= self._timers:len() do
     r = self._timers[i]:Tick()
@@ -71,13 +71,15 @@ function Processor:Print()
     return
   end
 
-  ids = List.new()
+  local ids = List.new()
 
   self._timers:foreach(function(t)
     ids:append(t.id)
   end)
 
   world.Note("Aktuell gestoppte Zeiten:")
+
+  local _, id
 
   for _, id in ipairs(natsort(ids)) do
     t = self._timers:filter(function(tt)
@@ -101,7 +103,7 @@ function Processor:SetTick(id, tick)
 end
 
 function Processor:Find(id)
-  t = self._timers:filter(function(tt)
+  local t = self._timers:filter(function(tt)
     if Types.type(id) == "Timer" then
       return tt.id == id.id
     else
