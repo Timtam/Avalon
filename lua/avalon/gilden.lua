@@ -20,6 +20,12 @@ local Stringx = require("pl.stringx")
 local Tablex = require("pl.tablex")
 local Types = require("pl.types")
 
+local gilden_exists = function(guild)
+  guild = guild:lower()
+
+  return Tablex.find(GILDEN, guild) ~= nil
+end
+
 local gilden_disable = function()
 
   if ActiveGuild ~= nil and not Types.is_empty(ActiveGuild.package) then
@@ -34,15 +40,6 @@ local gilden_disable = function()
     name = "",
     package = nil
   }
-end
-
-local gilden_init = function()
-
-  gilden_disable()
-
-  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
-
-  Avalon.HookCallback("GILDE", gilden_enable)
 end
 
 local gilden_enable = function(guild)
@@ -78,10 +75,13 @@ local gilden_enable = function(guild)
 
 end
 
-local gilden_exists = function(guild)
-  guild = guild:lower()
+local gilden_init = function()
 
-  return Tablex.find(GILDEN, guild) ~= nil
+  gilden_disable()
+
+  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+
+  Avalon.HookCallback("GILDE", gilden_enable)
 end
 
 local gilden_call = function(fun, ...)
