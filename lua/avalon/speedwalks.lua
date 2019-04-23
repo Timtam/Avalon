@@ -823,5 +823,13 @@ speedwalklist['uw.stangenschlosslabyrinth_totenschiff.ausgang'] = "hoch o o o o 
 speedwalklist['totenschiff.ausgang_uw.stangenschlosslabyrinth'] = "nw nw nw nw nw nw w w w w w w w w w w w betrete_loch"
 speedwalklist['toe.ausgangoben_uw.anlegertotenebene'] = "w w w w w w w nw nw n n n no no no no n n n n n nw nw nw nw nw n"
 speedwalklist['uw.anlegertotenebene_toe.ausgangoben'] = "s so so so so so s s s s s sw sw sw sw s s s so so o o o o o o o"
+speedwalklist['uminotokai.ruestungsladen_uminotokai.zentrum'] = "s w w"
+speedwalklist['uminotokai.zentrum_uminotokai.ruestungsladen'] = "o o n"
+speedwalklist['uminotokai.bank_uminotokai.waffenladen'] = "n o s"
+speedwalklist['uminotokai.waffenladen_uminotokai.bank'] = "n w s"
+speedwalklist['uminotokai.zentrum_uminotokai.gasthaus'] = "o o o no"
+speedwalklist['uminotokai.gasthaus_uminotokai.zentrum'] = "sw w w w"
+speedwalklist['ilmelorn.eingang_ilmelorn.waffenladen'] = "h s baumhaus"
+speedwalklist['ilmelorn.waffenladen_ilmelorn.eingang'] = "ausgang n r"
 
 return speedwalklist
