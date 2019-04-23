@@ -22,6 +22,8 @@ function Channel:_init(id)
     -- the problem is that we need to support both cases, direct instanciation
     -- and derived classes
 
+    local i, obj
+
     for i,obj in pairs({self, rawget(self, '__old_index')}) do
 
       local tmp = rawget(obj, key)

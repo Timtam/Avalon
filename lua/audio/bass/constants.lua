@@ -260,6 +260,28 @@ local data = {
   fft_complex = 0x80 -- FFT flag: return complex data
 }
 
+-- BASS_ChannelSetSync types
+
+local sync = {
+  position = 0,
+  meta = 4,
+  slide = 5,
+  stall = 6,
+  download = 7,
+  free = 8,
+  set_position = 11,
+  music_position = 10,
+  music_instrument = 1,
+  music_fx = 3,
+  ogg_change = 12,
+  device_fail = 14,
+  device_format = 15,
+  mixtime = 0x40000000,
+  onetime = 0x80000000
+}
+
+sync["end"] = 2
+
 return {
   active = active,
   attribute = attribute,
@@ -273,6 +295,7 @@ return {
   position = position,
   sample = sample,
   stream = stream,
+  sync = sync,
   three_d_algorithm = three_d_algorithm,
   three_d_mode = three_d_mode
 }
