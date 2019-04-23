@@ -93,7 +93,7 @@ function Processor:SetTick(id, tick)
 
   local t, err = self:Find(id)
 
-  if err ~= nil then
+  if err ~= 0 then
     return err
   end
 

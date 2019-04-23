@@ -829,5 +829,7 @@ speedwalklist['uminotokai.bank_uminotokai.waffenladen'] = "n o s"
 speedwalklist['uminotokai.waffenladen_uminotokai.bank'] = "n w s"
 speedwalklist['uminotokai.zentrum_uminotokai.gasthaus'] = "o o o no"
 speedwalklist['uminotokai.gasthaus_uminotokai.zentrum'] = "sw w w w"
+speedwalklist['ilmelorn.eingang_ilmelorn.waffenladen'] = "h s baumhaus"
+speedwalklist['ilmelorn.waffenladen_ilmelorn.eingang'] = "ausgang n r"
 
 return speedwalklist

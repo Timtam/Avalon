@@ -2968,4 +2968,11 @@ stations:add(
              "Das Café im Park Uminotokais."
             )
 
+stations:add(
+             "ilmelorn",
+             "waffenladen",
+             "raum/9fc4887608ca81b64a8eee0536712392",
+             "Der elfische Waffenladen in der Stadt Ilmelorn."
+            )
+
 return stations
