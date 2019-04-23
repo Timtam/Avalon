@@ -4496,9 +4496,8 @@
 
 <script>
 <![CDATA[
-atcp=nil
 Audio = require("audio")
-BASS = Audio.BASS()
+atcp=nil
 Dunkel=0
 g_tp=nil
 g_max_tp=nil
@@ -4560,6 +4559,7 @@ world.Accelerator("alt+t", "say_tp")
 world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 Gilden = require("avalon.gilden")
+Sound = require("avalon.sound")
 Spells = require("avalon.activespells")
 require("avalon.multilinetrigger")
 require("pairsbykeys")
@@ -4568,7 +4568,6 @@ File = require('pl.file')
 Ini = require("ini")
 Path = require("pl.path")
 PPI = require("ppi")
-Stringx = require("pl.stringx")
 Tablex = require("pl.tablex")
 Timers = nil
 Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
@@ -4719,15 +4718,17 @@ OnAvalonRoomID = function(type, message)
     return
   end
   RoomName = name
+  if hmusic ~= nil then
+    hmusic:Stop()
+  end
   if (not Path.isfile(GetInfo(74).."Music/"..name..".ogg") and not Path.isdir(GetInfo(74).."Music/"..name)) then
-    stopifplaying(hmusic)
     return
   end
   if (Path.isfile(GetInfo(74).."Music/"..name..".ogg")) then
-    pmusic(name..".ogg")
+    hmusic = Sound.PlayMusic(name .. ".ogg")
   else
     files=Dir.getfiles(GetInfo(74).."Music/"..name)
-    pmusic(files[math.random(1,#files)])
+    hmusic = Sound.PlayMusic(files[math.random(1,#files)])
   end
 end 
 
@@ -4753,6 +4754,11 @@ end
 
 OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
+
+  if ntp < 0 then
+    ntp = 0
+  end
+
   play_tp(ntp)
   g_tp=ntp
   combat_music()
@@ -4806,7 +4812,9 @@ OnAvalonMax = function()
 end
 
 function OnPluginInstall()
-  BASS:Init()
+
+  Sound:Init()
+
   local ctbl = Ini.read('config.dat')
   if ctbl then
     for name, section in pairs(ctbl) do
@@ -4934,7 +4942,7 @@ function OnPluginInstall()
       return unhook_callback(event, callback)
     end)
   PPI.Expose('PSND',
-    psnd)
+    Sound.PlaySound)
   PPI.Expose("NoteColour",
     NoteColour)
 
@@ -4963,7 +4971,9 @@ function play_tp(ntp)
   if (configtbl.settings.TPBar == 0) then
     return
   end
-  stopifplaying(htpsnd)
+  if htpsnd ~= nil then
+    htpsnd:Stop()
+  end
   percent = tonumber(ntp) / (tonumber(g_max_tp) / 100)
   if (ntp > g_tp) then
     htpsnd = psnd("Player/tpUp.ogg", (2 * math.floor(percent) - 100) / 100)
@@ -4985,7 +4995,9 @@ function play_sp(nsp)
   if (configtbl.settings.SPBar == 0) then
     return
   end
-  stopifplaying(hspsnd)
+  if hspsnd ~= nil then
+    hspsnd:Stop()
+  end
   percent = tonumber(nsp) / (tonumber(g_max_sp) / 100)
   if (nsp > g_sp) then
     hspsnd = psnd("Player/spUp.ogg", (2 * math.floor(percent) - 100) / 100)
@@ -5007,7 +5019,11 @@ function play_ap(nap)
   if (configtbl.settings.APBar == 0) then
     return
   end
-  stopifplaying(hapsnd)
+
+  if hapsnd ~= nil then
+    hapsnd:Stop()
+  end
+
   percent = tonumber(nap) / (tonumber(g_max_ap) / 100)
   if (nap > g_ap) then
     hapsnd = psnd("Player/apUp.ogg", (2 * math.floor(percent) - 100) / 100)
@@ -5020,45 +5036,6 @@ function play_ap(nap)
     psnd("Player/apMax.ogg")
     apfullannounced = true
   end
-end
-
-function stopifplaying(snd)
-  if (snd == nil) then
-    return false
-  end
-  if (snd:IsActive() == Audio.CONST.active.playing) then
-    snd:Stop()
-    return true
-  end
-end
-
-function psnd(file, pan)
-  pan = pan or 0
-  if (configtbl.settings.SoundsMuted == 1) then
-    return
-  end
-  if(not Path.isabs(file)) then
-    file=GetInfo(74)..file
-  end
-  local snd = BASS:StreamCreateFile(false, file)
-  snd:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.SoundVolume/100)
-  snd:SetAttribute(Audio.CONST.attribute.pan, pan)
-  snd:Play()
-  return snd
-end
-
-function pmusic(file)
-  if (configtbl.settings.MusicMuted == 1) then
-    return
-  end
-  if(not Path.isabs(file)) then
-    file=GetInfo(74).."Music/"..file
-  end
-  stopifplaying(hmusic)
-  hmusic = BASS:StreamCreateFile(false, file, 0, 0, Audio.CONST.sample.loop)
-  hmusic:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.MusicVolume/100)
-  hmusic:Play()
-  return hmusic
 end
 
 function volume(value)
@@ -5158,8 +5135,12 @@ function OnPluginDisconnect()
   htpsnd = nil
   PlayerLevel = nil
   RoomName = ""
-  stopifplaying(hmusic)
-  hmusic = nil
+
+  if hmusic ~= nil then
+    hmusic:Stop()
+    hmusic = nil
+  end
+
   call_callback('LOGOUT')
 end
 
@@ -5175,7 +5156,11 @@ function switch_mute()
   elseif (volumetype == 2) then
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
-      stopifplaying(hmusic)
+
+      if hmusic ~= nil then
+        hmusic:Stop()
+      end
+
       RoomName = ""
       world.Note("Hintergrund-Musik ausgeschaltet.")
     else
@@ -5186,7 +5171,11 @@ function switch_mute()
   else
     if (configtbl.settings.CombatMusicMuted == 0) then
       configtbl.settings.CombatMusicMuted = 1
-      stopifplaying(g_combat_music)
+
+      if g_combat_music ~= nil then
+        g_combat_music:Stop()
+      end
+
       world.Note("Kampf-Musik ausgeschaltet.")
     else
       configtbl.settings.CombatMusicMuted = 0
@@ -5206,7 +5195,11 @@ function switch_fullmute()
   end
   if (configtbl.settings.MusicMuted == 0) then
     configtbl.settings.MusicMuted = 1
-    stopifplaying(hmusic)
+
+    if hmusic ~= nil then
+      hmusic:Stop()
+    end
+
     RoomName = ""
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
@@ -5216,7 +5209,11 @@ function switch_fullmute()
   end
   if (configtbl.settings.CombatMusicMuted == 0) then
     configtbl.settings.CombatMusicMuted = 1
-    stopifplaying(g_combat_music)
+
+    if g_combat_music ~= nil then
+      g_combat_music:Stop()
+    end
+
     world.Note("Kampf-Musik ausgeschaltet.")
   else
     configtbl.settings.CombatMusicMuted = 0
@@ -5288,17 +5285,24 @@ end
 
 function combat_music()
   if g_combat == nil or g_combat == false then
-    if stopifplaying(g_combat_music) then
-      if (hmusic) and (hmusic:IsActive() ~= Audio.CONST.active.playing) then
-        hmusic:Play()
-      end
+
+    if g_combat_music ~= nil then
+      g_combat_music:Stop()
+      g_combat_music = nil
+    end
+
+    if hmusic ~= nil and hmusic:IsActive() ~= Audio.CONST.active.playing then
+      hmusic:Play()
     end
     return
   end
+
   if g_tp == nil or g_max_tp == nil or configtbl.settings.CombatMusicMuted == 1 then
     return
   end
-  percentage = g_tp / (g_max_tp / 100)
+
+  local percentage = g_tp * 100 / g_max_tp
+
   if percentage >= 86 then
     music = "excellent.ogg"
   elseif percentage >= 72 then
@@ -5314,17 +5318,19 @@ function combat_music()
   elseif percentage >= 0 then
     music = "awful.ogg"
   end
+
   if g_combat_music_name == nil or music ~= g_combat_music_name then
     g_combat_music_name = music
-    stopifplaying(g_combat_music)
+
+    if g_combat_music ~= nil then
+      g_combat_music:Stop()
+    end
   end
   if g_combat_music == nil or g_combat_music:IsActive() ~= Audio.CONST.active.playing then
     if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
       hmusic:Pause()
     end
-    g_combat_music = BASS:StreamCreateFile(false, GetInfo(74) .. "Music/Combat/" .. g_combat_music_name, 0, 0, Audio.CONST.sample.loop)
-    g_combat_music:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.CombatMusicVolume/100)
-    g_combat_music:Play()
+    g_combat_music = Sound.PlayMusic(GetInfo(74) .. "Music/Combat/" .. g_combat_music_name, configtbl.settings.CombatMusicVolume, configtbl.settings.CombatMusicMuted)
   end
 end
 
@@ -5535,6 +5541,15 @@ function send_command(cmd)
   if current ~= "" then
     world.SetCommand(current)
   end  
+end
+
+-- Magician: spaeter zu entfernen, sobald nicht mehr benoetigt
+function psnd(file, pan)
+  return Sound.PlaySound(file, pan)
+end
+
+function OnPluginPlaySound(file)
+  Sound.PlaySound(file)
 end
 ]]>
 </script>
