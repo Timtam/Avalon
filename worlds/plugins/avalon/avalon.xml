@@ -65,82 +65,73 @@
    enabled="n"
    group="Golemkultisten"
    match="Dein * pulsiert kurz warm in Deiner Hand."
-   send_to="12"
+   sound="GolemCultists/CoreLoadFull.ogg"
    sequence="100"
   >
-  <send>psnd("GolemCultists/CoreLoadFull.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Dein Energiekern vibriert kurz."
-   send_to="12"
    sequence="100"
+   sound="GolemCultists/CoreLoad.ogg"
   >
-  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Dein Energiekern blitzt kurz * auf."
-   send_to="12"
    sequence="100"
+   sound="GolemCultists/CoreLoad.ogg"
   >
-  <send>psnd("GolemCultists/CoreLoad.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Dein * flackert heftig auf, lange wird * Dich wohl nicht mehr"
-   send_to="12"
    sequence="100"
+   sound="spells/flicker.ogg"
   >
-  <send>psnd("spells/flicker.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du beginnst, Deine Haende auf mystische Art und Weise zu bewegen."
-   send_to="12"
    sequence="100"
+   sound="spells/ArkanShield1.ogg"
   >
-  <send>psnd("spells/ArkanShield1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Zwischen Deinen Haenden entsteht eine leuchtende Wolke, die sich immer mehr"
-   send_to="12"
    sequence="100"
+   sound="spells/ArkanShield2.ogg"
   >
-  <send>psnd("spells/ArkanShield2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Die Wolke verteilt sich auf Deinen gesamten Koerper."
-   send_to="12"
    sequence="100"
+   sound="spells/ArkanShield3.ogg"
   >
-  <send>psnd("spells/ArkanShield3.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du wirst von einem Arkanschild umgeben."
-   send_to="12"
    sequence="100"
+   sound="spells/ArkanShieldOn.ogg"
   >
-  <send>psnd("spells/ArkanShieldOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Dein Arkanschild loest sich auf."
-   send_to="12"
    sequence="100"
+   sound="spells/ArkanShieldOff.ogg"
   >
-  <send>psnd("spells/ArkanShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -149,25 +140,23 @@
    send_to="12"
    sequence="100"
   >
-  <send>hdksnd = psnd("demon_warriors/crystalfocus.ogg")</send>
+  <send>hdksnd = Sound.PlaySound("demon_warriors/crystalfocus.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Du spuerst den Widerstand des Daemons auf Deinen Willen *"
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/demoncommand.ogg"
   >
-  <send>psnd("demon_warriors/demoncommand.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Du tastest telepathisch nach dem Bewusstsein von * und *"
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/demoncontrol.ogg"
   >
-  <send>psnd("demon_warriors/demoncontrol.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -175,11 +164,9 @@
    match="In dem Moment, als er Dir den gewuentschten Namen uebermittelt, oeffnest*"
    send_to="12"
    sequence="100"
+   sound="demon_warriors/demonexecute.ogg"
   >
-  <send>
-    psnd("demon_warriors/demonexecute.ogg")
-    Audio.fadeout(hdksnd, 1000)
-  </send>
+  <send>Audio.fadeout(hdksnd, 1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -187,11 +174,9 @@
    match="Erfolgreich hast Du Deinen Daemon in * "
    send_to="12"
    sequence="100"
+   sound="demon_warriors/demonexecute.ogg"
   >
-  <send>
-    psnd("demon_warriors/demonexecute.ogg")
-    Audio.fadeout(hdksnd, 1000)
-  </send>
+  <send>Audio.fadeout(hdksnd, 1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -199,11 +184,9 @@
    match="Du reibst Dir Deine Schlaefen, um den pochenden Schmerz zu vertreiben.*"
    send_to="12"
    sequence="100"
+   sound="demon_warriors/demoncounter.ogg"
   >
-  <send>
-    psnd("demon_warriors/demoncounter.ogg")
-    Audio.fadeout(hdksnd, 1000)
-  </send>
+  <send>Audio.fadeout(hdksnd, 1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -211,29 +194,25 @@
    match="* schreit hasserfuellt auf und wollte sich *"
    send_to="12"
    sequence="100"
+   sound="demon_warriors/demondisappear.ogg"
   >
-  <send>
-    psnd("demon_warriors/demondisappear.ogg")
-    Audio.fadeout(hdksnd, 1000)
-  </send>
+  <send>Audio.fadeout(hdksnd, 1000)</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Dein Fokuskristall leuchtet auf und ein Portal *"
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/portalappear.ogg"
   >
-  <send>psnd("demon_warriors/portalappear.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Du starrst * mit festem Blick an."
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/crystallight.ogg"
   >
-  <send>psnd("demon_warriors/crystallight.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -241,29 +220,25 @@
    match="Du schlaegst ruckartig Deinen Fokuskristall auf den Boden, *"
    send_to="12"
    sequence="100"
+   sound="demon_warriors/demonappear.ogg"
   >
-  <send>
-    psnd("demon_warriors/demonappear.ogg")
-    Audio.fadeout(hdksnd, 1000)
-  </send>
+  <send>Audio.fadeout(hdksnd, 1000)</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Du schliesst fuer einen Moment Deine Augen. *"
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/demoncall.ogg"
   >
-  <send>psnd("demon_warriors/demoncall.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Daemonenkrieger"
    match="Du konzentrierst Dich auf * woraufhin dieser *"
-   send_to="12"
    sequence="100"
+   sound="demon_warriors/crystallight.ogg"
   >
-  <send>psnd("demon_warriors/crystallight.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -406,19 +381,17 @@
    enabled="n"
    group="Spiele_Hajo"
    match="* hat damit * Punkte erreicht und gewonnen!"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/loose.ogg"
   >
-  <send>psnd("Games/Hajo/loose.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du hast * Punkte erreicht und damit gewonnen. Herzlichen Glueckwunsch!"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/win.ogg"
   >
-  <send>psnd("Games/Hajo/win.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -434,98 +407,88 @@
    group="Spiele_Hajo"
    match=".* scheint etwas unaufmerksam gewesen zu sein.*|Du bist etwas unaufmerksam und bemerkst nicht.*"
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/dicefail.ogg"
   >
-  <send>psnd("Games/Hajo/dicefail.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du kannst in diesem 2. Zug nichts herauslegen *"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/secondturn.ogg"
   >
-  <send>psnd("Games/Hajo/secondturn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match=".* bekommt insgesamt .* Punkte gutgeschrieben. Der Joker.*|Du bekommst insgesamt .* Punkte gutgeschrieben. Du hattest.*"
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/writejoker.ogg"
   >
-  <send>psnd("Games/Hajo/writejoker.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du setzt Deinen Joker\.|.* setzt .* Joker\."
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/joker.ogg"
   >
-  <send>psnd("Games/Hajo/joker.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du konntest auch nach drei Zuegen noch keine Punkte machen\.|.* konnte auch nach drei Zuegen noch keine Punkte machen\."
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/nowrite.ogg"
   >
-  <send>psnd("Games/Hajo/nowrite.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Nun bist Du an der Reihe."
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/yourturn.ogg"
   >
-  <send>psnd("Games/Hajo/yourturn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du bekommst insgesamt .* Punkte gutgeschrieben\.|.* bekommt insgesamt .* Punkte gutgeschrieben\."
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/write.ogg"
   >
-  <send>psnd("Games/Hajo/write.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du konntest mit allen rausgelegten Wuerfeln Punkte machen .*|.* konnte alle Wuerfel rauslegen und hat nun aufs neue 3 Zuege.*"
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/again.ogg"
   >
-  <send>psnd("Games/Hajo/again.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du legst .* raus\.|.* legt .* raus\."
    regexp="y"
-   send_to="12"
    sequence="94"
+   sound="Games/Hajo/collect.ogg"
   >
-  <send>psnd("Games/Hajo/collect.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Spiele_Hajo"
    match="Du wuerfelst .*|.* wuerfelt .*"
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Games/Hajo/dice.ogg"
   >
-  <send>psnd("Games/Hajo/dice.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -586,403 +549,354 @@
    enabled="y"
    match="KRAACK. Uh, oh. Das klang nicht gut. Vielleicht solltest Du *"
    sequence="102"
-   send_to="12"
+   sound="Items/ArmorBreak.ogg"
   >
-  <send>psnd("Items/ArmorBreak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du holst kraeftig mit Deiner Angel aus und wirfst den Koeder weit *"
-   send_to="12"
    sequence="100"
+   sound="Fishing/FishCast.ogg"
   >
-  <send>psnd("Fishing/FishCast.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das muss ein * Fisch sein, der da angebissen hat."
-   send_to="12"
    sequence="100"
+   sound="Fishing/Fish.ogg"
   >
-  <send>psnd("Fishing/Fish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mist. Du stellst Dich viel zu ungeschickt an, *"
-   send_to="12"
    sequence="100"
+   sound="Fishing/FishEscape.ogg"
   >
-  <send>psnd("Fishing/FishEscape.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du hast einen schoenen Fisch geangelt."
-   send_to="12"
    sequence="100"
+   sound="Fishing/FishCatch.ogg"
   >
-  <send>psnd("Fishing/FishCatch.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du ziehst mit Leibeskraeften an der Angel, um den Fisch aus dem Wasser zu"
-   send_to="12"
    sequence="100"
+   sound="Fishing/FishLinePull.ogg"
   >
-  <send>psnd("Fishing/FishLinePull.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein blaeulich-silberner, getragener Ring entfaltet nun seine Wirkung."
-   send_to="12"
    sequence="100"
+   sound="Misc/Rings/Bonus.ogg"
   >
-  <send>psnd("Misc/Rings/Bonus.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein blaeulich-silberner, getragener Ring leuchtet kurz auf."
-   send_to="12"
    sequence="100"
+   sound="Misc/Rings/Bonus.ogg"
   >
-  <send>psnd("Misc/Rings/Bonus.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Gratulation! Du hast eine Tagesaufgabe geloest."
-   send_to="12"
    sequence="100"
+   sound="Misc/DailyTask.ogg"
   >
-  <send>psnd("Misc/DailyTask.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Gratulation! Du hast eine Wochenaufgabe geloest."
-   send_to="12"
    sequence="100"
+   sound="Misc/WeeklyTask.ogg"
   >
-  <send>psnd("Misc/WeeklyTask.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Gratulation! Du hast eine Aktionsaufgabe geloest."
-   send_to="12"
    sequence="100"
+   sound="Misc/SpecialTask.ogg"
   >
-  <send>psnd("Misc/SpecialTask.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Besonderes Glueck!"
-   send_to="12"
    sequence="100"
+   sound="Misc/DayGift.ogg"
   >
-  <send>psnd("Misc/DayGift.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bist soeben gestorben."
-   send_to="12"
    sequence="100"
+   sound="Player/Die.ogg"
   >
-  <send>psnd("Player/Die.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein weisser Schatten fliegt gen Himmel."
-   send_to="12"
    sequence="100"
+   sound="Player/Die.ogg"
   >
-  <send>psnd("Player/Die.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine heilige Macht umgibt Dich."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/might_on.ogg"
   >
-  <send>psnd("Weapons/holy_sword/might_on.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die heilige Macht weicht von Dir."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/might_off.ogg"
   >
-  <send>psnd("Weapons/holy_sword/might_off.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* heiliges, gefuehrtes Schwert leuchtet nur noch ganz schwach."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/weak.ogg"
    omit_from_output="y"
   >
-  <send>psnd("Weapons/holy_sword/weak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* heiliges, gefuehrtes Schwert leuchtet auf."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/light_up.ogg"
    omit_from_output="y"
   >
-  <send>psnd("Weapons/holy_sword/light_up.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* heiliges, gefuehrtes Schwert erstrahlt kurz."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/shine.ogg"
    omit_from_output="y"
   >
-  <send>psnd("Weapons/holy_sword/shine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* heiliges, gefuehrtes Schwert blitzt auf."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/flash.ogg"
    omit_from_output="y"
   >
-  <send>psnd("Weapons/holy_sword/flash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* heiliges, gefuehrtes Schwert strahlt auf und blendet Dich."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/shine_blind.ogg"
    omit_from_output="y"
   >
-  <send>psnd("Weapons/holy_sword/shine_blind.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine goettliche Macht hilft Dir."
-   send_to="12"
    sequence="100"
+   sound="Weapons/holy_sword/devine.ogg"
   >
-  <send>psnd("Weapons/holy_sword/devine.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Fuehler fangen an zu blitzen, und darauf fangen sie an in einem"
-   send_to="12"
    sequence="100"
+   sound="Febracim/BallStart.ogg"
   >
-  <send>psnd("Febracim/BallStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ueber Deinem Kopf entsteht eine gleissend helle Energiekugel, um deren"
-   send_to="12"
    sequence="100"
+   sound="Febracim/BallCreate.ogg"
   >
-  <send>psnd("Febracim/BallCreate.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Energiekugel schiesst los und fliegt direkt auf *"
-   send_to="12"
    sequence="99"
+   sound="Febracim/Ball.ogg"
   >
-  <send>psnd("Febracim/Ball.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du konzentrierst Dich auf * waehrend*"
-   send_to="12"
    sequence="100"
+   sound="Febracim/TailStart.ogg"
   >
-  <send>psnd("Febracim/TailStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schiesst einen Feuerschweif auf *"
-   send_to="12"
    sequence="99"
+   sound="Febracim/Tail.ogg"
   >
-  <send>psnd("Febracim/Tail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du starrst * an, waehrend*"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ShockStart.ogg"
   >
-  <send>psnd("Febracim/ShockStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die Vibration uebertraegt sich immer staerker werdend auf Deinen gesamten"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ShockCharge.ogg"
   >
-  <send>psnd("Febracim/ShockCharge.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die Schockwelle breitet sich aus, und fliegt in Richtung*"
-   send_to="12"
    sequence="100"
+   sound="Febracim/Shock.ogg"
   >
-  <send>psnd("Febracim/Shock.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Als Du * mit Deinen gelben Augen*"
-   send_to="12"
    sequence="100"
+   sound="Febracim/Devour.ogg"
   >
-  <send>psnd("Febracim/Devour.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du Sprichst laut die Worte: Febra mestasa. Kurz darauf oeffnet sich gleich"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberOpen.ogg"
   >
-  <send>psnd("Febracim/ChamberOpen.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mit einem langsamen Knirschen schliesst sich die Luke ueber Dir. Was hat"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberClose.ogg"
   >
-  <send>psnd("Febracim/ChamberClose.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mit einem langsamen Knirschen schliesst sich die Luke wieder, und ist schon"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberClose.ogg"
   >
-  <send>psnd("Febracim/ChamberClose.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Langsam beginnt sich der Raum mit einer Fluessigkeit zu fuellen."
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberFill1.ogg"
   >
-  <send>psnd("Febracim/ChamberFill1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Boden unter Dir ist schon gar nicht mehr zu erkennen, und Du merkst,"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberFill1.ogg"
   >
-  <send>psnd("Febracim/ChamberFill1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die Fluessigkeit steigt immer weiter. Panik will in Dir aufkommen. Der"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberFill2.ogg"
   >
-  <send>psnd("Febracim/ChamberFill2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bist nun voellig von Dieser Fluessigkeit umgeben. Deine Lungen fuellen"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberLungs.ogg"
   >
-  <send>psnd("Febracim/ChamberLungs.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Febracim entspannt sich und geniesst das Bad in dieser seltsamen"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberFill2.ogg"
   >
-  <send>psnd("Febracim/ChamberFill2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du gewoehnst Dich langsam an das Einatmen der Fluessigkeit statt der"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberStretch.ogg"
   >
-  <send>psnd("Febracim/ChamberStretch.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Febracim scheint sich zu Strecken und fuehlt sich scheinbar richtig"
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberStretch.ogg"
   >
-  <send>psnd("Febracim/ChamberStretch.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Febracim heilt sich langsam."
-   send_to="12"
    sequence="100"
+   sound="Febracim/ChamberHeal.ogg"
   >
-  <send>psnd("Febracim/ChamberHeal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bekommst wieder Boden unter den Fuessen."
-   send_to="12"
    sequence="99"
+   sound="Febracim/ChamberStop.ogg"
   >
-  <send>psnd("Febracim/ChamberStop.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mit einem Knirschen an der Decke oeffnet sich die Luke wieder. Der Febracim"
-   send_to="12"
    sequence="99"
+   sound="Febracim/ChamberOpen.ogg"
   >
-  <send>psnd("Febracim/ChamberOpen.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du streckst Deine Arme gen Himmel und *"
-   send_to="12"
    sequence="95"
+   sound="Spells/Stardust1.ogg"
   >
-  <send>psnd("Spells/Stardust1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Zwischen Deinen Haenden entsteht eine leuchtende Kugel,*"
-   send_to="12"
    sequence="95"
+   sound="Spells/Stardust2.ogg"
   >
-  <send>psnd("Spells/Stardust2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Die Kugel zerspringt mit einem lauten Knall*"
-   send_to="12"
    sequence="95"
+   sound="Spells/Stardust3.ogg"
   >
-  <send>psnd("Spells/Stardust3.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du wirst von Sternenstaub umgeben."
-   send_to="12"
    sequence="95"
+   sound="Spells/StardustOn.ogg"
   >
-  <send>psnd("Spells/StardustOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Dein Sternenstaub loest sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/StardustOff.ogg"
   >
-  <send>psnd("Spells/StardustOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -996,218 +910,192 @@
    enabled="n"
    group="Magier"
    match="Du beginnst Deine regenerativen Energien anzuzapfen."
-   send_to="12"
    sequence="95"
+   sound="Spells/MagicCharge1.ogg"
   >
-  <send>psnd("Spells/MagicCharge1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du spuerst, wie die Energien Dir zur Verfuegung stehen."
-   send_to="12"
    sequence="95"
+   sound="Spells/MagicCharge2.ogg"
   >
-  <send>psnd("Spells/MagicCharge2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt."
-   send_to="12"
    sequence="95"
+   sound="Spells/MagicChargeOn.ogg"
   >
-  <send>psnd("Spells/MagicChargeOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Magier"
    match="Deine Energien fliessen wieder normal."
-   send_to="12"
    sequence="95"
+   sound="Spells/MagicChargeOff.ogg"
   >
-  <send>psnd("Spells/MagicChargeOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ploetzlich bildet sich eine dicke Wolke ueber Deinem Kopf."
-   send_to="12"
    sequence="95"
+   sound="Spells/WaterAura2.ogg"
   >
-  <send>psnd('Spells/WaterAura2.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein Staubschleier loest sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/EarthAuraOff.ogg"
   >
-  <send>psnd('Spells/EarthAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich."
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Spells/EarthAuraOn.ogg"
   >
-  <send>psnd('Spells/EarthAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Aus der Erde loesen sich kleine Partikel*"
-   send_to="12"
    sequence="95"
+   sound="Spells/EarthAura2.ogg"
   >
-  <send>psnd('Spells/EarthAura2.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du hebst beide Arme, drehst die Handflaechen gen Boden*"
-   send_to="12"
    sequence="95"
+   sound="Spells/EarthAura1.ogg"
   >
-  <send>psnd('Spells/EarthAura1.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Watteflocken loesen sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/AirAuraOff.ogg"
   >
-  <send>psnd('Spells/AirAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bist in den Watteflocken kaum noch auszumachen."
-   send_to="12"
    sequence="95"
+   sound="Spells/AirAuraOn.ogg"
   >
-  <send>psnd('Spells/AirAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst, aus dem Wattebausch kleine Flocken*"
-   send_to="12"
    sequence="95"
+   sound="Spells/AirAura2.ogg"
   >
-  <send>psnd('Spells/AirAura2.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du ziehst einen Wattebausch aus Deinem Gepaeck*"
-   send_to="12"
    sequence="95"
+   sound="Spells/AirAura1.ogg"
   >
-  <send>psnd('Spells/AirAura1.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein Wasserschleier loest sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/WaterAuraOff.ogg"
   >
-  <send>psnd('Spells/WaterAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Es regnet aus der Wolke auf Dich herab*"
-   send_to="12"
    sequence="95"
+   sound="Spells/WaterAuraOn.ogg"
   >
-  <send>psnd('Spells/WaterAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beschreibst mit Deinen Haenden mystische Zeichen."
-   send_to="12"
    sequence="95"
+   sound="Spells/WaterAura1.ogg"
   >
-  <send>psnd('Spells/WaterAura1.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Todesaura loest sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/DeathAuraOff.ogg"
   >
-  <send>psnd('Spells/DeathAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich."
    regexp="y"
-   send_to="12"
    sequence="95"
+   sound="Spells/DeathAuraOn.ogg"
   >
-  <send>psnd('Spells/DeathAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Zwischen Deinen Handflaechen bilden sich schwarze Schleier*"
-   send_to="12"
    sequence="95"
+   sound="Spells/DeathAura1.ogg"
   >
-  <send>psnd('Spells/DeathAura1.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Feueraura loest sich auf."
-   send_to="12"
    sequence="95"
+   sound="Spells/FireAuraOff.ogg"
   >
-  <send>psnd('Spells/FireAuraOff.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich."
-   send_to="12"
    regexp="y"
    sequence="95"
+   sound="Spells/FireAuraOn.ogg"
   >
-  <send>psnd('Spells/FireAuraOn.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Zwischen Deinen Handflaechen bilden sich Manawolken*"
-   send_to="12"
    sequence="95"
+   sound="Spells/FireAura2.ogg"
   >
-  <send>psnd('Spells/FireAura2.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du streckst beide Handflaechen von Dir und beginnst*"
-   send_to="12"
    sequence="95"
+   sound="Spells/FireAura1.ogg"
   >
-  <send>psnd('Spells/FireAura1.ogg')</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ploetzlich erscheint eine grosse Welle, und Du verschluckst Wasser. *"
    sequence="100"
-   send_to="12"
+   sound="Player/Drown1.ogg"
   >
-  <send>psnd("Player/Drown1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Du konzentrierst Dich auf *"
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemConcentrate.ogg"
   >
-  <send>psnd("GolemCultists/GolemConcentrate.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Du versuchst * telepathisch einen Befehl zu geben."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemCommunicate.ogg"
   >
-  <send>psnd("GolemCultists/GolemCommunicate.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1215,124 +1103,109 @@
    match="Die Augen von * blitzen kurz auf."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
   >
-  <send></send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="* trifft * mit seiner Faust. Gleichzeitig *"
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemManaPunch.ogg"
   >
-  <send>psnd("GolemCultists/GolemManaPunch.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="* magischer Schutzschild loest sich auf."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemShieldOff.ogg"
   >
-  <send>psnd("GolemCultists/GolemShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="* umgibt ein magischer Schutzschild."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemShield.ogg"
   >
-  <send>psnd("GolemCultists/GolemShield.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Das Glitzern legt sich als schuetzendes Schild ueber Dich."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/CoreShieldCreate.ogg"
   >
-  <send>psnd("GolemCultists/CoreShieldCreate.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Du konzentrierst Dich."
    sequence="100"
-   send_to="12"
+   sound="spells/Prepare.ogg"
   >
-  <send>psnd("spells/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Du nimmst Deinen Energiekern in die Hand und *"
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/CoreShieldAbsorb.ogg"
   >
-  <send>psnd("GolemCultists/CoreShieldAbsorb.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Das Leuchten Deines Energiekerns laesst nach, waehrend Du *"
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/CoreShieldShine.ogg"
   >
-  <send>psnd("GolemCultists/CoreShieldShine.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Dein Kernschild loest sich auf."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/CoreShieldBreak.ogg"
   >
-  <send>psnd("GolemCultists/CoreShieldBreak.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Du suchst an * nach Rissen und anderen Macken."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemHealSearch.ogg"
   >
-  <send>psnd("GolemCultists/GolemHealSearch.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="Schnell verschliesst Du die Wunden des Golems. Dabei murmelst Du *"
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemHealFix.ogg"
   >
-  <send>psnd("GolemCultists/GolemHealFix.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Golemkultisten"
    match="* sieht schon viel besser aus."
    sequence="100"
-   send_to="12"
+   sound="GolemCultists/GolemHealFinish.ogg"
   >
-  <send>psnd("GolemCultists/GolemHealFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schluckst noch mehr Wasser."
    sequence="100"
-   send_to="12"
+   sound="Player/Drown2.ogg"
   >
-  <send>psnd("Player/Drown2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beruhigst Dich wieder."
    sequence="100"
-   send_to="12"
+   sound="Player/Drown3.ogg"
   >
-  <send>psnd("Player/Drown3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1341,16 +1214,15 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Robe schmiegt sich eng an Deinen Koerper.*"
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/Zwonirobe.ogg"
   >
-  <send>psnd("Misc/Zwonirobe.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1358,24 +1230,22 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Misc/Post"..math.random(1,2)..".ogg")</send>
+  <send>Sound.PlaySound("Misc/Post"..math.random(1,2)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="NEUE Briefe liegen fuer Dich auf der Post."
    sequence="100"
-   send_to="12"
+   sound="Misc/Post.ogg"
   >
-  <send>psnd("Misc/Post.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Nynaeves Sonnenschein&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Sun.ogg"
   >
-  <send>psnd("Bard/Sun.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1383,9 +1253,8 @@
    match="Da Du * im Schlaf beherrschst*"
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Bard/InstrumentMaster.ogg"
   >
-  <send>psnd("Bard/InstrumentMaster.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1393,125 +1262,110 @@
    match="*dass Du sogar etwas Kraft sparst."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
   >
-  <send></send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Rosarios Tanzlied&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Dance.ogg"
   >
-  <send>psnd("Bard/Dance.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Rumbolds Ruhe&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Quietness.ogg"
   >
-  <send>psnd("Bard/Quietness.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Eine Stimmung der Ruhe und Friedfertigkeit benebelt alle Gegner."
    sequence="100"
-   send_to="12"
+   sound="Bard/QuietnessOn.ogg"
   >
-  <send>psnd("Bard/QuietnessOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="* kann sich langsam vom beruhigenden *"
    sequence="100"
-   send_to="12"
+   sound="Bard/QuietnessOff.ogg"
   >
-  <send>psnd("Bard/QuietnessOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Wallenroths Wut&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Rage1.ogg"
   >
-  <send>psnd("Bard/Rage1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Deine Bewegungen werden zusehends schneller."
    sequence="100"
-   send_to="12"
+   sound="Bard/Rage2.ogg"
   >
-  <send>psnd("Bard/Rage2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Kaum hast Du aufgehoert zu spielen, bewegt sich wieder alles in seiner"
    sequence="100"
-   send_to="12"
+   sound="Bard/RageOver.ogg"
   >
-  <send>psnd("Bard/RageOver.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Barden"
    match="Die Lichtwesen von * scheinen Dein Mana etwas aufzufrischen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Sun_Regen.ogg"
   >
-  <send>psnd("Bard/Sun_Regen.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Barden"
    match="Deine Lichtwesen scheinen das Mana von * etwas aufzufrischen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Sun_Regen.ogg"
   >
-  <send>psnd("Bard/Sun_Regen.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Barden"
    match="Bei jeder Beruehrung teilen Lichtwesen ihr Mana mit Dir. "
    sequence="100"
-   send_to="12"
+   sound="Bard/Sun_Regen.ogg"
   >
-  <send>psnd("Bard/Sun_Regen.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Dolores' Euphorie&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Euphoria.ogg"
   >
-  <send>psnd("Bard/Euphoria.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du hast keine magische Kraft mehr, die Du in das Lied*"
    sequence="100"
-   send_to="12"
+   sound="Bard/OutOfSpellPower.ogg"
   >
-  <send>psnd("Bard/OutOfSpellPower.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mist. Noch immer nichts gefunden."
    sequence="100"
-   send_to="12"
+   sound="Mining/HammerFailed.ogg"
   >
-  <send>psnd("Mining/HammerFailed.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1519,171 +1373,150 @@
    match=".*Sie ist noch ganz gut zu erkennen.*|.*Sie ist noch ausreichend zu erkennen.*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/QuiteGood.ogg"
   >
-  <send>psnd("Rune/QuiteGood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du springst in die Fluten."
    sequence="100"
-   send_to="12"
+   sound="Player/EnterWater.ogg"
   >
-  <send>psnd("Player/EnterWater.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du verlaesst das Wasser."
    sequence="100"
-   send_to="12"
+   sound="Player/ExitWater.ogg"
   >
-  <send>psnd("Player/ExitWater.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mit dem Messer in der Hand machst Du Dich an die Arbeit."
    sequence="100"
-   send_to="12"
+   sound="Cook/Disembowel2.ogg"
   >
-  <send>psnd("Cook/Disembowel2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst magische Rituale auszufuehren."
    sequence="100"
-   send_to="12"
+   sound="Spells/ShieldRituals.ogg"
   >
-  <send>psnd("Spells/ShieldRituals.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match=".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Spells/StoneskinOver.ogg"
   >
-  <send>psnd("Spells/StoneskinOver.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf."
    sequence="100"
-   send_to="12"
+   sound="Spells/StoneskinBreak.ogg"
   >
-  <send>psnd("Spells/StoneskinBreak.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du murmelst Beschwoerungsformeln. Staub und kleine Steinchen .*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Spells/StoneskinStart.ogg"
   >
-  <send>psnd("Spells/StoneskinStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine graue Schicht ueberzieht langsam Deine Haut, die *"
    sequence="100"
-   send_to="12"
+   sound="Spells/StoneskinContinue.ogg"
   >
-  <send>psnd("Spells/StoneskinContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bist nun vollkommen in eine Steinhaut eingehuellt, *"
    sequence="100"
-   send_to="12"
+   sound="Spells/StoneskinFinish.ogg"
   >
-
-  <send>psnd("Spells/StoneskinFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du verdrehst die Augen."
    sequence="100"
-   send_to="12"
+   sound="Spells/ShieldConcentrate.ogg"
   >
-  <send>psnd("Spells/ShieldConcentrate.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du wirst von einem magischen Schild umgeben*"
    sequence="100"
-   send_to="12"
+   sound="Spells/ShieldOn.ogg"
   >
-  <send>psnd("Spells/ShieldOn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein * loest sich auf."
    sequence="101"
-   send_to="12"
+   sound="Spells/ShieldOff.ogg"
   >
-  <send>psnd("Spells/ShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Du hast erfolgreich * in *"
    sequence="100"
-   send_to="12"
+   sound="Rune/EngraveFinish.ogg"
   >
-  <send>psnd("Rune/EngraveFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du hast es geschafft, .* faellt um.*|.* hat es geschafft, .* faellt um.*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopComplete.ogg"
   >
-  <send>psnd("Misc/ChopComplete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das sieht doch schon fast wie ein fertiges Lederstueck aus."
    sequence="100"
+   sound="Tan/Finish2.ogg"
    omit_from_output="y"
-   send_to="12"
   >
-  <send>psnd("Tan/Finish2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du hoerst auf, * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Stop.ogg"
   >
-  <send>psnd("Bard/Stop.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du hoerst auf, * zu singen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Stop_Vocal.ogg"
   >
-  <send>psnd("Bard/Stop_Vocal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Tue beendet."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/Done.ogg"
   >
-  <send>psnd("Misc/Done.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Viel fehlt Dir nicht mehr zum fertigen Lederstueck."
    sequence="100"
+   sound="Tan/Finish1.ogg"
    omit_from_output="y"
-   send_to="12"
   >
-  <send>psnd("Tan/Finish1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1691,9 +1524,8 @@
    match="Von der .*rune .*|Schliesslich ist von der .*rune nichts mehr uebrig."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/RuneGone.ogg"
   >
-  <send>psnd("Rune/RuneGone.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1701,78 +1533,69 @@
    match="Vorsichtig polierst Du * noch etwas."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/Polish.ogg"
   >
-  <send>psnd("Rune/Polish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Was? Wie? Wo? Haeh?!? Das habe ich nicht verstanden."
    sequence="100"
-   send_to="12"
+   sound="Misc/noway.ogg"
   >
-  <send>psnd("Misc/noway.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Renfields Wirrsal&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Confusion.ogg"
   >
-  <send>psnd("Bard/Confusion.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du faengst an, * auszubessern."
    sequence="100"
-   send_to="12"
+   sound="Smith/RepairStart.ogg"
   >
-  <send>psnd("Smith/RepairStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* folgt Dir."
    omit_from_output="y"   
    sequence="100"
-   send_to="12"
+   sound="Smith/Following.ogg"
   >
-  <send>psnd("Smith/Following.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match=".* heilige Aura loest sich auf.|Die heilige Aura von .* loest sich auf."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Spells/KB_Out.ogg"
   >
-  <send>psnd("Spells/KB_Out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du faengst an, * zu schmieden."
    sequence="100"
-   send_to="12"
+   sound="Smith/start.ogg"
   >
-  <send>psnd("Smith/start.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Auf * lodert eine kleine Flamme kurz auf."
    sequence="100"
-   send_to="12"
+   sound="Rune/Flame.ogg"
   >
-  <send>psnd("Rune/Flame.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Du faengst an, * auf *"
    sequence="100"
-   send_to="12"
+   sound="Rune/FileStart.ogg"
   >
-  <send>psnd("Rune/FileStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1781,7 +1604,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1789,7 +1612,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1797,16 +1620,15 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Du faengst an, * in *"
    sequence="100"
-   send_to="12"
+   sound="Rune/EngraveStart.ogg"
   >
-  <send>psnd("Rune/EngraveStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1823,7 +1645,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1831,73 +1653,65 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du kniest nieder und suchst den Boden nach Spuren ab."
    sequence="100"
-   send_to="12"
+   sound="Track/Begin.ogg"
   >
-  <send>psnd("Track/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="OK, Du verfolgst nun *"
    sequence="100"
-   send_to="12"
+   sound="Player/HuntStart.ogg"
   >
-  <send>psnd("Player/HuntStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du knotest Dir ein *"
    sequence="100"
-   send_to="12"
+   sound="Hiker/Knot.ogg"
   >
-  <send>psnd("Hiker/Knot.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein * ist wieder getrocknet."
    sequence="100"
-   send_to="12"
+   sound="Hiker/Dry.ogg"
   >
-  <send>psnd("Hiker/Dry.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Oh Mist, jetzt bist Du auf Granit gestossen und kannst nicht weitergraben!"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigGranite.ogg"
   >
-  <send>psnd("Mining/DigGranite.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du kommst dabei heftig ins Schwitzen."
    sequence="100"
+   sound="Tan/Breath.ogg"
    omit_from_output="y"
-   send_to="12"
   >
-  <send>psnd("Tan/Breath.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Schliesslich bist Du der Meinung, die Rune nicht weiter nachziehen zu"
    sequence="100"
-   send_to="12"
+   sound="Rune/FileEnd.ogg"
   >
-  <send>psnd("Rune/FileEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Weiter kannst Du * nicht ausbessern."
    sequence="100"
-   send_to="12"
+   sound="Smith/RepairEnd.ogg"
   >
-  <send>psnd("Smith/RepairEnd.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1931,9 +1745,8 @@
    match="^Du beginnst Dich zu konzentrieren.$|^.* beginnt sich zu konzentrieren.$|^Du beginnst Deinen Zauberspruch vorzubereiten.$|^Du konzentrierst Dich .*$|^.* konzentriert sich .*$"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Spells/Prepare.ogg"
   >
-  <send>psnd("Spells/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1948,17 +1761,15 @@
    enabled="y"
    match="Du versuchst Dich darauf zu konzentrieren, * versagst Du jedoch klaeglich."
    sequence="100"
-   send_to="12"
+   sound="Spells/Fail.ogg"
   >
-  <send>psnd("Spells/Fail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das riecht aber lecker."
    sequence="100"
-   send_to="12"
+   sound="Cook/Smell.ogg"
   >
-  <send>psnd("Cook/Smell.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1966,77 +1777,69 @@
    ignore_case="y"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Weapons/CounterAttack.ogg"
   >
-  <send>psnd("Weapons/CounterAttack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das sieht nicht besonders ergiebig aus."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/CoalFail.ogg"
   >
-  <send>psnd("Mining/CoalFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du faengst an, eine Wasserstelle zu graben."
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/Begin.ogg"
   >
-  <send>psnd("WateringPlace/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dein Lichtbogen verschwindet."
    sequence="100"
-   send_to="12"
+   sound="Spells/light3out.ogg"
   >
-  <send>psnd("Spells/light3out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein grosser Lichtbogen breitet sich ueber * Kopf aus."
    sequence="100"
+   sound="Spells/light3b.ogg"
    send_to="12"
   >
-  <send>psnd("Spells/light3b.ogg")
-        atcp.Send('ava_req_mapper')</send>
+  <send>atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
    regexp="y"
    match="Du faengst an, mit .* zu faellen.|.* faengt an, mit .* zu faellen"
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopBegin.ogg"
   >
-  <send>psnd("Misc/ChopBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der * Luftvortex scheint * zu *"
    sequence="100"
-   send_to="12"
+   sound="Monsters/Vortex/Strong.ogg"
   >
-  <send>psnd("Monsters/Vortex/Strong.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein kleiner Funke springt auf die Holzspaene ueber und *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Succeed.ogg"
   >
-  <send>psnd("Firestarting/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Aus der Schmelze ist ein Rumpeln zu hoeren. Irgendetwas tut sich da drin."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/MeltRumble.ogg"
   >
-  <send>psnd("Mining/MeltRumble.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2044,192 +1847,169 @@
    match="Du feilst vorsichtig die Raender der .* auf .*|Kraftvoll schleifst Du die .* von .*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/File.ogg"
   >
-  <send>psnd("Rune/File.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Avalon! Eine Welt, in der alles moeglich und nichts unmoeglich ist."
    sequence="100"
-   send_to="12"
+   sound="Misc/start.ogg"
   >
-  <send>psnd("Misc/start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du folgst * nach *."
    sequence="100"
-   send_to="12"
+   sound="Player/Hunt.ogg"
   >
-  <send>psnd("Player/Hunt.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du verteilst * Erde am Rand und klopfst sie fest, *"
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/Prepare.ogg"
   >
-  <send>psnd("WateringPlace/Prepare.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du fuehrst *"
    sequence="100"
-   send_to="12"
+   sound="Weapons/sword_draw.ogg"
   >
-  <send>psnd("Weapons/sword_draw.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Calidus, der Wandervogel."
    sequence="100"
-   send_to="12"
+   sound="Misc/Calidus.ogg"
   >
-  <send>psnd("Misc/Calidus.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Schon * eine Macke weniger."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Smith/Repair1.ogg"
   >
-  <send>psnd("Smith/Repair1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Da geht es nicht weiter."
    sequence="100"
-   send_to="12"
+   sound="Misc/Wall.ogg"
   >
-  <send>psnd("Misc/Wall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du konzentrierst Dich auf das vorzeitige Ende des Zaubers."
-   sequence="95"
    send_to="12"
+   sequence="95"
+   sound="Spells/Stop.ogg"
   >
-  <send>psnd("Spells/Stop.ogg")
-        Spells.AnnounceEarlyCancel()
-  </send>
+  <send>Spells.AnnounceEarlyCancel()</send>
   </trigger>
   <trigger
    enabled="y"
    match="Schweissueberstroemt begutachtest Du Dein fertiges Lederstueck *"
    sequence="100"
-   send_to="12"
+   sound="Tan/Finish3.ogg"
   >
-  <send>psnd("Tan/Finish3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du kramst einen kleinen Feuerstein hervor *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Start.ogg"
   >
-  <send>psnd("Firestarting/Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Sie erzittert immer oefter."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du landest einen gezielten Schlag auf Deinem Rohling."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Smith/hammer2.ogg"
   >
-  <send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="So langsam nimmt Dein Rohling Form an."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Smith/hammer2.ogg"
   >
-  <send>psnd("Smith/hammer2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du loeschst.*|.* loescht .*|.*erlischt.|.*erloeschen."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/torch_out.ogg"
   >
-  <send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Feuerkugel erlischt."
    sequence="99"
-   send_to="12"
+   sound="Misc/torch_out.ogg"
   >
-  <send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Deine Leuchtflamme erlischt."
    sequence="99"
-   send_to="12"
+   sound="Misc/torch_out.ogg"
   >
-  <send>psnd("Misc/torch_out.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du machst Dein * noch einmal richtig nass."
    sequence="100"
-   send_to="12"
+   sound="Hiker/Moisten.ogg"
   >
-  <send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="^Du faengst an, .* zu essen.$|^Du denkst Dir: Mhmmm, schmeckt das gut...$|^Du denkst Dir: Keine Frage, ein Genuss!$|^Du geniesst diese Speise in vollen Zuegen.$"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Player/Eat.ogg"
   >
-  <send>psnd("Player/Eat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* verteil* daraufhin frustriert das ganze Holz in der Landschaft."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/FailStart.ogg"
   >
-  <send>psnd("Firestarting/FailStart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein kleiner Funke springt auf die Holzspaene ueber, aber *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/FailSpark.ogg"
   >
-  <send>psnd("Firestarting/FailSpark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="einige Meter nach hinten."
    sequence="100"
-   send_to="12"
+   sound="Spells/lavahit3.ogg"
   >
-  <send>psnd("Spells/lavahit3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Feuerkristall leuchtet nun hellrot und strahlt dabei eine unheimliche*"
    sequence="100"
-   send_to="12"
+   sound="Cook/FireCrystal.ogg"
   >
-  <send>psnd("Cook/FireCrystal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2237,122 +2017,108 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/swim/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="erhaertet."
    sequence="100"
-   send_to="12"
+   sound="Spells/lavahit4.ogg"
   >
-  <send>psnd("Spells/lavahit4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Nebel loest sich allmaehlich auf."
    sequence="100"
-   send_to="12"
+   sound="Cook/FogOut.ogg"
   >
-  <send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Ein kleiner Wasserschwall schwappt von Deinem *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Wave.ogg"
   >
-  <send>psnd("Rune/Wave.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das Holz knackt im Lagerfeuer und einige Funken fliegen empor."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Sparks.ogg"
   >
-  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein kurzer Blick in die Pfanne verraet Dir, *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Pan.ogg"
   >
-  <send>psnd("Cook/Pan.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die Erde unter Dir beginnt zu beben."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Portal/quake.ogg"
   >
-  <send>psnd("Portal/quake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* dass sich bereits Wasser im Loch sammelt."
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/Succeed.ogg"
   >
-  <send>psnd("WateringPlace/Succeed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Daraufhin stellst Du den Topf auf das Kochgestell *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Cook.ogg"
   >
-  <send>psnd("Cook/Cook.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die Flammen des Lagerfeuers flackern und tanzen hypnotisierend *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Crackle.ogg"
   >
-  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Daraufhin stellst Du die Pfanne mit *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Roast.ogg"
   >
-  <send>psnd("Cook/Roast.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das Knistern des Feuers wirkt irgendwie beruhigend auf Dich."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Crackle.ogg"
   >
-  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Das Lagerfeuer ist nun voellig niedergebrannt *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/GoOut.ogg"
   >
-  <send>psnd("Firestarting/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Sogleich bildet sich ein dunkelblauer Nebel ueber dem Topf, *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Fog.ogg"
   >
-  <send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Einige Funken springen von Deinem *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Spark.ogg"
   >
-  <send>psnd("Rune/Spark.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2361,23 +2127,21 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/stony/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/stony/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du meinst ein leises Plaetschern zu vernehmen."
    sequence="100"
-   send_to="12"
+   sound="Cook/Plash.ogg"
   >
-  <send>psnd("Cook/Plash.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Super! Mit praezisen Schnitten weidest Du *"
    sequence="100"
-   send_to="12"
+   sound="Cook/DisembowelSuccess.ogg"
   >
-  <send>psnd("Cook/DisembowelSuccess.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2385,127 +2149,112 @@
    match="Vorsichtig glaettest Du die Raender der neuen Rune auf *"
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/Smooth.ogg"
   >
-  <send>psnd("Rune/Smooth.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die * Wasserstelle versiegt."
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/GoOut.ogg"
   >
-  <send>psnd("WateringPlace/GoOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Fast ohne Widerstand senkt sich der Stempel tief in die Presse hinein.*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/PressEmpty.ogg"
   >
-  <send>psnd("Mining/PressEmpty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du merkst, wie vom Ofen allmaehlich eine grosse Hitze ausgeht."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/MeltHeatUp.ogg"
   >
-  <send>psnd("Mining/MeltHeatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Tatsaechlich, Du hast etwas .* gefunden.|Na bitte, da ist schon etwas.|.* Du hast Mithrilerz gefunden."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/HammerSucceeded.ogg"
   >
-  <send>psnd("Mining/HammerSucceeded.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du oeffnest *"
    sequence="101"
-   send_to="12"
+   sound="Misc/Open.ogg"
   >
-  <send>psnd("Misc/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Tue abgebrochen."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/DoCancel.ogg"
   >
-  <send>psnd("Misc/DoCancel.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du packst Dein Kochgestell aus und stellst es vor Dich hin."
    sequence="100"
-   send_to="12"
+   sound="Cook/Unpack.ogg"
   >
-  <send>psnd("Cook/Unpack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="konzentriert."
    sequence="100"
-   send_to="12"
+   sound="Spells/heal.ogg"
   >
-  <send>psnd("Spells/heal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="tiefen, feurigen Rot-Orange auf."
    sequence="100"
-   send_to="12"
+   sound="Spells/lavahit1.ogg"
   >
-  <send>psnd("Spells/lavahit1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du nimmst einen * Schluck *"
    sequence="101"
-   send_to="12"
+   sound="Player/EatUp.ogg"
   >
-  <send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein letztes Mal abschmecken und Du bist Dir sicher, dass *"
    sequence="100"
-   send_to="12"
+   sound="Cook/CookFinish.ogg"
   >
-  <send>psnd("Cook/CookFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du nimmst *"
    sequence="102"
-   send_to="12"
+   sound="Items/Take.ogg"
   >
-  <send>psnd("Items/Take.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Die Illusion einer steinernen Faust schiesst aus *"
    sequence="99"
-   send_to="12"
+   sound="Rune/Stone.ogg"
   >
-  <send>psnd("Rune/Stone.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Die Illusion einer Granitfaust schiesst aus *"
    sequence="99"
-   send_to="12"
+   sound="Rune/Granite.ogg"
   >
-  <send>psnd("Rune/Granite.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2519,17 +2268,15 @@
    enabled="y"
    match="Ein * Mondtor steigt aus dem Boden empor."
    sequence="100"
-   send_to="12"
+   sound="Portal/create.ogg"
   >
-  <send>psnd("Portal/create.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein * Mondtor verschwindet wieder spurlos im Boden."
    sequence="100"
-   send_to="12"
+   sound="Portal/quake.ogg"
   >
-  <send>psnd("Portal/quake.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2544,75 +2291,66 @@
    group="Runenschmiede"
    match="Die Schlangenrune *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Snake.ogg"
   >
-  <send>psnd("Rune/Snake.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein seltsames Haus."
    sequence="100"
-   send_to="12"
+   sound="Misc/Zwoni.ogg"
   >
-  <send>psnd("Misc/Zwoni.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du legst * in das kochende Wasser *"
    sequence="99"
-   send_to="12"
+   sound="Cook/Boiling2.ogg"
   >
-  <send>psnd("Cook/Boiling2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Die rote Nebelwolke beginnt sich ploetzlich aufzuloesen."
    sequence="100"
-   send_to="12"
+   sound="Cook/FogOut.ogg"
   >
-  <send>psnd("Cook/FogOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein tiefer Kratzer in .* muss .*"
    sequence="100"
    regexp="y"
-   send_to="12"
+   sound="Smith/Repair2.ogg"
   >
-  <send>psnd("Smith/Repair2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dir rutscht Geroell entgegen."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigRocks.ogg"
   >
-  <send>psnd("Mining/DigRocks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* Luftvortex naehert sich von *"
    sequence="100"
-   send_to="12"
+   sound="Monsters/Vortex/Appear.ogg"
   >
-  <send>psnd("Monsters/Vortex/Appear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Fertig. Dein Feuerkristall erlischt und Du packst alles wieder ein. *"
    sequence="99"
-   send_to="12"
+   sound="Cook/RoastFinish.ogg"
   >
-  <send>psnd("Cook/RoastFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* Luftvortex wirbelt ein wenig von *"
    sequence="100"
-   send_to="12"
+   sound="Monsters/Vortex/Swirl1.ogg"
   >
-  <send>psnd("Monsters/Vortex/Swirl1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2625,17 +2363,15 @@
    enabled="y"
    match="Funken stieben aus dem Lagerfeuer."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Sparks.ogg"
   >
-  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du probierst ein bisschen von *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Try.ogg"
   >
-  <send>psnd("Cook/Try.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2648,209 +2384,184 @@
    enabled="y"
    match="Du pruefst die Tiefe und beschliesst noch * nachzugraben."
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/Dig2.ogg"
   >
-  <send>psnd("WateringPlace/Dig2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Geblendet vom herabstroemenden Schweiss kneifst Du Deine Augen in einem*"
    sequence="100"
-   send_to="12"
+   sound="Tan/Tear.ogg"
   >
-  <send>psnd("Tan/Tear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du ruehrst * um."
    sequence="100"
-   send_to="12"
+   sound="Cook/Stir.ogg"
   >
-  <send>psnd("Cook/Stir.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schabst fleissig weiter."
    sequence="100"
    omit_from_output="y"
-   send_to="12"
+   sound="Tan/Scrape2.ogg"
   >
-  <send>psnd("Tan/Scrape2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du befeuchtest Dein *"
    sequence="100"
-   send_to="12"
+   sound="Hiker/Moisten.ogg"
   >
-  <send>psnd("Hiker/Moisten.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du befreist Dich aus dem Schlamm."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigMud.ogg"
   >
-  <send>psnd("Mining/DigMud.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Eine Stichflamme schiesst aus *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Fire.ogg"
   >
-  <send>psnd("Rune/Fire.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* Luftvortex wuselt flink um *"
    sequence="100"
-   send_to="12"
+   sound="Monsters/Vortex/Swirl2.ogg"
   >
-  <send>psnd("Monsters/Vortex/Swirl2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst damit, ein Lagerfeuer zu errichten."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Begin.ogg"
   >
-  <send>psnd("Firestarting/Begin.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Eine Wasserfontaene schiesst aus *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Flood.ogg"
   >
-  <send>psnd("Rune/Flood.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst das Stueck Haut mit dem Gerbermesser abzuschaben."
    sequence="100"
    omit_from_output="y"
-   send_to="12"
+   sound="Tan/Scrape1.ogg"
   >
-  <send>psnd("Tan/Scrape1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* erscheint aus dem Mondtor."
    sequence="100"
-   send_to="12"
+   sound="Portal/apear.ogg"
   >
-  <send>psnd("Portal/apear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst mit dem Wuehlen nach *kohle."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/CoalBegin.ogg"
   >
-  <send>psnd("Mining/CoalBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* erzittert unter den heftigen Hieben."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bist gerade fertig, den Rand zu befestigen, da rutscht auch wieder alles"
-   send_to="12"
    sequence="100"
+   sound="WateringPlace/Colapse.ogg"
   >
-  <send>psnd("WateringPlace/Colapse.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* erzittert unter den heftigen Schlaegen."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Hand wieder."
    sequence="100"
-   send_to="12"
+   sound="Spells/firebeam4.ogg"
   >
-  <send>psnd("Spells/firebeam4.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Handflaechen beginnen zu leuchten und zu funkeln."
    sequence="100"
-   send_to="12"
+   sound="Spells/heal2.ogg"
   >
-  <send>psnd("Spells/heal2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schlaegst Dein Werkzeug in das Gestein."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigTool.ogg"
   >
-  <send>psnd("Mining/DigTool.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Hier scheint wirklich Mithrilerz im Gestein zu sein."
    sequence="100"
-   send_to="12"
+   sound="Mining/HackSucceed2.ogg"
   >
-  <send>psnd("Mining/HackSucceed2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schliesst *"
    sequence="102"
-   send_to="12"
+   sound="Misc/Close.ogg"
   >
-  <send>psnd("Misc/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Himmel und verschwindet dort."
    sequence="100"
-   send_to="12"
+   sound="Spells/lavahit2.ogg"
   >
-  <send>psnd("Spells/lavahit2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schneidest ein Stueck zur Bearbeitung aus Deiner Tierhaut."
    sequence="100"
    omit_from_output="y"
-   send_to="12"
+   sound="Tan/Cut.ogg"
   >
-  <send>psnd("Tan/Cut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du senkst *"
    sequence="100"
-   send_to="12"
+   sound="Weapons/Sword_Sheath.ogg"
   >
-  <send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du setzt * ab."
    sequence="100"
-   send_to="12"
+   sound="Player/offhead.ogg"
   >
-  <send>psnd("Player/offhead.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -2858,34 +2569,30 @@
    match="Du zeichnest vorsichtig die Rune auf * vor."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Rune/Chart.ogg"
   >
-  <send>psnd("Rune/Chart.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du zerteilst * mit * in *"
    sequence="100"
-   send_to="12"
+   sound="Misc/WoodSplit.ogg"
   >
-  <send>psnd("Misc/WoodSplit.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="* Voegel stuerz* auf * herab.*"
    sequence="100"
-   send_to="12"
+   sound="Bard/Birds_Attack.ogg"
   >
-  <send>psnd("Bard/Birds_Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du ziehst * an."
    sequence="100"
-   send_to="12"
+   sound="Player/Wear.ogg"
   >
-  <send>psnd("Player/Wear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2893,123 +2600,108 @@
    omit_from_output="y"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/HammerBegin.ogg"
   >
-  <send>psnd("Mining/HammerBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine kaum ertraegliche Hitze stroemt aus dem Nebel."
    sequence="100"
-   send_to="12"
+   sound="Cook/Heat.ogg"
   >
-  <send>psnd("Cook/Heat.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du ziehst * aus."
    sequence="100"
-   send_to="12"
+   sound="Player/Unwear.ogg"
   >
-  <send>psnd("Player/Unwear.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst mit der Arbeit. Es ist gar nicht so einfach hier *erz *"
    sequence="100"
-   send_to="12"
+   sound="Mining/HackSucceed1.ogg"
   >
-  <send>psnd("Mining/HackSucceed1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine kleine, freche Fliege will an Dein Essen, *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Fly.ogg"
   >
-  <send>psnd("Cook/Fly.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* faellt bestimmt bald um."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beginnst zu graben."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigBegin.ogg"
   >
-  <send>psnd("Mining/DigBegin.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine rote Nebelwolke bildet sich ueber dem Boden und umschliesst den*"
    sequence="100"
-   send_to="12"
+   sound="Cook/Fog.ogg"
   >
-  <send>psnd("Cook/Fog.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* fluechtet sichtlich verstoert nach *"
    sequence="100"
-   send_to="12"
+   sound="Monsters/Flee.ogg"
   >
-  <send>psnd("Monsters/Flee.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du beobachtest ein wenig den Funkenflug des Lagerfeuers."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Sparks.ogg"
   >
-  <send>psnd("Firestarting/Sparks.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* in dem Lagerfeuer in * auf."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/burst.ogg"
   >
-  <send>psnd("Firestarting/burst.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du betrittst ein * Mondtor."
    sequence="100"
-   send_to="12"
+   sound="Portal/enter portal.ogg"
   >
-  <send>psnd("Portal/enter portal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* gibt Dir *"
    sequence="100"
-   send_to="12"
+   sound="Items/Get.ogg"
   >
-  <send>psnd("Items/Get.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Hm. Viel ist da nicht zu sehen."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/HammerFail.ogg"
   >
-  <send>psnd("Mining/HammerFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* hat gut geschmeckt."
    sequence="100"
-   send_to="12"
+   sound="Player/EatUp.ogg"
   >
-  <send>psnd("Player/EatUp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3017,9 +2709,8 @@
    omit_from_output="y"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/HammerSucceed.ogg"
   >
-  <send>psnd("Mining/HammerSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3033,9 +2724,8 @@
    enabled="y"
    match="Du setzt * auf."
    sequence="100"
-   send_to="12"
+   sound="Player/head.ogg"
   >
-  <send>psnd("Player/head.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3043,35 +2733,31 @@
    omit_from_output="y"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/CoalSucceed.ogg"
   >
-  <send>psnd("Mining/CoalSucceed.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du spaltest das Brennholz in kleinere Scheite."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Split.ogg"
   >
-  <send>psnd("Firestarting/Split.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du spielst eine leichte Melodie auf *, mit der Du bei*"
-   send_to="12"
    sequence="99"
+   sound="Bard/Grats.ogg"
   >
-  <send>psnd("Bard/Grats.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du spielst * auf Dein*"
    sequence="100"
-   send_to="12"
+   sound="Bard/Sing.ogg"
   >
-  <send>psnd("Bard/Sing.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -3079,125 +2765,111 @@
    match="Du singst * ohne instrumentale Unterstuetzung*"
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Bard/Sing_Vocal.ogg"
   >
-  <send>psnd("Bard/Sing_Vocal.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du spuckst Dir in die Haende."
    sequence="100"
-   send_to="12"
+   sound="Spells/light1b.ogg"
   >
-  <send>psnd("Spells/light1b.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Du spuerst, wie die Magie von Deinem * Dir die *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Vampire.ogg"
   >
-  <send>psnd("Rune/Vampire.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="Ein Blitz schiesst aus *"
    sequence="100"
-   send_to="12"
+   sound="Rune/Lightning.ogg"
   >
-  <send>psnd("Rune/Lightning.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bewegst Deine Haende auf mystische Weise."
    sequence="100"
-   send_to="12"
+   sound="Spells/light2a.ogg"
   >
-  <send>psnd("Spells/light2a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bildest mit dem * Luftvortex eine neue Gruppe."
    sequence="100"
-   send_to="12"
+   sound="Monsters/Vortex/Group.ogg"
   >
-  <send>psnd("Monsters/Vortex/Group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein Feuerstrahl schiesst auf * zu."
    sequence="100"
-   send_to="12"
+   sound="Spells/firebeam2.ogg"
   >
-  <send>psnd("Spells/firebeam2.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* kippt bestimmt bald um."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du breitest Deine Arme aus."
    sequence="100"
-   send_to="12"
+   sound="Spells/light3a.ogg"
   >
-  <send>psnd("Spells/light3a.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* in dem Lagerfeuer."
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Crackle.ogg"
   >
-  <send>psnd("Firestarting/Crackle.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du drueckst den langen Hebel nach oben. Ohne Widerstand folgt er Dein*"
    sequence="100"
-   send_to="12"
+   sound="Mining/PressRelease.ogg"
   >
-  <send>psnd("Mining/PressRelease.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* recht beschaedigt."
    sequence="100"
-   send_to="12"
+   sound="Smith/Damaged.ogg"
   >
-  <send>psnd("Smith/Damaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du entzuendest.*|.*entzuendet.*"
    regexp="y"
-   sequence="100"
    send_to="12"
+   sequence="100"
+   sound="Misc/torch_on.ogg"
   >
-  <send>psnd("Misc/torch_on.ogg")
-      atcp.Send('ava_req_mapper')</send>
+  <send>atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
    match="In dem Kochtopf befindet sich jetzt erstaunlicherweise kochendes Wasser *"
    sequence="100"
-   send_to="12"
+   sound="Cook/Boiling1.ogg"
   >
-  <send>psnd("Cook/Boiling1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* schwer beschaedigt."
    sequence="100"
-   send_to="12"
+   sound="Smith/HeavyDamaged.ogg"
   >
-  <send>psnd("Smith/HeavyDamaged.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3206,7 +2878,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/cave/"..math.random(1,4)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/cave/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3214,73 +2886,66 @@
    send_to="12"
    sequence="100"
   >
-  <send>psnd("Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
+  <send>Sound.PlaySound("Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du steckst *"
    sequence="100"
-   send_to="12"
+   sound="Weapons/Sword_Sheath.ogg"
   >
-  <send>psnd("Weapons/Sword_Sheath.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du stellst die Holzstuecke zu einer kleinen Holzpyramide auf und *"
    sequence="100"
-   send_to="12"
+   sound="Firestarting/Build.ogg"
   >
-  <send>psnd("Firestarting/Build.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Kleine Luftblaeschen steigen aus dem Topf auf."
    sequence="100"
-   send_to="12"
+   sound="Cook/bubble.ogg"
   >
-  <send>psnd("Cook/bubble.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du stimmst eine dunkle, getragene Totenklage *"
    sequence="100"
-   send_to="12"
+   sound="Bard/Burial.ogg"
   >
-  <send>psnd("Bard/Burial.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du streckst Deine Hand nach vorn."
    sequence="100"
-   send_to="12"
+   sound="Spells/firebeam1.ogg"
   >
-  <send>psnd("Spells/firebeam1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du summst eine kleine Melodie, die Dir gerade so eingefallen ist."
    sequence="100"
-   send_to="12"
+   sound="Cook/Melody.ogg"
   >
-  <send>psnd("Cook/Melody.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein Klumpen Metall faellt scheppernd in das Auffangbecken."
    sequence="100"
-   send_to="12"
+   sound="Mining/MeltFinish.ogg"
   >
-  <send>psnd("Mining/MeltFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du erzeugst Dir eine kleine Feuerkugel."
    sequence="100"
    send_to="12"
+   sound="Misc/torch_on.ogg"
   >
-  <send>psnd("Misc/torch_on.ogg")
-        atcp.Send('ava_req_mapper')</send>
+  <send>atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3289,145 +2954,130 @@
    match="^Du legst .*$|^.* legt .* hin.$"
    regexp="y"
    sequence="95"
-   send_to="12"
+   sound="Items/Put.ogg"
   >
-  <send>psnd("Items/Put.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* schwingt immer mehr hin- und her."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du erzeugst Dir eine kleine Leuchtflamme."
    sequence="100"
    send_to="12"
+   sound="Misc/torch_on.ogg"
   >
-  <send>psnd("Misc/torch_on.ogg")
-        atcp.Send('ava_req_mapper')</send>
+  <send>atcp.Send('ava_req_mapper')</send>
   </trigger>
   <trigger
    enabled="y"
    match=".* wurde von dem Febron * getoetet\.|.* hat .* getoetet\."
    regexp="y"
    sequence="2"
-   send_to="12"
+   sound="Monsters/Vortex/Kill.ogg"
   >
-  <send>psnd("Monsters/Vortex/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* Luftvortex hat * getoetet."
    sequence="2"
-   send_to="12"
+   sound="Monsters/Vortex/Kill.ogg"
   >
-  <send>psnd("Monsters/Vortex/Kill.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* wackelt immer mehr."
    sequence="100"
-   send_to="12"
+   sound="Misc/ChopHit.ogg"
   >
-  <send>psnd("Misc/ChopHit.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Auroras Lag&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Lag.ogg"
   >
-  <send>psnd("Bard/Lag.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Luftvortex loest sich auf als Du ihm seinen Kern geraubt hast.*"
    sequence="2"
    send_to="12"
+   sound="Monsters/Vortex/Disintegrate.ogg"
   >
-  <send>psnd("Monsters/Vortex/Disintegrate.ogg")
-  world.Execute("stecke streitaxt in meinen rucksack")</send>
+  <send>world.Execute("stecke streitaxt in meinen rucksack")</send>
   </trigger>
   <trigger
    enabled="y"
    match="*[Gruppe]*"
    keep_evaluating="y"
    sequence="100"
-   send_to="12"
+   sound="Misc/group.ogg"
   >
-  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* moechte mit Dir eine Gruppe bilden."
    sequence="100"
-   send_to="12"
+   sound="Misc/group.ogg"
   >
-  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* moechte sich Deiner Gruppe anschliessen."
    sequence="100"
-   send_to="12"
+   sound="Misc/group.ogg"
   >
-  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* schliesst sich Deiner Gruppe an."
    sequence="100"
-   send_to="12"
+   sound="Misc/group.ogg"
   >
-  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du bildest mit * eine neue Gruppe."
    sequence="100"
-   send_to="12"
+   sound="Misc/group.ogg"
   >
-  <send>psnd("Misc/group.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Brems Vogellied&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Birds_Start.ogg"
   >
-  <send>psnd("Bard/Birds_Start.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match=".* gibt Dir .* (Lapis|Obsidian|Konochen).*"
    regexp="y"
    sequence="99"
-   send_to="12"
+   sound="Items/GetMoney.ogg"
   >
-  <send>psnd("Items/GetMoney.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Runenschmiede"
    match="*Sie ist kaum noch zu erkennen*"
    sequence="100"
-   send_to="12"
+   sound="Rune/Bad.ogg"
   >
-  <send>psnd("Rune/Bad.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du gibt Dir die beste Muehe, * zu faellen.*"
    sequence="99"
-   send_to="12"
+   sound="Misc/ChopContinue.ogg"
   >
-  <send>psnd("Misc/ChopContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3441,116 +3091,102 @@
    enabled="y"
    match="Du gibst *"
    sequence="100"
-   send_to="12"
+   sound="Items/Give.ogg"
   >
-  <send>psnd("Items/Give.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Laut scheppernd faellt ein fertiger Rohling unten aus der Presse heraus *"
    sequence="100"
-   send_to="12"
+   sound="Mining/PressFinish.ogg"
   >
-  <send>psnd("Mining/PressFinish.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du graebst eine tiefe Mulde mit dem Hirschfaenger in den Boden."
    sequence="100"
-   send_to="12"
+   sound="WateringPlace/Dig1.ogg"
   >
-  <send>psnd("WateringPlace/Dig1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Leider bist Du viel zu unkonzentriert und verschneidest Dich dermassen oft*"
    sequence="100"
-   send_to="12"
+   sound="Cook/DisembowelFail.ogg"
   >
-  <send>psnd("Cook/DisembowelFail.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du waehlst ein geeignetes Messer aus Deinen Kochutensilien aus."
    sequence="100"
-   send_to="12"
+   sound="Cook/Disembowel1.ogg"
   >
-  <send>psnd("Cook/Disembowel1.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du graebst und graebst..."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/DigContinue.ogg"
   >
-  <send>psnd("Mining/DigContinue.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Leise ist aus der Schmelzanlage ein Blubbern zu hoeren*"
    sequence="100"
-   send_to="12"
+   sound="Mining/MeltBubble.ogg"
   >
-  <send>psnd("Mining/MeltBubble.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du wendest (das|den|die) .*"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Cook/Turn.ogg"
   >
-  <send>psnd("Cook/Turn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du greifst * mit *"
    sequence="100"
-   send_to="12"
+   sound="Player/Attack.ogg"
   >
-  <send>psnd("Player/Attack.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mist, mit .* laesst sich hier wohl nichts mehr.*|Mist. Hier laesst sich wohl nichts mehr schuerfen."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Mining/Empty.ogg"
   >
-  <send>psnd("Mining/Empty.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du wickelst Dein Buendel aus."
    sequence="100"
-   send_to="12"
+   sound="Hiker/Open.ogg"
   >
-  <send>psnd("Hiker/Open.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du haelst den Feuerstrahl weiterhin aufrecht."
    sequence="100"
-   send_to="12"
+   sound="Spells/firebeam3.ogg"
   >
-  <send>psnd("Spells/firebeam3.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du wickelst Dein Buendel sorgfaeltig wieder ein."
    sequence="100"
-   send_to="12"
+   sound="Hiker/Close.ogg"
   >
-  <send>psnd("Hiker/Close.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du wringst Dein feuchtes * kraeftig aus."
    sequence="100"
-   send_to="12"
+   sound="Hiker/WringOut.ogg"
   >
-  <send>psnd("Hiker/WringOut.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3566,110 +3202,97 @@
    group="Barden"
    match="Du faengst an, &quot;Fabians Gnade&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Heal.ogg"
   >
-  <send>psnd("Bard/Heal.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Grinwells Stimme im Geist&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Hypnosis.ogg"
   >
-  <send>psnd("Bard/Hypnosis.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* ist Dir entkommen."
    sequence="100"
-   send_to="12"
+   sound="Player/HuntAbort.ogg"
   >
-  <send>psnd("Player/HuntAbort.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du brichst die Verfolgung ab."
    sequence="100"
-   send_to="12"
+   sound="Player/HuntAbort.ogg"
   >
-  <send>psnd("Player/HuntAbort.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Josuas Rattenfaengerlied&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Catcher.ogg"
   >
-  <send>psnd("Bard/Catcher.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="(Der|Die|Das) .* ist fertig.|(Der|Die|Das) .* sind fertig."
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Smith/complete.ogg"
   >
-  <send>psnd("Smith/complete.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Barden"
    match="Du faengst an, &quot;Kakos Missklang&quot; auf * zu spielen."
    sequence="100"
-   send_to="12"
+   sound="Bard/Dissonance.ogg"
   >
-  <send>psnd("Bard/Dissonance.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="*Du hast Braunkohle gefunden."
    sequence="100"
-   send_to="12"
+   sound="Mining/CoalSucceeded.ogg"
   >
-  <send>psnd("Mining/CoalSucceeded.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="* schiess* auf *"
    sequence="100"
-   send_to="12"
+   sound="Weapons/arrow.ogg"
   >
-  <send>psnd("Weapons/arrow.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du kannst nicht mehr genug Deiner magischen Energie entbehren, um Deinen Speer weiterhin damit zu versorgen."
    sequence="100"
-   send_to="12"
+   sound="Player/waldtraene/forceend.ogg"
   >
-  <send>psnd("Player/waldtraene/forceend.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du spuerst, wie die Waldtraene von Deiner magischen Kraft zehrt."
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Player/waldtraene/sendzp.ogg"
   >
-  <send>psnd("Player/waldtraene/sendzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du spuerst, wie Deine magische Energie schwindet. Sie scheint sich in*"
    sequence="100"
-   send_to="12"
+   sound="Player/waldtraene/startzp.ogg"
   >
-  <send>psnd("Player/waldtraene/startzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="'Waldtraene' ist nun voll mit magischer Energie geladen."
    sequence="100"
-   send_to="12"
+   sound="Player/waldtraene/fullzp.ogg"
   >
-  <send>psnd("Player/waldtraene/fullzp.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3679,418 +3302,371 @@
    sequence="100"
    send_to="12"
   >
-  <send>psnd("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
+  <send>Sound.PlaySound("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
   <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
    enabled="y"
    sequence="100"
-   send_to="12"
+   sound="Player/waldtraene/vibration.ogg"
   >
-  <send>psnd("Player/waldtraene/vibration.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Jemand klopft von draussen laut gegen die *!"
    sequence="100"
-   send_to="12"
+   sound="Misc/DoorKnock.ogg"
   >
-  <send>psnd("Misc/DoorKnock.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Mutigen Schrittes trittst Du durch die schwarze, glitzernde Wand."
    sequence="100"
-   send_to="12"
+   sound="Portal/ShadowWall.ogg"
   >
-  <send>psnd("Portal/ShadowWall.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Insgesamt warst Du * in Avalon."
    sequence="100"
    send_to="12"
+   sound="Misc/out.ogg"
   >
   <send>
   if hmusic ~= nil then
     hmusic:Stop()
   end
-  psnd("Misc/out.ogg")
   </send>
   </trigger>
   <trigger
    enabled="y"
    match="* hat einen neuen Abenteuerbericht verfasst."
    sequence="100"
-   send_to="12"
+   sound="Misc/Report.ogg"
   >
-  <send>psnd("Misc/Report.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein kleiner, roter Briefkasten (Post ist da!)."
    sequence="100"
-   send_to="12"
+   sound="Player/LetterBox.ogg"
   >
-  <send>psnd("Player/LetterBox.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Echos des grossen Krieges"
    sequence="100"
-   send_to="12"
+   sound="WarEchoes/Advance.ogg"
   >
-  <send>psnd("WarEchoes/Advance.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Vergiss Deine Kriegsbeute nicht"
    sequence="100"
-   send_to="12"
+   sound="WarEchoes/Loot.ogg"
   >
-  <send>psnd("WarEchoes/Loot.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Kriegsbeute fuer Deine bisherigen Bemuehungen"
    sequence="100"
-   send_to="12"
+   sound="WarEchoes/Loot.ogg"
   >
-  <send>psnd("WarEchoes/Loot.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dafuer hast Du leider nicht genug Zauberpunkte."
    sequence="100"
-   send_to="12"
+   sound="Spells/OutOfSpellPower.ogg"
   >
-  <send>psnd("Spells/OutOfSpellPower.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du brichst Dein Dauerzaubern ab."
    sequence="100"
-   send_to="12"
+   sound="Spells/EndOfContinuousSpell.ogg"
   >
-  <send>psnd("Spells/EndOfContinuousSpell.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein riesiger Obelisk."
-   send_to="12"
    sequence="100"
+   sound="Misc/Obelisk.ogg"
   >
-  <send>psnd("Misc/Obelisk.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Du ziehst Dir Deine Kutte tief ins Gesicht."
-   send_to="12"
    sequence="100"
+   sound="Necromancers/Cowl.ogg"
   >
-  <send>psnd("Necromancers/Cowl.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Du sinkst, Beschwoerungen murmelnd, auf die Knie."
-   send_to="12"
    sequence="100"
+   sound="Necromancers/BoneShield2.ogg"
   >
-  <send>psnd("Necromancers/BoneShield2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Du ordnest einige Knochen auf dem Boden an und rammst Deinen Ritualdolch in"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/BoneShield3.ogg"
   >
-  <send>psnd("Necromancers/BoneShield3.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Zusaetzliche Knochen schiessen aus dem Boden hervor und wirbeln um Dich"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/BoneShield4.ogg"
   >
-  <send>psnd("Necromancers/BoneShield4.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/BoneShieldOn.ogg"
   >
-  <send>psnd("Necromancers/BoneShieldOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Nekromanten"
    match="Deine schuetzende Knochenwolke loest sich auf."
-   send_to="12"
    sequence="100"
+   sound="Necromancers/BoneShieldOff.ogg"
   >
-  <send>psnd("Necromancers/BoneShieldOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Dazugelernt!"
-   send_to="12"
    sequence="100"
+   sound="Misc/SkillGain.ogg"
   >
-  <send>psnd("Misc/SkillGain.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du erstarrst."
-   send_to="12"
    sequence="100"
+   sound="Player/Statue.ogg"
   >
-  <send>
-  psnd("Player/Statue.ogg")
-  </send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du schliesst Deine Augen und atmest tief durch."
-   send_to="12"
    sequence="99"
+   sound="Clerics/Meditation1.ogg"
   >
-  <send>psnd("Clerics/Meditation1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du ziehst die Kapuze Deiner Robe weit ueber den Kopf und faltest Deine"
-   send_to="12"
    sequence="100"
+   sound="Clerics/Meditation2.ogg"
   >
-  <send>psnd("Clerics/Meditation2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="^Leise summst Du ein Mantra, das Dir zu neuer Kraft verhilft.$|^Du summst: Ooooohhhhhmmmmmm......$"
    regexp="y"
-   send_to="12"
    sequence="100"
+   send_to="12"
   >
-  <send>psnd("Clerics/Hum/"..math.random(1,4)..".ogg")</send>
+  <send>Sound.PlaySound("Clerics/Hum/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Deine Ordenskette leuchtet schwach auf."
-   send_to="12"
    sequence="100"
+   sound="Clerics/Meditation4.ogg"
   >
-  <send>psnd("Clerics/Meditation4.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du beginnst zu meditieren."
-   send_to="12"
    sequence="100"
+   sound="Clerics/Meditation5.ogg"
   >
-  <send>psnd("Clerics/Meditation5.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Langsam wachst Du wieder auf."
-   send_to="12"
    sequence="100"
+   sound="Clerics/MeditationOff.ogg"
   >
-  <send>psnd("Clerics/MeditationOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du nimmst ein Stueck Kohle und beginnst, ein schwarzes Ankh auf Dein*"
-   send_to="12"
    sequence="99"
+   sound="Clerics/Armor1.ogg"
   >
-  <send>psnd("Clerics/Armor1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Sorgfaeltig malst Du ein T-Kreuz auf *"
-   send_to="12"
    sequence="100"
+   sound="Clerics/Armor2.ogg"
   >
-  <send>psnd("Clerics/Armor2.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Ueber der Gabelung malst Du einen Kreis."
-   send_to="12"
    sequence="100"
+   sound="Clerics/Armor3.ogg"
   >
-  <send>psnd("Clerics/Armor3.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Dabei murmelst Du einige heilige Worte."
-   send_to="12"
    sequence="100"
+   sound="Clerics/Armor4.ogg"
   >
-  <send>psnd("Clerics/Armor4.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Schliesslich streichst Du mit dem Ankh Deiner Kette ueber *"
-   send_to="12"
    sequence="100"
+   sound="Clerics/Armor5.ogg"
   >
-  <send>psnd("Clerics/Armor5.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Das Ankh auf * beginnt, schwach zu leuchten."
-   send_to="12"
    sequence="100"
+   sound="Clerics/ArmorOn.ogg"
   >
-  <send>psnd("Clerics/ArmorOn.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Dein* verliert * magische Kraft."
-   send_to="12"
    sequence="100"
+   sound="Clerics/ArmorOff.ogg"
   >
-  <send>psnd("Clerics/ArmorOff.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du wendest das Ankh Deiner Ordenskette auf Deinen Koerper."
-   send_to="12"
    sequence="99"
+   sound="Clerics/CurePoison1.ogg"
   >
-  <send>psnd("Clerics/CurePoison1.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du legst eine Hand auf Deine Schlaefe und atmest tief durch."
-   send_to="12"
    sequence="93"
+   sound="Clerics/CurePoison1.ogg"
   >
-  <send>psnd("Clerics/CurePoison3.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du hast es geschafft, das Gift in Deinem Koerper zu unterdruecken."
-   send_to="12"
    sequence="100"
+   sound="Clerics/CurePoison4.ogg"
   >
-  <send>psnd("Clerics/CurePoison4.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Du faellst vor der Leiche auf die Knie, legst Dein Ankh auf den leblosen"
-   send_to="12"
    sequence="100"
+   sound="Clerics/Resurrect_Start.ogg"
   >
-  <send>psnd("Clerics/Resurrect_Start.ogg")</send>
   </trigger>
   <trigger
    enabled="n"
    group="Kleriker"
    match="Deine Bemuehungen waren erfolgreich. * schlaegt*"
-   send_to="12"
    sequence="100"
+   sound="Clerics/Resurrect_Success.ogg"
   >
-  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Du schlaegst Deine Augen auf und versuchst etwas zu sagen."
-   send_to="12"
    sequence="100"
+   sound="Clerics/Resurrect_Success.ogg"
   >
-  <send>psnd("Clerics/Resurrect_Success.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Erledigt. Du hast nun diesen Gegner * mal hintereinander getoetet."
-   send_to="12"
    sequence="100"
+   sound="Misc/TaskProgress.ogg"
   >
-  <send>psnd("Misc/TaskProgress.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Eine Langstreckenbrieftaube kommt angeflogen und laesst einen kleinen Brief"
-   send_to="12"
    sequence="100"
+   sound="Misc/PostPigeon.ogg"
   >
-  <send>psnd("Misc/PostPigeon.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Der Kopf klatscht leblos herab und ruehrt sich zum Glueck nicht mehr."
-   send_to="12"
    sequence="100"
+   sound="Monsters/HydraBehead.ogg"
   >
-  <send>psnd("Monsters/HydraBehead.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Nekromanten"
    match="Der Fluch der Stille, der auf *"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/SilenceOff.ogg"
   >
-  <send>psnd("Necromancers/SilenceOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Nekromanten"
    match="Der Fluch der Traegheit, der auf *"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/LethargyOff.ogg"
   >
-  <send>psnd("Necromancers/LethargyOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    group="Nekromanten"
    match="Der Fluch des Schwarzen Kusses, der auf *"
-   send_to="12"
    sequence="100"
+   sound="Necromancers/KissOff.ogg"
   >
-  <send>psnd("Necromancers/KissOff.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="            Aufgabe fertig                                     "
    sequence="100"
-   send_to="12"
+   sound="Misc/NPCTaskComplete.ogg"
   >
-  <send>psnd("Misc/NPCTaskComplete.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="*Du bist soeben eine Stufe aufgestiegen*"
    sequence="100"
-   send_to="12"
+   sound="Misc/SubLevelUp.ogg"
   >
-  <send>psnd("Misc/SubLevelUp.ogg")</send>
   </trigger>
 </triggers>
 
@@ -4624,17 +4200,17 @@ function OnAvalonLogin()
   atcp.Send("ava_set_rsoul 1")
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
-  psnd("Player/Login.ogg")
+  Sound.PlaySound("Player/Login.ogg")
   call_callback('LOGIN')
 end
 
 OnAvalonGetoetet = function(type, message)
   if (type == "Avalon.Getoetet") then
-    psnd("Player/Kill.ogg")
+    Sound.PlaySound("Player/Kill.ogg")
   elseif (type == "Avalon.GruppeGetoetet") then
-    psnd("Monsters/Kill.ogg")
+    Sound.PlaySound("Monsters/Kill.ogg")
   end
-  psnd("monsters/deaths/"..math.random(1,57)..".ogg")
+  Sound.PlaySound("monsters/deaths/"..math.random(1,57)..".ogg")
 end
 
 OnAvalonKampf = function(type, message)
@@ -4673,7 +4249,7 @@ OnAvalonComm=function(type,message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    psnd("Channels/"..channel..".ogg")
+    Sound.PlaySound("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
   call_callback('CHANNEL', channel, text)
@@ -4686,7 +4262,7 @@ OnAvalonChannel = function(type, message)
     channel="gilde"
   end
   if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    psnd("Channels/"..channel..".ogg")
+    Sound.PlaySound("Channels/"..channel..".ogg")
   end
   if ((channel == "fehler") or (channel == "runtime")) then
     return
@@ -4739,7 +4315,7 @@ OnAvalonLevel = function(type, message)
   end
   level = tonumber(level)
   if (PlayerLevel ~= nil) and (level > PlayerLevel) then
-    psnd("Misc/LevelUp.ogg")
+    Sound.PlaySound("Misc/LevelUp.ogg")
   end
   PlayerLevel = level
 end
@@ -4976,14 +4552,14 @@ function play_tp(ntp)
   end
   percent = tonumber(ntp) / (tonumber(g_max_tp) / 100)
   if (ntp > g_tp) then
-    htpsnd = psnd("Player/tpUp.ogg", (2 * math.floor(percent) - 100) / 100)
+    htpsnd = Sound.PlaySound("Player/tpUp.ogg", (2 * math.floor(percent) - 100) / 100)
     tpfullannounced = false
   elseif (ntp < g_tp) then
-    htpsnd = psnd("Player/tpDown.ogg", (2 * math.floor(percent) - 100) / 100)
+    htpsnd = Sound.PlaySound("Player/tpDown.ogg", (2 * math.floor(percent) - 100) / 100)
     tpfullannounced = false
   end
   if (ntp == g_max_tp) and (tpfullannounced == false) then
-    psnd("Player/tpMax.ogg")
+    Sound.PlaySound("Player/tpMax.ogg")
     tpfullannounced = true
   end
 end
@@ -5000,14 +4576,14 @@ function play_sp(nsp)
   end
   percent = tonumber(nsp) / (tonumber(g_max_sp) / 100)
   if (nsp > g_sp) then
-    hspsnd = psnd("Player/spUp.ogg", (2 * math.floor(percent) - 100) / 100)
+    hspsnd = Sound.PlaySound("Player/spUp.ogg", (2 * math.floor(percent) - 100) / 100)
     spfullannounced = false
   elseif (nsp < g_sp) then
-    hspsnd = psnd("Player/spDown.ogg", (2 * math.floor(percent) - 100) / 100)
+    hspsnd = Sound.PlaySound("Player/spDown.ogg", (2 * math.floor(percent) - 100) / 100)
     spfullannounced = false
   end
   if (nsp == g_max_sp) and (spfullannounced == false) then
-    psnd("Player/spMax.ogg")
+    Sound.PlaySound("Player/spMax.ogg")
     spfullannounced = true
   end
 end
@@ -5026,14 +4602,14 @@ function play_ap(nap)
 
   percent = tonumber(nap) / (tonumber(g_max_ap) / 100)
   if (nap > g_ap) then
-    hapsnd = psnd("Player/apUp.ogg", (2 * math.floor(percent) - 100) / 100)
+    hapsnd = Sound.PlaySound("Player/apUp.ogg", (2 * math.floor(percent) - 100) / 100)
     apfullannounced = false
   elseif (nap < g_ap) then
-    hapsnd = psnd("Player/apDown.ogg", (2 * math.floor(percent) - 100) / 100)
+    hapsnd = Sound.PlaySound("Player/apDown.ogg", (2 * math.floor(percent) - 100) / 100)
     apfullannounced = false
   end
   if (nap == g_max_ap) and (apfullannounced == false) then
-    psnd("Player/apMax.ogg")
+    Sound.PlaySound("Player/apMax.ogg")
     apfullannounced = true
   end
 end
@@ -5044,14 +4620,14 @@ function volume(value)
       return
     end
     configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
-    psnd("Misc/VolumeSwitch.ogg")
+    Sound.PlaySound("Misc/VolumeSwitch.ogg")
     world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
   elseif (volumetype == 2) then
     if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
       return
     end
     configtbl.settings.MusicVolume = configtbl.settings.MusicVolume + value
-    psnd("Misc/VolumeSwitch.ogg")
+    Sound.PlaySound("Misc/VolumeSwitch.ogg")
     if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
       hmusic:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.MusicVolume/100)
     end
@@ -5061,7 +4637,7 @@ function volume(value)
       return
     end
     configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
-    psnd("Misc/VolumeSwitch.ogg")
+    Sound.PlaySound("Misc/VolumeSwitch.ogg")
     if (g_combat_music) and (g_combat_music:IsActive() == Audio.CONST.active.playing) then
       g_combat_music:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.CombatMusicVolume/100)
     end
@@ -5080,7 +4656,7 @@ function volumetype_switch()
     volumetype = 1
     world.Note("Lautstärkeregelung für Sounds.")
   end
-  psnd('Misc/ConfigSwitch.ogg')
+  Sound.PlaySound('Misc/ConfigSwitch.ogg')
 end
 
 function tpbar_switch()
@@ -5091,7 +4667,7 @@ function tpbar_switch()
     configtbl.settings.TPBar = 1
     world.Note("TP-Ausgabe eingeschaltet.")
   end
-  psnd("Misc/ConfigSwitch.ogg")
+  Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function apbar_switch()
@@ -5102,7 +4678,7 @@ function apbar_switch()
     configtbl.settings.APBar = 1
     world.Note("AP-Ausgabe eingeschaltet.")
   end
-  psnd("Misc/ConfigSwitch.ogg")
+  Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function spbar_switch()
@@ -5113,11 +4689,7 @@ function spbar_switch()
     configtbl.settings.SPBar = 1
     world.Note("ZP-Ausgabe eingeschaltet.")
   end
-  psnd("Misc/ConfigSwitch.ogg")
-end
-
-function round(num, idp)
-  return tonumber(string.format(" %." .. (idp or 0) .. "f", num))
+  Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function OnPluginDisconnect()
@@ -5182,7 +4754,7 @@ function switch_mute()
       world.Note("Kampf-Musik eingeschaltet.")
     end
   end
-  psnd('Misc/ConfigSwitch.ogg')
+  Sound.PlaySound('Misc/ConfigSwitch.ogg')
 end
 
 function switch_fullmute()
@@ -5219,23 +4791,7 @@ function switch_fullmute()
     configtbl.settings.CombatMusicMuted = 0
     world.Note("Kampf-Musik eingeschaltet.")
   end
-  psnd('Misc/ConfigSwitch.ogg')
-end
-
-function array_concat(...)
-  local t = {}
-  local arg = {...}
-  for i = 1, #arg do
-    local array = arg[i]
-    if (type(array) == "table") then
-      for j = 1, #array do
-        t[#t+1] = array[j]
-      end
-    else
-      t[#t+1] = array
-    end
-  end
-  return t
+  Sound.PlaySound('Misc/ConfigSwitch.ogg')
 end
 
 function print_position()
@@ -5397,15 +4953,15 @@ function NumpadSwitch()
   if configtbl.settings.NumpadWalk==1 then
     configtbl.settings.NumpadWalk=2
     world.Note('Nummernblock auf kurzes Spähen konfiguriert')
-    psnd("Misc/NumPadScoutShort.ogg")
+    Sound.PlaySound("Misc/NumPadScoutShort.ogg")
   elseif configtbl.settings.NumpadWalk==2 then
     configtbl.settings.NumpadWalk=0
     world.Note('Nummernblock auf Laufen konfiguriert')
-    psnd("Misc/NumPadWalk.ogg")
+    Sound.PlaySound("Misc/NumPadWalk.ogg")
   elseif configtbl.settings.NumpadWalk==0 then
     configtbl.settings.NumpadWalk=1
     world.Note('Nummernblock auf langes Spähen konfiguriert')
-    psnd("Misc/NumPadScoutLong.ogg")
+    Sound.PlaySound("Misc/NumPadScoutLong.ogg")
   end
   NumpadInit()
 end
@@ -5484,7 +5040,7 @@ function repeatcommand_switch()
     configtbl.settings.RepeatCommand = 1
     world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
   end
-  psnd("Misc/ConfigSwitch.ogg")
+  Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function call_callback(handle, ...)
@@ -5541,11 +5097,6 @@ function send_command(cmd)
   if current ~= "" then
     world.SetCommand(current)
   end  
-end
-
--- Magician: spaeter zu entfernen, sobald nicht mehr benoetigt
-function psnd(file, pan)
-  return Sound.PlaySound(file, pan)
 end
 
 function OnPluginPlaySound(file)
