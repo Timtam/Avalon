@@ -3712,7 +3712,7 @@
    send_to="12"
   >
   <send>
-  if(hmusic ~= nil)
+  if hmusic ~= nil then
     hmusic:Stop()
   end
   psnd("Misc/out.ogg")

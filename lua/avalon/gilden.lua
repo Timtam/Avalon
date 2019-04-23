@@ -72,7 +72,7 @@ function gilden_enable(guild)
     end
   end
 
-  world.EnableGroup(Stringx.title(ActiveGuild.name), 1)
+  world.EnableGroup(Stringx.title(guild), 1)
 
   ActiveGuild.name = guild
 
@@ -85,7 +85,7 @@ function gilden_exists(guild)
 end
 
 function gilden_call(fun, ...)
-  if Types.is_callable(ActiveGuild.package ~= nil and ActiveGuild.package[fun]) == true then
+  if ActiveGuild.package ~= nil and Types.is_callable(ActiveGuild.package[fun]) == true then
     ActiveGuild.package[fun](unpack({select(1, ...)}))
   end
 end
