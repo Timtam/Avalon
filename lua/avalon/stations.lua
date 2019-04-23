@@ -2947,4 +2947,25 @@ stations:add(
              "Der Ausgang aus der Totenebene"
             )
 
+stations:add(
+             "uminotokai",
+             "ruestungsladen",
+             "raum/cbad8beddb3d00679b9c01461ddba119",
+             "Der Ruestungsverkaeufer in Uminotokai."
+            )
+
+stations:add(
+             "uminotokai",
+             "waffenladen",
+             "raum/b0b30710a8b29d94e0501ada0d295852",
+             "Der Waffenladen in Uminotokai."
+            )
+
+stations:add(
+             "uminotokai",
+             "gasthaus",
+             "raum/0d33dbaa9c7946be2f5a4cfcba7eba62",
+             "Das Café im Park Uminotokais."
+            )
+
 return stations
