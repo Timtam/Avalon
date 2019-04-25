@@ -107,4 +107,36 @@ function Player:PlayProgressBar(bar, val)
   end
 end
 
+function Player:GetTP()
+  return self.tp
+end
+
+function Player:GetSP()
+  return self.sp
+end
+
+function Player:GetMP()
+  return self.mp
+end
+
+function Player:GetAP()
+  return self.ap
+end
+
+function Player:GetMaxTP()
+  return self.max_tp
+end
+
+function Player:GetMaxSP()
+  return self.max_sp
+end
+
+function Player:GetMaxMP()
+  return 9999
+end
+
+function Player:GetMaxAP()
+  return self.max_ap
+end
+
 return Player

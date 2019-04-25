@@ -4454,22 +4454,10 @@ function OnPluginInstall()
     return PlayerEP
   end)
 
-  PPI.Expose('AP',
-    function()
-      return g_ap, g_max_ap
-    end)
-  PPI.Expose('MP',
-    function()
-      return g_mp, g_max_mp
-    end)
-  PPI.Expose('SP',
-    function()
-      return g_sp, g_max_sp
-    end)
-  PPI.Expose('TP',
-    function()
-      return g_tp, g_max_tp
-    end)
+  PPI.Expose('AP', function() return Player:GetAP() end)
+  PPI.Expose('MP', function() return Player:GetMP() end)
+  PPI.Expose('SP', function() return Player:GetSP() end)
+  PPI.Expose('TP', function() return Player:GetTP() end)
   PPI.Expose('GetConfig',
     function(table,key)
       if configtbl[table]==nil then
