@@ -4075,24 +4075,13 @@
 Audio = require("audio")
 atcp=nil
 Dunkel=0
-g_tp=nil
-g_max_tp=nil
-g_sp=nil
-g_max_sp=nil
-g_ap=nil
-g_max_ap=nil
-g_mp=nil
-g_max_mp=9999
 g_combat           = nil
 g_combat_music     = nil
 g_combat_music_name= nil
 apfullannounced=false
 spfullannounced=false
 tpfullannounced=false
-hapsnd=nil
 hdksnd=nil
-hspnil=0
-htpsnd=nil
 hmusic=nil
 LastCommand=nil
 mxp_output=false
@@ -4135,6 +4124,7 @@ world.Accelerator("alt+t", "say_tp")
 world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 Gilden = require("avalon.gilden")
+Player = require("avalon.player")()
 Sound = require("avalon.sound")
 Spells = require("avalon.activespells")
 require("avalon.multilinetrigger")
@@ -4335,56 +4325,39 @@ OnAvalonTP = function(message, ntp)
     ntp = 0
   end
 
-  play_tp(ntp)
-  g_tp=ntp
-  combat_music()
-  call_callback('TP', g_tp)
+  --combat_music()
+  call_callback('TP', ntp)
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
-  play_sp(nsp)
-  g_sp=nsp
-  call_callback('SP', g_sp)
+  call_callback('SP', nsp)
 end
 
 OnAvalonMP=function(message,nmp)
-  g_mp=tonumber(nmp)
-  call_callback('MP', g_mp)
+  nmp=tonumber(nmp)
+  call_callback('MP', nmp)
 end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
-  play_ap(nap)
-  g_ap = nap
-  call_callback('AP', g_ap)
+  call_callback('AP', nap)
 end
 
 OnAvalonMaxTP=function(message,value)
   value=tonumber(value)
-  g_max_tp=value
-  combat_music()
-  OnAvalonMax()
+  call_callback('MAXTP', value)
+  --combat_music()
 end
 
 OnAvalonMaxSP=function(message,value)
   value=tonumber(value)
-  g_max_sp=value
-  OnAvalonMax()
+  call_callback('MAXSP', value)
 end
 
 OnAvalonMaxAP=function(message,value)
   value=tonumber(value)
-  g_max_ap=value
-  OnAvalonMax()
-end
-
--- Magician: nur noch als Uebergangsloesung, muss mal in die einzelnen Handler zerlegt werden
-OnAvalonMax = function()
-  if g_max_tp == nil or g_max_sp == nil or g_max_ap == nil then
-    return
-  end
-  call_callback('MAX', g_max_tp, g_max_sp, g_max_ap)
+  call_callback('MAXAP', value)
 end
 
 function OnPluginInstall()
@@ -4522,6 +4495,7 @@ function OnPluginInstall()
   PPI.Expose("NoteColour",
     NoteColour)
 
+  Player:Init()
   Gilden.Init()
 end
 
@@ -4537,80 +4511,6 @@ OnPluginListChanged = function()
 
     Timers = PPI.Load(world.GetPluginVariable("", "timers"))
 
-  end
-end
-
-function play_tp(ntp)
-  if (g_tp == nil) or (g_max_tp == nil) then
-    return
-  end
-  if (configtbl.settings.TPBar == 0) then
-    return
-  end
-  if htpsnd ~= nil then
-    htpsnd:Stop()
-  end
-  percent = tonumber(ntp) / (tonumber(g_max_tp) / 100)
-  if (ntp > g_tp) then
-    htpsnd = Sound.PlaySound("Player/tpUp.ogg", (2 * math.floor(percent) - 100) / 100)
-    tpfullannounced = false
-  elseif (ntp < g_tp) then
-    htpsnd = Sound.PlaySound("Player/tpDown.ogg", (2 * math.floor(percent) - 100) / 100)
-    tpfullannounced = false
-  end
-  if (ntp == g_max_tp) and (tpfullannounced == false) then
-    Sound.PlaySound("Player/tpMax.ogg")
-    tpfullannounced = true
-  end
-end
-
-function play_sp(nsp)
-  if (g_sp == nil) or (g_max_sp == nil) then
-    return
-  end
-  if (configtbl.settings.SPBar == 0) then
-    return
-  end
-  if hspsnd ~= nil then
-    hspsnd:Stop()
-  end
-  percent = tonumber(nsp) / (tonumber(g_max_sp) / 100)
-  if (nsp > g_sp) then
-    hspsnd = Sound.PlaySound("Player/spUp.ogg", (2 * math.floor(percent) - 100) / 100)
-    spfullannounced = false
-  elseif (nsp < g_sp) then
-    hspsnd = Sound.PlaySound("Player/spDown.ogg", (2 * math.floor(percent) - 100) / 100)
-    spfullannounced = false
-  end
-  if (nsp == g_max_sp) and (spfullannounced == false) then
-    Sound.PlaySound("Player/spMax.ogg")
-    spfullannounced = true
-  end
-end
-
-function play_ap(nap)
-  if (g_ap == nil) or (g_max_ap == nil) then
-    return
-  end
-  if (configtbl.settings.APBar == 0) then
-    return
-  end
-
-  if hapsnd ~= nil then
-    hapsnd:Stop()
-  end
-
-  percent = tonumber(nap) / (tonumber(g_max_ap) / 100)
-  if (nap > g_ap) then
-    hapsnd = Sound.PlaySound("Player/apUp.ogg", (2 * math.floor(percent) - 100) / 100)
-    apfullannounced = false
-  elseif (nap < g_ap) then
-    hapsnd = Sound.PlaySound("Player/apDown.ogg", (2 * math.floor(percent) - 100) / 100)
-    apfullannounced = false
-  end
-  if (nap == g_max_ap) and (apfullannounced == false) then
-    Sound.PlaySound("Player/apMax.ogg")
-    apfullannounced = true
   end
 end
 
