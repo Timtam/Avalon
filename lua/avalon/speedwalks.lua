@@ -849,5 +849,7 @@ speedwalklist['rilauven.nebeldungeon_rilauven.gasthaus'] = "w s s o o s oeffne_t
 speedwalklist['rilauven.gasthaus_rilauven.nebeldungeon'] = "oeffne_tuer sw n w w n n o"
 speedwalklist['yoldatfest.eingang_yoldatfest.gasthaus'] = "o o o o o o o"
 speedwalklist['yoldatfest.gasthaus_yoldatfest.eingang'] = "w w w w w w w"
+speedwalklist['gwendon.eingang_gwendon.bank'] = "n n n n n o o o o n n"
+speedwalklist['gwendon.bank_gwendon.eingang'] = "s s w w w w s s s s s"
 
 return speedwalklist

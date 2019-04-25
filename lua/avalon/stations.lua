@@ -3038,4 +3038,11 @@ stations:add(
              "Die finstere Kneipe in Yoldatfest."
             )
 
+stations:add(
+             "gwendon",
+             "bank",
+             "raum/6b9c4d25dab972bbf3313117b62465cc",
+             "In der Wechselstube in Gwendon."
+            )
+
 return stations
