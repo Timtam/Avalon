@@ -282,10 +282,37 @@ local sync = {
 
 sync["end"] = 2
 
+-- BASS_CHANNELINFO types
+local ctype = {
+  sample = 1,
+  record = 2,
+  stream = 0x10000,
+  stream_ogg = 0x10002,
+  stream_mp1 = 0x10003,
+  stream_mp2 = 0x10004,
+  stream_mp3 = 0x10005,
+  stream_aiff = 0x10006,
+  stream_ca = 0x10007,
+  stream_mf = 0x10008,
+  stream_am = 0x10009,
+  stream_dummy = 0x18000,
+  stream_device = 0x18001,
+  stream_wav = 0x40000, -- WAVE flag, LOWORD=codec
+  stream_wav_pcm = 0x50001,
+  stream_wav_float = 0x50003,
+  music_mod = 0x20000,
+  music_mtm = 0x20001,
+  music_s3m = 0x20002,
+  music_xm = 0x20003,
+  music_it = 0x20004,
+  music_mo3 = 0x00100 -- MO3 flag
+}
+
 return {
   active = active,
   attribute = attribute,
   config = config,
+  ctype = ctype,
   data = data,
   device = device,
   device_info = device_info,

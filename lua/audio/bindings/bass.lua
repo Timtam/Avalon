@@ -100,7 +100,7 @@ ffi.cdef[[
     char *filename;
   } BASS_CHANNELINFO;
 
-  typedef void (__stdcall *SYNCPROC)(HSYNC handle, DWORD channel, DWORD data, void *user);
+  typedef void (__stdcall SYNCPROC)(HSYNC handle, DWORD channel, DWORD data, void *user);
 
   double BASS_ChannelBytes2Seconds(HCHANNEL handle, QWORD bytes);
   DWORD BASS_ChannelFlags(HCHANNEL DWORD, DWORD flags, DWORD mask);
