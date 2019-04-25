@@ -2382,8 +2382,10 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Vorsichtig glaettest Du die Raender der neuen Rune auf *"
-   omit_from_output="y"
+   match='^Vorsichtig\sglaettest\sDu\sdie\sRaender\sder\sneuen\sRune\sauf.*\Z'
+   multi_line="y"
+   lines_to_match="2"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
