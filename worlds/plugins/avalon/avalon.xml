@@ -4087,8 +4087,6 @@ hdksnd=nil
 hmusic=nil
 LastCommand=nil
 mxp_output=false
-PlayerEP = nil
-PlayerLevel=nil
 RoomID=nil
 RoomName=''
 volumetype=1
@@ -4301,15 +4299,16 @@ OnAvalonRoomID = function(type, message)
 end 
 
 OnAvalonLevel = function(type, message)
-  local level = string.match(message, "^S(%d+)$")
+  local prefix, level = string.match(message, "^(%w)(%d+)$")
+
   if not level then
     return
   end
+
   level = tonumber(level)
-  if (PlayerLevel ~= nil) and (level > PlayerLevel) then
-    Sound.PlaySound("Misc/LevelUp.ogg")
-  end
-  PlayerLevel = level
+
+  call_callback('LEVEL', level, prefix)
+
 end
 
 OnAvalonEP = function(type, message)
@@ -4317,7 +4316,8 @@ OnAvalonEP = function(type, message)
   if not ep then
     return
   end
-  PlayerEP = tonumber(ep)
+  ep = tonumber(ep)
+  call_callback('EP', ep)
 end
 
 OnAvalonTP = function(message, ntp)
@@ -4360,6 +4360,10 @@ end
 OnAvalonMaxAP=function(message,value)
   value=tonumber(value)
   call_callback('MAXAP', value)
+end
+
+OnAvalonName = function(type, message)
+  call_callback('NAME', message)
 end
 
 function OnPluginInstall()
@@ -4416,6 +4420,7 @@ function OnPluginInstall()
   atcp.Listen('Avalon.Soul',OnAvalonSoul)
   atcp.Listen('Avalon.RSoul',OnAvalonRSoul)
   atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
+  atcp.Listen('Avalon.Name', OnAvalonName)
 
   if configtbl.settings.FirstRun == 1 then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
@@ -4445,19 +4450,14 @@ function OnPluginInstall()
         return RoomID
       end
     end)
-  PPI.Expose('Level',
-    function()
-      return PlayerLevel
-    end)
 
-  PPI.Expose('EP', function()
-    return PlayerEP
-  end)
-
+  PPI.Expose('Level', function() return Player:GetLevel() end)
+  PPI.Expose('EP', function() return Player:GetEP() end)
   PPI.Expose('AP', function() return Player:GetAP() end)
   PPI.Expose('MP', function() return Player:GetMP() end)
   PPI.Expose('SP', function() return Player:GetSP() end)
   PPI.Expose('TP', function() return Player:GetTP() end)
+
   PPI.Expose('GetConfig',
     function(table,key)
       if configtbl[table]==nil then
@@ -4484,6 +4484,11 @@ function OnPluginInstall()
     Sound.PlaySound)
   PPI.Expose("NoteColour",
     NoteColour)
+
+  PPI.Expose('RequestUpdate', function()
+    atcp.Send("ava_req_update")
+    atcp.Send("ava_req_mapper")
+  end)
 
   Player:Init()
   Gilden.Init()
@@ -4583,19 +4588,9 @@ function spbar_switch()
 end
 
 function OnPluginDisconnect()
-  g_tp = nil
-  g_max_tp = nil
-  g_sp = nil
-  g_max_sp = nil
-  g_ap = nil
-  g_max_ap = nil
-  apfullannounced = false
-  tpfullannounced = false
-  spfullannounced = false
-  hapsnd = nil
-  hspnil = 0
-  htpsnd = nil
-  PlayerLevel = nil
+
+  Player:Reset()
+
   RoomName = ""
 
   if hmusic ~= nil then

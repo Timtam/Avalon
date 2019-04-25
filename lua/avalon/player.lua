@@ -1,12 +1,20 @@
 local Class = require("pl.class")
 local PPI = require("ppi")
 local Sound = require("avalon.sound")
+local Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
 Class.Player()
 
 function Player:_init()
 
-  self.avalon = nil
+  self:Reset()
+
+end
+
+function Player:Reset()
+  self.ep = 0
+  self.level = 0
+  self.level_prefix = ''
   self.tp = 0
   self.sp = 0
   self.mp = 0
@@ -15,6 +23,7 @@ function Player:_init()
   self.max_sp = 0
   self.max_mp = 9999
   self.max_ap = 0
+  self.name = ''
 
   self.announces = {
     tp = false,
@@ -31,58 +40,81 @@ end
 
 function Player:Init()
 
-  self.avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
-
-  self.avalon.HookCallback('TP', function(tp) self:OnTP(tp) end)
-  self.avalon.HookCallback('SP', function(sp) self:OnSP(sp) end)
-  self.avalon.HookCallback('MP', function(mp) self:OnMP(mp) end)
-  self.avalon.HookCallback('AP', function(ap) self:OnAP(ap) end)
-  self.avalon.HookCallback('MAXTP', function(tp) self:OnMaxTP(tp) end)
-  self.avalon.HookCallback('MAXSP', function(sp) self:OnMaxSP(sp) end)
-  self.avalon.HookCallback('MAXAP', function(ap) self:OnMaxAP(ap) end)
+  Avalon.HookCallback('TP', function(tp) self:SetTP(tp) end)
+  Avalon.HookCallback('SP', function(sp) self:SetSP(sp) end)
+  Avalon.HookCallback('MP', function(mp) self:SetMP(mp) end)
+  Avalon.HookCallback('AP', function(ap) self:SetAP(ap) end)
+  Avalon.HookCallback('MAXTP', function(tp) self:SetMaxTP(tp) end)
+  Avalon.HookCallback('MAXSP', function(sp) self:SetMaxSP(sp) end)
+  Avalon.HookCallback('MAXAP', function(ap) self:SetMaxAP(ap) end)
+  Avalon.HookCallback('EP', function(ep) self:SetEP(ep) end)
+  Avalon.HookCallback('LEVEL', function(l, p) self:SetLevel(l, p) end)
+  Avalon.HookCallback('NAME', function(n) self:SetName(n) end)
 
 end
 
-function Player:OnTP(tp)
+function Player:SetName(n)
+
+  self.name = n
+  
+end
+
+function Player:SetTP(tp)
   self:PlayProgressBar('TP', tp)
   self.tp = tp
 end
 
-function Player:OnSP(sp)
+function Player:SetSP(sp)
   self:PlayProgressBar('SP', sp)
   self.sp = sp
 end
 
-function Player:OnMP(mp)
+function Player:SetMP(mp)
   self.mp = mp
 end
 
-function Player:OnAP(ap)
+function Player:SetAP(ap)
   self:PlayProgressBar('AP', ap)
   self.ap = ap
 end
 
-function Player:OnMaxTP(tp)
+function Player:SetEP(ep)
+  self.ep = ep
+end
+
+function Player:SetLevel(l, p)
+
+  if self.level ~= 0 and l ~= self.level then
+    Sound.PlaySound("Misc/LevelUp.ogg")
+  end
+
+  self.level = l
+  self.level_prefix = p:lower()
+
+end
+
+function Player:SetMaxTP(tp)
   self.max_tp = tp
 end
 
-function Player:OnMaxSP(sp)
+function Player:SetMaxSP(sp)
   self.max_sp = sp
 end
 
-function Player:OnMaxAP(ap)
+function Player:SetMaxAP(ap)
   self.max_ap = ap
 end
 
 function Player:PlayProgressBar(bar, val)
 
+  bar = bar:upper()
   local l_bar = bar:lower()
 
   if self["max_" .. l_bar] == 0 then
     return
   end
 
-  if self.avalon.GetConfig("settings", bar .. "Bar") == 0 then
+  if Avalon.GetConfig("settings", bar .. "Bar") == 0 then
     return
   end
 
@@ -137,6 +169,22 @@ end
 
 function Player:GetMaxAP()
   return self.max_ap
+end
+
+function Player:GetEP()
+  return self.ep
+end
+
+function Player:GetLevel()
+  return self.level
+end
+
+function Player:IsWizard()
+  return self.level_prefix ~= 's'
+end
+
+function Player:GetName()
+  return self.name
 end
 
 return Player
