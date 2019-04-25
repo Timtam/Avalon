@@ -166,7 +166,7 @@
    sequence="100"
    sound="demon_warriors/demonexecute.ogg"
   >
-  <send>Audio.fadeout(hdksnd, 1000)</send>
+  <send>hdksnd:Fadeout(1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -176,7 +176,7 @@
    sequence="100"
    sound="demon_warriors/demonexecute.ogg"
   >
-  <send>Audio.fadeout(hdksnd, 1000)</send>
+  <send>hdksnd:Fadeout(1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -186,7 +186,7 @@
    sequence="100"
    sound="demon_warriors/demoncounter.ogg"
   >
-  <send>Audio.fadeout(hdksnd, 1000)</send>
+  <send>hdksnd:Fadeout(1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -196,7 +196,7 @@
    sequence="100"
    sound="demon_warriors/demondisappear.ogg"
   >
-  <send>Audio.fadeout(hdksnd, 1000)</send>
+  <send>hdksnd:Fadeout(1000)</send>
   </trigger>
   <trigger
    enabled="n"
@@ -222,7 +222,7 @@
    sequence="100"
    sound="demon_warriors/demonappear.ogg"
   >
-  <send>Audio.fadeout(hdksnd, 1000)</send>
+  <send>hdksnd:Fadeout(1000)</send>
   </trigger>
   <trigger
    enabled="n"
