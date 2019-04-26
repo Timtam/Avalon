@@ -1,7 +1,8 @@
 local Class = require("pl.class")
 local PPI = require("ppi")
 local Sound = require("avalon.sound")
-local Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+local Types = require("pl.types")
+local Avalon = nil
 
 Class.Player()
 
@@ -24,6 +25,7 @@ function Player:Reset()
   self.max_mp = 9999
   self.max_ap = 0
   self.name = ''
+  self.mxp_output = false
 
   self.announces = {
     tp = false,
@@ -36,9 +38,12 @@ function Player:Reset()
     sp = nil,
     ap = nil
   }
+
 end
 
 function Player:Init()
+
+  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
   Avalon.HookCallback('TP', function(tp) self:SetTP(tp) end)
   Avalon.HookCallback('SP', function(sp) self:SetSP(sp) end)
@@ -50,7 +55,46 @@ function Player:Init()
   Avalon.HookCallback('EP', function(ep) self:SetEP(ep) end)
   Avalon.HookCallback('LEVEL', function(l, p) self:SetLevel(l, p) end)
   Avalon.HookCallback('NAME', function(n) self:SetName(n) end)
+  Avalon.HookCallback('GRAFIK', function(gfk) self:SetGrafik(gfk) end)
 
+  self:SetGrafik(Types.to_bool(Avalon.GetConfig("settings", "MXP")), true)
+
+end
+
+function Player:SetGrafik(gfk, omit)
+
+  omit = Types.to_bool(omit)
+
+  if gfk == true then
+
+    if tonumber(world.GetOption("use_mxp")) == 2 then
+      return
+    end
+
+    world.SetOption("use_mxp", 2)
+
+    Avalon.SetConfig("settings", "MXP", 1)
+
+    if omit == false and self.mxp_output == false then
+      world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
+      self.mxp_output = true
+    end
+
+  else
+
+    if tonumber(world.GetOption("use_mxp")) == 3 then
+      return
+    end
+
+    world.SetOption("use_mxp", 3)
+
+    Avalon.SetConfig("settings", "MXP", 0)
+
+    if omit == false and self.mxp_output == false then
+      world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
+      self.mxp_output = true
+    end
+  end
 end
 
 function Player:SetName(n)

@@ -527,7 +527,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>config_graphics(true)</send>
+  <send>atcp.Send("ava_req_graphics_status")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -535,7 +535,7 @@
    send_to="12"
    sequence="95"
   >
-  <send>config_graphics(false)</send>
+  <send>atcp.Send("ava_req_graphics_status")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -4074,25 +4074,21 @@
 
 <script>
 <![CDATA[
-Audio = require("audio")
+local Audio = require("audio")
 atcp=nil
 Dunkel=0
 g_combat           = nil
 g_combat_music     = nil
 g_combat_music_name= nil
-apfullannounced=false
-spfullannounced=false
-tpfullannounced=false
 hdksnd=nil
 hmusic=nil
-LastCommand=nil
-mxp_output=false
+local LastCommand=nil
 RoomID=nil
 RoomName=''
 volumetype=1
 
-callbacktbl={}
-configtbl={}
+local callbacktbl={}
+local configtbl={}
 configtbl.settings={}
 configtbl.settings.SoundVolume=100
 configtbl.settings.MusicVolume=10
@@ -4123,19 +4119,21 @@ world.Accelerator("alt+m", "say_mp")
 world.Accelerator("alt+t", "say_tp")
 world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
-Gilden = require("avalon.gilden")
-Player = require("avalon.player")()
-Sound = require("avalon.sound")
-Spells = require("avalon.activespells")
+local Gilden = require("avalon.gilden")
+local Player = require("avalon.player")()
+local Sound = require("avalon.sound")
+local Spells = require("avalon.activespells")
 require("avalon.multilinetrigger")
 require("pairsbykeys")
-Dir = require('pl.dir')
-File = require('pl.file')
-Ini = require("ini")
-Path = require("pl.path")
+local Dir = require('pl.dir')
+local File = require('pl.file')
+local Ini = require("ini")
+local Path = require("pl.path")
 PPI = require("ppi")
-Tablex = require("pl.tablex")
-Timers = nil
+local Tablex = require("pl.tablex")
+local Timers = nil
+local Types = require("pl.types")
+
 Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
 Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
 Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
@@ -4170,11 +4168,8 @@ Spells.Register("Vergeltung", "Du oeffnest Deine Augen und buendelst Deine Wut\\
 Spells.Register("Blutrausch", "Du laesst einen fuerchterlichen Urschrei von Dir. Es scheint so, als .*", "Die roetlichen Manawolken loesen sich auf\\.")
 
 function OnAvalonGrafikVermeiden(type, message)
-  if tonumber(message) == 1 then
-    config_graphics(false)
-  else
-    config_graphics(true)
-  end
+  message = Types.to_bool(tonumber(message))
+  call_callback('GRAFIK', not message)
 end
 
 function OnAvalonGilde(type, message)
@@ -4385,11 +4380,6 @@ function OnPluginInstall()
       end
     end
   end
-  if configtbl.settings.MXP==1 then
-    config_graphics(true,true)
-  else
-    config_graphics(false,true)
-  end
   Spells.ParseWarnings(configtbl.settings.Warnings)
   NumpadInit()
 
@@ -4484,11 +4474,6 @@ function OnPluginInstall()
     Sound.PlaySound)
   PPI.Expose("NoteColour",
     NoteColour)
-
-  PPI.Expose('RequestUpdate', function()
-    atcp.Send("ava_req_update")
-    atcp.Send("ava_req_mapper")
-  end)
 
   Player:Init()
   Gilden.Init()
@@ -4849,31 +4834,6 @@ function NumpadSwitch()
     Sound.PlaySound("Misc/NumPadScoutLong.ogg")
   end
   NumpadInit()
-end
-
-function config_graphics(enable,omit_output)
-  omit_output=omit_output or false
-  if enable then
-    if tonumber(world.GetOption("use_mxp"))==2 then
-      return
-    end
-    world.SetOption("use_mxp",2)
-    configtbl.settings.MXP=1
-    if not omit_output and not mxp_output then
-      world.Note("MXP ist nun aktiviert, wird von Avalon allerdings noch nicht gesendet. Um MXP korrekt verwenden zu können, muss der Client erst neu gestartet werden.")
-      mxp_output=true
-    end
-  else
-    if tonumber(world.GetOption("use_mxp"))==3 then
-      return
-    end
-    world.SetOption("use_mxp",3)
-    configtbl.settings.MXP=0
-    if not omit_output and not mxp_output then
-      world.Note("MXP ist nun deaktiviert. Damit der Text allerdings ohne störende Zeichen angezeigt werden kann, muss der Client einmalig neu gestartet werden.")
-mxp_output=true
-    end
-  end
 end
 
 function hook_callback(event,callback)
