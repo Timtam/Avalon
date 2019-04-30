@@ -55,7 +55,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="^Dort versperrt Dir ein (Tor) den Weg\.$|^Da ist Dir doch das (Tor) im Weg[\.|\!]$|^Dort versperrt Dir eine (Pforte|Tuer) den Weg\.$|^Die (Zaunpforte) ist geschlossen und versperrt Dir folglich den Weg\.$|^Solange das (Hafengatter) geschlossen ist\, kommst Du nicht durch\.$|^Du moechtest aber nicht durch die geschlossene (Tuer) laufen\?$"
+   match="^Dort versperrt Dir ein (Tor) den Weg\.$|^Da ist Dir doch das (Tor) im Weg[\.|\!]$|^Dort versperrt Dir eine (Pforte|Tuer|Luke) den Weg\.$|^Die (Zaunpforte) ist geschlossen und versperrt Dir folglich den Weg\.$|^Solange das (Hafengatter) geschlossen ist\, kommst Du nicht durch\.$|^Du moechtest aber nicht durch die geschlossene (Tuer) laufen\?$|^Da ist Dir eine (Luke) im Weg\.$"
    regexp="y"
    script="open_door"
    sequence="95"
@@ -2382,8 +2382,10 @@
   <trigger
    enabled="n"
    group="Runenschmiede"
-   match="Vorsichtig glaettest Du die Raender der neuen Rune auf *"
-   omit_from_output="y"
+   match='^Vorsichtig\sglaettest\sDu\sdie\sRaender\sder\sneuen\sRune\sauf.*\Z'
+   multi_line="y"
+   lines_to_match="2"
+   regexp="y"
    sequence="100"
    send_to="12"
   >
@@ -3850,12 +3852,6 @@
    sequence="100"
   >
   <send>
-  for name, value in pairsByKeys(spells) do
-    spells[name] = 0
-  end
-  for name, value in pairsByKeys(warnings) do
-    warnings[name] = 0
-  end
   psnd("Player/Statue.ogg")
   </send>
   </trigger>

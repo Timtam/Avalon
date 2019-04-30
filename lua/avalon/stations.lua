@@ -2947,4 +2947,102 @@ stations:add(
              "Der Ausgang aus der Totenebene"
             )
 
+stations:add(
+             "uminotokai",
+             "ruestungsladen",
+             "raum/cbad8beddb3d00679b9c01461ddba119",
+             "Der Ruestungsverkaeufer in Uminotokai."
+            )
+
+stations:add(
+             "uminotokai",
+             "waffenladen",
+             "raum/b0b30710a8b29d94e0501ada0d295852",
+             "Der Waffenladen in Uminotokai."
+            )
+
+stations:add(
+             "uminotokai",
+             "gasthaus",
+             "raum/0d33dbaa9c7946be2f5a4cfcba7eba62",
+             "Das Café im Park Uminotokais."
+            )
+
+stations:add(
+             "ilmelorn",
+             "waffenladen",
+             "raum/9fc4887608ca81b64a8eee0536712392",
+             "Der elfische Waffenladen in der Stadt Ilmelorn."
+            )
+
+stations:add(
+             "jasthan",
+             "zentrum",
+             "raum/17e328167daaf72ab4c0612fe5d18607",
+             "Am Brunnen in Jasthan."
+            )
+
+stations:add(
+             "jasthan",
+             "burg",
+             "raum/7d560ea0f9af9bec71632a29849ecfb7",
+             "Der Zugang zur Burg in Jasthan."
+            )
+
+stations:add(
+             "jasthan",
+             "gasthaus",
+             "raum/6584519df45690f2466ad45c211156ec",
+             "Die Schenke in Jasthan."
+            )
+
+stations:add(
+             "skalewar",
+             "gasthaustethra",
+             "raum/cbceca0ca0076ca236770ec127a6109a",
+             "Tethras Kneipe in Skalewar."
+            )
+
+stations:add(
+             "skalewar",
+             "gasthausschenke",
+             "raum/8bf13a09e7e2b39ebe6ba9db6363b0f6",
+             "Die Schenke in Skalewar."
+            )
+
+stations:add(
+             "camp",
+             "schmied",
+             "raum/b9891cf283d20c7308a7522a2a8dc682",
+             "Ein Wanderschmied im Camp Baralon."
+            )
+
+stations:add(
+             "camp",
+             "gasthaus",
+             "raum/d31aad13094b5c97d00d556d64d8f42e",
+             "Im Kneipenzelt des Camp Baralon."
+            )
+
+stations:add(
+             "rilauven",
+             "gasthaus",
+             "raum/4e56e721f58790d113222334439a1f91",
+             "Die Kneipe in Rilauven."
+            )
+
+stations:add(
+             "yoldatfest",
+             "gasthaus",
+             "raum/1c6c19d7456c73f967f7cb08dbfad692",
+             "Die finstere Kneipe in Yoldatfest."
+            )
+
+stations:add(
+             "gwendon",
+             "bank",
+             "raum/6b9c4d25dab972bbf3313117b62465cc",
+             "In der Wechselstube in Gwendon."
+            )
+
 return stations
