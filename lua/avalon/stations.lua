@@ -1,4 +1,4 @@
-﻿stations = require("speedwalking.station_handler")()
+﻿local stations = require("speedwalking.station_handler")()
 
 stations:add(
              "affenkopfinsel",

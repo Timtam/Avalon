@@ -1,8 +1,8 @@
-Const = require("speedwalking.constants")
-List = require("pl.list")
-String = require("pl.stringx")
-Types = require("pl.types")
-Utils = {}
+local Const = require("speedwalking.constants")
+local List = require("pl.list")
+local String = require("pl.stringx")
+local Types = require("pl.types")
+local Utils = {}
 
 Utils.is_inverse = function(dir1, dir2)
   if Types.type(dir1) ~= Types.type(dir2) then
@@ -41,7 +41,8 @@ Utils.is_inverse = function(dir1, dir2)
 end
 
 Utils.way_length = function(l)
-  len = 0
+  local len = 0
+  local i
   for i = 1, l:len() - 1 do
     len = len + l[i]:find_way(l[i+1]):get_length()
   end
@@ -49,8 +50,8 @@ Utils.way_length = function(l)
 end
 
 Utils.way_duration = function(l, g)
-  dur = 0
-  p = Utils.resolve_way(l)
+  local dur = 0
+  local p = Utils.resolve_way(l)
   p:foreach(function(d)
     if Types.type(d) == 'string' then
       if string.len(d) <= 2 then
@@ -74,7 +75,7 @@ Utils.way_duration = function(l, g)
 end
 
 Utils.resolve_way = function(l)
-  p = List.new()
+  local p = List.new()
   local i
   for i = 1, l:len() - 1 do
     p:extend(l[i]:find_way(l[i+1]).way)
@@ -94,7 +95,7 @@ Utils.resolve_way = function(l)
 end
 
 Utils.way_prevention_reason = function(p)
-  local _, i, w
+  local _, d, i, w
   for i = 1, p:len() - 1 do
     w = p[i]:find_way(p[i + 1])
     for _, d in pairs(w.way) do

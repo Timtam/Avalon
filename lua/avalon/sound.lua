@@ -5,6 +5,32 @@ local Path = require("pl.path")
 local PPI = require("ppi")
 local Types = require("pl.types")
 
+-- internals
+
+local sound_parse_filename
+
+sound_parse_filename = function(file)
+
+  local s, e = file:find("%{%d+,%d+%}")
+
+  if s == nil then
+    return file
+  end
+
+  local numb = file:sub(s + 1, e - 1)
+
+  local r_s, r_e = numb:match("(%d+),(%d+)")
+
+  r_s = tonumber(r_s)
+  r_e = tonumber(r_e)
+
+  file = file:gsub("%{%d+,%d+%}", tostring(math.random(r_s, r_e)))
+
+  return sound_parse_filename(file)
+end
+
+-- externals
+
 local sound_init = function()
   Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
@@ -30,6 +56,8 @@ local sound_play_sound = function(file, pan, vol, no_free)
   if Path.isabs(file) == false then
     file = GetInfo(74) .. file
   end
+
+  file = sound_parse_filename(file)
 
   local flags = 0
 
@@ -61,6 +89,8 @@ local sound_play_music = function(file, vol, mute)
   if Path.isabs(file) == false then
     file = GetInfo(74) .. "Music/" .. file
   end
+
+  file = sound_parse_filename(file)
 
   local hmusic = BASS:StreamCreateFile(false, file, 0, 0, Audio.CONST.sample.loop)
   hmusic:SetAttribute(Audio.CONST.attribute.volume, vol / 100)

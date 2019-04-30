@@ -1211,10 +1211,9 @@
    enabled="y"
    match="^Du kletterst nach .*$|^.* klettert nach .*$"
    regexp="y"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/Climb/{1,11}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/Climb/"..math.random(1,11)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1228,9 +1227,8 @@
    enabled="y"
    match="Du hast einen neuen Brief von * bekommen."
    sequence="100"
-   send_to="12"
+   sound="Misc/Post{1,2}.ogg"
   >
-  <send>Sound.PlaySound("Misc/Post"..math.random(1,2)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -1601,26 +1599,23 @@
    enabled="y"
    match="^Du schwimmst nach .*$|^Du treibst mit der Stroemung nach .*$"
    regexp="y"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/Swim/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/Swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Auf den Tintagelschen Aeckern."
-   send_to="12"
    sequence="100"
+   sound="Footsteps/Ground/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="Ein kleines Huegelland."
-   send_to="12"
    sequence="100"
+   sound="Footsteps/Ground/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/Ground/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -1642,18 +1637,16 @@
   <trigger
    enabled="y"
    match="Auf einer Eisscholle*"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/ice/{1,1}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="In einer Eiswueste*"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/ice/{1,1}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/ice/"..math.random(1,1)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2014,10 +2007,9 @@
   <trigger
    enabled="y"
    match="Ein kleiner See."
-   send_to="12"
    sequence="100"
+   sound="Footsteps/swim/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/swim/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2124,10 +2116,9 @@
    enabled="y"
    match="Am Ufer eines kleinen Sees.|In den Weiten der Tundra.|In einem steinigen Landesabschnitt."
    regexp="y"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/stony/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/stony/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -2877,18 +2868,16 @@
    enabled="y"
    match="In einem Stollen.|In einer grossen Hoehle."
    regexp="y"
-   send_to="12"
    sequence="100"
+   sound="Footsteps/cave/{1,4}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/cave/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
    match="In einer trostlosen Steppe."
-   send_to="12"
    sequence="100"
+   sound="Footsteps/Steppy/{1,10}.ogg"
   >
-  <send>Sound.PlaySound("Footsteps/Steppy/"..math.random(1,10)..".ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -3302,9 +3291,8 @@
    regexp="y"
    omit_from_output="y"
    sequence="100"
-   send_to="12"
+   sound="Weapons/waldtraene/{1,8}.ogg"
   >
-  <send>Sound.PlaySound("Weapons/waldtraene/"..math.random(1,8)..".ogg")</send>
   </trigger>
   <trigger
    match="'Waldtraene' zittert in Deiner Hand. Du fuerchtest, sie koennte zerbersten!"
@@ -3480,9 +3468,8 @@
    match="^Leise summst Du ein Mantra, das Dir zu neuer Kraft verhilft.$|^Du summst: Ooooohhhhhmmmmmm......$"
    regexp="y"
    sequence="100"
-   send_to="12"
+   sound="Clerics/Hum/{1,4}.ogg"
   >
-  <send>Sound.PlaySound("Clerics/Hum/"..math.random(1,4)..".ogg")</send>
   </trigger>
   <trigger
    enabled="n"
@@ -4195,7 +4182,7 @@ OnAvalonGetoetet = function(type, message)
   elseif (type == "Avalon.GruppeGetoetet") then
     Sound.PlaySound("Monsters/Kill.ogg")
   end
-  Sound.PlaySound("monsters/deaths/"..math.random(1,57)..".ogg")
+  Sound.PlaySound("monsters/deaths/{1,57}.ogg")
 end
 
 OnAvalonKampf = function(type, message)

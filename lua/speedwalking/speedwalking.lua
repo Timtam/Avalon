@@ -1,17 +1,17 @@
-Const = require("speedwalking.constants")
-Date = require("pl.date")
-Types = require("pl.types")
-Utils = require("speedwalking.utils")
+local Const = require("speedwalking.constants")
+local Date = require("pl.date")
+local Types = require("pl.types")
+local Utils = require("speedwalking.utils")
 
-spdtbl = nil
-spdind = 0
-spdstep = 0
-spdtext = false
-spdgroup = false
+local spdtbl = nil
+local spdind = 0
+local spdstep = 0
+local spdtext = false
+local spdgroup = false
 
 function get_unix_time()
   world.CallPlugin(world.GetPluginVariable("", "time"), "time", "")
-  rtime = world.GetPluginVariable(world.GetPluginVariable("", "time"), "UnixTime")
+  local rtime = world.GetPluginVariable(world.GetPluginVariable("", "time"), "UnixTime")
   rtime = world.Replace(rtime, ",", ".", false)
   return tonumber(rtime)
 end
@@ -22,7 +22,7 @@ function speedwalk_init(from, to, group)
     return
   end
   spdgroup = group
-  paths = from:find_paths(to)
+  local paths = from:find_paths(to)
   paths:sort(function(a, b)
     return Utils.way_duration(a, group) < Utils.way_duration(b, group)
   end)
@@ -52,7 +52,7 @@ function speedwalk_init(from, to, group)
       end
     end)
   end
-  date = Date(os.time()+Utils.way_duration(spdtbl, group)):toLocal() - Date(os.time()):toLocal()
+  local date = Date(os.time()+Utils.way_duration(spdtbl, group)):toLocal() - Date(os.time()):toLocal()
   world.Note("Voraussichtliche Ankunft in "..string.format("%d Minuten und %d Sekunden.", date:min(), date:sec()))
   --world.Note("Wir gehen ueber:")
   --world.Note(spdtbl:map(function(s) return s.domain.."."..s.name end):join(", "))
@@ -74,8 +74,8 @@ function speedwalk_process(text_incoming)
     Avalon.PSND(GetInfo(74).."Stations/End.ogg")
     return
   end
-  current_time = get_unix_time()
-  continue_time = spdstep
+  local current_time = get_unix_time()
+  local continue_time = spdstep
   if spdind > 1 then
     if Types.type(spdtbl[spdind]) ~= 'string' then
       if spdgroup == true then
@@ -104,13 +104,13 @@ function speedwalk_process(text_incoming)
     return
   end
   if Types.type(spdtbl[spdind]) == 'string' then
-    command = string.gsub(spdtbl[spdind], '_', ' ')
+    local command = string.gsub(spdtbl[spdind], '_', ' ')
     spdind = spdind + 1
   else
     if spdtbl[spdind]:get_status() == Const.SCRIPT_UNINITIALIZED then
       spdtbl[spdind]:initialize()
     end
-    command = spdtbl[spdind]:pop_command()
+    local command = spdtbl[spdind]:pop_command()
     if Types.is_empty(command) then
       if spdtbl[spdind]:get_status() == Const.SCRIPT_SUCCESS then
         spdtbl[spdind]:destroy()

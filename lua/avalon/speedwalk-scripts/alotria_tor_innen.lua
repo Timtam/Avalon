@@ -1,6 +1,6 @@
-Class = require("pl.class")
-Script = require("speedwalking.script")
-Types = require("pl.types")
+local Class = require("pl.class")
+local Script = require("speedwalking.script")
+local Types = require("pl.types")
 
 Class.Avalon_Alotria_Tor_Innen(Script)
 
@@ -58,7 +58,7 @@ function Avalon_Alotria_Tor_Innen:ziehe_hebel()
 end
 
 function Avalon_Alotria_Tor_Innen:pop_command()
-  cmd = self._base.pop_command(self)
+  local cmd = self._base.pop_command(self)
   if not Types.is_empty(cmd) then
     return cmd
   end

@@ -1,4 +1,4 @@
-speedwalklist = {}
+local speedwalklist = {}
 speedwalklist['nereid.abtei_nereid.gabelung4'] = "s kletter_s sw sw sw sw sw sw sw"
 speedwalklist['nereid.abtei_nereid.toro'] = "sw kletter_s s s"
 speedwalklist['affenkopfinsel.hafen_affenkopfinsel.golemkultisten'] = "s no o so s s s sw w w sw w w w w w w w w w w w w w w"

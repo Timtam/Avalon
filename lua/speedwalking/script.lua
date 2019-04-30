@@ -3,9 +3,9 @@
 -- Zeitpunkten aufgerufen, wodurch Speedwalks bis zu einem gewissen Grad dynamisch
 -- werden
 
-Class = require("pl.class")
-Const = require("speedwalking.constants")
-List = require("pl.list")
+local Class = require("pl.class")
+local Const = require("speedwalking.constants")
+local List = require("pl.list")
 
 Class.Script()
 

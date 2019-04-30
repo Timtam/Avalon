@@ -1,7 +1,7 @@
-Class = require("pl.class")
-Const = require("speedwalking.constants")
-List = require("pl.list")
-Types = require("pl.types")
+local Class = require("pl.class")
+local Const = require("speedwalking.constants")
+local List = require("pl.list")
+local Types = require("pl.types")
 
 Class.Way()
 
@@ -10,13 +10,13 @@ function Way:_init(source, way, target)
   self.source = source
   self.target = target
   self.way = self.way:map(function(d)
-    s = string.match(d, Const.SCRIPT_REGEX)
+    local s = string.match(d, Const.SCRIPT_REGEX)
     if not Types.is_empty(s) then
-      d = require(s)()
+      local d = require(s)()
     end
     return d
   end)
-  mt = getmetatable(self)
+  local mt = getmetatable(self)
   mt.__eq = function(self, w)
     return self.way == w.way and self.source == w.source and self.target == w.target
   end

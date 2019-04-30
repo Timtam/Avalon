@@ -1,15 +1,15 @@
 -- nützliche Zeitfunktionen, auf Deutsch
 -- auch ein wenig mathematisches dabei
 
-Stringx = require("pl.stringx")
+local Stringx = require("pl.stringx")
 
 -- rundet auf eine bestimmte Nachkommastelle
-function round(num, idp)
+local function round(num, idp)
   return tonumber(string.format(" %." .. (idp or 0) .. "f", num))
 end
 
 -- gibt zuerst den kleineren, dann den größeren Wert zurück
-function order(_a, _b)
+local function order(_a, _b)
   if _a < _b then
     return _a, _b
   else
@@ -18,11 +18,11 @@ function order(_a, _b)
 end
 
 -- zerlegt die Zeit in Stunden, Minuten und Sekunden
-function split_time(diff)
+local function split_time(diff)
 
-  hours = math.floor(diff / 3600)
-  mins = math.floor((diff - hours * 3600) / 60)
-  secs = round(((diff - hours * 3600) - mins * 60), 0)
+  local hours = math.floor(diff / 3600)
+  local mins = math.floor((diff - hours * 3600) / 60)
+  local secs = round(((diff - hours * 3600) - mins * 60), 0)
 
   return hours, mins, secs
 end
@@ -30,7 +30,7 @@ end
 -- formatiert eine Zeit in Stunden, Minuten und Sekunden in einen
 -- schönen String
 
-function format_time(hours, mins, secs)
+local function format_time(hours, mins, secs)
 
   local msg = ""
 

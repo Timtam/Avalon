@@ -1,5 +1,5 @@
-Class = require("pl.class")
-Script = require("speedwalking.script")
+local Class = require("pl.class")
+local Script = require("speedwalking.script")
 
 Class.Avalon_Dhungar_Transportkorb_Aussteigen(Script)
 

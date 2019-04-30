@@ -1,9 +1,9 @@
-Class = require("pl.class")
-Const = require("speedwalking.constants")
-List = require("pl.list")
-Station = require("speedwalking.station")
-String = require("pl.stringx")
-Types = require("pl.types")
+local Class = require("pl.class")
+local Const = require("speedwalking.constants")
+local List = require("pl.list")
+local Station = require("speedwalking.station")
+local String = require("pl.stringx")
+local Types = require("pl.types")
 
 Class.StationHandler()
 
@@ -16,10 +16,10 @@ function StationHandler:add(domain, name, id, description)
 end
 
 function StationHandler:find(identifier)
-  res = self.stations:filter(function(s)
+  local res = self.stations:filter(function(s)
     return s:matches(identifier)
   end)
-  exact_matches = res:filter(function(s)
+  local exact_matches = res:filter(function(s)
     return s:matches(identifier, true)
   end)
   if exact_matches:len() == 1 then
@@ -30,19 +30,20 @@ end
 
 function StationHandler:parse_speedwalks(speedwalks, silent)
   silent = silent or false
-  failure = 0
-  parsed = 0
+  local failure = 0
+  local parsed = 0
+  local name, path
   for name, path in pairs(speedwalks) do
     failure = failure + 1
-    source, target = string.match(name, Const.SPEEDWALK_REGEX)
-    possible_sources = self:find(source)
+    local source, target = string.match(name, Const.SPEEDWALK_REGEX)
+    local possible_sources = self:find(source)
     if possible_sources:len() > 1 and silent == false then
       world.Note("Fehlerhafter Speedwalk "..name..": mehrere Startorte fuer "..source.." moeglich")
     end
     if possible_sources:len() == 0 and silent == false then
       world.Note("Fehlerhafter Speedwalk "..name..": kein Startort fuer "..source.." gefunden")
     end
-    possible_targets = self:find(target)
+    local possible_targets = self:find(target)
     if possible_targets:len() > 1 and silent == false then
       world.Note("Fehlerhafter Speedwalk "..name..": mehrere Zielorte fuer "..target.." moeglich")
     end

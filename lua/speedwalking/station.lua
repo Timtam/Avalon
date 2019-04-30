@@ -1,10 +1,10 @@
-Class = require("pl.class")
-Const = require("speedwalking.constants")
-List = require("pl.list")
-String = require("pl.stringx")
-Types = require("pl.types")
-Utils = require("speedwalking.utils")
-Way = require("speedwalking.way")
+local Class = require("pl.class")
+local Const = require("speedwalking.constants")
+local List = require("pl.list")
+local String = require("pl.stringx")
+local Types = require("pl.types")
+local Utils = require("speedwalking.utils")
+local Way = require("speedwalking.way")
 
 Class.Station()
 function Station:_init(domain, name, id, description)
@@ -13,7 +13,7 @@ function Station:_init(domain, name, id, description)
   self.id = id:lower()
   self.description = description
   self.ways = List.new()
-  mt = getmetatable(self)
+  local mt = getmetatable(self)
   mt.__eq = function(self, s)
     return s.domain == self.domain and s.name == self.name and s.id == self.id and s.description == self.description
   end
@@ -42,7 +42,7 @@ function Station:matches(identifier, exact)
       return false
     end
   end
-  domain, name = string.match(identifier, Const.STATION_REGEX)
+  local domain, name = string.match(identifier, Const.STATION_REGEX)
   if not Types.is_empty(identifier) then
     if Types.is_empty(domain) and Types.is_empty(name) then
       return false
@@ -68,6 +68,7 @@ function Station:add_way(target, way)
 end
 
 function Station:find_way(target)
+  local _, p
   for _, p in pairs(self.ways) do
     if p.target == target then
       return p
@@ -90,7 +91,7 @@ function Station:find_paths(target, path)
   local _, t
   for _, t in ipairs(self.ways) do
     if not path:contains(t.target) then
-      newpaths = t.target:find_paths(target, path)
+      local newpaths = t.target:find_paths(target, path)
       paths:extend(newpaths)
     end
   end

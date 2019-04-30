@@ -1,4 +1,4 @@
-c = {
+local c = {
   DIRECTIONS = {
     o = "w",
     so = "nw",

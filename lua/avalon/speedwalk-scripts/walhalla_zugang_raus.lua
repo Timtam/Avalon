@@ -1,6 +1,6 @@
-Class = require("pl.class")
-Script = require("speedwalking.script")
-Types = require("pl.types")
+local Class = require("pl.class")
+local Script = require("speedwalking.script")
+local Types = require("pl.types")
 
 Class.Avalon_Walhalla_Zugang_Raus(Script)
 
