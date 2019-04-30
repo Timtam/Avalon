@@ -131,6 +131,18 @@ toggle_debug = function()
   Note("ATCP DEBUG: " .. (debugging and "true" or "false"))
 end
 
+function send_command(name, line, wildcards, styles)
+
+  local wc = wildcards[1]
+
+  if wc == "" then
+    world.Note("No command sent.")
+    return
+  end
+
+  SendPkt(codes.IAC_SB_ATCP .. wc .. codes.IAC_SE)
+
+end
 
 local PPI = require("libraries.ppi")
 PPI.Expose("Send",
