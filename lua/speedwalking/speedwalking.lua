@@ -103,14 +103,15 @@ function speedwalk_process(text_incoming)
   if continue_time > current_time or spdtext == false then
     return
   end
+  local command
   if Types.type(spdtbl[spdind]) == 'string' then
-    local command = string.gsub(spdtbl[spdind], '_', ' ')
+    command = string.gsub(spdtbl[spdind], '_', ' ')
     spdind = spdind + 1
   else
     if spdtbl[spdind]:get_status() == Const.SCRIPT_UNINITIALIZED then
       spdtbl[spdind]:initialize()
     end
-    local command = spdtbl[spdind]:pop_command()
+    command = spdtbl[spdind]:pop_command()
     if Types.is_empty(command) then
       if spdtbl[spdind]:get_status() == Const.SCRIPT_SUCCESS then
         spdtbl[spdind]:destroy()
