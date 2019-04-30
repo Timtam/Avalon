@@ -12,7 +12,7 @@ function Way:_init(source, way, target)
   self.way = self.way:map(function(d)
     local s = string.match(d, Const.SCRIPT_REGEX)
     if not Types.is_empty(s) then
-      local d = require(s)()
+      d = require(s)()
     end
     return d
   end)
