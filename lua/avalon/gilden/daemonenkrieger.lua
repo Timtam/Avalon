@@ -1,9 +1,11 @@
+local sound = require("avalon.sound")
 local types = require("pl.types")
 
 require("pairsbykeys")
 require("string_indexing")
 
 local demons = {}
+local seq_snd = nil
 
 -- internals
 
@@ -218,6 +220,18 @@ local dk_init = function()
   world.Execute("daemonenliste")
 end
 
+local dk_begin_sequence = function()
+  seq_snd = sound.PlaySound("demon_warriors/crystalfocus.ogg")
+end
+
+local dk_end_sequence = function()
+
+  if seq_snd ~= nil then
+    seq_snd:Fadeout(1000)
+    seq_snd = nil
+  end
+end
+
 return {
   DeInit = dk_reset,
   Init = dk_init,
@@ -236,5 +250,8 @@ return {
   Vergesse = dk_vg,
   Verschmelzung = dk_zvs,
   Waffenverstaerkung = dk_bwv,
-  Wegschicken = dk_zw
+  Wegschicken = dk_zw,
+  -- Sequenz starten und beenden
+  BeginSequence = dk_begin_sequence,
+  EndSequence = dk_end_sequence
 }

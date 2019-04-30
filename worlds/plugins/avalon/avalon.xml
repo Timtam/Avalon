@@ -140,7 +140,7 @@
    send_to="12"
    sequence="100"
   >
-  <send>hdksnd = Sound.PlaySound("demon_warriors/crystalfocus.ogg")</send>
+  <send>Gilden.Call('BeginSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -166,7 +166,7 @@
    sequence="100"
    sound="demon_warriors/demonexecute.ogg"
   >
-  <send>hdksnd:Fadeout(1000)</send>
+  <send>Gilden.Call('EndSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -176,7 +176,7 @@
    sequence="100"
    sound="demon_warriors/demonexecute.ogg"
   >
-  <send>hdksnd:Fadeout(1000)</send>
+  <send>Gilden.Call('EndSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -186,7 +186,7 @@
    sequence="100"
    sound="demon_warriors/demoncounter.ogg"
   >
-  <send>hdksnd:Fadeout(1000)</send>
+  <send>Gilden.Call('EndSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -196,7 +196,7 @@
    sequence="100"
    sound="demon_warriors/demondisappear.ogg"
   >
-  <send>hdksnd:Fadeout(1000)</send>
+  <send>Gilden.Call('EndSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -222,7 +222,7 @@
    sequence="100"
    sound="demon_warriors/demonappear.ogg"
   >
-  <send>hdksnd:Fadeout(1000)</send>
+  <send>Gilden.Call('EndSequence')</send>
   </trigger>
   <trigger
    enabled="n"
@@ -4067,7 +4067,6 @@ Dunkel=0
 g_combat           = nil
 g_combat_music     = nil
 g_combat_music_name= nil
-hdksnd=nil
 hmusic=nil
 local LastCommand=nil
 RoomID=nil
