@@ -2,10 +2,10 @@ local class = require('pl.class')
 
 class.MultilineTrigger()
 
-function MultilineTrigger:_init(script,group,sequence)
+function MultilineTrigger:_init(sound,group,sequence)
   self.lines={}
   self.text=''
-  self.script=script or ''
+  self.sound=sound or ''
   self.group=group or ''
   self.sequence=sequence or 100
 end
@@ -44,13 +44,11 @@ function MultilineTrigger:Inject()
         flags=flags+trigger_flag.Enabled
       end
       world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..groupname..'",1)',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
-      world.SetTriggerOption(tgroupname,'group',self.group)
     elseif i==#self.lines then
-      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..groupname..'",0)\r\n'..self.script,flags,NOCHANGE,0,'','',sendto.script,self.sequence)
-      world.SetTriggerOption(tgroupname,'group',groupname)
+      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..groupname..'",0)',flags,NOCHANGE,0,self.sound,'',sendto.script,self.sequence)
     else
       world.AddTriggerEx(tgroupname,self.lines[i].text,'',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
-      world.SetTriggerOption(tgroupname,'group',groupname)
     end
+    world.SetTriggerOption(tgroupname,'group',self.group)
   end
 end
