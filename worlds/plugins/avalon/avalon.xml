@@ -3714,6 +3714,7 @@
   <send>
   Audio.setVol(0, hmusic)
   psnd("Misc/out.ogg")
+  Timers.Clear()
   </send>
   </trigger>
   <trigger

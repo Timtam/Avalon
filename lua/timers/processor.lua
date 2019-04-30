@@ -129,4 +129,8 @@ function Processor:GetDuration(id)
   return t:GetDuration()
 end
 
+function Processor:Clear()
+  self._timers:clear()
+end
+
 return Processor
