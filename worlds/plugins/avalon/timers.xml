@@ -245,6 +245,11 @@ function OnPluginInstall()
     return false
   end)
 
+  PPI.Expose('Clear', function()
+    timers = {}
+    timer_processor:Clear()
+  end)
+
 end
 
 function OnPluginTick()
