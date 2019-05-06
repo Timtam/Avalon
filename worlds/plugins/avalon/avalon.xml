@@ -4118,7 +4118,7 @@ local Ini = require("ini")
 local Path = require("pl.path")
 PPI = require("ppi")
 local Tablex = require("pl.tablex")
-local Timers = nil
+Timers = nil
 local Types = require("pl.types")
 
 Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
