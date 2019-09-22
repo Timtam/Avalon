@@ -765,7 +765,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Deine Fuehler fangen an zu blitzen, und darauf fangen sie an in einem"
+   match="Deine Fuehler fangen an zu blitzen und darauf fangen sie an in einem"
    send_to="12"
    sequence="100"
   >
@@ -821,7 +821,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Die Schockwelle breitet sich aus, und fliegt in Richtung*"
+   match="Die Schockwelle breitet sich aus und fliegt in Richtung*"
    send_to="12"
    sequence="100"
   >
