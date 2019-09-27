@@ -706,7 +706,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Deine Fuehler fangen an zu blitzen, und darauf fangen sie an in einem"
+   match="Deine Fuehler fangen an zu blitzen und darauf fangen sie an in einem"
    sequence="100"
    sound="Febracim/BallStart.ogg"
   >
@@ -755,7 +755,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Die Schockwelle breitet sich aus, und fliegt in Richtung*"
+   match="Die Schockwelle breitet sich aus und fliegt in Richtung*"
    sequence="100"
    sound="Febracim/Shock.ogg"
   >
