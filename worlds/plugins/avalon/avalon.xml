@@ -4064,14 +4064,10 @@
 <![CDATA[
 local Audio = require("audio")
 atcp=nil
-Dunkel=0
 g_combat           = nil
 g_combat_music     = nil
 g_combat_music_name= nil
-hmusic=nil
 local LastCommand=nil
-RoomID=nil
-RoomName=''
 volumetype=1
 
 local callbacktbl={}
@@ -4108,6 +4104,7 @@ world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
 local Gilden = require("avalon.gilden")
 local Player = require("avalon.player")()
+local Room = require("avalon.room")()
 local Sound = require("avalon.sound")
 Spells = require("avalon.activespells")
 require("avalon.multilinetrigger")
@@ -4196,8 +4193,7 @@ OnAvalonKampf = function(type, message)
 end
 
 OnAvalonDunkel = function(type, message)
-  Dunkel = tonumber(message)
-  call_callback('DUNKEL', Dunkel)
+  call_callback('DUNKEL', Types.to_bool(message))
 end
 
 OnAvalonRSoul = function(type, message)
@@ -4244,40 +4240,25 @@ OnAvalonChannel = function(type, message)
 end
 
 OnAvalonRoomID = function(type, message)
-  tmessage = utils.split(message, " ")
-  id = tmessage[1]
-  name = tmessage[2]
+  local tmessage = utils.split(message, " ")
+  local id = tmessage[1]
+  local name = tmessage[2]
+  local x = nil
+  local y = nil
+
+  if name == "Bitte" then
+    name = ''
+  end
+
   if tmessage[3] then
-    X = tonumber(utils.split(tmessage[3],"=")[2])
-  else
-    X = nil
+    x = tonumber(utils.split(tmessage[3],"=")[2])
   end
   if tmessage[4] then
-    Y = tonumber(utils.split(tmessage[4],"=")[2])
-  else
-    Y = nil
+    y = tonumber(utils.split(tmessage[4],"=")[2])
   end
-  call_callback('ROOMID', id, name, X, Y)
-  RoomID = id
-  if (not name) or (name == "Bitte") then
-    return
-  end
-  if (name == RoomName) and (hmusic ~= nil) and (hmusic:IsActive() == Audio.CONST.active.playing) then
-    return
-  end
-  RoomName = name
-  if hmusic ~= nil then
-    hmusic:Stop()
-  end
-  if (not Path.isfile(GetInfo(74).."Music/"..name..".ogg") and not Path.isdir(GetInfo(74).."Music/"..name)) then
-    return
-  end
-  if (Path.isfile(GetInfo(74).."Music/"..name..".ogg")) then
-    hmusic = Sound.PlayMusic(name .. ".ogg")
-  else
-    files=Dir.getfiles(GetInfo(74).."Music/"..name)
-    hmusic = Sound.PlayMusic(files[math.random(1,#files)])
-  end
+
+  call_callback('ROOMID', id, name, x, y)
+
 end 
 
 OnAvalonLevel = function(type, message)
@@ -4421,10 +4402,10 @@ function OnPluginInstall()
 
   PPI.Expose('IID',
     function()
-      if Dunkel==1 then
+      if Room:IsDark() == true then
         return nil
       else
-        return RoomID
+        return Room:GetID()
       end
     end)
 
@@ -4463,6 +4444,7 @@ function OnPluginInstall()
     NoteColour)
 
   Player:Init()
+  Room:Init()
   Gilden.Init()
 end
 
@@ -4562,13 +4544,7 @@ end
 function OnPluginDisconnect()
 
   Player:Reset()
-
-  RoomName = ""
-
-  if hmusic ~= nil then
-    hmusic:Stop()
-    hmusic = nil
-  end
+  Room:Reset()
 
   call_callback('LOGOUT')
 end
@@ -4590,7 +4566,6 @@ function switch_mute()
         hmusic:Stop()
       end
 
-      RoomName = ""
       world.Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
@@ -4629,7 +4604,6 @@ function switch_fullmute()
       hmusic:Stop()
     end
 
-    RoomName = ""
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
@@ -4652,11 +4626,11 @@ function switch_fullmute()
 end
 
 function print_position()
-  if (Dunkel == 1) then
+  if Room:IsDark() == true then
     world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
     return
   end
-  world.Note("Ort:\t"..RoomName)
+  world.Note("Ort:\t"..Room:GetName())
   if (X and Y) then
     world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end

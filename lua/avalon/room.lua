@@ -1,0 +1,90 @@
+local Audio = require("audio")
+local Class = require("pl.class")
+local Dir = require("pl.dir")
+local Path = require("pl.path")
+local PPI = require("ppi")
+local Sound = require("avalon.sound")
+local Types = require("pl.types")
+local Avalon = nil
+
+Class.Room()
+
+function Room:_init()
+
+  self:Reset()
+
+end
+
+function Room:Reset()
+
+  if self.music ~= nil then
+    self.music:Stop()
+  end
+
+  self.dark = false
+  self.id = ''
+  self.name = ''
+  self.music = nil
+
+end
+
+function Room:Init()
+
+  Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+
+  Avalon.HookCallback('DUNKEL', function(dunkel) self:SetDark(dunkel) end)
+  Avalon.HookCallback('ROOMID', function(id, name, x, y) self:SetRoomData(id, name, x, y) end)
+
+end
+
+function Room:SetDark(dunkel)
+
+  self.dark = Types.to_bool(dunkel)
+
+end
+
+function Room:IsDark()
+  return self.dark
+end
+
+function Room:SetRoomData(id, name, x, y)
+
+  self.id = id
+
+  if name == "" then
+    return
+  end
+
+  if name == self.name and self.music ~= nil and self.music:IsActive() == Audio.CONST.active.playing then
+    return
+  end
+
+  self.name = name
+
+  if self.music ~= nil then
+    self.music:Stop()
+    self.music = nil
+  end
+
+  if not Path.isfile(GetInfo(74).."Music/"..name..".ogg") and not Path.isdir(GetInfo(74).."Music/"..name) then
+    return
+  end
+
+  if Path.isfile(GetInfo(74).."Music/"..name..".ogg") then
+    self.music = Sound.PlayMusic(name .. ".ogg")
+  else
+    local files = Dir.getfiles(GetInfo(74).."Music/"..name)
+    self.music = Sound.PlayMusic(files[math.random(1,#files)])
+  end
+
+end
+
+function Room:GetID()
+  return self.id
+end
+
+function Room:GetName()
+  return self.name
+end
+
+return Room
