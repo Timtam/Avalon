@@ -61,6 +61,9 @@ function Room:SetRoomData(id, name, x, y)
 
   self.name = name
 
+  local mute = Types.to_bool(Avalon.GetConfig("settings", "MusicMuted"))
+  local volume = Avalon.GetConfig("settings", "MusicVolume")
+
   if self.music ~= nil then
     self.music:Stop()
     self.music = nil
@@ -71,10 +74,14 @@ function Room:SetRoomData(id, name, x, y)
   end
 
   if Path.isfile(GetInfo(74).."Music/"..name..".ogg") then
-    self.music = Sound.PlayMusic(name .. ".ogg")
+    self.music = Sound.PlayMusic(name .. ".ogg", nil, 0)
   else
     local files = Dir.getfiles(GetInfo(74).."Music/"..name)
-    self.music = Sound.PlayMusic(files[math.random(1,#files)])
+    self.music = Sound.PlayMusic(files[math.random(1,#files)], nil, 0)
+  end
+
+  if mute == true then
+    self.music:Stop()
   end
 
 end
@@ -85,6 +92,26 @@ end
 
 function Room:GetName()
   return self.name
+end
+
+function Room:UpdateMusic()
+
+  local mute = Types.to_bool(Avalon.GetConfig("settings", "MusicMuted"))
+  local volume = Avalon.GetConfig("settings", "MusicVolume")
+  
+  if mute == true then
+    if self.music ~= nil then
+      self.music:Stop()
+    end
+    return
+  end
+
+  if self.music ~= nil then
+    if self.music:IsActive() ~= Audio.CONST.active.playing then
+      self.music:Play()
+    end
+    self.music:SetAttribute(Audio.CONST.attribute.volume, volume/100)
+  end
 end
 
 return Room

@@ -3323,9 +3323,6 @@
    sound="Misc/out.ogg"
   >
   <send>
-  if hmusic ~= nil then
-    hmusic:Stop()
-  end
   Timers.Clear()
   </send>
   </trigger>
@@ -4477,9 +4474,7 @@ function volume(value)
     end
     configtbl.settings.MusicVolume = configtbl.settings.MusicVolume + value
     Sound.PlaySound("Misc/VolumeSwitch.ogg")
-    if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
-      hmusic:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.MusicVolume/100)
-    end
+    Room:UpdateMusic()
     world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
   else
     if (configtbl.settings.CombatMusicVolume+value > 100) or (configtbl.settings.CombatMusicVolume + value < 0) then
@@ -4562,14 +4557,12 @@ function switch_mute()
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
 
-      if hmusic ~= nil then
-        hmusic:Stop()
-      end
+      Room:UpdateMusic()
 
       world.Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
-      atcp.Send('ava_req_mapper')
+      Room:UpdateMusic()
       world.Note("Hintergrund-Musik eingeschaltet.")
     end
   else
@@ -4599,11 +4592,7 @@ function switch_fullmute()
   end
   if (configtbl.settings.MusicMuted == 0) then
     configtbl.settings.MusicMuted = 1
-
-    if hmusic ~= nil then
-      hmusic:Stop()
-    end
-
+    Room:UpdateMusic()
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
