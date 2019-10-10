@@ -23,8 +23,10 @@ function Room:Reset()
 
   self.dark = false
   self.id = ''
-  self.name = ''
   self.music = nil
+  self.name = ''
+  self.x = nil
+  self.y = nil
 
 end
 
@@ -50,6 +52,8 @@ end
 function Room:SetRoomData(id, name, x, y)
 
   self.id = id
+  self.x = x
+  self.y = y
 
   if name == "" then
     return
@@ -112,6 +116,10 @@ function Room:UpdateMusic()
     end
     self.music:SetAttribute(Audio.CONST.attribute.volume, volume/100)
   end
+end
+
+function Room:GetCoordinates()
+  return self.x, self.y
 end
 
 return Room

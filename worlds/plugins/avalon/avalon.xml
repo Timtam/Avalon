@@ -4620,8 +4620,11 @@ function print_position()
     return
   end
   world.Note("Ort:\t"..Room:GetName())
-  if (X and Y) then
-    world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
+
+  local x, y = Room:GetCoordinates()
+
+  if x and y then
+    world.Note("Pos:\tX: "..tostring(x)..", Y: "..tostring(y))
   end
 end
 
