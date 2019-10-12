@@ -4061,9 +4061,6 @@
 <![CDATA[
 local Audio = require("audio")
 atcp=nil
-g_combat           = nil
-g_combat_music     = nil
-g_combat_music_name= nil
 local LastCommand=nil
 volumetype=1
 
@@ -4283,7 +4280,6 @@ OnAvalonTP = function(message, ntp)
     ntp = 0
   end
 
-  --combat_music()
   call_callback('TP', ntp)
 end
 
@@ -4305,7 +4301,6 @@ end
 OnAvalonMaxTP=function(message,value)
   value=tonumber(value)
   call_callback('MAXTP', value)
-  --combat_music()
 end
 
 OnAvalonMaxSP=function(message,value)
@@ -4592,7 +4587,6 @@ function switch_fullmute()
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
-    atcp.Send('ava_req_mapper')
     world.Note("Hintergrund-Musik eingeschaltet.")
   end
   if (configtbl.settings.CombatMusicMuted == 0) then
@@ -4629,84 +4623,27 @@ function rgbtohex(r, g, b)
 end
 
 function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
-  if not rt then
-    rt = 255
-  end
-  if not gt then
-    gt = 255
-  end
-  if not bt then
-    bt = 255
-  end
-  if not rb then
-    rb = 0
-  end
-  if not gb then
-    gb = 0
-  end
-  if not bb then
-    bb = 0
-  end
+
+  rt = rt or 255
+  gt = gt or 255
+  bt = bt or 255
+  rb = rb or 0
+  gb = gb or 0
+  bb = bb or 0
+
   world.NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
+
   if style then
     world.NoteStyle(style)
   end
+
   world.Note(text)
+
   if style then
     world.NoteStyle(0)
   end
+
   world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
-end
-
-function combat_music()
-  if g_combat == nil or g_combat == false then
-
-    if g_combat_music ~= nil then
-      g_combat_music:Stop()
-      g_combat_music = nil
-    end
-
-    if hmusic ~= nil and hmusic:IsActive() ~= Audio.CONST.active.playing then
-      hmusic:Play()
-    end
-    return
-  end
-
-  if g_tp == nil or g_max_tp == nil or configtbl.settings.CombatMusicMuted == 1 then
-    return
-  end
-
-  local percentage = g_tp * 100 / g_max_tp
-
-  if percentage >= 86 then
-    music = "excellent.ogg"
-  elseif percentage >= 72 then
-    music = "scratches.ogg"
-  elseif percentage >= 58 then
-    music = "small wounds.ogg"
-  elseif percentage >= 42 then
-    music = "quite a few.ogg"
-  elseif percentage >= 28 then
-    music = "big nasty.ogg"
-  elseif percentage >= 14 then
-    music = "pretty hurt.ogg"
-  elseif percentage >= 0 then
-    music = "awful.ogg"
-  end
-
-  if g_combat_music_name == nil or music ~= g_combat_music_name then
-    g_combat_music_name = music
-
-    if g_combat_music ~= nil then
-      g_combat_music:Stop()
-    end
-  end
-  if g_combat_music == nil or g_combat_music:IsActive() ~= Audio.CONST.active.playing then
-    if (hmusic) and (hmusic:IsActive() == Audio.CONST.active.playing) then
-      hmusic:Pause()
-    end
-    g_combat_music = Sound.PlayMusic(GetInfo(74) .. "Music/Combat/" .. g_combat_music_name, configtbl.settings.CombatMusicVolume, configtbl.settings.CombatMusicMuted)
-  end
 end
 
 function warnings_access(warn)

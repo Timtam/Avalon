@@ -1,3 +1,4 @@
+local Audio = require("audio")
 local Class = require("pl.class")
 local PPI = require("ppi")
 local Sound = require("avalon.sound")
@@ -26,6 +27,9 @@ function Player:Reset()
   self.max_ap = 0
   self.name = ''
   self.mxp_output = false
+  self.combat_music = nil
+  self.combat_music_name = ''
+  self.in_combat = false
 
   self.announces = {
     tp = false,
@@ -56,6 +60,10 @@ function Player:Init()
   Avalon.HookCallback('LEVEL', function(l, p) self:SetLevel(l, p) end)
   Avalon.HookCallback('NAME', function(n) self:SetName(n) end)
   Avalon.HookCallback('GRAFIK', function(gfk) self:SetGrafik(gfk) end)
+  Avalon.HookCallback('KAMPF', function(kampf)
+    self.in_combat = kampf
+    self:UpdateCombatMusic() 
+  end)
 
   self:SetGrafik(Types.to_bool(Avalon.GetConfig("settings", "MXP")), true)
 
@@ -106,6 +114,7 @@ end
 function Player:SetTP(tp)
   self:PlayProgressBar('TP', tp)
   self.tp = tp
+  self:UpdateCombatMusic()
 end
 
 function Player:SetSP(sp)
@@ -139,6 +148,7 @@ end
 
 function Player:SetMaxTP(tp)
   self.max_tp = tp
+  self:UpdateCombatMusic()
 end
 
 function Player:SetMaxSP(sp)
@@ -229,6 +239,57 @@ end
 
 function Player:GetName()
   return self.name
+end
+
+function Player:UpdateCombatMusic()
+
+  local muted = Types.to_bool(Avalon.GetConfig("settings", "CombatMusicMuted"))
+  local volume = Avalon.GetConfig("settings", "CombatMusicVolume")
+
+  if self.in_combat == false then
+    if self.combat_music ~= nil then
+      self.combat_music:Stop()
+      self.combat_music = nil
+    end
+    self.combat_music_name = ''
+    return
+  end
+
+  if muted == true then
+    return
+  end
+
+  local percentage = self.tp * 100 / self.max_tp
+  local music
+
+  if percentage >= 86 then
+    music = "excellent.ogg"
+  elseif percentage >= 72 then
+    music = "scratches.ogg"
+  elseif percentage >= 58 then
+    music = "small wounds.ogg"
+  elseif percentage >= 42 then
+    music = "quite a few.ogg"
+  elseif percentage >= 28 then
+    music = "big nasty.ogg"
+  elseif percentage >= 14 then
+    music = "pretty hurt.ogg"
+  elseif percentage >= 0 then
+    music = "awful.ogg"
+  end
+
+  if music ~= self.combat_music_name then
+    self.combat_music_name = music
+
+    if self.combat_music ~= nil then
+      self.combat_music:Stop()
+      self.combat_music = nil
+    end
+  end
+
+  if self.combat_music == nil or self.combat_music:IsActive() ~= Audio.CONST.active.playing then
+    self.combat_music = Sound.PlayMusic("Combat/" .. self.combat_music_name, volume, muted)
+  end
 end
 
 return Player
