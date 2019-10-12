@@ -246,7 +246,7 @@ function Player:UpdateCombatMusic()
   local muted = Types.to_bool(Avalon.GetConfig("settings", "CombatMusicMuted"))
   local volume = Avalon.GetConfig("settings", "CombatMusicVolume")
 
-  if self.in_combat == false then
+  if self.in_combat == false or muted == true then
     if self.combat_music ~= nil then
       self.combat_music:Stop()
       self.combat_music = nil
@@ -255,8 +255,8 @@ function Player:UpdateCombatMusic()
     return
   end
 
-  if muted == true then
-    return
+  if self.combat_music ~= nil and volume/100 ~= self.combat_music:GetAttribute(Audio.CONST.attribute.volume) then
+    self.combat_music:SetAttribute(Audio.CONST.attribute.volume, volume/100)
   end
 
   local percentage = self.tp * 100 / self.max_tp

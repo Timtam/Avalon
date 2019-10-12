@@ -4473,9 +4473,7 @@ function volume(value)
     end
     configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
     Sound.PlaySound("Misc/VolumeSwitch.ogg")
-    if (g_combat_music) and (g_combat_music:IsActive() == Audio.CONST.active.playing) then
-      g_combat_music:SetAttribute(Audio.CONST.attribute.volume, configtbl.settings.CombatMusicVolume/100)
-    end
+    Player:UpdateCombatMusic()
     world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
   end
 end
@@ -4547,9 +4545,7 @@ function switch_mute()
   elseif (volumetype == 2) then
     if (configtbl.settings.MusicMuted == 0) then
       configtbl.settings.MusicMuted = 1
-
       Room:UpdateMusic()
-
       world.Note("Hintergrund-Musik ausgeschaltet.")
     else
       configtbl.settings.MusicMuted = 0
@@ -4559,14 +4555,13 @@ function switch_mute()
   else
     if (configtbl.settings.CombatMusicMuted == 0) then
       configtbl.settings.CombatMusicMuted = 1
-
-      if g_combat_music ~= nil then
-        g_combat_music:Stop()
-      end
-
+      Player:UpdateCombatMusic()
+      Room:UpdateMusic()
       world.Note("Kampf-Musik ausgeschaltet.")
     else
       configtbl.settings.CombatMusicMuted = 0
+      Room:UpdateMusic()
+      Player:UpdateCombatMusic()
       world.Note("Kampf-Musik eingeschaltet.")
     end
   end
@@ -4587,18 +4582,18 @@ function switch_fullmute()
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
     configtbl.settings.MusicMuted = 0
+    Room:UpdateMusic()
     world.Note("Hintergrund-Musik eingeschaltet.")
   end
   if (configtbl.settings.CombatMusicMuted == 0) then
     configtbl.settings.CombatMusicMuted = 1
-
-    if g_combat_music ~= nil then
-      g_combat_music:Stop()
-    end
-
+    Player:UpdateCombatMusic()
+    Room:UpdateMusic()
     world.Note("Kampf-Musik ausgeschaltet.")
   else
     configtbl.settings.CombatMusicMuted = 0
+    Room:UpdateMusic()
+    Player:UpdateCombatMusic()
     world.Note("Kampf-Musik eingeschaltet.")
   end
   Sound.PlaySound('Misc/ConfigSwitch.ogg')
