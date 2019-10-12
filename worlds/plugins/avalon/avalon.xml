@@ -4778,18 +4778,21 @@ function call_callback(handle, ...)
 end
 
 function say_stat(type)
+
+  local current, max
+
   if type == "AP" then
-    current = g_ap
-    max = g_max_ap
+    current = Player:GetAP()
+    max = Player:GetMaxAP()
   elseif type == "MP" then
-    current = g_mp
-    max = g_max_mp
+    current = Player:GetMP()
+    max = Player:GetMaxMP()
   elseif type == "TP" then
-    current = g_tp
-    max = g_max_tp
+    current = Player:GetTP()
+    max = Player:GetMaxTP()
   elseif type == "ZP" then
-    current = g_sp
-    max = g_max_sp
+    current = Player:GetSP()
+    max = Player:GetMaxSP()
   end
   if current == nil or max == nil then
     world.Note("Unbekannt")
