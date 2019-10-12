@@ -64,7 +64,7 @@ function Room:SetRoomData(id, name, x, y)
     return
   end
 
-  if name == self.name and self.music ~= nil and self.music:IsActive() == Audio.CONST.active.playing then
+  if name == self.name and self.music ~= nil then
     return
   end
 
@@ -89,7 +89,7 @@ function Room:SetRoomData(id, name, x, y)
     self.music = Sound.PlayMusic(files[math.random(1,#files)], nil, 0)
   end
 
-  if mute == true then
+  if mute == true or self.in_combat == true then
     self.music:Stop()
   end
 
