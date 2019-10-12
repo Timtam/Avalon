@@ -35,6 +35,7 @@ function Room:Init()
   Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
 
   Avalon.HookCallback('DUNKEL', function(dunkel) self:SetDark(dunkel) end)
+  Avalon.HookCallback('KAMPF', function(kampf) self:UpdateBattle(kampf) end)
   Avalon.HookCallback('ROOMID', function(id, name, x, y) self:SetRoomData(id, name, x, y) end)
 
 end
@@ -120,6 +121,27 @@ end
 
 function Room:GetCoordinates()
   return self.x, self.y
+end
+
+function Room:UpdateBattle(battle)
+
+  local music_mute = Types.to_bool(Avalon.GetConfig("settings", "MusicMuted"))
+  local combat_muted = Types.to_bool(Avalon.GetConfig("settings", "CombatMusicMuted"))
+  
+  if music_muted == true or combat_muted == true then
+    return
+  end
+
+  if battle == true then
+    if self.music ~= nil and self.music:IsActive() == Audio.CONST.active.playing then
+      self.music:Pause()
+    end
+  else
+    if self.music ~= nil and self.music:IsActive() == Audio.CONST.active.paused then
+      self.music:Play()
+    end
+  end
+
 end
 
 return Room

@@ -4180,13 +4180,9 @@ OnAvalonGetoetet = function(type, message)
 end
 
 OnAvalonKampf = function(type, message)
-  if (message == "1") then
-    g_combat = true
-    combat_music()
-  elseif (message == "0") then
-    g_combat = false
-    combat_music()
-  end
+
+  call_callback('KAMPF', Types.to_bool(message))
+
 end
 
 OnAvalonDunkel = function(type, message)
