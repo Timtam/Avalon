@@ -25,7 +25,14 @@ end
 
 function MultilineTrigger:Inject()
   local groupname = utils.hash(tostring(string.len(self.text))..'\r\n'..self.text)
+  local group
   local i
+
+  if self.group == '' then
+    group = groupname
+  else
+    group = self.group
+  end
 
   for i = 1, #self.lines, 1 do
     local flags = 0
@@ -43,12 +50,12 @@ function MultilineTrigger:Inject()
       if self.group=='' then
         flags=flags+trigger_flag.Enabled
       end
-      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..groupname..'",1)',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
+      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..group..'",1)',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
     elseif i==#self.lines then
-      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..groupname..'",0)',flags,NOCHANGE,0,self.sound,'',sendto.script,self.sequence)
+      world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..group..'",0)',flags,NOCHANGE,0,self.sound,'',sendto.script,self.sequence)
     else
       world.AddTriggerEx(tgroupname,self.lines[i].text,'',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
     end
-    world.SetTriggerOption(tgroupname,'group',self.group)
+    world.SetTriggerOption(tgroupname,'group',group)
   end
 end
