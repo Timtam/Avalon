@@ -91,7 +91,7 @@ function speedwalk_process(text_incoming)
       end
     else
       if spdgroup == true then
-        continue_time = continue_time + Const.WALK_SPEED_EXTRA * WALK_SPEED_EXTRA_GROUP_FACTOR
+        continue_time = continue_time + Const.WALK_SPEED_EXTRA * Const.WALK_SPEED_EXTRA_GROUP_FACTOR
       else
         continue_time = continue_time + Const.WALK_SPEED_EXTRA
       end
