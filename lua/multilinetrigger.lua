@@ -53,9 +53,10 @@ function MultilineTrigger:Inject()
       world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..group..'",1)',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
     elseif i==#self.lines then
       world.AddTriggerEx(tgroupname,self.lines[i].text,'world.EnableGroup("'..group..'",0)',flags,NOCHANGE,0,self.sound,'',sendto.script,self.sequence)
+      world.SetTriggerOption(tgroupname,'group',group)
     else
       world.AddTriggerEx(tgroupname,self.lines[i].text,'',flags,NOCHANGE,0,'','',sendto.script,self.sequence)
+      world.SetTriggerOption(tgroupname,'group',group)
     end
-    world.SetTriggerOption(tgroupname,'group',group)
   end
 end
