@@ -4190,7 +4190,7 @@ OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  call_callback('CHANNEL', channel, text)
+  call_callback('CHANNEL', "REDEN", text)
 end
 
 OnAvalonSoul = function(type, message)
@@ -4201,6 +4201,7 @@ OnAvalonSoul = function(type, message)
   end
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
+  call_callback("SOUL", "SEELE", text)
 end
 
 OnAvalonComm=function(type,message)
