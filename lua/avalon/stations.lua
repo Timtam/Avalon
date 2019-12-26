@@ -3045,4 +3045,11 @@ stations:add(
              "In der Wechselstube in Gwendon."
             )
 
+stations:add(
+             "ashar",
+             "schmiedruestungen",
+             "raum/7ab67cd6d535911210eaf640f8e85663",
+             "Der Ruestungsschmied von Ashar."
+            )
+
 return stations
