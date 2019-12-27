@@ -3052,4 +3052,11 @@ stations:add(
              "Der Ruestungsschmied von Ashar."
             )
 
+stations:add(
+             "ashar",
+             "lederladen",
+             "raum/3673fb5748da355349d767985b66e091",
+             "Der Lederwarenhaendler in Ashar."
+            )
+
 return stations

@@ -853,5 +853,7 @@ speedwalklist['nereid.gabelung1_nereid.formkof'] = "so o o o o o o o o no nw nw 
 speedwalklist['nereid.formkof_nereid.gabelung1'] = "so so so so sw w w w w w w w w nw"
 speedwalklist['ashar.zentrum_ashar.schmiedruestungen'] = "n n n n so n"
 speedwalklist['ashar.schmiedruestungen_ashar.zentrum'] = "s nw s s s s"
+speedwalklist['ashar.wlmkurzschwert_ashar.lederladen'] = "no so so so o"
+speedwalklist['ashar.lederladen_ashar.wlmkurzschwert'] = "w nw nw nw sw"
 
 return speedwalklist
