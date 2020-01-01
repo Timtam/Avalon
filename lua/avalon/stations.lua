@@ -2867,7 +2867,7 @@ stations:add(
              "minias",
              "schmied",
              "raum/45377374935fbebf43945432f4216c76",
-             "Der Schmied fuer Waffen und Ruestungen in Avalon."
+             "Der Schmied fuer Waffen und Ruestungen in Minias."
             )
 
 stations:add(
@@ -3057,6 +3057,34 @@ stations:add(
              "lederladen",
              "raum/3673fb5748da355349d767985b66e091",
              "Der Lederwarenhaendler in Ashar."
+            )
+
+stations:add(
+             "solgard",
+             "jagdlehrmeister",
+             "raum/56217e9f8e773b226344afb34a99867e",
+             "Leywv'Aran, der Waldlaeufer."
+            )
+
+stations:add(
+             "solgard",
+             "fellhaendler",
+             "raum/56217e9f8e773b226344afb34a99867e",
+             "Leywv'Aran, der Waldlaeufer."
+            )
+
+stations:add(
+             "solgard",
+             "schmied",
+             "raum/de3c7d35f00fefd3e72557b09823930b",
+             "Waffen- und Ruestungsschmied in Solgard."
+            )
+
+stations:add(
+             "solgard",
+             "post",
+             "raum/ed5664af979e5015e0d0076546cedf30",
+             "Die Post in Solgard."
             )
 
 return stations

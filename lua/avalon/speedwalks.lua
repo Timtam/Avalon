@@ -855,5 +855,13 @@ speedwalklist['ashar.zentrum_ashar.schmiedruestungen'] = "n n n n so n"
 speedwalklist['ashar.schmiedruestungen_ashar.zentrum'] = "s nw s s s s"
 speedwalklist['ashar.wlmkurzschwert_ashar.lederladen'] = "no so so so o"
 speedwalklist['ashar.lederladen_ashar.wlmkurzschwert'] = "w nw nw nw sw"
+speedwalklist['solgard.wlmsichel_solgard.jagdlehrmeister'] = "s s s sw s"
+speedwalklist['solgard.jagdlehrmeister_solgard.wlmsichel'] = "n no n n n"
+speedwalklist['solgard.wlmsichel_solgard.fellhaendler'] = speedwalklist['solgard.wlmsichel_solgard.jagdlehrmeister']
+speedwalklist['solgard.fellhaendler_solgard.wlmsichel'] = speedwalklist['solgard.jagdlehrmeister_solgard.wlmsichel']
+speedwalklist['solgard.zentrum_solgard.schmied'] = "so oeffne_oestliche_tuer o"
+speedwalklist['solgard.schmied_solgard.zentrum'] = "oeffne_tuer w nw"
+speedwalklist['solgard.zentrum_solgard.post'] = "s s s o h"
+speedwalklist['solgard.post_solgard.zentrum'] = "r w n n n"
 
 return speedwalklist
