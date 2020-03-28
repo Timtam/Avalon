@@ -4348,6 +4348,183 @@ OnPluginPlaySound = function(file)
   Sound.PlaySound(file)
 end
 
+-- avalon atcp handlers
+
+OnAvalonAP = function(message, nap)
+  nap = tonumber(nap)
+  call_callback('AP', nap)
+end
+
+OnAvalonChannel = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  if Gilden.Exists(channel) then
+    channel="gilde"
+  end
+  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
+    Sound.PlaySound("Channels/"..channel..".ogg")
+  end
+  if ((channel == "fehler") or (channel == "runtime")) then
+    return
+  end
+  world.Execute(";history_add "..channel.."="..text)
+  call_callback('CHANNEL', channel, text)
+end
+
+OnAvalonComm=function(type,message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
+    Sound.PlaySound("Channels/"..channel..".ogg")
+  end
+  world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
+  call_callback('CHANNEL', channel, text)
+end
+
+OnAvalonDunkel = function(type, message)
+  call_callback('DUNKEL', Types.to_bool(message))
+end
+
+OnAvalonEP = function(type, message)
+  local ep = string.match(message, "^(%d+)")
+  if not ep then
+    return
+  end
+  ep = tonumber(ep)
+  call_callback('EP', ep)
+end
+
+OnAvalonGetoetet = function(type, message)
+  if (type == "Avalon.Getoetet") then
+    Sound.PlaySound("Player/Kill.ogg")
+  elseif (type == "Avalon.GruppeGetoetet") then
+    Sound.PlaySound("Monsters/Kill.ogg")
+  end
+  Sound.PlaySound("monsters/deaths/{1,57}.ogg")
+end
+
+OnAvalonGilde = function(type, message)
+  call_callback("GILDE", message)
+end
+
+OnAvalonGrafikVermeiden = function(type, message)
+  message = Types.to_bool(tonumber(message))
+  call_callback('GRAFIK', not message)
+end
+
+OnAvalonKampf = function(type, message)
+
+  call_callback('KAMPF', Types.to_bool(message))
+
+end
+
+OnAvalonLevel = function(type, message)
+  local prefix, level = string.match(message, "^(%w)(%d+)$")
+
+  if not level then
+    return
+  end
+
+  level = tonumber(level)
+
+  call_callback('LEVEL', level, prefix)
+
+end
+
+-- this function needs to be global
+-- it doesn't get called by atcp, but by triggers instead
+OnAvalonLogin = function()
+  atcp.Send("ava_set_soundpack")
+  atcp.Send("ava_set_channel 1")
+  atcp.Send("ava_set_rcomm 1")
+  atcp.Send("ava_set_comm 1")
+  atcp.Send("ava_set_soul 1")
+  atcp.Send("ava_set_rsoul 1")
+  atcp.Send("ava_req_update")
+  atcp.Send("ava_req_graphics_status")
+  Sound.PlaySound("Player/Login.ogg")
+  call_callback('LOGIN')
+end
+
+OnAvalonMaxAP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXAP', value)
+end
+
+OnAvalonMaxSP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXSP', value)
+end
+
+OnAvalonMaxTP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXTP', value)
+end
+
+OnAvalonMP=function(message,nmp)
+  nmp=tonumber(nmp)
+  call_callback('MP', nmp)
+end
+
+OnAvalonName = function(type, message)
+  call_callback('NAME', message)
+end
+
+OnAvalonRoomID = function(type, message)
+  local tmessage = utils.split(message, " ")
+  local id = tmessage[1]
+  local name = tmessage[2]
+  local x = nil
+  local y = nil
+
+  if name == "Bitte" then
+    name = ''
+  end
+
+  if tmessage[3] then
+    x = tonumber(utils.split(tmessage[3],"=")[2])
+  end
+  if tmessage[4] then
+    y = tonumber(utils.split(tmessage[4],"=")[2])
+  end
+
+  call_callback('ROOMID', id, name, x, y)
+
+end 
+
+OnAvalonRSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
+  call_callback('CHANNEL', "REDEN", text)
+end
+
+OnAvalonSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  if not text then
+    startpos, endpos = string.find(message, " ", 1, true)
+    text = string.sub(message, endpos+1, -1)
+  end
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
+  call_callback("SOUL", "SEELE", text)
+end
+
+OnAvalonSP=function(message, nsp)
+  nsp = tonumber(nsp)
+  call_callback('SP', nsp)
+end
+
+OnAvalonTP = function(message, ntp)
+  ntp = tonumber(ntp)
+
+  if ntp < 0 then
+    ntp = 0
+  end
+
+  call_callback('TP', ntp)
+end
+
 function volume(value)
   if (volumetype == 1) then
     if (Configs.settings.SoundVolume+value > 100) or (Configs.settings.SoundVolume+value < 0) then
@@ -4373,179 +4550,6 @@ function volume(value)
     Player:UpdateCombatMusic()
     world.Note("Kampf-Musik-Lautstärke: "..tostring(Configs.settings.CombatMusicVolume).." %")
   end
-end
-
-function OnAvalonGrafikVermeiden(type, message)
-  message = Types.to_bool(tonumber(message))
-  call_callback('GRAFIK', not message)
-end
-
-function OnAvalonGilde(type, message)
-  call_callback("GILDE", message)
-end
-
-function OnAvalonLogin()
-  atcp.Send("ava_set_soundpack")
-  atcp.Send("ava_set_channel 1")
-  atcp.Send("ava_set_rcomm 1")
-  atcp.Send("ava_set_comm 1")
-  atcp.Send("ava_set_soul 1")
-  atcp.Send("ava_set_rsoul 1")
-  atcp.Send("ava_req_update")
-  atcp.Send("ava_req_graphics_status")
-  Sound.PlaySound("Player/Login.ogg")
-  call_callback('LOGIN')
-end
-
-OnAvalonGetoetet = function(type, message)
-  if (type == "Avalon.Getoetet") then
-    Sound.PlaySound("Player/Kill.ogg")
-  elseif (type == "Avalon.GruppeGetoetet") then
-    Sound.PlaySound("Monsters/Kill.ogg")
-  end
-  Sound.PlaySound("monsters/deaths/{1,57}.ogg")
-end
-
-OnAvalonKampf = function(type, message)
-
-  call_callback('KAMPF', Types.to_bool(message))
-
-end
-
-OnAvalonDunkel = function(type, message)
-  call_callback('DUNKEL', Types.to_bool(message))
-end
-
-OnAvalonRSoul = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  call_callback('CHANNEL', "REDEN", text)
-end
-
-OnAvalonSoul = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  if not text then
-    startpos, endpos = string.find(message, " ", 1, true)
-    text = string.sub(message, endpos+1, -1)
-  end
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
-  call_callback("SOUL", "SEELE", text)
-end
-
-OnAvalonComm=function(type,message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    Sound.PlaySound("Channels/"..channel..".ogg")
-  end
-  world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
-  call_callback('CHANNEL', channel, text)
-end
-
-OnAvalonChannel = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  if Gilden.Exists(channel) then
-    channel="gilde"
-  end
-  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    Sound.PlaySound("Channels/"..channel..".ogg")
-  end
-  if ((channel == "fehler") or (channel == "runtime")) then
-    return
-  end
-  world.Execute(";history_add "..channel.."="..text)
-  call_callback('CHANNEL', channel, text)
-end
-
-OnAvalonRoomID = function(type, message)
-  local tmessage = utils.split(message, " ")
-  local id = tmessage[1]
-  local name = tmessage[2]
-  local x = nil
-  local y = nil
-
-  if name == "Bitte" then
-    name = ''
-  end
-
-  if tmessage[3] then
-    x = tonumber(utils.split(tmessage[3],"=")[2])
-  end
-  if tmessage[4] then
-    y = tonumber(utils.split(tmessage[4],"=")[2])
-  end
-
-  call_callback('ROOMID', id, name, x, y)
-
-end 
-
-OnAvalonLevel = function(type, message)
-  local prefix, level = string.match(message, "^(%w)(%d+)$")
-
-  if not level then
-    return
-  end
-
-  level = tonumber(level)
-
-  call_callback('LEVEL', level, prefix)
-
-end
-
-OnAvalonEP = function(type, message)
-  local ep = string.match(message, "^(%d+)")
-  if not ep then
-    return
-  end
-  ep = tonumber(ep)
-  call_callback('EP', ep)
-end
-
-OnAvalonTP = function(message, ntp)
-  ntp = tonumber(ntp)
-
-  if ntp < 0 then
-    ntp = 0
-  end
-
-  call_callback('TP', ntp)
-end
-
-OnAvalonSP=function(message, nsp)
-  nsp = tonumber(nsp)
-  call_callback('SP', nsp)
-end
-
-OnAvalonMP=function(message,nmp)
-  nmp=tonumber(nmp)
-  call_callback('MP', nmp)
-end
-
-OnAvalonAP = function(message, nap)
-  nap = tonumber(nap)
-  call_callback('AP', nap)
-end
-
-OnAvalonMaxTP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXTP', value)
-end
-
-OnAvalonMaxSP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXSP', value)
-end
-
-OnAvalonMaxAP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXAP', value)
-end
-
-OnAvalonName = function(type, message)
-  call_callback('NAME', message)
 end
 
 function volumetype_switch()
