@@ -4124,7 +4124,7 @@ local LastCommand=nil
 -- mushclient plugin callbacks
 
 OnPluginClose = function()
-  call_callback('CLOSE')
+  CallCallback('CLOSE')
   Configs.settings.Warnings=Spells.RetrieveWarnings()
   Ini.write('config.dat', Configs)
 end
@@ -4151,7 +4151,7 @@ OnPluginDisconnect = function()
   Player:Reset()
   Room:Reset()
 
-  call_callback('LOGOUT')
+  CallCallback('LOGOUT')
 
 end
 
@@ -4318,11 +4318,11 @@ OnPluginInstall = function()
     end)
   PPI.Expose('HookCallback',
     function(event,callback)
-      return hook_callback(event,callback)
+      return HookCallback(event,callback)
     end)
   PPI.Expose('UnhookCallback',
     function(event, callback)
-      return unhook_callback(event, callback)
+      return unHookCallback(event, callback)
     end)
   PPI.Expose('PSND',
     Sound.PlaySound)
@@ -4352,7 +4352,7 @@ end
 
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
-  call_callback('AP', nap)
+  CallCallback('AP', nap)
 end
 
 OnAvalonChannel = function(type, message)
@@ -4368,7 +4368,7 @@ OnAvalonChannel = function(type, message)
     return
   end
   world.Execute(";history_add "..channel.."="..text)
-  call_callback('CHANNEL', channel, text)
+  CallCallback('CHANNEL', channel, text)
 end
 
 OnAvalonComm=function(type,message)
@@ -4378,11 +4378,11 @@ OnAvalonComm=function(type,message)
     Sound.PlaySound("Channels/"..channel..".ogg")
   end
   world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
-  call_callback('CHANNEL', channel, text)
+  CallCallback('CHANNEL', channel, text)
 end
 
 OnAvalonDunkel = function(type, message)
-  call_callback('DUNKEL', Types.to_bool(message))
+  CallCallback('DUNKEL', Types.to_bool(message))
 end
 
 OnAvalonEP = function(type, message)
@@ -4391,7 +4391,7 @@ OnAvalonEP = function(type, message)
     return
   end
   ep = tonumber(ep)
-  call_callback('EP', ep)
+  CallCallback('EP', ep)
 end
 
 OnAvalonGetoetet = function(type, message)
@@ -4404,17 +4404,17 @@ OnAvalonGetoetet = function(type, message)
 end
 
 OnAvalonGilde = function(type, message)
-  call_callback("GILDE", message)
+  CallCallback("GILDE", message)
 end
 
 OnAvalonGrafikVermeiden = function(type, message)
   message = Types.to_bool(tonumber(message))
-  call_callback('GRAFIK', not message)
+  CallCallback('GRAFIK', not message)
 end
 
 OnAvalonKampf = function(type, message)
 
-  call_callback('KAMPF', Types.to_bool(message))
+  CallCallback('KAMPF', Types.to_bool(message))
 
 end
 
@@ -4427,7 +4427,7 @@ OnAvalonLevel = function(type, message)
 
   level = tonumber(level)
 
-  call_callback('LEVEL', level, prefix)
+  CallCallback('LEVEL', level, prefix)
 
 end
 
@@ -4443,31 +4443,31 @@ OnAvalonLogin = function()
   atcp.Send("ava_req_update")
   atcp.Send("ava_req_graphics_status")
   Sound.PlaySound("Player/Login.ogg")
-  call_callback('LOGIN')
+  CallCallback('LOGIN')
 end
 
 OnAvalonMaxAP=function(message,value)
   value=tonumber(value)
-  call_callback('MAXAP', value)
+  CallCallback('MAXAP', value)
 end
 
 OnAvalonMaxSP=function(message,value)
   value=tonumber(value)
-  call_callback('MAXSP', value)
+  CallCallback('MAXSP', value)
 end
 
 OnAvalonMaxTP=function(message,value)
   value=tonumber(value)
-  call_callback('MAXTP', value)
+  CallCallback('MAXTP', value)
 end
 
 OnAvalonMP=function(message,nmp)
   nmp=tonumber(nmp)
-  call_callback('MP', nmp)
+  CallCallback('MP', nmp)
 end
 
 OnAvalonName = function(type, message)
-  call_callback('NAME', message)
+  CallCallback('NAME', message)
 end
 
 OnAvalonRoomID = function(type, message)
@@ -4488,7 +4488,7 @@ OnAvalonRoomID = function(type, message)
     y = tonumber(utils.split(tmessage[4],"=")[2])
   end
 
-  call_callback('ROOMID', id, name, x, y)
+  CallCallback('ROOMID', id, name, x, y)
 
 end 
 
@@ -4496,7 +4496,7 @@ OnAvalonRSoul = function(type, message)
   channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  call_callback('CHANNEL', "REDEN", text)
+  CallCallback('CHANNEL', "REDEN", text)
 end
 
 OnAvalonSoul = function(type, message)
@@ -4507,12 +4507,12 @@ OnAvalonSoul = function(type, message)
   end
   text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
   world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
-  call_callback("SOUL", "SEELE", text)
+  CallCallback("SOUL", "SEELE", text)
 end
 
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
-  call_callback('SP', nsp)
+  CallCallback('SP', nsp)
 end
 
 OnAvalonTP = function(message, ntp)
@@ -4522,7 +4522,69 @@ OnAvalonTP = function(message, ntp)
     ntp = 0
   end
 
-  call_callback('TP', ntp)
+  CallCallback('TP', ntp)
+end
+
+-- API internals
+
+CallCallback = function(handle, ...)
+
+  local ci, cf
+
+  if Callbacks[handle] ~= nil then
+    for ci,cf in pairs(Callbacks[handle]) do
+      cf(unpack({select(1, ...)}))
+    end
+  end
+end
+
+HookCallback = function(event,callback)
+  if not Callbacks[event] then
+    Callbacks[event]={}
+  end
+  if Tablex.find(Callbacks[event],callback) ~=nil then
+    return false
+  end
+  Callbacks[event][#(Callbacks[event])+1]=callback
+  return true
+end
+
+UnhookCallback = function(event,callback)
+  if Callbacks[event]==nil then
+    return false
+  end
+  local index=Tablex.find(Callbacks[event],callback)
+  if index ~=nil then
+    Callbacks[event]=Tablex.removevalues(Callbacks[event],index,index)
+    return true
+  end
+  return false
+end
+
+-- API exposed functions
+
+NoteColour = function(text, rt, gt, bt, rb, gb, bb, style)
+
+  rt = rt or 255
+  gt = gt or 255
+  bt = bt or 255
+  rb = rb or 0
+  gb = gb or 0
+  bb = bb or 0
+
+  world.NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
+
+  if style then
+    world.NoteStyle(style)
+  end
+
+  world.Note(text)
+
+  if style then
+    world.NoteStyle(0)
+  end
+
+  world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
 end
 
 function volume(value)
@@ -4683,30 +4745,6 @@ function rgbtohex(r, g, b)
   return r + (g * 256) + (b * 65536)
 end
 
-function NoteColour(text, rt, gt, bt, rb, gb, bb, style)
-
-  rt = rt or 255
-  gt = gt or 255
-  bt = bt or 255
-  rb = rb or 0
-  gb = gb or 0
-  bb = bb or 0
-
-  world.NoteColourRGB(rgbtohex(rt, gt, bt), rgbtohex(rb, gb, bb))
-
-  if style then
-    world.NoteStyle(style)
-  end
-
-  world.Note(text)
-
-  if style then
-    world.NoteStyle(0)
-  end
-
-  world.NoteColourRGB(rgbtohex(255, 255, 255), 0)
-end
-
 function warnings_access(warn)
   if warn=='' then
     Spells.PrintWarnings()
@@ -4783,29 +4821,6 @@ function NumpadSwitch()
   NumpadInit()
 end
 
-function hook_callback(event,callback)
-  if not Callbacks[event] then
-    Callbacks[event]={}
-  end
-  if Tablex.find(Callbacks[event],callback) ~=nil then
-    return false
-  end
-  Callbacks[event][#(Callbacks[event])+1]=callback
-  return true
-end
-
-function unhook_callback(event,callback)
-  if Callbacks[event]==nil then
-    return false
-  end
-  index=Tablex.find(Callbacks[event],callback)
-  if index ~=nil then
-    Callbacks[event]=Tablex.removevalues(Callbacks[event],index,index)
-    return true
-  end
-  return false
-end
-
 function repeatcommand_switch()
   if (Configs.settings.RepeatCommand == 1) then
     LastCommand=nil
@@ -4816,14 +4831,6 @@ function repeatcommand_switch()
     world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
-end
-
-function call_callback(handle, ...)
-  if Callbacks[handle] ~= nil then
-    for ci,cf in pairs(Callbacks[handle]) do
-      cf(unpack({select(1, ...)}))
-    end
-  end
 end
 
 function say_stat(type)
