@@ -4059,91 +4059,61 @@
 
 <script>
 <![CDATA[
-local Audio = require("audio")
-atcp=nil
-local LastCommand=nil
-volumetype=1
 
-local callbacktbl={}
-local configtbl={}
-configtbl.settings={}
-configtbl.settings.SoundVolume=100
-configtbl.settings.MusicVolume=10
-configtbl.settings.CombatMusicVolume=10
-configtbl.settings.TPBar=1
-configtbl.settings.SPBar=1
-configtbl.settings.APBar=1
-configtbl.settings.SoundsMuted=0
-configtbl.settings.MusicMuted=0
-configtbl.settings.CombatMusicMuted=0
-configtbl.settings.NumpadWalk=1
-configtbl.settings.RepeatCommand=0
-configtbl.settings.MXP=0
-configtbl.settings.FirstRun = 1
-configtbl.messagebox={}
-configtbl.messagebox.echo="false"
-world.Accelerator("F2", "tpbar_switch")
-world.Accelerator("F3", "spbar_switch")
-world.Accelerator("F4", "apbar_switch")
-world.Accelerator("F6", "repeatcommand_switch")
-world.Accelerator("F9", "volume_down")
-world.Accelerator("F10", "volume_up")
-world.Accelerator("F11", "volumetype_switch")
-world.Accelerator("ctrl+F11", "switch_mute")
-world.Accelerator("ctrl+shift+F11", "switch_fullmute")
-world.Accelerator("alt+k", "say_ap")
-world.Accelerator("alt+m", "say_mp")
-world.Accelerator("alt+t", "say_tp")
-world.Accelerator("alt+z", "say_zp")
-world.AcceleratorTo('Decimal','NumpadSwitch()',12)
+-- global imports
+-- should only be global if they need to be used from trigger scripts
+-- they should also been bound to variables to prevent namespace pollution
+require("avalon.multilinetrigger") -- todo
 Gilden = require("avalon.gilden")
-local Player = require("avalon.player")()
-local Room = require("avalon.room")()
-local Sound = require("avalon.sound")
+require("pairsbykeys") -- todo
+PPI = require("ppi")
 Spells = require("avalon.activespells")
-require("avalon.multilinetrigger")
-require("pairsbykeys")
+
+-- local imports
+-- will only be used inside the Avalon plugin directly, no required packages, 
+-- no trigger scripts
+local Audio = require("audio")
 local Dir = require('pl.dir')
 local File = require('pl.file')
 local Ini = require("ini")
 local Path = require("pl.path")
-PPI = require("ppi")
+local Player = require("avalon.player")()
+local Room = require("avalon.room")()
+local Sound = require("avalon.sound")
 local Tablex = require("pl.tablex")
-Timers = nil
 local Types = require("pl.types")
 
-Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
-Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
-Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
-Spells.Register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\\.","Deine Watteflocken loesen sich auf\\.")
-Spells.Register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\\.")
-Spells.Register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\\.","Deine Todesaura loest sich auf\\.")
-Spells.Register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\\.","Deine Feueraura loest sich auf\\.")
-Spells.Register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\\.","Deine heilige Aura loest sich auf\\.", true)
-Spells.Register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\\.","Dein Kernschild loest sich auf\\.", true)
-Spells.Register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\\.", true)
-Spells.Register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\\.", true)
-Spells.Register("Schild","Du wirst von einem magischen Schild umgeben\\.","Dein magischer Schild loest sich auf\\.", true)
-Spells.Register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\\.|Du erzeugst Dir eine kleine Feuerkugel\\.|Du erzeugst Dir eine kleine Leuchtflamme\\.","Dein Lichtbogen verschwindet\\.|Deine Feuerkugel erlischt\\.|Deine Leuchtflamme erlischt\\.")
-Spells.Register("Arkanschild","Du wirst von einem Arkanschild umgeben\\.","Dein Arkanschild loest sich auf\\.", true)
-Spells.Register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\\.","Dein Manarausch laesst wieder nach\\.")
-Spells.Register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
-Spells.Register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
-Spells.Register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
-Spells.Register("Lebensaura","Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich","Deine Lebensaura loest sich auf\\.")
-Spells.Register("Schwarzschild","Du wirst von einem magischen Schild umgeben, der Dich besser parieren","Dein Schwarzschild loest sich auf\\.", true)
-Spells.Register("Weissschild", "Du wirst von einem magischen Schild umgeben, der Dich Deinen Gegner .*", "Dein Weissschild loest sich auf\\.", true)
-Spells.Register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.", true)
-Spells.Register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
-Spells.Register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
-Spells.Register("Friedfertigkeit", "Du fuehlst Dich nun .* friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
-Spells.Register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
-Spells.Register("Todkonvertieren", "Du wirst von einem heiligen Schutz umgeben\\.", "Dein heiliger Schutz loest sich auf\\.")
-Spells.Register("Zorn", "Du wirst von kuehlen Winden umgeben\\.", "Die kuehlen Winde, welche Dich umgeben, verschwinden\\.")
-Spells.Register("Kampfsegen", "Du bist motiviert und willig zu kaempfen\\.", "Deine Motivation und Dein Kampfeswille schwinden\\.")
-Spells.Register("Trotz", "Du hast nun verbesserte Verteidigungsfertigkeiten\\.", "Deine verbesserten Verteidigungsfertigkeiten schwinden\\.")
-Spells.Register("Vergeltung", "Du oeffnest Deine Augen und buendelst Deine Wut\\.", "Die Wut in Dir scheint besiegt\\.")
-Spells.Register("Blutrausch", "Du laesst einen fuerchterlichen Urschrei von Dir. Es scheint so, als .*", "Die roetlichen Manawolken loesen sich auf\\.")
+-- global variables
+-- should only be global if they need to be used from trigger scripts
+atcp=nil
+Timers = nil
+volumetype=1
+
+-- local variables
+-- will only be used from the Avalon plugin directly
+local Callbacks={}
+local Configs={
+  settings = {
+    APBar = 1,
+    CombatMusicMuted = 0,
+    CombatMusicVolume = 10,
+    FirstRun = 1,
+    MusicMuted = 0,
+    MusicVolume = 10,
+    MXP = 0,
+    NumpadWalk = 1,
+    RepeatCommand = 0,
+    SoundsMuted = 0,
+    SoundVolume = 100,
+    SPBar = 1,
+    TPBar = 1,
+  },
+  messagebox = {
+    echo = "false"
+  }
+}
+
+local LastCommand=nil
 
 function OnAvalonGrafikVermeiden(type, message)
   message = Types.to_bool(tonumber(message))
@@ -4320,8 +4290,10 @@ end
 
 function OnPluginInstall()
 
+  -- initializing sound subsystem
   Sound.Init()
 
+  -- parsing configuration file
   local ctbl = Ini.read('config.dat')
   if ctbl then
     for name, section in pairs(ctbl) do
@@ -4330,22 +4302,79 @@ function OnPluginInstall()
         if (config == nil) then
           config = optionvalue
         end
-        if configtbl[name]==nil then
-          configtbl[name]={}
+        if Configs[name]==nil then
+          Configs[name]={}
         end
-        configtbl[name][optionname] = config
+        Configs[name][optionname] = config
       end
     end
   end
-  Spells.ParseWarnings(configtbl.settings.Warnings)
+
+  -- adding all spell timers
+
+  Spells.Register("Arkanschild","Du wirst von einem Arkanschild umgeben\\.","Dein Arkanschild loest sich auf\\.", true)
+  Spells.Register("Blaetterhaut", "Deine Haut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima|Deine Holzhaut ist nun mit Blaettern bedeckt, die Dir ein angenehmes Klima", "Deine Blaetterhaut loest sich auf\\.")
+  Spells.Register("Blutrausch", "Du laesst einen fuerchterlichen Urschrei von Dir. Es scheint so, als .*", "Die roetlichen Manawolken loesen sich auf\\.")
+  Spells.Register("Daemonenhaut","Du bist nun vollkommen in eine Daemonenhaut eingehuellt\\.","Deine Daemonenhaut loest sich auf\\.")
+  Spells.Register("Erdaura","Du hebst Deine Haende, beschreibst einen Halbkreis.*|Die Partikel verdichten sich um Dich\\.","Dein Staubschleier loest sich auf\\.")
+  Spells.Register("Feueraura","Du senkst Deine Haende, aber der Schutz der Manawolken.*|Die Manawolken verdichten sich um Dich\\.","Deine Feueraura loest sich auf\\.")
+  Spells.Register("Friedfertigkeit", "Du fuehlst Dich nun .* friedfertig\\.", "Du fuehlst Dich wieder kaempferischer, ungestuemer\\.")
+  Spells.Register("Holzhaut", "Deine Haut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut sieht nun hoelzern und sehr widerstandsfaehig aus\\.|Deine Blaetterhaut fuehlt sich nun recht hoelzern an\\.|Deine Haut fuehlt sich nun recht hoelzern an\\.", "Deine Holzhaut loest sich auf\\.", true)
+  Spells.Register("Kampfbeschwoerung","Du wirst von einer heiligen Aura umgeben\\.","Deine heilige Aura loest sich auf\\.", true)
+  Spells.Register("Kampfeslust", "Du bekommst so langsam richtig Lust auf ein kleines Kraeftemessen\\.", "Du fuehlst Dich wieder ruhiger, besonnener\\.")
+  Spells.Register("Kampfsegen", "Du bist motiviert und willig zu kaempfen\\.", "Deine Motivation und Dein Kampfeswille schwinden\\.")
+  Spells.Register("Kernschild","Das Glitzern legt sich als schuetzendes Schild ueber Dich\\.","Dein Kernschild loest sich auf\\.", true)
+  Spells.Register("Knochenschild","Du erhebst Dich wieder, der wirbelnde Schild aus Knochen umgibt Dich","Deine schuetzende Knochenwolke loest sich auf\\.", true)
+  Spells.Register("Lebensaura","Du oeffnest die Augen, aber der Schutz der Bluetenblaetter umgibt Dich","Deine Lebensaura loest sich auf\\.")
+  Spells.Register("Licht","Ein grosser Lichtbogen breitet sich ueber Deinem Kopf aus\\.|Du erzeugst Dir eine kleine Feuerkugel\\.|Du erzeugst Dir eine kleine Leuchtflamme\\.","Dein Lichtbogen verschwindet\\.|Deine Feuerkugel erlischt\\.|Deine Leuchtflamme erlischt\\.")
+  Spells.Register("Luftaura","Du bist in den Watteflocken kaum noch auszumachen\\.","Deine Watteflocken loesen sich auf\\.")
+  Spells.Register("Magieaufladung","Du hast einen Teil Deiner regenerativen Energien in Deine Zauber umgelenkt\\.","Deine Energien fliessen wieder normal\\.")
+  Spells.Register("Magiertrance","Du sinkst in tiefe Trance\\.","Du erwachst aus Deiner Trance\\.")
+  Spells.Register("Manarausch","Dichte Manawolken bilden nun einen gewaltigen Schutz um Dich herum\\.","Dein Manarausch laesst wieder nach\\.")
+  Spells.Register("Pflanzenblick", "Du siehst die Pflanzen um Dich herum jetzt viel klarer\\.", "Dein besonderer Blick fuer die Pflanzen an Deinem Weg verschwindet wieder\\.")
+  Spells.Register("Schild","Du wirst von einem magischen Schild umgeben\\.","Dein magischer Schild loest sich auf\\.", true)
+  Spells.Register("Schwarzschild","Du wirst von einem magischen Schild umgeben, der Dich besser parieren","Dein Schwarzschild loest sich auf\\.", true)
+  Spells.Register("Steinhaut","Du bist nun vollkommen in eine Steinhaut eingehuellt, .*",".*Du befreist Dich von Deiner Steinhaut.*|.*Deine Steinhaut loest sich auf.*|Das hat Deiner Steinhaut den letzten Rest gegeben, sie loest sich auf\\.", true)
+  Spells.Register("Sternenstaub","Du wirst von Sternenstaub umgeben\\.","Dein Sternenstaub loest sich auf\\.", true)
+  Spells.Register("Todesaura","Du senkst Deine Haende, aber der Schutz der schwarzen Schleier.*|Die schwarzen Schleier verdichten sich um Dich\\.","Deine Todesaura loest sich auf\\.")
+  Spells.Register("Todkonvertieren", "Du wirst von einem heiligen Schutz umgeben\\.", "Dein heiliger Schutz loest sich auf\\.")
+  Spells.Register("Trotz", "Du hast nun verbesserte Verteidigungsfertigkeiten\\.", "Deine verbesserten Verteidigungsfertigkeiten schwinden\\.")
+  Spells.Register("Vergeltung", "Du oeffnest Deine Augen und buendelst Deine Wut\\.", "Die Wut in Dir scheint besiegt\\.")
+  Spells.Register("Wasseraura","Es regnet aus der Wolke auf Dich herab.*","Dein Wasserschleier loest sich auf\\.")
+  Spells.Register("Weissschild", "Du wirst von einem magischen Schild umgeben, der Dich Deinen Gegner .*", "Dein Weissschild loest sich auf\\.", true)
+  Spells.Register("Windhaut","Du bist nun vollkommen in eine Windhaut eingehuellt\\.","Deine Windhaut loest sich auf\\.")
+  Spells.Register("Zorn", "Du wirst von kuehlen Winden umgeben\\.", "Die kuehlen Winde, welche Dich umgeben, verschwinden\\.")
+
+  -- loading configured warnings
+  Spells.ParseWarnings(Configs.settings.Warnings)
+
+  -- initializing numpad subsystem
   NumpadInit()
 
+  -- adding numpad accelerators
+  world.Accelerator("F2", "tpbar_switch")
+  world.Accelerator("F3", "spbar_switch")
+  world.Accelerator("F4", "apbar_switch")
+  world.Accelerator("F6", "repeatcommand_switch")
+  world.Accelerator("F9", "volume_down")
+  world.Accelerator("F10", "volume_up")
+  world.Accelerator("F11", "volumetype_switch")
+  world.Accelerator("ctrl+F11", "switch_mute")
+  world.Accelerator("ctrl+shift+F11", "switch_fullmute")
+  world.Accelerator("alt+k", "say_ap")
+  world.Accelerator("alt+m", "say_mp")
+  world.Accelerator("alt+t", "say_tp")
+  world.Accelerator("alt+z", "say_zp")
+  world.AcceleratorTo('Decimal','NumpadSwitch()',12)
+
+  -- loading atcp
   atcp = PPI.Load("7c08e2961c5e20e5bdbf7fc5")
 
   if not atcp then
     error("ATCP konnte nicht initialisiert werden.")
   end
 
+  -- listening to avalon events
   atcp.Listen("Avalon.TP", OnAvalonTP)
   atcp.Listen("Avalon.SP", OnAvalonSP)
   atcp.Listen("Avalon.AP", OnAvalonAP)
@@ -4369,13 +4398,13 @@ function OnPluginInstall()
   atcp.Listen('Avalon.GrafikVermeiden',OnAvalonGrafikVermeiden)
   atcp.Listen('Avalon.Name', OnAvalonName)
 
-  if configtbl.settings.FirstRun == 1 then
+  if Configs.settings.FirstRun == 1 then
     res = utils.msgbox("Herzlichen Glueckwunsch! das Avalon-Soundpack ist nun bereit. Informationen zu Funktionen und Tastenkombinationen stehen in der Readme-Datei. Die Datei jetzt im Editor anzeigen?","Avalon-Soundpack - Readme-Datei","yesno","!",1)
     if (res == "yes") then
       os.execute("notepad.exe readme_soundpack.txt")
     end
   end
-  configtbl.settings.FirstRun = 0
+  Configs.settings.FirstRun = 0
   newfiles=Dir.getfiles(world.GetInfo(66),"*\\.new")
   if #newfiles>0 then
     for _, dfile in pairs(newfiles) do
@@ -4389,6 +4418,7 @@ function OnPluginInstall()
   -- redraw all miniwindows (important for visual sub-plugins)
   world.AddTimer("RedrawWindows", 0, 0, 0.5, "", timer_flag.Enabled, "world.Redraw")
 
+  -- exposing plugin api
   PPI.Expose('IID',
     function()
       if Room:IsDark() == true then
@@ -4407,17 +4437,17 @@ function OnPluginInstall()
 
   PPI.Expose('GetConfig',
     function(table,key)
-      if configtbl[table]==nil then
+      if Configs[table]==nil then
         return nil
       end
-      return configtbl[table][key]
+      return Configs[table][key]
     end)
   PPI.Expose('SetConfig',
     function(table,key,value)
-      if configtbl[table]==nil then
-        configtbl[table]={}
+      if Configs[table]==nil then
+        Configs[table]={}
       end
-      configtbl[table][key]=value
+      Configs[table][key]=value
     end)
   PPI.Expose('HookCallback',
     function(event,callback)
@@ -4432,6 +4462,7 @@ function OnPluginInstall()
   PPI.Expose("NoteColour",
     NoteColour)
 
+  -- initializing several avalon-related subsystems
   Player:Init()
   Room:Init()
   Gilden.Init()
@@ -4439,8 +4470,8 @@ end
 
 function OnPluginClose()
   call_callback('CLOSE')
-  configtbl.settings.Warnings=Spells.RetrieveWarnings()
-  Ini.write('config.dat', configtbl)
+  Configs.settings.Warnings=Spells.RetrieveWarnings()
+  Ini.write('config.dat', Configs)
 end
 
 OnPluginListChanged = function()
@@ -4454,28 +4485,28 @@ end
 
 function volume(value)
   if (volumetype == 1) then
-    if (configtbl.settings.SoundVolume+value > 100) or (configtbl.settings.SoundVolume+value < 0) then
+    if (Configs.settings.SoundVolume+value > 100) or (Configs.settings.SoundVolume+value < 0) then
       return
     end
-    configtbl.settings.SoundVolume = configtbl.settings.SoundVolume + value
+    Configs.settings.SoundVolume = Configs.settings.SoundVolume + value
     Sound.PlaySound("Misc/VolumeSwitch.ogg")
-    world.Note("Sound-Lautstärke: "..tostring(configtbl.settings.SoundVolume).." %")
+    world.Note("Sound-Lautstärke: "..tostring(Configs.settings.SoundVolume).." %")
   elseif (volumetype == 2) then
-    if (configtbl.settings.MusicVolume+value > 100) or (configtbl.settings.MusicVolume + value < 0) then
+    if (Configs.settings.MusicVolume+value > 100) or (Configs.settings.MusicVolume + value < 0) then
       return
     end
-    configtbl.settings.MusicVolume = configtbl.settings.MusicVolume + value
+    Configs.settings.MusicVolume = Configs.settings.MusicVolume + value
     Sound.PlaySound("Misc/VolumeSwitch.ogg")
     Room:UpdateMusic()
-    world.Note("Hintergrund-Musik-Lautstärke: "..tostring(configtbl.settings.MusicVolume).." %")
+    world.Note("Hintergrund-Musik-Lautstärke: "..tostring(Configs.settings.MusicVolume).." %")
   else
-    if (configtbl.settings.CombatMusicVolume+value > 100) or (configtbl.settings.CombatMusicVolume + value < 0) then
+    if (Configs.settings.CombatMusicVolume+value > 100) or (Configs.settings.CombatMusicVolume + value < 0) then
       return
     end
-    configtbl.settings.CombatMusicVolume = configtbl.settings.CombatMusicVolume + value
+    Configs.settings.CombatMusicVolume = Configs.settings.CombatMusicVolume + value
     Sound.PlaySound("Misc/VolumeSwitch.ogg")
     Player:UpdateCombatMusic()
-    world.Note("Kampf-Musik-Lautstärke: "..tostring(configtbl.settings.CombatMusicVolume).." %")
+    world.Note("Kampf-Musik-Lautstärke: "..tostring(Configs.settings.CombatMusicVolume).." %")
   end
 end
 
@@ -4494,33 +4525,33 @@ function volumetype_switch()
 end
 
 function tpbar_switch()
-  if (configtbl.settings.TPBar == 1) then
-    configtbl.settings.TPBar = 0
+  if (Configs.settings.TPBar == 1) then
+    Configs.settings.TPBar = 0
     world.Note("TP-Ausgabe ausgeschaltet.")
   else
-    configtbl.settings.TPBar = 1
+    Configs.settings.TPBar = 1
     world.Note("TP-Ausgabe eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function apbar_switch()
-  if (configtbl.settings.APBar == 1) then
-    configtbl.settings.APBar = 0
+  if (Configs.settings.APBar == 1) then
+    Configs.settings.APBar = 0
     world.Note("AP-Ausgabe ausgeschaltet.")
   else
-    configtbl.settings.APBar = 1
+    Configs.settings.APBar = 1
     world.Note("AP-Ausgabe eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function spbar_switch()
-  if (configtbl.settings.SPBar == 1) then
-    configtbl.settings.SPBar = 0
+  if (Configs.settings.SPBar == 1) then
+    Configs.settings.SPBar = 0
     world.Note("ZP-Ausgabe ausgeschaltet.")
   else
-    configtbl.settings.SPBar = 1
+    Configs.settings.SPBar = 1
     world.Note("ZP-Ausgabe eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
@@ -4536,31 +4567,31 @@ end
 
 function switch_mute()
   if (volumetype == 1) then
-    if (configtbl.settings.SoundsMuted == 0) then
-      configtbl.settings.SoundsMuted = 1
+    if (Configs.settings.SoundsMuted == 0) then
+      Configs.settings.SoundsMuted = 1
       world.Note("Sounds ausgeschaltet.")
     else
-      configtbl.settings.SoundsMuted = 0
+      Configs.settings.SoundsMuted = 0
       world.Note("Sounds eingeschaltet.")
     end
   elseif (volumetype == 2) then
-    if (configtbl.settings.MusicMuted == 0) then
-      configtbl.settings.MusicMuted = 1
+    if (Configs.settings.MusicMuted == 0) then
+      Configs.settings.MusicMuted = 1
       Room:UpdateMusic()
       world.Note("Hintergrund-Musik ausgeschaltet.")
     else
-      configtbl.settings.MusicMuted = 0
+      Configs.settings.MusicMuted = 0
       Room:UpdateMusic()
       world.Note("Hintergrund-Musik eingeschaltet.")
     end
   else
-    if (configtbl.settings.CombatMusicMuted == 0) then
-      configtbl.settings.CombatMusicMuted = 1
+    if (Configs.settings.CombatMusicMuted == 0) then
+      Configs.settings.CombatMusicMuted = 1
       Player:UpdateCombatMusic()
       Room:UpdateMusic()
       world.Note("Kampf-Musik ausgeschaltet.")
     else
-      configtbl.settings.CombatMusicMuted = 0
+      Configs.settings.CombatMusicMuted = 0
       Room:UpdateMusic()
       Player:UpdateCombatMusic()
       world.Note("Kampf-Musik eingeschaltet.")
@@ -4570,29 +4601,29 @@ function switch_mute()
 end
 
 function switch_fullmute()
-  if (configtbl.settings.SoundsMuted == 0) then
-    configtbl.settings.SoundsMuted = 1
+  if (Configs.settings.SoundsMuted == 0) then
+    Configs.settings.SoundsMuted = 1
     world.Note("Sounds ausgeschaltet.")
   else
-    configtbl.settings.SoundsMuted = 0
+    Configs.settings.SoundsMuted = 0
     world.Note("Sounds eingeschaltet.")
   end
-  if (configtbl.settings.MusicMuted == 0) then
-    configtbl.settings.MusicMuted = 1
+  if (Configs.settings.MusicMuted == 0) then
+    Configs.settings.MusicMuted = 1
     Room:UpdateMusic()
     world.Note("Hintergrund-Musik ausgeschaltet.")
   else
-    configtbl.settings.MusicMuted = 0
+    Configs.settings.MusicMuted = 0
     Room:UpdateMusic()
     world.Note("Hintergrund-Musik eingeschaltet.")
   end
-  if (configtbl.settings.CombatMusicMuted == 0) then
-    configtbl.settings.CombatMusicMuted = 1
+  if (Configs.settings.CombatMusicMuted == 0) then
+    Configs.settings.CombatMusicMuted = 1
     Player:UpdateCombatMusic()
     Room:UpdateMusic()
     world.Note("Kampf-Musik ausgeschaltet.")
   else
-    configtbl.settings.CombatMusicMuted = 0
+    Configs.settings.CombatMusicMuted = 0
     Room:UpdateMusic()
     Player:UpdateCombatMusic()
     world.Note("Kampf-Musik eingeschaltet.")
@@ -4659,13 +4690,13 @@ end
 
 function NumpadInit()
 
-  if configtbl.settings.NumpadWalk > 2 then
+  if Configs.settings.NumpadWalk > 2 then
     -- frueher gab es mal noch Klettern und Schwimmen
     -- wird inzwischen automatisch vom Soundpack gemacht
-    configtbl.settings.NumpadWalk = 0
+    Configs.settings.NumpadWalk = 0
   end
 
-  if configtbl.settings.NumpadWalk==0 then
+  if Configs.settings.NumpadWalk==0 then
     world.AcceleratorTo('Numpad1','send_command("sw")', sendto.script)
     world.AcceleratorTo('Numpad2','send_command("s")', sendto.script)
     world.AcceleratorTo('Numpad3','send_command("so")', sendto.script)
@@ -4676,7 +4707,7 @@ function NumpadInit()
     world.AcceleratorTo('Numpad9','send_command("no")', sendto.script)
     world.AcceleratorTo('Add','send_command("r")', sendto.script)
     world.AcceleratorTo('Subtract','send_command("h")', sendto.script)
-  elseif configtbl.settings.NumpadWalk==2 then
+  elseif Configs.settings.NumpadWalk==2 then
     world.Accelerator('Numpad1','spaehe kurz sw')
     world.Accelerator('Numpad2','spaehe kurz s')
     world.Accelerator('Numpad3','spaehe kurz so')
@@ -4687,7 +4718,7 @@ function NumpadInit()
     world.Accelerator('Numpad9','spaehe kurz no')
     world.Accelerator('Add','spaehe kurz h')
     world.Accelerator('Subtract','spaehe kurz r')
-  elseif configtbl.settings.NumpadWalk==1 then
+  elseif Configs.settings.NumpadWalk==1 then
     world.Accelerator('Numpad1','spaehe sw')
     world.Accelerator('Numpad2','spaehe s')
     world.Accelerator('Numpad3','spaehe so')
@@ -4702,16 +4733,16 @@ function NumpadInit()
 end
 
 function NumpadSwitch()
-  if configtbl.settings.NumpadWalk==1 then
-    configtbl.settings.NumpadWalk=2
+  if Configs.settings.NumpadWalk==1 then
+    Configs.settings.NumpadWalk=2
     world.Note('Nummernblock auf kurzes Spähen konfiguriert')
     Sound.PlaySound("Misc/NumPadScoutShort.ogg")
-  elseif configtbl.settings.NumpadWalk==2 then
-    configtbl.settings.NumpadWalk=0
+  elseif Configs.settings.NumpadWalk==2 then
+    Configs.settings.NumpadWalk=0
     world.Note('Nummernblock auf Laufen konfiguriert')
     Sound.PlaySound("Misc/NumPadWalk.ogg")
-  elseif configtbl.settings.NumpadWalk==0 then
-    configtbl.settings.NumpadWalk=1
+  elseif Configs.settings.NumpadWalk==0 then
+    Configs.settings.NumpadWalk=1
     world.Note('Nummernblock auf langes Spähen konfiguriert')
     Sound.PlaySound("Misc/NumPadScoutLong.ogg")
   end
@@ -4719,30 +4750,30 @@ function NumpadSwitch()
 end
 
 function hook_callback(event,callback)
-  if not callbacktbl[event] then
-    callbacktbl[event]={}
+  if not Callbacks[event] then
+    Callbacks[event]={}
   end
-  if Tablex.find(callbacktbl[event],callback) ~=nil then
+  if Tablex.find(Callbacks[event],callback) ~=nil then
     return false
   end
-  callbacktbl[event][#(callbacktbl[event])+1]=callback
+  Callbacks[event][#(Callbacks[event])+1]=callback
   return true
 end
 
 function unhook_callback(event,callback)
-  if callbacktbl[event]==nil then
+  if Callbacks[event]==nil then
     return false
   end
-  index=Tablex.find(callbacktbl[event],callback)
+  index=Tablex.find(Callbacks[event],callback)
   if index ~=nil then
-    callbacktbl[event]=Tablex.removevalues(callbacktbl[event],index,index)
+    Callbacks[event]=Tablex.removevalues(Callbacks[event],index,index)
     return true
   end
   return false
 end
 
 function OnPluginCommandEntered(text)
-  if (configtbl.settings.RepeatCommand == 0) then
+  if (Configs.settings.RepeatCommand == 0) then
     return text
   end
 
@@ -4759,20 +4790,20 @@ function OnPluginCommandEntered(text)
 end
 
 function repeatcommand_switch()
-  if (configtbl.settings.RepeatCommand == 1) then
+  if (Configs.settings.RepeatCommand == 1) then
     LastCommand=nil
-    configtbl.settings.RepeatCommand = 0
+    Configs.settings.RepeatCommand = 0
     world.Note("Letztes Kommando mit Enter wiederholen ausgeschaltet.")
   else
-    configtbl.settings.RepeatCommand = 1
+    Configs.settings.RepeatCommand = 1
     world.Note("Letztes Kommando mit Enter wiederholen eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
 end
 
 function call_callback(handle, ...)
-  if callbacktbl[handle] ~= nil then
-    for ci,cf in pairs(callbacktbl[handle]) do
+  if Callbacks[handle] ~= nil then
+    for ci,cf in pairs(Callbacks[handle]) do
       cf(unpack({select(1, ...)}))
     end
   end
