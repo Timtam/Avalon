@@ -4060,6 +4060,8 @@
 <script>
 <![CDATA[
 
+-- IMPORTS
+
 -- global imports
 -- should only be global if they need to be used from trigger scripts
 -- they should also been bound to variables to prevent namespace pollution
@@ -4082,6 +4084,8 @@ local Room = require("avalon.room")()
 local Sound = require("avalon.sound")
 local Tablex = require("pl.tablex")
 local Types = require("pl.types")
+
+-- VARIABLES
 
 -- global variables
 -- should only be global if they need to be used from trigger scripts
@@ -4115,180 +4119,43 @@ local Configs={
 
 local LastCommand=nil
 
-function OnAvalonGrafikVermeiden(type, message)
-  message = Types.to_bool(tonumber(message))
-  call_callback('GRAFIK', not message)
+-- FUNCTIONS
+
+-- mushclient plugin callbacks
+
+OnPluginClose = function()
+  call_callback('CLOSE')
+  Configs.settings.Warnings=Spells.RetrieveWarnings()
+  Ini.write('config.dat', Configs)
 end
 
-function OnAvalonGilde(type, message)
-  call_callback("GILDE", message)
-end
-
-function OnAvalonLogin()
-  atcp.Send("ava_set_soundpack")
-  atcp.Send("ava_set_channel 1")
-  atcp.Send("ava_set_rcomm 1")
-  atcp.Send("ava_set_comm 1")
-  atcp.Send("ava_set_soul 1")
-  atcp.Send("ava_set_rsoul 1")
-  atcp.Send("ava_req_update")
-  atcp.Send("ava_req_graphics_status")
-  Sound.PlaySound("Player/Login.ogg")
-  call_callback('LOGIN')
-end
-
-OnAvalonGetoetet = function(type, message)
-  if (type == "Avalon.Getoetet") then
-    Sound.PlaySound("Player/Kill.ogg")
-  elseif (type == "Avalon.GruppeGetoetet") then
-    Sound.PlaySound("Monsters/Kill.ogg")
-  end
-  Sound.PlaySound("monsters/deaths/{1,57}.ogg")
-end
-
-OnAvalonKampf = function(type, message)
-
-  call_callback('KAMPF', Types.to_bool(message))
-
-end
-
-OnAvalonDunkel = function(type, message)
-  call_callback('DUNKEL', Types.to_bool(message))
-end
-
-OnAvalonRSoul = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
-  call_callback('CHANNEL', "REDEN", text)
-end
-
-OnAvalonSoul = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  if not text then
-    startpos, endpos = string.find(message, " ", 1, true)
-    text = string.sub(message, endpos+1, -1)
-  end
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
-  call_callback("SOUL", "SEELE", text)
-end
-
-OnAvalonComm=function(type,message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    Sound.PlaySound("Channels/"..channel..".ogg")
-  end
-  world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
-  call_callback('CHANNEL', channel, text)
-end
-
-OnAvalonChannel = function(type, message)
-  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
-  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
-  if Gilden.Exists(channel) then
-    channel="gilde"
-  end
-  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
-    Sound.PlaySound("Channels/"..channel..".ogg")
-  end
-  if ((channel == "fehler") or (channel == "runtime")) then
-    return
-  end
-  world.Execute(";history_add "..channel.."="..text)
-  call_callback('CHANNEL', channel, text)
-end
-
-OnAvalonRoomID = function(type, message)
-  local tmessage = utils.split(message, " ")
-  local id = tmessage[1]
-  local name = tmessage[2]
-  local x = nil
-  local y = nil
-
-  if name == "Bitte" then
-    name = ''
+OnPluginCommandEntered = function(text)
+  if (Configs.settings.RepeatCommand == 0) then
+    return text
   end
 
-  if tmessage[3] then
-    x = tonumber(utils.split(tmessage[3],"=")[2])
+   if (text == "") and (LastCommand ~= nil) then
+    return LastCommand
+  else
+    if (text ==" ") then
+      LastCommand = ''
+      return ''
+    end
+    LastCommand = text
+    return text
   end
-  if tmessage[4] then
-    y = tonumber(utils.split(tmessage[4],"=")[2])
-  end
+end
 
-  call_callback('ROOMID', id, name, x, y)
+OnPluginDisconnect = function()
 
-end 
+  Player:Reset()
+  Room:Reset()
 
-OnAvalonLevel = function(type, message)
-  local prefix, level = string.match(message, "^(%w)(%d+)$")
-
-  if not level then
-    return
-  end
-
-  level = tonumber(level)
-
-  call_callback('LEVEL', level, prefix)
+  call_callback('LOGOUT')
 
 end
 
-OnAvalonEP = function(type, message)
-  local ep = string.match(message, "^(%d+)")
-  if not ep then
-    return
-  end
-  ep = tonumber(ep)
-  call_callback('EP', ep)
-end
-
-OnAvalonTP = function(message, ntp)
-  ntp = tonumber(ntp)
-
-  if ntp < 0 then
-    ntp = 0
-  end
-
-  call_callback('TP', ntp)
-end
-
-OnAvalonSP=function(message, nsp)
-  nsp = tonumber(nsp)
-  call_callback('SP', nsp)
-end
-
-OnAvalonMP=function(message,nmp)
-  nmp=tonumber(nmp)
-  call_callback('MP', nmp)
-end
-
-OnAvalonAP = function(message, nap)
-  nap = tonumber(nap)
-  call_callback('AP', nap)
-end
-
-OnAvalonMaxTP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXTP', value)
-end
-
-OnAvalonMaxSP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXSP', value)
-end
-
-OnAvalonMaxAP=function(message,value)
-  value=tonumber(value)
-  call_callback('MAXAP', value)
-end
-
-OnAvalonName = function(type, message)
-  call_callback('NAME', message)
-end
-
-function OnPluginInstall()
+OnPluginInstall = function()
 
   -- initializing sound subsystem
   Sound.Init()
@@ -4468,12 +4335,6 @@ function OnPluginInstall()
   Gilden.Init()
 end
 
-function OnPluginClose()
-  call_callback('CLOSE')
-  Configs.settings.Warnings=Spells.RetrieveWarnings()
-  Ini.write('config.dat', Configs)
-end
-
 OnPluginListChanged = function()
 
   if Timers == nil then
@@ -4481,6 +4342,10 @@ OnPluginListChanged = function()
     Timers = PPI.Load(world.GetPluginVariable("", "timers"))
 
   end
+end
+
+OnPluginPlaySound = function(file)
+  Sound.PlaySound(file)
 end
 
 function volume(value)
@@ -4508,6 +4373,179 @@ function volume(value)
     Player:UpdateCombatMusic()
     world.Note("Kampf-Musik-Lautstärke: "..tostring(Configs.settings.CombatMusicVolume).." %")
   end
+end
+
+function OnAvalonGrafikVermeiden(type, message)
+  message = Types.to_bool(tonumber(message))
+  call_callback('GRAFIK', not message)
+end
+
+function OnAvalonGilde(type, message)
+  call_callback("GILDE", message)
+end
+
+function OnAvalonLogin()
+  atcp.Send("ava_set_soundpack")
+  atcp.Send("ava_set_channel 1")
+  atcp.Send("ava_set_rcomm 1")
+  atcp.Send("ava_set_comm 1")
+  atcp.Send("ava_set_soul 1")
+  atcp.Send("ava_set_rsoul 1")
+  atcp.Send("ava_req_update")
+  atcp.Send("ava_req_graphics_status")
+  Sound.PlaySound("Player/Login.ogg")
+  call_callback('LOGIN')
+end
+
+OnAvalonGetoetet = function(type, message)
+  if (type == "Avalon.Getoetet") then
+    Sound.PlaySound("Player/Kill.ogg")
+  elseif (type == "Avalon.GruppeGetoetet") then
+    Sound.PlaySound("Monsters/Kill.ogg")
+  end
+  Sound.PlaySound("monsters/deaths/{1,57}.ogg")
+end
+
+OnAvalonKampf = function(type, message)
+
+  call_callback('KAMPF', Types.to_bool(message))
+
+end
+
+OnAvalonDunkel = function(type, message)
+  call_callback('DUNKEL', Types.to_bool(message))
+end
+
+OnAvalonRSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  world.Execute(";history_add REDEN="..world.Replace(text,'\n',',',true))
+  call_callback('CHANNEL', "REDEN", text)
+end
+
+OnAvalonSoul = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  if not text then
+    startpos, endpos = string.find(message, " ", 1, true)
+    text = string.sub(message, endpos+1, -1)
+  end
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  world.Execute(";history_add SAGEN="..world.Replace(text, "\n", " ", true))
+  call_callback("SOUL", "SEELE", text)
+end
+
+OnAvalonComm=function(type,message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
+    Sound.PlaySound("Channels/"..channel..".ogg")
+  end
+  world.Execute(";history_add "..channel.."="..world.Replace(text, "\n", " "))
+  call_callback('CHANNEL', channel, text)
+end
+
+OnAvalonChannel = function(type, message)
+  channel, text = string.match(message, "^(%[?%w+%-?%w*%-?%w*%]?) (.*)$")
+  text=string.gsub(text,"%%%^%w+_*%w*%%%^(.*)%%%^NO_*%w+%%%^","%1",10)
+  if Gilden.Exists(channel) then
+    channel="gilde"
+  end
+  if (Path.exists(GetInfo(74).."Channels/"..channel..".ogg")) then
+    Sound.PlaySound("Channels/"..channel..".ogg")
+  end
+  if ((channel == "fehler") or (channel == "runtime")) then
+    return
+  end
+  world.Execute(";history_add "..channel.."="..text)
+  call_callback('CHANNEL', channel, text)
+end
+
+OnAvalonRoomID = function(type, message)
+  local tmessage = utils.split(message, " ")
+  local id = tmessage[1]
+  local name = tmessage[2]
+  local x = nil
+  local y = nil
+
+  if name == "Bitte" then
+    name = ''
+  end
+
+  if tmessage[3] then
+    x = tonumber(utils.split(tmessage[3],"=")[2])
+  end
+  if tmessage[4] then
+    y = tonumber(utils.split(tmessage[4],"=")[2])
+  end
+
+  call_callback('ROOMID', id, name, x, y)
+
+end 
+
+OnAvalonLevel = function(type, message)
+  local prefix, level = string.match(message, "^(%w)(%d+)$")
+
+  if not level then
+    return
+  end
+
+  level = tonumber(level)
+
+  call_callback('LEVEL', level, prefix)
+
+end
+
+OnAvalonEP = function(type, message)
+  local ep = string.match(message, "^(%d+)")
+  if not ep then
+    return
+  end
+  ep = tonumber(ep)
+  call_callback('EP', ep)
+end
+
+OnAvalonTP = function(message, ntp)
+  ntp = tonumber(ntp)
+
+  if ntp < 0 then
+    ntp = 0
+  end
+
+  call_callback('TP', ntp)
+end
+
+OnAvalonSP=function(message, nsp)
+  nsp = tonumber(nsp)
+  call_callback('SP', nsp)
+end
+
+OnAvalonMP=function(message,nmp)
+  nmp=tonumber(nmp)
+  call_callback('MP', nmp)
+end
+
+OnAvalonAP = function(message, nap)
+  nap = tonumber(nap)
+  call_callback('AP', nap)
+end
+
+OnAvalonMaxTP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXTP', value)
+end
+
+OnAvalonMaxSP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXSP', value)
+end
+
+OnAvalonMaxAP=function(message,value)
+  value=tonumber(value)
+  call_callback('MAXAP', value)
+end
+
+OnAvalonName = function(type, message)
+  call_callback('NAME', message)
 end
 
 function volumetype_switch()
@@ -4555,14 +4593,6 @@ function spbar_switch()
     world.Note("ZP-Ausgabe eingeschaltet.")
   end
   Sound.PlaySound("Misc/ConfigSwitch.ogg")
-end
-
-function OnPluginDisconnect()
-
-  Player:Reset()
-  Room:Reset()
-
-  call_callback('LOGOUT')
 end
 
 function switch_mute()
@@ -4772,23 +4802,6 @@ function unhook_callback(event,callback)
   return false
 end
 
-function OnPluginCommandEntered(text)
-  if (Configs.settings.RepeatCommand == 0) then
-    return text
-  end
-
-   if (text == "") and (LastCommand ~= nil) then
-    return LastCommand
-  else
-    if (text ==" ") then
-      LastCommand = ''
-      return ''
-    end
-    LastCommand = text
-    return text
-  end
-end
-
 function repeatcommand_switch()
   if (Configs.settings.RepeatCommand == 1) then
     LastCommand=nil
@@ -4858,10 +4871,6 @@ function send_command(cmd)
   if current ~= "" then
     world.SetCommand(current)
   end  
-end
-
-function OnPluginPlaySound(file)
-  Sound.PlaySound(file)
 end
 ]]>
 </script>
