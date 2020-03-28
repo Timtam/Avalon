@@ -7,7 +7,9 @@ local Types = require("pl.types")
 
 -- internals
 
-local sound_parse_filename = function(file)
+local sound_parse_filename -- to allow recursive calls
+
+sound_parse_filename = function(file)
 
   local s, e = file:find("%{%d+,%d+%}")
 
