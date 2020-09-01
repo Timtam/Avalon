@@ -86,6 +86,14 @@
   >
   <send>print_position()</send>
 </alias>
+  <alias
+   match="speedwalk_choose"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>speedwalk_choose()</send>
+</alias>
 </aliases>
 
 <!--  Get our standard constants -->
@@ -120,6 +128,7 @@ world.DoAfterSpecial(0.5, "PluginInstall()", 12)
 function PluginInstall()
   world.Accelerator("ctrl+D", "speedwalk_break")
   world.Accelerator("F5", "safespeedwalks_switch")
+  world.Accelerator("alt+S", "speedwalk_choose")
   Avalon.HookCallback('DUNKEL', OnAvalonDunkel)
   Avalon.HookCallback('ROOMID', OnAvalonRoomID)
   Avalon.HookCallback('CLOSE', OnAvalonClose)
@@ -451,6 +460,42 @@ function speedwalk_text_received()
     return
   end
   speedwalk_process(true)
+end
+
+function speedwalk_choose()
+  local current = Stations:find(RoomID)
+  if current:len() == 0 then
+    world.Note("Dieser Startpunkt ist derzeit nicht bekannt.")
+    return
+  end
+  local stations = Stations:find("")
+  local default = 0
+  local domains = {}
+  stations:foreach(function(s)
+    for _, value in pairs(domains) do
+      if value == s.domain then
+        return
+      end
+    end
+    table.insert(domains, s.domain)
+    if current[1].domain == s.domain then
+      default = table.maxn(domains)
+    end
+  end)
+  local result = utils.choose("Wähle ein Gebiet:", "Speedwalk", domains, default)
+  if not result then
+    return
+  end
+  stations = Stations:find(domains[result], true)
+  local names = {}
+  stations:foreach(function(s)
+    table.insert(names, s.name .. ": " .. s.description)
+  end)
+  result = utils.choose("Wähle einen Ort:", "Speedwalk", names)
+  if not result then
+    return
+  end
+  speedwalk_start("", stations[result].domain .. "." .. stations[result].name)
 end
 
 ]]>
