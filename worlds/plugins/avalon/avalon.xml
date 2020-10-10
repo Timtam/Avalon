@@ -319,7 +319,7 @@
   <trigger
    enabled="n"
    group="Hyraskrieger"
-   match="^(\w*)\s*(.*)geladen\s\(\s([0-9]*)\s\%\)\s*(.*)"
+   match="^(\w*)\s*(.*)(ge|ent)laden\s\(\s([0-9]*)\s\%\)\s*(.*)"
    regexp="y"
    send_to="12"
    sequence="100"
