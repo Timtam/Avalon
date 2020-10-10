@@ -283,8 +283,9 @@
   </trigger>
   <trigger
    enabled="n"
+   ignore_case="y"
    group="Hyraskrieger"
-   match="\|\s(\w*)(\s)*\|\s(.*)geladen\s\(\s([0-9]*)\s\%\)(\s)*\|(.*)(\s)*\|"
+   match="\|\s(\w*)(\s)*\|\s(.*)(ge|ent)laden\s\(\s([0-9]*)\s\%\)(\s)*\|(.*)(\s)*\|"
    regexp="y"
    send_to="12"
    sequence="100"
@@ -293,6 +294,7 @@
   </trigger>
   <trigger
    enabled="n"
+   ignore_case="y"
    group="Hyraskrieger"
    match="^(\w*)\s*(.*)(ge|ent)laden\s\(\s([0-9]*)\s\%\)\s*(.*)"
    regexp="y"
