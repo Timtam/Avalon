@@ -1,6 +1,7 @@
 local Audio = require("audio")
 local Avalon = nil
 local BASS = Audio.BASS()
+local Const = Audio.CONST
 local Path = require("pl.path")
 local PPI = require("ppi")
 local Types = require("pl.types")
@@ -33,6 +34,8 @@ end
 
 local sound_init = function()
   Avalon = PPI.Load(world.GetPluginVariable("", "avalon"))
+
+  BASS:SetConfig(Const.config.device_default, 1)
 
   BASS:Init()
 end
