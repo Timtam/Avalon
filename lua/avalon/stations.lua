@@ -3087,4 +3087,11 @@ stations:add(
              "Die Post in Solgard."
             )
 
+stations:add(
+             "uw",
+             "barrikade",
+             "raum/b69f6f5bdcc43deb4d19821568df2c10",
+             "Barrikade oestlich vom Moor der Untoten."
+            )
+
 return stations

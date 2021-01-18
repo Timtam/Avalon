@@ -863,5 +863,7 @@ speedwalklist['solgard.zentrum_solgard.schmied'] = "so oeffne_oestliche_tuer o"
 speedwalklist['solgard.schmied_solgard.zentrum'] = "oeffne_tuer w nw"
 speedwalklist['solgard.zentrum_solgard.post'] = "s s s o h"
 speedwalklist['solgard.post_solgard.zentrum'] = "r w n n n"
+speedwalklist['uw.gabelung8_uw.barrikade'] = "nw n n n no no n nw nw nw w nw w w nw nw nw no o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o"
+speedwalklist['uw.barrikade_uw.gabelung8'] = "w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w sw so so so o o so o so so so s sw sw s s s so"
 
 return speedwalklist
