@@ -4030,7 +4030,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Erledigt. Du hast nun diesen Gegner * mal hintereinander getoetet."
+   match="Erledigt. Du hast nun diesen Gegner * hintereinander getoetet."
    send_to="12"
    sequence="100"
   >

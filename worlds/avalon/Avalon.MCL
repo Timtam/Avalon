@@ -72,6 +72,7 @@
    port="7777"
    proxy_port="1080"
    send_file_delay_per_lines="1"
+   send_keep_alives="y"
    send_mxp_afk_response="y"
    show_connect_disconnect="y"
    show_italic="y"
