@@ -3094,4 +3094,11 @@ stations:add(
              "Barrikade oestlich vom Moor der Untoten."
             )
 
+stations:add(
+             "miobaas",
+             "rathaus",
+             "raum/3ada1ad1da07006f60f85287b2ca7225",
+             "Rathaus von Miobaas."
+            )
+
 return stations
