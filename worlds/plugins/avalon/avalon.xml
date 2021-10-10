@@ -4501,6 +4501,14 @@
    >
   <send>say_stat("ZP")</send>
   </alias>
+  <alias
+   match="reset_audio"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+   >
+  <send>Audio.reset()</send>
+  </alias>
 </aliases>
 
 <!--  Script  -->

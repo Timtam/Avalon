@@ -117,6 +117,12 @@ id=audio.play(file,loop,pan,vol)
 --end
 return id
 end
+local function reset()
+audio.free()
+assert(package.loadlib("audio.dll", "luaopen_audio"))()
+vol=100
+end
+
 ppi.Expose("setPitch",setPitch)
 ppi.Expose("slidePitch",slidePitch)
 
@@ -133,6 +139,7 @@ ppi.Expose("slideVol",slideVol)
 ppi.Expose("fadeout",fadeout)
 ppi.Expose("slidePan",slidePan)
 ppi.Expose("playLooped",playLooped)
+ppi.Expose("reset",reset)
 function OnPluginClose()
 audio.free()
 end
