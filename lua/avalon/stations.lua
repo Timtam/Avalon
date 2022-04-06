@@ -3101,4 +3101,11 @@ stations:add(
              "Rathaus von Miobaas."
             )
 
+stations:add(
+             "miniuw",
+             "zlmtod",
+             "raum/236c89676dfdf12ae93b3d5fecca7b0b",
+             "Tandolar, Todeskundiger in der Mini-Unterwelt von Corona."
+            )
+
 return stations
