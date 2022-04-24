@@ -19,6 +19,7 @@ Die Hauptfunktion des Soundpacks ist, Avalon mit Geräuschen zu untermalen. Diesb
 
 F9 - Lautstärke der Geräusche leiser drehen
 F10 - Lautstärke der Geräusche lauter drehen
+Mit dem Befehl reset_audio könnt ihr außerdem die Sound-Ausgabe zurücksetzen, falls sich bspw. die aktive Standard-Soundkarte beim Spielen ändert.
 
 Musik
 -----
@@ -47,6 +48,7 @@ TP-, ZP- und AP-Ausgabe
 Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds.
 Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren.
 Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus.
+Alternativ können die Aktions-, Mana-, Treffer- und Zauberpunkte auch mit den Tastenkombinationen Alt+k, Alt+m, Alt+t und Alt+z abgefragt werden.
 
 Hinweis: Falls ihr euch wundert, dass die Sound-Ausgaben etwas asynchron zum Spielverlauf arbeiten und ihr denkt, dass es zu langsam bzw. ineffizient wäre - falsch gedacht. Tatsächlich ist es schneller und präziser als die Ingame-Ausgabe, da die Ingame-Ausgabe höchstens jede Sekunde Werte ausgibt, die Sound-Ausgaben jedoch sofort reagiert.
 
@@ -75,8 +77,10 @@ Navigation
 
 Damit sich einige Leute vielleicht doch besser zurechtfinden oder einfach nur aus Spaß gibt es jetzt das Kommando "pos". Dieses Kommando gibt die zuletzt erkannte Position, die ihr besucht habt, aus und, falls ihr euch auf einer Karte bewegt, auch eure X bzw. Y-Koordinaten.
 Außerdem zur Navigation gehört die Möglichkeit, sich via Nummernblock, so man einen hat, zu bewegen.
-Dabeibesitzt jede Taste fünf Funktionen. Entweder langes spähen, kurzes spähen, klettern, schwimmen oder laufen, wobei die ersteren beiden Optionen nur mithilfe eines Fernrohrs möglich sind. Umgeschaltet werden diese Modi mithilfe der Multiplikations- oder auch Löschen Taste. Sollte diese Taste mal nicht reagieren, wird mithilfe des Befehls numpad Abhilfe geschaffen.
+Dabeibesitzt jede Taste drei Funktionen. Entweder langes spähen, kurzes spähen oder laufen, wobei die ersteren beiden Optionen nur mithilfe eines Fernrohrs möglich sind. Umgeschaltet werden diese Modi mithilfe der Multiplikations- oder auch Löschen Taste. Sollte diese Taste mal nicht reagieren, wird mithilfe des Befehls numpad Abhilfe geschaffen.
 Die Tasten sind in den entsprechenden Himmelsrichtungen angeordnet, heißt südwesten =1, nordosten = 9, osten = 6, Norden = 8 und so weiter. Die restlichen Tasten geben den Spielstand entweder lang oder kurz aus oder schauen sich im derzeitigen Raum um.
+Falls in eine Richtung geklettert oder geschwommen werden muss, wird dies automatisch vom Soundpack umgesetzt. Es muss also nicht extra schwimme westen oder klettere norden getippt werden.
+Das Soundpack versucht ebenfalls, geschlossene Türen zu öffnen, nachdem der Spieler versucht hat hindurchzugehen. Dies funktioniert allerdings nicht auf Feldern, auf denen es mehrere Türen gibt.
 
 Kanalverlauf
 ------------
@@ -130,6 +134,7 @@ Wenn ihr nur einen Startpunkt angebt, aber keinen Zielpunkt, werden euch Informa
 
 Mit Hilfe der Tastenkombination Strg+D wird der momentan laufende Speedwalk an der Stelle, an welcher ihr euch gerade befindet, abgebrochen. Er kann durch wiederholtes Drücken der Tastenkombination wieder fortgesetzt werden.
 Außerdem haben wir die Möglichkeit eingebaut, eure Startposition abzusichern. Dadurch könnt ihr nicht mehr von einer falschen Position loslaufen und landet dadurch im Nirgendwo. Dieses Feature ist standardmäßig eingeschaltet. Falls ihr die Absicherung ausschalten wollt, drückt einfach F5. Diese Funktion kann nur effektiv genutzt werden, wenn es auf euren zuletzt besuchten Feld hell ist. Falls es gerade hell geworden ist, ihr trotzdem die Meldung erhaltet, dass es auf eurem Feld hell sein muss, dann wechselt bitte das Feld.
+Das Ziel eines Speedwalks kann auch aus einer Liste ausgewählt werden, sofern der aktuelle Start-Punkt bekannt ist. Durch Drücken der Tastenkombination Alt+S kann man zunächst das Ziel-Gebiet aus einer Liste auswählen. Hierbei ist das aktuelle Gebiet voreingestellt. Nachdem mit Eingabe bestätigt wurde, kann nun der Zielort ausgewählt werden. Es werden Orte inkl. Beschreibung angezeigt, die im zuvor ausgewählten Ziel-Gebiet liegen.
 
 Beachtet, dass ihr euch über die Speedwalks nahezu frei bewegen könnt (auf Nereid könnt ihr beispielsweise von jedem bekannten Ort an nahezu jeden anderen Ort laufen). Jedoch kann es bei wenigen Orten zu Einschränkungen kommen, weil Speedwalks dort nicht eingesetzt werden können, oder es dort hin einfach noch keinen Speedwalk gibt. In dem Fall kontaktiert uns einfach per Ingame-Brief oder E-Mail.
 

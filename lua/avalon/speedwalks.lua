@@ -869,5 +869,7 @@ speedwalklist['miobaas.rathaus_miobaas.wlmbreitschwert'] = "so w w n"
 speedwalklist['miobaas.wlmbreitschwert_miobaas.rathaus'] = "s o o nw"
 speedwalklist['miniuw.zlmtod_miniuw.miniuw2'] = "ausgang o o o no o o o o o no nw nw w w w"
 speedwalklist['miniuw.miniuw2_miniuw.zlmtod'] = "o o o so so sw w w w w w sw w w w betrete_zelt"
+speedwalklist['usagoor.schuerfhaendler_usagoor.mineralienhaendler'] = "w n o"
+speedwalklist['usagoor.mineralienhaendler_usagoor.schuerfhaendler'] = "w s o"
 
 return speedwalklist

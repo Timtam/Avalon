@@ -3108,4 +3108,11 @@ stations:add(
              "Tandolar, Todeskundiger in der Mini-Unterwelt von Corona."
             )
 
+stations:add(
+             "usagoor",
+             "mineralienhaendler",
+             "raum/6ef4003dab1b40caafea61d7cd0b734d",
+             "Mineralienhaendler in Usagoor."
+            )
+
 return stations
