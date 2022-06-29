@@ -119,9 +119,9 @@ function speedwalk_process(text_incoming)
       elseif spdtbl[spdind]:get_status() == Const.SCRIPT_FAILURE then
         world.Note("Ein Skript des Speedwalks hat einen Fehler festgestellt und wurde beendet.")
         world.Note("Der Speedwalk wird an dieser Stelle abgebrochen.")
+        speedwalk_deinit()
         spdtbl = nil
         spdind = 0
-        speedwalk_deinit()
       else
         spdstep = get_unix_time()
       end

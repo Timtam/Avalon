@@ -3115,4 +3115,11 @@ stations:add(
              "Mineralienhaendler in Usagoor."
             )
 
+stations:add(
+             "skilletan",
+             "hafen2",
+             "raum/53c9d802c2b3894bf4cc787fa0f6661b",
+             "Der neue Hafen von Skilletan."
+            )
+
 return stations
