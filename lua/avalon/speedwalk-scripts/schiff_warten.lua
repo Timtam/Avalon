@@ -28,7 +28,7 @@ function Avalon_Schiff_Warten:setup()
                      100
                     )
   world.AddTriggerEx("avalon_schiff_warten_ok",
-                     "Du wartest auf Schiffe, die * anlegen.",
+                     "Du wartest auf *",
                      "speedwalk_active_script():success()",
                      trigger_flag.Enabled,
                      NOCHANGE,
@@ -38,13 +38,29 @@ function Avalon_Schiff_Warten:setup()
                      sendto.script,
                      100
                     )
-  self:add_command("warte auf schiff nach "..self.to.domain)
+  world.AddTriggerEx("avalon_schiff_warten_schiff",
+                     "* legt hier nicht an.",
+                     "speedwalk_active_script():failure()",
+                     trigger_flag.Enabled,
+                     NOCHANGE,
+                     0,
+                     '',
+                     '',
+                     sendto.script,
+                     100
+                    )
+  if self.to.domain == "magierturm" then
+    self:add_command("warte auf sternenschweif")
+  else
+    self:add_command("warte auf schiff nach "..self.to.domain)
+  end
 end
 
 function Avalon_Schiff_Warten:teardown()
   world.DeleteTrigger("avalon_schiff_warten_anschluss")
   world.DeleteTrigger("avalon_schiff_warten_hafen")
   world.DeleteTrigger("avalon_schiff_warten_ok")
+  world.DeleteTrigger("avalon_schiff_warten_schiff")
 end
 
 function Avalon_Schiff_Warten:get_duration(l)

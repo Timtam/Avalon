@@ -3122,4 +3122,18 @@ stations:add(
              "Der neue Hafen von Skilletan."
             )
 
+stations:add(
+             "ilmelorn",
+             "schneiderei",
+             "raum/bff95c7d3ec90a5bf35e81bab9251fa4",
+             "Die Schneiderei Ilmelorns."
+            )
+
+stations:add(
+             "magierturm",
+             "eingang",
+             "raum/1a3e2948c938689dfbac97e0b2144c76",
+             "Der Eingangsbereich des Magierturms."
+            )
+
 return stations
