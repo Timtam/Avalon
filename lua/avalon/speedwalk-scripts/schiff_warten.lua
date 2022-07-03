@@ -63,7 +63,7 @@ function Avalon_Schiff_Warten:teardown()
   world.DeleteTrigger("avalon_schiff_warten_schiff")
 end
 
-function Avalon_Schiff_Warten:get_duration(l)
+function Avalon_Schiff_Warten:get_duration()
   return 150.0
 end
 

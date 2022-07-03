@@ -58,7 +58,7 @@ function Avalon_Schiff_Magierturm:teardown()
   world.DeleteTrigger("avalon_schiff_magierturm_zeit")
 end
 
-function Avalon_Schiff_Magierturm:get_duration(l)
+function Avalon_Schiff_Magierturm:get_duration()
   return 150.0
 end
 

@@ -3136,4 +3136,11 @@ stations:add(
              "Der Eingangsbereich des Magierturms."
             )
 
+stations:add(
+             "uw",
+             "anlegertiefebenenord",
+             "raum/69c93db5ffe4af613eb7d915a8475082",
+             "Der Schiffsanleger am noerdlichen Rand der Tiefebene."
+            )
+
 return stations
