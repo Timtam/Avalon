@@ -3143,4 +3143,25 @@ stations:add(
              "Der Schiffsanleger am noerdlichen Rand der Tiefebene."
             )
 
+stations:add(
+             "skilletan",
+             "gasthausoger",
+             "raum/b55bbf96fc97ef4083833812dca9a4c8",
+             "Gaststube des Feurigen Oger."
+            )
+
+stations:add(
+             "skilletan",
+             "gasthausnobel",
+             "raum/ca169a7358ccef7e1fd99e892f5a9c30",
+             "Chez Ashar - das Nobellokal von Skilletan."
+            )
+
+stations:add(
+             "skilletan",
+             "gasthaushafen",
+             "raum/a358f05c9a34d6e20737d26cd8805104",
+             "Die Hafenspelunke in Skilletan."
+            )
+
 return stations

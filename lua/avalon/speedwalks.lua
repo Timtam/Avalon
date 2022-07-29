@@ -873,7 +873,7 @@ speedwalklist['skilletan.hafen_skilletan.hafen2'] = "n"
 speedwalklist['skilletan.hafen2_skilletan.hafen'] = "s"
 SCHIFF = "{avalon.speedwalk-scripts.schiff_warten} {avalon.speedwalk-scripts.schiff_aussteigen}"
 SCHIFF_LANG = "{avalon.speedwalk-scripts.schiff_warten_lang} {avalon.speedwalk-scripts.schiff_aussteigen}"
-speedwalklist['alotria.hafen_holbytla.hafen'] = SCHIFF
+speedwalklist['alotria.hafen_holbytla.hafen'] = SCHIFF_LANG
 speedwalklist['alotria.hafen_skilletan.hafen'] = SCHIFF_LANG
 speedwalklist['amphibos.hafen_losaria.hafen'] = SCHIFF
 speedwalklist['amphibos.hafen_skilletan.hafen2'] = SCHIFF
@@ -937,5 +937,11 @@ speedwalklist['uw.anlegertotenebene_uw.anlegerskalewar'] = UNTERWELT_FLOSS
 speedwalklist['uw.anlegertotenebene_uw.anlegertempel'] = UNTERWELT_FLOSS
 speedwalklist['uw.anlegertotenebene_uw.anlegertiefebenenord'] = UNTERWELT_FLOSS
 speedwalklist['uw.anlegertotenebene_uw.anlegertiefebene'] = UNTERWELT_FLOSS
+speedwalklist['skilletan.bank_skilletan.gasthausoger'] = "s w s"
+speedwalklist['skilletan.gasthausoger_skilletan.bank'] = "n o n"
+speedwalklist['skilletan.zentrum_skilletan.gasthausnobel'] = "s s s o"
+speedwalklist['skilletan.gasthausnobel_skilletan.zentrum'] = "w n n n"
+speedwalklist['skilletan.hafen_skilletan.gasthaushafen'] = "w s"
+speedwalklist['skilletan.gasthaushafen_skilletan.hafen'] = "n o"
 
 return speedwalklist
