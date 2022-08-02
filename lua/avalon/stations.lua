@@ -1278,7 +1278,7 @@ stations:add(
              "rilauven",
              "kapelle",
              "raum/b266f07355fd3005a181a08a58409649",
-             "Ende des Supf-Pfads von Rilauven kommend, Zugang Kapelle"
+             "Ende des Sumpf-Pfads von Rilauven kommend, Zugang Kapelle"
             )
 
 stations:add(
@@ -3162,6 +3162,48 @@ stations:add(
              "gasthaushafen",
              "raum/a358f05c9a34d6e20737d26cd8805104",
              "Die Hafenspelunke in Skilletan."
+            )
+
+stations:add(
+             "rilauven",
+             "schuerfhaendler",
+             "raum/e6178863603f6ff2a9814ec7fee21728",
+             "Schuerfhaendler nahe der Mine von Rilauven."
+            )
+
+stations:add(
+             "rilauven",
+             "mineralienhaendler",
+             "raum/8d2712c1363c9e724e9ceb136c1e59bf",
+             "Mineralienhaendler nahe der Mine von Rilauven."
+            )
+
+stations:add(
+             "dhungar0",
+             "gasthaus",
+             "raum/80b862a7fc8631ef69e40ab495c2bf0d",
+             "Tarjas gemuetliche Bierstube in Dhungar auf Ebene 0."
+            )
+
+stations:add(
+             "dhungar1",
+             "gasthaus",
+             "raum/5df560a435c51cfad078f5177ce7fb90",
+             "Hafenkneipe in Dhungar auf Ebene 1."
+            )
+
+stations:add(
+             "dhungar1",
+             "holzwerkstatt",
+             "raum/88a4caf19c9d8612350a06f5cf3d0d7c",
+             "Holzwerkstatt in Dhungar auf Ebene 1."
+            )
+
+stations:add(
+             "dhungar3",
+             "gasthaus",
+             "raum/6af503c057b35e7866e2e6e591901d5b",
+             "Gaststaette in Dhungar auf Ebene 3."
             )
 
 return stations
