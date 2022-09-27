@@ -4244,13 +4244,13 @@
   <send>world.Execute("rauslegen %1")</send>
 </alias>
   <alias
-   match="pos"
+   match="pos*"
    enabled="y"
    send_to="12"
    sequence="100"
    keep_evaluating="y"
   >
-  <send>print_position()</send>
+  <send>position_command("%1")</send>
 </alias>
   <alias
    match="switch_mute"
@@ -4559,6 +4559,10 @@ plugintbl[14] = "avalon/timers.xml"
 plugintbl[15] = "avalon/BZauber.xml"
 RoomID=nil
 RoomName=''
+StoredRoomName=''
+StoredX=nil
+StoredY=nil
+NavigateToPosition=false
 volumetype=1
 gildentbl={}
 callbacktbl={}
@@ -4768,6 +4772,9 @@ OnAvalonRoomID = function(type, message)
   RoomID = id
   if (not name) or (name == "Bitte") then
     return
+  end
+  if NavigateToPosition then
+    position_where(name, false)
   end
   if (name == RoomName) and (hmusic ~= nil) and (Audio.isPlaying(hmusic) == 1) then
     return
@@ -5311,7 +5318,44 @@ function array_concat(...)
   return t
 end
 
-function print_position()
+function position_command(subcommand)
+  if subcommand == "" then
+    position_print()
+  elseif subcommand == "g" then
+    position_get()
+  elseif subcommand == "n" then
+    position_navigate()
+  elseif subcommand == "s" then
+    position_store()
+  elseif subcommand == "w" then
+    position_where(RoomName, true)
+  end
+end
+
+function position_get()
+  if StoredRoomName == "" or StoredX == nil or StoredY == nil then
+    world.Note("Keine Position gespeichert.")
+    return
+  end
+  world.Note("Ort:\t"..StoredRoomName)
+  world.Note("Pos:\tX: "..tostring(StoredX)..", Y: "..tostring(StoredY))
+end
+
+function position_navigate()
+  if StoredRoomName == "" or StoredX == nil or StoredY == nil then
+    world.Note("Keine Position gespeichert.")
+    return
+  end
+  if not NavigateToPosition then
+    NavigateToPosition = true
+    world.Note("Navigation zu Position an.")
+  else
+    NavigateToPosition = false
+    world.Note("Navigation zu Position aus.")
+  end
+end
+
+function position_print()
   if (Dunkel == 1) then
     world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
     return
@@ -5320,6 +5364,59 @@ function print_position()
   if (X and Y) then
     world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end
+end
+
+function position_store()
+  if (Dunkel == 1) then
+    world.Note("Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist.")
+    return
+  end
+  if not (X and Y) then
+    world.Note("Für diesen Raum sind keine Koordinaten verfügbar.")
+    return
+  end
+  StoredRoomName = RoomName
+  StoredX = X
+  StoredY = Y
+  world.Note("Position gespeichert.")
+end
+
+function position_where(currentRoomName, reportErrors)
+  message = ""
+  if StoredRoomName == "" or StoredX == nil or StoredY == nil then
+    message = "Keine Position gespeichert."
+  elseif (Dunkel == 1) then
+    message = "Für diesen Raum konnten keine Informationen abgerufen werden, da es hier derzeit dunkel ist."
+  elseif currentRoomName ~= StoredRoomName then
+    message = "Die gespeicherte Position befindet sich in einem anderen Gebiet."
+  elseif X == nil or Y == nil then
+    message = "Für diesen Raum sind keine Koordinaten verfügbar."
+  elseif StoredX == X and StoredY == Y then
+    world.Note("Die gespeicherte Position befindet sich hier.")
+    return
+  end
+  if message ~= "" then
+    if reportErrors then
+      world.Note(message)
+    end
+    return
+  end
+  xDistance = X - StoredX
+  yDistance = Y - StoredY
+  if xDistance > 0 then
+    message = tostring(xDistance).." mal Westen"
+  elseif xDistance < 0 then
+    message = tostring(math.abs(xDistance)).." mal Osten"
+  end
+  if yDistance ~= 0 and message ~= "" then
+    message = message..", "
+  end
+  if yDistance > 0 then
+    message = message..tostring(yDistance).." mal Sueden"
+  elseif yDistance < 0 then
+    message = message..tostring(math.abs(yDistance)).." mal Norden"
+  end
+  world.Note(message)
 end
 
 function rgbtohex(r, g, b)
