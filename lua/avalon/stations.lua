@@ -3206,4 +3206,11 @@ stations:add(
              "Gaststaette in Dhungar auf Ebene 3."
             )
 
+stations:add(
+             "steppenlaeuferinsel",
+             "eingang",
+             "raum/c9c67a829ce2182268e64137fa98a905",
+             "Insel der Steppenlaeufer noerdlich von Amphibos."
+            )
+
 return stations

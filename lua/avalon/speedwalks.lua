@@ -955,5 +955,7 @@ speedwalklist['dhungar1.uw_dhungar1.holzwerkstatt'] = "o no nw"
 speedwalklist['dhungar1.holzwerkstatt_dhungar1.uw'] = "so sw w"
 speedwalklist['dhungar3.transportkorb_dhungar3.gasthaus'] = "o no o"
 speedwalklist['dhungar3.gasthaus_dhungar3.transportkorb'] = "w sw w"
+speedwalklist['amphibos.torno_steppenlaeuferinsel.eingang'] = "sw sw w w w w n no n n n schwimme_n schwimme_n n"
+speedwalklist['steppenlaeuferinsel.eingang_amphibos.torno'] = "s schwimme_s schwimme_s s s s sw s o o o o no no"
 
 return speedwalklist

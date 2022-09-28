@@ -5329,6 +5329,8 @@ function position_command(subcommand)
     position_store()
   elseif subcommand == "w" then
     position_where(RoomName, true)
+  else
+    world.Note("Unbekannte Erweiterung: "..subcommand)
   end
 end
 
