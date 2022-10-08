@@ -4244,13 +4244,45 @@
   <send>world.Execute("rauslegen %1")</send>
 </alias>
   <alias
-   match="pos*"
+   match="pos"
    enabled="y"
    send_to="12"
    sequence="100"
    keep_evaluating="y"
   >
-  <send>position_command("%1")</send>
+  <send>position_print()</send>
+</alias>
+  <alias
+   match="posg"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_get()</send>
+</alias>
+  <alias
+   match="posn"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_navigate()</send>
+</alias>
+  <alias
+   match="poss"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_store()</send>
+</alias>
+  <alias
+   match="posw"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_where(RoomName, true)</send>
 </alias>
   <alias
    match="switch_mute"
@@ -5316,22 +5348,6 @@ function array_concat(...)
     end
   end
   return t
-end
-
-function position_command(subcommand)
-  if subcommand == "" then
-    position_print()
-  elseif subcommand == "g" then
-    position_get()
-  elseif subcommand == "n" then
-    position_navigate()
-  elseif subcommand == "s" then
-    position_store()
-  elseif subcommand == "w" then
-    position_where(RoomName, true)
-  else
-    world.Note("Unbekannte Erweiterung: "..subcommand)
-  end
 end
 
 function position_get()

@@ -2501,7 +2501,7 @@ stations:add(
 
 stations:add(
              "miobaas",
-             "gasthaus",
+             "gasthausmann",
              "raum/0a205320b39425738ca87108301e48bd",
              "Gasthaus zum wilden Mann in Miobaas."
             )
@@ -3211,6 +3211,13 @@ stations:add(
              "eingang",
              "raum/c9c67a829ce2182268e64137fa98a905",
              "Insel der Steppenlaeufer noerdlich von Amphibos."
+            )
+
+stations:add(
+             "miobaas",
+             "gasthausspelunke",
+             "raum/9af346d9f587042e5c7333e728047bd2",
+             "Die Spelunke in Miobaas."
             )
 
 return stations
