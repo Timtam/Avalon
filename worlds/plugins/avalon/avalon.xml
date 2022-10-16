@@ -4285,6 +4285,14 @@
   <send>position_where(RoomName, true)</send>
 </alias>
   <alias
+   match="position_choose"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_choose()</send>
+</alias>
+  <alias
    match="switch_mute"
    enabled="y"
    send_to="12"
@@ -4631,6 +4639,7 @@ world.Accelerator("alt+m", "say_mp")
 world.Accelerator("alt+t", "say_tp")
 world.Accelerator("alt+z", "say_zp")
 world.AcceleratorTo('Decimal','NumpadSwitch()',12)
+world.Accelerator("alt+P", "position_choose")
 Spells = require("avalon.activespells")
 require("avalon.demon_warriors")
 require("avalon.multilinetrigger")
@@ -4677,6 +4686,7 @@ Spells.Register("Kampfsegen", "Du bist motiviert und willig zu kaempfen\\.", "De
 Spells.Register("Trotz", "Du hast nun verbesserte Verteidigungsfertigkeiten\\.", "Deine verbesserten Verteidigungsfertigkeiten schwinden\\.")
 Spells.Register("Vergeltung", "Du oeffnest Deine Augen und buendelst Deine Wut\\.", "Die Wut in Dir scheint besiegt\\.")
 Spells.Register("Blutrausch", "Du laesst einen fuerchterlichen Urschrei von Dir. Es scheint so, als .*", "Die roetlichen Manawolken loesen sich auf\\.")
+Positions = require("avalon.positions")
 
 function OnAvalonGrafikVermeiden(type, message)
   if tonumber(message) == 1 then
@@ -5348,6 +5358,41 @@ function array_concat(...)
     end
   end
   return t
+end
+
+function position_choose()
+  local default = 0
+  local domains = {}
+  Positions.positions:foreach(function(p)
+    for _, value in pairs(domains) do
+      if value == p.domain then
+        return
+      end
+    end
+    table.insert(domains, p.domain)
+    if RoomName == p.domain then
+      default = table.maxn(domains)
+    end
+  end)
+  local result = utils.choose("Wähle ein Gebiet:", "Position", domains, default)
+  if not result then
+    return
+  end
+  local positions = List.new()
+  local names = {}
+  Positions.positions:foreach(function(p)
+    if domains[result] == p.domain then
+      table.insert(names, p.name .. ": " .. p.description)
+      positions:push(p)
+    end
+  end)
+  result = utils.choose("Wähle eine Position:", "Position", names)
+  if not result then
+    return
+  end
+  StoredRoomName = positions[result].domain
+  StoredX = positions[result].x
+  StoredY = positions[result].y
 end
 
 function position_get()
