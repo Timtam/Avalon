@@ -128,4 +128,116 @@ positions:add(
              "Suedlich der Bruecke ueber die Schlucht."
             )
 
+positions:add(
+             "Lorinand",
+             "mondtor",
+             23,
+             8,
+             "Das Mondtor auf Lorinand."
+            )
+
+positions:add(
+             "Tintagel",
+             "mondtor",
+             26,
+             14,
+             "Das Mondtor auf Tintagel."
+            )
+
+positions:add(
+             "Amphibos",
+             "mondtor",
+             63,
+             31,
+             "Das Mondtor auf Amphibos."
+            )
+
+positions:add(
+             "Amphibos",
+             "uminotokai",
+             71,
+             27,
+             "Der Hafen auf Amphibos und Zugang zur Unterwasserstadt der Amphiben Uminotokai."
+            )
+
+positions:add(
+             "Holbytla",
+             "mondtor",
+             66,
+             26,
+             "Das Mondtor auf Holbytla."
+            )
+
+positions:add(
+             "Holbytla",
+             "limarch",
+             56,
+             14,
+             "Der Eingang zur Hobbitstadt Limarch."
+            )
+
+positions:add(
+             "Losaria",
+             "mondtor",
+             16,
+             40,
+             "Das Mondtor auf Losaria."
+            )
+
+positions:add(
+             "Tolsgal",
+             "mondtor",
+             19,
+             4,
+             "Das Mondtor der Insel Tolsgal."
+            )
+
+positions:add(
+             "Tolsgal",
+             "ilmelorn",
+             24,
+             5,
+             "Der Eingang der Baumstadt der Elfen Ilmelorn."
+            )
+
+positions:add(
+             "Dolphinia",
+             "mondtor",
+             15,
+             6,
+             "Das Mondtor auf Dolphinia."
+            )
+
+positions:add(
+             "Nereid",
+             "ashar",
+             21,
+             -32,
+             "Das Nordtor der Exxenstadt Ashaar."
+            )
+
+positions:add(
+             "Nereid",
+             "corona",
+             -16,
+             16,
+             "Der Eingang der Dunkelelfenstadt Corona."
+            )
+
+positions:add(
+             "Nereid",
+             "dhungar",
+             -20,
+             31,
+             "Vor den Toren der Zwergenburg Dhungar."
+            )
+
+positions:add(
+             "Nereid",
+             "minias",
+             -44,
+             -12,
+             "Noerdlich der Menschenstadt Minias."
+            )
+
 return positions
