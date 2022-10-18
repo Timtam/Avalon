@@ -4261,6 +4261,14 @@
   <send>position_get()</send>
 </alias>
   <alias
+   match="posm"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>position_set()</send>
+</alias>
+  <alias
    match="posn"
    enabled="y"
    send_to="12"
@@ -5427,6 +5435,29 @@ function position_print()
   if (X and Y) then
     world.Note("Pos:\tX: "..tostring(X)..", Y: "..tostring(Y))
   end
+end
+
+function position_set()
+  input = utils.inputbox("X-Position:", "Position setzen")
+  newX = tonumber(input)
+  if newX == nil or math.floor(newX) ~= newX then
+    world.Note("Ungültige Eingabe: "..input)
+    return
+  end
+  input = utils.inputbox("Y-Position:", "Position setzen")
+  newY = tonumber(input)
+  if newY == nil or math.floor(newY) ~= newY then
+    world.Note("Ungültige Eingabe: "..input)
+    return
+  end
+  newRoomName = utils.inputbox("Gebiet:", "Position setzen", RoomName)
+  if newRoomName == nil or newRoomName == "" then
+    return
+  end
+  StoredX = newX
+  StoredY = newY
+  StoredRoomName = newRoomName
+  world.Note("Position gespeichert.")
 end
 
 function position_store()

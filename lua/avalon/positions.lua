@@ -240,4 +240,12 @@ positions:add(
              "Noerdlich der Menschenstadt Minias."
             )
 
+positions:add(
+             "Flotsam",
+             "solgard",
+             27,
+             10,
+             "Vor dem Stadttor Solgards."
+            )
+
 return positions
