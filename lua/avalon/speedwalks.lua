@@ -959,5 +959,7 @@ speedwalklist['amphibos.torno_steppenlaeuferinsel.eingang'] = "sw sw w w w w n n
 speedwalklist['steppenlaeuferinsel.eingang_amphibos.torno'] = "s schwimme_s schwimme_s s s s sw s o o o o no no"
 speedwalklist['miobaas.zentrum_miobaas.gasthausspelunke'] = "o o o o s"
 speedwalklist['miobaas.gasthausspelunke_miobaas.zentrum'] = "n w w w w"
+speedwalklist['gwendon.zentrum_gwendon.eingang'] = "w w w w w w w w s s s s s"
+speedwalklist['gwendon.eingang_gwendon.zentrum'] = "n n n n n o o o o o o o o"
 
 return speedwalklist

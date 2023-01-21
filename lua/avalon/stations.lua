@@ -3220,4 +3220,11 @@ stations:add(
              "Die Spelunke in Miobaas."
             )
 
+stations:add(
+             "gwendon",
+             "zentrum",
+             "raum/f61baa24ad535f22865664bb5150141b",
+             "Marktplatz in Gwendon"
+            )
+
 return stations
