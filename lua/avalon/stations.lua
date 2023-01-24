@@ -3224,7 +3224,49 @@ stations:add(
              "gwendon",
              "zentrum",
              "raum/f61baa24ad535f22865664bb5150141b",
-             "Marktplatz in Gwendon"
+             "Marktplatz in Gwendon."
+            )
+
+stations:add(
+             "gwendon",
+             "schmied",
+             "raum/82d5fa920e3760fd2a15dbf439f091dd",
+             "Calgeth, der Goldschmiedemeister in Gwendon."
+            )
+
+stations:add(
+             "gwendon",
+             "gasthausnebel",
+             "raum/f145534d56193d0d490c48d395846953",
+             "Gasthof Zwischen den Nebeln."
+            )
+
+stations:add(
+             "gwendon",
+             "gasthaushafen",
+             "raum/ede04f7d2afb081eceef40f865a39267",
+             "Hafenkneipe in Gwendon."
+            )
+
+stations:add(
+             "alotria",
+             "schneiderei",
+             "raum/ba926e758a62cce5a8cd87c9260c565f",
+             "Schneiderei in Alotria."
+            )
+
+stations:add(
+             "gwendon",
+             "gasthauspub",
+             "raum/85f02b8f0c1c6004120b68748105ca0e",
+             "Mordreds Hoehle."
+            )
+
+stations:add(
+             "gwendon",
+             "post",
+             "raum/e858930378bf2c014ba1e6b20d326135",
+             "Post zu Gwendon."
             )
 
 return stations
