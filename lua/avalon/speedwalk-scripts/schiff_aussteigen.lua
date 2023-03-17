@@ -8,7 +8,7 @@ function Avalon_Schiff_Aussteigen:setup()
   world.AddTriggerEx("avalon_schiff_aussteigen_fest",
                      "Der Matrose haelt Dich fest.",
                      [[
-                     world.DoAfterSpecial(3.0, "speedwalk_active_script():stop_wait()", sendto.script)
+                     world.DoAfterSpecial(3.0, "speedwalk_active_script():can_wait()", sendto.script)
                      ]],
                      trigger_flag.Enabled + trigger_flag.OmitFromOutput,
                      NOCHANGE,
@@ -19,7 +19,7 @@ function Avalon_Schiff_Aussteigen:setup()
                      100
                     )
   world.AddTriggerEx("avalon_schiff_aussteigen_ok",
-                     "Du wartest sowieso nicht auf ein Schiff.",
+                     "In \"Xyz\" legt keines der hier verkehrenden Schiffe an.",
                      "speedwalk_active_script():success()",
                      trigger_flag.Enabled + trigger_flag.OmitFromOutput,
                      NOCHANGE,
@@ -32,7 +32,7 @@ function Avalon_Schiff_Aussteigen:setup()
   world.AddTriggerEx("avalon_schiff_aussteigen_start",
                      "Der Matrose fuehrt Dich von Bord.",
                      [[
-                     world.DoAfterSpecial(3.0, "speedwalk_active_script():stop_wait()", sendto.script)
+                     world.DoAfterSpecial(3.0, "speedwalk_active_script():can_wait()", sendto.script)
                      ]],
                      trigger_flag.Enabled,
                      NOCHANGE,
@@ -50,8 +50,8 @@ function Avalon_Schiff_Aussteigen:teardown()
   world.DeleteTrigger("avalon_schiff_aussteigen_start")
 end
 
-function Avalon_Schiff_Aussteigen:stop_wait()
-  self:add_command("warte nicht")
+function Avalon_Schiff_Aussteigen:can_wait()
+  self:add_command("warte auf schiff nach xyz")
 end
 
 function Avalon_Schiff_Aussteigen:inverts(s)
