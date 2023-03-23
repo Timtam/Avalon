@@ -1,5 +1,5 @@
 speedwalklist = {}
-speedwalklist['nereid.abtei_nereid.gabelung4'] = "s kletter_s sw sw sw sw sw sw sw"
+speedwalklist['nereid.toro_nereid.gabelung4'] = "w sw sw sw sw sw"
 speedwalklist['nereid.abtei_nereid.toro'] = "sw kletter_s s s"
 speedwalklist['affenkopfinsel.hafen_affenkopfinsel.golemkultisten'] = "s no o so s s s sw w w sw w w w w w w w w w w w w w w"
 speedwalklist['losaria.alemnia_jeresa.eingang'] = "n nw n n nw n n n no n nw w w nw nw nw w w nw nw no nw n n n"
@@ -141,7 +141,7 @@ speedwalklist['nereid.gabelung3_alotria.eingang'] = "no o o o o o o o o o o o o 
 speedwalklist['nereid.gabelung3_nereid.gabelung2'] = "sw s sw sw sw sw sw"
 speedwalklist['nereid.gabelung3_nereid.gabelung4'] = "nw w nw nw nw nw nw nw n n n n nw n n n no n n n n nw nw w nw w w nw nw w sw nw w nw"
 speedwalklist['nereid.gabelung3_nereid.teich'] = "no o o o o o o o o o n"
-speedwalklist['nereid.gabelung4_nereid.abtei'] = "no no no no no no no kletter_n n"
+speedwalklist['nereid.gabelung4_nereid.toro'] = "no no no no no o"
 speedwalklist['nereid.gabelung4_nereid.gabelung3'] = "so o so no o so so o o so o so so s s s s sw s s s so s s s s so so so so so so o so"
 speedwalklist['nereid.gabelung4_nereid.gabelung5'] = "w sw w sw w w nw w nw w w w sw w w w sw w w w nw w w nw w w w"
 speedwalklist['nereid.gabelung5_nereid.gabelung4'] = "o o o so o o so o o o no o o o no o o o so o so o o no o no o"
@@ -973,5 +973,7 @@ speedwalklist['gwendon.eingang_gwendon.gasthauspub'] = "n n n w w w"
 speedwalklist['gwendon.gasthauspub_gwendon.eingang'] = "o o o s s s"
 speedwalklist['gwendon.hafen_gwendon.post'] = "o betrete_schiff betrete_kabine"
 speedwalklist['gwendon.post_gwendon.hafen'] = "verlasse_kabine raus w"
+speedwalklist['bhargra.eingang_nereid.toro'] = "w w sw kletter_s kletter_sw kletter_w kletter_sw kletter_w kletter_sw kletter_nw kletter_w kletter_w kletter_w kletter_w kletter_w kletter_sw kletter_w kletter_w kletter_nw kletter_w kletter_w w"
+speedwalklist['nereid.toro_bhargra.eingang'] = "o kletter_o kletter_o kletter_so kletter_o kletter_o kletter_no kletter_o kletter_o kletter_o kletter_o kletter_o kletter_so kletter_no kletter_o kletter_no kletter_o kletter_no kletter_n no o o"
 
 return speedwalklist

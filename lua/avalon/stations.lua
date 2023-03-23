@@ -3269,4 +3269,11 @@ stations:add(
              "Post zu Gwendon."
             )
 
+stations:add(
+             "bhargra",
+             "eingang",
+             "raum/599363c7e2d6dd949e846222677bf058",
+             "Eingang des Oger-Dorfs."
+            )
+
 return stations
