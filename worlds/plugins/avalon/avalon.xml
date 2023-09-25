@@ -2268,7 +2268,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Holz knackt im Lagerfeuer und einige Funken fliegen empor."
+   match="Das Holz knackt in dem * Lagerfeuer *"
    sequence="100"
    send_to="12"
   >
@@ -2309,7 +2309,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Die Flammen des Lagerfeuers flackern und tanzen hypnotisierend *"
+   match="Die Flammen des * Lagerfeuers flackern *"
    sequence="100"
    send_to="12"
   >
@@ -2325,7 +2325,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Das Knistern des Feuers wirkt irgendwie beruhigend auf Dich."
+   match="Die Flammen des * Lagerfeuers knistern vor sich hin."
    sequence="100"
    send_to="12"
   >
@@ -2627,7 +2627,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Funken stieben aus dem Lagerfeuer."
+   match="Funken stieben aus dem * Lagerfeuer."
    sequence="100"
    send_to="12"
   >
@@ -2976,7 +2976,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* in dem Lagerfeuer in * auf."
+   match="* geht in dem * Lagerfeuer in *"
    sequence="100"
    send_to="12"
   >
@@ -3155,7 +3155,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="* in dem Lagerfeuer."
+   match="* knister* in dem * Lagerfeuer."
    sequence="100"
    send_to="12"
   >
@@ -3230,7 +3230,7 @@
   </trigger>
   <trigger
    enabled="y"
-   match="Du stellst die Holzstuecke zu einer kleinen Holzpyramide auf und *"
+   match="Du stellst die Holzstuecke zu einer kleinen Pyramide auf und *"
    sequence="100"
    send_to="12"
   >
