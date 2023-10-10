@@ -3276,4 +3276,25 @@ stations:add(
              "Eingang des Oger-Dorfs."
             )
 
+stations:add(
+             "dhungar2",
+             "brauerei",
+             "raum/222a375be273148e77070be3fe7e90d0",
+             "Die Bierbrauerei in Dhungar auf Ebene 2."
+            )
+
+stations:add(
+             "dhungar0",
+             "bierladen",
+             "raum/278168e719734e3d9965e48c229ef9bb",
+             "Thordans Bierladen in Dhungar auf Ebene 0."
+            )
+
+stations:add(
+             "augyra",
+             "brauerei",
+             "raum/368217fb45dee6e2d9161cc2fb987aa6",
+             "Die Brauerei von Augyra."
+            )
+
 return stations

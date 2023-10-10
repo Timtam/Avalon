@@ -975,5 +975,11 @@ speedwalklist['gwendon.hafen_gwendon.post'] = "o betrete_schiff betrete_kabine"
 speedwalklist['gwendon.post_gwendon.hafen'] = "verlasse_kabine raus w"
 speedwalklist['bhargra.eingang_nereid.toro'] = "w w sw kletter_s kletter_sw kletter_w kletter_sw kletter_w kletter_sw kletter_nw kletter_w kletter_w kletter_w kletter_w kletter_w kletter_sw kletter_w kletter_w kletter_nw kletter_w kletter_w w"
 speedwalklist['nereid.toro_bhargra.eingang'] = "o kletter_o kletter_o kletter_so kletter_o kletter_o kletter_no kletter_o kletter_o kletter_o kletter_o kletter_o kletter_so kletter_no kletter_o kletter_no kletter_o kletter_no kletter_n no o o"
+speedwalklist['dhungar2.transportkorb_dhungar2.brauerei'] = "no o no no o"
+speedwalklist['dhungar2.brauerei_dhungar2.transportkorb'] = "w sw sw w sw"
+speedwalklist['dhungar0.gasthaus_dhungar0.bierladen'] = "h"
+speedwalklist['dhungar0.bierladen_dhungar0.gasthaus'] = "r"
+speedwalklist['augyra.zentrum_augyra.brauerei'] = "nw nw nw n"
+speedwalklist['augyra.brauerei_augyra.zentrum'] = "s so so so"
 
 return speedwalklist
