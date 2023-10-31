@@ -983,7 +983,7 @@ stations:add(
 stations:add(
              "tolsgal",
              "drachenberg",
-             "raum/791ee7725e5ef47ee76e62cd108c7721",
+             "raum/d4f68336db599978723a2c2f33ed8a22",
              "Eingang des Drachenberg auf Tolsgal."
             )
 
@@ -3295,6 +3295,20 @@ stations:add(
              "brauerei",
              "raum/368217fb45dee6e2d9161cc2fb987aa6",
              "Die Brauerei von Augyra."
+            )
+
+stations:add(
+             "jeresa",
+             "reisende",
+             "raum/05274b338e8cdc93422cac5d34b8830f",
+             "Treffpunkt der Reisenden in Jeresa."
+            )
+
+stations:add(
+             "tolsgal",
+             "haarzauberin",
+             "raum/68d9f96402e564defa31cfa5ee0593a6",
+             "Salon der Haarzauberin auf Tolsgal."
             )
 
 return stations
