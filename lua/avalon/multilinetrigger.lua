@@ -11,8 +11,8 @@ trigger:Line(".*Rune auf .* nach\\.",true,true)
 trigger:Inject()
 
 trigger=MultilineTrigger('psnd("Smith/hammer1.ogg")')
-trigger:Line("Mit einem lauten Knall laesst .* Schmiedehammer .*",true,true)
-trigger:Line("niedersausen.",false,true)
+trigger:Line("Mit einem lauten Knall laesst .* Schmiedehammer .*",true,false)
+trigger:Line("niedersausen.",false,false)
 trigger:Inject()
 
 trigger=MultilineTrigger('psnd("Rune/EngraveCorrect.ogg")','Runenschmiede')

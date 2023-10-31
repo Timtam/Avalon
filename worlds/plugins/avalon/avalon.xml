@@ -3355,7 +3355,7 @@
    send_to="12"
   >
   <send>psnd("Monsters/Vortex/Disintegrate.ogg")
-  world.Execute("stecke streitaxt in meinen rucksack")</send>
+  world.Execute("nehme streitaxt")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -4078,6 +4078,24 @@
    sequence="100"
   >
   <send>psnd("Necromancers/KissOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein edles, umgelegtes Drachenamulett erlischt.|.* Drachendiamant erlischt."
+   regexp="y"
+   sequence="99"
+   send_to="12"
+  >
+  <send>psnd("Items/DragonAmuletOff.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="Dein edles, umgelegtes Drachenamulett flammt auf.|.* Drachendiamant flammt auf."
+   regexp="y"
+   sequence="100"
+   send_to="12"
+  >
+  <send>psnd("Items/DragonAmuletOn.ogg")</send>
   </trigger>
   <trigger
    enabled="y"
@@ -5287,6 +5305,7 @@ function OnPluginDisconnect()
   RoomName = ""
   stopifplaying(hmusic)
   hmusic = nil
+  psnd("Misc/Disconnect.ogg")
   call_callback('LOGOUT')
 end
 
