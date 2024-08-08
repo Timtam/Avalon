@@ -5793,11 +5793,38 @@ function say_stat(type)
 end
 
 function open_door(name, line, wildcards)
-  local i,text 
+  local i,text,lastCommand,direction,part
 
   for i=1, #wildcards do
     if wildcards[i] ~= "" then
     text = wildcards[i]
+    end
+  end
+  lastCommand = GetCommandList(1)
+  if #lastCommand == 1 then
+    lastCommand = lastCommand[1]
+    direction = ""
+    if #lastCommand == 2 then
+      if string.sub(lastCommand, 1, 1) == "n" then
+        direction = "nord"
+      elseif string.sub(lastCommand, 1, 1) == "s" then
+        direction = "sued"
+      end
+      part = string.sub(lastCommand, 2)
+    else
+      part = string.sub(lastCommand, 1, 1)
+    end
+    if part == "n" then
+      direction = direction .. "noerdliche"
+    elseif part == "o" then
+      direction = direction .. "oestliche"
+    elseif part == "s" then
+      direction = direction .. "suedliche"
+    elseif part == "w" then
+      direction = direction .. "westliche"
+    end
+    if #direction > 0 then
+      text = direction .. " " .. text
     end
   end
   world.Execute("oeffne "..text)
