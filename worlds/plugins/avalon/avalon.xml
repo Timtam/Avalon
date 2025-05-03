@@ -4351,6 +4351,14 @@
   <send>spbar_switch()</send>
 </alias>
   <alias
+   match="sptext_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>sptext_switch()</send>
+</alias>
+  <alias
    match="apbar_switch"
    enabled="y"
    send_to="12"
@@ -4359,12 +4367,28 @@
   <send>apbar_switch()</send>
 </alias>
   <alias
+   match="aptext_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>aptext_switch()</send>
+</alias>
+  <alias
    match="tpbar_switch"
    enabled="y"
    send_to="12"
    sequence="100"
   >
   <send>tpbar_switch()</send>
+</alias>
+  <alias
+   match="tptext_switch"
+   enabled="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>tptext_switch()</send>
 </alias>
   <alias
    match="volume_up"
@@ -4639,8 +4663,11 @@ configtbl.settings.SoundVolume=100
 configtbl.settings.MusicVolume=10
 configtbl.settings.CombatMusicVolume=10
 configtbl.settings.TPBar=1
+configtbl.settings.TPText=0
 configtbl.settings.SPBar=1
+configtbl.settings.SPText=0
 configtbl.settings.APBar=1
+configtbl.settings.APText=0
 configtbl.settings.SoundsMuted=0
 configtbl.settings.MusicMuted=0
 configtbl.settings.CombatMusicMuted=0
@@ -4652,8 +4679,11 @@ configtbl.messagebox={}
 configtbl.messagebox.echo="false"
 world.Accelerator("ctrl+F12", "tts_switch")
 world.Accelerator("F2", "tpbar_switch")
+world.Accelerator("shift+F2", "tptext_switch")
 world.Accelerator("F3", "spbar_switch")
+world.Accelerator("shift+F3", "sptext_switch")
 world.Accelerator("F4", "apbar_switch")
+world.Accelerator("shift+F4", "aptext_switch")
 world.Accelerator("F6", "repeatcommand_switch")
 world.Accelerator("F9", "volume_down")
 world.Accelerator("F10", "volume_up")
@@ -4883,6 +4913,9 @@ end
 OnAvalonTP = function(message, ntp)
   ntp = tonumber(ntp)
   play_tp(ntp)
+  if (configtbl.settings.TPText == 1) then
+    world.Note(ntp .. " TP")
+  end
   g_tp=ntp
   combat_music()
   call_callback('TP', g_tp)
@@ -4891,6 +4924,9 @@ end
 OnAvalonSP=function(message, nsp)
   nsp = tonumber(nsp)
   play_sp(nsp)
+  if (configtbl.settings.SPText == 1) then
+    world.Note(nsp .. " ZP")
+  end
   g_sp=nsp
   call_callback('SP', g_sp)
 end
@@ -4903,6 +4939,9 @@ end
 OnAvalonAP = function(message, nap)
   nap = tonumber(nap)
   play_ap(nap)
+  if (configtbl.settings.APText == 1) then
+    world.Note(nap .. " AP")
+  end
   g_ap = nap
   call_callback('AP', g_ap)
 end
@@ -5262,6 +5301,17 @@ function tpbar_switch()
   psnd("Misc/ConfigSwitch.ogg")
 end
 
+function tptext_switch()
+  if (configtbl.settings.TPText == 1) then
+    configtbl.settings.TPText = 0
+    world.Note("TP-Textausgabe ausgeschaltet.")
+  else
+    configtbl.settings.TPText = 1
+    world.Note("TP-Textausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
 function apbar_switch()
   if (configtbl.settings.APBar == 1) then
     configtbl.settings.APBar = 0
@@ -5273,6 +5323,17 @@ function apbar_switch()
   psnd("Misc/ConfigSwitch.ogg")
 end
 
+function aptext_switch()
+  if (configtbl.settings.APText == 1) then
+    configtbl.settings.APText = 0
+    world.Note("AP-Textausgabe ausgeschaltet.")
+  else
+    configtbl.settings.APText = 1
+    world.Note("AP-Textausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
 function spbar_switch()
   if (configtbl.settings.SPBar == 1) then
     configtbl.settings.SPBar = 0
@@ -5280,6 +5341,17 @@ function spbar_switch()
   else
     configtbl.settings.SPBar = 1
     world.Note("ZP-Ausgabe eingeschaltet.")
+  end
+  psnd("Misc/ConfigSwitch.ogg")
+end
+
+function sptext_switch()
+  if (configtbl.settings.SPText == 1) then
+    configtbl.settings.SPText = 0
+    world.Note("ZP-Textausgabe ausgeschaltet.")
+  else
+    configtbl.settings.SPText = 1
+    world.Note("ZP-Textausgabe eingeschaltet.")
   end
   psnd("Misc/ConfigSwitch.ogg")
 end

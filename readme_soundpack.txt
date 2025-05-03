@@ -48,7 +48,8 @@ TP-, ZP- und AP-Ausgabe
 Wir unterstützen die Ausgabe von TP, ZP und AP via Sounds.
 Da nicht jeder alle diese Ausgaben immer anhaben möchte und es durchaus zu einer ganzen Fülle an Sounds kommen kann, gibt es die Möglichkeit, die Ausgaben einzeln zu deaktivieren.
 Dafür sind die Tasten F2, F3 und F4 zuständig. Probiert es doch einfach mal aus.
-Alternativ können die Aktions-, Mana-, Treffer- und Zauberpunkte auch mit den Tastenkombinationen Alt+k, Alt+m, Alt+t und Alt+z abgefragt werden.
+In Kombination mit der Shift+Taste kann auch eine Textausgabe umgeschaltet werden, zum Beispiel Shift+F2 für eine TP-Textausgabe.
+Alternativ können die Aktions-, Mana-, Treffer- und Zauberpunkte auch direkt mit den Tastenkombinationen Alt+k, Alt+m, Alt+t und Alt+z abgefragt werden.
 
 Hinweis: Falls ihr euch wundert, dass die Sound-Ausgaben etwas asynchron zum Spielverlauf arbeiten und ihr denkt, dass es zu langsam bzw. ineffizient wäre - falsch gedacht. Tatsächlich ist es schneller und präziser als die Ingame-Ausgabe, da die Ingame-Ausgabe höchstens jede Sekunde Werte ausgibt, die Sound-Ausgaben jedoch sofort reagiert.
 
