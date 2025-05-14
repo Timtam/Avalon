@@ -3311,4 +3311,11 @@ stations:add(
              "Salon der Haarzauberin auf Tolsgal."
             )
 
+stations:add(
+             "nereid",
+             "gasthauseisdiele",
+             "raum/95f8cfe10a5115ae6800799659e8a899",
+             "Die Eisdiele der Feen."
+            )
+
 return stations

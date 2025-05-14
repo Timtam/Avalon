@@ -985,5 +985,7 @@ speedwalklist['tolsgal.bardenynaeve_tolsgal.haarzauberin'] = "nw n n kletter_n k
 speedwalklist['tolsgal.haarzauberin_tolsgal.bardenynaeve'] = "runter o o o o kletter_s kletter_s kletter_s s s so"
 speedwalklist['tolsgal.bardenynaeve_tolsgal.drachenberg'] = "nw n n kletter_n kletter_n kletter_n w w w w w w w w w w w w w w schwimme_w schwimme_w schwimme_sw schwimme_sw schwimme_sw schwimme_sw hoch"
 speedwalklist['tolsgal.drachenberg_tolsgal.bardenynaeve'] = "w schwimme_no schwimme_no schwimme_no schwimme_no schwimme_o schwimme_o o o o o o o o o o o o o o o kletter_s kletter_s kletter_s s s so"
+speedwalklist['nereid.gabelung6_nereid.gasthauseisdiele'] = "nw n n n n treppe"
+speedwalklist['nereid.gasthauseisdiele_nereid.gabelung6'] = "hoch s s s s so"
 
 return speedwalklist
