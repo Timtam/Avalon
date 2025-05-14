@@ -4113,6 +4113,24 @@
   >
   <send>psnd("Misc/SubLevelUp.ogg")</send>
   </trigger>
+  <trigger
+   enabled="y"
+   match="^Filius Kraxel, untoter Postbeamter a\.D\.$|^Kraxel naehert sich\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Monsters/Kraxel.ogg")</send>
+  </trigger>
+  <trigger
+   enabled="y"
+   match="^Tyrasus\.$|^Tyrasus naehert sich von .*\.$|^Ganz in Deiner Naehe spuerst Du, wie gewaltige Kraefte zu wirken beginnen\.$"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>psnd("Monsters/Tyrasus.ogg")</send>
+  </trigger>
 </triggers>
 
 <!--  Aliases  -->
